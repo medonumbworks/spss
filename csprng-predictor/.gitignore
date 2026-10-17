@@ -1,0 +1,9 @@
+# downloaded toolchain jars (fetched by scripts/build-apk.sh / scripts/run-tests.sh)
+tools/
+# build outputs
+build/
+app/build/
+.gradle/
+local.properties
+*.iml
+.idea/
