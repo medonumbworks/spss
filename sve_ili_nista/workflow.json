@@ -1,0 +1,274 @@
+{
+ "back": [
+  {
+   "implementation": "impl1. This is my own walk-forward backtest; it does not use sin_lib. It loads the semicolon CSV (BOM-aware), skips the 27.06.2026 row because it has no numbers, and keeps 635 valid draws from 2025-01-01 to 2026-09-28 (kolo 271/2026). For each target index t = 100..634 (T = 535), every strategy's tickets are built from draws with index < t only, and hits = |ticket ∩ draw_t|.\n\nAll randomness comes from one stream, numpy.random.default_rng(1007): the ticket sampling and the Monte Carlo null test.\n\nHow the strategies are built:\n- Uniform tickets use argsort of uniform random numbers.\n- Weighted tickets draw without replacement with weights proportional to w, using an exponential race (keys = Exp(1)/w, take the 11 smallest). This is equivalent to rng.choice(p=w/sum w, replace=False).\n- typical-structure keeps only uniform tickets whose sum lies in [Q25, Q75] of previous draw sums (np.percentile, inclusive) and whose even count is 5 or 6. Mean acceptance rate was 7.5%.\n- Ties in hot, cold and overdue are broken by the lower number (lexsort).\n- gap = draws since last appearance, where 0 means the number was in the previous draw.\n\nHow the statistics are computed:\n- For multi-ticket strategies, se_mean is cluster-robust: the sd of the 535 per-draw means divided by sqrt(T).\n- p_value_vs_null is a martingale z-test that uses the exact null variance of each per-draw mean given its ticket set: (22·Σc² − (Σc)²)/84/n², where c = how many tickets contain each number. For single tickets this reduces to the exact hypergeometric sd, sqrt(121/84) = 1.2002. The task text says 1.146, which is wrong; using it would give slightly smaller p-values, and those are also stored in the JSON.\n- A Monte Carlo conditional randomization test (5000 reps) keeps the real tickets fixed and replaces each draw with a uniform random one. It gives p-values for the mean (p_mc_mean), for the extreme fraction (p_mc_extreme_frac) and for the spread E(h−5.5)² (p_mc_spread_msd).\n- For single tickets there is also an exact binomial test on the extreme count.\n\nOutputs, all in /tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/backtest/impl1/:\n- results_impl1.json: all statistics, the hit distribution per strategy, and the tickets for today.\n- hits_impl1.npz: the per-draw hit arrays.\n- run_log_impl1.txt: the run log.\nRuntime is about 19 s and the results are deterministic.\n\nStructural facts:\n- overdue-11 always gives the same ticket as complement-last. The 11 numbers missing from the last draw are exactly the numbers with gap ≥ 1, and every number in the last draw has gap 0.\n- repeat-last hits = 11 − complement-last hits at every t.\nSo these three rows are one test, not three.\n\nFor today, as the user asked (Sunday 18.10.2026), the JSON key today_2026_10_18 holds each strategy's ticket built from all 635 draws. The data file ends on 28.09.2026, so the 19 draws from 29.09 to 17.10 are missing and these tickets rest on stale history.",
+   "n_eval_draws": 535,
+   "strategies": [
+    {
+     "name": "uniform-random",
+     "mean_hits": 5.50104,
+     "sd_hits": 1.19931,
+     "se_mean": 0.002956,
+     "jackpot_events": 1,
+     "frac_extreme": 0.085159,
+     "diff_vs_uniform": 0,
+     "p_value_vs_null": 0.725965,
+     "note": "300 tickets per draw, 160500 tickets in total. 1 jackpot (one 11-hit) against 0.455 expected under H0. p_mc_mean 0.722, p_mc_extreme 0.169, p_mc_spread 0.673. One sampled ticket for 18.10: 1 2 6 7 10 11 13 15 17 19 22."
+    },
+    {
+     "name": "hot-30",
+     "mean_hits": 5.370093,
+     "sd_hits": 1.180936,
+     "se_mean": 0.051056,
+     "jackpot_events": 0,
+     "frac_extreme": 0.069159,
+     "diff_vs_uniform": -0.130947,
+     "p_value_vs_null": 0.012296,
+     "note": "The only nominally significant mean (z = -2.50; p_mc_mean 0.0086), but the shift is toward fewer hits and away from the extremes. Extreme fraction 0.069 vs theory 0.0861 (37 of 535; binomial p 0.189, p_mc 0.172). Not significant after a Bonferroni correction for about 10 tests (threshold 0.005), and it does not raise P(0 or 11). Ticket for 18.10: 1 3 4 5 7 8 12 14 17 20 22."
+    },
+    {
+     "name": "hot-90",
+     "mean_hits": 5.493458,
+     "sd_hits": 1.232919,
+     "se_mean": 0.053304,
+     "jackpot_events": 0,
+     "frac_extreme": 0.084112,
+     "diff_vs_uniform": -0.007583,
+     "p_value_vs_null": 0.89967,
+     "note": "p_mc_extreme 0.870, binomial extreme p 0.939. Ticket for 18.10: 1 2 4 5 7 8 10 17 18 20 21."
+    },
+    {
+     "name": "hot-all",
+     "mean_hits": 5.482243,
+     "sd_hits": 1.200485,
+     "se_mean": 0.051901,
+     "jackpot_events": 0,
+     "frac_extreme": 0.102804,
+     "diff_vs_uniform": -0.018798,
+     "p_value_vs_null": 0.732192,
+     "note": "Highest extreme fraction (55 of 535), but binomial p 0.165 and p_mc_extreme 0.200, so not significant. Ticket for 18.10: 1 3 5 6 7 8 15 16 17 18 19."
+    },
+    {
+     "name": "cold-all",
+     "mean_hits": 5.523364,
+     "sd_hits": 1.20506,
+     "se_mean": 0.052099,
+     "jackpot_events": 0,
+     "frac_extreme": 0.097196,
+     "diff_vs_uniform": 0.022324,
+     "p_value_vs_null": 0.65251,
+     "note": "Extreme count 52 of 535 (binomial p 0.355). Ticket for 18.10: 2 4 5 9 10 11 12 13 14 20 21."
+    },
+    {
+     "name": "overdue-11",
+     "mean_hits": 5.465421,
+     "sd_hits": 1.189144,
+     "se_mean": 0.051411,
+     "jackpot_events": 0,
+     "frac_extreme": 0.080374,
+     "diff_vs_uniform": -0.03562,
+     "p_value_vs_null": 0.505149,
+     "note": "Always the same ticket as complement-last (only numbers missing from the last draw have gap ≥ 1). Ticket for 18.10: 3 6 7 8 10 13 16 18 19 20 21."
+    },
+    {
+     "name": "repeat-last",
+     "mean_hits": 5.534579,
+     "sd_hits": 1.189144,
+     "se_mean": 0.051411,
+     "jackpot_events": 0,
+     "frac_extreme": 0.080374,
+     "diff_vs_uniform": 0.033539,
+     "p_value_vs_null": 0.505149,
+     "note": "Tests whether consecutive draws overlap; no dependence found (binomial extreme p 0.700). Ticket for 18.10 (= draw of 28.09.2026): 1 2 4 5 9 11 12 14 15 17 22."
+    },
+    {
+     "name": "complement-last",
+     "mean_hits": 5.465421,
+     "sd_hits": 1.189144,
+     "se_mean": 0.051411,
+     "jackpot_events": 0,
+     "frac_extreme": 0.080374,
+     "diff_vs_uniform": -0.03562,
+     "p_value_vs_null": 0.505149,
+     "note": "Hits = 11 - repeat-last hits; same extreme events. Ticket for 18.10: 3 6 7 8 10 13 16 18 19 20 21."
+    },
+    {
+     "name": "weighted-hot-60",
+     "mean_hits": 5.496268,
+     "sd_hits": 1.201438,
+     "se_mean": 0.005716,
+     "jackpot_events": 0,
+     "frac_extreme": 0.086785,
+     "diff_vs_uniform": -0.004773,
+     "p_value_vs_null": 0.497075,
+     "note": "300 tickets per draw; 0 jackpots against 0.455 expected. p_mc_extreme 0.341. One sampled ticket for 18.10: 1 4 5 8 9 11 12 14 17 20 22."
+    },
+    {
+     "name": "weighted-overdue",
+     "mean_hits": 5.499452,
+     "sd_hits": 1.197912,
+     "se_mean": 0.019616,
+     "jackpot_events": 0,
+     "frac_extreme": 0.085701,
+     "diff_vs_uniform": -0.001589,
+     "p_value_vs_null": 0.977949,
+     "note": "Large cluster SE because the tickets are highly concentrated (pulled toward the complement of the last draw). p_mc_extreme 0.805. One sampled ticket for 18.10: 1 2 3 5 6 7 10 13 18 20 21."
+    },
+    {
+     "name": "typical-structure",
+     "mean_hits": 5.501171,
+     "sd_hits": 1.199476,
+     "se_mean": 0.003042,
+     "jackpot_events": 0,
+     "frac_extreme": 0.084854,
+     "diff_vs_uniform": 0.000131,
+     "p_value_vs_null": 0.698991,
+     "note": "Rejection acceptance 7.5%. p_mc_extreme 0.179. Sum band for 18.10 is [115, 136]. One sampled ticket: 2 4 5 6 8 9 11 12 19 20 21."
+    }
+   ],
+   "script_path": "/tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/backtest/impl1/backtest_impl1.py",
+   "theory": {
+    "mean_hits": 5.5,
+    "sd_hits": 1.200198,
+    "p_jackpot_per_ticket": 2.835142e-06,
+    "p_hits_ge8_or_le3": 0.086109
+   },
+   "conclusion": "No strategy beats uniform random in a statistically meaningful way. The backtest covers 535 draws, from index 100 to 634 (28.09.2026).\n\nMean hits stay within 5.37 to 5.53 of the theoretical 5.5. Only hot-30 is nominally significant (mean 5.370, p = 0.012; Monte Carlo p = 0.0086), and even that does not count:\n- It does not survive a correction for testing about 10 strategies.\n- The shift is toward fewer hits, which does not help a game that pays on 0 or 11.\n- Its extreme fraction actually fell (0.069 vs 0.0861, p about 0.17–0.19).\n\nIn this game a strategy would have to push hits toward the extremes, meaning more 0s and 11s. None did:\n- Every extreme fraction (hits ≤ 3 or ≥ 8) is within 0.069–0.103 of the theoretical 0.0861, with all extreme-fraction p-values ≥ 0.165.\n- The spread E(h−5.5)² never differed from 1.4405 (p ≥ 0.36).\n- Jackpots: one 11-hit among 160,500 uniform-random tickets (0.455 expected), and zero for every other strategy. That matches the expected values of 0.455 for 160,500 tickets and 0.0015 for 535 single tickets.\n\nrepeat-last shows that consecutive draws are not dependent. overdue-11 is the same ticket as complement-last.\n\nFor today, Sunday 18.10.2026, as the user asked: the per-strategy tickets are in results_impl1.json under today_2026_10_18. The data file ends on 28.09.2026, so 19 draws (29.09–17.10) are missing and those tickets rest on stale history. That does not change the conclusion. Every ticket has the same P(jackpot) = 2/705432 ≈ 1 in 352,716, which is about 2.84e-6."
+  },
+  {
+   "implementation": "impl2: a walk-forward backtest written from scratch in numpy. It does not use sin_lib. Script: /tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/backtest/impl2/wf_backtest_impl2.py. Results: /tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/backtest/impl2/results_wf_impl2.json. Per-target CSV: /tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/backtest/impl2/per_t_wf_impl2.csv. Log: /tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/backtest/impl2/run_log_wf_impl2.txt. The script has its own loader. The 27.06.2026 row is skipped. The script asserts 635 draws running 01.01.2025 to 28.09.2026 (kolo 271), asserts kolo == day of year, and checks the Zbroj and Parni columns. Targets are t = 100..634, so T = 535. Each strategy uses only D[:t]. Ties go to the lower number (lexsort). The gap is draws since last appearance, with 0 meaning the number was in draw t-1. Multi-ticket strategies use 300 tickets per t, all drawn from numpy.random.default_rng(2007). Weighted strategies use successive sampling without replacement, with probability proportional to the weight (Efraimidis-Spirakis keys log(U)/w). Typical-structure takes uniform tickets and keeps those with sum between Q25 and Q75 of the sums of draws before t (np.percentile, linear) and an even count of 5 or 6. Acceptance rate was 0.075, and the band moved from [117.75, 138] at t=100 to [115, 136] at t=634. se_mean is sd/sqrt(T) for single-ticket strategies. For multi-ticket strategies it is sd(per-t mean)/sqrt(T), clustered by draw. p_value_vs_null is a two-sided z-test of mean vs 5.5 using the exact null variance conditional on the tickets: Var = sum_t (121/21)*popvar(c_t)/T^2, where c_t is each number's share of the tickets at t. For a single ticket this reduces exactly to sd_hyper/sqrt(T). Cross-checks are also in the JSON: a Monte Carlo conditional-null test (4000 replicates, default_rng([2007,99]), random uniform draws against the fixed tickets) for both the mean and the extreme fraction, a paired test against uniform, and Holm adjustment over the 10 non-baseline strategies. Correction to the task text: the exact hypergeometric(22,11,11) sd is 1.200198 (var = 121/84 = 1.440476), not 1.146. The p-values in the JSON come from the exact sd. p-values computed with 1.146 are also stored for reference. Structural identity confirmed by an assert on the hit arrays: overdue-11 is always the same ticket as complement-last. Exactly 11 numbers have gap 0, namely the previous draw, so the 11 largest gaps are always the other 11 numbers. Runtime is about 8 s and the results are deterministic. Re: the user's request for today, Sunday 18.10.2026 (kolo 291), the JSON has an appendix (appendix_today_18_10_2026) with the tickets each deterministic strategy gives from all available data. The data file stops at 28.09.2026, so the 19 draws from 29.09 to 17.10 (kola 272-290) are missing and those tickets are not up to date for 18.10. hot-30=[1,3,4,5,7,8,12,14,17,20,22]; hot-90=[1,2,4,5,7,8,10,17,18,20,21]; hot-all=[1,3,5,6,7,8,15,16,17,18,19]; cold-all=[2,4,5,9,10,11,12,13,14,20,21]; repeat-last=[1,2,4,5,9,11,12,14,15,17,22]; complement-last = overdue-11 = [3,6,7,8,10,13,16,18,19,20,21].",
+   "n_eval_draws": 535,
+   "strategies": [
+    {
+     "name": "uniform-random",
+     "mean_hits": 5.497295950155763,
+     "se_mean": 0.003033666956873409,
+     "sd_hits": 1.1989540195588206,
+     "jackpot_events": 0,
+     "frac_extreme": 0.085601246105919,
+     "diff_vs_uniform": 0,
+     "p_value_vs_null": 0.3655533464594055,
+     "note": "Baseline: 160500 tickets. MC p for extreme fraction 0.463. Expected jackpots under null 0.455, observed 0."
+    },
+    {
+     "name": "hot-30",
+     "mean_hits": 5.370093457943925,
+     "se_mean": 0.0510563101596998,
+     "sd_hits": 1.1809358754018162,
+     "jackpot_events": 0,
+     "frac_extreme": 0.0691588785046729,
+     "diff_vs_uniform": -0.127202492211838,
+     "p_value_vs_null": 0.012295710611255305,
+     "note": "Only nominal p<0.05 in the run, and the mean is LOWER (5.37). Holm-adjusted over 10 strategies p=0.123, so not significant. Extreme fraction 37/535 = 0.069, below the null 0.0861 (MC p=0.155): it moves away from the 0/11 extremes, which is the wrong direction for this game. Paired p vs uniform 0.013."
+    },
+    {
+     "name": "hot-90",
+     "mean_hits": 5.493457943925233,
+     "se_mean": 0.053303718155063656,
+     "sd_hits": 1.2329185729388772,
+     "jackpot_events": 0,
+     "frac_extreme": 0.08411214953271028,
+     "diff_vs_uniform": -0.003838006230529878,
+     "p_value_vs_null": 0.8996704576329972,
+     "note": "Extreme 45/535. MC p for extreme fraction 0.879."
+    },
+    {
+     "name": "hot-all",
+     "mean_hits": 5.482242990654205,
+     "se_mean": 0.051901479259660294,
+     "sd_hits": 1.2004846933207465,
+     "jackpot_events": 0,
+     "frac_extreme": 0.102803738317757,
+     "diff_vs_uniform": -0.01505295950155805,
+     "p_value_vs_null": 0.7321922814933839,
+     "note": "Highest extreme fraction, 55/535 vs 46.1 expected. MC two-sided p=0.188, upper p=0.094, Holm 1.0. Best result was 10 hits once; never 0 or 11."
+    },
+    {
+     "name": "cold-all",
+     "mean_hits": 5.5233644859813085,
+     "se_mean": 0.052099266041737056,
+     "sd_hits": 1.205059514844357,
+     "jackpot_events": 0,
+     "frac_extreme": 0.09719626168224299,
+     "diff_vs_uniform": 0.026068535825545247,
+     "p_value_vs_null": 0.6525104849107523,
+     "note": "Extreme 52/535, MC p=0.393. Under the lower-number tie rule a tied number can appear in both hot-all and cold-all."
+    },
+    {
+     "name": "overdue-11",
+     "mean_hits": 5.465420560747663,
+     "se_mean": 0.05141119183323119,
+     "sd_hits": 1.1891443122920842,
+     "jackpot_events": 0,
+     "frac_extreme": 0.08037383177570094,
+     "diff_vs_uniform": -0.03187538940809986,
+     "p_value_vs_null": 0.5051487881844019,
+     "note": "Same ticket as complement-last at every t: the 11 numbers with gap>=1 are exactly the ones not in the previous draw. Extreme 43/535."
+    },
+    {
+     "name": "repeat-last",
+     "mean_hits": 5.534579439252337,
+     "se_mean": 0.05141119183323119,
+     "sd_hits": 1.1891443122920842,
+     "jackpot_events": 0,
+     "frac_extreme": 0.08037383177570094,
+     "diff_vs_uniform": 0.03728348909657342,
+     "p_value_vs_null": 0.5051487881844019,
+     "note": "Hits are always 11 minus the complement-last hits (assert passed), so the extreme counts are the same. Max 9 hits."
+    },
+    {
+     "name": "complement-last",
+     "mean_hits": 5.465420560747663,
+     "se_mean": 0.05141119183323119,
+     "sd_hits": 1.1891443122920842,
+     "jackpot_events": 0,
+     "frac_extreme": 0.08037383177570094,
+     "diff_vs_uniform": -0.03187538940809986,
+     "p_value_vs_null": 0.5051487881844019,
+     "note": "Mirror image of repeat-last; same as overdue-11. Min 2 hits."
+    },
+    {
+     "name": "weighted-hot-60",
+     "mean_hits": 5.500996884735202,
+     "se_mean": 0.00570471976490188,
+     "sd_hits": 1.2023193734725928,
+     "jackpot_events": 0,
+     "frac_extreme": 0.08636760124610592,
+     "diff_vs_uniform": 0.003700934579438986,
+     "p_value_vs_null": 0.8564638587982751,
+     "note": "160500 tickets. MC p for extreme fraction 0.708."
+    },
+    {
+     "name": "weighted-overdue",
+     "mean_hits": 5.501545171339564,
+     "se_mean": 0.019837610504608763,
+     "sd_hits": 1.1985194741364644,
+     "jackpot_events": 1,
+     "frac_extreme": 0.08592523364485981,
+     "diff_vs_uniform": 0.004249221183800778,
+     "p_value_vs_null": 0.9378084296235837,
+     "note": "One jackpot: a 0-hit ticket at t=342 (09.12.2025, kolo 343), 1 out of 160500 tickets. Null expectation is 0.455 and P(>=1) = 0.366, so this is chance. MC p for extreme fraction 0.904."
+    },
+    {
+     "name": "typical-structure",
+     "mean_hits": 5.494355140186916,
+     "se_mean": 0.0031511814520475624,
+     "sd_hits": 1.1984863821777576,
+     "jackpot_events": 0,
+     "frac_extreme": 0.08546417445482866,
+     "diff_vs_uniform": -0.002940809968847269,
+     "p_value_vs_null": 0.06146682815255252,
+     "note": "160500 tickets, filter acceptance rate 0.075. Holm p=0.553. Extreme MC p=0.501. Paired p vs uniform 0.496."
+    }
+   ],
+   "script_path": "/tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/backtest/impl2/wf_backtest_impl2.py",
+   "conclusion": "No strategy beats uniform random in any statistically meaningful way. This holds for mean hits and for what actually wins in this game: hitting the extremes (0 or 11).\n\n**Mean hits:** every strategy lands within noise of 5.5. The one nominal result is hot-30 (5.370, p=0.012), but its mean is lower, and it is not significant after Holm correction for 10 strategies (p=0.123).\n\n**Extreme outcomes:** the null rate of hits <= 3 or >= 8 is 0.0861. Observed rates run from 0.069 to 0.103, and no Monte Carlo p-value is below 0.15 (Holm 1.0 for all). The highest is hot-all at 0.103 (55 of 535), with two-sided p=0.188. The spread of hits never rises meaningfully above the hypergeometric 1.2002 either: values run 1.181 to 1.233.\n\n**Jackpots:** there was one jackpot event in all the tickets tested, a 0-hit weighted-overdue ticket among 160500. The null expects 0.455 in that many tickets (P of at least one = 0.366). The single-ticket strategies had no 0 or 11 outcomes in 535 draws, against 0.0015 expected.\n\n**Structure:** overdue-11 is the same ticket as complement-last at every draw, and repeat-last is its mirror image (hits = 11 minus the complement's hits), so those three are really one strategy.\n\n**Today, Sunday 18.10.2026 (kolo 291):** the data file ends at 28.09.2026, so the 19 draws from 29.09 to 17.10 are missing. The appendix tickets in the JSON are built from the last available draw, not from the real state on 18.10. In any case the backtest shows no edge: every possible ticket for today has exactly P(jackpot) = 2/705432 = 2.835e-6, whichever strategy picks it.",
+   "theory": {
+    "mean_hits": 5.5,
+    "sd_hits": 1.200198396297958,
+    "p_jackpot_per_ticket": 2.835142154027603e-06,
+    "p_hits_ge8_or_le3": 0.08610893750212635
+   }
+  }
+ ]
+}

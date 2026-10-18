@@ -176,9 +176,11 @@ rowsum = tab.sum(1, keepdims=True); colsum = tab.sum(0, keepdims=True); tot = ta
 E = rowsum @ colsum / tot
 chi_d = float(((tab - E) ** 2 / E).sum())
 res['weekday'] = dict(chi2=round(chi_d, 2), df=126, p=round(L.chi2_sf(chi_d, 126), 4), chi2_adj=round(chi_d * 21 / 11, 2), p_adj=round(L.chi2_sf(chi_d * 21 / 11, 126), 4), draws_per_day={days[j]: int(colsum[0, j] / 11) for j in range(7)})
-# nedjelja posebno (ciljno kolo 291 je u nedjelju)
-sun = tab[:, 6]; nsun = int(colsum[0, 6] / 11)
-res['sunday'] = dict(n=nsun, freq={int(n + 1): int(sun[n]) for n in range(22)}, hot=[int(n + 1) for n in np.argsort(-sun)[:11]])
+# ciljni dan u tjednu (TARGET_DOW, 0=Pon .. 6=Ned; zadano nedjelja)
+import os as _os
+_dow = int(_os.environ.get('TARGET_DOW', '6'))
+sun = tab[:, _dow]; nsun = int(colsum[0, _dow] / 11)
+res['sunday'] = dict(dow=_dow, day=days[_dow], n=nsun, freq={int(n + 1): int(sun[n]) for n in range(22)}, hot=[int(n + 1) for n in np.argsort(-sun)[:11]])
 rest = tab.sum(1) - sun
 t2 = np.stack([sun, rest], 1); E2 = t2.sum(1, keepdims=True) @ t2.sum(0, keepdims=True) / t2.sum()
 chi_s = float(((t2 - E2) ** 2 / E2).sum()) * 21 / 11

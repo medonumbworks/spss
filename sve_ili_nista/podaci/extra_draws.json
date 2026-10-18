@@ -398,5 +398,48 @@
   "sources": [
    "https://www.lotteryextreme.com/croatia/sve-ili-nista/"
   ]
+ },
+ {
+  "date": "17.10.2026",
+  "kolo": 290,
+  "numbers": [
+   4,
+   5,
+   7,
+   9,
+   10,
+   11,
+   12,
+   13,
+   19,
+   21,
+   22
+  ],
+  "status": "single-source",
+  "sources": [
+   "https://www.lotteryextreme.com/croatia/sve-ili-nista/",
+   "https://www.lotteryextreme.com/croatia/sve-ili-nista/results"
+  ]
+ },
+ {
+  "date": "18.10.2026",
+  "kolo": 291,
+  "numbers": [
+   1,
+   2,
+   6,
+   7,
+   11,
+   12,
+   13,
+   16,
+   17,
+   19,
+   22
+  ],
+  "status": "user-screenshot",
+  "sources": [
+   "snimka zaslona korisnika"
+  ]
  }
 ]
