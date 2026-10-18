@@ -21,11 +21,12 @@ with open(CFG['coverage_csv'], encoding='utf-8-sig') as f:
     for i, r in enumerate(rd):
         if i >= 20: break
         TOP.append([int(v) for v in r[1:12]])
-TOTAL = 352716; PRICE = 1.30; EVJ = 80000 * 2 / 705432; EVALL = A['game_math']['ev_total']
+TOTAL = 352716; PRICE = 1.30; EVJ = 80000 * 2 / 705432; EVALL = sum(t['p'] * t['iznos'] for t in A['game_math']['tiers'].values())
 out = []; p = out.append
 def hr(x, d=2):
     s = f'{x:,.{d}f}'
     return s.replace(',', 'X').replace('.', ',').replace('X', ' ')
+def puta(n): return f'{n} put' if n % 10 == 1 and n % 100 != 11 else f'{n} puta'
 def nums(ns): return ' '.join(f'{n:>2}' for n in ns)
 def row(*c): return '| ' + ' | '.join(str(x) for x in c) + ' |'
 def sep(n): return row(*['---'] * n)
@@ -111,13 +112,13 @@ p(f"- **Analiza ukupno:** {A['n_draws']} kola, zadnje {LASTD}. (kolo {A['last_ko
 p(row('Kolo', 'Datum', 'Brojevi', 'Status', 'Izvori')); p(sep(5))
 stat = {'confirmed': 'brojevi iz 2+ izvora', 'single-source': 'brojevi iz 1 izvora', 'user-screenshot': 'snimka zaslona korisnika'}
 for e in X:
-    srcs = ', '.join((s.split('/')[2].replace('www.', '') if '://' in s else s) for s in e['sources'][:3])
+    srcs = ', '.join(dict.fromkeys((s.split('/')[2].replace('www.', '') if '://' in s else s) for s in e['sources'][:3]))
     note = ' ⚠' if e['kolo'] == 279 else ''
     st = 'brojevi iz 2 izvora (dodatna provjera)' if e['kolo'] == 279 else stat.get(e['status'], e['status'])
     p(row(e['kolo'], e['date'], f"`{nums(e['numbers'])}`{note}", st, srcs))
 for _m in MISSING: p(f"| {_m['kolo']} | {_m['date']} | nije pronađeno | — | — |")
 p(f'\n⚠ Kolo 279 (06.10.) identično je izvlačenju od 23.06.2026. Slučajno ponavljanje jednog od {KN} novih kola ima vjerojatnost oko {hr(100 * (1 - (1 - 635 / 705432) ** KN), 1)} %. '
-  'Brojeve daju dva agregatora (lotteryextreme.com i arhiva sveilinista.hr), ali ne i službeni izvor, pa je moguća greška u izvoru. Na zaključke to ne utječe.\n')
+  'Brojeve daje lotteryextreme.com. Arhiva sveilinista.hr dala je iste brojeve u dodatnoj pretrazi bez brojeva u upitu. Oba su agregatori, a službeni izvor nije dostupan, pa je moguća greška u izvoru. Na zaključke to ne utječe.\n')
 if CFG.get('data_note'): p(CFG['data_note'] + '\n')
 
 p(f"## 4. Što pokazuju {A['n_draws']} izvlačenja\n")
@@ -128,11 +129,12 @@ p(row('Broj', *range(1, 23))); p(sep(23))
 p(row('Puta', *[A['frequency'][str(n)] for n in range(1, 23)]))
 p(row('z', *[hr(A['z'][str(n)]) for n in range(1, 23)]))
 p(row('Razmak', *[A['gaps_now'][str(n)] for n in range(1, 23)]))
-p(f"\nRazmak je broj kola od zadnjeg pojavljivanja, stanje nakon {LASTD}." + (' Nedostajuća kola (' + ', '.join(str(m['kolo']) for m in MISSING) + ') nisu uračunata, pa razmaci mogu biti zastarjeli.' if MISSING else '') + '\n')
+p(f"\nRazmak je broj kola od zadnjeg pojavljivanja, stanje nakon {LASTD}." + ((' Nedostajuće kolo ' + str(MISSING[0]['kolo']) + ' nije uračunato, pa razmaci mogu biti zastarjeli.') if len(MISSING) == 1 else (' Nedostajuća kola (' + ', '.join(str(m['kolo']) for m in MISSING) + ') nisu uračunata, pa razmaci mogu biti zastarjeli.') if MISSING else '') + '\n')
 p(f"- Najčešći ukupno: {', '.join(map(str, A['hot_all']))}")
 p(f"- Najrjeđi ukupno: {', '.join(map(str, A['cold_all']))}")
 p(f"- Vrući u zadnjih 30 kola: {', '.join(map(str, sorted(A['window_30']['hot'])))}")
-p(f"- „Zakašnjeli”: {', '.join(map(str, A['overdue']))}\n")
+p(f"- „Zakašnjeli”: {', '.join(map(str, A['overdue']))}")
+p('- Brojevi s jednakim brojem izvlačenja ili jednakim razmakom razvrstani su proizvoljno.\n')
 p('**Pogađaju li vrući ili hladni brojevi iduće kolo?** Za svako kolo uzeto je 11 najčešćih ili najrjeđih brojeva iz prethodnih w kola. Očekivano je 5,5 pogodaka.\n')
 p(row('Strategija', 'Kola', 'Prosjek pogodaka', 'z', 'p', 'Udio ekstrema (≤3 ili ≥8)')); p(sep(6))
 lab = {'hot': 'vrući', 'cold': 'hladni'}
@@ -164,7 +166,7 @@ p(f"**Ponavljanja.** Identičnih izvlačenja: {_k} (" + '; '.join(f"{a.strftime(
 p('## 5. Neovisne provjere\n')
 p('**Dvije neovisne analize** (frekvencije/parovi/razmaci te ovisnost/vrijeme/struktura) provele su preko 40 testova na 635 kola, uz Monte Carlo kalibraciju. '
   'Nijedan test ne ostaje značajan nakon korekcije za višestruka testiranja. Druga analiza imala je 0 od 30 p-vrijednosti ispod 0,05.\n')
-p('**Šest skeptika** dobilo je zadatak pobiti najjače uočene „pravilnosti”. Za svaku su neovisno ponovili izračun, ispravili za broj usporedbi i provjerili izvan uzorka (procjena na kolima 1–423, test na kolima 424–635):\n')
+p('**Šest skeptika** dobilo je zadatak pobiti najjače uočene „pravilnosti”. Za svaku su neovisno ponovili izračun, ispravili za broj usporedbi i provjerili izvan uzorka (procjena na izvlačenjima 1–423, od 01.01.2025. do 27.02.2026., test na izvlačenjima 424–635, od 28.02. do 28.09.2026.):\n')
 V = [
  ('Vrući brojevi zadnjih 30 kola nastavljaju dolaziti', 'pobijeno', 'visoka', 0.237, 'Efekt ide u krivom smjeru (vrući pogađaju manje) i ovisi o tome kako se lome izjednačenja: obrnuto pravilo daje p = 0,29. Najbolja varijanta s treninga obrnula se na testu.'),
  ('Trojka 11-13-20 potisnuta, 7-15-16 favorizirana', 'pobijeno', 'srednja', 0.0565, f'Favorizirani smjer nikad se ne ponavlja. Slaba postojanost potisnutih trojki potječe od broja 13, a 13 je u {KN} novih kola izvučen {O["new_freq"]["13"]} puta uz očekivano {hr(KN / 2, 1)}.'),
@@ -182,7 +184,7 @@ bn = {'uniform-random': 'slučajno (300 listića/kolo)', 'hot-30': 'vrući, 30 k
 p(row('Strategija', 'Prosjek pogodaka (1)', 'Prosjek pogodaka (2)', 'p (2)', 'Udio ekstrema (2)')); p(sep(5))
 for x, y in zip(b1, b2): p(row(bn.get(x['name'], x['name']), hr(x['mean_hits'], 3), hr(y['mean_hits'], 3), hr(y['p_value_vs_null'], 3), hr(y['frac_extreme'], 4)))
 p('\nJedini nominalni rezultat (vrući, 30 kola, p = 0,012) ne preživljava korekciju za 10 strategija (Holm p = 0,12). Ide prema *manje* pogodaka i smanjuje udio ekstrema, pa za ovu igru ne pomaže.\n')
-p(f'**Provjera na {KN} novih kola** ({NF}–{NL}), koje nijedna analiza nije vidjela. Listići su sastavljeni samo iz podataka do 28.09.:\n')
+p(f'**Provjera na {KN} novih kola** ({NF}–{NL}), koje nijedna od ranijih analiza (na 635 kola) nije vidjela. Listići su sastavljeni samo iz podataka do 28.09.:\n')
 p(row('Listić iz starih podataka', 'Kombinacija', 'Prosjek pogodaka', 'z', 'Ekstremi')); p(sep(5))
 tl = {'vrući-30': 'vrući, zadnjih 30', 'vrući-90': 'vrući, zadnjih 90', 'vrući-ukupno': 'vrući, ukupno', 'hladni-ukupno': 'hladni, ukupno',
       'zakašnjeli-11': '„zakašnjeli” (= komplement zadnjeg kola)', 'ponovi-zadnje (28.09.)': 'ponovi zadnje kolo (28.09.)', 'tilted-model najbolji': 'najbolji po modelu frekvencija'}
@@ -192,12 +194,12 @@ for k, v in O['tickets'].items():
 p('')
 cl = O['claims']; ks = list(cl)
 p(row('Tvrdnja iz starih podataka', f'Na {KN} novih kola', 'Očekivano slučajno')); p(sep(3))
-p(row('Broj 13 je „hladan”', f"izvučen {cl[ks[0]]} puta", hr(KN / 2, 1)))
-p(row('Broj 7 je „vruć”', f"izvučen {cl[ks[1]]} puta", hr(KN / 2, 1)))
-p(row('Par 7-15 je „sretan”', f"zajedno {cl[ks[2]]} puta", hr(O['e_pair'])))
-p(row('Par 13-20 je „nesretan”', f"zajedno {cl[ks[3]]} puta", hr(O['e_pair'])))
-p(row('Trojka 7-15-16 je favorizirana', f"zajedno {cl[ks[4]]} puta", hr(O['e_tri'])))
-p(row('Trojka 11-13-20 je potisnuta', f"zajedno {cl[ks[5]]} puta", hr(O['e_tri'])))
+p(row('Broj 13 je „hladan”', f"izvučen {puta(cl[ks[0]])}", hr(KN / 2, 1)))
+p(row('Broj 7 je „vruć”', f"izvučen {puta(cl[ks[1]])}", hr(KN / 2, 1)))
+p(row('Par 7-15 je „sretan”', f"zajedno {puta(cl[ks[2]])}", hr(O['e_pair'])))
+p(row('Par 13-20 je „nesretan”', f"zajedno {puta(cl[ks[3]])}", hr(O['e_pair'])))
+p(row('Trojka 7-15-16 je favorizirana', f"zajedno {puta(cl[ks[4]])}", hr(O['e_tri'])))
+p(row('Trojka 11-13-20 je potisnuta', f"zajedno {puta(cl[ks[5]])}", hr(O['e_tri'])))
 p(row('Premalo parnih brojeva', f"prosječno {hr(cl[ks[6]], 2)}", '5,50'))
 p(row('Uzastopna kola dijele više brojeva', f"prosječno {hr(cl[ks[7]], 2)}", '5,50'))
 p('\nNijedna „pravilnost” se nije potvrdila na novim podacima.\n')
@@ -205,7 +207,7 @@ p('\nNijedna „pravilnost” se nije potvrdila na novim podacima.\n')
 p('## 6. Zaključak\n')
 p('- Izvlačenja su statistički nerazlučiva od savršeno slučajnog izvlačenja 11 od 22. To je očekivano za nadzirano lutrijsko izvlačenje.')
 p('- „Predviđanje” koje povećava šansu nije moguće. Ne mogu ga dati ni veći model ni više računanja, jer ga u podacima nema.')
-p('- Ako igrate, najbolji je način CSPRNG odabir kombinacija koje se međusobno ne ponavljaju i nisu komplementi. Takav je odabir u prilogu, poredan po kumulativnoj šansi.')
+p('- Ako igrate, dovoljno je odabrati kombinacije koje se međusobno ne ponavljaju i nisu komplementi. CSPRNG popis u prilogu to jamči i poredan je po kumulativnoj šansi, ali nije bolji od bilo kojeg drugog takvog odabira.')
 p('- Za jedan listić uzmite red 1. Za N listića uzmite redove 1 do N.')
 p('- Očekivani povrat je negativan na svakoj razini uloga. Igrajte samo iznos koji ste spremni izgubiti. Ako igranje postane problem, obratite se liječniku obiteljske medicine ili Hrvatskom zavodu za javno zdravstvo.\n')
 p('## Prilozi\n')
