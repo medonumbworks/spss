@@ -589,7 +589,7 @@ class MarketRepository(
         var closesAt = 0L
         val pool = dex.pairAddress
         if (geckoTerminal != null && pool != null) {
-            when (val r = geckoTerminal.hourlyCandles(GeckoTerminalApi.geckoTerminalNetwork(dex.chainId), pool, 168)) {
+            when (val r = geckoTerminal.hourlyCandles(GeckoTerminalApi.geckoTerminalNetwork(dex.chainId), pool, 168, token = row.asset.contract)) {
                 is SourceResult.Success -> {
                     closesAt = clock.nowMs() - r.ageMs
                     closes = hourlyGrid(r.value, closesAt)

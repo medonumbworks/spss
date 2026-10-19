@@ -17,18 +17,28 @@ the "Memecoins" filter shows them too.
 1. Candidates: 2 pages of GeckoTerminal trending pools, 1 page of new pools (optional),
    DexScreener promotions, pump.fun (optional).
 2. Each candidate is looked up on DexScreener (deepest pool wins; GeckoTerminal's unique buyer and
-   seller counts are kept).
+   seller counts are kept), at most 210 per chain, candidates without pool data (DexScreener
+   promotions, pump.fun) first.
 3. Left out: pool quote assets and stablecoins; tokens CoinGecko already maps to a listed coin (that
    row gets a `dex_trending` tag instead); **tokens with the same ticker as a listed coin** (almost
    always copycats); pools under $10k liquidity or $10k 24 h volume (both adjustable).
 4. At most 150 tokens, most traded first. Prices are converted from USD with the Bitpanda ticker's
-   BTC EUR/USD ratio.
+   BTC EUR/USD ratio, else a USD stablecoin's price in the quote currency, else BTC against its
+   futures mark price; when none is known, DEX prices stay in USD and are labelled so.
 5. Contract checks: GoPlus (EVM chains and Solana), first for the tokens that can get a forecast at
    all (pool at least 24 h old, $10k liquidity, off the pump.fun bonding curve), most active first, one address per call
    (GoPlus silently answers only the first address of a list), at most 12 new checks per refresh;
-   checks are cached for 6 hours, so coverage grows over a few refreshes. Opening a token re-checks it
-   and adds the honeypot.is buy/sell simulation (Ethereum, BSC, Base) and a week of hourly candles from
-   GeckoTerminal.
+   checks are cached for 6 hours, so coverage grows over a few refreshes. GoPlus quota and
+   partial-data replies (codes 4029 and 2, sent inside an HTTP 200) are never cached; the last good
+   check is used instead, and once the quota is used up a refresh reads only cached checks. Ownership
+   counts as renounced only when the owner is the zero or dead address (an empty owner can mean
+   role-based minting or pausing). Opening a token re-checks it and adds the honeypot.is buy/sell
+   simulation (Ethereum, BSC, Base) and a week of hourly candles from GeckoTerminal (on an hourly grid,
+   converted at the exchange rate). GoPlus and honeypot.is are combined so the worse answer wins (a
+   honeypot or owner power either one reports stays, the higher tax counts), and these findings carry
+   over to later refreshes for 6 hours.
+6. Beyond Bitpanda a ticker is not unique, so the detail view and its cache identify DEX tokens by
+   chain and contract and memecoins or trending coins by CoinGecko id.
 
 ## Base rates (why the model is pessimistic)
 
@@ -50,14 +60,19 @@ the "Memecoins" filter shows them too.
   self-destruct) unless the token is listed on a big exchange or marked trusted (**Red flags**, score 100);
 * pool younger than 24 hours, or still on the pump.fun bonding curve (**Too new**);
 * pool liquidity under $10k (**Too illiquid**);
-* a DEX token whose contract has not been checked (**Unverified**; fail closed);
+* a DEX token whose contract has not been checked, or an EVM token whose selling could not be tested
+  (no honeypot or sell-tax result from GoPlus or honeypot.is, e.g. closed source) (**Unverified**; fail closed);
+* a trending coin with no CoinGecko market-cap rank or a market cap under $10M, because nothing checks
+  its contract or pools (**Unverified**);
 * any score of 75 or more (**Extreme risk**).
 
 Points (selection): liquidity under $25k / $50k / $100k / $250k (+30/+20/+10/+5), pool age under
-3 days / 7 days / 30 days / 90 days (+25/+15/+8/+3), pool under 2% / 5% of the market cap (+15/+8),
+3 days / 7 days / 30 days / 90 days (+25/+15/+8/+3), pool under 2% / 5% of the market cap (+15/+8; not
+for coins listed on a big exchange or worth $1B or more), unknown market cap (+8),
 24 h volume over 50x the pool (+10, often wash trading), +300% in a day (+10), tax 10-20% / 5-10%
 (+20/+10), unpublished source code (+20), upgradeable proxy (+10), owner switches on an owned contract
-(+5 to +15), creator holding over 10% (+10), little locked liquidity (+10), no website or socials
+(+5 to +15), creator holding over 10% (+10), little locked liquidity (+10; pool tokens held by the
+token's own renounced contract count as burnt), no website or socials
 (+5). Credits: listed on a big exchange (-15), GoPlus trusted (-20), older than 180 days with over
 $1M liquidity (-10). Paid DexScreener boosts are shown as a badge and only count (+5) on very
 promoted tokens younger than 3 days. Bands: under 25 lower, 25-49 elevated, 50-74 high, 75+ extreme.
@@ -78,7 +93,9 @@ promoted tokens younger than 3 days. Bands: under 25 lower, 25-49 elevated, 50-7
   vs sellers over 6 h (GeckoTerminal) or trade counts, and volume acceleration in the direction of the
   last hour. All weights are small; these signals are noisy and often manipulated.
 * A token's own Telegram channel (from its DexScreener links) is read for sentiment when the token is
-  opened.
+  opened and in the background sentiment pass.
+* DEX tokens never get futures funding or long/short data: a perpetual with the same ticker is a
+  different coin.
 * Mentions of coins Bitpanda does not list are matched strictly, because their tickers and names are
   often plain words (WOULD, "Mistake", ELON in "ELON MUSK SAYS"): only a `$` cashtag or the full name
   counts, a one-word name needs a context word ("would token") unless it says it is a coin

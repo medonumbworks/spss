@@ -51,8 +51,10 @@ class GeckoTerminalApi(
         pools("$base/networks/new_pools?include=base_token&page=${page.coerceIn(1, 10)}", "gt_new", 5 * 60_000L)
 
     /** Hourly candles of one pool, oldest first (at most 1000; 168 = one week). */
-    suspend fun hourlyCandles(network: String, poolAddress: String, limit: Int = 168): SourceResult<List<Candle>> {
-        val url = "$base/networks/$network/pools/$poolAddress/ohlcv/hour?aggregate=1&limit=${limit.coerceIn(1, 1000)}&currency=usd"
+    /** [token]: the token's contract, so the candles are its own price even when it is the pool's quote side. */
+    suspend fun hourlyCandles(network: String, poolAddress: String, limit: Int = 168, token: String? = null): SourceResult<List<Candle>> {
+        val url = "$base/networks/$network/pools/$poolAddress/ohlcv/hour?aggregate=1&limit=${limit.coerceIn(1, 1000)}&currency=usd" +
+            (token?.let { "&token=$it" } ?: "")
         return when (val r = http.getText(url, JSON, ttlMs = 15 * 60_000L, staleOkMs = 6 * 3_600_000L, retries = 1)) {
             is HttpResult.Failed -> SourceResult.failureOf(r, "GeckoTerminal candles")
             is HttpResult.Ok -> try {

@@ -10,6 +10,7 @@ gt_trending_sol	https://api.geckoterminal.com/api/v2/networks/solana/trending_po
 gt_new_pools	https://api.geckoterminal.com/api/v2/networks/new_pools?include=base_token&page=1	2
 gt_ohlcv	https://api.geckoterminal.com/api/v2/networks/solana/pools/{gt_trending_sol.data.0.attributes.address}/ohlcv/hour?aggregate=1&limit=168&currency=usd	2
 gt_token_info	https://api.geckoterminal.com/api/v2/networks/solana/tokens/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm/info	2
+gt_ohlcv_token	https://api.geckoterminal.com/api/v2/networks/solana/pools/D6NdKrKNQPmRZCCnG1GqXtF7MMoHB7qR6GU5TkG59Qz1/ohlcv/hour?aggregate=1&limit=24&currency=usd&token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm	2
 gt_networks	https://api.geckoterminal.com/api/v2/networks?page=1	2
 # --- DexScreener (keyless, 60-300 calls/min)
 ds_boosts_top	https://api.dexscreener.com/token-boosts/top/v1	1

@@ -19,7 +19,10 @@ category, one keyless call; the app shows the ones Bitpanda lacks as its MEME ti
 matched by cashtag only, never by name or bare ticker. Memecoins Bitpanda does not list match
 strictly too: cashtag or full name only, and a one-word name needs a context word ("would token")
 unless it says it is a coin ("Fartcoin"). Stock and ETF cashtags (`$AAPL`, `$MSTR`) are never new
-tokens. `--no-memecoins` turns both off.
+tokens. Feed symbols are ASCII uppercase letters and digits only: memecoins with other tickers
+(币安人生, HACHIKŌ, ZERØ) or tickers over 15 characters are skipped, and any other asset with such a
+symbol is dropped (and logged) before the feed is built, so one odd ticker never stops the feed.
+`--no-memecoins` turns both off.
 
 `channels.json` also lists official memecoin channels (`meme_project`; many are verification portals
 with little text), listing channels (`listings`) and paid DEX "trending" channels (`dex_trending`).
