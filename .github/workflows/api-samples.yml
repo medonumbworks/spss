@@ -1,6 +1,6 @@
 # Captures live responses of the free APIs listed in tools/api_samples/urls.txt from GitHub's
-# network, prints their shape to the log and uploads the raw bodies as an artifact. Used to build
-# and refresh test fixtures from real payloads. Read-only: it never commits or publishes anything.
+# network, prints their shape to the log and publishes the raw bodies as one commit on the
+# `api-samples` branch (replaced on every run), where fixtures can be built from real payloads.
 name: api-samples
 
 on:
@@ -11,7 +11,7 @@ on:
       - '.github/workflows/api-samples.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   capture:
@@ -23,8 +23,15 @@ jobs:
           persist-credentials: false
       - name: Capture samples
         run: python3 tools/api_samples/capture.py tools/api_samples/urls.txt "$RUNNER_TEMP/api-samples"
-      - uses: actions/upload-artifact@v4
-        with:
-          name: api-samples
-          path: ${{ runner.temp }}/api-samples
-          retention-days: 7
+      - name: Publish to the api-samples branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/api-samples"
+          git init -q -b api-samples
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "API samples from ${GITHUB_REF_NAME}@${GITHUB_SHA::7}"
+          git push --force --quiet "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/api-samples
