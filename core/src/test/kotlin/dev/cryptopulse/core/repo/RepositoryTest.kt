@@ -138,6 +138,15 @@ class RepositoryTest {
     }
 
     @Test
+    fun largestCoinsAreFetchedFirst() = runTest {
+        val t = fullTransport()
+        val cp = CryptoPulse.create(AppConfig(coingeckoPageSize = 2), t, null, scorer, clock = clock, logger = Logger.NONE, rateLimiter = fastLimiter(clock))
+        cp.repository.refresh()
+        val first = t.requests.first { "/coins/markets" in it.url && "ids=" in it.url }.url
+        assertTrue("bitcoin" in first && "ethereum" in first, first)
+    }
+
+    @Test
     fun dailyClosesKeepYesterdayNextToTheLiveSample() {
         val day = 86_400_000L
         val d0 = 20_000 * day

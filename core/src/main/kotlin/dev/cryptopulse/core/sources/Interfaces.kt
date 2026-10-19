@@ -70,6 +70,8 @@ interface CoinGeckoSource {
         perPage: Int = 250,
         ids: List<String>? = null,
         sparkline: Boolean = true,
+        /** Cache lifetime for this call; null = the source's default for market data. */
+        ttlMs: Long? = null,
     ): SourceResult<List<MarketData>>
 
     /** `GET /coins/{id}/market_chart?vs_currency=..&days=..` (daily granularity for days > 90, hourly for 2..90). */

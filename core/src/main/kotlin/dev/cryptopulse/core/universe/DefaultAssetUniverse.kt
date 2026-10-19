@@ -119,7 +119,7 @@ class DefaultAssetUniverse(
         if (!needed) return emptyMap()
         val ranks = HashMap<String, Int>()
         for (page in 1..config.coingeckoMappingPages.coerceIn(1, 8)) {
-            val r = coinGecko.markets("usd", page = page, perPage = 250, ids = null, sparkline = false) as? SourceResult.Success ?: break
+            val r = coinGecko.markets("usd", page = page, perPage = 250, ids = null, sparkline = false, ttlMs = 24 * 3_600_000L) as? SourceResult.Success ?: break
             r.value.forEachIndexed { i, m -> m.coingeckoId?.let { ranks.putIfAbsent(it, m.marketCapRank ?: ((page - 1) * 250 + i + 1)) } }
             if (r.value.size < 250) break
         }

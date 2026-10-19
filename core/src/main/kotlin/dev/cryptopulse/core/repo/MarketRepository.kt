@@ -295,18 +295,24 @@ class MarketRepository(
         warnings: MutableList<String>,
     ): Map<String, MarketData> {
         val vs = cfg.currency.lowercase()
+        // Largest coins first: when CoinGecko's free tier answers 429 part-way, the coins people
+        // actually look at already have their data. Order = Bitpanda snapshot rank, then last market cap.
+        val lastCap = previous?.rows?.associate { it.asset.symbol to (it.market?.marketCap ?: 0.0) }.orEmpty()
+        val ordered = uni.assets.sortedWith(compareBy<Asset> { it.snapshotRank ?: Int.MAX_VALUE }.thenByDescending { lastCap[it.symbol] ?: 0.0 })
         val idToSymbol = LinkedHashMap<String, String>()
-        uni.assets.forEach { a -> a.coingeckoId?.let { idToSymbol.putIfAbsent(it, a.symbol) } }
+        ordered.forEach { a -> a.coingeckoId?.let { idToSymbol.putIfAbsent(it, a.symbol) } }
         val result = HashMap<String, MarketData>()
         var failures = 0
         var staleAgeMs = 0L
         val chunks = idToSymbol.keys.toList().chunked(cfg.coingeckoPageSize.coerceIn(1, 250))
         chunks.forEachIndexed { i, chunk ->
             setStatus("Fetching market data (${i + 1}/${chunks.size})", 0.2f + 0.3f * i / chunks.size.coerceAtLeast(1))
-            when (val r = coinGecko.markets(vs, page = 1, perPage = chunk.size.coerceAtLeast(1), ids = chunk, sparkline = true)) {
+            // smaller coins change rank slowly: refresh their pages less often to stay inside the free tier
+            val ttl = if (i == 0) cfg.marketsTtlMs else cfg.marketsTtlMs * 4
+            when (val r = coinGecko.markets(vs, page = 1, perPage = chunk.size.coerceAtLeast(1), ids = chunk, sparkline = true, ttlMs = ttl)) {
                 is SourceResult.Success -> {
                     // Http hands back an old body (up to 6 h) when CoinGecko fails; say so instead of showing it as fresh
-                    if (r.fromCache && r.ageMs > cfg.marketsTtlMs) staleAgeMs = maxOf(staleAgeMs, r.ageMs)
+                    if (r.fromCache && r.ageMs > ttl) staleAgeMs = maxOf(staleAgeMs, r.ageMs)
                     r.value.forEach { md ->
                         val sym = md.coingeckoId?.let { idToSymbol[it] } ?: return@forEach
                         result[sym] = md.copy(symbol = sym, currency = cfg.currency)
