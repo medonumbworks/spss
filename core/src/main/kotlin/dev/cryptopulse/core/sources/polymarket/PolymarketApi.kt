@@ -89,7 +89,10 @@ class PolymarketApi(
                         symbols = CASHTAG.findAll(question).map { it.groupValues[1].uppercase() }.distinct().toList(),
                     )
                 }
-            }.sortedByDescending { it.volume24hUsd ?: 0.0 }.take(MAX_MARKETS)
+            }.sortedByDescending { it.volume24hUsd ?: 0.0 }
+                // up-or-down markets feed the 24 h crowd signal and sit near the volume cutoff on busy
+                // days: they always survive the cap
+                .let { all -> (all.filter { UP_OR_DOWN.containsMatchIn(it.question) } + all.filterNot { UP_OR_DOWN.containsMatchIn(it.question) }.take(MAX_MARKETS)).sortedByDescending { it.volume24hUsd ?: 0.0 } }
 
         /**
          * The markets about one coin, most traded first (at most 5). Matching is by whole word in the
