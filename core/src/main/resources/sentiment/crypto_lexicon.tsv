@@ -1,0 +1,494 @@
+# CryptoPulse crypto slang lexicon - overlay for the on-device VADER scorer (UTF-8, tab separated).
+#
+# Format (one entry per line; a Python twin in the cloud sentiment hub reads this same file):
+#   - Lines starting with '#' are comments. Blank lines are ignored.
+#   - Term line:  term<TAB>valence[<TAB>comment]
+#       term     lowercase. Either one token as VADER tokenizes it (split on whitespace, no spaces:
+#                "hodl", "sell-off") or a multi-word phrase whose words are separated by exactly one
+#                space ("rug pull"). Phrases are matched case-insensitively on whole words by
+#                CryptoTextNormalizer and stored in the merged lexicon under the underscore key
+#                ("rug pull" -> "rug_pull").
+#       valence  decimal number in [-4, 4] on VADER's scale (good = 1.9, great = 3.1, bad = -2.5,
+#                scam = -2.7 in VADER). Crypto values replace vader_lexicon.txt values for the same key.
+#       comment  optional free text. It must not start with "emoji_".
+#   - Emoji line: EMOJI<TAB>valence<TAB>emoji_<name>
+#       A third column starting with "emoji_" marks an emoji entry. The emoji (one or more code points)
+#       is rewritten to the token emoji_<name> before scoring and that token gets the valence. Several
+#       emoji may share one token (for example with and without the U+FE0F variation selector).
+#
+# Reference reader (Python):
+#   def load_crypto_lexicon(path):
+#       terms, phrases, emoji = {}, [], {}
+#       with open(path, encoding="utf-8") as f:
+#           for raw in f:
+#               line = raw.rstrip("\r\n")
+#               if not line.strip() or line.startswith("#"):
+#                   continue
+#               cols = line.split("\t")
+#               term, valence = cols[0], float(cols[1])
+#               extra = cols[2] if len(cols) > 2 else ""
+#               if extra.startswith("emoji_"):
+#                   emoji[term] = extra
+#                   terms[extra] = valence
+#               else:
+#                   if " " in term and term not in phrases:
+#                       phrases.append(term)
+#                   terms[term.replace(" ", "_")] = valence
+#       return terms, phrases, emoji
+
+# Market direction
+bullish	2.3
+bearish	-2.3
+bullishness	2.0
+bearishness	-2.0
+bull	1.5
+bulls	1.3
+bear	-1.5	market sense; the animal is rare in crypto chatter
+bears	-1.3
+bull market	2.2
+bear market	-2.2
+bull run	2.6
+bullrun	2.6
+crypto winter	-2.2
+altseason	2.2
+alt season	2.2
+uptober	1.8
+uptrend	1.8
+downtrend	-1.8
+downturn	-1.8
+uptick	1.0
+up only	2.0
+number go up	1.8
+down bad	-1.8
+
+# Moon
+moon	2.4
+moons	2.2
+mooning	2.7
+mooned	2.6
+moonshot	2.4
+to the moon	2.9
+moon soon	2.0
+lambo	1.8
+lambos	1.8
+
+# Pump and dump
+pump	1.3
+pumps	1.2
+pumping	1.8
+pumped	1.6
+pump and dump	-2.9	phrase wins over pump/dump
+dump	-2.0
+dumps	-1.8
+dumping	-2.2
+dumped	-2.1
+
+# Holding and sentiment slang
+hodl	1.4
+hodling	1.4
+hodler	1.0
+hodlers	1.0
+diamond hands	2.0
+paper hands	-1.4
+weak hands	-1.2
+fud	-1.6
+fudding	-1.6
+fudders	-1.4
+fomo	0.5	buying pressure: mildly bullish although the emotion is negative
+wagmi	2.2
+ngmi	-2.0
+gmi	1.6
+lfg	2.4
+copium	-1.3
+hopium	-0.6
+shitcoin	-2.0
+shitcoins	-1.9
+shill	-1.2
+shills	-1.2
+shilling	-1.2
+bagholder	-1.9
+bagholders	-1.9
+bagholding	-1.8
+bag holder	-1.9
+bag holders	-1.9
+exit liquidity	-2.0
+gem	1.6
+gems	1.6
+hidden gem	2.2
+
+# Losses and liquidations
+rekt	-2.8
+wrecked	-2.4
+liquidated	-2.4
+liquidation	-2.0
+liquidations	-2.0
+long liquidations	-2.0
+longs liquidated	-2.2
+short liquidations	1.0	shorts being closed pushes price up
+shorts liquidated	1.4
+margin call	-2.2
+margin called	-2.4
+capitulation	-2.0
+capitulate	-1.8
+capitulating	-2.0
+capitulated	-1.9
+panic selling	-2.4
+panic sell	-2.3
+panic sold	-2.2
+
+# Fraud and security
+rug	-2.6
+rugs	-2.4
+rugged	-2.9
+rugpull	-3.2
+rugpulled	-3.2
+rug-pull	-3.2
+rug pull	-3.2
+rug pulled	-3.2
+rug pulls	-3.0
+exit scam	-3.4
+scam	-3.0
+scams	-2.8
+scammed	-3.0
+scammer	-3.0
+scammers	-3.0
+scammy	-2.4
+ponzi	-3.0
+ponzi scheme	-3.2
+pyramid scheme	-2.8
+fraud	-2.8
+fraudulent	-2.8
+honeypot	-2.6
+phishing	-2.4
+drainer	-2.4
+wallet drainer	-2.8
+exploit	-2.4	VADER rates the verb -0.4; in crypto it means a protocol hack
+exploits	-2.2
+exploited	-2.7
+exploiter	-2.4
+hack	-2.4
+hacks	-2.2
+hacked	-2.8
+hacker	-2.0
+hackers	-2.0
+drain	-1.8
+drained	-2.6
+draining	-2.0
+flash loan attack	-2.6
+security breach	-2.6
+breach	-2.0
+compromised	-2.2
+backdoor	-1.8
+funds stolen	-3.0
+stolen funds	-3.0
+
+# Stablecoins
+depeg	-2.6
+depegs	-2.6
+depegged	-2.8
+depegging	-2.6
+de-peg	-2.6
+lost its peg	-2.6
+peg restored	1.4
+
+# Falling prices
+selloff	-1.9
+sell-off	-1.9
+sell off	-1.6
+selloffs	-1.8
+sell-offs	-1.8
+bloodbath	-3.0
+blood bath	-3.0
+bleeding	-2.0
+bleed	-1.7
+bleeds	-1.7
+rout	-2.0
+freefall	-2.6
+free fall	-2.6	otherwise 'free' scores +2.3
+nosedive	-2.4
+nosedived	-2.4
+nosediving	-2.4
+meltdown	-2.6
+plunge	-2.3
+plunges	-2.3
+plunged	-2.4
+plunging	-2.4
+plummet	-2.6
+plummets	-2.6
+plummeted	-2.6
+plummeting	-2.6
+crash	-2.4
+crashes	-2.3
+crashed	-2.5
+crashing	-2.4
+flash crash	-2.6
+tanked	-2.3
+tanking	-2.3
+drops	-1.4
+dropped	-1.4
+dropping	-1.4
+falls	-1.4
+fell	-1.4
+slides	-1.2
+slid	-1.2
+sinks	-1.6
+sank	-1.6
+tumble	-2.0
+tumbles	-2.0
+tumbled	-2.0
+tumbling	-2.0
+slump	-2.0
+slumps	-2.0
+slumped	-2.0
+correction	-0.6
+pullback	-0.7
+retrace	-0.5
+retracement	-0.5
+dip	-0.6
+dips	-0.6
+dipping	-0.7
+dipped	-0.7
+breakdown	-1.6
+broke support	-1.8
+breaks support	-1.8
+lost support	-1.8
+below support	-1.4
+red candle	-1.4
+red candles	-1.4
+in the red	-1.6
+dead cat bounce	-1.8	phrase wins over bounce
+bull trap	-1.8
+all time low	-2.4
+all-time low	-2.4
+atl	-2.0
+record low	-2.0
+lower highs	-1.3
+lower lows	-1.8
+death cross	-2.4
+bearish divergence	-1.8
+strong sell	-2.2
+sell signal	-1.6
+top is in	-1.4
+local top	-1.0
+underperform	-1.2
+underperforms	-1.2
+underperformed	-1.2
+underperforming	-1.2
+overbought	-1.0
+overvalued	-1.6
+
+# Rising prices
+breakout	2.0
+breakouts	1.8
+breaking out	1.8
+broke out	1.8
+broke resistance	1.8
+breaks resistance	1.8
+above resistance	1.4
+rally	2.2
+rallies	2.0
+rallied	2.1
+rallying	2.2
+relief rally	1.4
+surge	2.2
+surges	2.1
+surged	2.2
+surging	2.3
+soar	2.4
+soars	2.3
+soared	2.4
+soaring	2.5
+skyrocket	2.7
+skyrockets	2.7
+skyrocketed	2.7
+skyrocketing	2.8
+jumps	1.2
+jumped	1.2
+rises	1.2
+rising	0.8
+climbs	1.2
+climbed	1.2
+rebound	1.6
+rebounds	1.6
+rebounded	1.6
+rebounding	1.6
+recovery	1.6
+recovers	1.5
+recovered	1.4
+recovering	1.4
+bounce	1.0
+bounces	1.0
+bounced	1.0
+bouncing	1.0
+reclaim	1.2
+reclaims	1.4
+reclaimed	1.4
+parabolic	2.0
+god candle	2.6
+green candle	1.6
+green candles	1.6
+in the green	1.6
+bear trap	1.2
+short squeeze	1.8
+buy the dip	1.8	phrase wins over dip
+buying the dip	1.8
+bought the dip	1.6
+btfd	1.8
+accumulate	1.6
+accumulates	1.6
+accumulating	1.6
+accumulated	1.3
+accumulation	1.6
+oversold	1.0	reads as a bounce signal
+undervalued	1.8
+all time high	2.6
+all-time high	2.6
+all time highs	2.6
+all-time highs	2.6
+ath	2.4
+aths	2.4
+new ath	2.8
+new aths	2.8
+new all time high	2.9
+record high	2.3
+record highs	2.3
+higher highs	1.8
+higher lows	1.3
+golden cross	2.2
+bullish divergence	1.8
+strong buy	2.2
+buy signal	1.6
+bottom is in	1.6
+bottomed	1.2
+local bottom	0.8
+outperform	1.4
+outperforms	1.4
+outperformed	1.4
+outperforming	1.5
+
+# Exchange, project and token events
+listing	1.4
+listings	1.3
+listed	1.3
+lists	1.0	as in 'exchange lists token'
+delisted	-2.3
+delisting	-2.2
+delist	-2.1
+delists	-2.1
+partnership	1.8
+partnerships	1.7
+partnered	1.6
+partners with	1.6
+strategic partnership	2.2
+mainnet	1.4
+mainnet launch	2.0
+upgrade	1.4
+upgrades	1.3
+upgraded	1.4
+downgrade	-1.5
+downgraded	-1.6
+airdrop	1.5
+airdrops	1.4
+airdropped	1.3
+token unlock	-1.2	new supply hitting the market
+token unlocks	-1.2
+token burn	1.2
+buyback	1.6
+buybacks	1.5
+staking rewards	1.2
+halving	1.2
+halvening	1.2
+adoption	1.7
+mass adoption	2.4
+institutional adoption	2.2
+adopts	1.2
+inflows	1.5
+inflow	1.3
+outflows	-1.5
+outflow	-1.3
+net inflows	1.7
+net outflows	-1.7
+outage	-1.8
+outages	-1.8
+downtime	-1.4
+whale accumulation	2.0
+whales accumulating	1.9
+whales buying	1.7
+whales dumping	-2.4
+whale dumping	-2.3
+whales selling	-1.8
+
+# Regulation, ETFs and solvency
+etf approval	2.8
+etf approvals	2.6
+etf approved	2.8
+etf rejected	-2.6
+etf rejection	-2.6
+etf denied	-2.6
+etf delayed	-1.2
+etf delay	-1.2
+etf inflows	2.0
+etf outflows	-2.0
+sec approves	2.2
+sec approval	2.4
+sec rejects	-2.4
+sec lawsuit	-2.6
+sec sues	-2.4
+sued	-1.8
+lawsuit	-1.6
+lawsuits	-1.6
+crackdown	-2.0
+regulatory clarity	1.6
+insolvency	-2.9
+insolvent	-2.9
+bankrupt	-3.0
+bankruptcy	-3.0
+chapter 11	-2.6
+bank run	-2.6
+withdrawals halted	-2.6
+halted withdrawals	-2.6
+withdrawals paused	-2.4
+paused withdrawals	-2.4
+withdrawal freeze	-2.6
+frozen withdrawals	-2.6
+rate cut	1.2
+rate cuts	1.2
+rate hike	-1.2
+rate hikes	-1.2
+
+# Neutral crypto vocabulary (VADER gives these words sentiment they do not carry here)
+block	0.0	VADER -1.9; a blockchain block is neutral
+blocks	0.0	VADER -0.9
+difficulty	0.0	VADER -1.4; mining difficulty
+hard fork	0.0	'hard' is -0.4 in VADER
+open interest	0.0	'interest' is +2.0 in VADER
+interest rate	0.0
+interest rates	0.0
+
+# Emoji (EMOJI<TAB>valence<TAB>token)
+🚀	2.8	emoji_rocket
+🌙	1.6	emoji_moon
+🌕	1.8	emoji_full_moon
+📈	2.0	emoji_chart_up
+📉	-2.0	emoji_chart_down
+💎	1.8	emoji_gem
+🙌	1.6	emoji_raising_hands
+🔥	1.8	emoji_fire
+🐂	1.8	emoji_bull
+🐻	-1.8	emoji_bear
+💀	-2.0	emoji_skull
+☠️	-2.2	emoji_skull_crossbones
+☠	-2.2	emoji_skull_crossbones
+🪦	-2.0	emoji_headstone
+🩸	-2.2	emoji_blood
+⚠️	-1.6	emoji_warning
+⚠	-1.6	emoji_warning
+🟢	1.2	emoji_green_circle
+🔴	-1.2	emoji_red_circle
+🟩	1.0	emoji_green_square
+🟥	-1.0	emoji_red_square
+💩	-2.2	emoji_poop
+🤡	-1.8	emoji_clown
+💰	1.6	emoji_money_bag
+🤑	1.8	emoji_money_face
+💸	-1.0	emoji_money_wings

@@ -1,0 +1,195 @@
+sentence	neg	neu	pos	compound
+VADER is smart, handsome, and funny.	0.0	0.254	0.746	0.8316
+VADER is smart, handsome, and funny!	0.0	0.248	0.752	0.8439
+VADER is very smart, handsome, and funny.	0.0	0.299	0.701	0.8545
+VADER is VERY SMART, handsome, and FUNNY.	0.0	0.246	0.754	0.9227
+VADER is VERY SMART, handsome, and FUNNY!!!	0.0	0.233	0.767	0.9342
+VADER is VERY SMART, uber handsome, and FRIGGIN FUNNY!!!	0.0	0.294	0.706	0.9469
+VADER is not smart, handsome, nor funny.	0.646	0.354	0.0	-0.7424
+The book was good.	0.0	0.508	0.492	0.4404
+At least it isn't a horrible book.	0.0	0.678	0.322	0.431
+The book was only kind of good.	0.0	0.697	0.303	0.3832
+The plot was good, but the characters are uncompelling and the dialog is not great.	0.327	0.579	0.094	-0.7042
+Today SUX!	0.779	0.221	0.0	-0.5461
+Today only kinda sux! But I'll get by, lol	0.127	0.556	0.317	0.5249
+Make sure you :) or :D today!	0.0	0.294	0.706	0.8633
+Catch utf-8 emoji such as 💘 and 💋 and 😁	0.0	0.583	0.417	0.875
+Not bad at all	0.0	0.513	0.487	0.431
+Sentiment analysis has never been good.	0.325	0.675	0.0	-0.3412
+Sentiment analysis has never been this good!	0.0	0.621	0.379	0.5672
+Most automated sentiment analysis tools are shit.	0.375	0.625	0.0	-0.5574
+With VADER, sentiment analysis is the shit!	0.0	0.583	0.417	0.6476
+Other sentiment analysis tools can be quite bad.	0.351	0.649	0.0	-0.5849
+On the other hand, VADER is quite bad ass	0.0	0.423	0.577	0.802
+VADER is such a badass!	0.0	0.598	0.402	0.4003
+Without a doubt, excellent idea.	0.0	0.341	0.659	0.7013
+Roger Dodger is one of the most compelling variations on this theme.	0.0	0.834	0.166	0.2944
+Roger Dodger is at least compelling as a variation on the theme.	0.0	0.853	0.147	0.2263
+Roger Dodger is one of the least compelling variations on this theme.	0.132	0.868	0.0	-0.1695
+Not such a badass after all.	0.289	0.711	0.0	-0.2584
+Without a doubt, an excellent idea.	0.0	0.408	0.592	0.7013
+It was one of the worst movies I've seen, despite good reviews.	0.394	0.606	0.0	-0.7584
+Unbelievably bad acting!!	0.686	0.314	0.0	-0.6572
+Poor direction.	0.756	0.244	0.0	-0.4767
+VERY poor production.	0.674	0.326	0.0	-0.6281
+The movie was bad.	0.538	0.462	0.0	-0.5423
+Very bad movie.	0.655	0.345	0.0	-0.5849
+VERY BAD movie!	0.735	0.265	0.0	-0.7616
+happy birthday	0.0	0.213	0.787	0.5719
+laughing	0.0	0.0	1.0	0.4939
+tear gas	0.0	1.0	0.0	0.0
+riot	1.0	0.0	0.0	-0.5574
+I don't like it.	0.413	0.587	0.0	-0.2755
+This isn't good at all.	0.376	0.624	0.0	-0.3412
+It's not bad.	0.0	0.412	0.588	0.431
+Nothing good ever happens here.	0.376	0.624	0.0	-0.3412
+He is not a nice person.	0.318	0.682	0.0	-0.3252
+I can't stand this place	0.0	1.0	0.0	0.0
+This wasn't terrible at all	0.0	0.61	0.39	0.3724
+I never said it was great	0.0	0.549	0.451	0.6249
+It is not really that good	0.343	0.657	0.0	-0.3843
+It is not very bad, it is not very good	0.192	0.584	0.224	0.1139
+I aint happy	0.6	0.4	0.0	-0.4585
+nope, not happy	0.0	0.447	0.553	0.3566
+Neither good nor bad	0.705	0.295	0.0	-0.5824
+I wouldn't recommend it to anyone	0.297	0.703	0.0	-0.2755
+It's not that I don't love it	0.36	0.64	0.0	-0.5216
+rarely good, seldom great	0.339	0.282	0.38	0.0751
+despite the great reviews it failed	0.622	0.378	0.0	-0.7646
+uh-uh that is not cool	0.329	0.671	0.0	-0.2411
+no problem	0.0	0.307	0.693	0.3089
+No.	0.0	1.0	0.0	0.0
+no good	0.706	0.294	0.0	-0.3412
+There is no hope or joy here	0.523	0.477	0.0	-0.6681
+There is no love nor joy left	0.309	0.459	0.232	-0.2107
+no no no good	0.335	0.139	0.526	0.0951
+I have no complaints whatsoever	0.0	0.639	0.361	0.3089
+no!	0.0	1.0	0.0	0.0
+very good	0.0	0.238	0.762	0.4927
+extremely bad	0.791	0.209	0.0	-0.5849
+The service was really really good	0.0	0.59	0.41	0.5379
+The food was SO good	0.0	0.462	0.538	0.6866
+It was VERY good	0.0	0.433	0.567	0.6028
+barely acceptable	0.0	0.333	0.667	0.2516
+slightly annoying	0.706	0.294	0.0	-0.3415
+It is sort of good	0.0	0.605	0.395	0.3832
+It is kind of bad	0.487	0.513	0.0	-0.5849
+kind of	0.0	1.0	0.0	0.0
+She is kind	0.0	0.37	0.63	0.5267
+The movie was kinda ok	0.0	0.677	0.323	0.228
+It was just enough good stuff	0.0	0.657	0.343	0.3832
+It was somewhat disappointing and partly boring	0.496	0.504	0.0	-0.6012
+absolutely fantastic, totally worth it	0.0	0.321	0.679	0.7468
+hardly a success	0.0	0.369	0.631	0.5302
+GREAT	0.0	0.0	1.0	0.6249
+THIS IS GREAT	0.0	0.328	0.672	0.6249
+This is GREAT	0.0	0.293	0.707	0.7034
+I LOVE it	0.0	0.288	0.712	0.7125
+I HATE Mondays	0.689	0.311	0.0	-0.6633
+WOW what a GAME	0.0	0.398	0.602	0.6739
+ok	0.0	0.0	1.0	0.296
+ok!	0.0	1.0	0.0	0.0
+OK!!	0.0	1.0	0.0	0.0
+the least good option	0.445	0.555	0.0	-0.3412
+at least good	0.0	0.408	0.592	0.4404
+the very least good	0.0	0.486	0.514	0.4902
+least good	0.706	0.294	0.0	-0.3412
+I have never been so happy	0.0	0.513	0.487	0.6948
+never so good	0.0	0.348	0.652	0.5777
+this is so good	0.0	0.445	0.555	0.5777
+it was without doubt good	0.0	0.375	0.625	0.6136
+Without doubt the best	0.0	0.241	0.759	0.7438
+The food was great but the service was terrible	0.303	0.511	0.186	-0.3818
+Good but not great	0.529	0.238	0.232	-0.5409
+It was bad, but I got over it	0.243	0.757	0.0	-0.3071
+but	0.0	1.0	0.0	0.0
+good good but good good	0.0	0.079	0.921	0.891
+bad but bad	0.875	0.125	0.0	-0.7906
+I love it but I hate it but I love it	0.235	0.373	0.392	0.5187
+great, but	0.0	0.282	0.718	0.3716
+That party was the bomb	0.36	0.337	0.303	-0.128
+The concert was totally the shit	0.0	0.556	0.444	0.6124
+He is a real bad ass	0.0	0.444	0.556	0.6124
+yeah right that will work	0.0	0.645	0.355	0.296
+The tax is the kiss of death for us	0.417	0.583	0.0	-0.6124
+This cake is to die for	0.438	0.562	0.0	-0.5994
+I love my beating heart	0.0	0.134	0.866	0.9313
+We waited at the bus stop	0.0	1.0	0.0	0.0
+I feel under the weather today	0.0	1.0	0.0	0.0
+He can cut the mustard	0.344	0.656	0.0	-0.2732
+Good!	0.0	0.0	1.0	0.4926
+Good!!	0.0	0.0	1.0	0.5399
+Good!!!!!!	0.0	0.0	1.0	0.6209
+Good??	0.0	0.0	1.0	0.504
+Good????	0.0	0.0	1.0	0.594
+Bad!!!	1.0	0.0	0.0	-0.6571
+Really?	0.0	1.0	0.0	0.0
+What?!	0.0	1.0	0.0	0.0
+Great!?!?	0.0	0.0	1.0	0.7222
+Terrible???	1.0	0.0	0.0	-0.5632
+!!!	0.0	1.0	0.0	0.0
+:)	0.0	0.0	1.0	0.4588
+:(	1.0	0.0	0.0	-0.4404
+:-D	0.0	0.0	1.0	0.5106
+:D	0.0	0.0	1.0	0.5106
+<3	0.0	0.0	1.0	0.4404
+:'(	1.0	0.0	0.0	-0.4939
+XD	0.0	0.0	1.0	0.5859
+xD	0.0	0.0	1.0	0.5859
+;)	0.0	0.0	1.0	0.2263
+=)	0.0	0.0	1.0	0.4939
+D:	0.0	0.0	1.0	0.296
+I am fine :)	0.0	0.294	0.706	0.5859
+sad day :(	0.857	0.143	0.0	-0.7184
+😀	0.0	0.286	0.714	0.3612
+I am 😢 today	0.437	0.563	0.0	-0.4767
+great😀	0.0	0.132	0.868	0.765
+😀 great	0.0	0.132	0.868	0.765
+😂😂😂	0.218	0.345	0.437	0.8271
+I ❤️ this	0.0	1.0	0.0	0.0
+👍	0.0	1.0	0.0	0.0
+👎 bad	0.636	0.364	0.0	-0.5423
+😡😡	0.0	1.0	0.0	0.0
+Party 🎉🎉	0.0	0.198	0.802	0.7964
+🚀🚀 to the moon	0.0	1.0	0.0	0.0
+This is 🔥	0.545	0.455	0.0	-0.34
+💩	0.0	1.0	0.0	0.0
+Flags 🇺🇸 🇩🇪	0.0	1.0	0.0	0.0
+© 2024 Company ®	0.0	1.0	0.0	0.0
+	0.0	0.0	0.0	0.0
+   	0.0	0.0	0.0	0.0
+12345	0.0	1.0	0.0	0.0
+3.14 and 42	0.0	1.0	0.0	0.0
+100% sure	0.0	0.303	0.697	0.3182
+$1,000,000	0.0	1.0	0.0	0.0
+Check https://example.com/good-news for details	0.0	1.0	0.0	0.0
+www.great.com is terrible	0.608	0.392	0.0	-0.4767
+http://bad.example.org	0.0	1.0	0.0	0.0
+good\tbad	0.547	0.0	0.453	-0.1531
+line one is good\nline two is bad	0.282	0.484	0.234	-0.1531
+windows line\r\nis fine	0.0	0.625	0.375	0.2023
+back\\slash is good	0.0	0.408	0.592	0.4404
+Ça va très bien, good	0.0	0.58	0.42	0.4404
+naïve but good	0.0	0.342	0.658	0.5927
+ÜBER GOOD stuff	0.0	0.355	0.645	0.5622
+𝐆𝐑𝐄𝐀𝐓 news	0.0	1.0	0.0	0.0
+good job	0.0	0.256	0.744	0.4404
+great news	0.0	0.196	0.804	0.6249
+İstanbul is beautiful	0.0	0.339	0.661	0.5994
+BTC to the moon! 🚀🚀🚀	0.0	1.0	0.0	0.0
+ETH is dumping hard, total scam	0.719	0.281	0.0	-0.7713
+HODL!!! #Bitcoin	0.0	1.0	0.0	0.0
+This rug pull is a scam	0.425	0.575	0.0	-0.5719
+$DOGE pumping, love it	0.0	0.417	0.583	0.6369
+Bearish on SOL, I got rekt	0.0	1.0	0.0	0.0
+Got liquidated lol	0.0	0.417	0.583	0.4215
+Bitpanda lists new token, partnership announced	0.0	1.0	0.0	0.0
+Not bullish at all	0.0	1.0	0.0	0.0
+Buy the dip!	0.0	1.0	0.0	0.0
+Whales are accumulating, very bullish	0.0	1.0	0.0	0.0
+Market crash, panic everywhere	0.75	0.25	0.0	-0.7184
+The SEC lawsuit is bad news	0.574	0.426	0.0	-0.6597
+Exchange hacked, funds drained	0.722	0.278	0.0	-0.6369
+Bitcoin price is 65000 EUR today.	0.0	1.0	0.0	0.0
+I lost everything, never again	0.365	0.635	0.0	-0.3182
+gm frens, wagmi	0.0	1.0	0.0	0.0
