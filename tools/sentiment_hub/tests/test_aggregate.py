@@ -127,3 +127,15 @@ def test_samples_need_an_absolute_http_url(now):
     bad = scored("Bitcoin relative link", now, 0, i=2, vader=0.9)
     bad.message.url = "/news/relative"
     assert [s["text"] for s in pick_samples([(good, 1.0), (bad, 1.0)])] == ["Bitcoin good link"]
+
+
+def test_paid_promotion_counts_but_barely_moves_sentiment(now):
+    import dataclasses
+
+    promo = scored("Bitcoin to the moon", now, 0, i=1, vader=0.8)
+    other = scored("Bitcoin dumps", now, 0, i=2, vader=-0.4)
+    other = dataclasses.replace(other, message=dataclasses.replace(other.message, community="realchat"))
+    plain = aggregate([promo, other], [], build_matchers(ASSETS), now, ["vader"])
+    damped = aggregate([promo, other], [], build_matchers(ASSETS), now, ["vader"], promo_communities=frozenset({"chan"}))
+    assert damped.assets[0]["mentions"] == plain.assets[0]["mentions"] == 2
+    assert damped.assets[0]["composite"] < plain.assets[0]["composite"]

@@ -10,7 +10,11 @@ import dev.cryptopulse.core.sources.social.NewsFeeds
 import dev.cryptopulse.core.sources.social.RedditApi
 import dev.cryptopulse.core.sources.social.StockTwitsApi
 import dev.cryptopulse.core.sources.social.TelegramWeb
+import dev.cryptopulse.core.sources.SourceResult
+import dev.cryptopulse.core.testHttp
+import dev.cryptopulse.core.testing.FakeTransport
 import dev.cryptopulse.core.testing.Fixtures
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -151,5 +155,15 @@ class SourcesParsingTest {
         assertEquals(1, sol.samples.size)
         assertNotNull(sol.samples.first().tsMs)
         assertEquals(1650, doc.market!!.mentions)
+    }
+
+    @Test
+    fun telegramPreviewFallsBackToTelegramMeWhenTmeIsDown() = runTest {
+        val t = FakeTransport()
+            .failUrlContaining("https://t.me/")
+            .onUrlContaining("https://telegram.me/s/cointelegraph", body = Fixtures.read("telegram_preview.html"))
+        val r = TelegramWeb(testHttp(t)).channelMessages("cointelegraph")
+        assertTrue(r is SourceResult.Success && r.value.isNotEmpty())
+        assertEquals(1, t.countRequests("telegram.me"))
     }
 }

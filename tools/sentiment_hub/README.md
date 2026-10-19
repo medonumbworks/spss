@@ -16,7 +16,15 @@ app and MCP server. It runs every hour on GitHub Actions (free for the public re
 Besides the Bitpanda snapshot, every run also counts the 250 largest memecoins (CoinGecko "Meme"
 category, one keyless call; the app shows the ones Bitpanda lacks as its MEME tier) and brand-new
 `$TICKER` cashtags that at least two communities use three or more times. Discovered cashtags are
-matched by cashtag only, never by name or bare ticker. `--no-memecoins` turns both off.
+matched by cashtag only, never by name or bare ticker. Memecoins Bitpanda does not list match
+strictly too: cashtag or full name only, and a one-word name needs a context word ("would token")
+unless it says it is a coin ("Fartcoin"). Stock and ETF cashtags (`$AAPL`, `$MSTR`) are never new
+tokens. `--no-memecoins` turns both off.
+
+`channels.json` also lists official memecoin channels (`meme_project`; many are verification portals
+with little text), listing channels (`listings`) and paid DEX "trending" channels (`dex_trending`).
+Trending slots are sold, so those posts count as mentions but get 20% of the normal sentiment weight,
+and all of them together count as one community for cashtag discovery.
 
 Everything is free: no paid API, no API key except your own Telegram login (optional).
 
@@ -57,7 +65,7 @@ Each source returns its items plus one status: `ok`, `empty`, `rate_limited`, `u
 
 | source | what | notes |
 |---|---|---|
-| `telegram_public` | every `kind=channel` entry of `channels.json`, `https://t.me/s/<handle>` (groups have no web preview and are left to the account source) | BeautifulSoup parses `div.tgme_widget_message[data-post]`; paginates with `?before=<smallest id>` until 48 h are covered or 5 pages; 1 request/s for the host, 4 channels in flight, browser User-Agent; 404s and redirects to `t.me/<handle>` (groups have no preview) are skipped; 12 min budget. `detail` = `readable/attempted channels (...)` |
+| `telegram_public` | every `kind=channel` entry of `channels.json`, `https://t.me/s/<handle>`, or `https://telegram.me/s/<handle>` when t.me cannot be reached (groups have no web preview and are left to the account source) | BeautifulSoup parses `div.tgme_widget_message[data-post]`; paginates with `?before=<smallest id>` until 48 h are covered or 5 pages; 1 request/s for the host, 4 channels in flight, browser User-Agent; 404s and redirects to `t.me/<handle>` (groups have no preview) are skipped; 12 min budget. `detail` = `readable/attempted channels (...)` |
 | `telegram_account` | your groups/supergroups/channels + public catalogue handles | see below; `disabled` without secrets |
 | `rss` | CoinTelegraph, CoinDesk, Decrypt, Bitcoin Magazine, CryptoSlate, The Block | `xml.etree` only; HTML entities such as `&nbsp;` are repaired; undated items are skipped; relative links are resolved against the feed URL and non-http(s) links (`tag:`, `urn:`) dropped |
 | `reddit` | r/CryptoCurrency, r/CryptoMarkets, r/altcoin, r/SatoshiStreetBets `new.json?limit=100` | descriptive User-Agent; Reddit often answers 403/429 to cloud IPs, which is recorded and skipped |

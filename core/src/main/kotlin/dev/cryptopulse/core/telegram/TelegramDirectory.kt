@@ -40,7 +40,10 @@ class TelegramDirectory(val entries: List<TelegramEntry>) {
     val groups: List<TelegramEntry> get() = entries.filter { !it.isChannel }
 
     companion object {
-        private val CATEGORY_PRIORITY = mapOf("news" to 6, "analytics" to 5, "whales" to 5, "exchange" to 4, "bitpanda" to 4, "project" to 3, "community" to 2, "signals" to 1)
+        private val CATEGORY_PRIORITY = mapOf(
+            "news" to 6, "analytics" to 5, "whales" to 5, "exchange" to 4, "bitpanda" to 4, "listings" to 4, "project" to 3,
+            "meme_project" to 2, "community" to 2, "signals" to 1, "dex_trending" to 1,
+        )
 
         /** Small built-in fallback used only when the bundled resource is missing. */
         val FALLBACK: List<TelegramEntry> = listOf(

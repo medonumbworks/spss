@@ -54,7 +54,8 @@ def test_everything_down_still_writes_a_valid_feed(tmp_path, monkeypatch):
         "reddit": ("unavailable", 0),
     }
     assert feed["sources"][1]["detail"] == "no TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION secrets"
-    assert len(tg.calls) == 3  # every catalogue channel was tried (cointelegraph, solana, gone_channel); groups have no preview
+    # every catalogue channel was tried (cointelegraph, solana, gone_channel), each also at telegram.me; groups have no preview
+    assert sorted(tg.calls) == sorted(f"https://{host}/s/{h}" for host in ("t.me", "telegram.me") for h in ("cointelegraph", "solana", "gone_channel"))
     assert len(news.calls) == len(rss.FEEDS) + len(reddit.SUBREDDITS) + 1  # + the CoinGecko memecoin list
 
 

@@ -106,3 +106,10 @@ def test_cashtags_need_a_letter():
 def test_stock_cashtags_are_not_new_tokens():
     messages = [msg("$AAPL and $MSTR up, $WOJAK too", c, i) for i, c in enumerate(["a", "b", "c"])]
     assert memecoins.discover_cashtags(messages, known=set()) == ["WOJAK"]
+
+
+def test_paid_trending_channels_count_as_one_community():
+    messages = [msg("$NEWTOK is trending #1", c, i) for i, c in enumerate(["trendingssol", "BSCTRENDING", "cherrytrending"])]
+    promo = frozenset({"trendingssol", "bsctrending", "cherrytrending"})
+    assert memecoins.discover_cashtags(messages, known=set(), promo_communities=promo) == []
+    assert memecoins.discover_cashtags(messages + [msg("$NEWTOK chart looks good", "realchat", 9)], known=set(), promo_communities=promo) == ["NEWTOK"]

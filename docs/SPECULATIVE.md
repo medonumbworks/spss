@@ -86,6 +86,17 @@ The hourly sentiment hub (`tools/sentiment_hub`) also counts mentions of the 250
 times or more (tracked by cashtag only; stock and ETF tickers such as `$AAPL` or `$MSTR` are left out),
 so DEX tokens can get hub sentiment too.
 
+## Telegram
+
+`core/src/main/resources/telegram/channels.json` lists 80 more channels and groups for memecoins and
+DEX trading (2026-10-19): official memecoin channels such as WIF, PENGU, SPX6900, BRETT, POPCAT, MOG,
+PNUT, NEIRO, BOME, NOT, DOGS, BABYDOGE and Dogelon Mars (`meme_project`), listing alerts
+(`listings`), smart-money feeds (`whales`) and paid DEX trending channels (`dex_trending`). Handles were
+checked against CoinGecko, Trust Wallet and tonkeeper data. DOGE, BONK, TRUMP, FARTCOIN, MOODENG and
+several other large memecoins have no official public Telegram, so they get Telegram sentiment only
+from general channels. Lookalike handles that copy official ones (for example `@BlNANCE_Announcements`
+with a capital I, or `@spx6900_portal`) were left out.
+
 ## Attribution and terms
 
 Data from CoinGecko, GeckoTerminal, DexScreener, pump.fun, GoPlus Security, honeypot.is, Coinpaprika

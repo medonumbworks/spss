@@ -1,7 +1,7 @@
 {
  "version": 1,
  "updated": "2026-10-19",
- "note": "Public crypto Telegram channels and groups read by CryptoPulse. kind=channel: read on the phone and in the cloud hub via the t.me/s web preview (no login). kind=group: read by the cloud hub through the user's own Telegram account (by username, without joining). Compiled from web research on 2026-10-19; confidence < 0.6 means memory-only. Handles that fail are skipped at runtime.",
+ "note": "Public crypto Telegram channels and groups read by CryptoPulse. kind=channel: read on the phone and in the cloud hub via the t.me/s web preview (no login). kind=group: read by the cloud hub through the user's own Telegram account (by username, without joining). Compiled from web research on 2026-10-19; confidence < 0.6 means memory-only. Handles that fail are skipped at runtime. Categories meme_project (official memecoin channels, many are verification portals with little text), dex_trending (paid trending slots: counted as mentions, weighted low in sentiment) and listings were added on 2026-10-19 from CoinGecko, Trust Wallet and tonkeeper data.",
  "entries": [
   {
    "handle": "binance_announcements",
@@ -2798,6 +2798,1000 @@
    ],
    "confidence": 0.45,
    "evidence": "model knowledge"
+  },
+  {
+   "handle": "ShibaInu_Dogecoinkiller",
+   "title": "Pre-screen for ShibaSwap: $SHIB $LEASH $BONE",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SHIB",
+    "BONE",
+    "LEASH"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/ShibaInu_Dogecoinkiller (channel preview exists, about 99k subscribers) ; https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/shiba-inu.json (CoinGecko shiba-inu telegram_channel_identifier, savedAt 2026-10-19)",
+   "note": "Changed from group to channel. This is a gateway channel, so expect mostly pinned notices. Its pinned notice says the Shiba team now recognises only @ShibariumTechnologies as the official Telegram group."
+  },
+  {
+   "handle": "dogwifcoin",
+   "title": "dogwifhat",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "WIF"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://t.me/dogwifcoin (about 30.8k members, 531 online, so it is a group) ; https://x.com/dogwifcoin (profile links it) ; Tanish431 CoinGecko dogwifcoin.json (savedAt 2026-10-19)",
+   "note": "Memes go to a separate @WIF_MEMES."
+  },
+  {
+   "handle": "pengutg",
+   "title": "Pengu Army - Entry",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PENGU"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://x.com/pudgypenguins/status/1869463875256713394 ('The official PENGU Telegram') ; https://t.me/pengutg (about 48.7k subscribers, behind a human-verification gate) ; Tanish431 CoinGecko pudgy-penguins.json (2026-10-19)",
+   "note": "Changed from group to channel. It is an entry/verification channel: the chat sits behind it, so t.me/s shows little text."
+  },
+  {
+   "handle": "SPX6900Portal",
+   "title": "SPX6900 Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SPX"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/SPX6900Portal (channel, about 17.9k subscribers, links spx6900.com) ; Tanish431 CoinGecko spx6900.json (2026-10-19)",
+   "note": "Verification portal with little text. The lookalike @spx6900_portal (with an underscore, about 112 members) is NOT the CoinGecko-listed handle."
+  },
+  {
+   "handle": "basedbrett",
+   "title": "$BRETT PORTAL",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BRETT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/basedbrett ('$BRETT PORTAL', about 34.6k subscribers) ; https://www.kucoin.com/announcement/en-brett-brett-gets-listed-on-kucoin ; feyfry CoinGecko based-brett (last_updated 2026-02-03)",
+   "note": "Changed from group to channel. Portal with little text. Do not confuse with @basedbrettmemes."
+  },
+  {
+   "handle": "popcatsolana",
+   "title": "$POPCAT SOLANA",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "POPCAT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/s/popcatsolana (channel, about 14.1k subscribers, protected by @SafeguardRobot) ; feyfry CoinGecko popcat (2026-02-03)",
+   "note": "Changed from group to channel. Safeguard portal with little text."
+  },
+  {
+   "handle": "mogcoinYUP",
+   "title": "mog coin waiting room",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MOG"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://telegram.me/s/mogcoinYUP ('mog coin waiting room', about 16k subscribers) ; Bybit MOG listing notice and https://x.com/MogCoin both link it ; feyfry CoinGecko mog-coin (2026-02-03)",
+   "note": "Changed from group to channel. Waiting-room portal with little readable text."
+  },
+  {
+   "handle": "pnutportal",
+   "title": "PNUT Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PNUT"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://t.me/pnutportal (about 13.3k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/2qEHjDLDLbuBgRYvsxhc5D6uDWAivNFZGan56P1tpump/info.json ; feyfry CoinGecko peanut-the-squirrel (2026-02-03)",
+   "note": "Verification portal with little text."
+  },
+  {
+   "handle": "GoatseusMaximusSolanaPortal",
+   "title": "Goatseus Maximus Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "GOAT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/GoatseusMaximusSolanaPortal (about 10.2k subscribers) ; exchange pages cite it as the community chat ; feyfry CoinGecko goatseus-maximus (2026-02-03)",
+   "note": "Portal. Trust Wallet still lists @GoatseusMaximusSolana. Medium '$GOAT airdrop' posts that reuse this link follow a scam pattern."
+  },
+  {
+   "handle": "mewsworld",
+   "title": "MEW Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MEW"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/s/mewsworld ('MEW Portal', about 18-22k subscribers) ; https://www.globenewswire.com/news-release/2025/01/20/3012216/0/en/ (MEW press release lists it) ; feyfry CoinGecko cat-in-a-dogs-world (2026-02-03)",
+   "note": "Changed from group to channel. Portal. Trust Wallet's MEW entry is broken (it links Clearpool's X account)."
+  },
+  {
+   "handle": "ETHNEIROCTO",
+   "title": "Neiro Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "NEIRO"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://t.me/s/ETHNEIROCTO ('Neiro Announcements', about 17k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x812Ba41e071C7b7fA4EBcFB62dF5F45f6fA853Ee/info.json ; feyfry CoinGecko neiro-3 (2026-02-03)",
+   "note": "Changed from group to channel. It is the announcements channel, so t.me/s is readable. This is the CTO Neiro (0x812B..., neiroeth.io)."
+  },
+  {
+   "handle": "TurboToadToken",
+   "title": "Turbo Toad Token Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "TURBO"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://t.me/TurboToadToken (portal, about 361 subscribers) ; https://turbotoken.io/turbo-token-official-links ; HTX token page ; feyfry CoinGecko turbo (2026-02-03, telegram count only 5)",
+   "note": "Changed from group to channel. It is official but tiny, a portal with almost no readable text. Low value."
+  },
+  {
+   "handle": "BOOK_OF_MEME",
+   "title": "BOOK OF MEME",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BOME"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://t.me/BOOK_OF_MEME (about 33k subscribers) ; feyfry CoinGecko book-of-meme (2026-02-03)",
+   "note": "Changed from group to channel. Only CoinGecko ties it to BOME; Trust Wallet lists no Telegram."
+  },
+  {
+   "handle": "dogs_community",
+   "title": "DOGS Community",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "DOGS"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://t.me/dogs_community (channel, millions of subscribers) ; feyfry CoinGecko dogs-2 (snapshot 2025-06-26, not 2026-02-03)",
+   "note": "Do not also add @dogs (likely an alias)."
+  },
+  {
+   "handle": "notcoin",
+   "title": "Notcoin Community",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "NOT"
+   ],
+   "confidence": 0.95,
+   "evidence": "https://t.me/s/notcoin (about 8.6M subscribers) ; https://tgstat.com/channel/@notcoin ; feyfry CoinGecko notcoin (2026-02-03)",
+   "note": "The lookalike @notcoin_scam uses the same title and links another domain."
+  },
+  {
+   "handle": "hamster_kombat",
+   "title": "Hamster Kombat Announcement",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "HMSTR"
+   ],
+   "confidence": 0.92,
+   "evidence": "https://t.me/s/hamster_kombat (about 20M subscribers) ; https://tgstat.com/channel/@hamster_kombat ; feyfry CoinGecko hamster-kombat (snapshot 2025-06-26)",
+   "note": "Very large and mostly about the game."
+  },
+  {
+   "handle": "hamster_kombat_chat",
+   "title": "Hamster Kombat Chat (ENG)",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "HMSTR"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://t.me/hamster_kombat_chat (about 59.5k members, welcome text calls it the official chat) ; https://tgstat.com/chat/@hamster_kombat_chat",
+   "note": "The official announcement channel's description now links @hamster_kombat_chat_2 as the community chat, so this group may be the older or overflow one. TGStat data is stale."
+  },
+  {
+   "handle": "SimonsCatWorld",
+   "title": "Simon's Cat Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "CAT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/chat/@SimonsCatWorld (group, about 75k members) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0x6894CDe390a3f51155ea41Ed24a33A4827d3063D/info.json ; feyfry CoinGecko simon-s-cat (snapshot 2025-06-26)",
+   "note": "Token community. It is not run by Simon Tofield's studio."
+  },
+  {
+   "handle": "degentokenbase",
+   "title": "Degen",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "DEGEN"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://t.me/s/degentokenbase (preview exists, about 26-30k subscribers, a listing dated 2026-09-26) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/base/assets/0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed/info.json ; feyfry CoinGecko degen-base (2026-02-03)",
+   "note": "Changed from group to channel based on the t.me/s preview and the 'subscribers' count. But an X post mentions a 'Developers topic on our Telegram group'. If t.me/s returns no posts, read it as a group."
+  },
+  {
+   "handle": "chillguycto",
+   "title": "just a chill guy CTO",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "CHILLGUY"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/chillguycto (about 25.7k members) ; https://x.com/chillguycto/status/1861644058617053473 ('tg group') ; feyfry CoinGecko chill-guy (snapshot 2025-06-26)"
+  },
+  {
+   "handle": "babydogecoin",
+   "title": "Baby Doge Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BABYDOGE"
+   ],
+   "confidence": 0.92,
+   "evidence": "https://t.me/s/babydogecoin ; https://x.com/BabyDoge/status/1807745971100451093 (official post announcing the channel) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0xc748673057861a797275CD8A068AbB95A902e8de/info.json"
+  },
+  {
+   "handle": "BabyDogeArmy",
+   "title": "Baby Doge Chat",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BABYDOGE"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/chat/@BabyDogeArmy ; https://t.me/babydogearmy (about 99.6k members) ; linked as the chat from https://t.me/BabyDogeCoin"
+  },
+  {
+   "handle": "MemeCoreLabs",
+   "title": "MemeCore",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "M"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/s/MemeCoreLabs (about 119k subscribers) ; Tanish431 CoinGecko memecore.json (2026-10-19)",
+   "note": "Changed from group to channel. A separate community group, @MemeCoreCommunity, exists but was not verified. MemeCore is a meme-themed Layer 1."
+  },
+  {
+   "handle": "BinanceLife_token",
+   "title": "币安人生 (BinanceLife)",
+   "kind": "group",
+   "lang": "zh",
+   "category": "meme_project",
+   "symbols": [
+    "币安人生"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/bianrensheng.json (CoinGecko telegram_channel_identifier, 2026-10-19)",
+   "note": "Only CoinGecko lists this handle; no other source confirms it, and community-led BNB memes attract fake groups. Kind not verified (kept as group because the hub account can read either kind). The ticker is non-ASCII."
+  },
+  {
+   "handle": "ThePippinCo",
+   "title": "Pippin",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PIPPIN"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/pippin.json (CoinGecko, 2026-03-16, about 4k members)",
+   "note": "Only CoinGecko lists this handle. pippin.love links a private invite group (t.me/+7cN7...) instead, and I could not confirm the two are the same. Kind not verified."
+  },
+  {
+   "handle": "sirenbsc",
+   "title": "SIREN",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SIREN"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/sirenbsc (about 40k members) ; https://x.com/genius_sirenbsc (bio links it) ; https://dappbay.bnbchain.org/detail/sirenai ; Tanish431 CoinGecko siren-2.json (2026-06-12)"
+  },
+  {
+   "handle": "apeandpepe",
+   "title": "APEPE #1",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "APEPE"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/apeandpepe (about 121k members) ; BscScan contract source header names it ; Tanish431 CoinGecko ape-and-pepe.json (2026-10-19)",
+   "note": "Overflow groups @apeandpepe2 and @apeandpepe03 exist. There is also an announcement channel, @APEPE_Official, which was not verified."
+  },
+  {
+   "handle": "BUILDonBsc_AI",
+   "title": "BUILDon (B)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "B"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/build-on.json (CoinGecko, 2026-10-06; the handle matches X @BUILDonBsc_AI)",
+   "note": "Only CoinGecko lists this handle and no t.me page was found. Kind not verified. The one-letter ticker B will cause false matches."
+  },
+  {
+   "handle": "blorbmemehood",
+   "title": "BLORB",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BLORB"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/blorb.json (CoinGecko, 2026-09-20)",
+   "note": "Only CoinGecko lists this handle and no t.me page was found. Several BLORB tokens exist on different chains. Kind not verified."
+  },
+  {
+   "handle": "fomeme",
+   "title": "$FO Group 1",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "FO"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/fomeme (the official group, about 71k members) ; https://nicegram.app/hub/channel/fomemechannel (links back to it) ; Tanish431 CoinGecko official-fo.json (2026-04-28)",
+   "note": "The news channel @fomemechannel (about 121k) would be readable through t.me/s; a second group, @fomeme2, also exists."
+  },
+  {
+   "handle": "nutofficialcommunity",
+   "title": "$NUT || Official Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "NUT"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://t.me/nutofficialcommunity (about 15k members, 879 online) ; feyfry CoinGecko nut (last_updated 2025-06-24, not 2026-02-03)",
+   "note": "This was a presale coin promoted through paid press releases."
+  },
+  {
+   "handle": "auracoinsol",
+   "title": "aura",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "AURA"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://t.me/auracoinsol (about 7.8k subscribers) ; https://coinmarketcap.com/currencies/aura/ ; Trust Wallet solana/DtR4D9FtVoTX2569gaL837ZgrB6wNjj6tkmnX9Rdk9B2 info.json",
+   "note": "Changed from group to channel based on the 'subscribers' count on the t.me page; listings call it a 'community chat'. If t.me/s is empty, read it as a group. The ticker AURA collides with other tokens."
+  },
+  {
+   "handle": "LordCheems_Bsc",
+   "title": "Cheems (BSC)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "CHEEMS"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://www.globenewswire.com/news-release/2025/02/28/3034644/0/en/ (project press release lists t.me/LordCheems_Bsc) ; feyfry CoinGecko cheems-token (2026-02-03)",
+   "note": "Kind not verified. @CheemsOfficial and @cheemsuserbot are unrelated."
+  },
+  {
+   "handle": "DogelonMars",
+   "title": "Dogelon Mars",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "ELON"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://t.me/DogelonMars (about 38.5k members, 1,029 online) ; https://x.com/DogelonMars (profile links it)",
+   "note": "The ticker ELON collides with mentions of Elon Musk."
+  },
+  {
+   "handle": "snekcoinada",
+   "title": "Snek (EN)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SNEK"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://x.com/snek/status/1815533002258108629 (official socials: 'Telegram (EN)') ; https://t.me/snekcoinada (about 8.3k members, 148 online)"
+  },
+  {
+   "handle": "miladymemecoinchannel",
+   "title": "Milady",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "LADYS"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/s/miladymemecoinchannel (about 29.6k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x12970E6868f88f6557B76120662c1B3E50A646bf/info.json",
+   "note": "BitMart also lists @miladymemecoin; it was not verified."
+  },
+  {
+   "handle": "TheOnlyAndyLeft",
+   "title": "ANDY",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "ANDY"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://t.me/TheOnlyAndyLeft (channel, about 4.4k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x68BbEd6A47194EFf1CF514B50Ea91895597fc91E/info.json",
+   "note": "Changed from group to channel. Small; the CoinGecko snapshot is from 2025-06."
+  },
+  {
+   "handle": "hpos10i",
+   "title": "HarryPotterObamaSonic10Inu",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BITCOIN"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/hpos10i (about 16.9k subscribers) ; OKX NFT collection page and CoinCarp list it ; feyfry CoinGecko harrypotterobamasonic10in (2026-02-03)",
+   "note": "Changed from group to channel. The ticker BITCOIN collides with BTC. @hpos10i20 belongs to a separate '2.0' token."
+  },
+  {
+   "handle": "myroSOL",
+   "title": "$MYRO | The Solana Founders Dog",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MYRO"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/myroSOL (about 21-23k subscribers) ; Trust Wallet solana/HhJpBhRRn4g56VsyLuT8DL5Bv31HkXqsrahTTUCZeZg4 info.json",
+   "note": "Changed from group to channel. The CoinGecko snapshot is from 2025-05."
+  },
+  {
+   "handle": "aixbtportal",
+   "title": "aixbt Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "AIXBT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/aixbtportal (about 8k subscribers) ; https://aixbt-labs.gitbook.io/v1/links/socials (calls it the public chat) ; feyfry CoinGecko aixbt (2026-02-03)",
+   "note": "Portal. The official news feed is @aixbtfeed (not verified here), and aixbt.tech links a differently spelled @aixbt_portal."
+  },
+  {
+   "handle": "fwogportal",
+   "title": "$FWOG | PORTAL",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "FWOG"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/fwogportal (about 11k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/A8C3xuqscfmyLrte3VmTqrAq8kgMASius9AFNANwpump/info.json ; CoinCarp MEXC listing",
+   "note": "Portal. FWOG on ETH is a different token."
+  },
+  {
+   "handle": "michiportal",
+   "title": "$MICHI Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MICHI"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://t.me/s/michiportal (about 4.6k-7.6k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/5mbK36SZ7J19An8jFochhQS4of8g6BwUjbeCSxBSoWdp/info.json",
+   "note": "Portal. The token migrated its liquidity to a new ...pump contract through migrate.fun, so Trust Wallet's contract address may be the pre-migration token."
+  },
+  {
+   "handle": "GigaChadSol",
+   "title": "GIGACHAD",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "GIGA"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://t.me/GigaChadSol (group, about 18k members) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/63LfDmNb3MQ8mw9MtZ2To9bEA2M71kZUUGq5tiJxcqj9/info.json",
+   "note": "CoinGecko (2026-02) no longer lists a Telegram and now points to a different website, so this group may be abandoned by the team."
+  },
+  {
+   "handle": "KekiusMaximusOnEthportal",
+   "title": "Kekius Maximus community portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "KEKIUS"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://t.me/KekiusMaximusOnEthportal (about 10.2k subscribers) ; https://www.kekiusmaximus.vip/ links it ; BitMart listing ; feyfry CoinGecko kekius-maximus (snapshot 2025-06-24)",
+   "note": "Portal. Rival Kekius teams exist: Trust Wallet lists a different website (kekiusmaximuserc.com) and X account."
+  },
+  {
+   "handle": "actportal",
+   "title": "ACT I Community Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "ACT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/actportal (about 8.4k subscribers, Safeguard portal) ; Trust Wallet solana/GJAFwWjJ3vnTsrQVabjBVK2TYB1YtRCQXRDfDgUnpump info.json",
+   "note": "Verification portal."
+  },
+  {
+   "handle": "Testonbsc",
+   "title": "Test (TST)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "TST"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://x.com/TestonBSC/status/1887721487957639415 (official X lists t.me/Testonbsc) ; feyfry CoinGecko test-3 (snapshot 2025-06-26)",
+   "note": "Kind not verified. The ticker TST is generic."
+  },
+  {
+   "handle": "mubarak_cto",
+   "title": "Mubarak - Announcement",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MUBARAK"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/mubarak_cto (channel, about 8.8k subscribers) ; feyfry CoinGecko mubarak (snapshot 2025-06-26) ; Bitget listing post tags @mubarak_cto",
+   "note": "Changed from group to channel. The posts are heavily promotional."
+  },
+  {
+   "handle": "comedian_ban",
+   "title": "Comedian (BAN)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BAN"
+   ],
+   "confidence": 0.5,
+   "evidence": "feyfry CoinGecko comedian (2026-02-03, about 5.2k members)",
+   "note": "Only CoinGecko lists this handle. CoinCarp lists t.me/ctosol_ban instead and Trust Wallet lists no Telegram. Kind not verified."
+  },
+  {
+   "handle": "nonplayablecoin",
+   "title": "Non-Playable Coin",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "NPC"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/nonplayablecoin (about 7.9k subscribers) ; https://www.npc.com/ links it ; Tanish431 CoinGecko non-playable-coin.json (2026-10-09)",
+   "note": "Changed from group to channel. The ticker NPC is also a slang word."
+  },
+  {
+   "handle": "LofiOnSui",
+   "title": "Lofi on Sui Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "LOFI"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://t.me/LofiOnSui (about 6.6k subscribers) ; CoinCarp lofitheyeti ; feyfry CoinGecko lofi-2 (snapshot 2025-06-26)",
+   "note": "Changed from group to channel. Portal with little text."
+  },
+  {
+   "handle": "pepecoins",
+   "title": "PepeCoin Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PEPECOIN"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://t.me/pepecoins ('Official Portal to join PepeCoin', about 1.1k subscribers) ; Trust Wallet ethereum/0xA9E8aCf069C58aEc8825542845Fd754e41a9489A info.json ; https://x.com/pepecoins",
+   "note": "Changed from group to channel. It is a tiny portal with almost no text. This is the older PEPECOIN (pepecoin.io), not PEPE."
+  },
+  {
+   "handle": "zerebro0x",
+   "title": "Zerebro",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "ZEREBRO"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://linktr.ee/0xzerebro (official Linktree: 'Telegram: Contact @zerebro0x') ; feyfry CoinGecko zerebro (snapshot 2025-06-26)",
+   "note": "Kind not verified, and the Linktree 'Contact' wording could mean a user account. An invite page shows a separate group, @zerebro_portal (about 5.9k members)."
+  },
+  {
+   "handle": "GriffainSOL",
+   "title": "Griffain Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "GRIFFAIN"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://t.me/GriffainSOL (about 6.9k subscribers) ; https://bitmart.zendesk.com/hc/en-us/articles/31754029517851 ; feyfry CoinGecko griffain (snapshot 2025-06-26)",
+   "note": "Changed from group to channel. Portal. @GriffainBot is the app."
+  },
+  {
+   "handle": "notpixel_channel",
+   "title": "Not Pixel Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PX"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://t.me/s/notpixel_channel (Telegram-verified, about 3.9M+ subscribers) ; https://raw.githubusercontent.com/tonkeeper/ton-assets/main/jettons.json (PX jetton social)",
+   "note": "Mostly about the game."
+  },
+  {
+   "handle": "pump_tech_updates",
+   "title": "Pump Developer Updates",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PUMP"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://t.me/s/pump_tech_updates (about 6k subscribers) ; https://pump.fun/docs/mayhem-mode (developer channel link)",
+   "note": "Posts rarely; the latest cached post was old. These are technical notices with almost no sentiment."
+  },
+  {
+   "handle": "four_meme",
+   "title": "Four.Meme (Official Group Chat)",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://t.me/four_meme (about 107.6k members) ; https://linktr.ee/four.meme (lists a Telegram Community and a separate Official Channel)",
+   "note": "The Official Channel's handle was not found."
+  },
+  {
+   "handle": "gmgnai",
+   "title": "GMGN Degen Group - Official",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://docs.gmgn.ai/index/contact-us ('GMGN Group: https://t.me/gmgnai') ; https://t.me/gmgnai (about 23k members)",
+   "note": "The Chinese group is @gmgn_official. @gmgn_ai is only a portal for the alert channels."
+  },
+  {
+   "handle": "bubblemaps",
+   "title": "Bubblemaps Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BMT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/bubblemaps (official community, about 8.4k members, links regional groups) ; feyfry CoinGecko bubblemaps (snapshot 2025-06-26)",
+   "note": "Category changed from whales to community, since this is a product and token chat. Avoid @bubblemapsportal: it points to the lookalike domain bubblymaps.com and has about 172 subscribers."
+  },
+  {
+   "handle": "trendingssol",
+   "title": "SOL TRENDING (Deluge)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.7,
+   "evidence": "https://t.me/s/trendingssol ; https://tgstat.com/channel/@trendingssol (about 135k subscribers, part of @delugecash)",
+   "note": "Slots are paid through @delugetrendbot, so this measures paid attention."
+  },
+  {
+   "handle": "BSCTRENDING",
+   "title": "BSC TRENDING (LIVE)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://telemetr.me/content/bsctrending (about 45.6k subscribers, powered by @buytech) ; https://tgstat.com/channel/@BuyBotTech",
+   "note": "Paid trending placement."
+  },
+  {
+   "handle": "BuyBotTrending",
+   "title": "BuyBot Tech Trending",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://x.com/BuyBotTech (profile links t.me/BuyBotTrending) ; https://tgstat.com/channel/@BuyBotTracker",
+   "note": "Paid trending placement across several chains."
+  },
+  {
+   "handle": "BASETRENDINGLIVE",
+   "title": "BASE TRENDING (LIVE)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@BASETRENDINGLIVE",
+   "note": "An automated feed with paid 'Boost Trending' slots."
+  },
+  {
+   "handle": "trendingonds",
+   "title": "Trending on DEX Screener (unofficial)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://telemetr.io/en/channels/1266195491-trendingonds (about 10k subscribers, Aug 2025)",
+   "note": "Unofficial. A separate @TrendingOnDS has about 7.2k subscribers; do not add both."
+  },
+  {
+   "handle": "DSTrendingSolana",
+   "title": "Solana - Trending on DEX Screener (unofficial)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://t.me/DSTrendingSolana ; https://telemetr.io/en/channels/2075630283-dstrendingsolana/marketing",
+   "note": "An unofficial mirror of DEX Screener trending."
+  },
+  {
+   "handle": "dstrends_bsc",
+   "title": "DEX Screener Trends: BSC (unofficial)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://t.me/s/dstrends_bsc (about 6.3k subscribers) ; https://tgstat.com/channel/@dstrends_bsc",
+   "note": "An unofficial mirror."
+  },
+  {
+   "handle": "dexpaidalerts",
+   "title": "DEX Paid - NEW Alerts - DEXScreener",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.5,
+   "evidence": "https://telemetr.io/en/channels/2166128600-dexpaidalerts/posts",
+   "note": "A launch-activity signal, not sentiment: mostly contract addresses."
+  },
+  {
+   "handle": "pumpfunraydium",
+   "title": "Pump.fun - PumpSwap Migration",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.5,
+   "evidence": "https://telemetr.io/en/channels/2082594782-pumpfunraydium",
+   "note": "A third-party feed sourced from @PumpFunHotCalls; high volume and mostly contract addresses."
+  },
+  {
+   "handle": "cherrytrending",
+   "title": "Cherry Trending: SOL, PUMPFUN",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@cherrytrending ; https://t.me/cherrytrending (about 648k subscribers; @CherryTGBot names it its Trending Hub)",
+   "note": "Paid trending placement; the subscriber count may be inflated."
+  },
+  {
+   "handle": "dextoolsnews",
+   "title": "DEXTools Spotlight",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.5,
+   "evidence": "https://t.me/s/DEXToolsNews (about 11.6k subscribers; posts are DEXTools platform updates) ; https://telemetr.io/en/channels/1394392545-dextoolsnews",
+   "note": "Not confirmed official; Telemetr marks it unverified. DEXTools' blog names @DEXToolsCommunity as its official group. Spotlight posts are probably paid placements."
+  },
+  {
+   "handle": "GateOfficialNews",
+   "title": "Gate News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "listings",
+   "symbols": [
+    "GT"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://www.gate.com/community (lists 'Gate News' @GateOfficialNews)",
+   "note": "Listed as official, but the subscriber count and activity could not be confirmed (one mirror shows about 55). @gateio_english_news is another Gate English channel with a long post history (not verified). Avoid @GateioOfficialNews."
+  },
+  {
+   "handle": "GateZhNews",
+   "title": "Gate 官方公告",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "listings",
+   "symbols": [
+    "GT"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://www.gate.com/community (lists 'Gate 官方公告' @GateZhNews)"
+  },
+  {
+   "handle": "BWEnews",
+   "title": "方程式新闻 BWEnews",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.88,
+   "evidence": "https://t.me/s/BWEnews (about 73k subscribers) ; https://telemetr.io/en/channels/1279597711-bwenews/posts (about 2 posts a day, mid-Oct 2026) ; https://x.com/bwenews",
+   "note": "Bilingual Chinese and English. A fast listing wire; some items are AI-generated and unchecked."
+  },
+  {
+   "handle": "BWEnews_KR",
+   "title": "BWEnews 한국어",
+   "kind": "channel",
+   "lang": "ko",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@BWEnews_KR ; https://t.me/s/BWEnews_KR",
+   "note": "Shares branding and a Linktree with @BWEnews, but the subscriber data (about 2.9k) is old."
+  },
+  {
+   "handle": "CexAlerts",
+   "title": "CEX Alerts",
+   "kind": "channel",
+   "lang": "en",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://t.me/s/CexAlerts ; https://telemetr.io/en/channels/1958121663-cexalerts/posts (about 49-54k subscribers)",
+   "note": "A third-party aggregator. It also posts 'likely to list' predictions, not only confirmed listings."
+  },
+  {
+   "handle": "coin_listing",
+   "title": "Coin listing",
+   "kind": "channel",
+   "lang": "en",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://t.me/s/coin_listing ; https://tgstat.com/channel/@coin_listing",
+   "note": "A third-party aggregator that also sells a paid websocket feed."
+  },
+  {
+   "handle": "newcoinlistingbot",
+   "title": "New Coins Listings",
+   "kind": "channel",
+   "lang": "en",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://t.me/s/newcoinlistingbot ; https://tgstat.com/channel/@newcoinlistingbot (about 5.2-5.8k subscribers)",
+   "note": "Automated template posts, despite the 'bot' in the handle."
+  },
+  {
+   "handle": "OnchainLens",
+   "title": "Onchain Lens Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://t.me/s/OnchainLens ; https://www.onchainlens.ai/ (site points to the Telegram channel) ; https://telemetr.io/en/channels/2203893277-onchainlens/posts",
+   "note": "About 3-5k subscribers."
+  },
+  {
+   "handle": "NansenSmartAlerts",
+   "title": "Nansen Smart Alerts",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.45,
+   "evidence": "https://t.me/NansenSmartAlerts (about 1.1k subscribers; directs users to nansen.ai) ; https://twitter.com/nansen_ai/status/1590723158910197760",
+   "note": "Small and possibly dormant; activity could not be confirmed."
+  },
+  {
+   "handle": "ChannelPANews",
+   "title": "PANews Web3丨加密货币丨区块链新闻频道",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/ChannelPANews (about 25k subscribers) ; https://x.com/PANewsCN/status/1455046984541229062 ; https://linktr.ee/PANewsLab",
+   "note": "General crypto news, not meme-specific. The English channel is @panewsen and the discussion group is @PANewsLab. PANews' X account @PANewsCN was hijacked in 2025."
+  },
+  {
+   "handle": "ShibariumTechnologies",
+   "title": "Shibarium Technologies",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SHIB",
+    "BONE"
+   ],
+   "confidence": 0.7,
+   "evidence": "Pinned notice in https://t.me/s/ShibaInu_Dogecoinkiller: the Shiba team recognises only @ShibariumTechnologies as the official group (about 19-23k members)"
   }
  ]
 }

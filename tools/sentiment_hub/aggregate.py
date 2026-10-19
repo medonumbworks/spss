@@ -21,6 +21,9 @@ from sentiment_hub.mentions import MentionMatcher
 from sentiment_hub.nlp import ScoredMessage
 
 HALF_LIFE_HOURS = 12.0
+# Paid "trending" channels sell their slots: their posts still count as mentions but barely move sentiment.
+PROMO_WEIGHT = 0.2
+PROMO_CATEGORIES = frozenset({"dex_trending"})
 MAX_SAMPLES = 5
 SAMPLE_CHARS = 280
 
@@ -117,7 +120,9 @@ def aggregate(
     matchers: Sequence[MentionMatcher],
     now: datetime,
     models: Sequence[str],
+    promo_communities: frozenset[str] = frozenset(),
 ) -> Aggregation:
+    """``promo_communities``: lower-cased handles of paid-promotion channels (``PROMO_WEIGHT``)."""
     market = _Acc()
     per_asset: dict[str, _Acc] = {}
     per_asset_source: dict[str, dict[str, _Acc]] = {}
@@ -125,6 +130,8 @@ def aggregate(
 
     for sm in scored:
         w = message_weight(sm.message.ts, sm.message.engagement, now)
+        if sm.message.community and sm.message.community.lower() in promo_communities:
+            w *= PROMO_WEIGHT
         market.add(sm, w)
         folded = sm.message.text.casefold()
         for matcher in matchers:

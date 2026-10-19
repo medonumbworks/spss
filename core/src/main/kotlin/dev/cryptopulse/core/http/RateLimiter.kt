@@ -82,6 +82,7 @@ class RateLimiter(
             "reddit.com" to Rate(requestsPerMinute = 8.0, burst = 2),
             "api.stocktwits.com" to Rate(requestsPerMinute = 60.0, burst = 5),
             "t.me" to Rate(requestsPerMinute = 20.0, burst = 3),
+            "telegram.me" to Rate(requestsPerMinute = 20.0, burst = 3),
             "news.google.com" to Rate(requestsPerMinute = 20.0, burst = 3),
             "api.alternative.me" to Rate(requestsPerMinute = 10.0, burst = 2),
             "fapi.binance.com" to Rate(requestsPerMinute = 30.0, burst = 5),

@@ -92,9 +92,11 @@ def discover_cashtags(
     min_mentions: int = 3,
     min_communities: int = 2,
     limit: int = 60,
+    promo_communities: frozenset[str] = frozenset(),
 ) -> list[str]:
     """Cashtags of unknown tickers that at least ``min_communities`` different channels/feeds used
-    ``min_mentions`` times in total, most used first."""
+    ``min_mentions`` times in total, most used first. Paid-promotion channels
+    (``promo_communities``, lower-cased) together count as one community."""
     counts: dict[str, int] = defaultdict(int)
     communities: dict[str, set[str]] = defaultdict(set)
     for m in messages:
@@ -105,7 +107,8 @@ def discover_cashtags(
                 continue
             seen_here.add(sym)
             counts[sym] += 1
-            communities[sym].add((m.community or m.source).lower())
+            community = (m.community or m.source).lower()
+            communities[sym].add("(promo)" if community in promo_communities else community)
     ranked = [s for s, n in counts.items() if n >= min_mentions and len(communities[s]) >= min_communities]
     ranked.sort(key=lambda s: (-counts[s], s))
     return ranked[:limit]

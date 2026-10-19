@@ -29,7 +29,7 @@ from typing import Any, Callable, Mapping
 
 from sentiment_hub import __version__
 from sentiment_hub import memecoins, reddit, rss, telegram_account, telegram_public
-from sentiment_hub.aggregate import aggregate, message_weight
+from sentiment_hub.aggregate import PROMO_CATEGORIES, aggregate, message_weight
 from sentiment_hub.assets import DEFAULT_LEXICON_PATH, Asset, load_assets, load_channels
 from sentiment_hub.common import SOURCE_NAMES, Message, SourceResult, parse_iso, utcnow
 from sentiment_hub.feed import build_feed, validate_feed, write_feed
@@ -101,7 +101,7 @@ def collect_sources(
     account_env: Mapping[str, str] | None = None,
     account_client_factory: Callable | None = None,
 ) -> dict[str, SourceResult]:
-    tg_http = tg_http or HttpClient(user_agent=BROWSER_USER_AGENT, timeout=20, host_intervals={"t.me": telegram_public.REQUEST_INTERVAL_S})
+    tg_http = tg_http or HttpClient(user_agent=BROWSER_USER_AGENT, timeout=20, host_intervals={"t.me": telegram_public.REQUEST_INTERVAL_S, "telegram.me": telegram_public.REQUEST_INTERVAL_S})
     news_http = news_http or HttpClient(user_agent=NEWS_USER_AGENT, timeout=20)
     results: dict[str, SourceResult] = {}
     futures: dict[str, Future] = {}
@@ -245,6 +245,7 @@ def run(
     entries, channels_note = load_channels(args.channels)
     if args.max_channels is not None:
         entries = entries[: max(0, args.max_channels)]
+    promo = frozenset(e.handle.lower() for e in entries if e.category in PROMO_CATEGORIES)
     lexicon, lexicon_note = load_lexicon(args.lexicon or DEFAULT_LEXICON_PATH)
     log.info(
         "start: %d assets (%s; memecoins: %s), %d Telegram entries (%s), lexicon %s, models %s, window %dh",
@@ -272,11 +273,11 @@ def run(
     matchers = build_matchers(assets)
     if not getattr(args, "no_memecoins", False):
         # brand-new tickers that several communities talk about: tracked by "$TICKER" only
-        fresh = memecoins.discover_cashtags(current, {a.symbol for a in assets})
+        fresh = memecoins.discover_cashtags(current, {a.symbol for a in assets}, promo_communities=promo)
         matchers += [MentionMatcher(Asset(symbol=s, name=s), cashtag_only=True) for s in fresh]
         if fresh:
             log.info("tracking %d new cashtags: %s", len(fresh), ", ".join(fresh[:15]))
-    agg = aggregate(report.scored, previous, matchers, now, report.models)
+    agg = aggregate(report.scored, previous, matchers, now, report.models, promo_communities=promo)
     feed = build_feed(now, hours, report.models, [results[n] for n in SOURCE_NAMES if n in results], agg.market, agg.assets)
     return feed, results, notes
 

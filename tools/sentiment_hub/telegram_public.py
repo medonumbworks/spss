@@ -28,6 +28,8 @@ log = logging.getLogger("sentiment_hub.telegram_public")
 
 NAME = "telegram_public"
 BASE = "https://t.me"
+# Same preview pages; used when t.me cannot be reached (the domain was suspended for a day in July 2026).
+MIRROR_BASE = "https://telegram.me"
 DEFAULT_MAX_PAGES = 5
 DEFAULT_CONCURRENCY = 4
 REQUEST_INTERVAL_S = 1.0
@@ -159,6 +161,9 @@ def fetch_channel(
         try:
             resp = _get(http, url)
         except NetError as exc:
+            if pages == 0 and base_url.startswith(BASE + "/"):
+                base_url = f"{MIRROR_BASE}/s/{handle}"
+                continue
             if pages == 0:
                 return ChannelFetch(handle, "unavailable", note=str(exc))
             note = f"page {pages + 1}: {exc}"

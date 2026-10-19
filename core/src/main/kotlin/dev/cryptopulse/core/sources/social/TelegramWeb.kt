@@ -13,19 +13,25 @@ import org.jsoup.Jsoup
 /**
  * Reads public Telegram channels without an account through the official web preview
  * `https://t.me/s/<channel>` (the same page telegram.org shows to browsers). Only broadcast
- * channels have a preview; groups need the user's account (see tools/sentiment_hub).
+ * channels have a preview; groups need the user's account (see tools/sentiment_hub). When t.me
+ * cannot be reached (the domain was suspended for a day in July 2026) the same page is read from
+ * telegram.me.
  */
 class TelegramWeb(
     private val http: Http,
-    private val base: String = "https://t.me",
+    private val base: String = DEFAULT_BASE,
     private val ttlMs: Long = 20 * 60_000L,
 ) : TelegramSource {
 
     override suspend fun channelMessages(channel: String): SourceResult<List<SocialPost>> {
         val handle = channel.trim().removePrefix("@").removePrefix("https://t.me/").removePrefix("s/").trim('/')
         if (!HANDLE.matches(handle)) return SourceResult.Failure(SourceStatus.PARSE_ERROR, "Invalid Telegram handle: $channel")
-        val url = "$base/s/$handle"
-        return when (val r = http.getText(url, mapOf("Accept" to "text/html", "Accept-Language" to "en"), ttlMs = ttlMs, retries = 1)) {
+        val headers = mapOf("Accept" to "text/html", "Accept-Language" to "en")
+        var r = http.getText("$base/s/$handle", headers, ttlMs = ttlMs, retries = 1)
+        if (r is HttpResult.Failed && r.code == null && base == DEFAULT_BASE) {
+            r = http.getText("$MIRROR_BASE/s/$handle", headers, ttlMs = ttlMs, retries = 0)
+        }
+        return when (r) {
             is HttpResult.Failed -> SourceResult.failureOf(r, "Telegram @$handle")
             is HttpResult.Ok -> try {
                 val posts = parsePreview(r.body, handle)
@@ -42,6 +48,8 @@ class TelegramWeb(
 
     companion object {
         private val HANDLE = Regex("^[A-Za-z][A-Za-z0-9_]{3,31}$")
+        const val DEFAULT_BASE = "https://t.me"
+        const val MIRROR_BASE = "https://telegram.me"
 
         /** Parses the t.me/s HTML preview. Messages without text (photo-only) are skipped. */
         fun parsePreview(html: String, handle: String): List<SocialPost> {

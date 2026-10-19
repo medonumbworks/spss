@@ -83,6 +83,15 @@ def test_fetch_channel_paginates_until_window_covered(now):
     assert first.public and first.source == "telegram_public"
 
 
+def test_fetch_channel_falls_back_to_telegram_me(now):
+    http = FakeHttp()  # t.me is unknown here, so it raises NetError like a suspended domain
+    http.add("https://telegram.me/s/cointelegraph", fixture_bytes("tme_cointelegraph_page1.html"))
+    http.add("https://telegram.me/s/cointelegraph?before=9001", fixture_bytes("tme_cointelegraph_page2.html"))
+    result = tp.fetch_channel(http, "cointelegraph", now, lookback_hours=48)
+    assert result.status == "ok" and result.pages == 2
+    assert http.calls[0] == PAGE1 and http.calls[1].startswith("https://telegram.me/s/")
+
+
 def test_fetch_channel_stops_after_one_page_when_window_is_short(now):
     http = _channel_http()
     result = tp.fetch_channel(http, "cointelegraph", now, lookback_hours=5)
@@ -160,8 +169,8 @@ def test_collect_iterates_all_entries(now):
         "solana": "unavailable",
     }
     assert sorted(set(http.calls)) == sorted(
-        {PAGE1, PAGE2, "https://t.me/s/gone_channel", "https://t.me/s/solana"}
-    )
+        {PAGE1, PAGE2, "https://t.me/s/gone_channel", "https://t.me/s/solana", "https://telegram.me/s/solana"}
+    ), "an unreachable page is tried once more at telegram.me; an HTTP error (gone_channel) is not"
 
 
 def test_collect_all_failing(now):
