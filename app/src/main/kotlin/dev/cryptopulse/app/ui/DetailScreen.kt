@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.cryptopulse.app.ui.components.BottomMeter
 import dev.cryptopulse.app.ui.components.ChangePill
-import dev.cryptopulse.app.ui.components.CoinAvatar
+import dev.cryptopulse.app.ui.components.CoinIcon
 import dev.cryptopulse.app.ui.components.ContributionBar
 import dev.cryptopulse.app.ui.components.FractionBar
 import dev.cryptopulse.app.ui.components.KeyValue
@@ -76,7 +76,7 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
                 navigationIcon = { IconButton(onClick = { vm.back() }) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back") } },
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        CoinAvatar(symbol, 32.dp)
+                        CoinIcon(symbol, row?.market?.imageUrl, 32.dp)
                         Spacer(Modifier.width(8.dp))
                         Column {
                             Text(row?.asset?.name ?: symbol, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis)

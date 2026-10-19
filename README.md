@@ -115,6 +115,6 @@ The older Streamlit prototype (`spss8.py`) is kept as it was.
 * **VADER** radi na mobitelu (s rječnikom kripto slenga), **FinBERT i CryptoBERT** rade besplatno
   u oblaku (GitHub Actions) i šalju rezultat aplikaciji.
 * **Telegram**: javni kanali rade odmah. Za tvoj Telegram račun (sve grupe u kojima jesi) dodaj tri
-  tajne u GitHub repozitorij prema uputama u `tools/sentiment_hub/README.md`. Sažetak tržišta može
-  stizati u tvoje "Saved Messages" na hrvatskom.
+  tajne u GitHub repozitorij prema uputama u [docs/TELEGRAM_HR.md](docs/TELEGRAM_HR.md). Sažetak
+  tržišta može stizati u tvoje "Saved Messages" na hrvatskom.
 * Ovo su vjerojatnosti, ne sigurnosti, i nije financijski savjet.

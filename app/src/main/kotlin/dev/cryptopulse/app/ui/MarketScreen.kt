@@ -53,7 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.cryptopulse.app.ui.components.BottomMeter
 import dev.cryptopulse.app.ui.components.ChangePill
-import dev.cryptopulse.app.ui.components.CoinAvatar
+import dev.cryptopulse.app.ui.components.CoinIcon
 import dev.cryptopulse.app.ui.components.ProbabilityChip
 import dev.cryptopulse.app.ui.components.SentimentDot
 import dev.cryptopulse.app.ui.components.Sparkline
@@ -247,7 +247,7 @@ private fun AssetRowItem(row: AssetRow, currency: String, onClick: () -> Unit) {
         Modifier.fillMaxWidth().clickable(onClick = onClick).padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        CoinAvatar(row.asset.symbol)
+        CoinIcon(row.asset.symbol, m?.imageUrl)
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
             Row(verticalAlignment = Alignment.CenterVertically) {

@@ -77,6 +77,7 @@ kotlin {
 
 dependencies {
     implementation(project(":core"))
+    implementation(libs.okhttp) // coin logos (same OkHttp as :core)
 
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
