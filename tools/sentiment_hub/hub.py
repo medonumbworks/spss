@@ -32,7 +32,7 @@ from sentiment_hub import memecoins, reddit, rss, telegram_account, telegram_pub
 from sentiment_hub.aggregate import PROMO_CATEGORIES, aggregate, message_weight
 from sentiment_hub.assets import DEFAULT_LEXICON_PATH, Asset, load_assets, load_channels
 from sentiment_hub.common import SOURCE_NAMES, Message, SourceResult, parse_iso, utcnow
-from sentiment_hub.feed import build_feed, validate_feed, write_feed
+from sentiment_hub.feed import build_feed, is_feed_symbol, validate_feed, write_feed
 from sentiment_hub.lexicon import load_lexicon
 from sentiment_hub.mentions import MentionMatcher, build_matchers
 from sentiment_hub.net import BROWSER_USER_AGENT, HttpClient
@@ -278,7 +278,13 @@ def run(
         if fresh:
             log.info("tracking %d new cashtags: %s", len(fresh), ", ".join(fresh[:15]))
     agg = aggregate(report.scored, previous, matchers, now, report.models, promo_communities=promo)
-    feed = build_feed(now, hours, report.models, [results[n] for n in SOURCE_NAMES if n in results], agg.market, agg.assets)
+    # an asset whose symbol the feed cannot carry ("币安人生") must never block the whole feed
+    odd = [a["symbol"] for a in agg.assets if not is_feed_symbol(a["symbol"])]
+    if odd:
+        log.warning("dropping %d assets whose symbols the feed cannot carry: %s", len(odd), ", ".join(odd[:15]))
+        notes.append("dropped symbols the feed cannot carry: " + ", ".join(odd[:5]))
+    feed_assets = [a for a in agg.assets if is_feed_symbol(a["symbol"])]
+    feed = build_feed(now, hours, report.models, [results[n] for n in SOURCE_NAMES if n in results], agg.market, feed_assets)
     return feed, results, notes
 
 

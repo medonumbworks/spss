@@ -10,6 +10,7 @@ from conftest import FakeHttp
 from sentiment_hub import memecoins
 from sentiment_hub.assets import Asset
 from sentiment_hub.common import Message
+from sentiment_hub.feed import is_feed_symbol
 from sentiment_hub.mentions import MentionMatcher
 
 NOW = datetime(2026, 10, 19, 12, tzinfo=timezone.utc)
@@ -35,6 +36,24 @@ def test_fetch_memecoins_parses_and_skips_non_tokens():
     assert assets[1].coingecko_id == "shiba-inu" and assets[1].rank == 30
     assert not assets[0].listed, "memecoins from CoinGecko are not Bitpanda listings"
     assert note == "3 memecoins"
+
+
+def test_fetch_memecoins_skips_tickers_the_feed_cannot_carry(caplog):
+    """CoinGecko's meme top 250 has CJK and accented tickers (Coinpaprika ranks 币安人生 #123); one
+    "$币安人生" in any message used to make the feed invalid, so the hub published nothing."""
+    rows = [
+        {"id": "bianrensheng", "symbol": "币安人生", "name": "币安人生 (BinanceLife)", "market_cap_rank": 118},
+        {"id": "hachiko-inu", "symbol": "hachikō", "name": "Hachiko Inu"},
+        {"id": "zerotrust", "symbol": "zerø", "name": "ZeroTrust"},
+        {"id": "longest", "symbol": "abcdefghijklmno", "name": "Fifteen"},
+        {"id": "too-long", "symbol": "abcdefghijklmnop", "name": "Sixteen"},
+        ROWS[0],
+    ]
+    with caplog.at_level("INFO", logger="sentiment_hub.memecoins"):
+        assets, note = memecoins.fetch_memecoins(FakeHttp().add(memecoins.MEME_URL, json.dumps(rows, ensure_ascii=False)))
+    assert [a.symbol for a in assets] == ["ABCDEFGHIJKLMNO", "DOGE"], "15 characters like the longest cashtag"
+    assert all(is_feed_symbol(a.symbol) for a in assets) and note == "2 memecoins"
+    assert "skipped 4 tickers" in caplog.text and "币安人生, HACHIKŌ, ZERØ" in caplog.text
 
 
 def test_fetch_memecoins_retries_one_429_then_gives_up_quietly():

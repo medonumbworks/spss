@@ -30,7 +30,12 @@ ASSET_KEYS = ("symbol", "mentions", "mentionsPrev", "composite", "scores", "bull
 BY_SOURCE_KEYS = ("mentions", "composite")
 SAMPLE_KEYS = ("text", "score", "source", "community", "url", "ts")
 _TS_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
-_SYMBOL_RE = re.compile(r"^[A-Z0-9]+$")
+SYMBOL_RE = re.compile(r"[A-Z0-9]+")  # asset symbols: ASCII uppercase letters and digits (fullmatch)
+
+
+def is_feed_symbol(symbol: Any) -> bool:
+    """True when ``symbol`` may appear in ``assets[].symbol`` ("币安人生" or "ZERØ" may not)."""
+    return isinstance(symbol, str) and SYMBOL_RE.fullmatch(symbol) is not None
 
 
 def rnd(value: float) -> float:
@@ -215,7 +220,7 @@ def validate_feed(feed: Any) -> list[str]:
         if not _check_keys(a, ASSET_KEYS, where, errors):
             continue
         sym = a["symbol"]
-        if not isinstance(sym, str) or not _SYMBOL_RE.match(sym):
+        if not is_feed_symbol(sym):
             errors.append(f"{where}.symbol: expected uppercase letters/digits")
         elif sym in seen_symbols:
             errors.append(f"{where}.symbol: duplicate {sym}")

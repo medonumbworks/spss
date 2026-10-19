@@ -9,7 +9,7 @@ from datetime import timedelta
 
 from conftest import FakeHttp, NOW, REPO_ROOT, fixture_bytes, fixture_path
 
-from sentiment_hub import hub, reddit, rss
+from sentiment_hub import hub, memecoins, reddit, rss
 from sentiment_hub.common import Message, SourceResult
 from sentiment_hub.feed import validate_feed
 from sentiment_hub.net import NetError
@@ -199,3 +199,41 @@ def test_odd_items_from_third_party_feeds_do_not_break_the_feed(monkeypatch, tmp
 
     out = write_feed(feed, tmp_path / "feed.json")
     assert validate_feed(json.loads(out.read_text(encoding="utf-8"))) == []
+
+
+BINANCE_LIFE = {"id": "bianrensheng", "symbol": "币安人生", "name": "币安人生 (BinanceLife)", "market_cap_rank": 118}
+
+
+def _cjk_news(meme_rows: list) -> FakeHttp:
+    """The CoinGecko meme list plus one headline that names 币安人生 by cashtag."""
+    news = FakeHttp().add(memecoins.MEME_URL, json.dumps(meme_rows, ensure_ascii=False))
+    news.add(rss.FEEDS[0][1], """<?xml version="1.0"?><rss version="2.0"><channel><title>Cointelegraph</title>
+      <item><title>$币安人生 pumping again after CZ tweet; $WIF and Bitcoin follow</title>
+      <link>https://cointelegraph.com/news/binancelife-pumps</link><pubDate>Mon, 19 Oct 2026 09:30:00 GMT</pubDate></item>
+      </channel></rss>""")
+    return news
+
+
+def test_memecoin_with_a_cjk_ticker_does_not_block_the_feed():
+    """CoinGecko's meme top 250 has 币安人生; one "$币安人生" used to make the feed invalid
+    ("assets[0].symbol: expected uppercase letters/digits") and the hub published nothing."""
+    rows = [BINANCE_LIFE, {"id": "dogwifcoin", "symbol": "wif", "name": "dogwifhat", "market_cap_rank": 90}]
+    feed, _, notes = hub.run(args("--no-telegram", "--no-reddit", "--models", "vader"), now=NOW, news_http=_cjk_news(rows))
+    assert validate_feed(feed) == [], validate_feed(feed)
+    assert sorted(a["symbol"] for a in feed["assets"]) == ["BTC", "WIF"]
+    assert not any("dropped" in n for n in notes), "skipped by the memecoin list already, not by the guard"
+
+
+def test_assets_whose_symbols_the_feed_cannot_carry_are_dropped_and_logged(tmp_path, caplog):
+    """Any other way in (here a Bitpanda snapshot row): that asset is dropped, the rest is published."""
+    snapshot = json.loads(fixture_path("assets_small.json").read_text(encoding="utf-8"))
+    snapshot["assets"].append({"symbol": "币安人生", "name": "币安人生 (BinanceLife)", "coingeckoId": "bianrensheng", "rank": 118})
+    assets = tmp_path / "assets.json"
+    assets.write_text(json.dumps(snapshot, ensure_ascii=False), encoding="utf-8")
+    run_args = args("--assets", str(assets), "--no-telegram", "--no-reddit", "--no-memecoins", "--models", "vader")
+    with caplog.at_level("WARNING", logger="sentiment_hub"):
+        feed, _, notes = hub.run(run_args, now=NOW, news_http=_cjk_news([]))
+    assert validate_feed(feed) == [], validate_feed(feed)
+    assert [a["symbol"] for a in feed["assets"]] == ["BTC"]
+    assert "dropping 1 assets whose symbols the feed cannot carry: 币安人生" in caplog.text
+    assert "dropped symbols the feed cannot carry: 币安人生" in notes

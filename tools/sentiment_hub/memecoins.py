@@ -30,6 +30,9 @@ RETRY_AFTER_429_S = 20.0
 
 # "$" + a letter + up to 14 letters/digits, not inside a word or a "$$" run; "$100k" is a price, not a ticker
 CASHTAG_RE = re.compile(r"(?<![\w$])\$([A-Za-z][A-Za-z0-9]{1,14})\b")
+# memecoin tickers the feed can carry (feed.SYMBOL_RE), at most as long as a cashtag. CoinGecko's
+# meme list also has "币安人生", "HACHIKŌ" and "ZERØ"; one mention of those would make the feed invalid.
+MEME_SYMBOL_RE = re.compile(r"[A-Z0-9]{1,15}")
 # never tokens of their own: quote assets, fiat, stablecoins, and stock or ETF tickers that crypto news uses
 NOT_TOKENS = frozenset(
     {
@@ -59,16 +62,22 @@ def fetch_memecoins(http, retries: int = 1, sleep: Callable[[float], None] = tim
         except ValueError:
             return [], "unreadable response"
         out: list[Asset] = []
+        odd: list[str] = []
         for row in rows if isinstance(rows, list) else []:
             if not isinstance(row, dict):
                 continue
             symbol = normalize_symbol(str(row.get("symbol") or ""))
             cg = row.get("id")
+            if symbol and not MEME_SYMBOL_RE.fullmatch(symbol):
+                odd.append(symbol)
+                continue
             # "4" or "67" would only ever match prices ("$4.98")
             if not symbol or not isinstance(cg, str) or symbol in NOT_TOKENS or not any(ch.isalpha() for ch in symbol):
                 continue
             rank = row.get("market_cap_rank")
             out.append(Asset(symbol=symbol, name=str(row.get("name") or symbol).strip(), coingecko_id=cg, rank=rank if isinstance(rank, int) else None, verified=False, listed=False))
+        if odd:
+            log.info("memecoins: skipped %d tickers the feed cannot carry: %s", len(odd), ", ".join(odd[:10]))
         return out, f"{len(out)} memecoins"
     return [], "HTTP 429"
 

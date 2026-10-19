@@ -133,6 +133,8 @@ def test_missing_sources_are_reported_as_disabled(now):
         (lambda f: f["assets"][0]["samples"][0].update(url="/news/relative"), "http(s) URL"),
         (lambda f: f.update(schema=f.pop("schema")), "out of order"),
         (lambda f: f["assets"][0].update(symbol=f["assets"][0].pop("symbol")), "out of order"),
+        (lambda f: f["assets"][0].update(symbol="币安人生"), "symbol"),
+        (lambda f: f["assets"][0].update(symbol="BTC\n"), "symbol"),
     ],
 )
 def test_validator_rejects(sample_feed, mutate, expected):
