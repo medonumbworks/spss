@@ -193,6 +193,18 @@ def test_private_chats_never_leak(account, now, caplog):
     assert json.loads(text)["sources"][1]["status"] == "ok"
 
 
+def test_catalogue_lookups_rotate_between_runs(now):
+    handles = [f"chat_{i}" for i in range(10)]
+    seen: set[str] = set()
+    for hour in range(5):
+        client = FakeClient(now + timedelta(hours=hour), dialogs=[], history={}, entities={})
+        reader = ta.AccountReader(client, client.now, max_resolves=2)
+        asyncio.run(reader.read_catalogue([ChannelEntry(h, kind="group") for h in handles], set(), set(), False))
+        assert len(client.resolved) == 2
+        seen.update(client.resolved)
+    assert seen == set(handles)  # five hourly runs of two lookups cover all ten handles
+
+
 def test_catalogue_handles_read_without_joining(now):
     group = Channel(20, "BTC Chat", username="btc_chat", megagroup=True)
     channel = Channel(21, "Alpha", username="alpha_calls")
@@ -212,7 +224,7 @@ def test_catalogue_handles_read_without_joining(now):
         ChannelEntry("missing_handle", kind="group"),
     ]
     result, _ = run_collect(client, entries, skip={"covered_by_preview"})
-    assert client.resolved == ["btc_chat", "alpha_calls", "some_person", "missing_handle"]
+    assert sorted(client.resolved) == ["alpha_calls", "btc_chat", "missing_handle", "some_person"]
     assert client.requests == []  # nothing joined
     assert sorted(client.history_reads) == [10, 20, 21]
     assert {m.url for m in result.items} == {"https://t.me/btc_chat/1", "https://t.me/alpha_calls/2"}

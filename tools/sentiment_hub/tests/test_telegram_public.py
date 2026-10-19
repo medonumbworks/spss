@@ -152,16 +152,15 @@ def test_collect_iterates_all_entries(now):
     assert result.name == "telegram_public"
     assert result.status == "ok"
     assert len(result.items) == 8
-    assert result.detail == "1/4 channels (2 unavailable, 1 no_preview)"
+    assert result.detail == "1/3 channels (2 unavailable)"  # the group is left to the account source
     assert result.meta["covered_handles"] == {"cointelegraph"}
     assert result.meta["per_channel"] == {
         "cointelegraph": "ok",
-        "bitcoin_traders_chat": "no_preview",
         "gone_channel": "unavailable",
         "solana": "unavailable",
     }
     assert sorted(set(http.calls)) == sorted(
-        {PAGE1, PAGE2, "https://t.me/s/bitcoin_traders_chat", "https://t.me/s/gone_channel", "https://t.me/s/solana"}
+        {PAGE1, PAGE2, "https://t.me/s/gone_channel", "https://t.me/s/solana"}
     )
 
 

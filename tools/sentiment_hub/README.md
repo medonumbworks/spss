@@ -52,7 +52,7 @@ Each source returns its items plus one status: `ok`, `empty`, `rate_limited`, `u
 
 | source | what | notes |
 |---|---|---|
-| `telegram_public` | every entry of `channels.json`, `https://t.me/s/<handle>` | BeautifulSoup parses `div.tgme_widget_message[data-post]`; paginates with `?before=<smallest id>` until 48 h are covered or 5 pages; 1 request/s for the host, 4 channels in flight, browser User-Agent; 404s and redirects to `t.me/<handle>` (groups have no preview) are skipped; 12 min budget. `detail` = `readable/attempted channels (...)` |
+| `telegram_public` | every `kind=channel` entry of `channels.json`, `https://t.me/s/<handle>` (groups have no web preview and are left to the account source) | BeautifulSoup parses `div.tgme_widget_message[data-post]`; paginates with `?before=<smallest id>` until 48 h are covered or 5 pages; 1 request/s for the host, 4 channels in flight, browser User-Agent; 404s and redirects to `t.me/<handle>` (groups have no preview) are skipped; 12 min budget. `detail` = `readable/attempted channels (...)` |
 | `telegram_account` | your groups/supergroups/channels + public catalogue handles | see below; `disabled` without secrets |
 | `rss` | CoinTelegraph, CoinDesk, Decrypt, Bitcoin Magazine, CryptoSlate, The Block | `xml.etree` only; HTML entities such as `&nbsp;` are repaired; undated items are skipped; relative links are resolved against the feed URL and non-http(s) links (`tag:`, `urn:`) dropped |
 | `reddit` | r/CryptoCurrency, r/CryptoMarkets, r/altcoin, r/SatoshiStreetBets `new.json?limit=100` | descriptive User-Agent; Reddit often answers 403/429 to cloud IPs, which is recorded and skipped |
@@ -86,7 +86,9 @@ What the account source reads:
 * every public handle of `channels.json` that is not a dialog, by username and **without
   joining**. Handles the public web preview already read in the same run are skipped (the posts
   would be duplicates, and every username lookup counts against Telegram's daily resolve limit);
-  at most 60 lookups per run;
+  at most 15 lookups per run, starting at a different place each hour so the whole catalogue is
+  still covered several times a day (StringSession keeps no entity cache, and Telegram
+  flood-limits mass username lookups on personal accounts);
 * `FloodWaitError`: waits when <= 60 s and retries once, otherwise skips the chat (a long flood
   wait on a username lookup stops further lookups for this run); 13 min budget.
 

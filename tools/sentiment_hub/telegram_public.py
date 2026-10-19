@@ -228,6 +228,8 @@ def collect(
     handles: list[str] = []
     seen: set[str] = set()
     for entry in entries:
+        if getattr(entry, "kind", "channel") == "group":
+            continue  # groups have no web preview; the account source reads them
         handle = normalize_handle(entry.handle)
         if handle and handle.lower() not in seen:
             seen.add(handle.lower())

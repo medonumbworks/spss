@@ -54,7 +54,7 @@ def test_everything_down_still_writes_a_valid_feed(tmp_path, monkeypatch):
         "reddit": ("unavailable", 0),
     }
     assert feed["sources"][1]["detail"] == "no TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION secrets"
-    assert len(tg.calls) == 4  # every valid catalogue handle was tried (cointelegraph, solana, gone_channel, group)
+    assert len(tg.calls) == 3  # every catalogue channel was tried (cointelegraph, solana, gone_channel); groups have no preview
     assert len(news.calls) == len(rss.FEEDS) + len(reddit.SUBREDDITS)
 
 
@@ -104,7 +104,7 @@ def test_full_run_on_fixtures(monkeypatch, tmp_path):
     assert validate_feed(feed) == [], validate_feed(feed)
     assert feed["models"] == ["vader", "finbert", "cryptobert"]
     src = {s["name"]: s for s in feed["sources"]}
-    assert src["telegram_public"]["status"] == "ok" and src["telegram_public"]["detail"].startswith("1/4 channels")
+    assert src["telegram_public"]["status"] == "ok" and src["telegram_public"]["detail"].startswith("1/3 channels")
     assert src["telegram_public"]["items"] == 8
     assert src["rss"]["status"] == "ok" and src["reddit"]["status"] == "ok"
     assert src["reddit"]["detail"] == "1/4 subreddits (3 HTTP 403)"

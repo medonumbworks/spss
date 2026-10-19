@@ -38,7 +38,9 @@ NAME = "telegram_account"
 ENV_VARS = ("TELEGRAM_API_ID", "TELEGRAM_API_HASH", "TELEGRAM_SESSION")
 MAX_DIALOGS = 300
 PER_CHAT = 400
-MAX_RESOLVES = 60
+# Username lookups per run. StringSession keeps no entity cache, so every hourly run resolves
+# again; Telegram flood-limits mass lookups on personal accounts, so stay low and rotate.
+MAX_RESOLVES = 15
 MAX_JOINS = 5
 FLOOD_SLEEP_MAX_S = 60
 DEFAULT_BUDGET_S = 600.0
@@ -292,11 +294,18 @@ class AccountReader:
                     if msgs is not None:
                         self.state.handles_read += 1
                         self.state.messages.extend(msgs)
+        pending: list[str] = []
         for entry in entries:
             handle = normalize_handle(entry.handle)
-            if not handle or handle.lower() in handled:
-                continue
-            handled.add(handle.lower())
+            if handle and handle.lower() not in handled:
+                handled.add(handle.lower())
+                pending.append(handle)
+        # Each run starts at a different place, so the low per-run lookup budget still covers the
+        # whole catalogue several times a day (the 48 h lookback bridges the gaps).
+        if pending and self.max_resolves > 0:
+            start = (int(self.now.timestamp() // 3600) * self.max_resolves) % len(pending)
+            pending = pending[start:] + pending[:start]
+        for handle in pending:
             entity = await self._resolve(handle)
             if entity is None:
                 continue
