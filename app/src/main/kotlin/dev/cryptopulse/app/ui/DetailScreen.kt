@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -46,6 +47,7 @@ import dev.cryptopulse.app.ui.components.ContributionBar
 import dev.cryptopulse.app.ui.components.FractionBar
 import dev.cryptopulse.app.ui.components.KeyValue
 import dev.cryptopulse.app.ui.components.PriceChart
+import dev.cryptopulse.app.ui.components.RiskPill
 import dev.cryptopulse.app.ui.components.SectionCard
 import dev.cryptopulse.app.ui.components.capText
 import dev.cryptopulse.app.ui.components.priceText
@@ -59,6 +61,7 @@ import dev.cryptopulse.core.model.HorizonForecast
 import dev.cryptopulse.core.model.SentimentSource
 import dev.cryptopulse.core.model.SentimentSummary
 import dev.cryptopulse.core.model.SourceStatus
+import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.util.Text as Fmt
 import kotlin.math.abs
 
@@ -94,7 +97,8 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
             if (state?.loading == true) {
                 LinearProgressIndicator(Modifier.fillMaxWidth())
                 Text(
-                    "Loading 1-year history, Reddit, StockTwits, Telegram and news for $symbol…",
+                    if (row?.asset?.tier == Tier.DEX) "Loading hourly pool prices, contract checks, Telegram and news for $symbol…"
+                    else "Loading 1-year history, Reddit, StockTwits, Telegram and news for $symbol…",
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
@@ -106,6 +110,7 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
                 return@Column
             }
             PriceHeader(row, currency, state?.detail)
+            if (!row.asset.onBitpanda) SpeculativeCard(row)
             ChartCard(row, state?.detail)
             row.forecast?.let { f ->
                 ForecastCard("Next 24 hours", f.h24, currency)
@@ -122,6 +127,57 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
             Spacer(Modifier.height(24.dp))
         }
     }
+}
+
+/** Risk, contract checks and where a non-Bitpanda coin trades. */
+@Composable
+private fun SpeculativeCard(row: AssetRow) {
+    val c = LocalMarketColors.current
+    val uri = LocalUriHandler.current
+    val title = when (row.asset.tier) {
+        Tier.MEME -> "Memecoin, not on Bitpanda"
+        Tier.TRENDING -> "Trending coin, not on Bitpanda"
+        Tier.DEX -> "DEX-only token, not on Bitpanda"
+        Tier.BITPANDA -> return
+    }
+    SectionCard(title, subtitle = "Information only. Most memecoins and DEX tokens lose most of their value; no red flag does not mean safe.") {
+        row.risk?.let { r ->
+            RiskPill(r, long = true)
+            FractionBar(r.score / 100.0, if (r.blocked || r.score >= 50) c.down else c.warn)
+            r.reasons.forEach { Text("• $it", style = MaterialTheme.typography.bodySmall) }
+        }
+        row.dex?.let { d ->
+            HorizontalDivider()
+            KeyValue("Chain / exchange", listOfNotNull(d.chainId, d.dexId).joinToString(" · "))
+            KeyValue("Pool liquidity", capText(d.liquidityUsd, "USD"))
+            KeyValue("Volume 24h", capText(d.volumeUsd.h24, "USD"))
+            d.pairCreatedAtMs?.let { KeyValue("Pool age", ageText(System.currentTimeMillis() - it)) }
+            KeyValue("Trades 24h", "${d.txnsH24.buys} buys / ${d.txnsH24.sells} sells")
+            if (d.boostsActive > 0) KeyValue("Paid promotion", "${d.boostsActive} DexScreener boosts")
+            if (d.pumpFunGraduated != null) KeyValue("pump.fun", if (d.pumpFunGraduated == true) "graduated to a pool" else "still on the bonding curve")
+            row.asset.contract?.let { addr ->
+                SelectionContainer { Text("Contract: $addr", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+            }
+            d.url?.let { u -> Text("Open pool page", color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.labelLarge, modifier = Modifier.clickable { uri.openUri(u) }) }
+        }
+        row.safety?.let { s ->
+            HorizontalDivider()
+            Text("Contract checks (${s.source})", style = MaterialTheme.typography.labelLarge)
+            s.honeypot?.let { KeyValue("Honeypot", if (it) "YES – cannot sell" else "no") }
+            if (s.buyTaxPct != null || s.sellTaxPct != null) KeyValue("Tax buy / sell", "${"%.0f".format(s.buyTaxPct ?: 0.0)}% / ${"%.0f".format(s.sellTaxPct ?: 0.0)}%")
+            s.mintable?.let { KeyValue("New tokens can be minted", if (it) "yes" else "no") }
+            s.freezable?.let { KeyValue("Holders can be frozen", if (it) "yes" else "no") }
+            s.holderCount?.let { KeyValue("Holders", "%,d".format(it)) }
+            s.top10HolderPct?.let { KeyValue("Top 10 wallets (pools incl.)", "${"%.0f".format(it)}%") }
+            if (s.cexListed.isNotEmpty()) KeyValue("Also listed on", s.cexListed.take(3).joinToString())
+            s.ownerPowers.forEach { Text("• $it", style = MaterialTheme.typography.bodySmall, color = c.down) }
+        }
+    }
+}
+
+private fun ageText(ms: Long): String {
+    val h = ms / 3_600_000.0
+    return if (h < 48) "${h.toInt().coerceAtLeast(0)} h" else "${(h / 24).toInt()} days"
 }
 
 @Composable

@@ -24,6 +24,15 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/** Which part of the list: Bitpanda coins, or the speculative tiers beyond Bitpanda. */
+enum class ListTier(val label: String) {
+    ALL("All"),
+    BITPANDA("Bitpanda"),
+    MEME("Memecoins"),
+    TRENDING("Trending"),
+    DEX("DEX radar"),
+}
+
 enum class ListFilter(val label: String) {
     ALL("All"),
     UP_24H("Likely up 24h"),
@@ -42,6 +51,9 @@ enum class ListSort(val label: String) {
     UP_7D("Chance up 7d"),
     BOTTOM("Bottom score"),
     SENTIMENT("Sentiment"),
+    VOLUME("Volume 24h"),
+    RISK("Lowest risk"),
+    NEWEST("Newest pools"),
     NAME("Name"),
 }
 
@@ -59,6 +71,9 @@ data class ListState(
     val query: String = "",
     val filter: ListFilter = ListFilter.ALL,
     val sort: ListSort = ListSort.MARKET_CAP,
+    val tier: ListTier = ListTier.ALL,
+    /** Rows per tier in the whole snapshot, for the tier chips. */
+    val tierCounts: Map<ListTier, Int> = emptyMap(),
 )
 
 data class HubState(val status: SourceStatus, val message: String?)
@@ -77,6 +92,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val _query = MutableStateFlow("")
     private val _filter = MutableStateFlow(ListFilter.ALL)
     private val _sort = MutableStateFlow(ListSort.MARKET_CAP)
+    private val _tier = MutableStateFlow(ListTier.ALL)
 
     private val _detail = MutableStateFlow<DetailState?>(null)
     val detail: StateFlow<DetailState?> = _detail.asStateFlow()
@@ -91,9 +107,10 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val _hub = MutableStateFlow(HubState(SourceStatus.DISABLED, null))
     val hub: StateFlow<HubState> = _hub.asStateFlow()
 
-    val list: StateFlow<ListState> = combine(repo.snapshot, _query, _filter, _sort) { snap, q, f, s ->
+    val list: StateFlow<ListState> = combine(repo.snapshot, _query, _filter, _sort, _tier) { snap, q, f, s, t ->
         val all = snap?.rows.orEmpty()
-        ListState(rows = ListOptions.apply(all, q, f, s), totalRows = all.size, query = q, filter = f, sort = s)
+        val counts = ListTier.entries.associateWith { tier -> all.count { ListOptions.inTier(it, tier) } }
+        ListState(rows = ListOptions.apply(all, q, f, s, t), totalRows = all.size, query = q, filter = f, sort = s, tier = t, tierCounts = counts)
     }.stateIn(viewModelScope, SharingStarted.Eagerly, ListState())
 
     private var refreshJob: Job? = null
@@ -107,6 +124,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun setQuery(q: String) { _query.value = q }
     fun setFilter(f: ListFilter) { _filter.value = f }
     fun setSort(s: ListSort) { _sort.value = s }
+    fun setTier(t: ListTier) { _tier.value = t }
 
     fun refreshIfStale() {
         if (refreshJob?.isActive == true) return
@@ -180,7 +198,9 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         _config.value = new
         app.settings.save(new)
         cp.updateConfig(new)
-        if (new.currency != old.currency || new.sentimentFeedUrl != old.sentimentFeedUrl) refresh(force = true, restart = true)
+        val tiersChanged = new.showMemecoins != old.showMemecoins || new.showTrending != old.showTrending || new.showDexRadar != old.showDexRadar ||
+            new.dexIncludeNewPools != old.dexIncludeNewPools || new.dexIncludePumpFun != old.dexIncludePumpFun || new.safetyChecks != old.safetyChecks
+        if (new.currency != old.currency || new.sentimentFeedUrl != old.sentimentFeedUrl || tiersChanged) refresh(force = true, restart = true)
     }
 
     fun telegramChannelCount(): Pair<Int, Int> {

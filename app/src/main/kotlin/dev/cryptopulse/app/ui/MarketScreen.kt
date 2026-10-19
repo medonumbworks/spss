@@ -55,11 +55,14 @@ import dev.cryptopulse.app.ui.components.BottomMeter
 import dev.cryptopulse.app.ui.components.ChangePill
 import dev.cryptopulse.app.ui.components.CoinIcon
 import dev.cryptopulse.app.ui.components.ProbabilityChip
+import dev.cryptopulse.app.ui.components.RiskPill
 import dev.cryptopulse.app.ui.components.SentimentDot
 import dev.cryptopulse.app.ui.components.Sparkline
+import dev.cryptopulse.app.ui.components.TierBadge
 import dev.cryptopulse.app.ui.components.capText
 import dev.cryptopulse.app.ui.components.priceText
 import dev.cryptopulse.app.ui.theme.LocalMarketColors
+import dev.cryptopulse.core.analysis.forecast.DefaultForecastEngine
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.ListingSource
@@ -84,7 +87,10 @@ fun MarketScreen(vm: AppViewModel) {
                     Column {
                         Text("CryptoPulse", fontWeight = FontWeight.Bold)
                         Text(
-                            snapshot?.let { "${it.universeSize} Bitpanda coins · ${it.currency}" } ?: "Bitpanda crypto overview",
+                            snapshot?.let { s ->
+                                val extra = s.rows.count { !it.asset.onBitpanda }
+                                "${s.universeSize} Bitpanda coins" + (if (extra > 0) " + $extra speculative" else "") + " · ${s.currency}"
+                            } ?: "Bitpanda crypto overview",
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -102,6 +108,7 @@ fun MarketScreen(vm: AppViewModel) {
                 item { StatusBanner(status, enrich, snapshot) }
                 item { MoodCard(snapshot, hub) }
                 item { SearchAndFilters(list, vm) }
+                if (list.tier != ListTier.BITPANDA && list.rows.any { !it.asset.onBitpanda }) item { SpeculativeNotice() }
                 if (snapshot == null && !refreshing) {
                     item {
                         Text(
@@ -217,6 +224,12 @@ private fun SearchAndFilters(list: ListState, vm: AppViewModel) {
             shape = MaterialTheme.shapes.large,
         )
         Row(Modifier.horizontalScroll(rememberScrollState()).padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            ListTier.entries.forEach { t ->
+                val n = list.tierCounts[t] ?: 0
+                if (t == ListTier.ALL || n > 0) FilterChip(selected = list.tier == t, onClick = { vm.setTier(t) }, label = { Text(if (t == ListTier.ALL) t.label else "${t.label} $n") })
+            }
+        }
+        Row(Modifier.horizontalScroll(rememberScrollState()).padding(top = 2.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             ListFilter.entries.forEach { f ->
                 FilterChip(selected = list.filter == f, onClick = { vm.setFilter(f) }, label = { Text(f.label) })
             }
@@ -240,6 +253,22 @@ private fun SearchAndFilters(list: ListState, vm: AppViewModel) {
 }
 
 @Composable
+private fun SpeculativeNotice() {
+    Surface(
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp),
+        shape = MaterialTheme.shapes.medium,
+        color = LocalMarketColors.current.down.copy(alpha = 0.08f),
+    ) {
+        Text(
+            "Coins marked MEME, TRENDING or DEX are not on Bitpanda and are shown for information only. Most memecoins and DEX tokens lose most of " +
+                "their value; tokens with red flags, pools younger than a day or unchecked contracts get no forecast.",
+            style = MaterialTheme.typography.labelSmall,
+            modifier = Modifier.padding(10.dp),
+        )
+    }
+}
+
+@Composable
 private fun AssetRowItem(row: AssetRow, currency: String, onClick: () -> Unit) {
     val m = row.market
     val f = row.forecast
@@ -253,10 +282,13 @@ private fun AssetRowItem(row: AssetRow, currency: String, onClick: () -> Unit) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(row.asset.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false))
                 Spacer(Modifier.width(6.dp))
+                TierBadge(row.asset.tier)
+                if (!row.asset.onBitpanda) Spacer(Modifier.width(6.dp))
                 SentimentDot(row.sentiment?.composite, row.sentiment?.totalSamples)
             }
+            val dexInfo = row.dex?.let { d -> " · ${d.chainId} · liq ${capText(d.liquidityUsd, "USD")}" } ?: ""
             Text(
-                "${row.asset.symbol} · Cap ${capText(m?.marketCap, currency)}",
+                "${row.asset.symbol} · Cap ${capText(m?.marketCap, m?.currency ?: currency)}$dexInfo",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 1,
@@ -264,7 +296,8 @@ private fun AssetRowItem(row: AssetRow, currency: String, onClick: () -> Unit) {
             Row(Modifier.padding(top = 4.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
                 ProbabilityChip("24h", f?.h24)
                 ProbabilityChip("7d", f?.d7)
-                if (f != null && f.bottom.label != "Pegged") BottomMeter(f.bottom.score, width = 40.dp)
+                RiskPill(row.risk)
+                if (f != null && f.bottom.label != "Pegged" && f.bottom.label != DefaultForecastEngine.NOT_ASSESSED && row.risk?.blocked != true) BottomMeter(f.bottom.score, width = 40.dp)
             }
         }
         Spacer(Modifier.width(8.dp))

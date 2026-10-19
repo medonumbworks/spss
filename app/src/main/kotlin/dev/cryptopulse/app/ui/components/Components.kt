@@ -31,6 +31,8 @@ import androidx.compose.ui.unit.sp
 import dev.cryptopulse.app.ui.theme.LocalMarketColors
 import dev.cryptopulse.core.model.Direction
 import dev.cryptopulse.core.model.HorizonForecast
+import dev.cryptopulse.core.model.RiskAssessment
+import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.util.Text as Fmt
 import kotlin.math.abs
 
@@ -82,13 +84,57 @@ fun ProbabilityChip(label: String, h: HorizonForecast?) {
         Direction.FLAT -> Triple(c.neutral, MaterialTheme.colorScheme.surfaceVariant, "■")
         null -> Triple(c.neutral, MaterialTheme.colorScheme.surfaceVariant, "·")
     }
-    val pct = h?.let { "${(it.probabilityUp * 100).toInt()}%" } ?: "—"
+    // no number at all for red-flagged, unchecked or too-young tokens (see RiskScorer)
+    val noCall = h?.signals?.firstOrNull()?.name in NO_CALL_SIGNALS
+    val pct = if (noCall) "—" else h?.let { "${(it.probabilityUp * 100).toInt()}%" } ?: "—"
     Text(
-        text = "$label $arrow $pct",
+        text = if (noCall) "$label —" else "$label $arrow $pct",
         color = fg,
         style = MaterialTheme.typography.labelSmall,
         fontWeight = FontWeight.Medium,
         modifier = Modifier.clip(RoundedCornerShape(6.dp)).background(bg).padding(horizontal = 6.dp, vertical = 2.dp),
+    )
+}
+
+private val NO_CALL_SIGNALS = setOf("risk_blocked", "history")
+
+/** "MEME" / "TRENDING" / "DEX" label for coins that Bitpanda does not list. */
+@Composable
+fun TierBadge(tier: Tier) {
+    if (tier == Tier.BITPANDA) return
+    val c = LocalMarketColors.current
+    val (fg, text) = when (tier) {
+        Tier.MEME -> c.warn to "MEME"
+        Tier.TRENDING -> c.warn to "TRENDING"
+        Tier.DEX -> c.down to "DEX"
+        Tier.BITPANDA -> c.neutral to ""
+    }
+    Text(
+        text = text,
+        color = fg,
+        style = MaterialTheme.typography.labelSmall,
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier.clip(RoundedCornerShape(4.dp)).background(fg.copy(alpha = 0.14f)).padding(horizontal = 4.dp, vertical = 1.dp),
+    )
+}
+
+/** Risk score of a non-Bitpanda coin, coloured from amber (elevated) to red (extreme / red flags). */
+@Composable
+fun RiskPill(risk: RiskAssessment?, long: Boolean = false) {
+    risk ?: return
+    val c = LocalMarketColors.current
+    val color = when {
+        risk.blocked || risk.score >= 50 -> c.down
+        risk.score >= 25 -> c.warn
+        else -> c.neutral
+    }
+    Text(
+        text = if (long) "Risk ${risk.score}/100 · ${risk.label}" else if (risk.blocked) risk.label else "Risk ${risk.score}",
+        color = color,
+        style = MaterialTheme.typography.labelSmall,
+        fontWeight = FontWeight.SemiBold,
+        maxLines = 1,
+        modifier = Modifier.clip(RoundedCornerShape(6.dp)).background(color.copy(alpha = 0.12f)).padding(horizontal = 6.dp, vertical = 2.dp),
     )
 }
 

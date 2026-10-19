@@ -81,6 +81,28 @@ fun SettingsScreen(vm: AppViewModel) {
                 ToggleRow("Fear & Greed index", cfg.fearGreedEnabled) { v -> vm.updateConfig { it.copy(fearGreedEnabled = v) } }
             }
 
+            SectionCard(
+                "Beyond Bitpanda",
+                subtitle = "Information only: these coins cannot be bought on Bitpanda. Most memecoins and DEX tokens lose most of their value.",
+            ) {
+                ToggleRow("Memecoins (top ${cfg.memecoinCount} by market cap)", cfg.showMemecoins) { v -> vm.updateConfig { it.copy(showMemecoins = v) } }
+                ToggleRow("Trending coins (CoinGecko)", cfg.showTrending) { v -> vm.updateConfig { it.copy(showTrending = v) } }
+                ToggleRow("DEX radar (trending pools, boosts, pump.fun)", cfg.showDexRadar) { v -> vm.updateConfig { it.copy(showDexRadar = v) } }
+                if (cfg.showDexRadar) {
+                    ToggleRow("Include brand-new pools (riskiest)", cfg.dexIncludeNewPools) { v -> vm.updateConfig { it.copy(dexIncludeNewPools = v) } }
+                    ToggleRow("Include pump.fun tokens", cfg.dexIncludePumpFun) { v -> vm.updateConfig { it.copy(dexIncludePumpFun = v) } }
+                    ToggleRow("Free contract checks (GoPlus, honeypot.is)", cfg.safetyChecks) { v -> vm.updateConfig { it.copy(safetyChecks = v) } }
+                    var minLiq by remember(cfg.dexMinLiquidityUsd) { mutableFloatStateOf(cfg.dexMinLiquidityUsd.toFloat()) }
+                    Text("Minimum pool liquidity: $${"%,.0f".format(minLiq)}", style = MaterialTheme.typography.labelMedium)
+                    Slider(
+                        value = minLiq,
+                        onValueChange = { minLiq = it },
+                        valueRange = 10_000f..500_000f,
+                        onValueChangeFinished = { vm.updateConfig { it.copy(dexMinLiquidityUsd = minLiq.toDouble()) } },
+                    )
+                }
+            }
+
             TelegramCard(vm, cfg) { runCatching { uri.openUri(HUB_DOCS) } }
 
             SectionCard("Background reading", subtitle = "How many of the largest coins get Reddit/StockTwits/Telegram/news sentiment after each refresh") {
@@ -96,7 +118,7 @@ fun SettingsScreen(vm: AppViewModel) {
 
             SectionCard("About") {
                 Text("CryptoPulse ${BuildConfig.VERSION_NAME}", fontWeight = FontWeight.SemiBold)
-                Text("Prices: Bitpanda (ticker), CoinGecko. Mood: alternative.me Fear & Greed. Crowd: Reddit, StockTwits, Telegram, news, Binance/Bybit futures. Text sentiment: VADER with a crypto slang lexicon on the phone; FinBERT and CryptoBERT in the cloud hub.", style = MaterialTheme.typography.bodySmall)
+                Text("Prices: Bitpanda (ticker), CoinGecko, Coinpaprika, Binance public data. Memecoins and DEX tokens: CoinGecko, GeckoTerminal, DexScreener, pump.fun; contract checks: GoPlus, honeypot.is. Mood: alternative.me Fear & Greed. Crowd: Reddit, StockTwits, Telegram, news, Binance/Bybit/OKX futures. Text sentiment: VADER with a crypto slang lexicon on the phone; FinBERT and CryptoBERT in the cloud hub.", style = MaterialTheme.typography.bodySmall)
                 Text(Forecast.DISCLAIMER, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Spacer(Modifier.height(24.dp))
