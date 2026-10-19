@@ -97,6 +97,8 @@ class RateLimiter(
             "api.coinpaprika.com" to Rate(requestsPerMinute = 6.0, burst = 2),
             "data-api.binance.vision" to Rate(requestsPerMinute = 60.0, burst = 5),
             "www.okx.com" to Rate(requestsPerMinute = 20.0, burst = 3),
+            // prediction markets
+            "gamma-api.polymarket.com" to Rate(requestsPerMinute = 30.0, burst = 5),
         )
     }
 }

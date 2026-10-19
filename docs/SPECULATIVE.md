@@ -128,3 +128,6 @@ and Binance's public market data. All are used through their public keyless endp
 documented rate limits (see `RateLimiter.DEFAULT_RULES`), for display only (no resale). The endpoints
 and their answers are captured from GitHub's network by `.github/workflows/api-samples.yml`
 (`tools/api_samples/urls.txt`) so the test fixtures follow real payloads.
+
+Prediction-market odds come from Polymarket's public gamma API (gamma-api.polymarket.com),
+used the same way: keyless, inside the rate limits, for display only.
