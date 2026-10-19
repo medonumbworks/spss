@@ -46,7 +46,7 @@ object Digest {
             if (spec.isNotEmpty()) {
                 appendLine()
                 appendLine(t("🎲 Memecoins & DEX radar (not on Bitpanda, very high risk):", "🎲 Memecoini i DEX radar (nisu na Bitpandi, vrlo visok rizik):"))
-                spec.filter { it.risk?.blocked != true && it.forecast!!.h24.signals.firstOrNull()?.name != "history" }
+                spec.filter { it.upOrNull(it.forecast!!.h24) != null }
                     .sortedByDescending { it.forecast!!.h24.probabilityUp * (0.5 + it.forecast!!.h24.confidence) }.take(3)
                     .forEach { appendLine("• ${it.asset.symbol} (${it.asset.tier.label}) ${Format.pct(it.forecast!!.h24.probabilityUp)} 24h · ${t("risk", "rizik")} ${it.risk?.score ?: "—"}/100") }
                 spec.filter { it.dex != null }.sortedByDescending { it.dex!!.volumeUsd.h24 ?: 0.0 }.take(3).takeIf { it.isNotEmpty() }?.let { hot ->

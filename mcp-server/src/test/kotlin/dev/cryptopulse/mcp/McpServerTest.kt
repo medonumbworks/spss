@@ -22,6 +22,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.booleanOrNull
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -135,6 +139,12 @@ class McpServerTest {
         val torch = client.callTool("get_forecast", mapOf("symbol" to "TORCH", "deep" to false))
         val ft = text(torch)
         assertTrue(ft.contains("Not on Bitpanda: DEX radar") && ft.contains("No forecast"), ft)
+        // blocked: no "50% chance" or "Score 50/100" placeholders, in the text or the structured result
+        assertTrue(ft.contains("### Next 24h: no forecast — ") && ft.contains("### Next 7d: no forecast — "), ft)
+        assertTrue(!ft.contains("chance of going up") && !ft.contains("Is this the bottom?") && !ft.contains("+ Safety red flags"), ft)
+        val s = assertNotNull(torch.structuredContent)
+        assertTrue(s.getValue("h24").jsonObject["probabilityUp"].let { it == null || it == JsonNull }, s.toString())
+        assertEquals(true, s.getValue("risk").jsonObject["blocked"]?.jsonPrimitive?.booleanOrNull, s.toString())
         val badTier = client.callTool("market_overview", mapOf("tier" to "stocks"))
         assertEquals(true, badTier.isError)
     }

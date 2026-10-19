@@ -2,9 +2,11 @@ package dev.cryptopulse.mcp
 
 import dev.cryptopulse.core.CryptoPulse
 import dev.cryptopulse.core.config.AppConfig
-import dev.cryptopulse.core.analysis.forecast.DefaultForecastEngine
 import dev.cryptopulse.core.model.AssetRow
+import dev.cryptopulse.core.model.Forecast
+import dev.cryptopulse.core.model.HorizonForecast
 import dev.cryptopulse.core.model.MarketSnapshot
+import dev.cryptopulse.core.model.RiskAssessment
 import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.repo.SentimentService
 import dev.cryptopulse.core.util.Text
@@ -28,6 +30,8 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.booleanOrNull
@@ -218,9 +222,10 @@ class CryptoPulseTools(
         rows = when (args.str("sort")) {
             "change_24h" -> rows.sortedByDescending { it.market?.change24hPct ?: Double.NEGATIVE_INFINITY }
             "change_7d" -> rows.sortedByDescending { it.market?.change7dPct ?: Double.NEGATIVE_INFINITY }
-            "up_24h" -> rows.sortedByDescending { it.forecast?.h24?.probabilityUp ?: 0.0 }
-            "up_7d" -> rows.sortedByDescending { it.forecast?.d7?.probabilityUp ?: 0.0 }
-            "bottom_score" -> rows.sortedByDescending { it.forecast?.bottom?.score ?: -1 }
+            // rows without a forecast (red flags, too new) only carry placeholders, so they go last
+            "up_24h" -> rows.sortedByDescending { it.upOrNull(it.forecast?.h24) ?: -1.0 }
+            "up_7d" -> rows.sortedByDescending { it.upOrNull(it.forecast?.d7) ?: -1.0 }
+            "bottom_score" -> rows.sortedByDescending { r -> r.forecast?.bottom?.takeIf { it.label !in Format.NO_BOTTOM_LABELS && r.risk?.blocked != true }?.score ?: -1 }
             "sentiment" -> rows.sortedByDescending { it.sentiment?.composite ?: -2.0 }
             else -> rows
         }.take(limit)
@@ -248,7 +253,16 @@ class CryptoPulseTools(
         app.repository.row(symbol) ?: throw IllegalArgumentException(unknown(symbol))
         val row = if (deep) app.repository.detail(symbol).row else app.repository.row(symbol)!!
         val f = row.forecast ?: return CallToolResult(listOf(TextContent("No market data for $symbol right now, so no forecast.")), isError = true)
-        return CallToolResult(listOf(TextContent(Format.forecast(row.asset.name, f, row))), structuredContent = encode(dev.cryptopulse.core.model.Forecast.serializer(), f))
+        return CallToolResult(listOf(TextContent(Format.forecast(row.asset.name, f, row))), structuredContent = forecastJson(row, f))
+    }
+
+    /** The forecast plus the row's risk; a horizon without a call (red flags, too new) gets probabilityUp null, not its 0.5 placeholder. */
+    private fun forecastJson(row: AssetRow, f: Forecast): JsonObject {
+        val o = encode(Forecast.serializer(), f)
+        fun horizon(key: String, h: HorizonForecast): Pair<String, JsonElement> =
+            key to if (row.upOrNull(h) != null) o.getValue(key) else JsonObject(o.getValue(key).jsonObject + ("probabilityUp" to JsonNull))
+        val risk = row.risk?.let { "risk" to json.encodeToJsonElement(RiskAssessment.serializer(), it) }
+        return JsonObject(o + listOfNotNull(horizon("h24", f.h24), horizon("d7", f.d7), risk))
     }
 
     private suspend fun sentiment(args: JsonObject?): CallToolResult {
@@ -275,13 +289,15 @@ class CryptoPulseTools(
         val limit = (args.int("limit") ?: 15).coerceIn(1, 100)
         val tier = tierFilter(args.str("tier"), "bitpanda")
         val ranked = snap.rows.mapNotNull { r ->
-            if (!inTier(r, tier) || r.risk?.blocked == true) return@mapNotNull null
+            if (!inTier(r, tier)) return@mapNotNull null
             val f = r.forecast ?: return@mapNotNull null
-            if (f.bottom.label in NO_BOTTOM_LABELS) return@mapNotNull null
+            if (f.bottom.label in Format.NO_BOTTOM_LABELS) return@mapNotNull null
             val h = if (horizon == "24h") f.h24 else f.d7
-            if (h.probabilityUp < minP) return@mapNotNull null
+            // red flags or too new: no forecast, whatever min_probability is
+            val p = r.upOrNull(h) ?: return@mapNotNull null
+            if (p < minP) return@mapNotNull null
             if (nearBottom && f.bottom.score < 60) return@mapNotNull null
-            Triple(r, h, h.probabilityUp * (0.5 + h.confidence))
+            Triple(r, h, p * (0.5 + h.confidence))
         }.sortedByDescending { it.third }.take(limit)
         val text = buildString {
             appendLine("Coins with >= ${Format.pct(minP)} chance of rising over $horizon${if (nearBottom) " and near a local low" else ""}: ${ranked.size}")
@@ -316,7 +332,7 @@ class CryptoPulseTools(
                 val m = r?.market
                 if (m == null) { appendLine("$s: ${if (r == null) "not in the list (Bitpanda, memecoins, DEX radar)" else "no price data right now"}"); continue }
                 val note = if (r.asset.onBitpanda) "" else " [${r.asset.tier.label}, not on Bitpanda]"
-                appendLine("${r.asset.name} ($s)$note: ${Text.formatPrice(m.bitpandaPrice ?: m.price, snap.currency)} · 1h ${Text.formatPct(m.change1hPct, 2)} · 24h ${Text.formatPct(m.change24hPct, 2)} · 7d ${Text.formatPct(m.change7dPct, 2)} · 30d ${Text.formatPct(m.change30dPct, 1)}")
+                appendLine("${r.asset.name} ($s)$note: ${Text.formatPrice(m.bitpandaPrice ?: m.price, m.currency)} · 1h ${Text.formatPct(m.change1hPct, 2)} · 24h ${Text.formatPct(m.change24hPct, 2)} · 7d ${Text.formatPct(m.change7dPct, 2)} · 30d ${Text.formatPct(m.change30dPct, 1)}")
             }
         }
         return CallToolResult(listOf(TextContent(text)))
@@ -407,10 +423,10 @@ class CryptoPulseTools(
         val limit = (args.int("limit") ?: 40).coerceIn(1, 300)
         var rows = snap.rows.filter { !it.asset.onBitpanda && inTier(it, tier) }
             .filter { maxRisk == null || (it.risk?.score ?: 100) <= maxRisk }
-            .filter { !hideBlocked || it.risk?.blocked != true }
+            .filter { !hideBlocked || it.upOrNull(it.forecast?.h24) != null }
         rows = when (args.str("sort")) {
             "change_24h" -> rows.sortedByDescending { it.market?.change24hPct ?: Double.NEGATIVE_INFINITY }
-            "up_24h" -> rows.sortedByDescending { if (it.risk?.blocked == true) -1.0 else it.forecast?.h24?.probabilityUp ?: 0.0 }
+            "up_24h" -> rows.sortedByDescending { it.upOrNull(it.forecast?.h24) ?: -1.0 }
             "risk" -> rows.sortedBy { it.risk?.score ?: 101 }
             "liquidity" -> rows.sortedByDescending { it.dex?.liquidityUsd ?: -1.0 }
             "newest" -> rows.sortedByDescending { it.dex?.pairCreatedAtMs ?: Long.MIN_VALUE }
@@ -421,7 +437,7 @@ class CryptoPulseTools(
             appendLine("Speculative coins not on Bitpanda ($tier): ${rows.size} shown, prices in ${snap.currency}, updated ${ageText(snap.fetchedAtMs)}.")
             appendLine(Format.SPECULATIVE_NOTICE)
             appendLine()
-            append(Format.radarTable(rows, System.currentTimeMillis()))
+            append(Format.radarTable(rows, snap.currency, System.currentTimeMillis()))
         }
         val structured = buildJsonObject {
             put("currency", snap.currency)
@@ -447,7 +463,6 @@ class CryptoPulseTools(
     companion object {
         const val VERSION = "0.2.0"
         val TIER_FILTERS = listOf("all", "bitpanda", "meme", "trending", "dex", "speculative")
-        private val NO_BOTTOM_LABELS = setOf("Pegged", DefaultForecastEngine.NOT_ASSESSED)
         private val json = Json { encodeDefaults = true; explicitNulls = false }
 
         private fun JsonObject?.str(key: String): String? = this?.get(key)?.let { (it as? JsonPrimitive)?.contentOrNull }?.trim()?.takeIf { it.isNotEmpty() }
