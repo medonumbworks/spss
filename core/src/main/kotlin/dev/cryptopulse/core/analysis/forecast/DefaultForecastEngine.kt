@@ -117,9 +117,9 @@ class DefaultForecastEngine : Forecaster {
         val dexOnly = input.asset.tier == Tier.DEX
         val shrink = (0.55 + 0.35 * coverage) * (if (dexOnly) 0.8 else 1.0)
         val pModel = if (dexOnly) (prior + (pRaw - prior) * shrink).coerceIn(0.2, 0.8) else (prior + (pRaw - prior) * shrink).coerceIn(0.15, 0.85)
-        // the riskier the token, the closer to its prior (all the way at risk score 75, where it is blocked);
-        // shrinking toward 50 % instead would make the riskiest tokens look the least bearish
-        val p = prior + (pModel - prior) * RiskScorer.shrink(input.risk)
+        // risk only discounts the upside (all the way to the prior at risk score 75, where the token is
+        // blocked): more risk never makes a token look more likely to rise, and bearish readings stay bearish
+        val p = if (pModel > prior) prior + (pModel - prior) * RiskScorer.shrink(input.risk) else pModel
         val direction = when {
             p >= 0.55 -> Direction.UP
             p <= 0.45 -> Direction.DOWN

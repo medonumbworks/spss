@@ -28,7 +28,7 @@ object Format {
             "their first day and over 80% of new tokens are dead within two days (CoinGecko 2026). Risk scores use free contract checks; no red flag does not mean safe._"
 
     /** Bottom labels whose score is only a placeholder (stablecoins, tokens with no forecast). */
-    val NO_BOTTOM_LABELS: Set<String> = setOf("Pegged", DefaultForecastEngine.NOT_ASSESSED)
+    val NO_BOTTOM_LABELS: Set<String> = setOf("Pegged", DefaultForecastEngine.NOT_ASSESSED, DefaultForecastEngine.NO_HISTORY)
 
     /** "Up" column text: a probability, or why there is none. */
     private fun up(r: AssetRow, h: HorizonForecast?): String = when {
@@ -145,7 +145,7 @@ object Format {
         }
         val b = f.bottom
         // blocked tokens get no bottom call either (the score is a placeholder); the reason is already above
-        if (b.label != DefaultForecastEngine.NOT_ASSESSED && row?.risk?.blocked != true) {
+        if (b.label != DefaultForecastEngine.NOT_ASSESSED && b.label != DefaultForecastEngine.NO_HISTORY && row?.risk?.blocked != true) {
             appendLine("### Is this the bottom? Score ${b.score}/100 — ${b.label}")
             b.reasons.forEach { appendLine("- $it") }
             listOfNotNull(

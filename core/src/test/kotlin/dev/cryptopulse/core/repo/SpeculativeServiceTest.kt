@@ -181,6 +181,41 @@ class SpeculativeServiceTest {
     }
 
     @Test
+    fun aCachedHoneypotVerdictCountsEvenWhenTheTokenWasMissingFromTheLastList() = runTest {
+        val a = "0x" + "b".repeat(40)
+        val honeypot = spec("honeypot_is.json").replace("\"isHoneypot\":false", "\"isHoneypot\":true")
+        val t = FakeTransport()
+            .onUrlContaining("networks/trending_pools", body = gtPools("eth", a))
+            .onUrlContaining("gopluslabs.io/api/v1/token_security/1", body = goPlusEvm(a))
+            .onUrlContaining("api.honeypot.is", body = honeypot)
+        val http = testHttp(t, clock)
+        val safety = TokenSafetyApi(http, clock)
+        assertEquals(true, safety.simulate("ethereum", a).valueOrNull?.honeypot, "the token was opened once")
+        val svc = SpeculativeService(CoinGeckoApi(http), DexScreenerApi(http), GeckoTerminalApi(http), PumpFunApi(http), safety, clock, Logger.NONE)
+        // no previous rows at all (the token dropped out of the list, or the app restarted)
+        val row = svc.load(DEX_ONLY, bitpanda, emptyList(), 0.9, emptyList()).rows.single()
+        assertEquals(true, row.safety!!.honeypot)
+        assertEquals("goplus+honeypot.is", row.safety.source)
+        assertEquals(RiskScorer.LABEL_RED_FLAG, RiskScorer.assess(row.asset.tier, row.market, row.dex, row.safety, SPEC_NOW_MS)!!.label)
+        assertEquals(1, t.countRequests("api.honeypot.is"), "list refreshes read the cached verdict, they never simulate")
+    }
+
+    @Test
+    fun aFailedSimulationNeverReplacesAVerdict() = runTest {
+        val a = "0x" + "c".repeat(40)
+        var body = spec("honeypot_is.json").replace("\"isHoneypot\":false", "\"isHoneypot\":true")
+        val t = FakeTransport().onUrlContaining("api.honeypot.is") { dev.cryptopulse.core.http.HttpResponse(200, body) }
+        val now = longArrayOf(SPEC_NOW_MS)
+        val moving = Clock { now[0] }
+        val safety = TokenSafetyApi(testHttp(t, moving), moving)
+        assertEquals(true, safety.simulate("ethereum", a).valueOrNull?.honeypot)
+        now[0] += 7 * 3_600_000L // past the 6 h cache: honeypot.is is asked again and cannot simulate
+        body = """{"simulationSuccess":false,"honeypotResult":null,"simulationResult":null}"""
+        assertEquals(true, safety.simulate("ethereum", a).valueOrNull?.honeypot, "the earlier verdict is served instead")
+        assertEquals(true, safety.cachedSimulation("ethereum", a)?.honeypot)
+    }
+
+    @Test
     fun tokensWithoutPoolDataAreLookedUpFirst() = runTest {
         val gt = List(130) { "GtMint$it" }
         val t = FakeTransport()

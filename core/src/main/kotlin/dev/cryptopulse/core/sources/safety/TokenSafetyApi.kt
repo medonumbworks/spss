@@ -68,11 +68,25 @@ class TokenSafetyApi(
     }
 
     /** honeypot.is buy/sell simulation for one EVM token (Ethereum, BSC, Base). */
+    /**
+     * The honeypot.is verdict from opening this token, when one is cached from the last
+     * [SIMULATION_REUSE_MS]; never makes a request. List refreshes add it to the GoPlus check, so a
+     * honeypot found once stays found even when the token drops out of the list for a while.
+     */
+    suspend fun cachedSimulation(chainId: String, address: String): TokenSafety? {
+        val evmId = EVM_CHAIN_IDS[chainId]?.takeIf { it in HONEYPOT_CHAINS } ?: return null
+        val url = "$honeypotBase/IsHoneypot?address=$address&chainID=$evmId"
+        if (!http.isFresh(url, SIMULATION_REUSE_MS, ::isSimulation)) return null
+        val r = http.getText(url, JSON, ttlMs = SIMULATION_REUSE_MS, retries = 0, accept = ::isSimulation) as? HttpResult.Ok ?: return null
+        return runCatching { parseHoneypotIs(r.body, clock.nowMs() - r.ageMs) }.getOrNull()
+    }
+
     suspend fun simulate(chainId: String, address: String): SourceResult<TokenSafety> {
         val evmId = EVM_CHAIN_IDS[chainId]?.takeIf { it in HONEYPOT_CHAINS }
             ?: return SourceResult.Failure(SourceStatus.EMPTY, "honeypot.is does not cover $chainId")
         val url = "$honeypotBase/IsHoneypot?address=$address&chainID=$evmId"
-        return when (val r = http.getText(url, JSON, ttlMs = 6 * 3_600_000L, staleOkMs = 3 * 24 * 3_600_000L, retries = 0)) {
+        // a run that could not simulate is never cached, so it cannot replace an earlier verdict
+        return when (val r = http.getText(url, JSON, ttlMs = 6 * 3_600_000L, staleOkMs = 3 * 24 * 3_600_000L, retries = 0, accept = ::isSimulation)) {
             is HttpResult.Failed -> SourceResult.failureOf(r, "honeypot.is")
             is HttpResult.Ok -> try {
                 SourceResult.Success(parseHoneypotIs(r.body, clock.nowMs()), r.fromCache, r.ageMs)
@@ -96,6 +110,15 @@ class TokenSafetyApi(
 
         /** GoPlus reports errors in the body of a 200: only code 1 is an answer. */
         private fun isGoPlusAnswer(body: String): Boolean = runCatching { JsonUtil.parse(body)["code"].int == 1 }.getOrDefault(false)
+
+        /** honeypot.is answered with a verdict or taxes (a failed run has neither). */
+        private fun isSimulation(body: String): Boolean = runCatching {
+            val o = JsonUtil.parse(body)
+            o["honeypotResult"]["isHoneypot"].bool != null || o["simulationResult"]["sellTax"].dbl != null || o["simulationResult"]["buyTax"].dbl != null
+        }.getOrDefault(false)
+
+        /** How long a list refresh reuses a honeypot.is verdict from opening the token (no new request). */
+        const val SIMULATION_REUSE_MS = 24 * 3_600_000L
 
         private fun flag(el: JsonElement?): Boolean? = when (el.str) { "1" -> true; "0" -> false; else -> null }
 
@@ -130,10 +153,12 @@ class TokenSafetyApi(
                 }
                 val holders = o["holders"].arr.orEmpty()
                 val lp = o["lp_holders"].arr.orEmpty()
-                // LP tokens held by the token's own renounced contract (most of PEPE's) can never be withdrawn
+                // LP tokens held by the token's own renounced contract (most of PEPE's) can never be withdrawn,
+                // unless the contract is an upgradeable proxy whose admin can change that
+                val ownContractLocked = renounced == true && flag(o["is_proxy"]) != true
                 val lpLocked = lp.filter { h ->
                     val holder = h["address"].str?.lowercase()
-                    h["is_locked"].int == 1 || holder in BURN_ADDRESSES || (renounced == true && holder == address.lowercase())
+                    h["is_locked"].int == 1 || holder in BURN_ADDRESSES || (ownContractLocked && holder == address.lowercase())
                 }.sumOf { (it["percent"].dbl ?: 0.0) * 100 }
                 address.lowercase() to TokenSafety(
                     source = "goplus",

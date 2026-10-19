@@ -261,7 +261,8 @@ private fun SpeculativeNotice() {
     ) {
         Text(
             "Coins marked MEME, TRENDING or DEX are not on Bitpanda and are shown for information only. Most memecoins and DEX tokens lose most of " +
-                "their value; tokens with red flags, pools younger than a day or unchecked contracts get no forecast.",
+                "their value. DEX tokens with red flags, pools younger than a day or unchecked contracts, and small unranked trending coins, get " +
+                "no forecast; the others get one with a risk discount.",
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier.padding(10.dp),
         )
@@ -297,7 +298,7 @@ private fun AssetRowItem(row: AssetRow, currency: String, onClick: () -> Unit) {
                 ProbabilityChip("24h", f?.h24)
                 ProbabilityChip("7d", f?.d7)
                 RiskPill(row.risk)
-                if (f != null && f.bottom.label != "Pegged" && f.bottom.label != DefaultForecastEngine.NOT_ASSESSED && row.risk?.blocked != true) BottomMeter(f.bottom.score, width = 40.dp)
+                if (f != null && f.bottom.label != "Pegged" && f.bottom.label != DefaultForecastEngine.NOT_ASSESSED && f.bottom.label != DefaultForecastEngine.NO_HISTORY && row.risk?.blocked != true) BottomMeter(f.bottom.score, width = 40.dp)
             }
         }
         Spacer(Modifier.width(8.dp))

@@ -1,6 +1,7 @@
 package dev.cryptopulse.mcp
 
 import dev.cryptopulse.core.CryptoPulse
+import dev.cryptopulse.core.analysis.forecast.DefaultForecastEngine
 import dev.cryptopulse.core.config.AppConfig
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.Forecast
@@ -87,7 +88,8 @@ class CryptoPulseTools(
             title = "Memecoins and DEX radar",
             description = "Speculative coins that Bitpanda does not list: the largest memecoins, CoinGecko's trending coins, and DEX-only tokens from GeckoTerminal trending/new pools, " +
                 "DexScreener boosts/profiles/takeovers and pump.fun, with liquidity, pool age, buyers vs sellers, contract checks (GoPlus/honeypot.is) and a 0-100 risk score. " +
-                "Tokens with red flags, pools younger than 24 h or unchecked contracts get no 'up' probability. Information only; most such tokens lose most of their value.",
+                "DEX tokens with red flags, pools younger than 24 h or unchecked contracts, and small unranked trending coins, get no 'up' probability; the others get one " +
+                "with a risk discount. Information only; most such tokens lose most of their value.",
             inputSchema = schema(
                 emptyList(),
                 "tier" to prop("string", "meme, trending, dex or speculative (all three, default)", enum = listOf("speculative", "meme", "trending", "dex")),
@@ -241,7 +243,7 @@ class CryptoPulseTools(
             put("currency", snap.currency)
             put("universeSource", snap.universeSource.name)
             put("fetchedAtMs", snap.fetchedAtMs)
-            put("rows", json.encodeToJsonElement(ListSerializer(AssetRow.serializer()), rows.map { compact(it) }))
+            put("rows", rowsJson(rows))
         }
         return CallToolResult(listOf(TextContent(header + Format.overviewTable(rows, snap.currency) + "\n_Probabilities, not certainties. Not financial advice._")), structuredContent = structured)
     }
@@ -291,12 +293,14 @@ class CryptoPulseTools(
         val ranked = snap.rows.mapNotNull { r ->
             if (!inTier(r, tier)) return@mapNotNull null
             val f = r.forecast ?: return@mapNotNull null
-            if (f.bottom.label in Format.NO_BOTTOM_LABELS) return@mapNotNull null
+            // stablecoins and tokens without any assessment are never opportunities; a young token without a
+            // bottom score can still have a 24 h call
+            if (f.bottom.label == "Pegged" || f.bottom.label == DefaultForecastEngine.NOT_ASSESSED) return@mapNotNull null
             val h = if (horizon == "24h") f.h24 else f.d7
             // red flags or too new: no forecast, whatever min_probability is
             val p = r.upOrNull(h) ?: return@mapNotNull null
             if (p < minP) return@mapNotNull null
-            if (nearBottom && f.bottom.score < 60) return@mapNotNull null
+            if (nearBottom && (f.bottom.score < 60 || f.bottom.label in Format.NO_BOTTOM_LABELS)) return@mapNotNull null
             Triple(r, h, p * (0.5 + h.confidence))
         }.sortedByDescending { it.third }.take(limit)
         val text = buildString {
@@ -441,7 +445,7 @@ class CryptoPulseTools(
         }
         val structured = buildJsonObject {
             put("currency", snap.currency)
-            put("rows", json.encodeToJsonElement(ListSerializer(AssetRow.serializer()), rows.map { compact(it) }))
+            put("rows", rowsJson(rows))
         }
         return CallToolResult(listOf(TextContent(text)), structuredContent = structured)
     }
@@ -452,6 +456,16 @@ class CryptoPulseTools(
     }
 
     /** Drops the 168-point sparkline and long signal lists from structured overview output to keep it small. */
+    /** Rows for structured content: small, and a horizon without a call gets probabilityUp null, not its 0.5 placeholder. */
+    private fun rowsJson(rows: List<AssetRow>): JsonElement = JsonArray(rows.map { r ->
+        val o = json.encodeToJsonElement(AssetRow.serializer(), compact(r)).jsonObject
+        val f = r.forecast ?: return@map o
+        val fo = o["forecast"]?.jsonObject ?: return@map o
+        fun horizon(key: String, h: HorizonForecast): Pair<String, JsonElement> =
+            key to if (r.upOrNull(h) != null) fo.getValue(key) else JsonObject(fo.getValue(key).jsonObject + ("probabilityUp" to JsonNull))
+        JsonObject(o + ("forecast" to JsonObject(fo + listOf(horizon("h24", f.h24), horizon("d7", f.d7)))))
+    })
+
     private fun compact(r: AssetRow): AssetRow = r.copy(
         market = r.market?.copy(sparkline7d = emptyList()),
         forecast = r.forecast?.let { f -> f.copy(h24 = f.h24.copy(signals = f.h24.signals.take(3)), d7 = f.d7.copy(signals = f.d7.signals.take(3)), sentiment = null) },

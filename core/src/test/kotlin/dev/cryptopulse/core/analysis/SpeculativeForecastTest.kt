@@ -132,22 +132,22 @@ class SpeculativeForecastTest {
         assertTrue(withRisk.summary.endsWith("not on Bitpanda."), withRisk.summary)
 
         // the same 40-day DEX pool, only the risk score differs: the 7-day model is bearish on the
-        // drifting series and bullish on the falling one (a rebound), and both converge on the prior
+        // drifting series and bullish on the falling one (a rebound). Risk only discounts the upside:
+        // p never rises with risk, a bullish reading converges on the prior, a bearish one stays put
         val prior = sigmoid(-0.28)
         val falling = (0 until 168).map { i -> exp(-0.003 * i + 0.01 * sin(i / 3.0)) }
         for (series in listOf(hourly(168), falling)) {
             val base = input(dexAsset, dex(40.0), clean, series)
             val p = listOf(0, 40, 60, 74).map { s -> engine.forecast(base.copy(risk = base.risk!!.copy(score = s))).d7.probabilityUp }
-            assertTrue(p.zipWithNext().all { (a, b) -> abs(b - prior) <= abs(a - prior) + 1e-4 }, "more risk, less weight on the model: $p")
-            assertTrue(p.all { it in minOf(p.first(), prior) - 1e-4..maxOf(p.first(), prior) + 1e-4 }, "p stays between the model and the prior: $p")
-            assertEquals(prior, p.last(), 0.005)
+            assertTrue(p.zipWithNext().all { (a, b) -> b <= a + 1e-9 }, "more risk never raises the chance of going up: $p")
+            if (p.first() > prior) assertEquals(prior, p.last(), 0.005) else assertTrue(p.all { abs(it - p.first()) < 1e-9 }, "bearish readings are not shrunk: $p")
         }
         val bearish = input(dexAsset, dex(40.0), clean, hourly(168))
         val safe = engine.forecast(bearish.copy(risk = bearish.risk!!.copy(score = 0))).d7
         val risky = engine.forecast(bearish.copy(risk = bearish.risk!!.copy(score = 74))).d7
         assertTrue(safe.probabilityUp < prior, "the model is bearish here: ${safe.probabilityUp}")
-        assertTrue(risky.probabilityUp <= prior + 1e-4, "risk never lifts a token above its pessimistic prior: ${risky.probabilityUp}")
-        assertEquals(Direction.DOWN, risky.direction, "a very risky DEX token keeps the bearish base rate, not a coin flip")
+        assertTrue(risky.probabilityUp <= safe.probabilityUp + 1e-9, "risk never lifts a bearish token: ${risky.probabilityUp}")
+        assertEquals(safe.direction, risky.direction, "a very risky DEX token reads as bearish as a safe one")
     }
 
     @Test

@@ -31,7 +31,7 @@ object LiveCheck {
         val dex = rows.filter { it.asset.tier == dev.cryptopulse.core.model.Tier.DEX }
         if (dex.isNotEmpty()) {
             appendLine("- DEX radar: ${dex.size} tokens on ${dex.mapNotNull { it.asset.chainId }.distinct().joinToString()}; contract checked ${dex.count { it.safety != null }}; " +
-                "forecast shown ${dex.count { it.risk?.blocked != true }}; risk labels ${dex.groupingBy { it.risk?.label ?: "none" }.eachCount()}")
+                "24 h forecast shown ${dex.count { it.upOrNull(it.forecast?.h24) != null }}; risk labels ${dex.groupingBy { it.risk?.label ?: "none" }.eachCount()}")
         }
         val ctx = snap.context
         appendLine("- Context: Fear & Greed ${ctx?.fearGreed?.let { "${it.value} (${it.classification})" } ?: "missing"}, global ${if (ctx?.global != null) "ok" else "missing"}, BTC trend ${ctx?.btcTrendScore?.let { "%.2f".format(it) } ?: "missing"}, trending ${ctx?.trendingCoingeckoIds?.size ?: 0}")
@@ -68,7 +68,7 @@ object LiveCheck {
             try {
                 val d = repo.detail(r.asset.symbol, force = true)
                 appendLine("- Hourly candles: ${d.row.market?.sparkline7d?.size ?: 0}; safety ${d.row.safety?.source ?: "none"}; risk ${d.row.risk?.score} ${d.row.risk?.label}")
-                d.row.forecast?.let { appendLine("- 24h: ${Format.pct(it.h24.probabilityUp)} (${it.h24.signals.firstOrNull()?.description ?: ""})") }
+                d.row.forecast?.let { appendLine("- 24h: ${d.row.upOrNull(it.h24)?.let { p -> Format.pct(p) } ?: "no forecast"} (${it.h24.signals.firstOrNull()?.description ?: ""})") }
                 d.row.sentiment?.let { appendLine(sentimentLine(it)) }
                 d.warnings.forEach { appendLine("  - warning: $it") }
             } catch (e: CancellationException) {

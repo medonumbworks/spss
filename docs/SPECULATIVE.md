@@ -82,10 +82,10 @@ promoted tokens younger than 3 days. Bands: under 25 lower, 25-49 elevated, 50-7
 * Each tier starts from a pessimistic base rate `b` (a logit; 24 h / 7 d): DEX -0.10 / -0.28, another
   -0.08 / -0.15 for pools younger than 3 days; trending -0.03 / -0.10; memecoins 0 / -0.04. The prior
   is `prior = 1 / (1 + e^-b)` (50% for Bitpanda coins).
-* Thin data coverage, and then risk, pull the model's probability toward that prior, not toward 50%:
-  `p = prior + (p_model - prior) * (1 - score / 75)`. More risk means less weight on the model, and `p`
-  always lies between the model's answer and the prior, so risk alone can never lift a token above
-  its base rate.
+* Thin data coverage pulls the model's probability toward that prior, not toward 50%. Risk then
+  discounts only the upside: `p = prior + (p_model - prior) * (1 - score / 75)` when the model is above
+  the prior, otherwise `p = p_model`. More risk never makes a token look more likely to rise, and a
+  bearish reading stays bearish however risky the token is.
 * DEX tokens are shrunk harder for coverage, are clamped to 20-80% before the risk shrink, and need
   **3 days of trading for a 24 h call and 3 weeks for a 7-day call**; younger pools show "not enough
   history" and no number, in the summary line too.

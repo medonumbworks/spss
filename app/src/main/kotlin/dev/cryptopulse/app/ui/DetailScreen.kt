@@ -73,7 +73,9 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
     // a load for another coin may still be finishing; never show its data on this screen
     val state = detailState?.takeIf { it.symbol == symbol }
     val snapshot by vm.snapshot.collectAsStateWithLifecycle()
-    val row: AssetRow? = state?.detail?.row ?: snapshot?.rows?.firstOrNull { it.asset.symbol == symbol }
+    val listRow: AssetRow? = snapshot?.rows?.firstOrNull { it.asset.symbol == symbol }
+    // beyond Bitpanda a ticker can move to another token while a detail loads: only show the detail of this one
+    val row: AssetRow? = state?.detail?.row?.takeIf { listRow == null || it.asset.tokenKey == listRow.asset.tokenKey } ?: listRow
     // DEX prices stay in USD when there is no USD rate for the list currency; label them with their own
     val currency = row?.market?.currency ?: snapshot?.currency ?: "EUR"
 
@@ -303,7 +305,7 @@ private fun ForecastCard(title: String, h: HorizonForecast, noCall: String?, cur
 private fun BottomCard(b: BottomAssessment, d7Up: Double?) {
     SectionCard("Is this the lowest price?", subtitle = "Nobody knows the absolute bottom. This measures how close the price is to its recent lows and whether rebound conditions are present.") {
         // blocked tokens (red flags, too new, unchecked) get no score: their 50 is a placeholder, the reasons say why
-        if (b.label != DefaultForecastEngine.NOT_ASSESSED) {
+        if (b.label != DefaultForecastEngine.NOT_ASSESSED && b.label != DefaultForecastEngine.NO_HISTORY) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("${b.score}", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                 Text("/100  ", style = MaterialTheme.typography.bodyMedium)

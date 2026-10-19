@@ -6,7 +6,7 @@ import dev.cryptopulse.core.model.Tier
 
 /** Pure list filtering/sorting (unit-tested without Android). */
 object ListOptions {
-    private val NO_BOTTOM = setOf("Pegged", DefaultForecastEngine.NOT_ASSESSED)
+    private val NO_BOTTOM = setOf("Pegged", DefaultForecastEngine.NOT_ASSESSED, DefaultForecastEngine.NO_HISTORY)
 
     fun inTier(r: AssetRow, tier: ListTier): Boolean = when (tier) {
         ListTier.ALL -> true

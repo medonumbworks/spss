@@ -44,4 +44,14 @@ data class Asset(
 ) {
     val onBitpanda: Boolean get() = tier == Tier.BITPANDA
     val isMeme: Boolean get() = tier == Tier.MEME || "meme" in tags
+
+    /**
+     * Which token this is. Beyond Bitpanda a ticker is not unique: DEX tokens are told apart by chain and
+     * contract (EVM addresses case-insensitively), memecoins and trending coins by their CoinGecko id.
+     */
+    val tokenKey: String get() = when (tier) {
+        Tier.BITPANDA -> "$tier|$symbol"
+        Tier.DEX -> "$tier|$symbol|${chainId.orEmpty()}:" + contract.orEmpty().let { if (it.startsWith("0x")) it.lowercase() else it }
+        else -> "$tier|$symbol|$coingeckoId"
+    }
 }

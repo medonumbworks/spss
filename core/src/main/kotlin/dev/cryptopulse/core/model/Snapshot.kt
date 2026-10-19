@@ -30,6 +30,8 @@ data class MarketSnapshot(
     val universeSize: Int,
     val fetchedAtMs: Long,
     val warnings: List<String> = emptyList(),
+    /** USD -> [currency] used for DEX prices; kept so a restarted app converts new candles the same way. */
+    val usdToQuote: Double? = null,
 )
 
 /** Everything the detail screen needs for one asset. */

@@ -108,7 +108,8 @@ data class TokenSafety(
         lpLockedPct = listOfNotNull(lpLockedPct, other.lpLockedPct).minOrNull(),
         cexListed = (cexListed + other.cexListed).distinct(),
         trusted = if (trusted == false || other.trusted == false) false else trusted ?: other.trusted,
-        checkedAtMs = maxOf(checkedAtMs, other.checkedAtMs),
+        // a combined finding is as old as its oldest part, so carried-over findings expire instead of being renewed
+        checkedAtMs = listOf(checkedAtMs, other.checkedAtMs).filter { it > 0 }.minOrNull() ?: 0,
     )
 
     private fun worst(a: Boolean?, b: Boolean?): Boolean? = if (a == true || b == true) true else a ?: b

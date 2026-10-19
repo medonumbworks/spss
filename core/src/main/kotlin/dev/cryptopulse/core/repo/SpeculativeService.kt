@@ -357,6 +357,12 @@ class SpeculativeService(
                 }
             }
         }
+        // honeypot.is verdicts from opening a token (cached, no request): a honeypot found once stays found
+        for (c in list) {
+            val sim = safety.cachedSimulation(c.chainId, c.address) ?: continue
+            val k = key(c.chainId, c.address)
+            out[k] = out[k]?.combinedWith(sim) ?: sim
+        }
         return out
     }
 

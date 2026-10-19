@@ -102,9 +102,20 @@ class MarketRepository(
     /** Keyed by [identity]: after a refresh a DEX ticker can belong to another token. */
     private val detailCache = ConcurrentHashMap<String, AssetDetail>()
 
+    /**
+     * Contract checks made when a DEX token was opened, by [identity]. A refresh that was already running
+     * would otherwise overwrite them with its older list rows; they are added to the next rows for
+     * [SpeculativeService.KEEP_SAFETY_MS].
+     */
+    private val openedChecks = ConcurrentHashMap<String, TokenSafety>()
+
     init {
         // keep the persisted market context so forecasts made before the first network refresh use it
-        loadPersisted()?.let { _snapshot.value = it; lastContext = it.context }
+        loadPersisted()?.let { snap ->
+            _snapshot.value = snap
+            lastContext = snap.context
+            lastUsdToQuote = snap.usdToQuote?.let { snap.currency to it }
+        }
     }
 
     fun updateConfig(newConfig: AppConfig) {
@@ -178,7 +189,9 @@ class MarketRepository(
             val extra = spec?.rows.orEmpty()
                 // rows kept from an earlier snapshot must be quoted like this one (DEX pools may stay in USD)
                 .filter { r -> r.market?.currency.let { it == null || it == cfg.currency || (r.asset.tier == Tier.DEX && it == "USD") } }
-                .map { row ->
+                .map { raw ->
+                    val opened = openedChecks[identity(raw.asset)]?.takeIf { nowMs - it.checkedAtMs < SpeculativeService.KEEP_SAFETY_MS }
+                    val row = if (opened == null) raw else raw.copy(safety = raw.safety?.combinedWith(opened) ?: opened)
                     val risk = RiskScorer.assess(row.asset.tier, row.market, row.dex, row.safety, nowMs)
                     val sent = sentiment.cached(row.asset.symbol) ?: sentiment.fromFeed(row.asset, feed) ?: previousRows[row.asset.symbol]?.sentiment
                     val forecast = row.market?.let { safeForecast(row.asset, it, emptyList(), emptyList(), context, sent, fundingFor(row.asset, funding), null, nowMs, row.dex, risk) }
@@ -194,7 +207,9 @@ class MarketRepository(
                 universeSize = visible.size,
                 fetchedAtMs = nowMs,
                 warnings = warnings.distinct(),
+                usdToQuote = usdToQuote,
             )
+            openedChecks.entries.removeIf { nowMs - it.value.checkedAtMs >= SpeculativeService.KEEP_SAFETY_MS }
             _snapshot.value = snap
             persist(snap)
             _status.value = RefreshStatus.Idle
@@ -269,14 +284,19 @@ class MarketRepository(
             val inList = _snapshot.value?.takeIf { it.currency == snap.currency }?.rows
                 ?.firstOrNull { it.asset.symbol == symbol }?.takeIf { identity(it.asset) == key }
             // the list's newer market and pool data stay; the detail adds the candle chart and contract checks
-            val latest = (inList ?: row).let { r -> dexDetail?.let { withDex(r, it) } ?: r }
+            val latest = (inList ?: row).let { r -> dexDetail?.let { withDex(r, it, warnings) } ?: r }
+            if (latest.asset.tier == Tier.DEX) latest.safety?.let { openedChecks[key] = it }
             val hourly = hourlyPoints(latest.market, now)
             val risk = RiskScorer.assess(latest.asset.tier, latest.market, latest.dex, latest.safety, now)
             val forecast = latest.market?.let {
                 safeForecast(latest.asset, it, daily.map { p -> p.value }, dailyVolumes, lastContext, sent, deriv, community?.sentimentVotesUpPct, now, latest.dex, risk)
             }
             val newRow = latest.copy(forecast = forecast ?: latest.forecast, sentiment = sent ?: latest.sentiment, risk = risk)
-            if (inList != null) updateRow(newRow, snap.currency)
+            if (inList != null) {
+                updateRow(newRow, snap.currency)
+                // contract findings must survive an app restart before the next refresh
+                if (newRow.asset.tier == Tier.DEX) _snapshot.value?.let { persist(it) }
+            }
             val detail = AssetDetail(
                 row = newRow,
                 daily = daily,
@@ -547,11 +567,7 @@ class MarketRepository(
      * Which token a row is. Beyond Bitpanda a ticker is not unique: DEX tokens are told apart by chain and
      * contract, memecoins and trending coins by their CoinGecko id.
      */
-    private fun identity(a: Asset): String = when (a.tier) {
-        Tier.BITPANDA -> "${a.tier}|${a.symbol}"
-        Tier.DEX -> "${a.tier}|${a.symbol}|" + SpeculativeService.key(a.chainId.orEmpty(), a.contract.orEmpty())
-        else -> "${a.tier}|${a.symbol}|${a.coingeckoId}"
-    }
+    private fun identity(a: Asset): String = a.tokenKey
 
     /** The project's own public Telegram channel from its DEX profile. */
     private fun telegramHandle(row: AssetRow): String? = row.dex?.socials?.get("telegram")?.let { TELEGRAM_LINK.find(it)?.groupValues?.get(1) }
@@ -612,13 +628,17 @@ class MarketRepository(
     }
 
     /** [row] (the list's newest version of the token) with the detail's candle chart and contract checks. */
-    private fun withDex(row: AssetRow, d: DexDetail): AssetRow {
+    private fun withDex(row: AssetRow, d: DexDetail, warnings: MutableList<String>): AssetRow {
         var market = row.market
         val lastUsd = d.closesUsd.lastOrNull()
-        if (market != null && d.closesUsd.size >= 24 && lastUsd != null && lastUsd > 0) {
+        val fxKnown = market?.let { usdTo(it.currency) }
+        // candles far from the pool's own price are another token's (or broken): no chart rather than a wrong one
+        val implausible = fxKnown != null && lastUsd != null && market?.price?.let { p -> p > 0 && (lastUsd * fxKnown / p) !in 0.5..2.0 } == true
+        if (implausible) warnings += "Price history did not match the pool price; chart left out"
+        if (market != null && !implausible && d.closesUsd.size >= 24 && lastUsd != null && lastUsd > 0) {
             // USD candles are converted at the exchange rate: scaling them to the row's price would shift the
             // whole chart by every move since the last refresh
-            val fx = usdTo(market.currency) ?: market.price?.takeIf { it > 0 }?.let { it / lastUsd } ?: 1.0
+            val fx = fxKnown ?: market.price?.takeIf { it > 0 }?.let { it / lastUsd } ?: 1.0
             val newer = d.closesAtMs > (market.lastUpdatedMs ?: 0L)
             market = market.copy(
                 sparkline7d = d.closesUsd.map { it * fx },
