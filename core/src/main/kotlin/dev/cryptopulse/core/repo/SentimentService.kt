@@ -26,6 +26,9 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.util.concurrent.ConcurrentHashMap
+import kotlin.math.max
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 /**
  * Collects social chatter and news for one asset (or the whole market) from every enabled free source
@@ -92,8 +95,8 @@ class SentimentService(
     /** Fast path for the market list: hub data only, no per-asset network calls. */
     fun fromFeed(asset: Asset, doc: SentimentFeedDoc?): SentimentSummary? {
         val fa = doc?.assets?.get(asset.symbol) ?: return null
-        val now = clock.nowMs()
-        return aggregator.summarize(asset.symbol, emptyList(), emptyMap(), now, listOf(hubSource(fa, doc)))
+        val hub = hubSource(fa, doc) ?: return null
+        return aggregator.summarize(asset.symbol, emptyList(), emptyMap(), clock.nowMs(), listOf(hub))
     }
 
     suspend fun forAsset(asset: Asset, force: Boolean = false): SentimentSummary {
@@ -128,7 +131,13 @@ class SentimentService(
             }
         } else statuses[SentimentSource.STOCKTWITS] = SourceStatus.DISABLED
 
-        if (config.telegramEnabled) {
+        // A fresh hub feed already scored every directory channel and the crypto RSS feeds; scanning
+        // them here too would count the same posts twice and inflate confidence.
+        val hubDoc = freshFeedOrNull()
+        val hubCoversTelegram = hubDoc?.covers("telegram_public") == true
+        val hubCoversRss = hubDoc?.covers("rss") == true
+
+        if (config.telegramEnabled && !hubCoversTelegram) {
             val (posts, channelStatuses) = telegramPosts(config, force)
             val matched = posts.filter { matcher.matches(it.title + " " + it.body) }.toMutableList()
             // official/project channels of this asset: everything they post is about the asset
@@ -145,7 +154,7 @@ class SentimentService(
                 else -> SourceStatus.UNAVAILABLE
             }
             matched.distinctBy { it.id }.forEach { samples += aggregator.sampleFromPost(it, now, asset) }
-        } else statuses[SentimentSource.TELEGRAM] = SourceStatus.DISABLED
+        } else if (!config.telegramEnabled) statuses[SentimentSource.TELEGRAM] = SourceStatus.DISABLED
 
         if (config.newsEnabled) {
             var status = SourceStatus.EMPTY
@@ -157,7 +166,7 @@ class SentimentService(
                 }
                 is SourceResult.Failure -> status = r.status.also { logger.debug(TAG, "news ${asset.symbol}: ${r.message}") }
             }
-            val (feedItems, feedStatusRss) = rssItems(config, force)
+            val (feedItems, feedStatusRss) = if (hubCoversRss) emptyList<NewsItem>() to SourceStatus.OK else rssItems(config, force)
             val matchedFeed = feedItems.filter { matcher.matches(it.title + " " + (it.summary ?: "")) }
             if (matchedFeed.isNotEmpty()) status = SourceStatus.OK
             else if (status == SourceStatus.EMPTY && feedStatusRss != SourceStatus.OK && feedStatusRss != SourceStatus.EMPTY) status = feedStatusRss
@@ -202,11 +211,12 @@ class SentimentService(
             posts.forEach { samples += aggregator.sampleFromPost(it, now, null) }
         } else statuses[SentimentSource.TELEGRAM] = SourceStatus.DISABLED
         val hubMarket = feed()?.let { doc ->
+            val weight = freshness(doc) ?: return@let null
             doc.market?.takeIf { it.mentions > 0 }?.let { m ->
                 SourceSentiment(
                     source = SentimentSource.SENTIMENT_HUB,
                     status = SourceStatus.OK,
-                    sampleCount = m.mentions,
+                    sampleCount = (m.mentions * weight).roundToInt().coerceAtLeast(1),
                     composite = m.composite,
                     bullishShare = m.bullish,
                     bearishShare = m.bearish,
@@ -229,6 +239,12 @@ class SentimentService(
     }
 
     private suspend fun hubFor(symbol: String): SourceSentiment? {
+        val doc = freshFeedOrNull() ?: return null
+        val fa = doc.assets[symbol] ?: return null
+        return hubSource(fa, doc)
+    }
+
+    private suspend fun freshFeedOrNull(): SentimentFeedDoc? {
         val doc = try {
             feed()
         } catch (e: CancellationException) {
@@ -236,11 +252,25 @@ class SentimentService(
         } catch (e: Exception) {
             null
         }
-        val fa = doc?.assets?.get(symbol) ?: return null
-        return hubSource(fa, doc)
+        return doc?.takeIf { freshness(it) != null }
     }
 
-    private fun hubSource(fa: FeedAsset, doc: SentimentFeedDoc): SourceSentiment {
+    /**
+     * Weight of a hub document by age: 1 while it is at most [HUB_FULL_WEIGHT_H] old (the workflow runs
+     * hourly), then halving every [HUB_HALF_LIFE_H]; null once older than [HUB_MAX_AGE_H] (the workflow
+     * stopped, e.g. GitHub paused the schedule) so old chatter never outweighs live sources.
+     */
+    private fun freshness(doc: SentimentFeedDoc): Double? {
+        if (doc.generatedAtMs <= 0) return null
+        val ageH = doc.ageMs(clock.nowMs()) / 3_600_000.0
+        if (ageH > HUB_MAX_AGE_H) return null
+        return 0.5.pow(max(0.0, ageH - HUB_FULL_WEIGHT_H) / HUB_HALF_LIFE_H)
+    }
+
+    private fun SentimentFeedDoc.covers(source: String): Boolean = sources.any { it.name == source && it.status == "ok" && it.items > 0 }
+
+    private fun hubSource(fa: FeedAsset, doc: SentimentFeedDoc): SourceSentiment? {
+        val weight = freshness(doc) ?: return null
         val samples = fa.samples.map { s ->
             SentimentSample(
                 source = SentimentSource.SENTIMENT_HUB,
@@ -251,11 +281,12 @@ class SentimentService(
                 timestampMs = s.tsMs,
             )
         }
-        val buzz = fa.mentionsPrev?.takeIf { it > 0 }?.let { fa.mentions.toDouble() / it }
+        // "mentions versus the previous day" only means something for a current document
+        val buzz = fa.mentionsPrev?.takeIf { it > 0 && weight >= 1.0 }?.let { fa.mentions.toDouble() / it }
         return SourceSentiment(
             source = SentimentSource.SENTIMENT_HUB,
             status = SourceStatus.OK,
-            sampleCount = fa.mentions,
+            sampleCount = (fa.mentions * weight).roundToInt().coerceAtLeast(1),
             composite = fa.composite,
             bullishShare = fa.bullish,
             bearishShare = fa.bearish,
@@ -327,6 +358,9 @@ class SentimentService(
         const val GLOBAL_SYMBOL = "MARKET"
         private const val FEED_TTL_MS = 20 * 60_000L
         private const val WEEK_MS = 7 * 86_400_000L
+        private const val HUB_FULL_WEIGHT_H = 3.0
+        private const val HUB_HALF_LIFE_H = 6.0
+        private const val HUB_MAX_AGE_H = 48.0
 
         /** Free crypto news feeds (name -> URL). */
         val DEFAULT_FEEDS: List<Pair<String, String>> = listOf(

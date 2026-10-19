@@ -61,6 +61,9 @@ def m(symbol: str, name: str) -> MentionMatcher:
         ("VSN", "Vision", "our vision for 2027", False),
         ("VSN", "Vision", "the Vision token merge", True),
         ("PI", "Pi", "pi is 3.14", False),
+        # an unnamed listing (name == symbol) only matches the symbol itself
+        ("PEOPLE", "PEOPLE", "so many people feel safe", False),
+        ("PEOPLE", "PEOPLE", "PEOPLE rallies 30%", True),
         # blank texts never match
         ("BTC", "Bitcoin", "   ", False),
         ("BTC", "Bitcoin", "", False),

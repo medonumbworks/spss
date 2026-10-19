@@ -12,6 +12,8 @@ import dev.cryptopulse.core.model.MarketData
 import dev.cryptopulse.core.model.SentimentSummary
 import kotlin.math.exp
 import kotlin.math.sin
+import kotlin.math.sqrt
+import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -90,10 +92,61 @@ class ForecastEngineTest {
     }
 
     @Test
-    fun backtestReportsBaseline() {
+    fun backtestReportsChanceBaselineAndIndependentSamples() {
         val bt = Backtester.shortTerm(series(168, 100.0, 0.001, 0.02))!!
         assertTrue(bt.samples > 30)
-        assertTrue(bt.hitRate in 0.0..1.0 && bt.baselineHitRate >= 0.5)
+        assertTrue(bt.hitRate in 0.0..1.0 && bt.baselineHitRate in 0.0..1.0)
+        assertEquals(bt.samples * 2 / 24, bt.effectiveSamples, "overlapping 24h windows every 2h")
+    }
+
+    @Test
+    fun randomWalkBacktestDoesNotDistortTheTechnicalWeight() {
+        // with no edge, most runs must land in the neutral band instead of being cut or boosted
+        val rnd = Random(7)
+        var neutral = 0
+        repeat(60) {
+            var p = 100.0
+            val daily = List(365) { p *= exp(rnd.nextDouble(-0.04, 0.04)); p }
+            val bt = Backtester.mediumTermDaily(daily)!!
+            val z = (bt.hitRate - bt.baselineHitRate) / sqrt(0.25 / bt.effectiveSamples)
+            if (z > -1.0 && z < 1.0) neutral++
+        }
+        assertTrue(neutral >= 30, "neutral=$neutral/60")
+    }
+
+    @Test
+    fun bottomScoreNeedsPriceHistory() {
+        val f = engine.forecast(
+            ForecastInput(
+                asset = Asset("NEW", "New coin"),
+                market = MarketData(symbol = "NEW", currency = "EUR", price = 1.0),
+                hourlyCloses = emptyList(),
+                context = MarketContext(fearGreed = FearGreed(15, "Extreme Fear", 0)),
+                nowMs = FIXTURE_NOW_MS,
+            ),
+        )
+        assertEquals(50, f.bottom.score)
+        assertEquals(DefaultForecastEngine.NO_HISTORY, f.bottom.label)
+        assertEquals(0.0, f.d7.signals.single { it.name == "bottom_score" }.contribution)
+    }
+
+    @Test
+    fun weekMoveIsUsedWithAnHourlySparklineOnly() {
+        for (n in listOf(167, 168)) {
+            val f = engine.forecast(input("DOT", series(n, 10.0, 0.001)))
+            assertTrue(f.d7.signals.any { it.name == "move_7d" }, "n=$n: ${f.d7.signals.map { it.name }}")
+            assertEquals(null, f.bottom.drawdownFrom30dHighPct, "no 30-day high without daily data")
+        }
+    }
+
+    @Test
+    fun usdStablecoinQuotedInEuroIsStillPegged() {
+        // EUR/USD noise (about 0.4 % over a week) on top of a perfect USD peg
+        val hourly = List(168) { i -> 0.92 * (1 + 0.006 * sin(i / 20.0)) }
+        val f = engine.forecast(input("XUSD", hourly).copy(asset = Asset("XUSD", "Example Dollar")))
+        assertEquals("Pegged", f.bottom.label)
+        val coin = engine.forecast(input("CALM", hourly).copy(asset = Asset("CALM", "Calm Network")))
+        assertTrue(coin.bottom.label != "Pegged", "no peg hint, no peg")
     }
 
     @Test

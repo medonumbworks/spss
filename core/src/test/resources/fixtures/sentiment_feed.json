@@ -1,4 +1,4 @@
-{"schema":"cryptopulse.sentiment-feed/v1","generatedAt":"2026-10-17T14:30:00Z","windowHours":24,"models":["vader","finbert","cryptobert"],
+{"schema":"cryptopulse.sentiment-feed/v1","generatedAt":"2025-10-17T14:30:00Z","windowHours":24,"models":["vader","finbert","cryptobert"],
 "sources":[{"name":"telegram_public","status":"ok","items":1530,"detail":"80/87 channels"},{"name":"telegram_account","status":"ok","items":420,"detail":"35 chats"},{"name":"rss","status":"ok","items":120},{"name":"reddit","status":"rate_limited","items":0}],
 "market":{"mentions":1650,"composite":0.12,"bullish":0.41,"bearish":0.22,"neutral":0.37},
 "assets":[{"symbol":"SOL","mentions":120,"mentionsPrev":60,"composite":0.35,"scores":{"vader":0.3,"finbert":0.25,"cryptobert":0.45},"bullish":0.55,"bearish":0.1,"neutral":0.35,"bySource":{"telegram_public":{"mentions":80,"composite":0.3},"telegram_account":{"mentions":40,"composite":0.45}},"samples":[{"text":"Solana jumps 8% as ETF inflows surge","score":0.62,"source":"telegram_public","community":"cointelegraph","url":"https://t.me/cointelegraph/51001","ts":"2026-10-17T13:00:00Z"}]},

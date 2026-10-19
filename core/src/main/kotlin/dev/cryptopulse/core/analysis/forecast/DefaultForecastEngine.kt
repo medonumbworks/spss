@@ -36,7 +36,7 @@ class DefaultForecastEngine : Forecaster {
         val price = market?.price ?: input.hourlyCloses.lastOrNull()
         val hourly = input.hourlyCloses.filter { it > 0 }
         val daily = input.dailyCloses.filter { it > 0 }
-        if (isStablecoin(input.asset.symbol, hourly, market?.change7dPct)) return stablecoinForecast(input, price)
+        if (isStablecoin(input.asset.symbol, input.asset.name, market?.currency, hourly, market?.change7dPct)) return stablecoinForecast(input, price)
 
         val coverageNotes = ArrayList<String>()
         if (hourly.size < 48) coverageNotes += "Less than 2 days of hourly prices"
@@ -115,7 +115,7 @@ class DefaultForecastEngine : Forecaster {
         val sign = if (p >= 0.5) 1.0 else -1.0
         val totalAbs = all.sumOf { abs(it.logit) }
         val agreement = if (totalAbs == 0.0) 0.5 else all.filter { it.logit * sign > 0 }.sumOf { abs(it.logit) } / totalAbs
-        val btQuality = backtest?.takeIf { it.samples >= 30 }?.let { ((it.hitRate - it.baselineHitRate) * 4 + 0.55).coerceIn(0.2, 1.0) } ?: 0.5
+        val btQuality = edgeZ(backtest)?.let { (0.5 + 0.12 * it).coerceIn(0.2, 0.9) } ?: 0.5
         val confidence = ((0.4 * coverage + 0.3 * agreement + 0.3 * btQuality) * 0.9).coerceIn(0.05, 0.9)
 
         val sigma = horizonSigma(horizon, hourly, daily)
@@ -130,16 +130,26 @@ class DefaultForecastEngine : Forecaster {
         return HorizonForecast(horizon, round4(p), direction, round4(confidence), low, high, move?.let { round4(it) }, signals, backtest)
     }
 
-    /** 1.0 = neutral; < 1 when the backtest says the price signals did not beat the naive baseline. */
+    /**
+     * 0.85 = neutral (too little evidence either way); above when the backtest beat chance clearly,
+     * below when it clearly lost. "Clearly" is measured in standard errors of the hit rate.
+     */
     private fun techScale(bt: BacktestStats?): Double {
-        if (bt == null || bt.samples < 30) return 0.85
-        val edge = bt.hitRate - bt.baselineHitRate
+        val z = edgeZ(bt) ?: return 0.85
         return when {
-            edge >= 0.08 -> 1.2
-            edge >= 0.02 -> 1.0
-            edge >= -0.03 -> 0.7
+            z >= 2.0 -> 1.2
+            z >= 1.0 -> 1.0
+            z > -1.0 -> 0.85
+            z > -2.0 -> 0.7
             else -> 0.45
         }
+    }
+
+    /** Backtest edge over chance in standard errors, or null with fewer than 10 independent windows. */
+    private fun edgeZ(bt: BacktestStats?): Double? {
+        val nEff = bt?.effectiveSamples ?: return null
+        if (nEff < 10) return null
+        return (bt.hitRate - bt.baselineHitRate) / sqrt(0.25 / nEff)
     }
 
     private fun coverageScore(horizon: Horizon, hourly: List<Double>, daily: List<Double>, input: ForecastInput): Double {
@@ -241,7 +251,8 @@ class DefaultForecastEngine : Forecaster {
         val dist30 = if (daily.size >= 30) Indicators.distanceToMinPct(daily, 30) else null
         val dist90 = if (daily.size >= 90) Indicators.distanceToMinPct(daily, 90) else null
         val dist1y = if (daily.size >= 300) Indicators.distanceToMinPct(daily, 365) else null
-        val dd30 = if (daily.size >= 30) Indicators.drawdownFromMaxPct(daily, 30) else market?.change30dPct?.let { min(0.0, it) }
+        // without daily closes the 30-day high is unknown (the 30-day change is not a drawdown)
+        val dd30 = if (daily.size >= 30) Indicators.drawdownFromMaxPct(daily, 30) else null
         val ddAth = market?.athChangePct
         val distAtl = market?.atlChangePct
         val rsi = (if (daily.size >= 20) Indicators.rsi(daily, 14) else null) ?: Indicators.rsi(Indicators.resample(hourly, 4), 14)
@@ -255,6 +266,11 @@ class DefaultForecastEngine : Forecaster {
         rsi?.let { parts += clamp01((45 - it) / 25.0) to 0.15; if (it < 30) reasons += "Oversold (RSI ${it.toInt()})" else if (it > 70) reasons += "Overbought (RSI ${it.toInt()})" }
         pctB?.let { parts += clamp01((0.3 - it) / 0.5) to 0.1 }
         dd30?.let { parts += clamp01(-it / 30.0) to 0.1; if (it < -20) reasons += "Down ${"%.0f".format(-it)}% from its 30-day high" }
+        // Fear & Greed is market-wide: it may tilt a coin's score, never make one on its own
+        if (parts.sumOf { it.second } < 0.25) {
+            return BottomAssessment(score = 50, label = NO_HISTORY, distanceToAtlPct = distAtl, drawdownFromAthPct = ddAth,
+                reasons = listOf("Not enough price history to tell where the price sits in its range"))
+        }
         fg?.let { parts += clamp01((50 - it) / 40.0) to 0.05; if (it <= 25) reasons += "Market in extreme fear ($it)" }
         if (ddAth != null && ddAth < -80) reasons += "${"%.0f".format(-ddAth)}% below its all-time high"
         if (dist7 != null && dist7 > 10 && (dist30 == null || dist30 > 15)) reasons += "Well above its recent lows"
@@ -286,10 +302,15 @@ class DefaultForecastEngine : Forecaster {
 
     // ---- misc -------------------------------------------------------------------------------
 
-    private fun isStablecoin(symbol: String, hourly: List<Double>, change7d: Double?): Boolean {
+    private fun isStablecoin(symbol: String, name: String, currency: String?, hourly: List<Double>, change7d: Double?): Boolean {
         if (symbol in STABLECOINS) return true
+        if (hourly.size < 48) return false
         val cv = Indicators.coefficientOfVariation(hourly) ?: return false
-        return cv < 0.002 && abs(change7d ?: 0.0) < 0.5 && hourly.size >= 48
+        if (currency == null || currency.equals("USD", ignoreCase = true)) return cv < 0.002 && abs(change7d ?: 0.0) < 0.5
+        // quoted in EUR/GBP/CHF a USD peg moves with the exchange rate, so only accept a looser
+        // band for coins whose symbol or name says they are pegged
+        val pegHint = PEG_HINT.containsMatchIn(symbol) || PEG_NAME_HINT.containsMatchIn(name)
+        return pegHint && cv < 0.01 && abs(change7d ?: 0.0) < 3.0
     }
 
     private fun stablecoinForecast(input: ForecastInput, price: Double?): Forecast {
@@ -328,6 +349,10 @@ class DefaultForecastEngine : Forecaster {
         val STABLECOINS: Set<String> = setOf(
             "USDT", "USDC", "EURC", "USDG", "RLUSD", "USDD", "EURCV", "DAI", "FDUSD", "TUSD", "PYUSD", "USDE", "USDS", "USD1", "EURS", "USDQ", "EURQ",
         )
+
+        const val NO_HISTORY = "Not enough price history"
+        private val PEG_HINT = Regex("USD|EUR|GBP|CHF")
+        private val PEG_NAME_HINT = Regex("(?i)stable|dollar|euro")
 
         private fun clamp01(x: Double) = max(0.0, min(1.0, x))
         private fun round4(x: Double) = Math.round(x * 10_000.0) / 10_000.0

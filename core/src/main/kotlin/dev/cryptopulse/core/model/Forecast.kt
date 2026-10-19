@@ -33,9 +33,14 @@ data class BacktestStats(
     val hitRate: Double,
     /** Mean squared error of the predicted probability (lower is better; 0.25 is coin-flip). */
     val brier: Double,
-    /** Hit rate of the naive "always up" rule over the same samples. */
+    /**
+     * Hit rate a guesser with no skill would reach: one that calls "up" as often as the model did,
+     * at random, on the same samples (so a model that only follows the overall trend scores no edge).
+     */
     val baselineHitRate: Double,
     val note: String = "",
+    /** Roughly independent samples: windows overlap, so this is samples x stride / horizon. */
+    val effectiveSamples: Int = 0,
 )
 
 @Serializable

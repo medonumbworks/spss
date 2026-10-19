@@ -9,6 +9,7 @@ import dev.cryptopulse.core.fastLimiter
 import dev.cryptopulse.core.http.InMemoryDiskStore
 import dev.cryptopulse.core.model.Direction
 import dev.cryptopulse.core.model.ListingSource
+import dev.cryptopulse.core.model.PricePoint
 import dev.cryptopulse.core.model.SentimentSource
 import dev.cryptopulse.core.model.SourceStatus
 import dev.cryptopulse.core.testing.FakeTransport
@@ -30,7 +31,7 @@ class RepositoryTest {
         TextSentiment(if ("surge" in s || "bullish" in s || "rall" in s) 0.6 else if ("hack" in s || "outage" in s || "dump" in s) -0.6 else 0.0)
     }
 
-    private fun fullTransport() = FakeTransport()
+    private fun fullTransport(feed: String? = Fixtures.read("sentiment_feed.json")) = FakeTransport()
         .onUrlContaining("api.bitpanda.com/v1/ticker", body = Fixtures.read("bitpanda_ticker.json"))
         .onUrlContaining("/coins/list", body = Fixtures.read("coingecko_coins_list.json"))
         .onUrlContaining("/coins/markets", body = Fixtures.read("coingecko_markets.json"))
@@ -40,7 +41,7 @@ class RepositoryTest {
         .onUrlContaining("api.coingecko.com/api/v3/coins/", body = Fixtures.read("coingecko_coin_btc.json"))
         .onUrlContaining("alternative.me", body = Fixtures.read("fear_greed.json"))
         .onUrlContaining("premiumIndex", body = Fixtures.read("binance_premium.json"))
-        .onUrlContaining("sentiment-feed/feed.json", body = Fixtures.read("sentiment_feed.json"))
+        .let { t -> if (feed == null) t.failUrlContaining("sentiment-feed/feed.json") else t.onUrlContaining("sentiment-feed/feed.json", body = feed) }
         .onUrlContaining("reddit.com", body = Fixtures.read("reddit_search.json"))
         .onUrlContaining("stocktwits.com", body = Fixtures.read("stocktwits_sol.json"))
         .onUrlContaining("t.me/s/", body = Fixtures.read("telegram_preview.html"))
@@ -84,13 +85,43 @@ class RepositoryTest {
         val status = s.perSource.associate { it.source to it.status }
         assertEquals(SourceStatus.OK, status[SentimentSource.REDDIT])
         assertEquals(SourceStatus.OK, status[SentimentSource.STOCKTWITS])
-        assertEquals(SourceStatus.OK, status[SentimentSource.TELEGRAM])
+        assertEquals(null, status[SentimentSource.TELEGRAM], "the fresh hub already scanned the public channels")
         assertEquals(SourceStatus.OK, status[SentimentSource.NEWS])
         assertEquals(SourceStatus.OK, status[SentimentSource.SENTIMENT_HUB])
         assertTrue(s.totalSamples > 120)
         assertTrue(d.row.forecast!!.d7.signals.any { it.name == "rsi14_daily" }, "daily history used for 7d")
         assertNotNull(d.row.forecast!!.d7.backtest)
         assertEquals(mapOf("EUR" to 92.74, "USD" to 104.2), d.bitpandaPrices)
+    }
+
+    @Test
+    fun phoneScansTelegramItselfWithoutAHubFeed() = runTest {
+        val cp = app(fullTransport(feed = null))
+        cp.repository.refresh()
+        val s = cp.repository.detail("SOL").row.sentiment!!
+        assertEquals(SourceStatus.OK, s.perSource.single { it.source == SentimentSource.TELEGRAM }.status)
+    }
+
+    @Test
+    fun oldHubFeedsFadeAndThenStopCounting() = runTest {
+        val feed = Fixtures.read("sentiment_feed.json")
+        fun withFeed(generatedAt: String) = fullTransport(feed.replace("2025-10-17T14:30:00Z", generatedAt))
+        val tenHours = app(withFeed("2025-10-17T05:00:00Z")).repository.refresh().rows.single { it.asset.symbol == "SOL" }
+        val hub = tenHours.sentiment!!.perSource.single { it.source == SentimentSource.SENTIMENT_HUB }
+        assertTrue(hub.sampleCount in 1 until 120, "faded: ${hub.sampleCount}")
+        assertEquals(null, hub.buzzRatio, "no day-over-day change from an old document")
+        val threeDays = app(withFeed("2025-10-14T15:00:00Z")).repository.refresh().rows.single { it.asset.symbol == "SOL" }
+        assertTrue(threeDays.sentiment?.perSource.orEmpty().none { it.source == SentimentSource.SENTIMENT_HUB })
+    }
+
+    @Test
+    fun dailyClosesKeepYesterdayNextToTheLiveSample() {
+        val day = 86_400_000L
+        val d0 = 20_000 * day
+        val daily = MarketRepository.toDaily(
+            listOf(PricePoint(d0, 100.0), PricePoint(d0 + day, 101.0), PricePoint(d0 + 2 * day, 102.0), PricePoint(d0 + 2 * day + 15 * 3_600_000L, 110.0)),
+        )
+        assertEquals(listOf(100.0, 101.0, 102.0, 110.0), daily.map { it.value })
     }
 
     @Test

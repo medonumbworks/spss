@@ -124,6 +124,22 @@ class SourcesParsingTest {
     }
 
     @Test
+    fun fundingRatesAreNormalisedToEightHours() {
+        val intervals = DerivativesApi.parseBinanceFundingInfo(
+            """[{"symbol":"SOLUSDT","adjustedFundingRateCap":"0.02","fundingIntervalHours":4},{"symbol":"XUSDT","fundingIntervalHours":1}]""",
+        )
+        assertEquals(mapOf("SOLUSDT" to 4, "XUSDT" to 1), intervals)
+        val plain = DerivativesApi.parseBinancePremium(Fixtures.read("binance_premium.json"), 0)
+        val adjusted = DerivativesApi.parseBinancePremium(Fixtures.read("binance_premium.json"), 0, intervals)
+        assertEquals(plain.getValue("SOL").fundingRate!! * 2, adjusted.getValue("SOL").fundingRate!!, 1e-12)
+        assertEquals(plain.getValue("BTC").fundingRate, adjusted.getValue("BTC").fundingRate, "8h contracts unchanged")
+        val bybit = DerivativesApi.parseBybitTickers(
+            """{"retCode":0,"result":{"list":[{"symbol":"WIFUSDT","fundingRate":"0.0001","fundingIntervalHour":"1"}]}}""", 0,
+        )
+        assertEquals(0.0008, bybit.getValue("WIF").fundingRate!!, 1e-12)
+    }
+
+    @Test
     fun sentimentFeedParses() {
         val doc = SentimentFeedApi.parse(Fixtures.read("sentiment_feed.json"))
         assertEquals(listOf("vader", "finbert", "cryptobert"), doc.models)

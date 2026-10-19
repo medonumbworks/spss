@@ -27,5 +27,8 @@ class MentionMatcherTest {
         assertFalse(vsn.matches("Our vision for 2027"))
         assertTrue(vsn.matches("\$VSN and the Vision token merge"))
         assertFalse(MentionMatcher(Asset("PI", "Pi")).matches("pi is 3.14"))
+        val people = MentionMatcher(Asset("PEOPLE", "PEOPLE"))
+        assertFalse(people.matches("So many people feel safe"), "an unnamed listing must not match the word")
+        assertTrue(people.matches("PEOPLE rallies 30%"))
     }
 }

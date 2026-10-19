@@ -68,13 +68,14 @@ class BitpandaApi(
             if (result is HttpResult.Failed) {
                 if (pages == 0 && result.code == 404 && pathPrefix == "/v1") { pathPrefix = ""; continue }
                 if (pages == 0 && result.isUnauthorized && !useKey && !apiKey.isNullOrBlank()) { useKey = true; continue }
-                return if (all.isNotEmpty()) SourceResult.Success(all) else SourceResult.failureOf(result, "Bitpanda assets")
+                // a list missing later pages would silently drop assets for a day: report it as a failure
+                return SourceResult.failureOf(result, if (pages == 0) "Bitpanda assets" else "Bitpanda assets (page ${pages + 1})")
             }
             result as HttpResult.Ok
             val (page, next) = try {
                 parsePublicAssets(result.body)
             } catch (e: Exception) {
-                return if (all.isNotEmpty()) SourceResult.Success(all) else SourceResult.parseError("Bitpanda assets", e)
+                return SourceResult.parseError(if (pages == 0) "Bitpanda assets" else "Bitpanda assets (page ${pages + 1})", e)
             }
             all += page
             pages++

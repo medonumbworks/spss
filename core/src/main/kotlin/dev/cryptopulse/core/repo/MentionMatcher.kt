@@ -39,7 +39,9 @@ class MentionMatcher(asset: Asset) {
     private fun buildNames(name: String): List<String> {
         val cleaned = name.replace(Regex("\\s*\\(.*?\\)\\s*"), " ").trim()
         val out = linkedSetOf<String>()
-        if (cleaned.length >= 3 && !(ambiguous && cleaned.equals(symbol, ignoreCase = true))) out += cleaned
+        // a name that is just the ticker ("PEOPLE" for an unnamed listing) adds nothing but a
+        // case-insensitive match on an ordinary word; the bare symbol already covers it
+        if (cleaned.length >= 3 && cleaned != symbol && !(ambiguous && cleaned.equals(symbol, ignoreCase = true))) out += cleaned
         // "Bitpanda Ecosystem Token" -> also "Bitpanda"; "Pyth Network" -> "Pyth"
         val words = cleaned.split(Regex("\\s+")).filter { it.isNotBlank() }
         if (words.size >= 2) {

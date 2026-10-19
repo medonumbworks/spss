@@ -83,7 +83,8 @@ class MarketRepository(
     private val detailCache = ConcurrentHashMap<String, AssetDetail>()
 
     init {
-        loadPersisted()?.let { _snapshot.value = it }
+        // keep the persisted market context so forecasts made before the first network refresh use it
+        loadPersisted()?.let { _snapshot.value = it; lastContext = it.context }
     }
 
     fun updateConfig(newConfig: AppConfig) {
@@ -295,13 +296,18 @@ class MarketRepository(
         uni.assets.forEach { a -> a.coingeckoId?.let { idToSymbol.putIfAbsent(it, a.symbol) } }
         val result = HashMap<String, MarketData>()
         var failures = 0
+        var staleAgeMs = 0L
         val chunks = idToSymbol.keys.toList().chunked(cfg.coingeckoPageSize.coerceIn(1, 250))
         chunks.forEachIndexed { i, chunk ->
             setStatus("Fetching market data (${i + 1}/${chunks.size})", 0.2f + 0.3f * i / chunks.size.coerceAtLeast(1))
             when (val r = coinGecko.markets(vs, page = 1, perPage = chunk.size.coerceAtLeast(1), ids = chunk, sparkline = true)) {
-                is SourceResult.Success -> r.value.forEach { md ->
-                    val sym = md.coingeckoId?.let { idToSymbol[it] } ?: return@forEach
-                    result[sym] = md.copy(symbol = sym, currency = cfg.currency)
+                is SourceResult.Success -> {
+                    // Http hands back an old body (up to 6 h) when CoinGecko fails; say so instead of showing it as fresh
+                    if (r.fromCache && r.ageMs > cfg.marketsTtlMs) staleAgeMs = maxOf(staleAgeMs, r.ageMs)
+                    r.value.forEach { md ->
+                        val sym = md.coingeckoId?.let { idToSymbol[it] } ?: return@forEach
+                        result[sym] = md.copy(symbol = sym, currency = cfg.currency)
+                    }
                 }
                 is SourceResult.Failure -> {
                     failures++
@@ -310,6 +316,7 @@ class MarketRepository(
                 }
             }
         }
+        if (staleAgeMs > 0) warnings += "CoinGecko is not answering; market data is ${staleAgeMs / 60_000} min old"
         if (failures > 0 && previous != null && previous.currency == cfg.currency) {
             var reused = 0
             previous.rows.forEach { row ->
@@ -486,7 +493,9 @@ class MarketRepository(
         fun toDaily(points: List<PricePoint>): List<PricePoint> {
             if (points.isEmpty()) return emptyList()
             val byDay = LinkedHashMap<Long, PricePoint>()
-            for (p in points.sortedBy { it.timeMs }) byDay[p.timeMs / DAY_MS] = p
+            // CoinGecko's daily samples sit at 00:00 UTC and hold the previous day's close, followed by
+            // one live sample; key each sample by the day it closes so the live one does not replace it
+            for (p in points.sortedBy { it.timeMs }) byDay[(p.timeMs - 1).floorDiv(DAY_MS)] = p
             return byDay.values.toList()
         }
 

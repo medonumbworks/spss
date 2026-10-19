@@ -42,7 +42,7 @@ object Format {
             if (h.expectedLow != null && h.expectedHigh != null) {
                 appendLine("Likely range: ${Text.formatPrice(h.expectedLow)} – ${Text.formatPrice(h.expectedHigh)} ${f.currency} (expected move ${Text.formatPct(h.expectedMovePct, 2)})")
             }
-            h.backtest?.let { appendLine("Backtest: ${pct(it.hitRate)} correct direction on ${it.samples} past samples vs ${pct(it.baselineHitRate)} for the naive baseline.") }
+            h.backtest?.let { appendLine("Backtest: ${pct(it.hitRate)} correct direction on ${it.samples} overlapping past samples (about ${it.effectiveSamples} independent) vs ${pct(it.baselineHitRate)} by chance.") }
             appendLine("Main drivers:")
             h.signals.take(7).forEach { s -> appendLine("- ${if (s.contribution >= 0) "+" else "−"} ${s.label}: ${s.description}") }
             appendLine()

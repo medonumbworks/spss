@@ -196,7 +196,7 @@ private fun ForecastCard(title: String, h: HorizonForecast, currency: String) {
         }
         h.expectedMovePct?.let { KeyValue("Expected move", Fmt.formatPct(it, 2)) }
         h.backtest?.let { bt ->
-            KeyValue("Backtest", "${(bt.hitRate * 100).toInt()}% right on ${bt.samples} past cases (naive ${(bt.baselineHitRate * 100).toInt()}%)")
+            KeyValue("Backtest", "${(bt.hitRate * 100).toInt()}% right on ~${bt.effectiveSamples} independent past cases (chance ${(bt.baselineHitRate * 100).toInt()}%)")
         }
         if (h.signals.isNotEmpty()) {
             HorizontalDivider()

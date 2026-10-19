@@ -23,6 +23,18 @@ class RateLimiter(
 
     private val mutex = Mutex()
     private val buckets = HashMap<String, Bucket>()
+    private val blockedUntil = java.util.concurrent.ConcurrentHashMap<String, Long>()
+
+    /** After an HTTP 429: callers should not contact [host] again before [untilMs]. */
+    fun penalize(host: String, untilMs: Long) {
+        blockedUntil.merge(host.lowercase(), untilMs) { a, b -> maxOf(a, b) }
+    }
+
+    /** Remaining cool-down for [host] in ms, or 0 when it may be contacted. */
+    fun cooldownMs(host: String): Long {
+        val until = blockedUntil[host.lowercase()] ?: return 0L
+        return (until - clock.nowMs()).coerceAtLeast(0L)
+    }
 
     fun rateFor(host: String): Rate {
         val h = host.lowercase()

@@ -5,7 +5,8 @@ Keep the two in sync: the app and the hub must agree on which texts talk about w
 * ``$SYM`` (cashtag, case-insensitive) always counts.
 * The full name (parenthesised parts removed, case-insensitive, whole word) counts; for names of
   two or more words the first word also counts when it has 4+ letters and is not generic.
-  A name (or first word) equal to an ambiguous symbol never counts ("Sun" for SUN, "NEAR" for NEAR).
+  A name (or first word) equal to an ambiguous symbol never counts ("Sun" for SUN, "NEAR" for NEAR),
+  and a name identical to the symbol never counts as a name ("PEOPLE" for PEOPLE).
 * Names that are everyday words (``COMMON_WORD_NAMES``: "Stellar", "Vision", ...) only count when
   followed by a crypto context word ("Stellar network", "Vision token").
 * The bare symbol (case-sensitive, whole word) counts only when the symbol is not ambiguous
@@ -62,7 +63,9 @@ def build_names(name: str, symbol: str = "", ambiguous: bool = False) -> list[st
     """``buildNames``: "Bitpanda Ecosystem Token" -> ["Bitpanda Ecosystem Token", "Bitpanda"]."""
     cleaned = _PARENS_RE.sub(" ", name).strip()
     out: list[str] = []
-    if len(cleaned) >= 3 and not (ambiguous and cleaned.lower() == symbol.lower()):
+    # A name that is just the ticker ("PEOPLE" for an unnamed listing) only adds a case-insensitive
+    # match on an ordinary word; the bare symbol already covers it.
+    if len(cleaned) >= 3 and cleaned != symbol and not (ambiguous and cleaned.lower() == symbol.lower()):
         out.append(cleaned)
     words = [w for w in _SPACES_RE.split(cleaned) if w.strip()]
     if len(words) >= 2:

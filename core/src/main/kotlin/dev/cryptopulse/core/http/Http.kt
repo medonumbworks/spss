@@ -87,6 +87,10 @@ class Http(
         var attempt = 0
         var lastFailure: HttpResult.Failed? = null
         val host = RateLimiter.hostOf(request.url)
+        // the host told us to slow down: answer at once so callers fall back to cached data
+        // instead of queueing more requests that keep the IP rate-limited
+        val cooldown = rateLimiter.cooldownMs(host)
+        if (cooldown > 0) return HttpResult.Failed("HTTP 429 (rate limited, retry in ${cooldown / 1000} s)", 429)
         while (attempt <= retries) {
             rateLimiter.acquire(host)
             val response = try {
@@ -104,7 +108,13 @@ class Http(
                 val retryable = response.code == 429 || response.code == 408 || response.code in 500..599
                 if (!retryable) return lastFailure
                 val retryAfter = response.retryAfterMs
-                if (attempt < retries) sleeper(retryAfter?.coerceIn(1_000, 30_000) ?: backoffMs(attempt))
+                if (response.code == 429) {
+                    val wait = retryAfter ?: DEFAULT_429_COOLDOWN_MS
+                    rateLimiter.penalize(host, clock.nowMs() + wait)
+                    // waiting a few seconds is fine; a longer wait would freeze the refresh
+                    if (wait > MAX_INLINE_WAIT_MS || attempt >= retries) return lastFailure
+                    sleeper(wait.coerceAtLeast(1_000))
+                } else if (attempt < retries) sleeper(retryAfter?.coerceIn(1_000, 30_000) ?: backoffMs(attempt))
             } else if (attempt < retries) {
                 sleeper(backoffMs(attempt))
             }
@@ -117,5 +127,7 @@ class Http(
 
     private companion object {
         const val TAG = "Http"
+        const val DEFAULT_429_COOLDOWN_MS = 60_000L
+        const val MAX_INLINE_WAIT_MS = 5_000L
     }
 }

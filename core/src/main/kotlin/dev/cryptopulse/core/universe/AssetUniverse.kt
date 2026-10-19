@@ -16,6 +16,8 @@ data class UniverseResult(
     val bitpandaPrices: Map<String, Map<String, Double>> = emptyMap(),
     val fetchedAtMs: Long,
     val warnings: List<String> = emptyList(),
+    /** False when Bitpanda or the CoinGecko coin list was unreachable; such a list is retried soon. */
+    val complete: Boolean = true,
 ) {
     fun bySymbol(symbol: String): Asset? = assets.firstOrNull { it.symbol == symbol }
 }

@@ -94,7 +94,8 @@ internal object Technical {
                 out += Contribution("trend_4h", "Trend (1-day vs 4-day average)", gap * 100, c, if (gap >= 0) "1-day average is above the 4-day average" else "1-day average is below the 4-day average")
             }
         }
-        Indicators.pctChange(series, stepsPerWeek)?.let { m ->
+        // a 7-day hourly sparkline gives exactly 42 four-hour bars, one short of a full week back
+        Indicators.pctChange(series, minOf(stepsPerWeek, series.size - 1))?.let { m ->
             val z = m / 100.0 / volWeek
             val c = -tanh(z / 2.0) * 0.1
             out += Contribution("move_7d", "Last 7 days move", m, c, if (abs(z) > 1.5) "An unusually large 7-day move (${"%.1f".format(m)}%); some mean reversion is common" else "The 7-day move (${"%.1f".format(m)}%) is within normal range")

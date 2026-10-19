@@ -41,7 +41,8 @@ class DefaultAssetUniverse(
     override suspend fun load(config: AppConfig, force: Boolean): UniverseResult = mutex.withLock {
         val now = clock.nowMs()
         val current = cached ?: readPersisted()
-        if (!force && current != null && now - current.fetchedAtMs < config.universeTtlMs) {
+        val ttl = if (current?.complete == false) DEGRADED_TTL_MS else config.universeTtlMs
+        if (!force && current != null && now - current.fetchedAtMs < ttl) {
             // prices in the legacy ticker age quickly; refresh them cheaply when we can
             return@withLock refreshPricesIfPossible(current, config).also { cached = it }
         }
@@ -86,7 +87,7 @@ class DefaultAssetUniverse(
             is SourceResult.Failure -> { warnings += "CoinGecko coin list: ${c.message}"; null }
         }
         if (coinList != null) {
-            assets = resolveIds(assets, coinList)
+            assets = resolveIds(assets, coinList, marketCapRanks(assets, coinList, config))
             if (live != null) {
                 // The legacy ticker may contain stocks/ETFs: keep only symbols CoinGecko knows or the snapshot confirms.
                 val known = coinList.mapTo(HashSet()) { it.symbol }
@@ -95,10 +96,34 @@ class DefaultAssetUniverse(
         }
         assets = assets.filter { Text.normalizeSymbol(it.symbol).isNotEmpty() }.distinctBy { it.symbol }
 
-        val result = UniverseResult(assets, source, prices, now, warnings)
+        val complete = source != ListingSource.BUNDLED_SNAPSHOT && coinList != null
+        if (!complete && current != null && current.complete) {
+            // a short outage during a forced refresh must not replace a good list for a day
+            logger.debug(TAG, "keeping the previous complete universe: ${warnings.joinToString()}")
+            return@withLock refreshPricesIfPossible(current, config).also { cached = it }
+        }
+        val result = UniverseResult(assets, source, prices, now, warnings, complete)
         cached = result
         persist(result)
         result
+    }
+
+    /**
+     * CoinGecko market-cap ranks, fetched only when some symbol has several candidate coins and no
+     * valid id hint (new listings): the real coin is almost always the one with the larger market cap.
+     */
+    private suspend fun marketCapRanks(assets: List<Asset>, coinList: List<CoinListEntry>, config: AppConfig): Map<String, Int> {
+        val ids = coinList.mapTo(HashSet()) { it.id }
+        val counts = coinList.groupingBy { it.symbol }.eachCount()
+        val needed = assets.any { a -> (a.coingeckoId == null || a.coingeckoId !in ids) && (counts[a.symbol] ?: 0) > 1 }
+        if (!needed) return emptyMap()
+        val ranks = HashMap<String, Int>()
+        for (page in 1..config.coingeckoMappingPages.coerceIn(1, 8)) {
+            val r = coinGecko.markets("usd", page = page, perPage = 250, ids = null, sparkline = false) as? SourceResult.Success ?: break
+            r.value.forEachIndexed { i, m -> m.coingeckoId?.let { ranks.putIfAbsent(it, m.marketCapRank ?: ((page - 1) * 250 + i + 1)) } }
+            if (r.value.size < 250) break
+        }
+        return ranks
     }
 
     private suspend fun refreshPricesIfPossible(current: UniverseResult, config: AppConfig): UniverseResult {
@@ -124,35 +149,44 @@ class DefaultAssetUniverse(
     companion object {
         private const val TAG = "AssetUniverse"
         private const val STORE_KEY = "universe_v1"
+        private const val DEGRADED_TTL_MS = 15 * 60_000L
         private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
 
         /**
          * Validates CoinGecko id hints and maps the rest. Preference for symbol collisions:
          * exact normalized name match > name prefix/containment > shortest id (canonical coins have short ids).
          */
-        fun resolveIds(assets: List<Asset>, coinList: List<CoinListEntry>): List<Asset> {
+        fun resolveIds(assets: List<Asset>, coinList: List<CoinListEntry>, ranks: Map<String, Int> = emptyMap()): List<Asset> {
             val ids = coinList.mapTo(HashSet()) { it.id }
             val bySymbol = coinList.groupBy { it.symbol }
             return assets.map { a ->
                 val hint = a.coingeckoId
                 if (hint != null && hint in ids) return@map a
                 val candidates = bySymbol[a.symbol].orEmpty()
-                val chosen = pick(a, candidates)
-                a.copy(coingeckoId = chosen?.id)
+                val chosen = pick(a, candidates, ranks)
+                // ticker-only symbols arrive without a name; "PEOPLE" as a name would match the word "people"
+                val name = if (chosen != null && a.name == a.symbol) chosen.name else a.name
+                a.copy(coingeckoId = chosen?.id, name = name)
             }
         }
 
-        private fun pick(asset: Asset, candidates: List<CoinListEntry>): CoinListEntry? {
+        private val BRIDGED = Regex("(?i)\\b(bridged?|wormhole|binance-peg|peg|old)\\b")
+
+        private fun pick(asset: Asset, candidates: List<CoinListEntry>, ranks: Map<String, Int>): CoinListEntry? {
             if (candidates.isEmpty()) return null
             if (candidates.size == 1) return candidates.first()
             val name = Text.normalizeName(asset.name)
+            val wantsWrapped = asset.name.contains("wrapped", ignoreCase = true) || asset.symbol.startsWith("W")
             val noBridged = candidates.filterNot { c ->
-                val n = c.name.lowercase()
-                n.contains("bridged") || n.contains("wormhole") || n.contains("wrapped") || n.contains("binance-peg") || n.contains("(old)") || c.id.contains("-wormhole")
+                BRIDGED.containsMatchIn(c.name) || c.id.contains("-wormhole") || c.id.endsWith("-bridge") ||
+                    (!wantsWrapped && c.name.contains("wrapped", ignoreCase = true))
             }.ifEmpty { candidates }
+            // without a real name (ticker-only symbol) the market-cap rank is the only reliable signal
+            val ranked = noBridged.filter { it.id in ranks }.minByOrNull { ranks.getValue(it.id) }
+            if (asset.name == asset.symbol && ranked != null) return ranked
             noBridged.firstOrNull { Text.normalizeName(it.name) == name }?.let { return it }
             noBridged.firstOrNull { val n = Text.normalizeName(it.name); name.isNotEmpty() && (n.startsWith(name) || name.startsWith(n)) }?.let { return it }
-            return noBridged.minByOrNull { it.id.length }
+            return ranked ?: noBridged.minByOrNull { it.id.length }
         }
     }
 }

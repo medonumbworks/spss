@@ -59,6 +59,23 @@ class HttpTest {
     }
 
     @Test
+    fun longRetryAfterCoolsTheHostDownInsteadOfWaiting() = runTest {
+        val sleeps = ArrayList<Long>()
+        val t = FakeTransport().onUrlContaining("z") { req -> HttpResponse(429, "", mapOf("Retry-After" to "60"), req.url) }
+        val http = Http(t, fastLimiter(clock), HttpCache(null, clock), clock, Logger.NONE, sleeper = { sleeps += it })
+        val first = http.getText("https://a.test/z")
+        assertIs<HttpResult.Failed>(first)
+        assertEquals(429, first.code)
+        assertEquals(emptyList(), sleeps, "no 60 s stall inside a refresh")
+        val second = http.getText("https://a.test/z2")
+        assertIs<HttpResult.Failed>(second)
+        assertEquals(1, t.requests.size, "the host is not contacted again during its cool-down")
+        now += 61_000
+        http.getText("https://a.test/z3", retries = 0)
+        assertEquals(2, t.requests.size)
+    }
+
+    @Test
     fun notFoundIsNotRetried() = runTest {
         val t = FakeTransport()
         val http = Http(t, fastLimiter(clock), HttpCache(null, clock), clock, Logger.NONE, sleeper = {})
