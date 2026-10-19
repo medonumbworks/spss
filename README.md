@@ -50,7 +50,14 @@ Quora has no public API and forbids scraping, so it is not used.
 * **FinBERT** (financial news) and **CryptoBERT** (crypto social posts) are transformer models of
   110-500 MB. They run in the free **cloud sentiment hub** (`tools/sentiment_hub`, GitHub Actions,
   hourly), which reads every channel in the Telegram directory, the news feeds and Reddit, scores
-  each text with all three models and publishes one small JSON file that the app downloads.
+  each text with all three models and publishes one small JSON file that the app downloads:
+  https://raw.githubusercontent.com/medonumbworks/spss/sentiment-feed/feed.json
+* While that feed is fresh the phone does not rescan the same Telegram channels and RSS feeds (the
+  posts would count twice). An older feed counts less (half weight every 6 h after the first 3 h)
+  and after 48 h it is ignored, so the app never runs on stale chatter.
+* GitHub runs the hourly schedule only for workflows on the repository's default branch; until this
+  branch is merged, the hub runs on pushes to `tools/sentiment_hub/**` or from the Actions tab
+  ("Run workflow").
 
 ## Telegram
 
@@ -80,6 +87,8 @@ Download `cryptopulse-mcp.zip` from the release (needs Java 17+), unzip, and add
 ```
 
 Or run it over HTTP: `cryptopulse-mcp --http 3333` and connect to `http://127.0.0.1:3333/mcp`.
+`cryptopulse-mcp check` refreshes once from the live APIs and prints a health report (CI runs it on
+every push and shows it in the job summary); `cryptopulse-mcp digest hr` prints the Croatian digest.
 
 Tools: `market_overview`, `get_forecast`, `get_sentiment`, `find_opportunities`, `get_prices`,
 `list_bitpanda_assets`, `market_mood`, `telegram_sources`, `daily_digest` (English or Croatian), and
@@ -117,4 +126,7 @@ The older Streamlit prototype (`spss8.py`) is kept as it was.
 * **Telegram**: javni kanali rade odmah. Za tvoj Telegram račun (sve grupe u kojima jesi) dodaj tri
   tajne u GitHub repozitorij prema uputama u [docs/TELEGRAM_HR.md](docs/TELEGRAM_HR.md). Sažetak
   tržišta može stizati u tvoje "Saved Messages" na hrvatskom.
+* **Satni raspored** oblaka GitHub pokreće samo s glavne (default) grane. Dok ova grana nije spojena,
+  oblak se pokreće ručno: Actions → `sentiment-hub` → "Run workflow". Ako oblak zastane, aplikacija
+  stare podatke postupno zanemaruje (nakon 48 h potpuno) i sama čita Telegram.
 * Ovo su vjerojatnosti, ne sigurnosti, i nije financijski savjet.

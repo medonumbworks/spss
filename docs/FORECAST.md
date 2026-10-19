@@ -19,21 +19,30 @@ crypto returns are mostly noise.
 ## Self-check (walk-forward backtest)
 
 The price-only part is replayed over the available history: at every past step the model sees only
-the data up to that step and its call is compared with what happened next. If it did not beat the
-naive baseline (always predicting the more common direction), its weight is cut; if it clearly beat
-it, the weight is raised a little. The detail screen shows the hit rate, sample count and baseline.
+the data up to that step and its call is compared with what happened next. The baseline is chance:
+a guesser with no skill that says "up" as often as the model did (so merely following the overall
+trend earns no credit). Past windows overlap, so only roughly independent windows count
+(samples x step / horizon); with fewer than 10 the weight stays neutral. The weight is cut when the
+model lost to chance by more than one standard error, cut more beyond two, and raised a little only
+when it won by one or two standard errors. The detail screen shows the hit rate, the independent
+window count and the chance level.
 
 ## Humility rules
 
 * Probabilities are shrunk toward 50 % when data coverage is thin and clamped to 15-85 %.
 * "Likely up/down" needs at least 55 % / at most 45 %; everything in between is "no clear direction".
-* Stablecoins (USDT, USDC, EURC, ...) are reported as pegged, without a forecast.
+* Stablecoins (USDT, USDC, EURC, ...) are reported as pegged, without a forecast. Unknown ones are
+  recognised by a flat price; in EUR/GBP/CHF a USD peg moves with the exchange rate, so there the
+  name or symbol must also say it is pegged ("USD", "Dollar", "Stable", ...).
+* Futures funding is converted to an 8-hour rate first (many contracts settle every 4 h or 1 h).
 * The likely range is about one standard deviation of recent volatility around a small drift.
 
 ## Bottom score
 
 Weighted mix of: distance to the 7-day, 30-day, 90-day and 1-year lows, RSI, Bollinger %B, drawdown
-from the 30-day high and market-wide fear. 70+ = near a local low, 55-70 lower part of the range,
+from the 30-day high (only with daily history) and market-wide fear. A coin without enough price
+history of its own gets a neutral 50 ("Not enough price history"): market-wide fear may tilt a
+score, never make one. 70+ = near a local low, 55-70 lower part of the range,
 40-55 mid-range, 25-40 upper part, below 25 near a local high. Nobody knows the absolute bottom; the
 score only says whether the price is near recent lows *and* typical rebound conditions are present.
 The 7-day probability next to it is the actual estimate of whether it goes up from here.
