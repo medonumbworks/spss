@@ -90,7 +90,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     val list: StateFlow<ListState> = combine(repo.snapshot, _query, _filter, _sort) { snap, q, f, s ->
         val all = snap?.rows.orEmpty()
-        ListState(rows = applyListOptions(all, q, f, s), totalRows = all.size, query = q, filter = f, sort = s)
+        ListState(rows = ListOptions.apply(all, q, f, s), totalRows = all.size, query = q, filter = f, sort = s)
     }.stateIn(viewModelScope, SharingStarted.Eagerly, ListState())
 
     private var refreshJob: Job? = null
@@ -177,35 +177,5 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun telegramChannelCount(): Pair<Int, Int> {
         val dir = cp.sentiment.telegramDirectory
         return cp.sentiment.channelsToScan(_config.value).size to dir.entries.size
-    }
-
-    companion object {
-        fun applyListOptions(rows: List<AssetRow>, query: String, filter: ListFilter, sort: ListSort): List<AssetRow> {
-            val q = query.trim().lowercase()
-            val filtered = rows.asSequence()
-                .filter { q.isEmpty() || it.asset.symbol.lowercase().contains(q) || it.asset.name.lowercase().contains(q) }
-                .filter { r ->
-                    val f = r.forecast
-                    when (filter) {
-                        ListFilter.ALL -> true
-                        ListFilter.UP_24H -> (f?.h24?.probabilityUp ?: 0.0) >= 0.55
-                        ListFilter.UP_7D -> (f?.d7?.probabilityUp ?: 0.0) >= 0.55
-                        ListFilter.NEAR_BOTTOM -> (f?.bottom?.score ?: 0) >= 60 && f?.bottom?.label != "Pegged"
-                        ListFilter.GAINERS -> (r.market?.change24hPct ?: 0.0) > 0
-                        ListFilter.LOSERS -> (r.market?.change24hPct ?: 0.0) < 0
-                        ListFilter.BULLISH_SOCIAL -> (r.sentiment?.composite ?: 0.0) >= 0.08 && (r.sentiment?.totalSamples ?: 0) > 0
-                    }
-                }.toList()
-            return when (sort) {
-                ListSort.MARKET_CAP -> filtered
-                ListSort.CHANGE_24H -> filtered.sortedByDescending { it.market?.change24hPct ?: Double.NEGATIVE_INFINITY }
-                ListSort.CHANGE_7D -> filtered.sortedByDescending { it.market?.change7dPct ?: Double.NEGATIVE_INFINITY }
-                ListSort.UP_24H -> filtered.sortedByDescending { it.forecast?.h24?.probabilityUp ?: 0.0 }
-                ListSort.UP_7D -> filtered.sortedByDescending { it.forecast?.d7?.probabilityUp ?: 0.0 }
-                ListSort.BOTTOM -> filtered.sortedByDescending { it.forecast?.bottom?.score ?: -1 }
-                ListSort.SENTIMENT -> filtered.sortedByDescending { it.sentiment?.composite ?: -2.0 }
-                ListSort.NAME -> filtered.sortedBy { it.asset.name.lowercase() }
-            }
-        }
     }
 }

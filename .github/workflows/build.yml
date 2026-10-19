@@ -74,7 +74,7 @@ jobs:
           echo "ANDROID_HOME=$ANDROID_HOME"
           ls "$ANDROID_HOME/platforms" "$ANDROID_HOME/build-tools" || true
       - name: Build debug APK
-        run: ./gradlew :app:assembleDebug --stacktrace
+        run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --stacktrace
       - name: Rename APK
         run: |
           mkdir -p dist
