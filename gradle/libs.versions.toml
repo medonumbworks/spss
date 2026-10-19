@@ -11,6 +11,10 @@ ktor = "3.5.2"
 slf4j = "2.0.17"
 androidxActivityCompose = "1.10.1"
 androidxLifecycle = "2.9.4"
+# Versions confirmed through the Android variants of Compose Multiplatform 1.9.x on Maven Central
+androidxCompose = "1.9.4"
+androidxMaterial3 = "1.4.0"
+androidxMaterialIcons = "1.7.8"
 androidCompileSdk = "36"
 androidMinSdk = "26"
 androidTargetSdk = "36"
@@ -30,6 +34,13 @@ slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidxCompose" }
+androidx-compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics", version.ref = "androidxCompose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidxCompose" }
+androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidxCompose" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidxCompose" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "androidxMaterial3" }
+androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "androidxMaterialIcons" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
