@@ -50,7 +50,8 @@ class Lexicon:
         self.phrases = sorted(set(self.phrases), key=lambda p: (-len(p), p))
         self._phrase_rules = [
             (
-                re.compile(r"(?<![A-Za-z0-9])" + re.escape(p) + r"(?![A-Za-z0-9])", re.IGNORECASE),
+                # case-insensitive phrase only: a global IGNORECASE would let [A-Za-z] match U+0130/U+0131/U+017F/U+212A
+                re.compile(r"(?<![A-Za-z0-9])(?i:" + re.escape(p) + r")(?![A-Za-z0-9])"),
                 p.replace(" ", "_"),
             )
             for p in self.phrases

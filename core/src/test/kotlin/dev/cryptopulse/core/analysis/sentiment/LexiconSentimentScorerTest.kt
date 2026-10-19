@@ -234,6 +234,14 @@ class LexiconSentimentScorerTest {
         assertEquals(listOf("rug_pull"), scorer.score("rug pull").matchedNegative)
     }
 
+    @Test
+    fun `index names and idioms are not market sentiment`() {
+        assertEquals(0.0, scorer.score("Bear in mind that fees are high").score)
+        assertEquals(0.0, scorer.score("Crypto Fear & Greed Index update").score)
+        assertEquals(0.0, scorer.score("The fear and greed index moved").score)
+        assertTrue(scorer.score("Bear market is here").score < 0)
+    }
+
     // --- concurrency and speed -------------------------------------------------------------------
 
     private fun corpus(n: Int): List<String> {

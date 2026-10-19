@@ -1022,30 +1022,6 @@
    "evidence": "https://tgstat.com/channel/@BingXVietnamAnnouncements"
   },
   {
-   "handle": "BitgetRuNews",
-   "title": "Bitget RU News",
-   "kind": "channel",
-   "lang": "ru",
-   "category": "exchange",
-   "symbols": [
-    "BGB"
-   ],
-   "confidence": 0.65,
-   "evidence": "https://tgstat.com/chat/@BitgetRussian (links t.me/BitgetRuNews)"
-  },
-  {
-   "handle": "BybitRekts",
-   "title": "ByBit Rekts",
-   "kind": "channel",
-   "lang": "en",
-   "category": "analytics",
-   "symbols": [
-    "BTC"
-   ],
-   "confidence": 0.65,
-   "evidence": "https://tgstat.com/channel/@BybitRekts"
-  },
-  {
    "handle": "channelholo",
    "title": "Holo",
    "kind": "channel",
@@ -1056,16 +1032,6 @@
    ],
    "confidence": 0.65,
    "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6c6EE5e31d828De241282B9606C8e98Ea48526E2/info.json"
-  },
-  {
-   "handle": "coinkokr",
-   "title": "코인코 채널 - 거래소 공지, 뉴스, 정보",
-   "kind": "channel",
-   "lang": "ko",
-   "category": "news",
-   "symbols": [],
-   "confidence": 0.65,
-   "evidence": "https://tgstat.com/channel/@coinkokr"
   },
   {
    "handle": "cosmosproject",
@@ -1080,16 +1046,6 @@
    "evidence": "https://tgstat.com/ru/channel/@cosmosproject"
   },
   {
-   "handle": "Crypto_Updts",
-   "title": "Crypto Updates",
-   "kind": "channel",
-   "lang": "en",
-   "category": "news",
-   "symbols": [],
-   "confidence": 0.65,
-   "evidence": "https://tgstat.com/channel/@Crypto_Updts"
-  },
-  {
    "handle": "ENFAnnouncements",
    "title": "ENF Announcements - EOS Network Foundation",
    "kind": "channel",
@@ -1100,26 +1056,6 @@
    ],
    "confidence": 0.65,
    "evidence": "https://tgstat.com/channel/@ENFAnnouncements"
-  },
-  {
-   "handle": "Incrypted_net",
-   "title": "Incrypted (зеркало)",
-   "kind": "channel",
-   "lang": "ru",
-   "category": "news",
-   "symbols": [],
-   "confidence": 0.65,
-   "evidence": "https://tgstat.ru/en/channel/@Incrypted_net"
-  },
-  {
-   "handle": "KryptoDeutsch",
-   "title": "Krypto | Finanzen | Politik (Krypto Deutsch)",
-   "kind": "channel",
-   "lang": "de",
-   "category": "news",
-   "symbols": [],
-   "confidence": 0.65,
-   "evidence": "TGStat search snippet for @KryptoDeutsch (query: Krypto News Deutsch Telegram Kanal)"
   },
   {
    "handle": "satoshi_club_channel",
@@ -1242,20 +1178,8 @@
    "symbols": [
     "BTC"
    ],
-   "confidence": 0.6,
+   "confidence": 0.4,
    "evidence": "https://tlmtr.io/es/channels/1193342710-bitcoin/posts"
-  },
-  {
-   "handle": "BitcoinNewsCom",
-   "title": "BitcoinNews.com",
-   "kind": "channel",
-   "lang": "en",
-   "category": "news",
-   "symbols": [
-    "BTC"
-   ],
-   "confidence": 0.6,
-   "evidence": "https://tgstat.com/channel/@BitcoinNewsCom"
   },
   {
    "handle": "BybitVietnamese_News",
@@ -1288,7 +1212,7 @@
    "lang": "en",
    "category": "news",
    "symbols": [],
-   "confidence": 0.6,
+   "confidence": 0.4,
    "evidence": "https://tgstat.com/channel/@Crypto_Germany_official"
   },
   {
@@ -1300,16 +1224,6 @@
    "symbols": [],
    "confidence": 0.6,
    "evidence": "https://tgstat.com/channel/@cryptocommunities"
-  },
-  {
-   "handle": "Cryptocurrency_Inside",
-   "title": "Crypto | Bitcoin | Ethereum | Altcoin | News",
-   "kind": "channel",
-   "lang": "en",
-   "category": "news",
-   "symbols": [],
-   "confidence": 0.6,
-   "evidence": "https://tgstat.com/channel/@Cryptocurrency_Inside"
   },
   {
    "handle": "dfinitycommunity_news",
@@ -1414,16 +1328,6 @@
    "evidence": "https://tgstat.com/channel/@bitcoinblackpill_BR"
   },
   {
-   "handle": "clankapp",
-   "title": "ClankApp - Crypto Whales Tracker",
-   "kind": "channel",
-   "lang": "en",
-   "category": "whales",
-   "symbols": [],
-   "confidence": 0.55,
-   "evidence": "https://tgstat.com/channel/@clankapp"
-  },
-  {
    "handle": "coiniseasy",
    "title": "코인이지 공지방",
    "kind": "channel",
@@ -1444,16 +1348,6 @@
    "evidence": "https://tgstat.com/channel/@criptomaniacosbr"
   },
   {
-   "handle": "Crypto_Cryptocurrency_News",
-   "title": "Crypto Cryptocurrency News",
-   "kind": "channel",
-   "lang": "en",
-   "category": "news",
-   "symbols": [],
-   "confidence": 0.55,
-   "evidence": "https://tgstat.com/channel/@Crypto_Cryptocurrency_News"
-  },
-  {
    "handle": "crypto_nft_web3_news",
    "title": "Crypto & NFT News — Web3",
    "kind": "channel",
@@ -1462,16 +1356,6 @@
    "symbols": [],
    "confidence": 0.55,
    "evidence": "https://tgstat.com/channel/@crypto_nft_web3_news"
-  },
-  {
-   "handle": "cryptohubvn",
-   "title": "CryptoHub Việt Nam",
-   "kind": "channel",
-   "lang": "vi",
-   "category": "news",
-   "symbols": [],
-   "confidence": 0.55,
-   "evidence": "https://tgstat.com/channel/@cryptohubvn"
   },
   {
    "handle": "HuobiU",
@@ -1484,18 +1368,6 @@
    ],
    "confidence": 0.55,
    "evidence": "https://tgstat.com/channel/@HuobiU"
-  },
-  {
-   "handle": "minepi_network",
-   "title": "Mine Pi Network (unofficial community)",
-   "kind": "channel",
-   "lang": "en",
-   "category": "community",
-   "symbols": [
-    "PI"
-   ],
-   "confidence": 0.55,
-   "evidence": "https://tgstat.com/channel/@minepi_network"
   },
   {
    "handle": "RippleXRPClub",
@@ -1511,35 +1383,13 @@
    "evidence": "https://tgstat.com/channel/@ripplexrpclub"
   },
   {
-   "handle": "TrendingOnSolana",
-   "title": "Solana Trending",
-   "kind": "channel",
-   "lang": "en",
-   "category": "analytics",
-   "symbols": [
-    "SOL"
-   ],
-   "confidence": 0.55,
-   "evidence": "https://tgstat.com/channel/@TrendingOnSolana"
-  },
-  {
-   "handle": "ArabCryptoTalkARB",
-   "title": "ARAB CRYPTO TALK",
-   "kind": "channel",
-   "lang": "ar",
-   "category": "news",
-   "symbols": [],
-   "confidence": 0.5,
-   "evidence": "https://tgstat.com/channel/@ArabCryptoTalkARB"
-  },
-  {
    "handle": "cbinsider",
    "title": "Coin Bureau Insider",
    "kind": "channel",
    "lang": "en",
    "category": "news",
    "symbols": [],
-   "confidence": 0.5,
+   "confidence": 0.4,
    "evidence": "https://in.tgstat.com/channel/@cbinsider"
   },
   {
@@ -1585,7 +1435,7 @@
    "symbols": [
     "BTC"
    ],
-   "confidence": 0.45,
+   "confidence": 0.4,
    "evidence": "https://ir.tgstat.com/channel/@Bitcoin_Magazine (officialness unclear)"
   },
   {
@@ -2559,7 +2409,7 @@
    "symbols": [
     "HT"
    ],
-   "confidence": 0.65,
+   "confidence": 0.4,
    "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6f259637dcD74C767781E37Bc6133cd6A68aa161/info.json"
   },
   {
@@ -2878,18 +2728,6 @@
    "evidence": "https://tgstat.com/chat/@EOSproject"
   },
   {
-   "handle": "fetch_ai",
-   "title": "Fetch.ai",
-   "kind": "group",
-   "lang": "en",
-   "category": "project",
-   "symbols": [
-    "FET"
-   ],
-   "confidence": 0.55,
-   "evidence": "model knowledge"
-  },
-  {
    "handle": "gateiorussiachat",
    "title": "Gate.io Russia & CIS",
    "kind": "group",
@@ -2900,18 +2738,6 @@
    ],
    "confidence": 0.55,
    "evidence": "https://tgstat.com/channel/@gateiorussiachat"
-  },
-  {
-   "handle": "origintrail",
-   "title": "OriginTrail",
-   "kind": "group",
-   "lang": "en",
-   "category": "project",
-   "symbols": [
-    "TRAC"
-   ],
-   "confidence": 0.55,
-   "evidence": "model knowledge"
   },
   {
    "handle": "WINkLink_Oracle_official",
@@ -2962,18 +2788,6 @@
    "evidence": "https://tgstat.com/chat/@EOSproject (points to t.me/EOS_Global for Vaulta)"
   },
   {
-   "handle": "theta_network",
-   "title": "Theta Network",
-   "kind": "group",
-   "lang": "en",
-   "category": "project",
-   "symbols": [
-    "THETA"
-   ],
-   "confidence": 0.5,
-   "evidence": "model knowledge"
-  },
-  {
    "handle": "CelestiaCommunity",
    "title": "Celestia Community",
    "kind": "group",
@@ -2981,18 +2795,6 @@
    "category": "project",
    "symbols": [
     "TIA"
-   ],
-   "confidence": 0.45,
-   "evidence": "model knowledge"
-  },
-  {
-   "handle": "vechain_official_english",
-   "title": "VeChain Official English",
-   "kind": "group",
-   "lang": "en",
-   "category": "project",
-   "symbols": [
-    "VET"
    ],
    "confidence": 0.45,
    "evidence": "model knowledge"
