@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "updated": "2026-10-19",
+ "entries": [
+  {"handle": "cointelegraph", "title": "Cointelegraph", "kind": "channel", "lang": "en", "category": "news", "symbols": [], "confidence": 0.95},
+  {"handle": "bitcoin_traders_chat", "title": "Bitcoin Traders Chat", "kind": "group", "lang": "en", "category": "community", "symbols": ["BTC"], "confidence": 0.6},
+  {"handle": "@gone_channel", "title": "Deleted channel", "kind": "channel", "lang": "en", "category": "news", "symbols": [], "confidence": 0.4},
+  {"handle": "https://t.me/solana", "title": "Solana", "kind": "channel", "lang": "en", "category": "project", "symbols": ["SOL"], "confidence": 0.8},
+  {"handle": "COINTELEGRAPH", "title": "duplicate with lower confidence", "kind": "channel", "lang": "en", "category": "news", "symbols": [], "confidence": 0.1},
+  {"handle": "x", "title": "invalid handle", "kind": "channel", "lang": "en", "category": "news", "symbols": [], "confidence": 0.9}
+ ]
+}

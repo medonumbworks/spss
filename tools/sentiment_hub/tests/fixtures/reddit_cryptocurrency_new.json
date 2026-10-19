@@ -1,0 +1,65 @@
+{
+  "kind": "Listing",
+  "data": {
+    "after": "t3_1abc004",
+    "dist": 4,
+    "children": [
+      {
+        "kind": "t3",
+        "data": {
+          "id": "1abc001",
+          "name": "t3_1abc001",
+          "subreddit": "CryptoCurrency",
+          "title": "Daily Crypto Discussion - October 19, 2026",
+          "selftext": "Welcome to the daily thread.",
+          "stickied": true,
+          "score": 12,
+          "created_utc": 1792396800.0,
+          "permalink": "/r/CryptoCurrency/comments/1abc001/daily_crypto_discussion/"
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "id": "1abc002",
+          "name": "t3_1abc002",
+          "subreddit": "CryptoCurrency",
+          "title": "ETH looks incredibly strong here, staking demand is insane",
+          "selftext": "Not financial advice but I'm buying more Ethereum.",
+          "stickied": false,
+          "score": 99,
+          "created_utc": 1792400400.0,
+          "permalink": "/r/CryptoCurrency/comments/1abc002/eth_looks_incredibly_strong/"
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "id": "1abc003",
+          "name": "t3_1abc003",
+          "subreddit": "CryptoCurrency",
+          "title": "Got rekt on a SOL long, this market is brutal",
+          "selftext": "[removed]",
+          "stickied": false,
+          "score": -3,
+          "created_utc": 1792386000.0,
+          "permalink": "/r/CryptoCurrency/comments/1abc003/got_rekt_on_a_sol_long/"
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "id": "1abc004",
+          "name": "t3_1abc004",
+          "subreddit": "CryptoCurrency",
+          "title": "A post from four days ago",
+          "selftext": "",
+          "stickied": false,
+          "score": 5,
+          "created_utc": 1792058400.0,
+          "permalink": "/r/CryptoCurrency/comments/1abc004/old/"
+        }
+      }
+    ]
+  }
+}
