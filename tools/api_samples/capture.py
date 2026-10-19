@@ -37,6 +37,7 @@ def main() -> int:
     urls_file, out_dir = Path(sys.argv[1]), Path(sys.argv[2])
     out_dir.mkdir(parents=True, exist_ok=True)
     docs: dict[str, object] = {}
+    index: list[dict] = []
     for raw in urls_file.read_text(encoding="utf-8").splitlines():
         if not raw.strip() or raw.startswith("#"):
             continue
@@ -47,6 +48,7 @@ def main() -> int:
             url = PLACEHOLDER.sub(lambda m: str(lookup(docs[m.group(1)], m.group(2))), url)
         except Exception as exc:  # placeholder source missing or shaped differently
             print(f"=== {name}: SKIPPED (placeholder: {type(exc).__name__} {exc})")
+            index.append({"name": name, "status": "skipped", "error": f"{type(exc).__name__}: {exc}"})
             continue
         time.sleep(delay)
         req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json, text/html;q=0.9, */*;q=0.8"})
@@ -60,11 +62,13 @@ def main() -> int:
             headers = dict(exc.headers.items()) if exc.headers else {}
         except Exception as exc:
             print(f"=== {name}: ERROR {type(exc).__name__}: {exc}\n    {url}")
+            index.append({"name": name, "url": url, "status": "error", "error": f"{type(exc).__name__}: {exc}"})
             continue
         ms = int((time.monotonic() - started) * 1000)
         ext = "json" if "json" in ctype else "html" if "html" in ctype else "txt"
         (out_dir / f"{name}.{ext}").write_bytes(body)
         print(f"=== {name}: HTTP {status} {len(body)} bytes {ctype} {ms} ms\n    {url}\n    headers: {headers}")
+        index.append({"name": name, "url": url, "status": status, "bytes": len(body), "file": f"{name}.{ext}", "contentType": ctype, "ms": ms, "headers": headers})
         text = body.decode("utf-8", "replace")
         if ext == "json":
             try:
@@ -75,6 +79,7 @@ def main() -> int:
             except ValueError:
                 pass
         print("    " + text[:1500].replace("\n", "\n    "))
+    (out_dir / "_index.json").write_text(json.dumps(index, indent=1), encoding="utf-8")
     return 0
 
 
