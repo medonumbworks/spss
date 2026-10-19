@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <LinearLayout style="@style/Card">
+
+        <TextView
+            android:id="@+id/importFileName"
+            style="@style/CardTitle" />
+
+        <TextView
+            android:id="@+id/importSummary"
+            style="@style/BodyText" />
+
+        <TextView
+            android:id="@+id/importNote"
+            style="@style/SecondaryText"
+            android:layout_marginTop="6dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/importWarningsCard"
+        style="@style/Card">
+
+        <TextView
+            style="@style/CardTitle"
+            android:text="@string/warnings_title" />
+
+        <TextView
+            android:id="@+id/importWarnings"
+            style="@style/SecondaryText"
+            android:textIsSelectable="true" />
+
+        <Button
+            android:id="@+id/btnAllWarnings"
+            style="@style/SecondaryButton"
+            android:text="@string/show_all_warnings"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/importDayFirstCard"
+        style="@style/Card"
+        android:visibility="gone">
+
+        <Switch
+            android:id="@+id/switchDayFirst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/day_first"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <TextView
+            style="@style/SecondaryText"
+            android:text="@string/day_first_help_import" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/importUndatedCard"
+        style="@style/Card"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/importUndatedTitle"
+            style="@style/CardTitle" />
+
+        <TextView
+            style="@style/SecondaryText"
+            android:text="@string/undated_help" />
+
+        <RadioGroup
+            android:id="@+id/radioOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radioOldestFirst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/rows_oldest_first"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radioNewestFirst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/rows_newest_first"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnEndDate"
+            style="@style/SecondaryButton" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/importPreviewTitle"
+        style="@style/CardTitle"
+        android:layout_marginTop="4dp" />
+</LinearLayout>

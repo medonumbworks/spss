@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/settings_learning" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:labelFor="@+id/editEta"
+                android:text="@string/label_eta" />
+
+            <EditText
+                android:id="@+id/editEta"
+                style="@style/FieldInput"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                style="@style/HelpText"
+                android:text="@string/help_eta" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:labelFor="@+id/editShare"
+                android:text="@string/label_share" />
+
+            <EditText
+                android:id="@+id/editShare"
+                style="@style/FieldInput"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                style="@style/HelpText"
+                android:text="@string/help_share" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:labelFor="@+id/editBiasRate"
+                android:text="@string/label_bias_rate" />
+
+            <EditText
+                android:id="@+id/editBiasRate"
+                style="@style/FieldInput"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                style="@style/HelpText"
+                android:text="@string/help_bias_rate" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:labelFor="@+id/editBiasDecay"
+                android:text="@string/label_bias_decay" />
+
+            <EditText
+                android:id="@+id/editBiasDecay"
+                style="@style/FieldInput"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                style="@style/HelpText"
+                android:text="@string/help_bias_decay" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:labelFor="@+id/editShortWindow"
+                android:text="@string/label_short_window" />
+
+            <EditText
+                android:id="@+id/editShortWindow"
+                style="@style/FieldInput"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/HelpText"
+                android:text="@string/help_short_window" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:labelFor="@+id/editLongWindow"
+                android:text="@string/label_long_window" />
+
+            <EditText
+                android:id="@+id/editLongWindow"
+                style="@style/FieldInput"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/HelpText"
+                android:text="@string/help_long_window" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:labelFor="@+id/editHalfLife"
+                android:text="@string/label_half_life" />
+
+            <EditText
+                android:id="@+id/editHalfLife"
+                style="@style/FieldInput"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                style="@style/HelpText"
+                android:layout_marginBottom="0dp"
+                android:text="@string/help_half_life" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/settings_data" />
+
+            <Switch
+                android:id="@+id/switchDayFirstSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="@string/day_first"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/HelpText"
+                android:text="@string/help_day_first" />
+
+            <TextView
+                style="@style/FieldLabel"
+                android:labelFor="@+id/editEvalN"
+                android:text="@string/label_eval_n" />
+
+            <EditText
+                android:id="@+id/editEvalN"
+                style="@style/FieldInput"
+                android:inputType="number" />
+
+            <TextView
+                style="@style/HelpText"
+                android:layout_marginBottom="0dp"
+                android:text="@string/help_eval_n" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/settingsStatus"
+            style="@style/BodyText"
+            android:layout_marginBottom="4dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnSettingsSave"
+            style="@style/PrimaryButton"
+            android:text="@string/settings_save" />
+
+        <Button
+            android:id="@+id/btnSettingsRestore"
+            style="@style/SecondaryButton"
+            android:layout_marginBottom="8dp"
+            android:text="@string/settings_restore" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CSPRNG Predictor</string>
+
+    <!-- Common -->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="close">Close</string>
+    <string name="delete">Delete</string>
+    <string name="apply">Apply</string>
+    <string name="loading">Loading…</string>
+    <string name="error_title">Something went wrong</string>
+    <string name="error_generic">Unexpected error: %1$s</string>
+    <string name="error_memory">Not enough memory for this amount of data.</string>
+    <string name="save_problem">Warning: %1$s</string>
+    <string name="save_failed_draws">Could not save the draws: %1$s</string>
+    <string name="save_failed_issued">Could not save the prediction log: %1$s</string>
+    <string name="export_done">Saved %1$s</string>
+    <string name="export_failed">Export failed: %1$s</string>
+    <string name="no_file_picker">No file chooser is available on this device.</string>
+    <plurals name="draw_count">
+        <item quantity="one">%d draw</item>
+        <item quantity="other">%d draws</item>
+    </plurals>
+
+    <!-- NumberGridView accessibility -->
+    <string name="grid_cd_selected">%1$d, selected</string>
+    <string name="grid_cd_hit">%1$d, predicted and drawn</string>
+    <string name="grid_cd_drawn">%1$d, drawn</string>
+    <string name="grid_cd_heat">%1$d, relative score %2$d of 100</string>
+
+    <!-- Main screen -->
+    <string name="computing">Computing the prediction…</string>
+    <string name="empty_title">Get started</string>
+    <string name="empty_body">No draws yet. The app needs the history of past draws (11 different numbers from 1 to 22 per draw). There are three ways to add it:\n\n1. <b>Add today’s draw</b> – enter a draw by hand: tap the 11 numbers or type them.\n2. <b>Import CSV / XML</b> with a CSV, TSV or TXT file – one draw per line, any delimiter (comma, semicolon, tab, | or spaces), dates in most common formats.\n3. <b>Import CSV / XML</b> with an XML file – one element per draw, e.g. &lt;draw date=\"2026-10-16\" numbers=\"1 4 7 …\"/&gt;.\n\nFiles up to 25 MB are accepted. Rows without a date can be imported too (they become consecutive days).</string>
+    <string name="empty_format_title">Expected CSV format (one draw per line):</string>
+    <string name="empty_format_example">date,n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11\n2026-10-15,2,3,6,9,12,15,16,17,19,21,22\n2026-10-16,1,3,7,8,9,13,14,16,17,18,20</string>
+    <string name="card_next_title">Next prediction</string>
+    <string name="next_subtitle">For %1$s · based on %2$s (latest %3$s)</string>
+    <string name="copy">Copy</string>
+    <string name="clip_label">Predicted numbers</string>
+    <string name="copied_toast">Copied: %1$s</string>
+    <string name="next_pending_note">This prediction is logged and will be scored automatically when you add the real draw.</string>
+    <string name="card_heat_title">Confidence by number</string>
+    <string name="heat_top_title">Top 11 by model score (share of the total score):</string>
+    <string name="heat_help" formatted="false">Darker = higher model score. Each percentage is the number’s share of the model’s total score; if every number scored the same, each would get 4.5%. These are model scores, not guaranteed chances: for a fair random draw every number has the same 50% chance of being drawn.</string>
+    <string name="card_last_title">Last check</string>
+    <string name="last_result">Prediction for %1$s: %2$d / 11 hits</string>
+    <string name="last_scored_on">Scored on the draw of %1$s.</string>
+    <string name="last_hit_numbers">Hits: %1$s</string>
+    <string name="last_no_hits">Hits: none</string>
+    <string name="last_none">No checked prediction yet — add the real draw when it is published and the app will score itself.</string>
+    <string name="last_legend">Blue = predicted · orange ring = drawn · green = hit</string>
+    <string name="card_model_title">Model</string>
+    <string name="model_backtest">Backtest: mean %1$s hits / 11 over %2$d draws (random = 5.50)</string>
+    <string name="model_backtest_none">Backtest: needs at least 2 draws (every draw after the first is predicted from the draws before it and then scored).</string>
+    <string name="model_experts">Heaviest experts: %1$s</string>
+    <string name="model_capped">Only the most recent %1$d draws are replayed to keep memory use bounded.</string>
+    <string name="add_todays_draw">Add today’s draw</string>
+    <string name="import_csv_xml">Import CSV / XML</string>
+    <string name="menu_import">Import file</string>
+    <string name="menu_add_draw">Add draw</string>
+    <string name="menu_history">History</string>
+    <string name="menu_stats">Stats &amp; accuracy</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_export_draws">Export draws (CSV)</string>
+    <string name="menu_export_predictions">Export predictions (CSV)</string>
+    <string name="menu_about">About</string>
+    <string name="nothing_to_export_draws">There are no draws to export yet.</string>
+    <string name="nothing_to_export_predictions">No predictions have been logged yet.</string>
+    <string name="about_title">About CSPRNG Predictor</string>
+    <string name="about_text">CSPRNG Predictor %1$s\n\nWhat it does: you feed it the past results of a daily \"pick 11 numbers out of 1..22\" draw (CSV / XML import or manual entry). It predicts the 11 numbers of the next draw, and when you add the real draw it scores the prediction it showed you and adapts its model for the following day.\n\nHonesty note: a true CSPRNG (cryptographically secure random number generator) has no exploitable pattern. Over many draws the model’s average hit count is therefore expected to stay near the random baseline of 5.5 / 11. The app measures and displays this (Stats &amp; accuracy) so you can see for yourself whether the source behaves randomly.\n\nFile formats: CSV / TSV / TXT with one draw per line, e.g. \"2026-10-16,1,3,7,8,9,13,14,16,17,18,20\" (header lines are skipped; delimiters , ; tab | or spaces; dates such as 2026-10-16, 16.10.2026, 10/16/2026 or 20261016). XML with one element per draw, e.g. &lt;draw date=\"2026-10-16\" numbers=\"1 3 7 …\"/&gt; or &lt;draw&gt;&lt;date&gt;…&lt;/date&gt;&lt;n&gt;1&lt;/n&gt;…&lt;/draw&gt;. Rows without dates are treated as consecutive daily draws.\n\nHow it learns: nine simple experts (frequency, hot numbers, gaps, transitions, pairs, …) are mixed with weights that follow their past accuracy, plus a small per-number correction. The model re-learns from the full history (up to the most recent 20,000 draws) each time the data changes (walk-forward replay), so corrections, deletions and back-filled draws are always reflected consistently.\n\nYour data stays on this device. The app needs no permissions and never goes online.</string>
+
+    <!-- Add draw -->
+    <string name="title_add_draw">Add draw</string>
+    <string name="label_draw_date">Draw date</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="label_quick_entry">Quick entry</string>
+    <string name="quick_entry_hint">e.g. 1 4 7 9 11 13 15 17 19 21 22</string>
+    <string name="quick_entry_help">Type the numbers separated by spaces or commas, or tap them in the grid.</string>
+    <string name="error_too_many">More than 11 numbers – only the first 11 different numbers are used.</string>
+    <string name="error_out_of_range">Only numbers from 1 to 22 count; other values are ignored.</string>
+    <string name="label_pick_numbers">Drawn numbers</string>
+    <string name="selected_counter">%1$d / 11 selected</string>
+    <string name="clear">Clear</string>
+    <string name="save">Save</string>
+    <string name="saving">Saving…</string>
+    <string name="limit_reached">11 numbers are already selected. Tap a selected number to remove it first.</string>
+    <string name="draw_already_saved">This draw is already saved</string>
+    <string name="same_date_title">Draw already exists</string>
+    <string name="same_date_message">A draw for %1$s already exists: %2$s. Replace it, add as another draw on the same day, or cancel?</string>
+    <string name="replace">Replace</string>
+    <string name="add_another">Add another</string>
+    <string name="saved_title">Draw saved</string>
+    <string name="saved_message">Saved the draw for %1$s:\n%2$s</string>
+    <string name="scored_message">Scored your prediction for %1$s: %2$d / 11 hits</string>
+    <string name="scored_hits">Hit numbers: %1$s</string>
+    <string name="scored_no_hits">Hit numbers: none</string>
+    <string name="saved_next_hint">The model re-learns from the full history; the main screen now shows the prediction for the next draw.</string>
+    <string name="not_saved_duplicate">Nothing was added: this draw already exists.</string>
+
+    <!-- Import -->
+    <string name="title_import">Import draws</string>
+    <string name="reading_file">Reading the file…</string>
+    <string name="importing">Importing…</string>
+    <string name="file_unknown_name">(unnamed file)</string>
+    <string name="import_summary">Found %1$d dated draws, %2$d undated rows, %3$d skipped lines</string>
+    <string name="import_nothing">No draws were found in this file. Each draw needs 11 different numbers from 1 to 22 on one line (CSV / TXT) or inside one XML element.</string>
+    <string name="import_duplicates_note">Draws that are already saved are skipped automatically.</string>
+    <string name="warnings_title">Warnings</string>
+    <string name="warnings_none">No warnings.</string>
+    <string name="show_all_warnings">Show all warnings</string>
+    <string name="day_first">Day-first dates</string>
+    <string name="day_first_help_import">Some dates in this file can be read both ways (e.g. 05/06/2026). On: 5 June (day first). Off: May 6 (month first). The preview updates immediately.</string>
+    <string name="undated_title">Rows without a date: %1$d</string>
+    <string name="undated_help">They are treated as consecutive daily draws: the newest row gets the date below, every older row one day less.</string>
+    <string name="rows_oldest_first">Rows are oldest first</string>
+    <string name="rows_newest_first">Rows are newest first</string>
+    <string name="last_row_date">Last row’s date: %1$s</string>
+    <string name="first_row_date">First row’s date: %1$s</string>
+    <string name="preview_title">Preview (first %1$d of %2$d)</string>
+    <string name="preview_assigned">no date in the file – assigned</string>
+    <string name="already_saved">already saved</string>
+    <string name="import_button">Import</string>
+    <string name="import_result_title">Import finished</string>
+    <string name="import_result">Imported %1$d new draws (%2$d duplicates skipped).</string>
+    <string name="import_settled">Scored %1$d of your logged predictions:</string>
+    <string name="import_settled_line">• for %1$s: %2$d / 11 hits</string>
+    <string name="error_no_uri">No file was selected.</string>
+    <string name="error_too_large">The file is larger than 25 MB and cannot be imported.</string>
+    <string name="error_permission">Android did not allow reading this file. Please pick it again from the file chooser.</string>
+    <string name="error_read">The file could not be read: %1$s</string>
+    <string name="import_failed">Import failed: %1$s</string>
+
+    <!-- History -->
+    <string name="title_history">History</string>
+    <string name="history_header">%1$s · from %2$s to %3$s</string>
+    <string name="history_empty">No draws yet. Use \"Add draw\" in the menu, or import a file from the main screen.</string>
+    <string name="delete_confirm_title">Delete draw?</string>
+    <string name="delete_confirm_message">Delete the draw of %1$s?\n%2$s</string>
+    <string name="delete_all_title">Delete all draws?</string>
+    <string name="delete_all_message">This deletes all %1$d draws. Your logged predictions are kept. Export a CSV first if you want a backup.</string>
+    <string name="deleted">Draw deleted</string>
+    <string name="deleted_all">All draws deleted</string>
+    <string name="menu_delete_all">Delete all draws</string>
+    <string name="menu_export_csv">Export CSV</string>
+
+    <!-- Stats -->
+    <string name="title_stats">Stats &amp; accuracy</string>
+    <string name="stats_how_well">How well does it predict?</string>
+    <string name="stats_backtest_intro">Backtest (walk-forward): every draw is predicted only from the draws before it, then scored.</string>
+    <string name="stats_window_last">Statistics cover the last %1$d evaluated predictions (Settings → Evaluate last N draws).</string>
+    <string name="stats_window_all">Statistics cover all evaluated predictions.</string>
+    <string name="histogram_title">Hits per prediction (bars relative to the most common count; random = what pure guessing gives):</string>
+    <string name="honesty_note">Honesty note: a true CSPRNG (cryptographically secure random number generator) has no exploitable pattern, so over many draws the model’s average hit count is expected to stay near the random baseline of 5.5 / 11. The app measures and displays this so you can see for yourself whether the source behaves randomly.</string>
+    <string name="random_baseline">A random guess scores 5.5 / 11 on average; P(≥8 hits) ≈ %1$s</string>
+    <string name="expert_weights_title">Expert weights</string>
+    <string name="expert_weights_help">Each expert proposes its own 11 numbers. After every draw, experts that hit more gain weight. \"Uniform\" is the control expert.</string>
+    <string name="expert_weight_line">mean %1$s hits / 11 (backtest)</string>
+    <string name="uniform_top_note">The control expert (uniform) has the most weight: the history looks random.</string>
+    <string name="experts_none">No expert weights yet: add at least two draws.</string>
+    <string name="checked_title">Your checked predictions</string>
+    <string name="checked_intro">Predictions the app actually showed you, scored against the real draw that followed (a forward test, independent of the backtest).</string>
+    <string name="checked_none">No prediction has been checked yet. The prediction shown on the main screen is logged and scored when the real draw is added.</string>
+    <string name="checked_pending">%1$d pending (waiting for the real draw).</string>
+    <string name="checked_showing">Showing the last %1$d of %2$d.</string>
+    <string name="issued_for">For %1$s</string>
+    <string name="issued_pending">pending</string>
+    <string name="issued_hits">%1$d / 11</string>
+    <string name="issued_predicted">Predicted: %1$s</string>
+    <string name="issued_actual">Drawn (%1$s): %2$s</string>
+    <string name="issued_meta">Shown %1$s · based on %2$d draws</string>
+    <string name="tools_title">Tools</string>
+    <string name="auto_tune">Auto-tune model</string>
+    <string name="auto_tune_running">Auto-tuning: replaying the history with 27 settings…</string>
+    <string name="auto_tune_too_few">Auto-tune needs at least %1$d draws.</string>
+    <string name="auto_tune_title">Auto-tune result</string>
+    <string name="auto_tune_message">Current settings:\n%1$s\nMean hits: %2$s / 11\n\nBest of the grid:\n%3$s\nMean hits: %4$s / 11\n\nBoth over the same %5$d predictions. Picking the best of 27 settings on the same data is optimistic; on truly random draws every setting stays near 5.5.</string>
+    <string name="tune_summary">eta %1$s · half-life %2$s · bias rate %3$s</string>
+    <string name="auto_tune_same">Your current settings score at least as well as the best of the grid (current: mean %1$s, best of the grid: mean %2$s hits / 11, over the same %3$d predictions). Nothing to change.</string>
+    <string name="auto_tune_applied">New settings applied</string>
+    <string name="reset_learning">Reset learning to defaults</string>
+    <string name="reset_learning_message">Set all learning parameters back to their defaults? The day-first date setting is kept.</string>
+    <string name="reset_done">Learning parameters reset to defaults</string>
+    <string name="clear_checked">Clear checked predictions</string>
+    <string name="clear_checked_message">Delete the log of all %1$d predictions shown so far, including pending ones? Draws are not affected.</string>
+    <string name="cleared">Checked predictions cleared</string>
+    <string name="export_predictions_csv">Export predictions CSV</string>
+
+    <!-- Settings -->
+    <string name="title_settings">Settings</string>
+    <string name="settings_learning">Learning</string>
+    <string name="label_eta">Learning rate (eta)</string>
+    <string name="help_eta">How fast weight moves to the experts that hit more. 0 – 5, default 0.5.</string>
+    <string name="label_share">Fixed share</string>
+    <string name="help_share">Mixes a little equal weight back in after every draw so experts can recover. 0 – 0.5, default 0.02.</string>
+    <string name="label_bias_rate">Bias rate</string>
+    <string name="help_bias_rate">Strength of the per-number correction. 0 – 1, default 0.1.</string>
+    <string name="label_bias_decay">Bias decay</string>
+    <string name="help_bias_decay">How quickly per-number corrections fade. 0 – 1, default 0.05.</string>
+    <string name="label_short_window">Short window (draws)</string>
+    <string name="help_short_window">Window of the recent10 (\"hot\") expert. 2 – 200, default 10.</string>
+    <string name="label_long_window">Long window (draws)</string>
+    <string name="help_long_window">Window of the recent30 expert. 2 – 1000, default 30.</string>
+    <string name="label_half_life">Decay half-life (draws)</string>
+    <string name="help_half_life">Half-life of the decay expert. 1 – 500, default 15.</string>
+    <string name="settings_data">Data</string>
+    <string name="help_day_first">How ambiguous dates such as 03/04/2026 are read when importing: on = 3 April, off = March 4.</string>
+    <string name="label_eval_n">Evaluate last N draws</string>
+    <string name="help_eval_n">Window for the backtest statistics and auto-tune. 0 = all draws, default 200.</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_restore">Restore defaults</string>
+    <string name="settings_saved">Settings saved.</string>
+    <string name="settings_adjusted">Settings saved. Out-of-range values were adjusted: %1$s</string>
+    <string name="settings_defaults_restored">Defaults restored and saved.</string>
+    <string name="settings_fix_errors">Please correct the highlighted fields.</string>
+    <string name="error_not_number">Enter a number</string>
+    <string name="error_whole_number">Enter a whole number</string>
+</resources>

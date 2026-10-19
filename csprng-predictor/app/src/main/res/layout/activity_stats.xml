@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/statsScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/statsProgressRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/loading" />
+        </LinearLayout>
+
+        <!-- 1. Backtest -->
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/stats_how_well" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:text="@string/stats_backtest_intro" />
+
+            <TextView
+                android:id="@+id/statsSummary"
+                style="@style/BodyText"
+                android:layout_marginTop="8dp"
+                android:textIsSelectable="true" />
+
+            <TextView
+                android:id="@+id/statsWindow"
+                style="@style/SecondaryText"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/statsHistogramTitle"
+                style="@style/SecondaryText"
+                android:layout_marginTop="12dp"
+                android:text="@string/histogram_title" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:scrollbars="none">
+
+                <TextView
+                    android:id="@+id/statsHistogram"
+                    style="@style/MonoText"
+                    android:layout_width="wrap_content" />
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/statsHonesty"
+                style="@style/BodyText"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+
+        <!-- 2. Expert weights -->
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/expert_weights_title" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:text="@string/expert_weights_help" />
+
+            <TextView
+                android:id="@+id/expertNote"
+                style="@style/BodyText"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/expertRows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <!-- 3. Checked (issued) predictions -->
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/checked_title" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:text="@string/checked_intro" />
+
+            <TextView
+                android:id="@+id/issuedSummary"
+                style="@style/BodyText"
+                android:layout_marginTop="8dp"
+                android:textIsSelectable="true" />
+
+            <LinearLayout
+                android:id="@+id/issuedRows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <!-- 4. Tools -->
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/tools_title" />
+
+            <Button
+                android:id="@+id/btnAutoTune"
+                style="@style/PrimaryButton"
+                android:text="@string/auto_tune" />
+
+            <LinearLayout
+                android:id="@+id/autoTuneProgressRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true" />
+
+                <TextView
+                    style="@style/SecondaryText"
+                    android:text="@string/auto_tune_running" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnResetLearning"
+                style="@style/SecondaryButton"
+                android:text="@string/reset_learning" />
+
+            <Button
+                android:id="@+id/btnClearIssued"
+                style="@style/SecondaryButton"
+                android:text="@string/clear_checked" />
+
+            <Button
+                android:id="@+id/btnExportIssued"
+                style="@style/SecondaryButton"
+                android:text="@string/export_predictions_csv" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
