@@ -54,7 +54,7 @@ class OkHttpTransport(
             override fun onResponse(call: Call, response: Response) {
                 response.use { r ->
                     val body = try {
-                        r.body.string()
+                        r.body?.string().orEmpty()
                     } catch (e: IOException) {
                         if (!cont.isCancelled) cont.resumeWithException(e)
                         return
