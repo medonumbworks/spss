@@ -8,13 +8,22 @@ import pytest
 from conftest import REPO_ROOT, fixture_path
 
 from sentiment_hub.assets import Asset, load_assets
-from sentiment_hub.mentions import AMBIGUOUS_SYMBOLS, COMMON_WORD_NAMES, CONTEXT_WORDS, GENERIC_WORDS, MentionMatcher, build_names, matched_symbols
+from sentiment_hub.mentions import (
+    AMBIGUOUS_SYMBOLS,
+    COMMON_WORD_NAMES,
+    CONTEXT_WORDS,
+    EXTRA_NAMES,
+    GENERIC_WORDS,
+    MentionMatcher,
+    build_names,
+    matched_symbols,
+)
 
 KOTLIN = REPO_ROOT / "core/src/main/kotlin/dev/cryptopulse/core/repo/MentionMatcher.kt"
 
 
-def m(symbol: str, name: str) -> MentionMatcher:
-    return MentionMatcher(Asset(symbol, name))
+def m(symbol: str, name: str, coingecko_id: str | None = "resolved") -> MentionMatcher:
+    return MentionMatcher(Asset(symbol, name, coingecko_id))
 
 
 @pytest.mark.parametrize(
@@ -61,9 +70,24 @@ def m(symbol: str, name: str) -> MentionMatcher:
         ("VSN", "Vision", "our vision for 2027", False),
         ("VSN", "Vision", "the Vision token merge", True),
         ("PI", "Pi", "pi is 3.14", False),
-        # an unnamed listing (name == symbol) only matches the symbol itself
-        ("PEOPLE", "PEOPLE", "so many people feel safe", False),
-        ("PEOPLE", "PEOPLE", "PEOPLE rallies 30%", True),
+        # everyday words in names need context; some never act as a first-word alias
+        ("RSR", "Reserve Rights", "Federal Reserve holds rates", False),
+        ("RSR", "Reserve Rights", "Reserve Rights burns supply", True),
+        ("WLFI", "World Liberty Financial", "the world's largest asset manager", False),
+        ("CRV", "Curve DAO Token", "the yield curve inverted", False),
+        ("CRV", "Curve DAO Token", "Curve Finance exploit drains pools", True),
+        ("YGG", "Yield Guild Games", "bond yield jumps", False),
+        ("GRT", "The Graph", "look at the graph", False),
+        ("GRT", "The Graph", "The Graph network upgrade", True),
+        ("RLUSD", "Ripple USD", "Ripple wins its case", False),
+        ("STG", "Stargate Finance", "OpenAI's Stargate data centers", False),
+        ("SPX", "SPX6900", "SPX hits a record as stocks rally", False),
+        # proper nouns that are not English words match on their own
+        ("PENDLE", "Pendle", "Pendle TVL climbs to $5B", True),
+        ("KAIA", "Kaia", "Kaia partners with LINE", True),
+        ("ZEN", "Horizen", "Horizen migrates to Base", True),
+        ("DOGE", "Doge", "Dogecoin jumps 12%", True),
+        ("FLOKI", "FLOKI", "Floki Inu launches a game", True),
         # blank texts never match
         ("BTC", "Bitcoin", "   ", False),
         ("BTC", "Bitcoin", "", False),
@@ -71,6 +95,13 @@ def m(symbol: str, name: str) -> MentionMatcher:
 )
 def test_matcher_cases(symbol, name, text, expected):
     assert m(symbol, name).matches(text) is expected
+
+
+def test_unresolved_listing_named_like_its_ticker():
+    people = m("PEOPLE", "PEOPLE", coingecko_id=None)
+    assert not people.matches("so many people feel safe")
+    assert people.matches("PEOPLE rallies 30%")
+    assert m("PEOPLE", "ConstitutionDAO", coingecko_id=None).matches("ConstitutionDAO is back")
 
 
 def test_ambiguity_rule():
@@ -109,6 +140,10 @@ def test_lists_match_kotlin_source():
     assert _kotlin_set(source, "GENERIC_WORDS") == set(GENERIC_WORDS)
     assert _kotlin_set(source, "COMMON_WORD_NAMES") == set(COMMON_WORD_NAMES)
     assert f'CONTEXT_WORDS = "{CONTEXT_WORDS}"' in source
+    extra = re.search(r"EXTRA_NAMES[^=]*=\s*mapOf\((.*?)\)\n", source, re.S)
+    assert extra, "EXTRA_NAMES not found in MentionMatcher.kt"
+    pairs = re.findall(r'"([^"]+)" to listOf\(([^)]*)\)', extra.group(1))
+    assert {k: tuple(re.findall(r'"([^"]+)"', v)) for k, v in pairs} == EXTRA_NAMES
 
 
 def test_matched_symbols_with_fixture_assets():
@@ -130,7 +165,8 @@ def _reference(asset: Asset, text: str) -> bool:
     if re.search(r"\$" + re.escape(asset.symbol) + r"\b", text, re.IGNORECASE):
         return True
     ambiguous = len(asset.symbol) <= 2 or asset.symbol in AMBIGUOUS_SYMBOLS
-    for n in build_names(asset.name, asset.symbol, ambiguous):
+    placeholder = asset.coingecko_id is None and asset.name == asset.symbol
+    for n in build_names(asset.name, asset.symbol, ambiguous, placeholder) + list(EXTRA_NAMES.get(asset.symbol, ())):
         if n.lower() in COMMON_WORD_NAMES:
             pattern = r"\b" + re.escape(n) + r"\s+(" + CONTEXT_WORDS + r")\b"
         else:

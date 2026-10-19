@@ -65,7 +65,9 @@ import kotlin.math.abs
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(vm: AppViewModel, symbol: String) {
-    val state by vm.detail.collectAsStateWithLifecycle()
+    val detailState by vm.detail.collectAsStateWithLifecycle()
+    // a load for another coin may still be finishing; never show its data on this screen
+    val state = detailState?.takeIf { it.symbol == symbol }
     val snapshot by vm.snapshot.collectAsStateWithLifecycle()
     val row: AssetRow? = state?.detail?.row ?: snapshot?.rows?.firstOrNull { it.asset.symbol == symbol }
     val currency = snapshot?.currency ?: "EUR"

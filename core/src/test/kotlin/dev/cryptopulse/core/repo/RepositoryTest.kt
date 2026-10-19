@@ -115,6 +115,28 @@ class RepositoryTest {
     }
 
     @Test
+    fun detailAfterACurrencySwitchNeverMixesCurrencies() = runTest {
+        val t = fullTransport()
+        val cp = app(t)
+        cp.repository.refresh()
+        cp.updateConfig(AppConfig(currency = "USD"))
+        val d = cp.repository.detail("SOL")
+        assertEquals("USD", d.row.market!!.currency)
+        assertTrue(t.requests.any { "market_chart" in it.url && "vs_currency=usd" in it.url })
+        assertFalse(t.requests.any { "market_chart" in it.url && "vs_currency=eur" in it.url })
+    }
+
+    @Test
+    fun turningTheHubOffStopsUsingItsLastFeed() = runTest {
+        val cp = app(fullTransport())
+        cp.repository.refresh()
+        cp.updateConfig(AppConfig(sentimentFeedUrl = ""))
+        val s = cp.sentiment.forAsset(cp.repository.row("SOL")!!.asset, force = true)
+        assertTrue(s.perSource.none { it.source == SentimentSource.SENTIMENT_HUB && it.sampleCount > 0 })
+        assertEquals(SourceStatus.OK, s.perSource.single { it.source == SentimentSource.TELEGRAM }.status, "the phone scans Telegram itself again")
+    }
+
+    @Test
     fun dailyClosesKeepYesterdayNextToTheLiveSample() {
         val day = 86_400_000L
         val d0 = 20_000 * day

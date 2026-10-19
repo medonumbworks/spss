@@ -238,7 +238,11 @@ class CryptoPulseTools(
 
     private suspend fun opportunities(args: JsonObject?): CallToolResult {
         val snap = snapshot()
-        val horizon = args.str("horizon") ?: "7d"
+        val horizon = when (args.str("horizon")?.trim()?.lowercase()) {
+            null, "", "7d", "1w", "7", "week" -> "7d"
+            "24h", "1d", "24", "day" -> "24h"
+            else -> throw IllegalArgumentException("horizon must be 24h or 7d")
+        }
         val minP = args.dbl("min_probability") ?: 0.55
         val nearBottom = args.bool("near_bottom") ?: false
         val limit = (args.int("limit") ?: 15).coerceIn(1, 100)

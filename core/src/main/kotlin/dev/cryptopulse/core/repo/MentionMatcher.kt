@@ -17,7 +17,9 @@ class MentionMatcher(asset: Asset) {
     private val ambiguous = symbol.length <= 2 || symbol in AMBIGUOUS_SYMBOLS
     private val cashtag = Regex("(?i)\\$" + Regex.escape(symbol) + "\\b")
     private val bareSymbol = Regex("\\b" + Regex.escape(symbol) + "\\b")
-    private val names: List<Regex> = buildNames(asset.name).map { name ->
+    /** An unresolved listing whose "name" is just its ticker ("PEOPLE"); the name would match the word. */
+    private val placeholder = asset.coingeckoId == null && asset.name == asset.symbol
+    private val names: List<Regex> = (buildNames(asset.name) + EXTRA_NAMES[symbol].orEmpty()).map { name ->
         if (name.lowercase(Locale.ROOT) in COMMON_WORD_NAMES) {
             Regex("(?i)\\b" + Regex.escape(name) + "\\s+(" + CONTEXT_WORDS + ")\\b")
         } else {
@@ -39,9 +41,7 @@ class MentionMatcher(asset: Asset) {
     private fun buildNames(name: String): List<String> {
         val cleaned = name.replace(Regex("\\s*\\(.*?\\)\\s*"), " ").trim()
         val out = linkedSetOf<String>()
-        // a name that is just the ticker ("PEOPLE" for an unnamed listing) adds nothing but a
-        // case-insensitive match on an ordinary word; the bare symbol already covers it
-        if (cleaned.length >= 3 && cleaned != symbol && !(ambiguous && cleaned.equals(symbol, ignoreCase = true))) out += cleaned
+        if (cleaned.length >= 3 && !placeholder && !(ambiguous && cleaned.equals(symbol, ignoreCase = true))) out += cleaned
         // "Bitpanda Ecosystem Token" -> also "Bitpanda"; "Pyth Network" -> "Pyth"
         val words = cleaned.split(Regex("\\s+")).filter { it.isNotBlank() }
         if (words.size >= 2) {
@@ -65,7 +65,7 @@ class MentionMatcher(asset: Asset) {
             "SUN", "GRASS", "VISION", "BEAM", "SOON", "KITE", "ONE", "FLOW", "NEAR", "PI", "LIT", "DEEP",
             "B", "M", "S", "A", "CC", "GT", "ME", "W", "OP", "AR", "ATH", "ZEN", "FF", "MET", "TEL", "USELESS",
             "PUMP", "AWE", "APE", "SUPER", "CAKE", "DASH", "NEO", "SAND", "MANA", "ORCA", "COMP", "ENS",
-            "MOVE", "USUAL", "GOAT", "ACT", "BAT", "TRUMP", "IP", "RAY", "JUP", "GRT", "ALGO", "LINK", "RENDER",
+            "MOVE", "USUAL", "SPX", "GOAT", "ACT", "BAT", "TRUMP", "IP", "RAY", "JUP", "GRT", "ALGO", "LINK", "RENDER",
             "ASTER", "PLASMA", "MONAD", "SONIC", "MORPHO", "STRK", "ZK", "BONK", "WIF", "HOME", "ID", "NOT", "MEME",
             "BLAST", "CORE", "TREE", "ACX", "BAND", "MEW", "MOG", "BIO", "AVA", "WAL", "MON", "KAS", "ONDO", "CELO",
         )
@@ -74,11 +74,19 @@ class MentionMatcher(asset: Asset) {
         val COMMON_WORD_NAMES: Set<String> = setOf(
             "vision", "soon", "kite", "plasma", "beam", "grass", "sonic", "lighter", "canton", "sun", "flare", "orca", "dash",
             "stellar", "cosmos", "polygon", "optimism", "render", "compound", "theta", "tron", "quant", "mantle", "aster",
-            "stacks", "jupiter", "kaia", "conflux", "monad", "golem", "horizen", "pendle", "maple", "falcon", "zebec",
+            "stacks", "jupiter", "monad", "golem", "maple", "falcon",
             "magic", "core", "blast", "home", "tree", "band", "flow", "near", "pi",
-            "useless", "useless coin", "fantom", "gnosis", "osmosis", "harmony", "ontology", "waves",
+            "useless", "useless coin", "osmosis", "harmony", "ontology", "waves",
+            "curve", "stargate", "gate", "immutable", "movement", "story", "space", "book", "metal", "nano",
+            "memecoin", "the graph",
         )
-        private const val CONTEXT_WORDS = "token|tokens|coin|coins|network|protocol|price|crypto|chain|blockchain|ecosystem|foundation|labs|mainnet|staking|airdrop|etf"
-        private val GENERIC_WORDS = setOf("the", "network", "protocol", "token", "coin", "finance", "chain", "global", "official", "ethereum", "bitcoin", "standard", "internet", "basic", "trust", "eur", "usd")
+        private const val CONTEXT_WORDS = "token|tokens|coin|coins|network|protocol|price|crypto|chain|blockchain|ecosystem|foundation|labs|mainnet|staking|airdrop|etf|finance|dao|dex|swap"
+        /** Never used as a first-word alias ("Reserve Rights" is not "the Federal Reserve"). */
+        private val GENERIC_WORDS = setOf(
+            "the", "network", "protocol", "token", "coin", "finance", "chain", "global", "official", "ethereum", "bitcoin", "standard",
+            "internet", "basic", "trust", "eur", "usd", "reserve", "world", "yield", "across", "ripple", "defi",
+        )
+        /** Common names that differ from the listing name. */
+        private val EXTRA_NAMES: Map<String, List<String>> = mapOf("DOGE" to listOf("Dogecoin"))
     }
 }

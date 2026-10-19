@@ -6,7 +6,8 @@ Keep the two in sync: the app and the hub must agree on which texts talk about w
 * The full name (parenthesised parts removed, case-insensitive, whole word) counts; for names of
   two or more words the first word also counts when it has 4+ letters and is not generic.
   A name (or first word) equal to an ambiguous symbol never counts ("Sun" for SUN, "NEAR" for NEAR),
-  and a name identical to the symbol never counts as a name ("PEOPLE" for PEOPLE).
+  and an unresolved listing whose name is just its ticker (no CoinGecko id) has no name match.
+* ``EXTRA_NAMES`` adds common names that differ from the listing name ("Dogecoin" for DOGE).
 * Names that are everyday words (``COMMON_WORD_NAMES``: "Stellar", "Vision", ...) only count when
   followed by a crypto context word ("Stellar network", "Vision token").
 * The bare symbol (case-sensitive, whole word) counts only when the symbol is not ambiguous
@@ -27,45 +28,48 @@ AMBIGUOUS_SYMBOLS: frozenset[str] = frozenset(
         "BIO", "BLAST", "BONK", "CAKE", "CC", "CELO", "COMP", "CORE", "DASH", "DEEP", "ENS", "FF", "FLOW",
         "GOAT", "GRASS", "GRT", "GT", "HOME", "ID", "IP", "JUP", "KAS", "KITE", "LINK", "LIT", "M", "MANA",
         "ME", "MEME", "MET", "MEW", "MOG", "MON", "MONAD", "MORPHO", "MOVE", "NEAR", "NEO", "NOT", "ONDO",
-        "ONE", "OP", "ORCA", "PI", "PLASMA", "PUMP", "RAY", "RENDER", "S", "SAND", "SONIC", "SOON", "STRK",
-        "SUN", "SUPER", "TEL", "TREE", "TRUMP", "USELESS", "USUAL", "VISION", "W", "WAL", "WIF", "ZEN", "ZK",
+        "ONE", "OP", "ORCA", "PI", "PLASMA", "PUMP", "RAY", "RENDER", "S", "SAND", "SONIC", "SOON", "SPX",
+        "STRK", "SUN", "SUPER", "TEL", "TREE", "TRUMP", "USELESS", "USUAL", "VISION", "W", "WAL", "WIF",
+        "ZEN", "ZK",
     }
 )
 
 # Copied verbatim from MentionMatcher.GENERIC_WORDS.
 GENERIC_WORDS: frozenset[str] = frozenset(
     {
-        "basic", "bitcoin", "chain", "coin", "ethereum", "eur", "finance", "global", "internet", "network",
-        "official", "protocol", "standard", "the", "token", "trust", "usd",
+        "across", "basic", "bitcoin", "chain", "coin", "defi", "ethereum", "eur", "finance", "global",
+        "internet", "network", "official", "protocol", "reserve", "ripple", "standard", "the", "token",
+        "trust", "usd", "world", "yield",
     }
 )
 
 # Copied verbatim from MentionMatcher.COMMON_WORD_NAMES: names that are everyday words need a context word.
 COMMON_WORD_NAMES: frozenset[str] = frozenset(
     {
-        "aster", "band", "beam", "blast", "canton", "compound", "conflux", "core", "cosmos", "dash",
-        "falcon", "fantom", "flare", "flow", "gnosis", "golem", "grass", "harmony", "home", "horizen",
-        "jupiter", "kaia", "kite", "lighter", "magic", "mantle", "maple", "monad", "near", "ontology",
-        "optimism", "orca", "osmosis", "pendle", "pi", "plasma", "polygon", "quant", "render", "sonic",
-        "soon", "stacks", "stellar", "sun", "theta", "tree", "tron", "useless", "useless coin", "vision",
-        "waves", "zebec",
+        "aster", "band", "beam", "blast", "book", "canton", "compound", "core", "cosmos", "curve", "dash",
+        "falcon", "flare", "flow", "gate", "golem", "grass", "harmony", "home", "immutable", "jupiter",
+        "kite", "lighter", "magic", "mantle", "maple", "memecoin", "metal", "monad", "movement", "nano",
+        "near", "ontology", "optimism", "orca", "osmosis", "pi", "plasma", "polygon", "quant", "render",
+        "sonic", "soon", "space", "stacks", "stargate", "stellar", "story", "sun", "the graph", "theta",
+        "tree", "tron", "useless", "useless coin", "vision", "waves",
     }
 )
 
 # Copied verbatim from MentionMatcher.CONTEXT_WORDS.
-CONTEXT_WORDS = "token|tokens|coin|coins|network|protocol|price|crypto|chain|blockchain|ecosystem|foundation|labs|mainnet|staking|airdrop|etf"
+CONTEXT_WORDS = "token|tokens|coin|coins|network|protocol|price|crypto|chain|blockchain|ecosystem|foundation|labs|mainnet|staking|airdrop|etf|finance|dao|dex|swap"
+
+# Copied verbatim from MentionMatcher.EXTRA_NAMES.
+EXTRA_NAMES: dict[str, tuple[str, ...]] = {"DOGE": ("Dogecoin",)}
 
 _PARENS_RE = re.compile(r"\s*\(.*?\)\s*")
 _SPACES_RE = re.compile(r"\s+")
 
 
-def build_names(name: str, symbol: str = "", ambiguous: bool = False) -> list[str]:
+def build_names(name: str, symbol: str = "", ambiguous: bool = False, placeholder: bool = False) -> list[str]:
     """``buildNames``: "Bitpanda Ecosystem Token" -> ["Bitpanda Ecosystem Token", "Bitpanda"]."""
     cleaned = _PARENS_RE.sub(" ", name).strip()
     out: list[str] = []
-    # A name that is just the ticker ("PEOPLE" for an unnamed listing) only adds a case-insensitive
-    # match on an ordinary word; the bare symbol already covers it.
-    if len(cleaned) >= 3 and cleaned != symbol and not (ambiguous and cleaned.lower() == symbol.lower()):
+    if len(cleaned) >= 3 and not placeholder and not (ambiguous and cleaned.lower() == symbol.lower()):
         out.append(cleaned)
     words = [w for w in _SPACES_RE.split(cleaned) if w.strip()]
     if len(words) >= 2:
@@ -92,7 +96,8 @@ class MentionMatcher:
         self.ambiguous = len(asset.symbol) <= 2 or asset.symbol in AMBIGUOUS_SYMBOLS
         self._cashtag = re.compile(r"\$" + re.escape(asset.symbol) + r"\b", re.IGNORECASE)
         self._bare = re.compile(r"\b" + re.escape(asset.symbol) + r"\b")
-        names = build_names(asset.name, asset.symbol, self.ambiguous)
+        placeholder = asset.coingecko_id is None and asset.name == asset.symbol
+        names = build_names(asset.name, asset.symbol, self.ambiguous, placeholder) + list(EXTRA_NAMES.get(asset.symbol, ()))
         self._names = [_name_regex(n) for n in names]
         # Every regex match implies one of these appears in the case-folded text, so checking
         # them first only skips texts that cannot match (pure speed-up, same results).

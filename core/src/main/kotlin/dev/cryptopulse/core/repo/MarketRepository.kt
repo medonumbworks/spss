@@ -164,13 +164,14 @@ class MarketRepository(
     suspend fun detail(symbol: String, force: Boolean = false): AssetDetail {
         val cfg = config
         detailCache[symbol]?.let { if (!force && clock.nowMs() - it.fetchedAtMs < cfg.chartTtlMs) return it }
-        val snap = _snapshot.value ?: refresh()
+        // history is fetched in the snapshot's currency; never mix it with rows quoted in another one
+        val snap = _snapshot.value?.takeIf { it.currency == cfg.currency } ?: refresh()
         val row = snap.rows.firstOrNull { it.asset.symbol == symbol }
             ?: throw IllegalArgumentException("Unknown asset: $symbol")
         return detailMutex.withLock {
             detailCache[symbol]?.let { if (!force && clock.nowMs() - it.fetchedAtMs < cfg.chartTtlMs) return@withLock it }
             val warnings = ArrayList<String>()
-            val vs = cfg.currency.lowercase()
+            val vs = snap.currency.lowercase()
             var daily: List<PricePoint> = emptyList()
             var dailyVolumes: List<Double> = emptyList()
             var community: CoinCommunity? = null
@@ -190,8 +191,6 @@ class MarketRepository(
             } else {
                 warnings += "No CoinGecko match for ${row.asset.symbol}; history and community data unavailable"
             }
-            val now = clock.nowMs()
-            val hourly = hourlyPoints(row.market, now)
             val sent: SentimentSummary? = try {
                 sentiment.forAsset(row.asset, force)
             } catch (e: CancellationException) {
@@ -205,11 +204,15 @@ class MarketRepository(
                 val ls = derivatives.longShortRatio(symbol).valueOrNull
                 funding.copy(longShortRatio = ls ?: funding.longShortRatio)
             } else funding
-            val forecast = row.market?.let {
-                safeForecast(row.asset, it, daily.map { p -> p.value }, dailyVolumes, lastContext, sent, deriv, community?.sentimentVotesUpPct, now)
+            // the network calls above can take minutes; a refresh may have replaced the row meanwhile
+            val now = clock.nowMs()
+            val latest = _snapshot.value?.takeIf { it.currency == snap.currency }?.rows?.firstOrNull { it.asset.symbol == symbol } ?: row
+            val hourly = hourlyPoints(latest.market, now)
+            val forecast = latest.market?.let {
+                safeForecast(latest.asset, it, daily.map { p -> p.value }, dailyVolumes, lastContext, sent, deriv, community?.sentimentVotesUpPct, now)
             }
-            val newRow = row.copy(forecast = forecast ?: row.forecast, sentiment = sent ?: row.sentiment)
-            updateRow(newRow)
+            val newRow = latest.copy(forecast = forecast ?: latest.forecast, sentiment = sent ?: latest.sentiment)
+            updateRow(newRow, snap.currency)
             val detail = AssetDetail(
                 row = newRow,
                 daily = daily,
@@ -220,7 +223,7 @@ class MarketRepository(
                 fetchedAtMs = now,
                 warnings = warnings,
             )
-            detailCache[symbol] = detail
+            if (config.currency == snap.currency) detailCache[symbol] = detail
             detail
         }
     }
@@ -439,9 +442,11 @@ class MarketRepository(
         null
     }
 
-    private fun updateRow(row: AssetRow) {
+    /** Replaces one row, unless the snapshot has meanwhile switched to another quote currency. */
+    private fun updateRow(row: AssetRow, currency: String? = null) {
         _snapshot.update { snap ->
-            snap?.copy(rows = snap.rows.map { if (it.asset.symbol == row.asset.symbol) row else it })
+            if (snap == null || (currency != null && snap.currency != currency)) snap
+            else snap.copy(rows = snap.rows.map { if (it.asset.symbol == row.asset.symbol) row else it })
         }
     }
 

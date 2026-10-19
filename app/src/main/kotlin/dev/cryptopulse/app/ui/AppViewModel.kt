@@ -13,12 +13,15 @@ import dev.cryptopulse.core.model.SourceStatus
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 enum class ListFilter(val label: String) {
@@ -110,9 +113,12 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         if (repo.isStale()) refresh(force = false)
     }
 
-    fun refresh(force: Boolean = true) {
-        if (refreshJob?.isActive == true) return
+    /** [restart]: cancel a running refresh first (it was started with the previous settings). */
+    fun refresh(force: Boolean = true, restart: Boolean = false) {
+        val previous = refreshJob
+        if (!restart && previous?.isActive == true) return
         refreshJob = viewModelScope.launch(Dispatchers.Default) {
+            previous?.cancelAndJoin()
             try {
                 repo.refresh(force)
                 _hub.value = cp.sentiment.feedState().let { HubState(it.first, it.second) }
@@ -154,13 +160,16 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         val previous = _detail.value?.takeIf { it.symbol == symbol }?.detail
         _detail.value = DetailState(symbol, loading = true, detail = previous)
         detailJob = viewModelScope.launch(Dispatchers.Default) {
-            _detail.value = try {
+            val next = try {
                 DetailState(symbol, loading = false, detail = repo.detail(symbol, force))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
                 DetailState(symbol, loading = false, detail = previous, error = e.message ?: "Could not load $symbol")
             }
+            // cancel() cannot stop a load that already returned; only write state for the coin still shown
+            ensureActive()
+            _detail.update { if (it?.symbol == symbol) next else it }
         }
     }
 
@@ -171,7 +180,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         _config.value = new
         app.settings.save(new)
         cp.updateConfig(new)
-        if (new.currency != old.currency || new.sentimentFeedUrl != old.sentimentFeedUrl) refresh(force = true)
+        if (new.currency != old.currency || new.sentimentFeedUrl != old.sentimentFeedUrl) refresh(force = true, restart = true)
     }
 
     fun telegramChannelCount(): Pair<Int, Int> {

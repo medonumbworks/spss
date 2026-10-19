@@ -58,6 +58,7 @@ class SentimentService(
     private var telegramCache: Cached<Pair<List<SocialPost>, Map<String, SourceStatus>>>? = null
     private var rssCache: Cached<Pair<List<NewsItem>, SourceStatus>>? = null
     private var feedCache: Cached<SentimentFeedDoc?>? = null
+    private var feedCacheUrl: String? = null
     private var feedStatus: SourceStatus = SourceStatus.DISABLED
     private var feedMessage: String? = null
     private val globalMutex = Mutex()
@@ -78,6 +79,9 @@ class SentimentService(
     suspend fun feed(force: Boolean = false): SentimentFeedDoc? = feedMutex.withLock {
         val api = feedApi ?: return@withLock null
         val now = clock.nowMs()
+        // a document from another (or no) hub URL must not keep answering after the user changed it
+        val url = configProvider().sentimentFeedUrl.trim()
+        if (feedCacheUrl != url) feedCache = null
         feedCache?.let { if (!force && now - it.atMs < FEED_TTL_MS) return@withLock it.value }
         val doc = when (val r = api.fetch()) {
             is SourceResult.Success -> { feedStatus = SourceStatus.OK; feedMessage = null; r.value }
@@ -85,10 +89,11 @@ class SentimentService(
                 feedStatus = r.status
                 feedMessage = r.message
                 logger.debug(TAG, "feed: ${r.message}")
-                feedCache?.value
+                if (r.status == SourceStatus.DISABLED) null else feedCache?.value
             }
         }
         feedCache = Cached(doc, now)
+        feedCacheUrl = url
         doc
     }
 
@@ -187,6 +192,10 @@ class SentimentService(
         globalCache?.let { if (!force && now - it.atMs < config.sentimentTtlMs) return@withLock it.value }
         val samples = ArrayList<SentimentSample>()
         val statuses = LinkedHashMap<SentimentSource, SourceStatus>()
+        // same rule as forAsset: the hub's market aggregate already contains these channels and feeds
+        val hubDoc = freshFeedOrNull()
+        val hubCoversTelegram = hubDoc?.covers("telegram_public") == true
+        val hubCoversRss = hubDoc?.covers("rss") == true
         if (config.redditEnabled) {
             when (val r = reddit.hot("CryptoCurrency", 100)) {
                 is SourceResult.Success -> {
@@ -196,12 +205,12 @@ class SentimentService(
                 is SourceResult.Failure -> statuses[SentimentSource.REDDIT] = r.status
             }
         } else statuses[SentimentSource.REDDIT] = SourceStatus.DISABLED
-        if (config.newsEnabled) {
+        if (config.newsEnabled && !hubCoversRss) {
             val (items, status) = rssItems(config, force)
             statuses[SentimentSource.NEWS] = status
             items.forEach { samples += aggregator.sampleFromNews(it, now, null) }
-        } else statuses[SentimentSource.NEWS] = SourceStatus.DISABLED
-        if (config.telegramEnabled) {
+        } else if (!config.newsEnabled) statuses[SentimentSource.NEWS] = SourceStatus.DISABLED
+        if (config.telegramEnabled && !hubCoversTelegram) {
             val (posts, channelStatuses) = telegramPosts(config, force)
             statuses[SentimentSource.TELEGRAM] = when {
                 posts.isNotEmpty() -> SourceStatus.OK
@@ -209,8 +218,8 @@ class SentimentService(
                 else -> channelStatuses.values.first()
             }
             posts.forEach { samples += aggregator.sampleFromPost(it, now, null) }
-        } else statuses[SentimentSource.TELEGRAM] = SourceStatus.DISABLED
-        val hubMarket = feed()?.let { doc ->
+        } else if (!config.telegramEnabled) statuses[SentimentSource.TELEGRAM] = SourceStatus.DISABLED
+        val hubMarket = hubDoc?.let { doc ->
             val weight = freshness(doc) ?: return@let null
             doc.market?.takeIf { it.mentions > 0 }?.let { m ->
                 SourceSentiment(
