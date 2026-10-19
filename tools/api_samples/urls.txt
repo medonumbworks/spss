@@ -1,0 +1,40 @@
+# name<TAB>url<TAB>delay seconds before the request (CoinGecko keyless needs ~20 s from GitHub IPs)
+# --- CoinGecko: meme categories, trending
+cg_categories_list	https://api.coingecko.com/api/v3/coins/categories/list	1
+cg_meme_markets	https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=meme-token&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h,24h,7d,30d	20
+cg_trending	https://api.coingecko.com/api/v3/search/trending	20
+cg_categories	https://api.coingecko.com/api/v3/coins/categories?order=market_cap_change_24h_desc	20
+# --- GeckoTerminal (keyless, 30 calls/min)
+gt_trending	https://api.geckoterminal.com/api/v2/networks/trending_pools?include=base_token&page=1&duration=24h	1
+gt_trending_sol	https://api.geckoterminal.com/api/v2/networks/solana/trending_pools?include=base_token&page=1	2
+gt_new_pools	https://api.geckoterminal.com/api/v2/networks/new_pools?include=base_token&page=1	2
+gt_ohlcv	https://api.geckoterminal.com/api/v2/networks/solana/pools/{gt_trending_sol.data.0.attributes.address}/ohlcv/hour?aggregate=1&limit=168&currency=usd	2
+gt_token_info	https://api.geckoterminal.com/api/v2/networks/solana/tokens/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm/info	2
+gt_networks	https://api.geckoterminal.com/api/v2/networks?page=1	2
+# --- DexScreener (keyless, 60-300 calls/min)
+ds_boosts_top	https://api.dexscreener.com/token-boosts/top/v1	1
+ds_boosts_latest	https://api.dexscreener.com/token-boosts/latest/v1	1
+ds_profiles_latest	https://api.dexscreener.com/token-profiles/latest/v1	1
+ds_takeovers	https://api.dexscreener.com/community-takeovers/latest/v1	1
+ds_tokens	https://api.dexscreener.com/tokens/v1/{ds_boosts_top.0.chainId}/{ds_boosts_top.0.tokenAddress}	1
+ds_tokens_wif	https://api.dexscreener.com/tokens/v1/solana/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm	1
+ds_search	https://api.dexscreener.com/latest/dex/search?q=pepe	1
+# --- token safety checks (keyless)
+goplus_eth	https://api.gopluslabs.io/api/v1/token_security/1?contract_addresses=0x6982508145454ce325ddbe47a25d4ec3d2311933	1
+goplus_sol	https://api.gopluslabs.io/api/v1/solana/token_security?contract_addresses=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm	1
+rugcheck	https://api.rugcheck.xyz/v1/tokens/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm/report/summary	1
+honeypot	https://api.honeypot.is/v2/IsHoneypot?address=0x6982508145454ce325ddbe47a25d4ec3d2311933	1
+# --- pump.fun (unofficial frontend API)
+pump_live	https://frontend-api-v3.pump.fun/coins/currently-live?limit=5&offset=0&includeNsfw=false	1
+pump_king	https://frontend-api-v3.pump.fun/coins/king-of-the-hill?includeNsfw=false	1
+pump_top	https://frontend-api-v3.pump.fun/coins?offset=0&limit=5&sort=market_cap&order=DESC&includeNsfw=false	1
+# --- alternatives to CoinGecko for prices/history (keyless)
+paprika_tickers	https://api.coinpaprika.com/v1/tickers?quotes=USD,EUR	1
+paprika_tags	https://api.coinpaprika.com/v1/tags	1
+paprika_meme_tag	https://api.coinpaprika.com/v1/tags/memes?additional_fields=coins	1
+binance_vision_ticker	https://data-api.binance.vision/api/v3/ticker/24hr?symbols=%5B%22PEPEUSDT%22,%22WIFUSDT%22%5D	1
+binance_vision_klines	https://data-api.binance.vision/api/v3/klines?symbol=PEPEUSDT&interval=1h&limit=3	1
+binance_vision_exchangeinfo	https://data-api.binance.vision/api/v3/exchangeInfo?permissions=SPOT&symbolStatus=TRADING	1
+okx_funding	https://www.okx.com/api/v5/public/funding-rate?instId=PEPE-USDT-SWAP	1
+mexc_ticker_one	https://api.mexc.com/api/v3/ticker/24hr?symbol=PEPEUSDT	1
+gate_ticker_one	https://api.gateio.ws/api/v4/spot/tickers?currency_pair=PEPE_USDT	1

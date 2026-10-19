@@ -1,0 +1,30 @@
+# Captures live responses of the free APIs listed in tools/api_samples/urls.txt from GitHub's
+# network, prints their shape to the log and uploads the raw bodies as an artifact. Used to build
+# and refresh test fixtures from real payloads. Read-only: it never commits or publishes anything.
+name: api-samples
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tools/api_samples/**'
+      - '.github/workflows/api-samples.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Capture samples
+        run: python3 tools/api_samples/capture.py tools/api_samples/urls.txt "$RUNNER_TEMP/api-samples"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: api-samples
+          path: ${{ runner.temp }}/api-samples
+          retention-days: 7
