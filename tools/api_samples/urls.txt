@@ -43,3 +43,8 @@ gate_ticker_one	https://api.gateio.ws/api/v4/spot/tickers?currency_pair=PEPE_USD
 goplus_eth_two	https://api.gopluslabs.io/api/v1/token_security/1?contract_addresses=0x6982508145454ce325ddbe47a25d4ec3d2311933,0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce	2
 goplus_sol_two	https://api.gopluslabs.io/api/v1/solana/token_security?contract_addresses=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm,DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263	2
 gt_token_info_young	https://api.geckoterminal.com/api/v2/networks/solana/tokens/{ds_boosts_top.0.tokenAddress}/info	3
+# --- Polymarket gamma API (keyless): crypto prediction markets
+polymarket_events_crypto	https://gamma-api.polymarket.com/events?tag_slug=crypto&closed=false&order=volume24hr&ascending=false&limit=50	1
+polymarket_markets_top	https://gamma-api.polymarket.com/markets?closed=false&order=volume24hr&ascending=false&limit=50	2
+polymarket_search_btc	https://gamma-api.polymarket.com/public-search?q=bitcoin&limit_per_type=10	2
+polymarket_events_top	https://gamma-api.polymarket.com/events?closed=false&order=volume24hr&ascending=false&limit=25	2
