@@ -8,7 +8,9 @@ import dev.cryptopulse.core.model.Asset
 import dev.cryptopulse.core.model.AssetDetail
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.CoinCommunity
+import dev.cryptopulse.core.analysis.risk.RiskScorer
 import dev.cryptopulse.core.model.DerivativesSnapshot
+import dev.cryptopulse.core.model.DexInfo
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.MarketContext
 import dev.cryptopulse.core.model.MarketData
@@ -16,12 +18,17 @@ import dev.cryptopulse.core.model.ListingSource
 import dev.cryptopulse.core.model.MarketSnapshot
 import dev.cryptopulse.core.model.PricePoint
 import dev.cryptopulse.core.model.RefreshStatus
+import dev.cryptopulse.core.model.RiskAssessment
 import dev.cryptopulse.core.model.SentimentSummary
 import dev.cryptopulse.core.model.SourceStatus
+import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.sources.CoinGeckoSource
 import dev.cryptopulse.core.sources.DerivativesSource
 import dev.cryptopulse.core.sources.FearGreedSource
 import dev.cryptopulse.core.sources.SourceResult
+import dev.cryptopulse.core.sources.cex.CexDataApi
+import dev.cryptopulse.core.sources.dex.GeckoTerminalApi
+import dev.cryptopulse.core.sources.safety.TokenSafetyApi
 import dev.cryptopulse.core.universe.AssetUniverse
 import dev.cryptopulse.core.universe.UniverseResult
 import dev.cryptopulse.core.util.Clock
@@ -57,6 +64,12 @@ class MarketRepository(
     private val clock: Clock = Clock.SYSTEM,
     private val logger: Logger = Logger.STDERR,
     initialConfig: AppConfig = AppConfig(),
+    /** Memecoins, trending coins and DEX tokens beyond Bitpanda; null = Bitpanda only. */
+    private val speculative: SpeculativeService? = null,
+    /** Binance mirror klines and OKX funding: history/funding fallbacks for the detail view. */
+    private val cex: CexDataApi? = null,
+    private val geckoTerminal: GeckoTerminalApi? = null,
+    private val safetyApi: TokenSafetyApi? = null,
 ) {
     @Volatile
     var config: AppConfig = initialConfig
@@ -76,6 +89,10 @@ class MarketRepository(
 
     @Volatile
     private var lastContext: MarketContext? = null
+
+    /** USD -> quote currency, for prices that only exist in USD (DEX pools). */
+    @Volatile
+    private var lastUsdToQuote: Double? = null
 
     @Volatile
     private var fundingCache: Pair<Long, Map<String, DerivativesSnapshot>>? = null
@@ -130,13 +147,38 @@ class MarketRepository(
             setStatus("Computing forecasts", 0.8f)
             val nowMs = clock.nowMs()
             val visible = visibleAssets(uni, markets, warnings)
-            val rows = visible.map { asset ->
+            val previousRows = current?.rows?.associateBy { it.asset.symbol }.orEmpty()
+            val bitpandaRows = visible.map { asset ->
                 val market = markets[asset.symbol]
-                val sent = sentiment.cached(asset.symbol) ?: sentiment.fromFeed(asset, feed)
-                    ?: current?.rows?.firstOrNull { it.asset.symbol == asset.symbol }?.sentiment
+                val sent = sentiment.cached(asset.symbol) ?: sentiment.fromFeed(asset, feed) ?: previousRows[asset.symbol]?.sentiment
                 val forecast = market?.let { safeForecast(asset, it, emptyList(), emptyList(), context, sent, funding[asset.symbol], null, nowMs) }
                 AssetRow(asset, market, forecast, sent)
-            }.sortedWith(ROW_ORDER)
+            }
+
+            val usdToQuote = usdRate(uni, cfg, markets, funding)
+            lastUsdToQuote = usdToQuote
+            val spec = speculative?.let {
+                setStatus("Finding memecoins and DEX tokens", 0.85f)
+                try {
+                    it.load(cfg, bitpandaRows, context.trendingCoingeckoIds, usdToQuote, current?.rows.orEmpty())
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    logger.warn(TAG, "speculative tiers failed", e)
+                    warnings += "Memecoins/DEX radar: ${e.message}"
+                    null
+                }
+            }
+            spec?.let { warnings += it.warnings }
+            val trendingIds = context.trendingCoingeckoIds.toSet()
+            val tagged = bitpandaRows.map { row -> withTags(row, spec?.memeIds.orEmpty(), trendingIds, spec?.dexTrendingIds.orEmpty()) }
+            val extra = spec?.rows.orEmpty().map { row ->
+                val risk = RiskScorer.assess(row.asset.tier, row.market, row.dex, row.safety, nowMs)
+                val sent = sentiment.cached(row.asset.symbol) ?: sentiment.fromFeed(row.asset, feed) ?: previousRows[row.asset.symbol]?.sentiment
+                val forecast = row.market?.let { safeForecast(row.asset, it, emptyList(), emptyList(), context, sent, funding[row.asset.symbol], null, nowMs, row.dex, risk) }
+                row.copy(sentiment = sent, forecast = forecast, risk = risk)
+            }
+            val rows = (tagged + extra).sortedWith(ROW_ORDER)
 
             val snap = MarketSnapshot(
                 currency = cfg.currency,
@@ -188,11 +230,18 @@ class MarketRepository(
                     is SourceResult.Success -> community = r.value
                     is SourceResult.Failure -> warnings += "Community data: ${r.message}"
                 }
-            } else {
+            } else if (row.asset.tier != Tier.DEX) {
                 warnings += "No CoinGecko match for ${row.asset.symbol}; history and community data unavailable"
             }
+            if (daily.isEmpty() && row.asset.tier != Tier.DEX && cex != null) {
+                // CoinGecko's free tier often refuses history; Binance's public mirror is not rate-limited as hard
+                binanceDaily(row)?.let { daily = it; warnings += "Daily history from Binance (CoinGecko did not answer)" }
+            }
+            var dexRow = row
+            if (row.asset.tier == Tier.DEX) dexRow = refreshDex(row, warnings)
+            val telegramHandle = dexRow.dex?.socials?.get("telegram")?.let { TELEGRAM_LINK.find(it)?.groupValues?.get(1) }
             val sent: SentimentSummary? = try {
-                sentiment.forAsset(row.asset, force)
+                sentiment.forAsset(row.asset, force, listOfNotNull(telegramHandle))
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
@@ -200,18 +249,21 @@ class MarketRepository(
                 row.sentiment
             }
             val funding = loadFunding(cfg, false, warnings)[symbol]
-            val deriv = if (funding != null && cfg.derivativesEnabled) {
+                ?: if (cfg.derivativesEnabled && row.asset.tier != Tier.DEX) cex?.okxFunding(symbol)?.valueOrNull else null
+            val deriv = if (funding != null && cfg.derivativesEnabled && funding.source != "okx") {
                 val ls = derivatives.longShortRatio(symbol).valueOrNull
                 funding.copy(longShortRatio = ls ?: funding.longShortRatio)
             } else funding
             // the network calls above can take minutes; a refresh may have replaced the row meanwhile
             val now = clock.nowMs()
-            val latest = _snapshot.value?.takeIf { it.currency == snap.currency }?.rows?.firstOrNull { it.asset.symbol == symbol } ?: row
+            val latestInList = _snapshot.value?.takeIf { it.currency == snap.currency }?.rows?.firstOrNull { it.asset.symbol == symbol } ?: row
+            val latest = if (row.asset.tier == Tier.DEX) latestInList.copy(market = dexRow.market, dex = dexRow.dex, safety = dexRow.safety) else latestInList
             val hourly = hourlyPoints(latest.market, now)
+            val risk = RiskScorer.assess(latest.asset.tier, latest.market, latest.dex, latest.safety, now)
             val forecast = latest.market?.let {
-                safeForecast(latest.asset, it, daily.map { p -> p.value }, dailyVolumes, lastContext, sent, deriv, community?.sentimentVotesUpPct, now)
+                safeForecast(latest.asset, it, daily.map { p -> p.value }, dailyVolumes, lastContext, sent, deriv, community?.sentimentVotesUpPct, now, latest.dex, risk)
             }
-            val newRow = latest.copy(forecast = forecast ?: latest.forecast, sentiment = sent ?: latest.sentiment)
+            val newRow = latest.copy(forecast = forecast ?: latest.forecast, sentiment = sent ?: latest.sentiment, risk = risk)
             updateRow(newRow, snap.currency)
             val detail = AssetDetail(
                 row = newRow,
@@ -261,7 +313,7 @@ class MarketRepository(
             if (s != null) {
                 val latest = row(row.asset.symbol) ?: row
                 val fc = latest.market?.let {
-                    safeForecast(latest.asset, it, emptyList(), emptyList(), lastContext, s, fundingCache?.second?.get(latest.asset.symbol), null, clock.nowMs())
+                    safeForecast(latest.asset, it, emptyList(), emptyList(), lastContext, s, fundingCache?.second?.get(latest.asset.symbol), null, clock.nowMs(), latest.dex, latest.risk)
                 }
                 updateRow(latest.copy(sentiment = s, forecast = fc ?: latest.forecast))
             }
@@ -428,6 +480,8 @@ class MarketRepository(
         deriv: DerivativesSnapshot?,
         votesUp: Double?,
         nowMs: Long,
+        dex: DexInfo? = null,
+        risk: RiskAssessment? = null,
     ): Forecast? = try {
         forecaster.forecast(
             ForecastInput(
@@ -440,12 +494,81 @@ class MarketRepository(
                 sentiment = sent,
                 derivatives = deriv,
                 communityVotesUpPct = votesUp,
+                dex = dex,
+                risk = risk,
                 nowMs = nowMs,
             ),
         )
     } catch (e: Exception) {
         logger.warn(TAG, "forecast failed for ${asset.symbol}", e)
         null
+    }
+
+    /** USD -> quote currency from the Bitpanda ticker (BTC in both), else CoinGecko BTC vs the futures mark price. */
+    private fun usdRate(uni: UniverseResult, cfg: AppConfig, markets: Map<String, MarketData>, funding: Map<String, DerivativesSnapshot>): Double? {
+        if (cfg.currency.equals("USD", ignoreCase = true)) return 1.0
+        uni.bitpandaPrices["BTC"]?.let { p ->
+            val q = p[cfg.currency]
+            val u = p["USD"]
+            if (q != null && u != null && u > 0) return q / u
+        }
+        val btc = markets["BTC"]?.price
+        val mark = funding["BTC"]?.markPrice
+        return if (btc != null && mark != null && mark > 0) btc / mark else null
+    }
+
+    private fun withTags(row: AssetRow, memeIds: Set<String>, trendingIds: Set<String>, dexTrendingIds: Set<String>): AssetRow {
+        val id = row.asset.coingeckoId ?: return row
+        val add = buildList {
+            if (id in memeIds) add("meme")
+            if (id in trendingIds) add("trending")
+            if (id in dexTrendingIds) add("dex_trending")
+        }
+        if (add.isEmpty()) return row
+        return row.copy(asset = row.asset.copy(tags = (row.asset.tags + add).distinct()))
+    }
+
+    /** One year of daily closes from Binance's public mirror, scaled to the row's quote-currency price. */
+    private suspend fun binanceDaily(row: AssetRow): List<PricePoint>? {
+        val price = row.market?.price ?: return null
+        val candles = cex?.binanceKlines(row.asset.symbol, "1d", DETAIL_HISTORY_DAYS)?.valueOrNull?.takeIf { it.size >= 30 } ?: return null
+        val last = candles.last().close.takeIf { it > 0 } ?: return null
+        val k = price / last
+        // a ticker Binance lists for a different coin would be off by orders of magnitude
+        if (k !in 0.5..2.0 && row.market.currency.equals("USD", ignoreCase = true)) return null
+        return candles.map { PricePoint(it.timeMs, it.close * k) }
+    }
+
+    /** DEX token detail: a week of hourly candles from GeckoTerminal and fresh contract checks. */
+    private suspend fun refreshDex(row: AssetRow, warnings: MutableList<String>): AssetRow {
+        val dex = row.dex ?: return row
+        var market = row.market
+        val pool = dex.pairAddress
+        if (geckoTerminal != null && pool != null) {
+            when (val r = geckoTerminal.hourlyCandles(GeckoTerminalApi.geckoTerminalNetwork(dex.chainId), pool, 168)) {
+                is SourceResult.Success -> if (r.value.size >= 24 && market != null) {
+                    val k = (market.price ?: 0.0).let { p -> if (p > 0 && r.value.last().close > 0) p / r.value.last().close else lastUsdToQuote ?: 1.0 }
+                    market = market.copy(sparkline7d = r.value.map { it.close * k })
+                }
+                is SourceResult.Failure -> warnings += "Price history: ${r.message}"
+            }
+        }
+        var safety = row.safety
+        val address = row.asset.contract
+        if (config.safetyChecks && safetyApi != null && address != null) {
+            safetyApi.check(dex.chainId, address).valueOrNull?.let { safety = it }
+            if (address.startsWith("0x")) {
+                safetyApi.simulate(dex.chainId, address).valueOrNull?.let { sim ->
+                    safety = safety?.copy(
+                        honeypot = sim.honeypot ?: safety?.honeypot,
+                        buyTaxPct = sim.buyTaxPct ?: safety?.buyTaxPct,
+                        sellTaxPct = sim.sellTaxPct ?: safety?.sellTaxPct,
+                    ) ?: sim
+                }
+            }
+            if (safety == null) warnings += "No free contract check available for ${dex.chainId}"
+        }
+        return row.copy(market = market, safety = safety)
     }
 
     /** Replaces one row, unless the snapshot has meanwhile switched to another quote currency. */
@@ -484,6 +607,7 @@ class MarketRepository(
         const val SNAPSHOT_KEY = "market_snapshot_v1"
         const val DETAIL_HISTORY_DAYS = 365
         private const val HOUR_MS = 3_600_000L
+        private val TELEGRAM_LINK = Regex("""(?:https?://)?(?:t\.me|telegram\.me)/(?:s/)?([A-Za-z][A-Za-z0-9_]{3,31})(?:[/?#]|$)""")
         private const val DAY_MS = 86_400_000L
 
         private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }

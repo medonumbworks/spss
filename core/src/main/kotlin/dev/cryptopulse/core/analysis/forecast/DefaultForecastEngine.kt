@@ -3,6 +3,7 @@ package dev.cryptopulse.core.analysis.forecast
 import dev.cryptopulse.core.analysis.ForecastInput
 import dev.cryptopulse.core.analysis.Forecaster
 import dev.cryptopulse.core.analysis.indicators.Indicators
+import dev.cryptopulse.core.analysis.risk.RiskScorer
 import dev.cryptopulse.core.model.BacktestStats
 import dev.cryptopulse.core.model.BottomAssessment
 import dev.cryptopulse.core.model.DataCoverage
@@ -10,7 +11,9 @@ import dev.cryptopulse.core.model.Direction
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.Horizon
 import dev.cryptopulse.core.model.HorizonForecast
+import dev.cryptopulse.core.model.RiskAssessment
 import dev.cryptopulse.core.model.Signal
+import dev.cryptopulse.core.model.Tier
 import kotlin.math.abs
 import kotlin.math.exp
 import kotlin.math.ln
@@ -37,6 +40,7 @@ class DefaultForecastEngine : Forecaster {
         val hourly = input.hourlyCloses.filter { it > 0 }
         val daily = input.dailyCloses.filter { it > 0 }
         if (isStablecoin(input.asset.symbol, input.asset.name, market?.currency, hourly, market?.change7dPct)) return stablecoinForecast(input, price)
+        input.risk?.takeIf { it.blocked }?.let { return blockedForecast(input, price, it) }
 
         val coverageNotes = ArrayList<String>()
         if (hourly.size < 48) coverageNotes += "Less than 2 days of hourly prices"
@@ -47,19 +51,20 @@ class DefaultForecastEngine : Forecaster {
         val bt24 = Backtester.shortTerm(hourly)
         val techScale24 = techScale(bt24)
         val ctx24 = contextSignals(input, Horizon.H24)
-        val crowd24 = crowdSignals(input, Horizon.H24)
-        val h24 = buildHorizon(Horizon.H24, price, hourly, daily, tech24, techScale24, ctx24 + crowd24, bt24, input)
+        val crowd24 = crowdSignals(input, Horizon.H24) + Speculative.signals(input, Horizon.H24)
+        val h24Built = buildHorizon(Horizon.H24, price, hourly, daily, tech24, techScale24, ctx24 + crowd24, bt24, input)
 
         // ---- 7 days ----------------------------------------------------------------------------
         val (tech7, usedDaily) = Technical.mediumTerm(daily, hourly)
         val bt7 = if (usedDaily) Backtester.mediumTermDaily(daily) else null
         val techScale7 = techScale(bt7) * if (usedDaily) 1.0 else 0.8
         val ctx7 = contextSignals(input, Horizon.D7) + momentumFromMarket(input, usedDaily)
-        val crowd7 = crowdSignals(input, Horizon.D7)
+        val crowd7 = crowdSignals(input, Horizon.D7) + Speculative.signals(input, Horizon.D7)
         val bottom = bottomAssessment(input, hourly, daily)
         val bottomSignal = Contribution("bottom_score", "Distance from recent lows", bottom.score.toDouble(), (bottom.score - 50) / 50.0 * 0.18,
             "Bottom score ${bottom.score}/100: ${bottom.label.lowercase()}")
-        val d7 = buildHorizon(Horizon.D7, price, hourly, daily, tech7, techScale7, ctx7 + crowd7 + bottomSignal, bt7, input)
+        val d7Built = buildHorizon(Horizon.D7, price, hourly, daily, tech7, techScale7, ctx7 + crowd7 + bottomSignal, bt7, input)
+        val (h24, d7) = historyGate(input, h24Built, d7Built)
 
         val finalBottom = bottom.copy(reboundProbability7d = d7.probabilityUp)
         val coverage = DataCoverage(
@@ -80,7 +85,7 @@ class DefaultForecastEngine : Forecaster {
             bottom = finalBottom,
             sentiment = input.sentiment,
             coverage = coverage,
-            summary = summary(input.asset.name, h24, d7, finalBottom),
+            summary = summary(input.asset.name, h24, d7, finalBottom) + (input.risk?.let { " ${it.label}, not on Bitpanda." } ?: ""),
             computedAtMs = input.nowMs,
             modelVersion = MODEL_VERSION,
         )
@@ -105,8 +110,12 @@ class DefaultForecastEngine : Forecaster {
         val pRaw = 1.0 / (1.0 + exp(-logit))
 
         val coverage = coverageScore(horizon, hourly, daily, input)
-        val shrink = 0.55 + 0.35 * coverage
-        val p = (0.5 + (pRaw - 0.5) * shrink).coerceIn(0.15, 0.85)
+        // DEX-only tokens: noisier data, so shrink harder toward the (already pessimistic) prior
+        val dexOnly = input.asset.tier == Tier.DEX
+        val shrink = (0.55 + 0.35 * coverage) * (if (dexOnly) 0.8 else 1.0)
+        val pModel = if (dexOnly) (0.5 + (pRaw - 0.5) * shrink).coerceIn(0.2, 0.8) else (0.5 + (pRaw - 0.5) * shrink).coerceIn(0.15, 0.85)
+        // the riskier the token, the closer to a coin flip (0 at risk score 75, where it is blocked)
+        val p = 0.5 + (pModel - 0.5) * RiskScorer.shrink(input.risk)
         val direction = when {
             p >= 0.55 -> Direction.UP
             p <= 0.45 -> Direction.DOWN
@@ -116,7 +125,8 @@ class DefaultForecastEngine : Forecaster {
         val totalAbs = all.sumOf { abs(it.logit) }
         val agreement = if (totalAbs == 0.0) 0.5 else all.filter { it.logit * sign > 0 }.sumOf { abs(it.logit) } / totalAbs
         val btQuality = edgeZ(backtest)?.let { (0.5 + 0.12 * it).coerceIn(0.2, 0.9) } ?: 0.5
-        val confidence = ((0.4 * coverage + 0.3 * agreement + 0.3 * btQuality) * 0.9).coerceIn(0.05, 0.9)
+        val riskDiscount = 1.0 - (input.risk?.score ?: 0) / 200.0
+        val confidence = ((0.4 * coverage + 0.3 * agreement + 0.3 * btQuality) * 0.9 * riskDiscount).coerceIn(0.05, 0.9)
 
         val sigma = horizonSigma(horizon, hourly, daily)
         val (low, high, move) = if (price != null && sigma != null) {
@@ -313,6 +323,42 @@ class DefaultForecastEngine : Forecaster {
         return pegHint && cv < 0.01 && abs(change7d ?: 0.0) < 3.0
     }
 
+    /**
+     * DEX tokens: a 24-hour call needs 3 days of trading and a 7-day call 3 weeks; younger pools get
+     * "not enough history" instead of a number.
+     */
+    private fun historyGate(input: ForecastInput, h24: HorizonForecast, d7: HorizonForecast): Pair<HorizonForecast, HorizonForecast> {
+        if (input.asset.tier != Tier.DEX) return h24 to d7
+        val ageH = input.dex?.pairCreatedAtMs?.let { (input.nowMs - it) / 3_600_000.0 }
+        fun gate(h: HorizonForecast, minHours: Double): HorizonForecast {
+            if (ageH != null && ageH >= minHours) return h
+            val age = ageH?.let { if (it < 48) "${it.toInt()} h" else "${(it / 24).toInt()} days" } ?: "of unknown age"
+            val note = "Not enough history: the pool is $age old; a ${h.horizon.label} call needs ${if (minHours < 100) "3 days" else "3 weeks"} of trading"
+            return HorizonForecast(h.horizon, 0.5, Direction.FLAT, 0.0, null, null, null, listOf(Signal("history", "Not enough history", ageH, 0.0, note)) + h.signals.map { it.copy(contribution = 0.0) })
+        }
+        return gate(h24, 72.0) to gate(d7, 21 * 24.0)
+    }
+
+    /** Safety red flags, too new, too thin or unverified: no up/down call at all, only the reasons. */
+    private fun blockedForecast(input: ForecastInput, price: Double?, risk: RiskAssessment): Forecast {
+        val why = risk.reasons.filterNot { it.startsWith("Only on decentralised") }.take(3).joinToString("; ").ifEmpty { risk.label }
+        val note = "No forecast (${risk.label.lowercase()}): $why"
+        fun none(h: Horizon) = HorizonForecast(h, 0.5, Direction.FLAT, 0.0, null, null, null, listOf(Signal("risk_blocked", "Safety red flags", risk.score.toDouble(), 0.0, note)))
+        return Forecast(
+            symbol = input.asset.symbol,
+            currency = input.market?.currency ?: "EUR",
+            price = price,
+            h24 = none(Horizon.H24),
+            d7 = none(Horizon.D7),
+            bottom = BottomAssessment(50, NOT_ASSESSED, reasons = listOf(note)),
+            sentiment = input.sentiment,
+            coverage = DataCoverage(hourlyPoints = input.hourlyCloses.size, dailyPoints = input.dailyCloses.size, notes = listOf(note)),
+            summary = "${input.asset.name}: $note",
+            computedAtMs = input.nowMs,
+            modelVersion = MODEL_VERSION,
+        )
+    }
+
     private fun stablecoinForecast(input: ForecastInput, price: Double?): Forecast {
         val note = "Stablecoin: built to hold its peg, so an up/down forecast is not meaningful. In ${input.market?.currency ?: "EUR"} it only moves with the exchange rate."
         fun flat(h: Horizon) = HorizonForecast(h, 0.5, Direction.FLAT, 0.9, price, price, 0.0, listOf(Signal("stablecoin", "Pegged asset", null, 0.0, note)))
@@ -345,7 +391,8 @@ class DefaultForecastEngine : Forecaster {
     }
 
     companion object {
-        const val MODEL_VERSION = "cryptopulse-forecast-1.0"
+        const val MODEL_VERSION = "cryptopulse-forecast-1.1"
+        const val NOT_ASSESSED = "Not assessed"
         val STABLECOINS: Set<String> = setOf(
             "USDT", "USDC", "EURC", "USDG", "RLUSD", "USDD", "EURCV", "DAI", "FDUSD", "TUSD", "PYUSD", "USDE", "USDS", "USD1", "EURS", "USDQ", "EURQ",
         )

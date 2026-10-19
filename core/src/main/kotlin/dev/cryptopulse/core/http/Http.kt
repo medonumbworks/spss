@@ -80,6 +80,9 @@ class Http(
         }
     }
 
+    /** A cached body for [cacheKey] younger than [ttlMs] exists (a [getText] would not hit the network). */
+    fun isFresh(cacheKey: String, ttlMs: Long): Boolean = cache.get(cacheKey)?.let { it.ageMs(clock.nowMs()) < ttlMs } == true
+
     /** POST/other methods are rare (Bitpanda quotes etc.); no caching. */
     suspend fun request(request: HttpRequest, retries: Int = 1): HttpResult = fetchWithRetry(request, retries)
 

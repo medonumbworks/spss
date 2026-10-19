@@ -87,6 +87,15 @@ class RateLimiter(
             "fapi.binance.com" to Rate(requestsPerMinute = 30.0, burst = 5),
             "api.binance.com" to Rate(requestsPerMinute = 30.0, burst = 5),
             "api.bybit.com" to Rate(requestsPerMinute = 30.0, burst = 5),
+            // memecoin / DEX sources (documented free limits, with headroom)
+            "api.dexscreener.com" to Rate(requestsPerMinute = 50.0, burst = 6),
+            "api.geckoterminal.com" to Rate(requestsPerMinute = 20.0, burst = 3),
+            "frontend-api-v3.pump.fun" to Rate(requestsPerMinute = 20.0, burst = 2),
+            "api.gopluslabs.io" to Rate(requestsPerMinute = 20.0, burst = 3),
+            "api.honeypot.is" to Rate(requestsPerMinute = 20.0, burst = 2),
+            "api.coinpaprika.com" to Rate(requestsPerMinute = 6.0, burst = 2),
+            "data-api.binance.vision" to Rate(requestsPerMinute = 60.0, burst = 5),
+            "www.okx.com" to Rate(requestsPerMinute = 20.0, burst = 3),
         )
     }
 }

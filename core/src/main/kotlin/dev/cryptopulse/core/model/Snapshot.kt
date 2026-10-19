@@ -9,6 +9,12 @@ data class AssetRow(
     val market: MarketData? = null,
     val forecast: Forecast? = null,
     val sentiment: SentimentSummary? = null,
+    /** DEX tokens: pool, liquidity and trading flow. */
+    val dex: DexInfo? = null,
+    /** Contract checks (DEX tokens). */
+    val safety: TokenSafety? = null,
+    /** Risk for everything that is not on Bitpanda; null for Bitpanda assets. */
+    val risk: RiskAssessment? = null,
 )
 
 @Serializable

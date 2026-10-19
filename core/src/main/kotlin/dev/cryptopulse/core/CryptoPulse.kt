@@ -14,11 +14,17 @@ import dev.cryptopulse.core.http.OkHttpTransport
 import dev.cryptopulse.core.http.RateLimiter
 import dev.cryptopulse.core.repo.MarketRepository
 import dev.cryptopulse.core.repo.SentimentService
+import dev.cryptopulse.core.repo.SpeculativeService
 import dev.cryptopulse.core.sources.bitpanda.BitpandaApi
+import dev.cryptopulse.core.sources.cex.CexDataApi
 import dev.cryptopulse.core.sources.coingecko.CoinGeckoApi
+import dev.cryptopulse.core.sources.dex.DexScreenerApi
+import dev.cryptopulse.core.sources.dex.GeckoTerminalApi
+import dev.cryptopulse.core.sources.dex.PumpFunApi
 import dev.cryptopulse.core.sources.feed.SentimentFeedApi
 import dev.cryptopulse.core.sources.market.DerivativesApi
 import dev.cryptopulse.core.sources.market.FearGreedApi
+import dev.cryptopulse.core.sources.safety.TokenSafetyApi
 import dev.cryptopulse.core.sources.social.NewsFeeds
 import dev.cryptopulse.core.sources.social.RedditApi
 import dev.cryptopulse.core.sources.social.StockTwitsApi
@@ -79,6 +85,9 @@ class CryptoPulse private constructor(
                 clock = clock,
                 logger = logger,
             )
+            val geckoTerminal = GeckoTerminalApi(http)
+            val safety = TokenSafetyApi(http, clock)
+            val speculative = SpeculativeService(coinGecko, DexScreenerApi(http), geckoTerminal, PumpFunApi(http), safety, clock, logger)
             val repository = MarketRepository(
                 universe = universe,
                 coinGecko = coinGecko,
@@ -90,6 +99,10 @@ class CryptoPulse private constructor(
                 clock = clock,
                 logger = logger,
                 initialConfig = config,
+                speculative = speculative,
+                cex = CexDataApi(http, clock),
+                geckoTerminal = geckoTerminal,
+                safetyApi = safety,
             )
             return CryptoPulse(repository, sentiment, http, holder)
         }

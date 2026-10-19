@@ -40,7 +40,7 @@ class CoinGeckoApi(
         return if (key.isNullOrBlank()) mapOf("Accept" to "application/json") else mapOf("Accept" to "application/json", "x-cg-demo-api-key" to key)
     }
 
-    override suspend fun markets(vsCurrency: String, page: Int, perPage: Int, ids: List<String>?, sparkline: Boolean, ttlMs: Long?): SourceResult<List<MarketData>> {
+    override suspend fun markets(vsCurrency: String, page: Int, perPage: Int, ids: List<String>?, sparkline: Boolean, ttlMs: Long?, category: String?): SourceResult<List<MarketData>> {
         val vs = vsCurrency.lowercase()
         val params = buildList {
             add("vs_currency=$vs")
@@ -50,7 +50,7 @@ class CoinGeckoApi(
             add("sparkline=$sparkline")
             add("price_change_percentage=1h,24h,7d,14d,30d,1y")
             add("locale=en")
-            if (!ids.isNullOrEmpty()) add("ids=" + enc(ids.joinToString(",")))
+            if (!ids.isNullOrEmpty()) add("ids=" + enc(ids.joinToString(","))) else if (!category.isNullOrBlank()) add("category=" + enc(category))
         }.joinToString("&")
         val url = "$base/coins/markets?$params"
         return when (val r = http.getText(url, headers(), ttlMs = ttlMs ?: marketsTtlMs, staleOkMs = 6 * 3_600_000L)) {

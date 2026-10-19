@@ -2,9 +2,11 @@ package dev.cryptopulse.core.analysis
 
 import dev.cryptopulse.core.model.Asset
 import dev.cryptopulse.core.model.DerivativesSnapshot
+import dev.cryptopulse.core.model.DexInfo
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.MarketContext
 import dev.cryptopulse.core.model.MarketData
+import dev.cryptopulse.core.model.RiskAssessment
 import dev.cryptopulse.core.model.SentimentSample
 import dev.cryptopulse.core.model.SentimentSource
 import dev.cryptopulse.core.model.SentimentSummary
@@ -27,6 +29,10 @@ data class ForecastInput(
     val derivatives: DerivativesSnapshot? = null,
     /** CoinGecko community vote share (0..100) that the coin will go up. */
     val communityVotesUpPct: Double? = null,
+    /** DEX tokens: pool and trading flow (DexScreener / GeckoTerminal). */
+    val dex: DexInfo? = null,
+    /** Risk of a non-Bitpanda asset; a blocked risk suppresses the up/down call. */
+    val risk: RiskAssessment? = null,
     val nowMs: Long,
 )
 

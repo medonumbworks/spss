@@ -44,6 +44,24 @@ data class AppConfig(
     val coingeckoPageSize: Int = 250,
     /** How many CoinGecko market pages (250 each) to scan when mapping symbols to ids. */
     val coingeckoMappingPages: Int = 4,
+    // ---- beyond Bitpanda: speculative tiers (information only, never tradeable in the app) ----
+    /** Largest memecoins by market cap (CoinGecko "Meme" category) that Bitpanda does not list. */
+    val showMemecoins: Boolean = true,
+    val memecoinCount: Int = 250,
+    /** CoinGecko's trending coins that Bitpanda does not list. */
+    val showTrending: Boolean = true,
+    /** DEX-only tokens: trending and new pools, DexScreener boosts/profiles/takeovers, pump.fun. */
+    val showDexRadar: Boolean = true,
+    val dexRadarMax: Int = 150,
+    /** DEX tokens with less pool liquidity or 24h volume than this (USD) are left out as dust. */
+    val dexMinLiquidityUsd: Double = 10_000.0,
+    val dexMinVolume24hUsd: Double = 10_000.0,
+    /** Include pools created in the last hours (GeckoTerminal new pools); the riskiest part. */
+    val dexIncludeNewPools: Boolean = true,
+    val dexIncludePumpFun: Boolean = true,
+    /** Free contract checks (GoPlus, honeypot.is) for the most active DEX tokens. */
+    val safetyChecks: Boolean = true,
+    val dexSafetyTopN: Int = 60,
 ) {
     companion object {
         const val DEFAULT_SENTIMENT_FEED_URL: String = "https://raw.githubusercontent.com/medonumbworks/spss/sentiment-feed/feed.json"

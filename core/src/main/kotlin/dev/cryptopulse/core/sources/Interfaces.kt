@@ -72,6 +72,8 @@ interface CoinGeckoSource {
         sparkline: Boolean = true,
         /** Cache lifetime for this call; null = the source's default for market data. */
         ttlMs: Long? = null,
+        /** CoinGecko category id (e.g. "meme-token"); only used when [ids] is null. */
+        category: String? = null,
     ): SourceResult<List<MarketData>>
 
     /** `GET /coins/{id}/market_chart?vs_currency=..&days=..` (daily granularity for days > 90, hourly for 2..90). */

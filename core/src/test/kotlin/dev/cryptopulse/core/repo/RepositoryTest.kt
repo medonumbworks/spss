@@ -188,7 +188,7 @@ class RepositoryTest {
             .onUrlContaining("/coins/markets", body = "[" + rows.joinToString(",") + "]")
         val snap = app(t).repository.refresh()
         assertEquals(ListingSource.BUNDLED_SNAPSHOT, snap.universeSource)
-        val symbols = snap.rows.map { it.asset.symbol }.toSet()
+        val symbols = snap.rows.filter { it.asset.onBitpanda }.map { it.asset.symbol }.toSet()
         assertFalse("GALA" in symbols, "unverified with a big cap is not on Bitpanda")
         assertTrue("ZRX" in symbols, "unverified small cap stays")
         assertTrue(snap.warnings.any { it.contains("unconfirmed") })

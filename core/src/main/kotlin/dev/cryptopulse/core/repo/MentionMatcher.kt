@@ -1,6 +1,7 @@
 package dev.cryptopulse.core.repo
 
 import dev.cryptopulse.core.model.Asset
+import dev.cryptopulse.core.model.Tier
 import java.util.Locale
 
 /**
@@ -14,7 +15,8 @@ import java.util.Locale
  */
 class MentionMatcher(asset: Asset) {
     private val symbol = asset.symbol
-    private val ambiguous = symbol.length <= 2 || symbol in AMBIGUOUS_SYMBOLS
+    // DEX-only tickers are reused by many unrelated tokens: only "$TICKER" or the full name count
+    private val ambiguous = symbol.length <= 2 || symbol in AMBIGUOUS_SYMBOLS || asset.tier == Tier.DEX
     private val cashtag = Regex("(?i)\\$" + Regex.escape(symbol) + "\\b")
     private val bareSymbol = Regex("\\b" + Regex.escape(symbol) + "\\b")
     /** An unresolved listing whose "name" is just its ticker ("PEOPLE"); the name would match the word. */

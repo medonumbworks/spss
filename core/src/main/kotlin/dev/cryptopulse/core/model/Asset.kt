@@ -13,7 +13,10 @@ enum class ListingSource {
     BUNDLED_SNAPSHOT,
 }
 
-/** A cryptocurrency tradeable on the Bitpanda broker. */
+/**
+ * A cryptocurrency in the market list. [tier] BITPANDA = tradeable on the Bitpanda broker; the
+ * other tiers (memecoins, trending coins, DEX-only tokens) are shown for information only.
+ */
 @Serializable
 data class Asset(
     /** Bitpanda symbol, normalized uppercase (e.g. "BTC", "1INCH", "ETHFI"). */
@@ -32,4 +35,13 @@ data class Asset(
      * Unverified research candidates are hidden when their market cap proves they are not on Bitpanda.
      */
     val verified: Boolean = true,
-)
+    val tier: Tier = Tier.BITPANDA,
+    /** Extra labels: "meme" (CoinGecko Meme category), "trending", "dex_trending", "boosted", "new", "pumpfun". */
+    val tags: List<String> = emptyList(),
+    /** DEX tokens: DexScreener chain id and token contract/mint address. */
+    val chainId: String? = null,
+    val contract: String? = null,
+) {
+    val onBitpanda: Boolean get() = tier == Tier.BITPANDA
+    val isMeme: Boolean get() = tier == Tier.MEME || "meme" in tags
+}

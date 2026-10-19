@@ -104,7 +104,8 @@ class SentimentService(
         return aggregator.summarize(asset.symbol, emptyList(), emptyMap(), clock.nowMs(), listOf(hub))
     }
 
-    suspend fun forAsset(asset: Asset, force: Boolean = false): SentimentSummary {
+    /** @param extraChannels public Telegram channels of the project itself (e.g. a DEX token's own channel). */
+    suspend fun forAsset(asset: Asset, force: Boolean = false, extraChannels: List<String> = emptyList()): SentimentSummary {
         val config = configProvider()
         val now = clock.nowMs()
         assetCache[asset.symbol]?.let { if (!force && now - it.atMs < config.sentimentTtlMs) return it.value }
@@ -146,10 +147,11 @@ class SentimentService(
             val (posts, channelStatuses) = telegramPosts(config, force)
             val matched = posts.filter { matcher.matches(it.title + " " + it.body) }.toMutableList()
             // official/project channels of this asset: everything they post is about the asset
-            for (entry in directory.channelsFor(asset.symbol).take(3)) {
-                when (val r = telegram.channelMessages(entry.handle)) {
+            val projectChannels = (extraChannels + directory.channelsFor(asset.symbol).map { it.handle }).distinctBy { it.lowercase() }.take(3)
+            for (handle in projectChannels) {
+                when (val r = telegram.channelMessages(handle)) {
                     is SourceResult.Success -> matched += r.value.filter { now - it.createdMs < WEEK_MS }
-                    is SourceResult.Failure -> logger.debug(TAG, "telegram project ${entry.handle}: ${r.message}")
+                    is SourceResult.Failure -> logger.debug(TAG, "telegram project $handle: ${r.message}")
                 }
             }
             statuses[SentimentSource.TELEGRAM] = when {
@@ -159,7 +161,18 @@ class SentimentService(
                 else -> SourceStatus.UNAVAILABLE
             }
             matched.distinctBy { it.id }.forEach { samples += aggregator.sampleFromPost(it, now, asset) }
-        } else if (!config.telegramEnabled) statuses[SentimentSource.TELEGRAM] = SourceStatus.DISABLED
+        } else if (config.telegramEnabled) {
+            // the hub reads the directory, not a DEX token's own channel: read that one here
+            val own = extraChannels.filter { h -> directory.entries.none { it.handle.equals(h, ignoreCase = true) } }.take(2)
+            val posts = own.flatMap { handle ->
+                when (val r = telegram.channelMessages(handle)) {
+                    is SourceResult.Success -> r.value.filter { now - it.createdMs < WEEK_MS }
+                    is SourceResult.Failure -> emptyList<SocialPost>().also { logger.debug(TAG, "telegram project $handle: ${r.message}") }
+                }
+            }
+            if (own.isNotEmpty()) statuses[SentimentSource.TELEGRAM] = if (posts.isEmpty()) SourceStatus.EMPTY else SourceStatus.OK
+            posts.distinctBy { it.id }.forEach { samples += aggregator.sampleFromPost(it, now, asset) }
+        } else statuses[SentimentSource.TELEGRAM] = SourceStatus.DISABLED
 
         if (config.newsEnabled) {
             var status = SourceStatus.EMPTY
