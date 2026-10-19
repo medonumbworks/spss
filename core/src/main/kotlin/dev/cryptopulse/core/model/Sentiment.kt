@@ -11,6 +11,11 @@ enum class SentimentSource {
     FEAR_GREED,
     COINGECKO_VOTES,
     DERIVATIVES,
+    /**
+     * Free cloud sentiment hub (GitHub Actions, see tools/sentiment_hub): 100+ public Telegram channels,
+     * the user's own Telegram account when connected, news feeds; scored with VADER, FinBERT and CryptoBERT.
+     */
+    SENTIMENT_HUB,
 }
 
 @Serializable
@@ -60,6 +65,10 @@ data class SourceSentiment(
     val buzzPerDay: Double = 0.0,
     val topSamples: List<SentimentSample> = emptyList(),
     val note: String? = null,
+    /** Mentions now / mentions in the previous window (attention change), when the source knows it. */
+    val buzzRatio: Double? = null,
+    /** Per-model composites (e.g. "vader", "finbert", "cryptobert") when the source reports them. */
+    val modelScores: Map<String, Double> = emptyMap(),
 )
 
 @Serializable

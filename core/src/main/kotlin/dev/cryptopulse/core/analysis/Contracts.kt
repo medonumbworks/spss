@@ -8,6 +8,7 @@ import dev.cryptopulse.core.model.MarketData
 import dev.cryptopulse.core.model.SentimentSample
 import dev.cryptopulse.core.model.SentimentSource
 import dev.cryptopulse.core.model.SentimentSummary
+import dev.cryptopulse.core.model.SourceSentiment
 import dev.cryptopulse.core.model.SourceStatus
 import dev.cryptopulse.core.sources.NewsItem
 import dev.cryptopulse.core.sources.SocialPost
@@ -44,7 +45,7 @@ data class TextSentiment(
     val hits: Int = 0,
 )
 
-interface SentimentScorer {
+fun interface SentimentScorer {
     fun score(text: String): TextSentiment
 }
 
@@ -62,5 +63,7 @@ interface SentimentAggregator {
         samples: List<SentimentSample>,
         statuses: Map<SentimentSource, SourceStatus>,
         nowMs: Long,
+        /** Already aggregated sources (e.g. the cloud sentiment hub) merged into the result. */
+        preAggregated: List<SourceSentiment> = emptyList(),
     ): SentimentSummary
 }

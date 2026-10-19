@@ -1,0 +1,1883 @@
+{
+ "version": 1,
+ "generated": "2026-10-19",
+ "note": "verified=true: seen in the Bitpanda app (Invest > Markets > Cryptocurrency, sorted by market cap) on 2026-10-17. verified=false: found by multi-source research, shown only when its market cap is below the smallest verified asset or when the live Bitpanda ticker confirms it. coingeckoId values are hints validated at runtime.",
+ "assets": [
+  {
+   "symbol": "BTC",
+   "name": "Bitcoin",
+   "coingeckoId": "bitcoin",
+   "rank": 1,
+   "verified": true
+  },
+  {
+   "symbol": "ETH",
+   "name": "Ethereum",
+   "coingeckoId": "ethereum",
+   "rank": 2,
+   "verified": true
+  },
+  {
+   "symbol": "USDT",
+   "name": "Tether",
+   "coingeckoId": "tether",
+   "rank": 3,
+   "verified": true
+  },
+  {
+   "symbol": "BNB",
+   "name": "BNB",
+   "coingeckoId": "binancecoin",
+   "rank": 4,
+   "verified": true
+  },
+  {
+   "symbol": "XRP",
+   "name": "XRP",
+   "coingeckoId": "ripple",
+   "rank": 5,
+   "verified": true
+  },
+  {
+   "symbol": "USDC",
+   "name": "USD Coin",
+   "coingeckoId": "usd-coin",
+   "rank": 6,
+   "verified": true
+  },
+  {
+   "symbol": "SOL",
+   "name": "Solana",
+   "coingeckoId": "solana",
+   "rank": 7,
+   "verified": true
+  },
+  {
+   "symbol": "TRX",
+   "name": "Tron",
+   "coingeckoId": "tron",
+   "rank": 8,
+   "verified": true
+  },
+  {
+   "symbol": "HYPE",
+   "name": "Hyperliquid",
+   "coingeckoId": "hyperliquid",
+   "rank": 9,
+   "verified": true
+  },
+  {
+   "symbol": "ZEC",
+   "name": "ZCash",
+   "coingeckoId": "zcash",
+   "rank": 10,
+   "verified": true
+  },
+  {
+   "symbol": "DOGE",
+   "name": "Doge",
+   "coingeckoId": "dogecoin",
+   "rank": 11,
+   "verified": true
+  },
+  {
+   "symbol": "LINK",
+   "name": "Chainlink",
+   "coingeckoId": "chainlink",
+   "rank": 12,
+   "verified": true
+  },
+  {
+   "symbol": "ADA",
+   "name": "Cardano",
+   "coingeckoId": "cardano",
+   "rank": 13,
+   "verified": true
+  },
+  {
+   "symbol": "NEAR",
+   "name": "NEAR Protocol",
+   "coingeckoId": "near",
+   "rank": 14,
+   "verified": true
+  },
+  {
+   "symbol": "XLM",
+   "name": "Stellar",
+   "coingeckoId": "stellar",
+   "rank": 15,
+   "verified": true
+  },
+  {
+   "symbol": "BCH",
+   "name": "Bitcoin Cash",
+   "coingeckoId": "bitcoin-cash",
+   "rank": 16,
+   "verified": true
+  },
+  {
+   "symbol": "LTC",
+   "name": "Litecoin",
+   "coingeckoId": "litecoin",
+   "rank": 17,
+   "verified": true
+  },
+  {
+   "symbol": "UNI",
+   "name": "Uniswap",
+   "coingeckoId": "uniswap",
+   "rank": 18,
+   "verified": true
+  },
+  {
+   "symbol": "AVAX",
+   "name": "Avalanche",
+   "coingeckoId": "avalanche-2",
+   "rank": 19,
+   "verified": true
+  },
+  {
+   "symbol": "CC",
+   "name": "Canton",
+   "coingeckoId": "canton-network",
+   "rank": 20,
+   "verified": true
+  },
+  {
+   "symbol": "SUI",
+   "name": "Sui",
+   "coingeckoId": "sui",
+   "rank": 21,
+   "verified": true
+  },
+  {
+   "symbol": "HBAR",
+   "name": "Hedera",
+   "coingeckoId": "hedera-hashgraph",
+   "rank": 22,
+   "verified": true
+  },
+  {
+   "symbol": "SHIB",
+   "name": "SHIBA INU",
+   "coingeckoId": "shiba-inu",
+   "rank": 23,
+   "verified": true
+  },
+  {
+   "symbol": "TAO",
+   "name": "Bittensor",
+   "coingeckoId": "bittensor",
+   "rank": 24,
+   "verified": true
+  },
+  {
+   "symbol": "OKB",
+   "name": "OKB",
+   "coingeckoId": "okb",
+   "rank": 25,
+   "verified": true
+  },
+  {
+   "symbol": "QNT",
+   "name": "Quant",
+   "coingeckoId": "quant-network",
+   "rank": 26,
+   "verified": true
+  },
+  {
+   "symbol": "AAVE",
+   "name": "Aave",
+   "coingeckoId": "aave",
+   "rank": 27,
+   "verified": true
+  },
+  {
+   "symbol": "USDG",
+   "name": "Global Dollar",
+   "coingeckoId": "global-dollar",
+   "rank": 28,
+   "verified": true
+  },
+  {
+   "symbol": "ONDO",
+   "name": "Ondo",
+   "coingeckoId": "ondo-finance",
+   "rank": 29,
+   "verified": true
+  },
+  {
+   "symbol": "DOT",
+   "name": "Polkadot",
+   "coingeckoId": "polkadot",
+   "rank": 30,
+   "verified": true
+  },
+  {
+   "symbol": "WLFI",
+   "name": "World Liberty Financial",
+   "coingeckoId": "world-liberty-financial",
+   "rank": 31,
+   "verified": true
+  },
+  {
+   "symbol": "ASTER",
+   "name": "Aster",
+   "coingeckoId": "aster-2",
+   "rank": 32,
+   "verified": true
+  },
+  {
+   "symbol": "MNT",
+   "name": "Mantle",
+   "coingeckoId": "mantle",
+   "rank": 33,
+   "verified": true
+  },
+  {
+   "symbol": "ENA",
+   "name": "Ethena",
+   "coingeckoId": "ethena",
+   "rank": 34,
+   "verified": true
+  },
+  {
+   "symbol": "WLD",
+   "name": "Worldcoin",
+   "coingeckoId": "worldcoin-wld",
+   "rank": 35,
+   "verified": true
+  },
+  {
+   "symbol": "ICP",
+   "name": "Internet Computer",
+   "coingeckoId": "internet-computer",
+   "rank": 36,
+   "verified": true
+  },
+  {
+   "symbol": "PEPE",
+   "name": "Pepe",
+   "coingeckoId": "pepe",
+   "rank": 37,
+   "verified": true
+  },
+  {
+   "symbol": "FTM",
+   "name": "Fantom",
+   "coingeckoId": "fantom",
+   "rank": 38,
+   "verified": true
+  },
+  {
+   "symbol": "RLUSD",
+   "name": "Ripple USD",
+   "coingeckoId": "ripple-usd",
+   "rank": 39,
+   "verified": true
+  },
+  {
+   "symbol": "PUMP",
+   "name": "Pump.fun",
+   "coingeckoId": "pump-fun",
+   "rank": 40,
+   "verified": true
+  },
+  {
+   "symbol": "HTX",
+   "name": "HTX",
+   "coingeckoId": "htx-dao",
+   "rank": 41,
+   "verified": true
+  },
+  {
+   "symbol": "USDD",
+   "name": "USDD",
+   "coingeckoId": "usdd",
+   "rank": 42,
+   "verified": true
+  },
+  {
+   "symbol": "ETC",
+   "name": "Ethereum Classic",
+   "coingeckoId": "ethereum-classic",
+   "rank": 43,
+   "verified": true
+  },
+  {
+   "symbol": "GT",
+   "name": "Gate Token",
+   "coingeckoId": "gatechain-token",
+   "rank": 44,
+   "verified": true
+  },
+  {
+   "symbol": "JST",
+   "name": "JUST",
+   "coingeckoId": "just",
+   "rank": 45,
+   "verified": true
+  },
+  {
+   "symbol": "ARB",
+   "name": "Arbitrum",
+   "coingeckoId": "arbitrum",
+   "rank": 46,
+   "verified": true
+  },
+  {
+   "symbol": "JUP",
+   "name": "Jupiter",
+   "coingeckoId": "jupiter-exchange-solana",
+   "rank": 47,
+   "verified": true
+  },
+  {
+   "symbol": "ALGO",
+   "name": "Algorand",
+   "coingeckoId": "algorand",
+   "rank": 48,
+   "verified": true
+  },
+  {
+   "symbol": "M",
+   "name": "MemeCore",
+   "coingeckoId": "memecore",
+   "rank": 49,
+   "verified": true
+  },
+  {
+   "symbol": "POL",
+   "name": "Polygon",
+   "coingeckoId": "polygon-ecosystem-token",
+   "rank": 50,
+   "verified": true
+  },
+  {
+   "symbol": "KAS",
+   "name": "Kaspa",
+   "coingeckoId": "kaspa",
+   "rank": 51,
+   "verified": true
+  },
+  {
+   "symbol": "RENDER",
+   "name": "Render",
+   "coingeckoId": "render-token",
+   "rank": 52,
+   "verified": true
+  },
+  {
+   "symbol": "MORPHO",
+   "name": "Morpho",
+   "coingeckoId": "morpho",
+   "rank": 53,
+   "verified": true
+  },
+  {
+   "symbol": "ATOM",
+   "name": "Cosmos",
+   "coingeckoId": "cosmos",
+   "rank": 54,
+   "verified": true
+  },
+  {
+   "symbol": "FIL",
+   "name": "Filecoin",
+   "coingeckoId": "filecoin",
+   "rank": 55,
+   "verified": true
+  },
+  {
+   "symbol": "INJ",
+   "name": "Injective",
+   "coingeckoId": "injective-protocol",
+   "rank": 56,
+   "verified": true
+  },
+  {
+   "symbol": "PI",
+   "name": "Pi",
+   "coingeckoId": "pi-network",
+   "rank": 57,
+   "verified": true
+  },
+  {
+   "symbol": "AERO",
+   "name": "Aerodrome Finance",
+   "coingeckoId": "aerodrome-finance",
+   "rank": 58,
+   "verified": true
+  },
+  {
+   "symbol": "LIT",
+   "name": "Lighter",
+   "coingeckoId": "lighter",
+   "rank": 59,
+   "verified": true
+  },
+  {
+   "symbol": "CAKE",
+   "name": "PancakeSwap",
+   "coingeckoId": "pancakeswap-token",
+   "rank": 60,
+   "verified": true
+  },
+  {
+   "symbol": "STX",
+   "name": "Stacks",
+   "coingeckoId": "blockstack",
+   "rank": 61,
+   "verified": true
+  },
+  {
+   "symbol": "XDC",
+   "name": "XDC Network",
+   "coingeckoId": "xdce-crowd-sale",
+   "rank": 62,
+   "verified": true
+  },
+  {
+   "symbol": "APT",
+   "name": "Aptos",
+   "coingeckoId": "aptos",
+   "rank": 63,
+   "verified": true
+  },
+  {
+   "symbol": "DASH",
+   "name": "Dash",
+   "coingeckoId": "dash",
+   "rank": 64,
+   "verified": true
+  },
+  {
+   "symbol": "ZRO",
+   "name": "LayerZero",
+   "coingeckoId": "layerzero",
+   "rank": 65,
+   "verified": true
+  },
+  {
+   "symbol": "TIA",
+   "name": "Celestia",
+   "coingeckoId": "celestia",
+   "rank": 66,
+   "verified": true
+  },
+  {
+   "symbol": "VET",
+   "name": "Vechain",
+   "coingeckoId": "vechain",
+   "rank": 67,
+   "verified": true
+  },
+  {
+   "symbol": "ETHFI",
+   "name": "ether.fi",
+   "coingeckoId": "ether-fi",
+   "rank": 68,
+   "verified": true
+  },
+  {
+   "symbol": "FLR",
+   "name": "Flare",
+   "coingeckoId": "flare-networks",
+   "rank": 69,
+   "verified": true
+  },
+  {
+   "symbol": "CRV",
+   "name": "Curve DAO Token",
+   "coingeckoId": "curve-dao-token",
+   "rank": 70,
+   "verified": true
+  },
+  {
+   "symbol": "RAY",
+   "name": "Raydium",
+   "coingeckoId": "raydium",
+   "rank": 71,
+   "verified": true
+  },
+  {
+   "symbol": "PYTH",
+   "name": "Pyth Network",
+   "coingeckoId": "pyth-network",
+   "rank": 72,
+   "verified": true
+  },
+  {
+   "symbol": "PENGU",
+   "name": "Pudgy Penguins",
+   "coingeckoId": "pudgy-penguins",
+   "rank": 73,
+   "verified": true
+  },
+  {
+   "symbol": "SEI",
+   "name": "Sei",
+   "coingeckoId": "sei-network",
+   "rank": 74,
+   "verified": true
+  },
+  {
+   "symbol": "FET",
+   "name": "Fetch.ai",
+   "coingeckoId": "fetch-ai",
+   "rank": 75,
+   "verified": true
+  },
+  {
+   "symbol": "VIRTUAL",
+   "name": "Virtuals Protocol",
+   "coingeckoId": "virtual-protocol",
+   "rank": 76,
+   "verified": true
+  },
+  {
+   "symbol": "TRUMP",
+   "name": "OFFICIAL TRUMP",
+   "coingeckoId": "official-trump",
+   "rank": 77,
+   "verified": true
+  },
+  {
+   "symbol": "EURC",
+   "name": "EURC",
+   "coingeckoId": "euro-coin",
+   "rank": 78,
+   "verified": true
+  },
+  {
+   "symbol": "STRK",
+   "name": "Starknet",
+   "coingeckoId": "starknet",
+   "rank": 79,
+   "verified": true
+  },
+  {
+   "symbol": "BTT",
+   "name": "BitTorrent",
+   "coingeckoId": "bittorrent",
+   "rank": 80,
+   "verified": true
+  },
+  {
+   "symbol": "PENDLE",
+   "name": "Pendle",
+   "coingeckoId": "pendle",
+   "rank": 81,
+   "verified": true
+  },
+  {
+   "symbol": "SPX",
+   "name": "SPX6900",
+   "coingeckoId": "spx6900",
+   "rank": 82,
+   "verified": true
+  },
+  {
+   "symbol": "XTZ",
+   "name": "Tezos",
+   "coingeckoId": "tezos",
+   "rank": 83,
+   "verified": true
+  },
+  {
+   "symbol": "LDO",
+   "name": "Lido DAO",
+   "coingeckoId": "lido-dao",
+   "rank": 84,
+   "verified": true
+  },
+  {
+   "symbol": "SUN",
+   "name": "Sun (New)",
+   "coingeckoId": "sun-token",
+   "rank": 85,
+   "verified": true
+  },
+  {
+   "symbol": "IMX",
+   "name": "Immutable X",
+   "coingeckoId": "immutable-x",
+   "rank": 86,
+   "verified": true
+  },
+  {
+   "symbol": "GNO",
+   "name": "Gnosis",
+   "coingeckoId": "gnosis",
+   "rank": 87,
+   "verified": true
+  },
+  {
+   "symbol": "BEST",
+   "name": "Bitpanda Ecosystem Token",
+   "coingeckoId": "bitpanda-ecosystem-token",
+   "rank": 88,
+   "verified": true
+  },
+  {
+   "symbol": "EOS",
+   "name": "EOS",
+   "coingeckoId": "eos",
+   "rank": 89,
+   "verified": true
+  },
+  {
+   "symbol": "KAIA",
+   "name": "Kaia",
+   "coingeckoId": "kaia",
+   "rank": 90,
+   "verified": true
+  },
+  {
+   "symbol": "CFX",
+   "name": "Conflux",
+   "coingeckoId": "conflux-token",
+   "rank": 91,
+   "verified": true
+  },
+  {
+   "symbol": "OP",
+   "name": "Optimism",
+   "coingeckoId": "optimism",
+   "rank": 92,
+   "verified": true
+  },
+  {
+   "symbol": "BAT",
+   "name": "Basic Attention Token",
+   "coingeckoId": "basic-attention-token",
+   "rank": 93,
+   "verified": true
+  },
+  {
+   "symbol": "BONK",
+   "name": "Bonk",
+   "coingeckoId": "bonk",
+   "rank": 94,
+   "verified": true
+  },
+  {
+   "symbol": "MON",
+   "name": "Monad",
+   "coingeckoId": "monad",
+   "rank": 95,
+   "verified": true
+  },
+  {
+   "symbol": "GRT",
+   "name": "The Graph",
+   "coingeckoId": "the-graph",
+   "rank": 96,
+   "verified": true
+  },
+  {
+   "symbol": "DCR",
+   "name": "Decred",
+   "coingeckoId": "decred",
+   "rank": 97,
+   "verified": true
+  },
+  {
+   "symbol": "LUNC",
+   "name": "Terra Classic",
+   "coingeckoId": "terra-luna",
+   "rank": 98,
+   "verified": true
+  },
+  {
+   "symbol": "AR",
+   "name": "Arweave",
+   "coingeckoId": "arweave",
+   "rank": 99,
+   "verified": true
+  },
+  {
+   "symbol": "FF",
+   "name": "Falcon Finance",
+   "coingeckoId": "falcon-finance",
+   "rank": 100,
+   "verified": true
+  },
+  {
+   "symbol": "SYRUP",
+   "name": "Maple Finance",
+   "coingeckoId": "syrup",
+   "rank": 101,
+   "verified": true
+  },
+  {
+   "symbol": "JASMY",
+   "name": "JasmyCoin",
+   "coingeckoId": "jasmycoin",
+   "rank": 102,
+   "verified": true
+  },
+  {
+   "symbol": "FLOKI",
+   "name": "FLOKI",
+   "coingeckoId": "floki",
+   "rank": 103,
+   "verified": true
+  },
+  {
+   "symbol": "RUNE",
+   "name": "THORChain",
+   "coingeckoId": "thorchain",
+   "rank": 104,
+   "verified": true
+  },
+  {
+   "symbol": "PIEVERSE",
+   "name": "Pieverse",
+   "coingeckoId": "pieverse",
+   "rank": 105,
+   "verified": true
+  },
+  {
+   "symbol": "COMP",
+   "name": "Compound",
+   "coingeckoId": "compound-governance-token",
+   "rank": 106,
+   "verified": true
+  },
+  {
+   "symbol": "ENS",
+   "name": "Ethereum Name Service",
+   "coingeckoId": "ethereum-name-service",
+   "rank": 107,
+   "verified": true
+  },
+  {
+   "symbol": "ZBCN",
+   "name": "Zebec Network",
+   "coingeckoId": "zebec-network",
+   "rank": 108,
+   "verified": true
+  },
+  {
+   "symbol": "KITE",
+   "name": "Kite",
+   "coingeckoId": "kite",
+   "rank": 109,
+   "verified": true
+  },
+  {
+   "symbol": "JTO",
+   "name": "Jito",
+   "coingeckoId": "jito-governance-token",
+   "rank": 110,
+   "verified": true
+  },
+  {
+   "symbol": "AKT",
+   "name": "Akash",
+   "coingeckoId": "akash-network",
+   "rank": 111,
+   "verified": true
+  },
+  {
+   "symbol": "IOTA",
+   "name": "IOTA",
+   "coingeckoId": "iota",
+   "rank": 112,
+   "verified": true
+  },
+  {
+   "symbol": "TWT",
+   "name": "Trust Wallet Token",
+   "coingeckoId": "trust-wallet-token",
+   "rank": 113,
+   "verified": true
+  },
+  {
+   "symbol": "TRAC",
+   "name": "OriginTrail",
+   "coingeckoId": "origintrail",
+   "rank": 114,
+   "verified": true
+  },
+  {
+   "symbol": "WIF",
+   "name": "dogwifhat",
+   "coingeckoId": "dogwifcoin",
+   "rank": 115,
+   "verified": true
+  },
+  {
+   "symbol": "THETA",
+   "name": "Theta Network",
+   "coingeckoId": "theta-token",
+   "rank": 116,
+   "verified": true
+  },
+  {
+   "symbol": "CVX",
+   "name": "Convex Finance",
+   "coingeckoId": "convex-finance",
+   "rank": 117,
+   "verified": true
+  },
+  {
+   "symbol": "SAND",
+   "name": "The Sandbox",
+   "coingeckoId": "the-sandbox",
+   "rank": 118,
+   "verified": true
+  },
+  {
+   "symbol": "KMNO",
+   "name": "Kamino",
+   "coingeckoId": "kamino",
+   "rank": 119,
+   "verified": true
+  },
+  {
+   "symbol": "MET",
+   "name": "Meteora",
+   "coingeckoId": "meteora",
+   "rank": 120,
+   "verified": true
+  },
+  {
+   "symbol": "MANA",
+   "name": "Decentraland",
+   "coingeckoId": "decentraland",
+   "rank": 121,
+   "verified": true
+  },
+  {
+   "symbol": "EIGEN",
+   "name": "EigenLayer",
+   "coingeckoId": "eigenlayer",
+   "rank": 122,
+   "verified": true
+  },
+  {
+   "symbol": "AXS",
+   "name": "Axie Infinity Shard",
+   "coingeckoId": "axie-infinity",
+   "rank": 123,
+   "verified": true
+  },
+  {
+   "symbol": "TEL",
+   "name": "Telcoin",
+   "coingeckoId": "telcoin",
+   "rank": 124,
+   "verified": true
+  },
+  {
+   "symbol": "NEO",
+   "name": "NEO",
+   "coingeckoId": "neo",
+   "rank": 125,
+   "verified": true
+  },
+  {
+   "symbol": "ZAMA",
+   "name": "Zama",
+   "coingeckoId": "zama",
+   "rank": 126,
+   "verified": true
+  },
+  {
+   "symbol": "USELESS",
+   "name": "Useless Coin",
+   "coingeckoId": "useless-3",
+   "rank": 127,
+   "verified": true
+  },
+  {
+   "symbol": "S",
+   "name": "Sonic",
+   "coingeckoId": "sonic-3",
+   "rank": 128,
+   "verified": true
+  },
+  {
+   "symbol": "ZK",
+   "name": "zkSync",
+   "coingeckoId": "zksync",
+   "rank": 129,
+   "verified": true
+  },
+  {
+   "symbol": "XCN",
+   "name": "Onyxcoin",
+   "coingeckoId": "onyxcoin",
+   "rank": 130,
+   "verified": true
+  },
+  {
+   "symbol": "GRASS",
+   "name": "Grass",
+   "coingeckoId": "grass",
+   "rank": 131,
+   "verified": true
+  },
+  {
+   "symbol": "VSN",
+   "name": "Vision",
+   "coingeckoId": "vision-3",
+   "rank": 132,
+   "verified": true
+  },
+  {
+   "symbol": "FARTCOIN",
+   "name": "Fartcoin",
+   "coingeckoId": "fartcoin",
+   "rank": 133,
+   "verified": true
+  },
+  {
+   "symbol": "BEAM",
+   "name": "Beam",
+   "coingeckoId": "beam-2",
+   "rank": 134,
+   "verified": true
+  },
+  {
+   "symbol": "XPL",
+   "name": "Plasma",
+   "coingeckoId": "plasma",
+   "rank": 135,
+   "verified": true
+  },
+  {
+   "symbol": "CHZ",
+   "name": "Chiliz",
+   "coingeckoId": "chiliz",
+   "rank": 136,
+   "verified": true
+  },
+  {
+   "symbol": "SOON",
+   "name": "Soon",
+   "coingeckoId": "soon-2",
+   "rank": 137,
+   "verified": true
+  },
+  {
+   "symbol": "B",
+   "name": "BUILDon",
+   "coingeckoId": "buildon",
+   "rank": 138,
+   "verified": true
+  },
+  {
+   "symbol": "XEC",
+   "name": "eCash",
+   "coingeckoId": "ecash",
+   "rank": 139,
+   "verified": true
+  },
+  {
+   "symbol": "1INCH",
+   "name": "1inch",
+   "coingeckoId": "1inch",
+   "rank": 140,
+   "verified": true
+  },
+  {
+   "symbol": "OMNI",
+   "name": "Omni Network",
+   "coingeckoId": "omni-network",
+   "rank": 141,
+   "verified": true
+  },
+  {
+   "symbol": "AIOZ",
+   "name": "AIOZ Network",
+   "coingeckoId": "aioz-network",
+   "rank": 142,
+   "verified": true
+  },
+  {
+   "symbol": "STPT",
+   "name": "Standard Tokenization Protocol",
+   "coingeckoId": "stp-network",
+   "rank": 143,
+   "verified": true
+  },
+  {
+   "symbol": "RSR",
+   "name": "Reserve Rights",
+   "coingeckoId": "reserve-rights-token",
+   "rank": 144,
+   "verified": true
+  },
+  {
+   "symbol": "SFP",
+   "name": "SafePal",
+   "coingeckoId": "safepal",
+   "rank": 145,
+   "verified": true
+  },
+  {
+   "symbol": "SUPER",
+   "name": "SuperVerse",
+   "coingeckoId": "superfarm",
+   "rank": 146,
+   "verified": true
+  },
+  {
+   "symbol": "AWE",
+   "name": "AWE Network",
+   "coingeckoId": "awe-network",
+   "rank": 147,
+   "verified": true
+  },
+  {
+   "symbol": "EURCV",
+   "name": "EUR CoinVertible",
+   "coingeckoId": "societe-generale-forge-eurcv",
+   "rank": 148,
+   "verified": true
+  },
+  {
+   "symbol": "GLM",
+   "name": "Golem",
+   "coingeckoId": "golem",
+   "rank": 149,
+   "verified": true
+  },
+  {
+   "symbol": "ORCA",
+   "name": "Orca",
+   "coingeckoId": "orca",
+   "rank": 150,
+   "verified": true
+  },
+  {
+   "symbol": "2Z",
+   "name": "DoubleZero",
+   "coingeckoId": "doublezero",
+   "rank": 151,
+   "verified": true
+  },
+  {
+   "symbol": "STG",
+   "name": "Stargate Finance",
+   "coingeckoId": "stargate-finance",
+   "rank": 152,
+   "verified": true
+  },
+  {
+   "symbol": "APE",
+   "name": "ApeCoin",
+   "coingeckoId": "apecoin",
+   "rank": 153,
+   "verified": true
+  },
+  {
+   "symbol": "ATH",
+   "name": "Aethir",
+   "coingeckoId": "aethir",
+   "rank": 154,
+   "verified": true
+  },
+  {
+   "symbol": "ZEN",
+   "name": "Horizen",
+   "coingeckoId": "zencash",
+   "rank": 155,
+   "verified": true
+  },
+  {
+   "symbol": "EGLD",
+   "name": "MultiversX",
+   "coingeckoId": "elrond-erd-2",
+   "rank": 156,
+   "verified": true
+  },
+  {
+   "symbol": "DEEP",
+   "name": "DeepBook Protocol",
+   "coingeckoId": "deep",
+   "rank": 157,
+   "verified": true
+  },
+  {
+   "symbol": "EDGEX",
+   "name": "edgeX",
+   "coingeckoId": "edgex",
+   "rank": 158,
+   "verified": true
+  },
+  {
+   "symbol": "GALA",
+   "name": "Gala",
+   "coingeckoId": "gala",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ZRX",
+   "name": "0x",
+   "coingeckoId": "0x",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "QTUM",
+   "name": "Qtum",
+   "coingeckoId": "qtum",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "SNX",
+   "name": "Synthetix",
+   "coingeckoId": "havven",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "FLOW",
+   "name": "Flow",
+   "coingeckoId": "flow",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "YFI",
+   "name": "yearn.finance",
+   "coingeckoId": "yearn-finance",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "KSM",
+   "name": "Kusama",
+   "coingeckoId": "kusama",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ZIL",
+   "name": "Zilliqa",
+   "coingeckoId": "zilliqa",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ENJ",
+   "name": "Enjin Coin",
+   "coingeckoId": "enjincoin",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "SUSHI",
+   "name": "SushiSwap",
+   "coingeckoId": "sushi",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "DGB",
+   "name": "DigiByte",
+   "coingeckoId": "digibyte",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "CELO",
+   "name": "Celo",
+   "coingeckoId": "celo",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "LRC",
+   "name": "Loopring",
+   "coingeckoId": "loopring",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MINA",
+   "name": "Mina",
+   "coingeckoId": "mina-protocol",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "DYDX",
+   "name": "dYdX",
+   "coingeckoId": "dydx-chain",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "UMA",
+   "name": "UMA",
+   "coingeckoId": "uma",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BAND",
+   "name": "Band Protocol",
+   "coingeckoId": "band-protocol",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "KAVA",
+   "name": "Kava",
+   "coingeckoId": "kava",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "KNC",
+   "name": "Kyber Network Crystal",
+   "coingeckoId": "kyber-network-crystal",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "HOME",
+   "name": "DeFi App",
+   "coingeckoId": "defi-app",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "LSK",
+   "name": "Lisk",
+   "coingeckoId": "lisk",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "GLMR",
+   "name": "Moonbeam",
+   "coingeckoId": "moonbeam",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ASTR",
+   "name": "Astar",
+   "coingeckoId": "astar",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "W",
+   "name": "Wormhole",
+   "coingeckoId": "wormhole",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "RPL",
+   "name": "Rocket Pool",
+   "coingeckoId": "rocket-pool",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ILV",
+   "name": "Illuvium",
+   "coingeckoId": "illuvium",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "HNT",
+   "name": "Helium",
+   "coingeckoId": "helium",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "RVN",
+   "name": "Ravencoin",
+   "coingeckoId": "ravencoin",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BNT",
+   "name": "Bancor",
+   "coingeckoId": "bancor",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "COTI",
+   "name": "COTI",
+   "coingeckoId": "coti",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "SYND",
+   "name": "Syndicate",
+   "coingeckoId": "syndicate-2",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "CORE",
+   "name": "Core",
+   "coingeckoId": "coredaoorg",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ALICE",
+   "name": "MyNeighborAlice",
+   "coingeckoId": "my-neighbor-alice",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ANKR",
+   "name": "Ankr",
+   "coingeckoId": "ankr",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "STORJ",
+   "name": "Storj",
+   "coingeckoId": "storj",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ONT",
+   "name": "Ontology",
+   "coingeckoId": "ontology",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MBG",
+   "name": "MultiBank Group",
+   "coingeckoId": "multibank-group",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ONE",
+   "name": "Harmony",
+   "coingeckoId": "harmony",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "IOTX",
+   "name": "IoTeX",
+   "coingeckoId": "iotex",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BRETT",
+   "name": "Brett",
+   "coingeckoId": "based-brett",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "POPCAT",
+   "name": "Popcat",
+   "coingeckoId": "popcat",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BOME",
+   "name": "BOOK OF MEME",
+   "coingeckoId": "book-of-meme",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "PNUT",
+   "name": "Peanut the Squirrel",
+   "coingeckoId": "peanut-the-squirrel",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ZORA",
+   "name": "Zora",
+   "coingeckoId": "zora",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "DYM",
+   "name": "Dymension",
+   "coingeckoId": "dymension",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "METIS",
+   "name": "Metis",
+   "coingeckoId": "metis-token",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "GOAT",
+   "name": "Goatseus Maximus",
+   "coingeckoId": "goatseus-maximus",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "TURBO",
+   "name": "Turbo",
+   "coingeckoId": "turbo",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BERA",
+   "name": "Berachain",
+   "coingeckoId": "berachain-bera",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "STRAX",
+   "name": "Stratis",
+   "coingeckoId": "stratis",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BLAST",
+   "name": "Blast",
+   "coingeckoId": "blast",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "DUSK",
+   "name": "Dusk",
+   "coingeckoId": "dusk-network",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "NKN",
+   "name": "NKN",
+   "coingeckoId": "nkn",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ACT",
+   "name": "Act I: The AI Prophecy",
+   "coingeckoId": "act-i-the-ai-prophecy",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "LINEA",
+   "name": "Linea",
+   "coingeckoId": "linea",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "WAXP",
+   "name": "WAX",
+   "coingeckoId": "wax",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BAL",
+   "name": "Balancer",
+   "coingeckoId": "balancer",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "POWR",
+   "name": "Powerledger",
+   "coingeckoId": "power-ledger",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MOVR",
+   "name": "Moonriver",
+   "coingeckoId": "moonriver",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ROSE",
+   "name": "Oasis",
+   "coingeckoId": "oasis-network",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "LPT",
+   "name": "Livepeer",
+   "coingeckoId": "livepeer",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "NOT",
+   "name": "Notcoin",
+   "coingeckoId": "notcoin",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "CTSI",
+   "name": "Cartesi",
+   "coingeckoId": "cartesi",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ARKM",
+   "name": "Arkham",
+   "coingeckoId": "arkham",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "YGG",
+   "name": "Yield Guild Games",
+   "coingeckoId": "yield-guild-games",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "TREE",
+   "name": "Treehouse",
+   "coingeckoId": "treehouse",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ICX",
+   "name": "ICON",
+   "coingeckoId": "icon",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MLN",
+   "name": "Enzyme",
+   "coingeckoId": "melon",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ID",
+   "name": "SPACE ID",
+   "coingeckoId": "space-id",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "NMR",
+   "name": "Numeraire",
+   "coingeckoId": "numeraire",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "OSMO",
+   "name": "Osmosis",
+   "coingeckoId": "osmosis",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "GMX",
+   "name": "GMX",
+   "coingeckoId": "gmx",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "IP",
+   "name": "Story",
+   "coingeckoId": "story-2",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "KAITO",
+   "name": "Kaito",
+   "coingeckoId": "kaito",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "XYM",
+   "name": "Symbol",
+   "coingeckoId": "symbol",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "FLOCK",
+   "name": "FLock.io",
+   "coingeckoId": "flock-2",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MOODENG",
+   "name": "Moo Deng",
+   "coingeckoId": "moo-deng",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MEW",
+   "name": "cat in a dogs world",
+   "coingeckoId": "cat-in-a-dogs-world",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "AIXBT",
+   "name": "aixbt by Virtuals",
+   "coingeckoId": "aixbt",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "NEIRO",
+   "name": "Neiro",
+   "coingeckoId": "neiro-3",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MOG",
+   "name": "Mog Coin",
+   "coingeckoId": "mog-coin",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MOVE",
+   "name": "Movement",
+   "coingeckoId": "movement",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "WAL",
+   "name": "Walrus",
+   "coingeckoId": "walrus-2",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "AXL",
+   "name": "Axelar",
+   "coingeckoId": "axelar",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ACX",
+   "name": "Across Protocol",
+   "coingeckoId": "across-protocol",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "TAIKO",
+   "name": "Taiko",
+   "coingeckoId": "taiko",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MEME",
+   "name": "Memecoin",
+   "coingeckoId": "memecoin-2",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "XYO",
+   "name": "XYO",
+   "coingeckoId": "xyo-network",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ATA",
+   "name": "Automata Network",
+   "coingeckoId": "automata",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "AZTEC",
+   "name": "Aztec",
+   "coingeckoId": "aztec",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "WOO",
+   "name": "WOO Network",
+   "coingeckoId": "woo-network",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "NPC",
+   "name": "Non-Playable Coin",
+   "coingeckoId": "non-playable-coin",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "CGPT",
+   "name": "ChainGPT",
+   "coingeckoId": "chaingpt",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "SOSO",
+   "name": "SoSoValue",
+   "coingeckoId": "sosovalue",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "SOLV",
+   "name": "Solv Protocol",
+   "coingeckoId": "solv-protocol",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BIO",
+   "name": "Bio Protocol",
+   "coingeckoId": "bio-protocol",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "ME",
+   "name": "Magic Eden",
+   "coingeckoId": "magic-eden",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "POLS",
+   "name": "Polkastarter",
+   "coingeckoId": "polkastarter",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MBOX",
+   "name": "MOBOX",
+   "coingeckoId": "mobox",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "PYR",
+   "name": "Vulcan Forged PYR",
+   "coingeckoId": "vulcan-forged",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "SAHARA",
+   "name": "Sahara AI",
+   "coingeckoId": "sahara-ai",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "BOBA",
+   "name": "Boba Network",
+   "coingeckoId": "boba-network",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "MTL",
+   "name": "Metal",
+   "coingeckoId": "metal",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "GOATS",
+   "name": "GOATS",
+   "coingeckoId": "goats",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "TMAI",
+   "name": "Token Metrics AI",
+   "coingeckoId": "token-metrics-ai",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "VOXEL",
+   "name": "Voxies",
+   "coingeckoId": "voxies",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "AVA",
+   "name": "AVA",
+   "coingeckoId": "concierge-io",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "SKL",
+   "name": "SKALE",
+   "coingeckoId": "skale",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "GHST",
+   "name": "Aavegotchi",
+   "coingeckoId": "aavegotchi",
+   "rank": null,
+   "verified": false
+  },
+  {
+   "symbol": "XNO",
+   "name": "Nano",
+   "coingeckoId": "nano",
+   "rank": null,
+   "verified": false
+  }
+ ]
+}

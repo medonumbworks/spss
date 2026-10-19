@@ -12,10 +12,12 @@ import dev.cryptopulse.core.model.DerivativesSnapshot
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.MarketContext
 import dev.cryptopulse.core.model.MarketData
+import dev.cryptopulse.core.model.ListingSource
 import dev.cryptopulse.core.model.MarketSnapshot
 import dev.cryptopulse.core.model.PricePoint
 import dev.cryptopulse.core.model.RefreshStatus
 import dev.cryptopulse.core.model.SentimentSummary
+import dev.cryptopulse.core.model.SourceStatus
 import dev.cryptopulse.core.sources.CoinGeckoSource
 import dev.cryptopulse.core.sources.DerivativesSource
 import dev.cryptopulse.core.sources.FearGreedSource
@@ -120,11 +122,17 @@ class MarketRepository(
             val context = loadContext(markets, cfg, force, warnings)
             val funding = loadFunding(cfg, force, warnings)
 
-            setStatus("Computing forecasts", 0.75f)
+            setStatus("Reading the cloud sentiment hub", 0.7f)
+            val feed = if (cfg.sentimentFeedUrl.isNotBlank()) sentiment.feed(force) else null
+            sentiment.feedState().let { (st, msg) -> if (feed == null && msg != null && st != SourceStatus.DISABLED) warnings += msg }
+
+            setStatus("Computing forecasts", 0.8f)
             val nowMs = clock.nowMs()
-            val rows = uni.assets.map { asset ->
+            val visible = visibleAssets(uni, markets, warnings)
+            val rows = visible.map { asset ->
                 val market = markets[asset.symbol]
-                val sent = sentiment.cached(asset.symbol) ?: current?.rows?.firstOrNull { it.asset.symbol == asset.symbol }?.sentiment
+                val sent = sentiment.cached(asset.symbol) ?: sentiment.fromFeed(asset, feed)
+                    ?: current?.rows?.firstOrNull { it.asset.symbol == asset.symbol }?.sentiment
                 val forecast = market?.let { safeForecast(asset, it, emptyList(), emptyList(), context, sent, funding[asset.symbol], null, nowMs) }
                 AssetRow(asset, market, forecast, sent)
             }.sortedWith(ROW_ORDER)
@@ -134,7 +142,7 @@ class MarketRepository(
                 rows = rows,
                 context = context,
                 universeSource = uni.source,
-                universeSize = uni.assets.size,
+                universeSize = visible.size,
                 fetchedAtMs = nowMs,
                 warnings = warnings.distinct(),
             )
@@ -217,12 +225,26 @@ class MarketRepository(
     }
 
     /**
-     * Fetches per-asset sentiment for the [n] largest assets (by market cap) and updates their rows
-     * one by one, so the UI can show chips appearing progressively. Rate limiting keeps this slow on purpose.
+     * Background sentiment collection (slow on purpose because of free-tier rate limits):
+     *  1. market-wide mood (r/CryptoCurrency, crypto RSS, public Telegram channels, cloud hub),
+     *  2. per-asset sentiment for the [n] largest assets, updating rows one by one so the UI fills in.
+     * Forecasts of updated rows are recomputed with the new sentiment.
      */
-    suspend fun enrichSentimentForTop(n: Int = config.backgroundSentimentTopN, onProgress: (done: Int, total: Int) -> Unit = { _, _ -> }) {
+    suspend fun enrichSentiment(n: Int = config.backgroundSentimentTopN, onProgress: (done: Int, total: Int) -> Unit = { _, _ -> }) {
+        val mood = try {
+            sentiment.globalMood()
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            logger.warn(TAG, "global mood failed", e)
+            null
+        }
+        if (mood != null) {
+            lastContext = lastContext?.copy(globalSentiment = mood)
+            _snapshot.update { snap -> snap?.copy(context = snap.context?.copy(globalSentiment = mood) ?: lastContext) }
+        }
         val snap = _snapshot.value ?: return
-        val targets = snap.rows.filter { it.market != null }.take(n)
+        val targets = snap.rows.filter { it.market != null && it.asset.symbol !in DefaultStablecoins }.take(n)
         targets.forEachIndexed { index, row ->
             val s = try {
                 sentiment.forAsset(row.asset)
@@ -242,6 +264,22 @@ class MarketRepository(
             onProgress(index + 1, targets.size)
         }
         _snapshot.value?.let { persist(it) }
+    }
+
+    /**
+     * In bundled-snapshot mode, unverified research candidates are hidden when their market cap is above the
+     * smallest verified asset (the snapshot is the contiguous top of Bitpanda's list, so a bigger coin that is
+     * missing from it is not on Bitpanda). Live Bitpanda lists are shown as they are.
+     */
+    private fun visibleAssets(uni: UniverseResult, markets: Map<String, MarketData>, warnings: MutableList<String>): List<Asset> {
+        if (uni.source != ListingSource.BUNDLED_SNAPSHOT) return uni.assets
+        val verifiedCaps = uni.assets.filter { it.verified }.mapNotNull { markets[it.symbol]?.marketCap?.takeIf { c -> c > 0 } }
+        if (verifiedCaps.size < 20) return uni.assets
+        val threshold = verifiedCaps.min() * 1.15
+        val hidden = uni.assets.filter { a -> !a.verified && (markets[a.symbol]?.marketCap ?: 0.0) > threshold }
+        if (hidden.isNotEmpty()) warnings += "Hid ${hidden.size} unconfirmed coins whose market cap shows they are not on Bitpanda"
+        val hiddenSymbols = hidden.mapTo(HashSet()) { it.symbol }
+        return uni.assets.filter { it.symbol !in hiddenSymbols }
     }
 
     // ------------------------------------------------------------------------------------------
@@ -336,14 +374,7 @@ class MarketRepository(
             is SourceResult.Success -> r.value.map { it.coingeckoId }
             is SourceResult.Failure -> cached?.trendingCoingeckoIds ?: emptyList()
         }
-        val globalSent = try {
-            sentiment.globalMood(force)
-        } catch (e: CancellationException) {
-            throw e
-        } catch (e: Exception) {
-            warnings += "Market mood: ${e.message}"
-            cached?.globalSentiment
-        }
+        val globalSent = sentiment.cachedGlobalMood() ?: cached?.globalSentiment
         val ctx = MarketContext(
             fearGreed = fg,
             global = global,
@@ -433,11 +464,12 @@ class MarketRepository(
     companion object {
         const val TAG = "MarketRepository"
         const val SNAPSHOT_KEY = "market_snapshot_v1"
-        const val DETAIL_HISTORY_DAYS = 180
+        const val DETAIL_HISTORY_DAYS = 365
         private const val HOUR_MS = 3_600_000L
         private const val DAY_MS = 86_400_000L
 
         private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
+        private val DefaultStablecoins = dev.cryptopulse.core.analysis.forecast.DefaultForecastEngine.STABLECOINS
 
         val ROW_ORDER: Comparator<AssetRow> = compareBy<AssetRow> { it.market?.marketCap == null }
             .thenByDescending { it.market?.marketCap ?: 0.0 }

@@ -20,8 +20,17 @@ data class AppConfig(
     val newsEnabled: Boolean = true,
     val derivativesEnabled: Boolean = true,
     val fearGreedEnabled: Boolean = true,
-    /** Public Telegram channels scanned via t.me/s/<channel>. */
-    val telegramChannels: List<String> = DEFAULT_TELEGRAM_CHANNELS,
+    /**
+     * Extra/override public Telegram channels scanned via t.me/s/<channel>. Empty = use the bundled
+     * directory `telegram/channels.json` (hundreds of curated channels).
+     */
+    val telegramChannels: List<String> = emptyList(),
+    /** How many directory channels the phone scans itself (the cloud hub scans all of them). */
+    val telegramMaxChannels: Int = 40,
+    /** Scan every channel in the directory on the device too (slower, uses more data). */
+    val telegramScanAll: Boolean = false,
+    /** Free cloud sentiment feed published by the GitHub Actions hub (tools/sentiment_hub). Empty = off. */
+    val sentimentFeedUrl: String = DEFAULT_SENTIMENT_FEED_URL,
     /** Subreddits searched for per-asset sentiment (in addition to a site-wide search). */
     val subreddits: List<String> = DEFAULT_SUBREDDITS,
     /** How many top-market-cap assets get per-asset sentiment in the background after each refresh. */
@@ -37,13 +46,7 @@ data class AppConfig(
     val coingeckoMappingPages: Int = 4,
 ) {
     companion object {
-        val DEFAULT_TELEGRAM_CHANNELS: List<String> = listOf(
-            "cointelegraph",
-            "CoinDeskGlobal",
-            "whale_alert_io",
-            "binance_announcements",
-            "crypto",
-        )
+        const val DEFAULT_SENTIMENT_FEED_URL: String = "https://raw.githubusercontent.com/medonumbworks/spss/sentiment-feed/feed.json"
         val DEFAULT_SUBREDDITS: List<String> = listOf(
             "CryptoCurrency",
             "CryptoMarkets",

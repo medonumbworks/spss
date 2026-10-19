@@ -83,7 +83,13 @@ interface CoinGeckoSource {
 
     /** `GET /global`. */
     suspend fun global(): SourceResult<GlobalStats>
+
+    /** `GET /coins/list`: every coin id with symbol and name (used to map Bitpanda symbols to CoinGecko ids). */
+    suspend fun coinsList(): SourceResult<List<CoinListEntry>>
 }
+
+@Serializable
+data class CoinListEntry(val id: String, val symbol: String, val name: String)
 
 // ---------------------------------------------------------------------------------------------
 // Social and news

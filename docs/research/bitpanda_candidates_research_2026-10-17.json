@@ -1,0 +1,8876 @@
+{
+ "source": "Multi-angle research run on 2026-10-17 (official pages, listing announcements, aggregators, indices, community code, model knowledge). votes = number of independent research angles that reported the symbol.",
+ "merged_raw": [
+  {
+   "symbol": "BTC",
+   "name": "Bitcoin",
+   "coingecko_id": "bitcoin",
+   "votes": 6,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/bitcoin-btc",
+    "model knowledge",
+    "https://www.bitpanda.com/en/prices/bitcoin-btc",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ETH",
+   "name": "Ethereum",
+   "coingecko_id": "ethereum",
+   "votes": 6,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/ethereum-eth",
+    "model knowledge",
+    "https://www.bitpanda.com/en/prices/ethereum-eth",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DOGE",
+   "name": "Dogecoin",
+   "coingecko_id": "dogecoin",
+   "votes": 6,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/doge-doge",
+    "https://blog.bitpanda.com/en/best-vips-exclusive-coin-vote-2",
+    "https://www.bitpanda.com/en/prices/cryptocurrencies/meme-coins + ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DOT",
+   "name": "Polkadot",
+   "coingecko_id": "polkadot",
+   "votes": 6,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/polkadot-dot",
+    "https://blog.bitpanda.com/en/best-vips-coin-vote-3",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json (BITPANDA entry = snapshot of api.bitpanda.com/v1/ticker keys)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AVAX",
+   "name": "Avalanche",
+   "coingecko_id": "avalanche-2",
+   "votes": 6,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/avalanche-avax",
+    "https://criptonoticias.com/mercados/avalanche-criptomoneda-iota-lideran-top-semanal-alzas-superan-100",
+    "https://www.bitpanda.com/en/prices/crypto-index/bci25 + ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SUI",
+   "name": "Sui",
+   "coingecko_id": "sui",
+   "votes": 6,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/sui-sui",
+    "https://blog.bitpanda.com/en/bitpanda-now-offers-300-tradeable-crypto-assets-and-2600-digital-assets",
+    "https://www.bitpanda.com/en/buy/sui-sui",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ETC",
+   "name": "Ethereum Classic",
+   "coingecko_id": "ethereum-classic",
+   "votes": 6,
+   "max_confidence": 0.98,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/ethereum-classic-etc",
+    "https://blog.bitpanda.com/en/bitpanda-recap-november-2018",
+    "https://www.bitpanda.com/en/prices/ethereum-classic-etc",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "UNI",
+   "name": "Uniswap",
+   "coingecko_id": "uniswap",
+   "votes": 6,
+   "max_confidence": 0.98,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/uniswap-uni",
+    "https://blog.bitpanda.com/en/best-vips-coin-vote-3",
+    "ticker snapshot + https://blog.bitpanda.com/en/6-new-defi-tokens-make-their-way-to-bitpanda-and-were-celebrating-with-a-eu55-000-promo",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AAVE",
+   "name": "Aave",
+   "coingecko_id": "aave",
+   "votes": 6,
+   "max_confidence": 0.98,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/aave-aave",
+    "https://blog.bitpanda.com/en/6-new-defi-tokens-are-now-available-on-bitpanda-filecoin-uma-aave-and-more",
+    "https://www.bitpanda.com/en/prices/aave-aave",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "POL",
+   "name": "Polygon (ex-MATIC)",
+   "coingecko_id": "polygon-ecosystem-token",
+   "votes": 6,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/polygon-pol",
+    "https://status.bitpanda.com/incidents/lc032dj1fnb7",
+    "https://www.bitpanda.com/en/prices/polygon-pol",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HBAR",
+   "name": "Hedera",
+   "coingecko_id": "hedera-hashgraph",
+   "votes": 6,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/hedera-hbar",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "ticker snapshot + t3n/blog 13-coin batch",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FIL",
+   "name": "Filecoin",
+   "coingecko_id": "filecoin",
+   "votes": 6,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/filecoin-fil",
+    "https://blog.bitpanda.com/en/6-new-defi-tokens-are-now-available-on-bitpanda-filecoin-uma-aave-and-more",
+    "https://www.bitpanda.com/en/prices/filecoin-fil",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VET",
+   "name": "VeChain",
+   "coingecko_id": "vechain",
+   "votes": 6,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/vechain-vet",
+    "https://blog.bitpanda.com/en/best-vips-exclusive-coin-vote-2",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ARB",
+   "name": "Arbitrum",
+   "coingecko_id": "arbitrum",
+   "votes": 6,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/arbitrum-arb",
+    "https://blog.bitpanda.com/en/bitpanda-now-offers-300-tradeable-crypto-assets-and-2600-digital-assets",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NEAR",
+   "name": "NEAR Protocol",
+   "coingecko_id": "near",
+   "votes": 6,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/five-new-coins-available-stake",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "ticker snapshot + https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NEO",
+   "name": "NEO",
+   "coingecko_id": "neo",
+   "votes": 6,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/neo-neo",
+    "https://blog.bitpanda.com/en/bitpanda-recap-november-2018",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SAND",
+   "name": "The Sandbox",
+   "coingecko_id": "the-sandbox",
+   "votes": 6,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "ticker snapshot + 13-coin batch blog",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "COMP",
+   "name": "Compound",
+   "coingecko_id": "compound-governance-token",
+   "votes": 6,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/compound-comp",
+    "https://blog.bitpanda.com/en/best-vips-coin-vote-3",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GALA",
+   "name": "Gala",
+   "coingecko_id": "gala",
+   "votes": 6,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/gala-gala",
+    "https://blog.bitpanda.com/en/cryptowednesday-3-bitpanda-explores-nfts-and-game-changers-metaverse",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ZRX",
+   "name": "0x",
+   "coingecko_id": "0x",
+   "votes": 6,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://support.bitpanda.com/hc/en-us/articles/360001657820-What-cryptocurrency-address-formats-are-used-on-Bitpanda",
+    "https://blog.bitpanda.com/en/announcing-erc20-support-on-bitpanda",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "EGLD",
+   "name": "MultiversX",
+   "coingecko_id": "elrond-erd-2",
+   "votes": 6,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://multiversx.com/blog/egold-listed-on-bitpanda",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "QTUM",
+   "name": "Qtum",
+   "coingecko_id": "qtum",
+   "votes": 6,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/qtum-qtum",
+    "https://blog.bitpanda.com/en/best-vips-exclusive-coin-vote-2",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SNX",
+   "name": "Synthetix",
+   "coingecko_id": "havven",
+   "votes": 6,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/synthetix-snx",
+    "https://blog.bitpanda.com/en/best-vips-coin-vote-3",
+    "ticker snapshot + Bitpanda DeFi blog",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FLOW",
+   "name": "Flow",
+   "coingecko_id": "flow",
+   "votes": 6,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/cryptowednesday-3-bitpanda-explores-nfts-and-game-changers-metaverse",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "YFI",
+   "name": "yearn.finance",
+   "coingecko_id": "yearn-finance",
+   "votes": 6,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/best-vips-coin-vote-3",
+    "ticker snapshot + Bitpanda DeFi blog",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XRP",
+   "name": "XRP",
+   "coingecko_id": "ripple",
+   "votes": 5,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/xrp-xrp",
+    "https://www.bitpanda.com/en/prices/xrp-xrp",
+    "model knowledge",
+    "https://bitpanda.com/en/prices/crypto-index/bci5"
+   ]
+  },
+  {
+   "symbol": "SOL",
+   "name": "Solana",
+   "coingecko_id": "solana",
+   "votes": 5,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/solana-sol",
+    "https://www.bitpanda.com/en/prices/solana-sol",
+    "model knowledge",
+    "https://bitpanda.com/en/prices/crypto-index/bci5 ; https://blog.bitpanda.com/en/bitpanda-staking-here"
+   ]
+  },
+  {
+   "symbol": "ADA",
+   "name": "Cardano",
+   "coingecko_id": "cardano",
+   "votes": 5,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/cardano-ada",
+    "https://www.bitpanda.com/en/prices/crypto-index/bci25 + ticker snapshot",
+    "model knowledge",
+    "https://www.bitpanda.com/de/prices/crypto-index/bci10 ; https://support.bitpanda.com/hc/en-gb/articles/24873644625820-Bitpanda-Passive-Earn"
+   ]
+  },
+  {
+   "symbol": "LINK",
+   "name": "Chainlink",
+   "coingecko_id": "chainlink",
+   "votes": 5,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/chainlink-link",
+    "https://www.bitpanda.com/en/prices/chainlink-link",
+    "model knowledge",
+    "https://www.bitpanda.com/de/prices/crypto-index/bci10 ; https://www.bitpanda.com/de-at/preise/bci-infrastructure-leaders-bciil"
+   ]
+  },
+  {
+   "symbol": "LTC",
+   "name": "Litecoin",
+   "coingecko_id": "litecoin",
+   "votes": 5,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/litecoin-ltc",
+    "https://www.bitpanda.com/en/buy/litecoin-ltc",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 3) + model knowledge"
+   ]
+  },
+  {
+   "symbol": "XLM",
+   "name": "Stellar",
+   "coingecko_id": "stellar",
+   "votes": 5,
+   "max_confidence": 1,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/stellar-xlm",
+    "https://www.bitpanda.com/en/prices/crypto-index/bci25 + ticker snapshot",
+    "model knowledge",
+    "https://www.bitpanda.com/fr/prices/crypto-index/bci25"
+   ]
+  },
+  {
+   "symbol": "USDC",
+   "name": "USD Coin",
+   "coingecko_id": "usd-coin",
+   "votes": 5,
+   "max_confidence": 0.98,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/usd-coin-usdc",
+    "https://www.bitpanda.com/en/prices/usd-coin-usdc",
+    "model knowledge",
+    "https://support.bitpanda.com/hc/en-gb/articles/16663481714844-Bitpanda-Fusion (Fusion quote stablecoin) ; MoneyMoney coinDict id 30"
+   ]
+  },
+  {
+   "symbol": "TRX",
+   "name": "Tron",
+   "coingecko_id": "tron",
+   "votes": 5,
+   "max_confidence": 0.98,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/buy/tron-trx",
+    "https://www.bitpanda.com/en/buy/tron-trx",
+    "model knowledge",
+    "https://www.bitpanda.com/de/prices/crypto-index/bci10 ; https://blog.bitpanda.com/en/bitpanda-staking-here"
+   ]
+  },
+  {
+   "symbol": "BCH",
+   "name": "Bitcoin Cash",
+   "coingecko_id": "bitcoin-cash",
+   "votes": 5,
+   "max_confidence": 0.98,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/bitcoin-cash-bch",
+    "ticker snapshot (SimpleBitcoinWidget cryptowidgetcoins_v2.json BITPANDA entry)",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 9) ; original BCI5 member"
+   ]
+  },
+  {
+   "symbol": "SHIB",
+   "name": "Shiba Inu",
+   "coingecko_id": "shiba-inu",
+   "votes": 5,
+   "max_confidence": 0.98,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/shiba-inu-shib",
+    "ticker snapshot + https://www.bitpanda.com/en/prices/cryptocurrencies/meme-coins",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 193)"
+   ]
+  },
+  {
+   "symbol": "BNB",
+   "name": "BNB",
+   "coingecko_id": "binancecoin",
+   "votes": 5,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/binance-coin-bnb",
+    "https://www.bitpanda.com/en/prices (highlighted) + ticker snapshot",
+    "model knowledge",
+    "https://bitpanda.com/en/prices/crypto-index/bci5 (BCI5/BCI10 constituent; historically an index-only coin on Bitpanda, individual tradability unverified)"
+   ]
+  },
+  {
+   "symbol": "APT",
+   "name": "Aptos",
+   "coingecko_id": "aptos",
+   "votes": 5,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/aptos-apt",
+    "ticker snapshot",
+    "model knowledge",
+    "https://www.bitpanda.com/de/prices/bci-smart-contract-leaders-bcisl"
+   ]
+  },
+  {
+   "symbol": "ICP",
+   "name": "Internet Computer",
+   "coingecko_id": "internet-computer",
+   "votes": 5,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/internet-computer-icp",
+    "model knowledge",
+    "model knowledge",
+    "https://www.bitpanda.com/de/prices/bci-smart-contract-leaders-bcisl"
+   ]
+  },
+  {
+   "symbol": "ATOM",
+   "name": "Cosmos",
+   "coingecko_id": "cosmos",
+   "votes": 5,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/cosmos-atom",
+    "ticker snapshot + https://raw.githubusercontent.com/keneanung/home-assistant-bitpanda/main/tests/test_api.py (Public API fixture)",
+    "model knowledge",
+    "https://support.bitpanda.com/hc/en-gb/articles/24873644625820-Bitpanda-Passive-Earn"
+   ]
+  },
+  {
+   "symbol": "PEPE",
+   "name": "Pepe",
+   "coingecko_id": "pepe",
+   "votes": 5,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/pepe-pepe",
+    "https://blog.bitpanda.com/en/bitpanda-now-offers-300-tradeable-crypto-assets-and-2600-digital-assets",
+    "ticker snapshot + https://www.basicthinking.de/blog/2025/05/06/1-million-pepe-geschenkt-bitpanda/",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XTZ",
+   "name": "Tezos",
+   "coingecko_id": "tezos",
+   "votes": 5,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/five-new-coins-available-stake",
+    "ticker snapshot",
+    "model knowledge",
+    "https://blog.bitpanda.com/en/bitpanda-staking-here ; https://kiln.fi/post/staking-is-now-available-on-bitpanda-powered-by-kiln"
+   ]
+  },
+  {
+   "symbol": "KAS",
+   "name": "Kaspa",
+   "coingecko_id": "kaspa",
+   "votes": 5,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/kaspa-kas",
+    "https://kaspa.org/?p=45852",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BAT",
+   "name": "Basic Attention Token",
+   "coingecko_id": "basic-attention-token",
+   "votes": 5,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/basic-attention-token-bat",
+    "https://www.bitpanda.com/en/prices/basic-attention-token-bat",
+    "model knowledge",
+    "https://raw.githubusercontent.com/matteoantoci/mcp-bitpanda/main/docs/bitpanda-api.md (asset-wallets example) ; MoneyMoney coinDict id 34"
+   ]
+  },
+  {
+   "symbol": "BONK",
+   "name": "Bonk",
+   "coingecko_id": "bonk",
+   "votes": 5,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/bonk-bonk",
+    "https://journalducoin.com/solana/memecoins-en-folie-nouveaux-inscrits-bitpanda-gagner-400000-bonk-gratuits/",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FLOKI",
+   "name": "FLOKI",
+   "coingecko_id": "floki",
+   "votes": 5,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/floki-floki",
+    "https://www.btc-echo.de/news/bitpanda-so-erhaeltst-du-50-000-floki-floki-inu-gratis-sponsored-181831/",
+    "https://www.bitpanda.com/en/prices/floki-floki",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "USDT",
+   "name": "Tether",
+   "coingecko_id": "tether",
+   "votes": 5,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/en-gb/prices/tether-usdt",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (bitpanda.lua coinDict id 27) + model knowledge"
+   ]
+  },
+  {
+   "symbol": "INJ",
+   "name": "Injective",
+   "coingecko_id": "injective-protocol",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/injective-inj",
+    "ticker snapshot",
+    "model knowledge",
+    "https://support.bitpanda.com/hc/en-gb/articles/24873644625820-Bitpanda-Passive-Earn"
+   ]
+  },
+  {
+   "symbol": "TAO",
+   "name": "Bittensor",
+   "coingecko_id": "bittensor",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/bittensor-tao",
+    "https://www.bitpanda.com/en/prices/bittensor-tao",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-infrastructure-leaders-bciil ; https://rankia.de/bitpanda-tao-staking-aktion-2026-13-apy-auf-bittensor/ (Bitpanda TAO staking promo Apr-May 2026)"
+   ]
+  },
+  {
+   "symbol": "RENDER",
+   "name": "Render",
+   "coingecko_id": "render-token",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/render-render",
+    "https://www.bitpanda.com/en/prices/render-render",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-infrastructure-leaders-bciil"
+   ]
+  },
+  {
+   "symbol": "FET",
+   "name": "Artificial Superintelligence Alliance",
+   "coingecko_id": "fetch-ai",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/fetchai-fet",
+    "ticker snapshot",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-infrastructure-leaders-bciil"
+   ]
+  },
+  {
+   "symbol": "CRV",
+   "name": "Curve DAO Token",
+   "coingecko_id": "curve-dao-token",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/curve-dao-token-crv",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "ticker snapshot + 13-coin batch blog",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ONDO",
+   "name": "Ondo",
+   "coingecko_id": "ondo-finance",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/ondo-ondo",
+    "https://www.bitpanda.com/en/prices/ondo-ondo",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-defi-leaders-bcidl"
+   ]
+  },
+  {
+   "symbol": "WLD",
+   "name": "Worldcoin",
+   "coingecko_id": "worldcoin-wld",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/worldcoin-wld",
+    "https://www.bitpanda.com/en/prices/worldcoin-wld",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-infrastructure-leaders-bciil ; one BCI25 snapshot"
+   ]
+  },
+  {
+   "symbol": "IMX",
+   "name": "Immutable",
+   "coingecko_id": "immutable-x",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en-gb/prices/immutable-x-imx",
+    "https://blog.bitpanda.com/en/cryptowednesday-4-bitpanda-decodes-cryptography-and-zero-knowledge-proof",
+    "https://www.bitpanda.com/en-gb/prices/immutable-x-imx",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CHZ",
+   "name": "Chiliz",
+   "coingecko_id": "chiliz",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://support.bitpanda.com/hc/en-us/articles/360001657820-What-cryptocurrency-address-formats-are-used-on-Bitpanda",
+    "ticker snapshot",
+    "model knowledge",
+    "https://www.bitpanda.com/en-gb/prices/bci-media-entertainment-leaders-bciml"
+   ]
+  },
+  {
+   "symbol": "1INCH",
+   "name": "1inch",
+   "coingecko_id": "1inch",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/the-internet-computer-icp-now-new-on-bitpanda-plus-sol-1inch-and-iost",
+    "ticker snapshot",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 129)"
+   ]
+  },
+  {
+   "symbol": "GRT",
+   "name": "The Graph",
+   "coingecko_id": "the-graph",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/five-new-coins-available-stake",
+    "ticker snapshot + Bitpanda blog",
+    "model knowledge",
+    "https://blog.bitpanda.com/en/bitpanda-staking-here"
+   ]
+  },
+  {
+   "symbol": "MANA",
+   "name": "Decentraland",
+   "coingecko_id": "decentraland",
+   "votes": 5,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "ticker snapshot",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 138)"
+   ]
+  },
+  {
+   "symbol": "ZEC",
+   "name": "Zcash",
+   "coingecko_id": "zcash",
+   "votes": 5,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/zcash-zec",
+    "ticker snapshot",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 18) ; original BCI25 member"
+   ]
+  },
+  {
+   "symbol": "KSM",
+   "name": "Kusama",
+   "coingecko_id": "kusama",
+   "votes": 5,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/kusama-ksm",
+    "ticker snapshot",
+    "model knowledge",
+    "https://blog.bitpanda.com/en/bitpanda-staking-here ; Kiln post"
+   ]
+  },
+  {
+   "symbol": "ENA",
+   "name": "Ethena",
+   "coingecko_id": "ethena",
+   "votes": 5,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/ethena-ena",
+    "https://www.bitpanda.com/en/prices/ethena-ena",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-defi-leaders-bcidl"
+   ]
+  },
+  {
+   "symbol": "AXS",
+   "name": "Axie Infinity",
+   "coingecko_id": "axie-infinity",
+   "votes": 5,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/axie-infinity-shard-axs",
+    "https://www.bitpanda.com/en/prices/axie-infinity-shard-axs",
+    "model knowledge",
+    "https://www.bitpanda.com/en-gb/prices/bci-media-entertainment-leaders-bciml"
+   ]
+  },
+  {
+   "symbol": "PI",
+   "name": "Pi Network",
+   "coingecko_id": "pi-network",
+   "votes": 5,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/pi-pi",
+    "https://www.bitpanda.com/en/prices/pi-pi",
+    "model knowledge",
+    "https://www.bitpanda.com/de/prices/bci-smart-contract-leaders-bcisl"
+   ]
+  },
+  {
+   "symbol": "ZIL",
+   "name": "Zilliqa",
+   "coingecko_id": "zilliqa",
+   "votes": 5,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/zilliqa-zil",
+    "https://blog.bitpanda.com/en/cryptowednesday-6-new-smart-contract-platform-tokens-bitpanda",
+    "ticker snapshot + https://blog.bitpanda.com/en/cryptowednesday-6-new-smart-contract-platform-tokens-bitpanda",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ENJ",
+   "name": "Enjin Coin",
+   "coingecko_id": "enjincoin",
+   "votes": 5,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "ticker snapshot + 13-coin batch blog",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SUSHI",
+   "name": "SushiSwap",
+   "coingecko_id": "sushi",
+   "votes": 5,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "ticker snapshot",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 141)"
+   ]
+  },
+  {
+   "symbol": "DASH",
+   "name": "Dash",
+   "coingecko_id": "dash",
+   "votes": 5,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/dash-dash",
+    "ticker snapshot",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 7)"
+   ]
+  },
+  {
+   "symbol": "DGB",
+   "name": "DigiByte",
+   "coingecko_id": "digibyte",
+   "votes": 5,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/digibyte-dgb",
+    "https://twitter.com/Bitpanda_global/status/1357692353784516610",
+    "https://blog.bitpanda.com/en/4-new-tokens-are-now-available-on-bitpanda-ant-btt-dgb-ocean",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CELO",
+   "name": "Celo",
+   "coingecko_id": "celo",
+   "votes": 5,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MKR",
+   "name": "Maker",
+   "coingecko_id": "maker",
+   "votes": 5,
+   "max_confidence": 0.88,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/best-vips-coin-vote-3",
+    "ticker snapshot",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 53); protocol migrated to SKY"
+   ]
+  },
+  {
+   "symbol": "TRUMP",
+   "name": "Official Trump",
+   "coingecko_id": "official-trump",
+   "votes": 5,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/bci-meme-coin-leaders-bcimeme",
+    "https://www.btc-echo.de/krypto-kaufen/official-trump-kaufen/",
+    "model knowledge (two bitpanda.com-restricted searches found no page)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LRC",
+   "name": "Loopring",
+   "coingecko_id": "loopring",
+   "votes": 5,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MINA",
+   "name": "Mina",
+   "coingecko_id": "mina-protocol",
+   "votes": 5,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/cryptowednesday-4-bitpanda-decodes-cryptography-and-zero-knowledge-proof",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DYDX",
+   "name": "dYdX",
+   "coingecko_id": "dydx-chain",
+   "votes": 5,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/cryptowednesday-4-bitpanda-decodes-cryptography-and-zero-knowledge-proof",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CAKE",
+   "name": "PancakeSwap",
+   "coingecko_id": "pancakeswap-token",
+   "votes": 5,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 139)"
+   ]
+  },
+  {
+   "symbol": "XDC",
+   "name": "XDC Network",
+   "coingecko_id": "xdce-crowd-sale",
+   "votes": 5,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/bitpanda-now-offers-300-tradeable-crypto-assets-and-2600-digital-assets",
+    "https://www.bitpanda.com/en/prices/xdc-network-xdc",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "UMA",
+   "name": "UMA",
+   "coingecko_id": "uma",
+   "votes": 5,
+   "max_confidence": 0.82,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/6-new-defi-tokens-are-now-available-on-bitpanda-filecoin-uma-aave-and-more",
+    "ticker snapshot + https://blog.bitpanda.com/en/6-new-defi-tokens-are-now-available-on-bitpanda-filecoin-uma-aave-and-more",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BAND",
+   "name": "Band Protocol",
+   "coingecko_id": "band-protocol",
+   "votes": 5,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/6-new-defi-tokens-are-now-available-on-bitpanda-filecoin-uma-aave-and-more",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KAVA",
+   "name": "Kava",
+   "coingecko_id": "kava",
+   "votes": 5,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "ticker snapshot",
+    "model knowledge",
+    "https://www.punto-informatico.it/fintech/bipanda-staking-cinque-nuovi-coin/ (Bitpanda 'five new coins to stake', Aug 2022)"
+   ]
+  },
+  {
+   "symbol": "KNC",
+   "name": "Kyber Network Crystal",
+   "coingecko_id": "kyber-network-crystal",
+   "votes": 5,
+   "max_confidence": 0.75,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/6-new-defi-tokens-are-now-available-on-bitpanda-filecoin-uma-aave-and-more",
+    "ticker snapshot",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HOME",
+   "name": "DeFi App",
+   "coingecko_id": "defi-app",
+   "votes": 5,
+   "max_confidence": 0.7,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight Jun 2026)",
+    "model knowledge",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, Jun 2026)"
+   ]
+  },
+  {
+   "symbol": "EV",
+   "name": "Everything EV",
+   "coingecko_id": "",
+   "votes": 5,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/",
+    "https://x.com/Bitpanda/status/2054537139426148601",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight May 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, May 2026)"
+   ]
+  },
+  {
+   "symbol": "OCEAN",
+   "name": "Ocean Protocol",
+   "coingecko_id": "ocean-protocol",
+   "votes": 5,
+   "max_confidence": 0.6,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://twitter.com/Bitpanda_global/status/1357692353784516610",
+    "https://blog.bitpanda.com/en/4-new-tokens-are-now-available-on-bitpanda-ant-btt-dgb-ocean (merged into FET 2024)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BEST",
+   "name": "Bitpanda Ecosystem Token",
+   "coingecko_id": "bitpanda-ecosystem-token",
+   "votes": 4,
+   "max_confidence": 0.99,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/closer-look-merge-best-and-pan (merged into VSN 16 Jul 2025; deposit/withdraw/merge only)",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 33) ; https://raw.githubusercontent.com/matteoantoci/mcp-bitpanda/main/docs/bitpanda-api.md",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "HYPE",
+   "name": "Hyperliquid",
+   "coingecko_id": "hyperliquid",
+   "votes": 4,
+   "max_confidence": 0.98,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/hyperliquid-hype",
+    "https://www.bitpanda.com/en/buy/hyperliquid-hype",
+    "model knowledge",
+    "https://www.bitpanda.com/de/prices/crypto-index/bci10 ; https://www.bitpanda.com/de-at/preise/bci-defi-leaders-bcidl"
+   ]
+  },
+  {
+   "symbol": "VSN",
+   "name": "Vision",
+   "coingecko_id": "vision-token",
+   "votes": 4,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "https://support.bitpanda.com/hc/en-us/articles/20808652744604-What-is-Vision-VSN",
+    "https://decrypt.co/324813/bitpanda-opens-the-gate-to-web3-with-vision-vsn",
+    "https://www.bitpanda.com/en/prices/vision-vsn",
+    "https://raw.githubusercontent.com/Spegeli/hacs_bitpanda/main/tests/fixtures/assets-sample.json"
+   ]
+  },
+  {
+   "symbol": "ALGO",
+   "name": "Algorand",
+   "coingecko_id": "algorand",
+   "votes": 4,
+   "max_confidence": 0.97,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/algorand-algo",
+    "https://www.bitpanda.com/en/prices/algorand-algo",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "EURC",
+   "name": "EURC",
+   "coingecko_id": "euro-coin",
+   "votes": 4,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/eurc-eurc",
+    "https://www.bitpanda.com/en/prices/eurc-eurc",
+    "model knowledge",
+    "https://support.bitpanda.com/hc/en-gb/articles/16663481714844-Bitpanda-Fusion (Fusion quote stablecoin)"
+   ]
+  },
+  {
+   "symbol": "STX",
+   "name": "Stacks",
+   "coingecko_id": "blockstack",
+   "votes": 4,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "announcements",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/stacks-stx",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SEI",
+   "name": "Sei",
+   "coingecko_id": "sei-network",
+   "votes": 4,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/sei-sei",
+    "https://www.bitpanda.com/en/prices/sei-sei",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "IOTA",
+   "name": "IOTA",
+   "coingecko_id": "iota",
+   "votes": 4,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/iota-iota",
+    "ticker snapshot (symbol IOTA)",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "MNT",
+   "name": "Mantle",
+   "coingecko_id": "mantle",
+   "votes": 4,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/mantle-mnt",
+    "https://www.bitpanda.com/en/prices/mantle-mnt",
+    "model knowledge",
+    "https://www.bitpanda.com/de/prices/bci-smart-contract-leaders-bcisl (some snapshots)"
+   ]
+  },
+  {
+   "symbol": "WIF",
+   "name": "dogwifhat",
+   "coingecko_id": "dogwifcoin",
+   "votes": 4,
+   "max_confidence": 0.95,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/dogwifhat-wif",
+    "https://www.bitpanda.com/en/prices/dogwifhat-wif",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PAN",
+   "name": "Pantos",
+   "coingecko_id": "pantos",
+   "votes": 4,
+   "max_confidence": 0.95,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/closer-look-merge-best-and-pan (merged into VSN 16 Jul 2025)",
+    "model knowledge",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 11)",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "STRK",
+   "name": "Starknet",
+   "coingecko_id": "starknet",
+   "votes": 4,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/starknet-strk",
+    "https://www.bitpanda.com/en/prices/starknet-strk",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OP",
+   "name": "Optimism",
+   "coingecko_id": "optimism",
+   "votes": 4,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "TIA",
+   "name": "Celestia",
+   "coingecko_id": "celestia",
+   "votes": 4,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/celestia-tia",
+    "https://www.bitpanda.com/en/prices/celestia-tia",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ASTER",
+   "name": "Aster",
+   "coingecko_id": "aster-2",
+   "votes": 4,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/aster-aster",
+    "https://www.bitpanda.com/en/prices/aster-aster",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-defi-leaders-bcidl (index constituent; may be index-only)"
+   ]
+  },
+  {
+   "symbol": "LDO",
+   "name": "Lido DAO",
+   "coingecko_id": "lido-dao",
+   "votes": 4,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/lido-dao-ldo",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "PENGU",
+   "name": "Pudgy Penguins",
+   "coingecko_id": "pudgy-penguins",
+   "votes": 4,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/pudgy-penguins-pengu",
+    "https://www.bitpanda.com/en/prices/cryptocurrencies/meme-coins",
+    "https://www.bitpanda.com/en/prices/pudgy-penguins-pengu",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "WLFI",
+   "name": "World Liberty Financial",
+   "coingecko_id": "world-liberty-financial",
+   "votes": 4,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/world-liberty-financial-wlfi",
+    "https://www.bitpanda.com/en/prices/world-liberty-financial-wlfi",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-defi-leaders-bcidl (index constituent; may be index-only)"
+   ]
+  },
+  {
+   "symbol": "PYTH",
+   "name": "Pyth Network",
+   "coingecko_id": "pyth-network",
+   "votes": 4,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/pyth-network-pyth",
+    "https://www.bitpanda.com/en/prices/pyth-network-pyth",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "JUP",
+   "name": "Jupiter",
+   "coingecko_id": "jupiter-exchange-solana",
+   "votes": 4,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/jupiter-jup",
+    "https://www.bitpanda.com/en/prices/jupiter-jup",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VIRTUAL",
+   "name": "Virtuals Protocol",
+   "coingecko_id": "virtual-protocol",
+   "votes": 4,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/virtuals-protocol-virtual",
+    "https://www.bitpanda.com/en/prices/virtuals-protocol-virtual",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-infrastructure-leaders-bciil"
+   ]
+  },
+  {
+   "symbol": "APE",
+   "name": "ApeCoin",
+   "coingecko_id": "apecoin",
+   "votes": 4,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/apecoin-ape",
+    "https://www.bitpanda.com/en/prices/apecoin-ape",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "THETA",
+   "name": "Theta Network",
+   "coingecko_id": "theta-token",
+   "votes": 4,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/theta-network-theta",
+    "ticker snapshot + https://blog.bitpanda.com/en/luna-theta-matic-and-grt-are-now-available-on-bitpanda",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "LSK",
+   "name": "Lisk",
+   "coingecko_id": "lisk",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/lisk-lsk",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "AR",
+   "name": "Arweave",
+   "coingecko_id": "arweave",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/arweave-ar",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "https://www.bitpanda.com/en/prices/arweave-ar",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TON",
+   "name": "Toncoin",
+   "coingecko_id": "the-open-network",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge (no bitpanda.com page surfaced in two searches)",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RUNE",
+   "name": "THORChain",
+   "coingecko_id": "thorchain",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/thorchain-rune",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "GLMR",
+   "name": "Moonbeam",
+   "coingecko_id": "moonbeam",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/moonbeam-glmr",
+    "https://blog.bitpanda.com/en/cryptowednesday-28-new-coins-tokens-across-crypto-universe",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ASTR",
+   "name": "Astar",
+   "coingecko_id": "astar",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/astar-astr",
+    "https://www.bitpanda.com/en/prices/astar-astr",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "S",
+   "name": "Sonic",
+   "coingecko_id": "sonic-3",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/sonic-s",
+    "https://www.bitpanda.com/en/prices/sonic-s",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "W",
+   "name": "Wormhole",
+   "coingecko_id": "wormhole",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/wormhole-w",
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ZRO",
+   "name": "LayerZero",
+   "coingecko_id": "layerzero",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/layerzero-zro",
+    "https://www.bitpanda.com/en/prices/layerzero-zro",
+    "model knowledge",
+    "https://www.bitpanda.com/hu/prices/bci-infrastructure-leaders-bciil (Hungarian snapshot only)"
+   ]
+  },
+  {
+   "symbol": "FLR",
+   "name": "Flare",
+   "coingecko_id": "flare-networks",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/en/prices/flare-flr",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "ENS",
+   "name": "Ethereum Name Service",
+   "coingecko_id": "ethereum-name-service",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "ticker snapshot + https://blog.bitpanda.com/en/cryptowednesday-6-new-web3-infrastructure-defi-payments-and-assets-and-exchange-token-projects",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "PUMP",
+   "name": "Pump.fun",
+   "coingecko_id": "pump-fun",
+   "votes": 4,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/bci-defi-leaders-bcidl",
+    "https://www.bitpanda.com/en/prices/pumpfun-pump",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-defi-leaders-bcidl (index constituent; may be index-only)"
+   ]
+  },
+  {
+   "symbol": "DCR",
+   "name": "Decred",
+   "coingecko_id": "decred",
+   "votes": 4,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/decred-dcr",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "ZEN",
+   "name": "Horizen",
+   "coingecko_id": "zencash",
+   "votes": 4,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/horizen-zen",
+    "https://blog.bitpanda.com/en/cryptowednesday-28-new-coins-tokens-across-crypto-universe",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RPL",
+   "name": "Rocket Pool",
+   "coingecko_id": "rocket-pool",
+   "votes": 4,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/rocket-pool-rpl",
+    "https://www.bitpanda.com/en/prices/rocket-pool-rpl",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "ILV",
+   "name": "Illuvium",
+   "coingecko_id": "illuvium",
+   "votes": 4,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/illuvium-ilv",
+    "https://blog.bitpanda.com/en/cryptowednesday-28-new-coins-tokens-across-crypto-universe",
+    "model knowledge (2022 gaming/metaverse batch)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HNT",
+   "name": "Helium",
+   "coingecko_id": "helium",
+   "votes": 4,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/cryptowednesday-4-bitpanda-decodes-cryptography-and-zero-knowledge-proof",
+    "https://www.bitpanda.com/en/prices/helium-hnt",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "QNT",
+   "name": "Quant",
+   "coingecko_id": "quant-network",
+   "votes": 4,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "RVN",
+   "name": "Ravencoin",
+   "coingecko_id": "ravencoin",
+   "votes": 4,
+   "max_confidence": 0.88,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-3-new-payments-assets-tokens-are-joining-bitpanda",
+    "ticker snapshot + https://blog.bitpanda.com/en/cryptowednesday-3-new-payments-assets-tokens-are-joining-bitpanda",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "BNT",
+   "name": "Bancor",
+   "coingecko_id": "bancor",
+   "votes": 4,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/bancor-bnt",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "COTI",
+   "name": "COTI",
+   "coingecko_id": "coti",
+   "votes": 4,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/coti-coti",
+    "https://blog.bitpanda.com/en/cryptowednesday-3-new-payments-assets-tokens-are-joining-bitpanda",
+    "https://blog.bitpanda.com/en/cryptowednesday-3-new-payments-assets-tokens-are-joining-bitpanda",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SYND",
+   "name": "Syndicate",
+   "coingecko_id": "syndicate-2",
+   "votes": 4,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/syndicate-synd",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/"
+   ]
+  },
+  {
+   "symbol": "CORE",
+   "name": "Core",
+   "coingecko_id": "coredaoorg",
+   "votes": 4,
+   "max_confidence": 0.85,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://t3n.de/news/?p=1538262",
+    "https://www.bitpanda.com/en/prices/core-dao-core",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "ALICE",
+   "name": "MyNeighborAlice",
+   "coingecko_id": "my-neighbor-alice",
+   "votes": 4,
+   "max_confidence": 0.82,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/myneighboralice-alice",
+    "https://blog.bitpanda.com/en/cryptowednesday-3-bitpanda-explores-nfts-and-game-changers-metaverse",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "EOS",
+   "name": "EOS",
+   "coingecko_id": "eos",
+   "votes": 4,
+   "max_confidence": 0.82,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "LIT",
+   "name": "Litentry",
+   "coingecko_id": "litentry",
+   "votes": 4,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/litentry-lit",
+    "https://www.bitpanda.com/en/prices/litentry-lit",
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-defi-leaders-bcidl (listed as 'Lighter'; ticker assumed LIT; may be index-only)"
+   ]
+  },
+  {
+   "symbol": "LUNA",
+   "name": "Terra",
+   "coingecko_id": "terra-luna-2",
+   "votes": 4,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/terra-20-luna",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "ANKR",
+   "name": "Ankr",
+   "coingecko_id": "ankr",
+   "votes": 4,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "STORJ",
+   "name": "Storj",
+   "coingecko_id": "storj",
+   "votes": 4,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "ONT",
+   "name": "Ontology",
+   "coingecko_id": "ontology",
+   "votes": 4,
+   "max_confidence": 0.8,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/best-vips-exclusive-coin-vote-2",
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "BTT",
+   "name": "BitTorrent",
+   "coingecko_id": "bittorrent",
+   "votes": 4,
+   "max_confidence": 0.8,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://twitter.com/Bitpanda_global/status/1357692353784516610",
+    "ticker snapshot + https://blog.bitpanda.com/en/4-new-tokens-are-now-available-on-bitpanda-ant-btt-dgb-ocean",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "WET",
+   "name": "Humidifi",
+   "coingecko_id": "",
+   "votes": 4,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/"
+   ]
+  },
+  {
+   "symbol": "MBG",
+   "name": "MultiBank Group",
+   "coingecko_id": "multibank-group",
+   "votes": 4,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight May 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, May 2026)",
+    "https://www.bitpanda.com/de-at/bitpanda-spotlight"
+   ]
+  },
+  {
+   "symbol": "GENSYN",
+   "name": "Gensyn AI",
+   "coingecko_id": "",
+   "votes": 4,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight Apr 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, Apr 2026; ticker as given by source)",
+    "https://www.bitpanda.com/de-at/bitpanda-spotlight"
+   ]
+  },
+  {
+   "symbol": "ONE",
+   "name": "Harmony",
+   "coingecko_id": "harmony",
+   "votes": 4,
+   "max_confidence": 0.6,
+   "angles": [
+    "official",
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://blog.bitpanda.com/en/strike-twelve-plus-one-bitpanda-lists-thirteen-new-coins-you-trade",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XPL",
+   "name": "Plasma",
+   "coingecko_id": "plasma",
+   "votes": 3,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/plasma-xpl",
+    "https://www.bitpanda.com/en/prices/plasma-xpl",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FARTCOIN",
+   "name": "Fartcoin",
+   "coingecko_id": "fartcoin",
+   "votes": 3,
+   "max_confidence": 0.93,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/fartcoin-fartcoin",
+    "https://www.bitpanda.com/en/prices/fartcoin-fartcoin",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PENDLE",
+   "name": "Pendle",
+   "coingecko_id": "pendle",
+   "votes": 3,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/pendle-pendle",
+    "https://www.bitpanda.com/en/prices/pendle-pendle",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SPX",
+   "name": "SPX6900",
+   "coingecko_id": "spx6900",
+   "votes": 3,
+   "max_confidence": 0.92,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/spx6900-spx",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "IOTX",
+   "name": "IoTeX",
+   "coingecko_id": "iotex",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/iotex-iotx",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KAIA",
+   "name": "Kaia",
+   "coingecko_id": "kaia",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/kaia-kaia",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "JTO",
+   "name": "Jito",
+   "coingecko_id": "jito-governance-token",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/jito-jto",
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OKB",
+   "name": "OKB",
+   "coingecko_id": "okb",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/okb-okb",
+    "ticker snapshot (exchange-token batch 2022; current status unverified)",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "BRETT",
+   "name": "Brett",
+   "coingecko_id": "based-brett",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/brett-brett",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "POPCAT",
+   "name": "Popcat",
+   "coingecko_id": "popcat",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/popcat-popcat",
+    "https://www.bitpanda.com/en/prices/popcat-popcat",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BOME",
+   "name": "BOOK OF MEME",
+   "coingecko_id": "book-of-meme",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/book-of-meme-bome",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PNUT",
+   "name": "Peanut the Squirrel",
+   "coingecko_id": "peanut-the-squirrel",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/peanut-the-squirrel-pnut",
+    "https://www.bitpanda.com/en/prices/cryptocurrencies/meme-coins",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ZORA",
+   "name": "Zora",
+   "coingecko_id": "zora",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/zora-zora",
+    "https://www.bitpanda.com/en/prices/zora-zora",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CRO",
+   "name": "Cronos",
+   "coingecko_id": "crypto-com-chain",
+   "votes": 3,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/en/prices/cryptocom-coin-cro",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DYM",
+   "name": "Dymension",
+   "coingecko_id": "dymension",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/dymension-dym",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "METIS",
+   "name": "Metis",
+   "coingecko_id": "metis-token",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/metisdao-metis",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GOAT",
+   "name": "Goatseus Maximus",
+   "coingecko_id": "goatseus-maximus",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/goatseus-maximus-goat",
+    "https://www.bitpanda.com/en/prices/cryptocurrencies/meme-coins",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TURBO",
+   "name": "Turbo",
+   "coingecko_id": "turbo",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/turbo-turbo",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AKT",
+   "name": "Akash Network",
+   "coingecko_id": "akash-network",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/en/prices/akash-akt",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "EIGEN",
+   "name": "EigenLayer",
+   "coingecko_id": "eigenlayer",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/en/prices/eigenlayer-eigen",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BERA",
+   "name": "Berachain",
+   "coingecko_id": "berachain-bera",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/en/prices/berachain-bera",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "JASMY",
+   "name": "JasmyCoin",
+   "coingecko_id": "jasmycoin",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/en-gb/prices/jasmycoin-jasmy",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MON",
+   "name": "Monad",
+   "coingecko_id": "monad",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://t.me/s/bitpanda_announcements",
+    "https://www.bitpanda.com/en/prices/monad-mon + https://t.me/s/bitpanda_announcements",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GNO",
+   "name": "Gnosis",
+   "coingecko_id": "gnosis",
+   "votes": 3,
+   "max_confidence": 0.88,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/gnosis-gno",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "STRAX",
+   "name": "Stratis",
+   "coingecko_id": "stratis",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/stratis-strax",
+    "https://www.bitpanda.com/en/prices/stratis-strax",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ZK",
+   "name": "Polyhedra Network",
+   "coingecko_id": "polyhedra-network",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/polyhedra-network-zk",
+    "https://www.bitpanda.com/en/prices/polyhedra-network-zk",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BLAST",
+   "name": "Blast",
+   "coingecko_id": "blast",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/blast-blast",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DUSK",
+   "name": "Dusk",
+   "coingecko_id": "dusk-network",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "announcements",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/dusk-dusk",
+    "https://blog.bitpanda.com/en/cryptowednesday-4-bitpanda-decodes-cryptography-and-zero-knowledge-proof",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NKN",
+   "name": "NKN",
+   "coingecko_id": "nkn",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/nkn-nkn",
+    "https://www.bitpanda.com/en/prices/nkn-nkn",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ACT",
+   "name": "Act I: The AI Prophecy",
+   "coingecko_id": "act-i-the-ai-prophecy",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/act-i-the-ai-prophecy-act",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ETHFI",
+   "name": "Ether.fi",
+   "coingecko_id": "ether-fi",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LINEA",
+   "name": "Linea",
+   "coingecko_id": "linea",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/en/prices/linea-linea",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RSR",
+   "name": "Reserve Rights",
+   "coingecko_id": "reserve-rights-token",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-3-new-payments-assets-tokens-are-joining-bitpanda",
+    "https://blog.bitpanda.com/en/cryptowednesday-3-new-payments-assets-tokens-are-joining-bitpanda",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "WAXP",
+   "name": "WAX",
+   "coingecko_id": "wax",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-28-new-coins-tokens-across-crypto-universe",
+    "https://www.bitpanda.com/en/prices/wax-waxp",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BAL",
+   "name": "Balancer",
+   "coingecko_id": "balancer",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "POWR",
+   "name": "Powerledger",
+   "coingecko_id": "power-ledger",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/powerledger-powr",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "MOVR",
+   "name": "Moonriver",
+   "coingecko_id": "moonriver",
+   "votes": 3,
+   "max_confidence": 0.85,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "https://support.bitpanda.com/hc/en-gb/articles/24873644625820-Bitpanda-Passive-Earn (last visible entry of alphabetical list)"
+   ]
+  },
+  {
+   "symbol": "ROSE",
+   "name": "Oasis",
+   "coingecko_id": "oasis-network",
+   "votes": 3,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LPT",
+   "name": "Livepeer",
+   "coingecko_id": "livepeer",
+   "votes": 3,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NOT",
+   "name": "Notcoin",
+   "coingecko_id": "notcoin",
+   "votes": 3,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CTSI",
+   "name": "Cartesi",
+   "coingecko_id": "cartesi",
+   "votes": 3,
+   "max_confidence": 0.8,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-6-new-smart-contract-platform-tokens-bitpanda",
+    "https://blog.bitpanda.com/en/cryptowednesday-6-new-smart-contract-platform-tokens-bitpanda",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "WAVES",
+   "name": "Waves",
+   "coingecko_id": "waves",
+   "votes": 3,
+   "max_confidence": 0.8,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/waves-waves",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "LUNC",
+   "name": "Terra Classic",
+   "coingecko_id": "terra-luna",
+   "votes": 3,
+   "max_confidence": 0.8,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/terra-classic-lunc",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "DAI",
+   "name": "Dai",
+   "coingecko_id": "dai",
+   "votes": 3,
+   "max_confidence": 0.75,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge (listed in Bitpanda 2020 DeFi batch; no 2026 page found)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ARKM",
+   "name": "Arkham",
+   "coingecko_id": "arkham",
+   "votes": 3,
+   "max_confidence": 0.75,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "YGG",
+   "name": "Yield Guild Games",
+   "coingecko_id": "yield-guild-games",
+   "votes": 3,
+   "max_confidence": 0.75,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-28-new-coins-tokens-across-crypto-universe",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TREE",
+   "name": "Treehouse",
+   "coingecko_id": "treehouse",
+   "votes": 3,
+   "max_confidence": 0.75,
+   "angles": [
+    "announcements",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda_global/status/1949851908501291367",
+    "model knowledge",
+    "https://bitpanda.com/bitpanda-spotlight (shown as 'recently live')"
+   ]
+  },
+  {
+   "symbol": "CC",
+   "name": "Canton Network",
+   "coingecko_id": "",
+   "votes": 3,
+   "max_confidence": 0.75,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "indices"
+   ],
+   "sources": [
+    "https://t.me/s/bitpanda_announcements",
+    "https://t.me/s/bitpanda_announcements",
+    "https://www.bitpanda.com/de/prices/bci-smart-contract-leaders-bcisl (index constituent; may be index-only)"
+   ]
+  },
+  {
+   "symbol": "NIGHT",
+   "name": "Midnight",
+   "coingecko_id": "",
+   "votes": 3,
+   "max_confidence": 0.75,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "indices"
+   ],
+   "sources": [
+    "https://t.me/s/bitpanda_announcements",
+    "https://x.com/Bitpanda_global/status/1997581284873310543 + Telegram announcements",
+    "https://www.bitpanda.com/de/prices/bci-smart-contract-leaders-bcisl (some snapshots only)"
+   ]
+  },
+  {
+   "symbol": "ICX",
+   "name": "ICON",
+   "coingecko_id": "icon",
+   "votes": 3,
+   "max_confidence": 0.72,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "MLN",
+   "name": "Enzyme",
+   "coingecko_id": "melon",
+   "votes": 3,
+   "max_confidence": 0.72,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "STG",
+   "name": "Stargate Finance",
+   "coingecko_id": "stargate-finance",
+   "votes": 3,
+   "max_confidence": 0.7,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "ID",
+   "name": "SPACE ID",
+   "coingecko_id": "space-id",
+   "votes": 3,
+   "max_confidence": 0.7,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "NMR",
+   "name": "Numeraire",
+   "coingecko_id": "numeraire",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OSMO",
+   "name": "Osmosis",
+   "coingecko_id": "osmosis",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "https://kiln.fi/post/staking-is-now-available-on-bitpanda-powered-by-kiln (Kiln-supported chain list, not Bitpanda's own list)"
+   ]
+  },
+  {
+   "symbol": "GRASS",
+   "name": "Grass",
+   "coingecko_id": "grass",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GMX",
+   "name": "GMX",
+   "coingecko_id": "gmx",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "IP",
+   "name": "Story",
+   "coingecko_id": "story-2",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://status.bitpanda.com/ mention + model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KAITO",
+   "name": "Kaito",
+   "coingecko_id": "kaito",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SUPER",
+   "name": "SuperVerse",
+   "coingecko_id": "superfarm",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "announcements",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-28-new-coins-tokens-across-crypto-universe",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OMG",
+   "name": "OMG Network",
+   "coingecko_id": "omisego",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "XYM",
+   "name": "Symbol",
+   "coingecko_id": "symbol",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 143)",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "IMU",
+   "name": "Immunefi",
+   "coingecko_id": "",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/"
+   ]
+  },
+  {
+   "symbol": "FLOCK",
+   "name": "FLock.io",
+   "coingecko_id": "flock-2",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/"
+   ]
+  },
+  {
+   "symbol": "ACU",
+   "name": "Acurast",
+   "coingecko_id": "",
+   "votes": 3,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, Aug 2026)",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/"
+   ]
+  },
+  {
+   "symbol": "MOODENG",
+   "name": "Moo Deng",
+   "coingecko_id": "moo-deng",
+   "votes": 3,
+   "max_confidence": 0.62,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MEW",
+   "name": "cat in a dogs world",
+   "coingecko_id": "cat-in-a-dogs-world",
+   "votes": 3,
+   "max_confidence": 0.62,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AIXBT",
+   "name": "aixbt by Virtuals",
+   "coingecko_id": "aixbt",
+   "votes": 3,
+   "max_confidence": 0.62,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NEIRO",
+   "name": "Neiro",
+   "coingecko_id": "neiro-3",
+   "votes": 3,
+   "max_confidence": 0.6,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MOG",
+   "name": "Mog Coin",
+   "coingecko_id": "mog-coin",
+   "votes": 3,
+   "max_confidence": 0.6,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MOVE",
+   "name": "Movement",
+   "coingecko_id": "movement",
+   "votes": 3,
+   "max_confidence": 0.6,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "WAL",
+   "name": "Walrus",
+   "coingecko_id": "walrus-2",
+   "votes": 3,
+   "max_confidence": 0.6,
+   "angles": [
+    "official",
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KMD",
+   "name": "Komodo",
+   "coingecko_id": "komodo",
+   "votes": 3,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "XEM",
+   "name": "NEM",
+   "coingecko_id": "nem",
+   "votes": 3,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot + https://status.bitpanda.com/ outage mention",
+    "model knowledge",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "SPC",
+   "name": "Space",
+   "coingecko_id": "",
+   "votes": 3,
+   "max_confidence": 0.5,
+   "angles": [
+    "official",
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/",
+    "https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (Spotlight listing, Apr 2026)",
+    "https://raw.githubusercontent.com/Spegeli/hacs_bitpanda/main/tests/fixtures/assets-sample.json"
+   ]
+  },
+  {
+   "symbol": "ANT",
+   "name": "Aragon",
+   "coingecko_id": "aragon",
+   "votes": 3,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/4-new-tokens-are-now-available-on-bitpanda-ant-btt-dgb-ocean (project dissolved 2023)",
+    "model knowledge",
+    "https://raw.githubusercontent.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension/master/bitpanda.lua"
+   ]
+  },
+  {
+   "symbol": "CFX",
+   "name": "Conflux",
+   "coingecko_id": "conflux-token",
+   "votes": 2,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/conflux-cfx",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AXL",
+   "name": "Axelar",
+   "coingecko_id": "axelar",
+   "votes": 2,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/axelar-axl",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RAY",
+   "name": "Raydium",
+   "coingecko_id": "raydium",
+   "votes": 2,
+   "max_confidence": 0.9,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/raydium-ray",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ACX",
+   "name": "Across Protocol",
+   "coingecko_id": "across-protocol",
+   "votes": 2,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/across-protocol-acx",
+    "https://www.bitpanda.com/en/prices/across-protocol-acx"
+   ]
+  },
+  {
+   "symbol": "ZKSYNC",
+   "name": "zkSync",
+   "coingecko_id": "zksync",
+   "votes": 2,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/zksync-zksync",
+    "https://www.bitpanda.com/en/prices/zksync-zksync"
+   ]
+  },
+  {
+   "symbol": "TAIKO",
+   "name": "Taiko",
+   "coingecko_id": "taiko",
+   "votes": 2,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/taiko-taiko",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ORCA",
+   "name": "Orca",
+   "coingecko_id": "orca",
+   "votes": 2,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/orca-orca",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KMNO",
+   "name": "Kamino",
+   "coingecko_id": "kamino",
+   "votes": 2,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/kamino-kmno",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GLM",
+   "name": "Golem",
+   "coingecko_id": "golem",
+   "votes": 2,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/golem-glm",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MEME",
+   "name": "Memecoin",
+   "coingecko_id": "memecoin-2",
+   "votes": 2,
+   "max_confidence": 0.88,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/memecoin-meme",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XYO",
+   "name": "XYO",
+   "coingecko_id": "xyo-network",
+   "votes": 2,
+   "max_confidence": 0.88,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/xyo-xyo",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "USDQ",
+   "name": "Quantoz USDQ",
+   "coingecko_id": "quantoz-usdq",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/quantoz-usdq-usdq",
+    "https://www.bitpanda.com/en/prices/quantoz-usdq-usdq"
+   ]
+  },
+  {
+   "symbol": "ATA",
+   "name": "Automata Network",
+   "coingecko_id": "automata",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/automata-network-ata",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ZAMA",
+   "name": "Zama",
+   "coingecko_id": "zama",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/zama-zama",
+    "https://www.bitpanda.com/en/prices/zama-zama"
+   ]
+  },
+  {
+   "symbol": "AZTEC",
+   "name": "Aztec",
+   "coingecko_id": "aztec",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/aztec-aztec",
+    "https://www.bitpanda.com/en/prices/aztec-aztec"
+   ]
+  },
+  {
+   "symbol": "WOO",
+   "name": "WOO Network",
+   "coingecko_id": "woo-network",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/woo-network-woo",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NPC",
+   "name": "Non-Playable Coin",
+   "coingecko_id": "non-playable-coin",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/non-playable-coin-npc",
+    "https://www.bitpanda.com/en/prices/non-playable-coin-npc"
+   ]
+  },
+  {
+   "symbol": "CGPT",
+   "name": "ChainGPT",
+   "coingecko_id": "chaingpt",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "official",
+    "announcements"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en-gb/prices/chaingpt-cgpt",
+    "https://www.chaingpt.org/blog/cgpt-token-to-be-fully-integrated-with-bitpanda"
+   ]
+  },
+  {
+   "symbol": "SOSO",
+   "name": "SoSoValue",
+   "coingecko_id": "sosovalue",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "announcements",
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/sosovalue-soso",
+    "https://bitpanda.com/bitpanda-spotlight (shown as 'live soon' in cached Spotlight page)"
+   ]
+  },
+  {
+   "symbol": "SOLV",
+   "name": "Solv Protocol",
+   "coingecko_id": "solv-protocol",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en-gb/bitpanda-spotlight",
+    "https://www.bitpanda.com/en/prices/solv-protocol-solv + Telegram announcements"
+   ]
+  },
+  {
+   "symbol": "BIO",
+   "name": "Bio Protocol",
+   "coingecko_id": "bio-protocol",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/bio-protocol-bio",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ME",
+   "name": "Magic Eden",
+   "coingecko_id": "magic-eden",
+   "votes": 2,
+   "max_confidence": 0.85,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/magic-eden-me",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "POLS",
+   "name": "Polkastarter",
+   "coingecko_id": "polkastarter",
+   "votes": 2,
+   "max_confidence": 0.82,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/polkastarter-pols",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MBOX",
+   "name": "MOBOX",
+   "coingecko_id": "mobox",
+   "votes": 2,
+   "max_confidence": 0.82,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/mobox-mbox",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PYR",
+   "name": "Vulcan Forged PYR",
+   "coingecko_id": "vulcan-forged",
+   "votes": 2,
+   "max_confidence": 0.82,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en-gb/prices/vulcan-forged-pyr-pyr",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SAHARA",
+   "name": "Sahara AI",
+   "coingecko_id": "sahara-ai",
+   "votes": 2,
+   "max_confidence": 0.82,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/sahara-ai-sahara",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BOBA",
+   "name": "Boba Network",
+   "coingecko_id": "boba-network",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en-gb/prices/boba-network-boba",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MTL",
+   "name": "Metal",
+   "coingecko_id": "metal",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/metal-mtl",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GOATS",
+   "name": "GOATS",
+   "coingecko_id": "goats",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "announcements"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/goats-goats",
+    "https://x.com/Bitpanda_global/status/1882458724704612461"
+   ]
+  },
+  {
+   "symbol": "TMAI",
+   "name": "Token Metrics AI",
+   "coingecko_id": "token-metrics-ai",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en-gb/prices/token-metrics-ai-tmai",
+    "https://x.com/Bitpanda/status/1868617484208877969"
+   ]
+  },
+  {
+   "symbol": "VOXEL",
+   "name": "Voxies",
+   "coingecko_id": "voxies",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/voxies-voxel",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AVA",
+   "name": "AVA (Travala)",
+   "coingecko_id": "concierge-io",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/ava-ava",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "SKL",
+   "name": "SKALE",
+   "coingecko_id": "skale",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GHST",
+   "name": "Aavegotchi",
+   "coingecko_id": "aavegotchi",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://raw.githubusercontent.com/Spegeli/hacs_bitpanda/main/tests/fixtures/assets-sample.json"
+   ]
+  },
+  {
+   "symbol": "XNO",
+   "name": "Nano",
+   "coingecko_id": "nano",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://raw.githubusercontent.com/Spegeli/hacs_bitpanda/main/tests/fixtures/assets-sample.json"
+   ]
+  },
+  {
+   "symbol": "MIOTA",
+   "name": "IOTA",
+   "coingecko_id": "iota",
+   "votes": 2,
+   "max_confidence": 0.8,
+   "angles": [
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://github.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension (coinDict id 13) ; Bitpanda uses ticker MIOTA",
+    "https://raw.githubusercontent.com/icanswiftabit/bitpanda-techtask/master/bitpanda-techtask/Resources/Masterdata.json"
+   ]
+  },
+  {
+   "symbol": "SYS",
+   "name": "Syscoin",
+   "coingecko_id": "syscoin",
+   "votes": 2,
+   "max_confidence": 0.75,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-6-new-smart-contract-platform-tokens-bitpanda",
+    "https://blog.bitpanda.com/en/cryptowednesday-6-new-smart-contract-platform-tokens-bitpanda"
+   ]
+  },
+  {
+   "symbol": "GMT",
+   "name": "STEPN",
+   "coingecko_id": "stepn",
+   "votes": 2,
+   "max_confidence": 0.75,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CSPR",
+   "name": "Casper",
+   "coingecko_id": "casper-network",
+   "votes": 2,
+   "max_confidence": 0.75,
+   "angles": [
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://raw.githubusercontent.com/msanlisavas/casper-llms/main/guides/casper-ecosystem-2026.md"
+   ]
+  },
+  {
+   "symbol": "BLUR",
+   "name": "Blur",
+   "coingecko_id": "blur",
+   "votes": 2,
+   "max_confidence": 0.75,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge (no bitpanda.com page surfaced)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "EURCV",
+   "name": "EUR CoinVertible (Societe Generale-FORGE)",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.75,
+   "angles": [
+    "indices",
+    "community"
+   ],
+   "sources": [
+    "https://support.bitpanda.com/hc/en-gb/articles/16663481714844-Bitpanda-Fusion (Fusion quote stablecoin; broker-side spot tradability unverified)",
+    "https://raw.githubusercontent.com/Spegeli/hacs_bitpanda/main/tests/fixtures/assets-sample.json"
+   ]
+  },
+  {
+   "symbol": "VFY",
+   "name": "zkVerify",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.72,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://t.me/s/bitpanda_announcements",
+    "https://cryptocalc.cc/en/bitpanda-spotlight-assets/ (launch 24.12.2025) + Telegram"
+   ]
+  },
+  {
+   "symbol": "CT",
+   "name": "Concrete",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.72,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda_global/status/2105684261580005401",
+    "https://cryptocalc.cc/en/bitpanda-spotlight-assets/ (launch 02.10.2026) + https://x.com/Bitpanda_global/status/2105684261580005401"
+   ]
+  },
+  {
+   "symbol": "IOST",
+   "name": "IOST",
+   "coingecko_id": "iostoken",
+   "votes": 2,
+   "max_confidence": 0.7,
+   "angles": [
+    "official",
+    "aggregators"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/the-internet-computer-icp-now-new-on-bitpanda-plus-sol-1inch-and-iost",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RVV",
+   "name": "Astra Nova",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.7,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda_global/status/2003105819705934031",
+    "https://t.me/s/bitpanda_announcements"
+   ]
+  },
+  {
+   "symbol": "CVX",
+   "name": "Convex Finance",
+   "coingecko_id": "convex-finance",
+   "votes": 2,
+   "max_confidence": 0.7,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HOT",
+   "name": "Holo",
+   "coingecko_id": "holotoken",
+   "votes": 2,
+   "max_confidence": 0.7,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RON",
+   "name": "Ronin",
+   "coingecko_id": "ronin",
+   "votes": 2,
+   "max_confidence": 0.7,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OM",
+   "name": "MANTRA",
+   "coingecko_id": "mantra-dao",
+   "votes": 2,
+   "max_confidence": 0.65,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SOLO",
+   "name": "Sologenic",
+   "coingecko_id": "sologenic",
+   "votes": 2,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "PERP",
+   "name": "Perpetual Protocol",
+   "coingecko_id": "perpetual-protocol",
+   "votes": 2,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-6-new-web3-infrastructure-defi-payments-and-assets-and-exchange-token-projects",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KDA",
+   "name": "Kadena",
+   "coingecko_id": "kadena",
+   "votes": 2,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MANTA",
+   "name": "Manta Network",
+   "coingecko_id": "manta-network",
+   "votes": 2,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BEAM",
+   "name": "Beam",
+   "coingecko_id": "beam-2",
+   "votes": 2,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DOGS",
+   "name": "Dogs",
+   "coingecko_id": "dogs-2",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "official",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SMR",
+   "name": "Shimmer",
+   "coingecko_id": "shimmer",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://t3n.de/news/?p=1538262",
+    "https://brutkasten.com/artikel/bitpanda-will-woechentlich-neue-kryptowaehrungen-listen-und-nimmt-bewerbungen-an/2"
+   ]
+  },
+  {
+   "symbol": "LGCT",
+   "name": "Legacy Network",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda/status/1906671090296041512",
+    "https://x.com/Bitpanda/status/1906671090296041512"
+   ]
+  },
+  {
+   "symbol": "CKB",
+   "name": "Nervos Network",
+   "coingecko_id": "nervos-network",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SSV",
+   "name": "SSV Network",
+   "coingecko_id": "ssv-network",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FXS",
+   "name": "Frax Share",
+   "coingecko_id": "frax-share",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "API3",
+   "name": "API3",
+   "coingecko_id": "api3",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CELR",
+   "name": "Celer Network",
+   "coingecko_id": "celer-network",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AUDIO",
+   "name": "Audius",
+   "coingecko_id": "audius",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "REQ",
+   "name": "Request",
+   "coingecko_id": "request-network",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "IO",
+   "name": "io.net",
+   "coingecko_id": "io-net",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ALT",
+   "name": "AltLayer",
+   "coingecko_id": "altlayer",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MAGIC",
+   "name": "Magic (Treasure)",
+   "coingecko_id": "magic",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PIXEL",
+   "name": "Pixels",
+   "coingecko_id": "pixels",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PORTAL",
+   "name": "Portal",
+   "coingecko_id": "portal",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XAI",
+   "name": "Xai",
+   "coingecko_id": "xai-blockchain",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SLP",
+   "name": "Smooth Love Potion",
+   "coingecko_id": "smooth-love-potion",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SKY",
+   "name": "Sky",
+   "coingecko_id": "sky",
+   "votes": 2,
+   "max_confidence": 0.6,
+   "angles": [
+    "knowledge",
+    "indices"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://www.bitpanda.com/de-at/preise/bci-defi-leaders-bcidl (appears in some snapshots)"
+   ]
+  },
+  {
+   "symbol": "SUIAI",
+   "name": "Sui Agents",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda_global/status/1868950137390707109",
+    "https://x.com/Bitpanda_global/status/1868950137390707109"
+   ]
+  },
+  {
+   "symbol": "AIAGENT",
+   "name": "AI Agent (Casper)",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda_global/status/1875168525200785694",
+    "https://x.com/Bitpanda_global/status/1874850265628561688"
+   ]
+  },
+  {
+   "symbol": "AIC",
+   "name": "AI Companions",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "announcements",
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda/status/1895146251672535415",
+    "https://x.com/Bitpanda/status/1895146251672535415"
+   ]
+  },
+  {
+   "symbol": "SPACE",
+   "name": "Space (SPC/SPACE Spotlight token)",
+   "coingecko_id": "",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot + https://99bitcoins.com/de/krypto-kaufen/bitpanda-neue-coins/ (SPC Apr 2026)",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "LINA",
+   "name": "Linear Finance",
+   "coingecko_id": "linear",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/linear-lina (stale page)",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LQTY",
+   "name": "Liquity",
+   "coingecko_id": "liquity",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TWT",
+   "name": "Trust Wallet Token",
+   "coingecko_id": "trust-wallet-token",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ACA",
+   "name": "Acala",
+   "coingecko_id": "acala",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CFG",
+   "name": "Centrifuge",
+   "coingecko_id": "centrifuge",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "EWT",
+   "name": "Energy Web Token",
+   "coingecko_id": "energy-web-token",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ATH",
+   "name": "Aethir",
+   "coingecko_id": "aethir",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PRIME",
+   "name": "Echelon Prime",
+   "coingecko_id": "echelon-prime",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SCR",
+   "name": "Scroll",
+   "coingecko_id": "scroll",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AEVO",
+   "name": "Aevo",
+   "coingecko_id": "aevo-exchange",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TLM",
+   "name": "Alien Worlds",
+   "coingecko_id": "alien-worlds",
+   "votes": 2,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "USUAL",
+   "name": "Usual",
+   "coingecko_id": "usual",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VANA",
+   "name": "Vana",
+   "coingecko_id": "vana",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LAYER",
+   "name": "Solayer",
+   "coingecko_id": "solayer",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HUMA",
+   "name": "Huma Finance",
+   "coingecko_id": "huma-finance",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SOPH",
+   "name": "Sophon",
+   "coingecko_id": "sophon",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RESOLV",
+   "name": "Resolv",
+   "coingecko_id": "resolv",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SXT",
+   "name": "Space and Time",
+   "coingecko_id": "space-and-time",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SYRUP",
+   "name": "Maple Finance (SYRUP)",
+   "coingecko_id": "syrup",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NIL",
+   "name": "Nillion",
+   "coingecko_id": "nillion",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BABY",
+   "name": "Babylon",
+   "coingecko_id": "babylon",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RED",
+   "name": "RedStone",
+   "coingecko_id": "redstone-oracles",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SHELL",
+   "name": "MyShell",
+   "coingecko_id": "myshell",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ANIME",
+   "name": "Animecoin",
+   "coingecko_id": "anime",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "COOKIE",
+   "name": "Cookie DAO",
+   "coingecko_id": "cookie",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OMNI",
+   "name": "Omni Network",
+   "coingecko_id": "omni-network",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TRB",
+   "name": "Tellor",
+   "coingecko_id": "tellor",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DIA",
+   "name": "DIA",
+   "coingecko_id": "dia-data",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OXT",
+   "name": "Orchid",
+   "coingecko_id": "orchid-protocol",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DENT",
+   "name": "Dent",
+   "coingecko_id": "dent",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CHR",
+   "name": "Chromia",
+   "coingecko_id": "chromaway",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ARK",
+   "name": "ARK",
+   "coingecko_id": "ark",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SC",
+   "name": "Siacoin",
+   "coingecko_id": "siacoin",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PHA",
+   "name": "Phala Network",
+   "coingecko_id": "pha",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SPELL",
+   "name": "Spell Token",
+   "coingecko_id": "spell-token",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "JOE",
+   "name": "JOE (Trader Joe)",
+   "coingecko_id": "joe",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HT",
+   "name": "Huobi Token",
+   "coingecko_id": "huobi-token",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot + https://status.bitpanda.com/ outage mention",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "REN",
+   "name": "Ren",
+   "coingecko_id": "republic-protocol",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "REP",
+   "name": "Augur v2",
+   "coingecko_id": "augur",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/augur-v2-rep (page shows €0.00)",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "PAXG",
+   "name": "PAX Gold",
+   "coingecko_id": "pax-gold",
+   "votes": 2,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge",
+    "community"
+   ],
+   "sources": [
+    "model knowledge",
+    "https://raw.githubusercontent.com/GalsonGit/FusionAPIDashboard/main/src/lib/fusion-model.ts"
+   ]
+  },
+  {
+   "symbol": "SWARMS",
+   "name": "Swarms",
+   "coingecko_id": "swarms",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ZEREBRO",
+   "name": "Zerebro",
+   "coingecko_id": "zerebro",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GRIFFAIN",
+   "name": "Griffain",
+   "coingecko_id": "griffain",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LISTA",
+   "name": "Lista DAO",
+   "coingecko_id": "lista",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RARI",
+   "name": "Rarible",
+   "coingecko_id": "rarible",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BADGER",
+   "name": "Badger DAO",
+   "coingecko_id": "badger-dao",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ALPHA",
+   "name": "Stella (Alpha Finance)",
+   "coingecko_id": "alpha-finance",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XVS",
+   "name": "Venus",
+   "coingecko_id": "venus",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "QI",
+   "name": "BENQI",
+   "coingecko_id": "benqi",
+   "votes": 2,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators",
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge",
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FTT",
+   "name": "FTX Token",
+   "coingecko_id": "ftx-token",
+   "votes": 2,
+   "max_confidence": 0.4,
+   "angles": [
+    "aggregators",
+    "community"
+   ],
+   "sources": [
+    "ticker snapshot (listed 2021; post-FTX status unverified)",
+    "https://raw.githubusercontent.com/hwki/SimpleBitcoinWidget/master/bitcoin/src/main/res/raw/cryptowidgetcoins_v2.json"
+   ]
+  },
+  {
+   "symbol": "XEC",
+   "name": "eCash",
+   "coingecko_id": "ecash",
+   "votes": 1,
+   "max_confidence": 0.88,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/ecash-xec"
+   ]
+  },
+  {
+   "symbol": "ORAI",
+   "name": "Oraichain",
+   "coingecko_id": "oraichain-token",
+   "votes": 1,
+   "max_confidence": 0.88,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/oraichain-orai"
+   ]
+  },
+  {
+   "symbol": "LYX",
+   "name": "LUKSO",
+   "coingecko_id": "lukso-token-2",
+   "votes": 1,
+   "max_confidence": 0.88,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/lukso-lyx"
+   ]
+  },
+  {
+   "symbol": "BEAMX",
+   "name": "Beam",
+   "coingecko_id": "beam-2",
+   "votes": 1,
+   "max_confidence": 0.88,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/beam-beamx"
+   ]
+  },
+  {
+   "symbol": "MERL",
+   "name": "Merlin Chain",
+   "coingecko_id": "merlin-chain",
+   "votes": 1,
+   "max_confidence": 0.85,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/merlin-chain-merl"
+   ]
+  },
+  {
+   "symbol": "CROSS",
+   "name": "Cross",
+   "coingecko_id": "cross-2",
+   "votes": 1,
+   "max_confidence": 0.85,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/cross-cross"
+   ]
+  },
+  {
+   "symbol": "ICNT",
+   "name": "Impossible Cloud Network Token",
+   "coingecko_id": "impossible-cloud-network-token",
+   "votes": 1,
+   "max_confidence": 0.85,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/impossible-cloud-network-token-icnt"
+   ]
+  },
+  {
+   "symbol": "HOLO",
+   "name": "Holoworld AI",
+   "coingecko_id": "holoworld-ai",
+   "votes": 1,
+   "max_confidence": 0.85,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/holoworld-ai-holo"
+   ]
+  },
+  {
+   "symbol": "GT",
+   "name": "Gate Token",
+   "coingecko_id": "gatechain-token",
+   "votes": 1,
+   "max_confidence": 0.85,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/gate-token-gt"
+   ]
+  },
+  {
+   "symbol": "HIPPO",
+   "name": "sudeng",
+   "coingecko_id": "sudeng",
+   "votes": 1,
+   "max_confidence": 0.85,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/sudeng-hippo"
+   ]
+  },
+  {
+   "symbol": "AZERO",
+   "name": "Aleph Zero",
+   "coingecko_id": "aleph-zero",
+   "votes": 1,
+   "max_confidence": 0.85,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/aleph-zero-azero"
+   ]
+  },
+  {
+   "symbol": "POLYX",
+   "name": "Polymesh",
+   "coingecko_id": "polymesh",
+   "votes": 1,
+   "max_confidence": 0.85,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/polymesh-polyx"
+   ]
+  },
+  {
+   "symbol": "TAI",
+   "name": "TARS AI",
+   "coingecko_id": "tars-protocol",
+   "votes": 1,
+   "max_confidence": 0.82,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/tars-ai-tai"
+   ]
+  },
+  {
+   "symbol": "NAKA",
+   "name": "Nakamoto Games",
+   "coingecko_id": "nakamoto-games",
+   "votes": 1,
+   "max_confidence": 0.82,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/nakamoto-games-naka"
+   ]
+  },
+  {
+   "symbol": "ZRC",
+   "name": "Zircuit",
+   "coingecko_id": "zircuit",
+   "votes": 1,
+   "max_confidence": 0.82,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/zircuit-zrc"
+   ]
+  },
+  {
+   "symbol": "NOM",
+   "name": "Nomina",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.8,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/nomina-nom"
+   ]
+  },
+  {
+   "symbol": "EYWA",
+   "name": "EYWA",
+   "coingecko_id": "eywa",
+   "votes": 1,
+   "max_confidence": 0.8,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/eywa-eywa"
+   ]
+  },
+  {
+   "symbol": "SWFTC",
+   "name": "SwftCoin",
+   "coingecko_id": "swftcoin",
+   "votes": 1,
+   "max_confidence": 0.8,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/swftcoin-swftc"
+   ]
+  },
+  {
+   "symbol": "XSWAP",
+   "name": "XSwap",
+   "coingecko_id": "xswap-2",
+   "votes": 1,
+   "max_confidence": 0.8,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/xswap-xswap"
+   ]
+  },
+  {
+   "symbol": "MRSOON",
+   "name": "Ton Station",
+   "coingecko_id": "ton-station",
+   "votes": 1,
+   "max_confidence": 0.8,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/ton-station-mrsoon"
+   ]
+  },
+  {
+   "symbol": "JUV",
+   "name": "Juventus Fan Token",
+   "coingecko_id": "juventus-fan-token",
+   "votes": 1,
+   "max_confidence": 0.8,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en-gb/prices/juventus-fan-token-juv"
+   ]
+  },
+  {
+   "symbol": "ZKC",
+   "name": "Boundless",
+   "coingecko_id": "boundless",
+   "votes": 1,
+   "max_confidence": 0.8,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/boundless-zkc"
+   ]
+  },
+  {
+   "symbol": "AVAIL",
+   "name": "Avail",
+   "coingecko_id": "avail",
+   "votes": 1,
+   "max_confidence": 0.8,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/avail-avail"
+   ]
+  },
+  {
+   "symbol": "HGPT",
+   "name": "HyperGPT",
+   "coingecko_id": "hypergpt",
+   "votes": 1,
+   "max_confidence": 0.78,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/hypergpt-hgpt"
+   ]
+  },
+  {
+   "symbol": "GPT",
+   "name": "QnA3.AI",
+   "coingecko_id": "qna3-ai",
+   "votes": 1,
+   "max_confidence": 0.78,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/qna3ai-gpt"
+   ]
+  },
+  {
+   "symbol": "LAI",
+   "name": "LayerAI",
+   "coingecko_id": "layerai",
+   "votes": 1,
+   "max_confidence": 0.78,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/layerai-lai"
+   ]
+  },
+  {
+   "symbol": "GTAI",
+   "name": "GT Protocol",
+   "coingecko_id": "gt-protocol",
+   "votes": 1,
+   "max_confidence": 0.78,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/gt-protocol-gtai"
+   ]
+  },
+  {
+   "symbol": "DEFI",
+   "name": "DeFi",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.75,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/defi-defi"
+   ]
+  },
+  {
+   "symbol": "ACM",
+   "name": "AC Milan Fan Token",
+   "coingecko_id": "ac-milan-fan-token",
+   "votes": 1,
+   "max_confidence": 0.75,
+   "angles": [
+    "announcements"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/2024-year-review"
+   ]
+  },
+  {
+   "symbol": "ZERO",
+   "name": "ZeroLend",
+   "coingecko_id": "zerolend",
+   "votes": 1,
+   "max_confidence": 0.72,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/zerolend-zero"
+   ]
+  },
+  {
+   "symbol": "AITECH",
+   "name": "Solidus Ai Tech",
+   "coingecko_id": "solidus-aitech",
+   "votes": 1,
+   "max_confidence": 0.7,
+   "angles": [
+    "official"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/bitpanda-spotlight-home-new-hard-find-and-fast-moving-crypto-projects"
+   ]
+  },
+  {
+   "symbol": "PSG",
+   "name": "Paris Saint-Germain Fan Token",
+   "coingecko_id": "paris-saint-germain-fan-token",
+   "votes": 1,
+   "max_confidence": 0.7,
+   "angles": [
+    "announcements"
+   ],
+   "sources": [
+    "https://fxempire.com/news/article/psg-fan-token-surges-by-65-as-socios-fan-tokens-buck-the-market-trend-1006281"
+   ]
+  },
+  {
+   "symbol": "ENSO",
+   "name": "Enso",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.7,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://cryptocalc.cc/en/bitpanda-spotlight-assets/ (launch 10.03.2026)"
+   ]
+  },
+  {
+   "symbol": "MASK",
+   "name": "Mask Network",
+   "coingecko_id": "mask-network",
+   "votes": 1,
+   "max_confidence": 0.7,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ZORO",
+   "name": "ZoRobotics",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/en/prices/zorobotics-zoro"
+   ]
+  },
+  {
+   "symbol": "BST",
+   "name": "Blocksquare",
+   "coingecko_id": "blocksquare",
+   "votes": 1,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda_global/status/1849422853554200940"
+   ]
+  },
+  {
+   "symbol": "SNT",
+   "name": "Status",
+   "coingecko_id": "status",
+   "votes": 1,
+   "max_confidence": 0.65,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/cryptowednesday-6-new-web3-infrastructure-defi-payments-and-assets-and-exchange-token-projects"
+   ]
+  },
+  {
+   "symbol": "RLC",
+   "name": "iExec RLC",
+   "coingecko_id": "iexec-rlc",
+   "votes": 1,
+   "max_confidence": 0.65,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XFI",
+   "name": "CrossFi",
+   "coingecko_id": "crossfi-2",
+   "votes": 1,
+   "max_confidence": 0.6,
+   "angles": [
+    "announcements"
+   ],
+   "sources": [
+    "https://thedefiant.io/news/press-releases/crossfi-announces-listing-of-xfi-token-on-bitpanda-with-28000-xfi-giveaway"
+   ]
+  },
+  {
+   "symbol": "TFUEL",
+   "name": "Theta Fuel",
+   "coingecko_id": "theta-fuel",
+   "votes": 1,
+   "max_confidence": 0.6,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AIOZ",
+   "name": "AIOZ Network",
+   "coingecko_id": "aioz-network",
+   "votes": 1,
+   "max_confidence": 0.6,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ZETA",
+   "name": "ZetaChain",
+   "coingecko_id": "zetachain",
+   "votes": 1,
+   "max_confidence": 0.6,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SAGA",
+   "name": "Saga",
+   "coingecko_id": "saga-2",
+   "votes": 1,
+   "max_confidence": 0.6,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AMP",
+   "name": "Amp",
+   "coingecko_id": "amp-token",
+   "votes": 1,
+   "max_confidence": 0.6,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OGN",
+   "name": "Origin Protocol",
+   "coingecko_id": "origin-protocol",
+   "votes": 1,
+   "max_confidence": 0.6,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SQD",
+   "name": "Subsquid",
+   "coingecko_id": "subsquid",
+   "votes": 1,
+   "max_confidence": 0.6,
+   "angles": [
+    "indices"
+   ],
+   "sources": [
+    "https://bitpanda.com/bitpanda-spotlight (shown as 'recently live')"
+   ]
+  },
+  {
+   "symbol": "LMWR",
+   "name": "LimeWire Token",
+   "coingecko_id": "limewire-token",
+   "votes": 1,
+   "max_confidence": 0.55,
+   "angles": [
+    "announcements"
+   ],
+   "sources": [
+    "https://blog.bitpanda.com/en/bitpanda-now-offers-300-tradeable-crypto-assets-and-2600-digital-assets"
+   ]
+  },
+  {
+   "symbol": "HAPPY",
+   "name": "Happy Cat",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda/status/1879926064690217032"
+   ]
+  },
+  {
+   "symbol": "KIMA",
+   "name": "Kima Network",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda_global/status/1868974615554314271"
+   ]
+  },
+  {
+   "symbol": "APP",
+   "name": "RWAX",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "https://twitter.com/Bitpanda/status/1869428998486262025"
+   ]
+  },
+  {
+   "symbol": "SAFE",
+   "name": "Safe",
+   "coingecko_id": "safe",
+   "votes": 1,
+   "max_confidence": 0.55,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HMSTR",
+   "name": "Hamster Kombat",
+   "coingecko_id": "hamster-kombat",
+   "votes": 1,
+   "max_confidence": 0.55,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GODS",
+   "name": "Gods Unchained",
+   "coingecko_id": "gods-unchained",
+   "votes": 1,
+   "max_confidence": 0.55,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VVV",
+   "name": "Venice Token",
+   "coingecko_id": "venice-token",
+   "votes": 1,
+   "max_confidence": 0.55,
+   "angles": [
+    "indices"
+   ],
+   "sources": [
+    "https://www.bitpanda.com/de-at/preise/bci-infrastructure-leaders-bciil (index constituent; may be index-only)"
+   ]
+  },
+  {
+   "symbol": "SPK",
+   "name": "Spark",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HYPER",
+   "name": "Hyperlane",
+   "coingecko_id": "hyperlane",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HIVE",
+   "name": "Hive",
+   "coingecko_id": "hive",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "JST",
+   "name": "JUST",
+   "coingecko_id": "just",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VTHO",
+   "name": "VeThor Token",
+   "coingecko_id": "vethor-token",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AI16Z",
+   "name": "ai16z",
+   "coingecko_id": "ai16z",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CATI",
+   "name": "Catizen",
+   "coingecko_id": "catizen",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ELON",
+   "name": "Dogelon Mars",
+   "coingecko_id": "dogelon-mars",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PEOPLE",
+   "name": "ConstitutionDAO",
+   "coingecko_id": "constitutiondao",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BIGTIME",
+   "name": "Big Time",
+   "coingecko_id": "big-time",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TNSR",
+   "name": "Tensor",
+   "coingecko_id": "tensor",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CYBER",
+   "name": "Cyber",
+   "coingecko_id": "cyberconnect",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MORPHO",
+   "name": "Morpho",
+   "coingecko_id": "morpho",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AERO",
+   "name": "Aerodrome Finance",
+   "coingecko_id": "aerodrome-finance",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "REZ",
+   "name": "Renzo",
+   "coingecko_id": "renzo",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BB",
+   "name": "BounceBit",
+   "coingecko_id": "bouncebit",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "WBTC",
+   "name": "Wrapped Bitcoin",
+   "coingecko_id": "wrapped-bitcoin",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "T",
+   "name": "Threshold",
+   "coingecko_id": "threshold-network-token",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ACH",
+   "name": "Alchemy Pay",
+   "coingecko_id": "alchemy-pay",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CVC",
+   "name": "Civic",
+   "coingecko_id": "civic",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VISION",
+   "name": "Vision",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.5,
+   "angles": [
+    "indices"
+   ],
+   "sources": [
+    "https://bitpanda.com/bitpanda-spotlight (shown as 'recently live')"
+   ]
+  },
+  {
+   "symbol": "G",
+   "name": "Gravity",
+   "coingecko_id": "gravity",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FUN",
+   "name": "FUNToken",
+   "coingecko_id": "funfair",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KILT",
+   "name": "KILT Protocol",
+   "coingecko_id": "kilt-protocol",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LOOKS",
+   "name": "LooksRare",
+   "coingecko_id": "looksrare",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "aggregators"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BABYDOGE",
+   "name": "Baby Doge Coin",
+   "coingecko_id": "baby-doge-coin",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DEGEN",
+   "name": "Degen",
+   "coingecko_id": "degen-base",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ORDI",
+   "name": "ORDI",
+   "coingecko_id": "ordinals",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PLUME",
+   "name": "Plume",
+   "coingecko_id": "plume",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "INIT",
+   "name": "Initia",
+   "coingecko_id": "initia",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RARE",
+   "name": "SuperRare",
+   "coingecko_id": "superrare",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "EDU",
+   "name": "Open Campus",
+   "coingecko_id": "edu-coin",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DRIFT",
+   "name": "Drift Protocol",
+   "coingecko_id": "drift-protocol",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "QUICK",
+   "name": "QuickSwap",
+   "coingecko_id": "quickswap",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DODO",
+   "name": "DODO",
+   "coingecko_id": "dodo",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PYUSD",
+   "name": "PayPal USD",
+   "coingecko_id": "paypal-usd",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "USDE",
+   "name": "Ethena USDe",
+   "coingecko_id": "ethena-usde",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BICO",
+   "name": "Biconomy",
+   "coingecko_id": "biconomy",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AGLD",
+   "name": "Adventure Gold",
+   "coingecko_id": "adventure-gold",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ARPA",
+   "name": "ARPA",
+   "coingecko_id": "arpa",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GTC",
+   "name": "Gitcoin",
+   "coingecko_id": "gitcoin",
+   "votes": 1,
+   "max_confidence": 0.45,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MLC",
+   "name": "My Lovely Planet",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "announcements"
+   ],
+   "sources": [
+    "https://x.com/Bitpanda/status/1899857891664044238"
+   ]
+  },
+  {
+   "symbol": "GAS",
+   "name": "Gas",
+   "coingecko_id": "gas",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ALI",
+   "name": "Artificial Liquid Intelligence",
+   "coingecko_id": "alethea-artificial-liquid-intelligence-token",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GIGA",
+   "name": "Gigachad",
+   "coingecko_id": "gigachad-2",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MELANIA",
+   "name": "Official Melania Meme",
+   "coingecko_id": "melania-meme",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TOSHI",
+   "name": "Toshi",
+   "coingecko_id": "toshi",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "0G",
+   "name": "0G",
+   "coingecko_id": "zero-gravity",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DAR",
+   "name": "Mines of Dalarnia",
+   "coingecko_id": "mines-of-dalarnia",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "UOS",
+   "name": "Ultra",
+   "coingecko_id": "ultra",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ALCX",
+   "name": "Alchemix",
+   "coingecko_id": "alchemix",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RDNT",
+   "name": "Radiant Capital",
+   "coingecko_id": "radiant-capital",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SYN",
+   "name": "Synapse",
+   "coingecko_id": "synapse-2",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HFT",
+   "name": "Hashflow",
+   "coingecko_id": "hashflow",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NTRN",
+   "name": "Neutron",
+   "coingecko_id": "neutron-3",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CETUS",
+   "name": "Cetus Protocol",
+   "coingecko_id": "cetus-protocol",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PROVE",
+   "name": "Succinct",
+   "coingecko_id": "succinct",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RLUSD",
+   "name": "Ripple USD",
+   "coingecko_id": "ripple-usd",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SCRT",
+   "name": "Secret",
+   "coingecko_id": "secret",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "RAD",
+   "name": "Radworks",
+   "coingecko_id": "radicle",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TRU",
+   "name": "TrueFi",
+   "coingecko_id": "truefi",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "POND",
+   "name": "Marlin",
+   "coingecko_id": "marlin",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PUNDIX",
+   "name": "Pundi X",
+   "coingecko_id": "pundi-x-2",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FORTH",
+   "name": "Ampleforth Governance",
+   "coingecko_id": "ampleforth-governance-token",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ELF",
+   "name": "aelf",
+   "coingecko_id": "aelf",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "C98",
+   "name": "Coin98",
+   "coingecko_id": "coin98",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SXP",
+   "name": "Solar",
+   "coingecko_id": "swipe",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SFP",
+   "name": "SafePal",
+   "coingecko_id": "safepal",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MAV",
+   "name": "Maverick Protocol",
+   "coingecko_id": "maverick-protocol",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FLUX",
+   "name": "Flux",
+   "coingecko_id": "zelcash",
+   "votes": 1,
+   "max_confidence": 0.4,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "A",
+   "name": "Vaulta (ex-EOS)",
+   "coingecko_id": "vaulta",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SGB",
+   "name": "Songbird",
+   "coingecko_id": "songbird",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PONKE",
+   "name": "Ponke",
+   "coingecko_id": "ponke",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SOMI",
+   "name": "Somnia",
+   "coingecko_id": "somnia",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LOKA",
+   "name": "League of Kingdoms Arena",
+   "coingecko_id": "league-of-kingdoms",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "HIGH",
+   "name": "Highstreet",
+   "coingecko_id": "highstreet",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PLA",
+   "name": "PlayDapp",
+   "coingecko_id": "playdapp",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "GNS",
+   "name": "Gains Network",
+   "coingecko_id": "gains-network",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DEEP",
+   "name": "DeepBook",
+   "coingecko_id": "deep",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SIGN",
+   "name": "Sign",
+   "coingecko_id": "sign-global",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PARTI",
+   "name": "Particle Network",
+   "coingecko_id": "particle-network",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BMT",
+   "name": "Bubblemaps",
+   "coingecko_id": "bubblemaps",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "DOOD",
+   "name": "Doodles",
+   "coingecko_id": "doodles",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NEWT",
+   "name": "Newton Protocol",
+   "coingecko_id": "newton-protocol",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ERA",
+   "name": "Caldera",
+   "coingecko_id": "caldera",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AVNT",
+   "name": "Avantis",
+   "coingecko_id": "avantis",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FDUSD",
+   "name": "First Digital USD",
+   "coingecko_id": "first-digital-usd",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "REEF",
+   "name": "Reef",
+   "coingecko_id": "reef",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "UTK",
+   "name": "xMoney (ex-Utrust)",
+   "coingecko_id": "utrust",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ADX",
+   "name": "AdEx",
+   "coingecko_id": "adex",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AUCTION",
+   "name": "Bounce",
+   "coingecko_id": "auction",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CTK",
+   "name": "Shentu",
+   "coingecko_id": "certik",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BAKE",
+   "name": "BakeryToken",
+   "coingecko_id": "bakerytoken",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "IDEX",
+   "name": "IDEX",
+   "coingecko_id": "aurora-dao",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LTO",
+   "name": "LTO Network",
+   "coingecko_id": "lto-network",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NEXO",
+   "name": "Nexo",
+   "coingecko_id": "nexo",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OHM",
+   "name": "Olympus",
+   "coingecko_id": "olympus",
+   "votes": 1,
+   "max_confidence": 0.35,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ONG",
+   "name": "Ontology Gas",
+   "coingecko_id": "ong",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SUN",
+   "name": "Sun Token",
+   "coingecko_id": "sun-token",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "WIN",
+   "name": "WINkLink",
+   "coingecko_id": "wink",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "PAAL",
+   "name": "PAAL AI",
+   "coingecko_id": "paal-ai",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CHILLGUY",
+   "name": "Just a chill guy",
+   "coingecko_id": "chill-guy",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "LADYS",
+   "name": "Milady Meme Coin",
+   "coingecko_id": "milady-meme-coin",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "USTC",
+   "name": "TerraClassicUSD",
+   "coingecko_id": "terrausd",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "OPEN",
+   "name": "OpenLedger",
+   "coingecko_id": "openledger",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "NXPC",
+   "name": "NEXPACE",
+   "coingecko_id": "nexpace",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ERN",
+   "name": "Ethernity",
+   "coingecko_id": "ethernity-chain",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CLOUD",
+   "name": "Sanctum",
+   "coingecko_id": "sanctum-2",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VELO",
+   "name": "Velodrome Finance",
+   "coingecko_id": "velodrome-finance",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FRAX",
+   "name": "Frax",
+   "coingecko_id": "frax",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FARM",
+   "name": "Harvest Finance",
+   "coingecko_id": "harvest-finance",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "H",
+   "name": "Humanity Protocol",
+   "coingecko_id": "humanity-protocol",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "C",
+   "name": "Chainbase",
+   "coingecko_id": "chainbase",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SOON",
+   "name": "SOON",
+   "coingecko_id": "soon-2",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "USDS",
+   "name": "USDS",
+   "coingecko_id": "usds",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "TUSD",
+   "name": "TrueUSD",
+   "coingecko_id": "true-usd",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "USD1",
+   "name": "USD1 (WLFI)",
+   "coingecko_id": "usd1-wlfi",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "EURS",
+   "name": "STASIS EURO",
+   "coingecko_id": "stasis-eurs",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XAUT",
+   "name": "Tether Gold",
+   "coingecko_id": "tether-gold",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XVG",
+   "name": "Verge",
+   "coingecko_id": "verge",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ORN",
+   "name": "Orion",
+   "coingecko_id": "orion-protocol",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "STMX",
+   "name": "StormX",
+   "coingecko_id": "storm",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VIC",
+   "name": "Viction (ex-TomoChain)",
+   "coingecko_id": "viction",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VANRY",
+   "name": "Vanar Chain",
+   "coingecko_id": "vanar-chain",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "WNXM",
+   "name": "Wrapped NXM",
+   "coingecko_id": "wrapped-nxm",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AERGO",
+   "name": "Aergo",
+   "coingecko_id": "aergo",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ARDR",
+   "name": "Ardor",
+   "coingecko_id": "ardor",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AST",
+   "name": "AirSwap",
+   "coingecko_id": "airswap",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BOND",
+   "name": "BarnBridge",
+   "coingecko_id": "barnbridge",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "CLV",
+   "name": "Clover Finance",
+   "coingecko_id": "clover-finance",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FRONT",
+   "name": "Frontier",
+   "coingecko_id": "frontier-token",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FIS",
+   "name": "StaFi",
+   "coingecko_id": "stafi",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BEL",
+   "name": "Bella Protocol",
+   "coingecko_id": "bella-protocol",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KP3R",
+   "name": "Keep3rV1",
+   "coingecko_id": "keep3rv1",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MDT",
+   "name": "Measurable Data Token",
+   "coingecko_id": "measurable-data-token",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MXC",
+   "name": "MXC",
+   "coingecko_id": "mxc",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "AMPL",
+   "name": "Ampleforth",
+   "coingecko_id": "ampleforth",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "FIDA",
+   "name": "Bonfida",
+   "coingecko_id": "bonfida",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BTC2L",
+   "name": "Bitcoin/EUR 2x Long (leveraged token)",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.3,
+   "angles": [
+    "community"
+   ],
+   "sources": [
+    "https://raw.githubusercontent.com/Spegeli/hacs_bitpanda/main/tests/fixtures/assets-sample.json"
+   ]
+  },
+  {
+   "symbol": "MOBILE",
+   "name": "Helium Mobile",
+   "coingecko_id": "helium-mobile",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ARC",
+   "name": "AI Rig Complex",
+   "coingecko_id": "ai-rig-complex",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VINE",
+   "name": "Vine Coin",
+   "coingecko_id": "vine",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "SATS",
+   "name": "SATS (Ordinals)",
+   "coingecko_id": "sats-ordinals",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "STBL",
+   "name": "STBL",
+   "coingecko_id": "stbl",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MIRA",
+   "name": "Mira Network",
+   "coingecko_id": "mira-network",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BTG",
+   "name": "Bitcoin Gold",
+   "coingecko_id": "bitcoin-gold",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "BSV",
+   "name": "Bitcoin SV",
+   "coingecko_id": "bitcoin-cash-sv",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "JUNO",
+   "name": "Juno",
+   "coingecko_id": "juno-network",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "EVMOS",
+   "name": "Evmos",
+   "coingecko_id": "evmos",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "STARS",
+   "name": "Stargaze",
+   "coingecko_id": "stargaze",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "UNFI",
+   "name": "Unifi Protocol DAO",
+   "coingecko_id": "unifi-protocol-dao",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MBL",
+   "name": "MovieBloc",
+   "coingecko_id": "moviebloc",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "MATIC",
+   "name": "Polygon (migrated to POL)",
+   "coingecko_id": "matic-network",
+   "votes": 1,
+   "max_confidence": 0.25,
+   "angles": [
+    "community"
+   ],
+   "sources": [
+    "https://raw.githubusercontent.com/GimliGloinsSon/MoneyMoney-bitpanda-Extension/master/bitpanda.lua"
+   ]
+  },
+  {
+   "symbol": "AGIX",
+   "name": "SingularityNET",
+   "coingecko_id": "singularitynet",
+   "votes": 1,
+   "max_confidence": 0.2,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "KUJI",
+   "name": "Kujira",
+   "coingecko_id": "kujira",
+   "votes": 1,
+   "max_confidence": 0.2,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "XMR",
+   "name": "Monero",
+   "coingecko_id": "monero",
+   "votes": 1,
+   "max_confidence": 0.15,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "VGX",
+   "name": "Voyager Token",
+   "coingecko_id": "ethos",
+   "votes": 1,
+   "max_confidence": 0.15,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "ETHW",
+   "name": "EthereumPoW",
+   "coingecko_id": "ethereum-pow-iou",
+   "votes": 1,
+   "max_confidence": 0.15,
+   "angles": [
+    "knowledge"
+   ],
+   "sources": [
+    "model knowledge"
+   ]
+  },
+  {
+   "symbol": "STEEL",
+   "name": "Steelcoin",
+   "coingecko_id": "",
+   "votes": 1,
+   "max_confidence": 0.05,
+   "angles": [
+    "community"
+   ],
+   "sources": [
+    "https://support.bitpanda.com/hc/en-us/articles/16318375456412-Steelcoin-STEEL-delisting"
+   ]
+  }
+ ],
+ "delisted_notes": [
+  "BEST (Bitpanda Ecosystem Token: trading stopped 16 Jul 2025, merged into Vision VSN at 1 BEST = 4.91 VSN; remaining balances auto-converted 16 Jul 2026)",
+  "PAN (Pantos: trading stopped 16 Jul 2025, merged into VSN at 1 PAN = 0.89 VSN)",
+  "STEEL (Steelcoin: delisted Sept/Oct 2025 because its prospectus expired, per support.bitpanda.com article 16318375456412)",
+  "XMR (Monero: a Dutch price page exists, but an Oct 2026 third-party review states Bitpanda has no XMR trading pair; likely delisted under MiCA/privacy-coin pressure)",
+  "USDT (Tether: no Bitpanda delisting notice found, but Bitpanda's own academy text says USDT did not seek MiCAR authorisation and disappeared from regulated EU venues; treat as doubtful)",
+  "MKR (Maker: price page shows EUR 0.00 / tiny market cap; token migrated to SKY; may be trade-only or removed)",
+  "REP (Augur v2: price page shows EUR 0.00; likely illiquid/trade-only)",
+  "OMG (OMG Network: page shows no price; doubtful)",
+  "REN (REN protocol defunct; page exists but doubtful)",
+  "UNFI (Unifi Protocol DAO: project wound down; doubtful)",
+  "DF (dForce: page shows EUR 0.00)",
+  "F3 / VIA / CHAPZ / SMR (Spotlight-era pages show EUR 0.00 placeholders and are 400-1700 days stale; likely illiquid or removed)",
+  "AI16Z (rebranded to ElizaOS; page shows +0.00% and is 625 days stale)",
+  "RWA (RWA Inc. page is labelled '(OLD)', indicating a token migration)",
+  "KMD, XEM, WAVES, MIOTA->IOTA (present in a 2020 masterdata dump; KMD/XEM/WAVES not confirmed on current pages, MIOTA now trades as IOTA)",
+  "LUNA (Terra 2.0 page exists; low liquidity, confirm before use)",
+  "BCI5/BCI10/BCI25/BCIDL/BCIIL/BCIMEME (Bitpanda Crypto Indices: index products, not single cryptocurrencies; excluded from assets)",
+  "Model-knowledge entries at confidence <= 0.72 (OP, TON, EOS, DAI, SAND, MANA, ENJ, FLOW, EGLD, SUSHI, YFI, LRC, ANKR, STORJ, OCEAN, BAND, KNC, CELO, UMA, NMR, ROSE, ONE, FLR, MINA, KAVA, OSMO, HNT, AKT, GRASS, ENS, LPT, GMX, DYDX, ARKM, EIGEN, ETHFI, OM, BERA, IP, KAITO, MOODENG, NOT, DOGS, NEIRO, MEW, MOG, AIXBT, JASMY, CAKE, CRO, XDC, QNT, MOVE, LINEA, WAL) were not confirmed by an official page in this run and should be verified against the live /v1/assets endpoint",
+  "STEEL (Steelcoin: officially delisted; buys stopped 8 Sep 2025, sells until 22 Sep, withdrawals until 22 Oct 2025, remainder auto-converted to EUR because its prospectus expired - support.bitpanda.com/hc/en-us/articles/16318375456412)",
+  "BEST (Bitpanda Ecosystem Token: merged into Vision VSN on 16 Jul 2025; no longer a tradeable symbol - decrypt.co/324813)",
+  "PAN (Pantos: merged into VSN on 16 Jul 2025; no longer tradeable - decrypt.co/324813)",
+  "MATIC (Polygon: trading suspended 4 Sep 2024 and holdings swapped 1:1 to POL; symbol replaced by POL - status.bitpanda.com/incidents/lc032dj1fnb7)",
+  "FTT (FTX Token: listed Nov 2021; FTX collapsed Nov 2022; Bitpanda removal not found in sources but almost certainly no longer tradeable)",
+  "SRM (Serum: listed Nov 2021; project defunct after FTX; no Bitpanda notice found, most other EU venues delisted it in 2022-23)",
+  "AGIX (SingularityNET: listed 2023; merged into FET in Jul 2024 ASI merger, delisted industry-wide; Bitpanda handling unconfirmed)",
+  "OCEAN (Ocean Protocol: merged into FET/ASI 2024; Bitpanda handling unconfirmed, may still show as OCEAN)",
+  "FTM (Fantom: listed Nov 2021; migrated to Sonic S in Jan 2025 - expect symbol S instead; not confirmed in sources)",
+  "HNT (Helium: 2022 vote winner; chain migrated to Solana Apr 2023; Bitpanda status unconfirmed)",
+  "ANT (Aragon: listed Feb 2021; DAO dissolved and token made redeemable Nov 2023; likely removed, unconfirmed)",
+  "REP (Augur: 2018 ERC20 batch; largely defunct, likely removed)",
+  "OMG (OMG Network: 2018 ERC20 batch; status unsure)",
+  "REN (Ren: Dec 2020 batch; protocol shut down 2023; likely removed, unconfirmed)",
+  "SMR (Shimmer: listed ~2023 per t3n; IOTA merged Shimmer back in 2024-25; status unsure)",
+  "LMWR (LimeWire: 2023 Spotlight; low liquidity, status unsure)",
+  "SQD (Subsquid: one snippet claimed it on the Spotlight page but no listing confirmed; treat as doubtful)",
+  "TRUMP (OFFICIAL TRUMP: BTC-Echo says buyable on Bitpanda, a 2026 Cryptonews review says missing; conflicting)",
+  "Crypto ETPs/trackers (Bitpanda discontinued its whole crypto ETP range on Deutsche Boerse - not spot crypto, excluded)",
+  "Spotlight micro-caps SUIAI, AIAGENT, GOATS, AIC, MLC, LGCT, RVV, EV, CT (announced live but Bitpanda explicitly warns Spotlight assets may be removed; keep low confidence)",
+  "BEST (merged into Vision/VSN on 16 Jul 2025; no longer buy/sell, only deposit/withdraw/merge)",
+  "PAN (Pantos; merged into VSN with BEST, Jul 2025)",
+  "STEEL (Steelcoin; officially delisted after 23 Sep 2025 per support.bitpanda.com)",
+  "FTT (FTX Token; still in a 2025 ticker snapshot but likely trade-only/illiquid after FTX collapse)",
+  "HT (Huobi Token; rebranded HTX, status-page outage history; likely delisted)",
+  "REP (Augur v2; bitpanda.com page shows €0.00 price; likely delisted/trade-only)",
+  "REN (Ren protocol wound down; snapshot-only evidence)",
+  "LUNA (Terra 2.0; snapshot-only evidence)",
+  "OKB (snapshot-only; 2022 exchange-token batch)",
+  "XEM (NEM; snapshot + outage notice; doubtful)",
+  "LSK (Lisk migrated to Ethereum L2 token; doubtful under old symbol)",
+  "LIT (Litentry rebranded to Heima/HEI 2025; stale page)",
+  "LINA (Linear Finance; stale page, micro-cap)",
+  "OCEAN and AGIX (merged into FET/ASI Alliance mid-2024; probably converted)",
+  "ANT (Aragon dissolved 2023; probably removed)",
+  "MIOTA (replaced by symbol IOTA after IOTA Rebased; use IOTA)",
+  "FTM (rebranded to Sonic; Bitpanda ticker is S)",
+  "MATIC (migrated to POL; Bitpanda ticker is POL)",
+  "RNDR (now RENDER on Bitpanda)",
+  "TRUMP (Official Trump; no bitpanda.com page found in two restricted searches)",
+  "TON (Toncoin; no bitpanda.com page surfaced; include only after live check)",
+  "XMR (Monero; no evidence Bitpanda ever listed it; treat as not available)",
+  "PAXG / WBTC / stETH (no bitpanda.com pages found; Bitpanda sells physical gold and spot BTC instead)",
+  "BLUR, ARKM, W, ETHFI, AERO, JTO, ORDI, GRASS, MOVE, USUAL, KAITO, WAL, HUMA, SOPH, SPK, AVNT, SOMI, 0G, KITE, MMT, OPEN, STBL, MIRA (2024-2026 names where restricted searches returned no bitpanda.com page; unverified)",
+  "Spotlight micro-caps TMAI, APP, AIAGENT, HAPPY, SUIAI, KIMA, LGCT, AIC, BST, RVV, SPC, MBG, EV, WET, SYND, IMU, FLOCK, ACU, ENSO, CT (launched via Bitpanda Spotlight; may be set to trade-only or removed later; verify against live asset list)",
+  "BCI5 / BCI10 / BCI25 / BCIMEME / BCIDL and other Bitpanda Crypto Indices (tradeable products but baskets, not single coins; excluded from the asset list)",
+  "STEEL (Steelcoin - officially delisted by Bitpanda Sept 2025, prospectus expired; source https://support.bitpanda.com/hc/en-gb/articles/16318375456412-Steelcoin-STEEL-delisting)",
+  "USDT (likely restricted/sell-only or delisted for EEA customers under MiCA non-compliant-EMT rules in 2025; may remain for UK/CH users - verify)",
+  "DAI, USDe, FDUSD, TUSD, USDS, USD1, EURS, XAUT (non-MiCA-compliant stablecoins/EMTs - same EEA restriction risk)",
+  "XMR (Monero - Bitpanda almost certainly never listed it / privacy-coin policy)",
+  "MATIC (migrated to POL on Bitpanda in late 2024 - use POL only)",
+  "FTM (migrated to S/Sonic - use S)",
+  "RNDR (renamed RENDER)",
+  "AGIX and OCEAN (merged into FET/ASI - likely removed)",
+  "NU and KEEP (merged into T/Threshold)",
+  "MC (Merit Circle -> BEAM)",
+  "TOMO (-> VIC Viction)",
+  "TVK (-> VANRY)",
+  "KLAY (-> KAIA)",
+  "EOS (-> A / Vaulta rebrand 2025; unclear which symbol Bitpanda shows)",
+  "LUNA (original Terra -> LUNC; Bitpanda carried the rename, keep LUNC + LUNA 2.0 doubtful)",
+  "REP (Augur - defunct, almost certainly delisted)",
+  "WAVES, OMG, XEM, LSK, KMD, ARDR, STRAX (early Bitpanda-era alts; some may have been quietly delisted)",
+  "FTT, CEL, SRM, MIR, UST, VGX (collapsed projects - delisted, excluded or near-zero)",
+  "BSV, BTG, ETHW, XVG (doubtful ever/still listed)",
+  "PI, CORE, SATS, ORDI (doubtful listings)",
+  "MOBILE, JUNO, KUJI, EVMOS, STARS, CLOUD, HOME, STBL, MIRA, OPEN (low-confidence small caps)",
+  "All H2-2025 and 2026 listings (PUMP, WLFI, XPL, LINEA, MON, ASTER, 0G, AVNT, SOMI, PROVE, ERA, C, TREE, NEWT, H, SAHARA, RESOLV, HUMA, SOPH, NXPC, DOOD, SIGN, SXT, ZORA, INIT, BABY, WAL, PARTI, NIL, BMT, SHELL, RED, LAYER, ANIME, COOKIE) - plausible given Bitpanda's fast listing cadence but unverified",
+  "2026-specific new listings are not covered by model knowledge - the app must pull the live list",
+  "LUNA (Terra; in 2022 staking list, collapsed May 2022, since removed/renamed LUNC)",
+  "BNB (BCI5/BCI10 constituent but historically an 'index-only' coin on Bitpanda - individual tradability not confirmed)",
+  "XMR (Monero; flagged index_only=true in Bitpanda v3/currencies API docs per matteoantoci/mcp-bitpanda)",
+  "BSV, CRO, HT (BitcoinSV, Crypto.com Coin, Huobi Token; original BCI25 index-only coins, since dropped from index)",
+  "OMG (OmiseGo; MoneyMoney coinDict id 15, widely delisted)",
+  "REP (Augur v1; coinDict id 16, deprecated)",
+  "XEM (NEM; coinDict id 19, likely delisted)",
+  "WAVES (coinDict id 26; most EU brokers delisted 2022-2023)",
+  "REN (coinDict id 61; protocol wound down after FTX collapse)",
+  "UMA (coinDict id 63; unsure)",
+  "ANT (Aragon; coinDict id 69; DAO dissolved 2023)",
+  "OCEAN (coinDict id 66; merged into FET/ASI in 2024)",
+  "BAND (coinDict id 60; unsure)",
+  "KNC (Kyber; coinDict id 59; unsure)",
+  "KMD (Komodo; coinDict id 12; unsure)",
+  "LSK (Lisk; coinDict id 6; migrated to new L2 token 2024, unsure)",
+  "EOS (coinDict id 14; rebranded to Vaulta/A in 2025, Bitpanda ticker uncertain)",
+  "MATIC (renamed POL on Bitpanda after 2024 migration)",
+  "MKR (migrating to SKY; both may appear)",
+  "CC / Canton, NIGHT / Midnight, LIT / Lighter, ASTER, PUMP, WLFI, VVV (recent BCI sector-index constituents; may be index-only rather than spot-tradeable)",
+  "EURCV (Fusion quote stablecoin; spot tradability on broker unverified)",
+  "VIA, CHAPZ, F3, AITECH (2024 Spotlight micro-caps; may have been delisted)",
+  "HOME, EV, MBG, GENSYN, SPC, WET, SYND, IMU, FLOCK, ACU (2026 Spotlight listings per 99bitcoins third-party page only; Spotlight assets are high-risk and ticker spellings unverified)",
+  "STEEL (Steelcoin: Bitpanda support page says delisted after 23 Sep 2025; buy stopped 8 Sep 2025, sell window closed 22 Sep 2025; the ~Sep-2026 catalogue fixture still shows it as sell_active only)",
+  "BEST (Bitpanda Ecosystem Token: Bitpanda's own token, being replaced by Vision/VSN since 2025; still a key in the mid-2026 legacy ticker snapshot, but likely sell/convert-only now)",
+  "PAN (Pantos: present in the mid-2026 ticker snapshot and the 2021 masterdata, but Portfolio Performance forum notes it is missing from CoinMarketCap; low-liquidity, uncertain whether still buyable)",
+  "FTT (FTX Token: still a key in the mid-2026 ticker snapshot; almost certainly not buyable, probably sell-only/legacy)",
+  "LUNA and LUNC (Terra / Terra Classic: in the ticker snapshot; buy status uncertain)",
+  "REP (Augur) and REN (Ren): legacy tokens in the ticker snapshot; projects wound down, likely sell-only",
+  "HT (Huobi Token) and OKB: exchange tokens in the ticker snapshot; buy status uncertain",
+  "EOS (rebranded to Vaulta/A in 2025; ticker key still EOS)",
+  "MIOTA (legacy Bitpanda symbol for IOTA; the 2026 ticker snapshot uses IOTA)",
+  "MATIC (Polygon migrated to POL; MATIC appears only in the ~2022 MoneyMoney id table)",
+  "SPACE / SPC (Spotlight token 'SPACE'; the ~Sep-2026 catalogue fixture shows symbol SPC with buy_active=false and sell_active=false, withdrawal only; the legacy ticker snapshot has a key 'SPACE')",
+  "BTC2L and other leveraged tokens (type cryptocoin, group leveraged_token in the public API; Bitpanda products, not coins; exclude or treat separately)",
+  "BCI5, BCI10, BCI25, BCIMEME (Bitpanda Crypto Indices: type index, not cryptocurrencies; the legacy ticker also carries them)",
+  "EURCV (EUR CoinVertible: a euro stablecoin, buy/sell/deposit/withdraw all active in the Sep-2026 fixture; include only if stablecoins are wanted)",
+  "USDT, USDC (only evidenced by Bitpanda's 2021 masterdata plus model knowledge; absent from the SimpleBitcoinWidget list because that widget filters stablecoins)",
+  "WET, SYND, IMU, FLOCK, ACU (Aug-2026 Spotlight listings per 99bitcoins only; not confirmed on Bitpanda's own pages)",
+  "HOME, EV, MBG, GENSYN (2026 Spotlight listings shown on bitpanda.com/de-at/bitpanda-spotlight per search snippet; Spotlight coins are often trade-only and can be delisted)",
+  "PI (Pi Network) appears in the mid-2026 ticker snapshot; surprising for a regulated EU broker, verify",
+  "AVA (Travala), SOLO (Sologenic), MLN (Enzyme), XYM (Symbol), KMD, LSK, OMG, WAVES, XEM, ICX, ONT, POWR, QTUM, DCR, RVN, ZIL, GNO, BAL, BAND, BNT, STG, UMA, KNC: present in the mid-2026 ticker snapshot but low-liquidity legacy listings; some may be sell-only",
+  "PAXG and ONDO: only evidenced by Bitpanda Fusion-related repos (mock data / trading universe), not by a ticker snapshot",
+  "All 'model knowledge' rows (POL, ICP, TON, TAO, WLD, SEI, TIA, JUP, PYTH, FLOKI, WIF, STX, FLOW, CELO, MINA, XDC, DGB, TRUMP, ENA, W, STRK, ANKR): not found in any fetched source; added from memory of Bitpanda listings 2024-2025"
+ ]
+}

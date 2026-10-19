@@ -27,4 +27,9 @@ data class Asset(
     val listingSource: ListingSource = ListingSource.BUNDLED_SNAPSHOT,
     /** Approximate market-cap rank in the bundled snapshot (null for live sources). */
     val snapshotRank: Int? = null,
+    /**
+     * True when the listing is confirmed (live Bitpanda API, or seen in the Bitpanda app snapshot).
+     * Unverified research candidates are hidden when their market cap proves they are not on Bitpanda.
+     */
+    val verified: Boolean = true,
 )
