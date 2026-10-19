@@ -35,8 +35,10 @@ the "Memecoins" filter shows them too.
    role-based minting or pausing). Opening a token re-checks it and adds the honeypot.is buy/sell
    simulation (Ethereum, BSC, Base) and a week of hourly candles from GeckoTerminal (on an hourly grid,
    converted at the exchange rate). GoPlus and honeypot.is are combined so the worse answer wins (a
-   honeypot or owner power either one reports stays, the higher tax counts), and these findings carry
-   over to later refreshes for 6 hours.
+   honeypot or owner power either one reports stays, the higher tax counts). These findings carry over
+   to later refreshes for 6 hours, and a honeypot.is verdict is reused by list refreshes for 24 hours
+   (from the cache, without a new request); a honeypot.is run that could not simulate never replaces
+   an earlier verdict.
 6. Beyond Bitpanda a ticker is not unique, so the detail view and its cache identify DEX tokens by
    chain and contract and memecoins or trending coins by CoinGecko id.
 
