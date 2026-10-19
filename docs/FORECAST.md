@@ -1,0 +1,41 @@
+# How the forecast works
+
+CryptoPulse gives two numbers per coin: the probability that the price is **higher in 24 hours** and
+**higher in 7 days**, plus a 0-100 **bottom score** ("how close is it to a local low, and are rebound
+conditions present?"). Everything is computed on the device (or in the MCP server) from free data.
+
+## Inputs
+
+| Group | Signals | Source |
+|-------|---------|--------|
+| Price (24h horizon) | RSI 14, Bollinger %B, last 24h move vs. volatility, 12h vs 48h trend, MACD histogram | CoinGecko 7-day hourly sparkline |
+| Price (7d horizon) | daily RSI 14, %B, 30-day momentum, 20 vs 50-day trend, last 7d move | CoinGecko 1-year daily history (detail screen) or 4-hour bars |
+| Market context | Bitcoin trend (alts follow BTC), Fear & Greed (contrarian), total market cap move, overall social mood, CoinGecko trending | CoinGecko, alternative.me, Reddit/news/Telegram |
+| Crowd | coin sentiment x confidence, attention change, futures funding (contrarian), long/short accounts (contrarian), CoinGecko votes | Reddit, StockTwits, Telegram, news, cloud hub, Binance/Bybit, CoinGecko |
+
+Each signal adds a small signed amount to a logit. Weights are deliberately small because short-term
+crypto returns are mostly noise.
+
+## Self-check (walk-forward backtest)
+
+The price-only part is replayed over the available history: at every past step the model sees only
+the data up to that step and its call is compared with what happened next. If it did not beat the
+naive baseline (always predicting the more common direction), its weight is cut; if it clearly beat
+it, the weight is raised a little. The detail screen shows the hit rate, sample count and baseline.
+
+## Humility rules
+
+* Probabilities are shrunk toward 50 % when data coverage is thin and clamped to 15-85 %.
+* "Likely up/down" needs at least 55 % / at most 45 %; everything in between is "no clear direction".
+* Stablecoins (USDT, USDC, EURC, ...) are reported as pegged, without a forecast.
+* The likely range is about one standard deviation of recent volatility around a small drift.
+
+## Bottom score
+
+Weighted mix of: distance to the 7-day, 30-day, 90-day and 1-year lows, RSI, Bollinger %B, drawdown
+from the 30-day high and market-wide fear. 70+ = near a local low, 55-70 lower part of the range,
+40-55 mid-range, 25-40 upper part, below 25 near a local high. Nobody knows the absolute bottom; the
+score only says whether the price is near recent lows *and* typical rebound conditions are present.
+The 7-day probability next to it is the actual estimate of whether it goes up from here.
+
+Model version: `cryptopulse-forecast-1.0` (see `core/src/main/kotlin/dev/cryptopulse/core/analysis/forecast`).
