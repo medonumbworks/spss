@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Iterable, Sequence
 
-from sentiment_hub.common import Message, iso_z, truncate_display
+from sentiment_hub.common import Message, is_http_url, iso_z, truncate_display
 from sentiment_hub.mentions import MentionMatcher
 from sentiment_hub.nlp import ScoredMessage
 
@@ -95,7 +95,7 @@ def pick_samples(items: Iterable[tuple[ScoredMessage, float]], limit: int = MAX_
     candidates = [
         (sm, w)
         for sm, w in items
-        if sm.message.public and sm.message.url and sm.message.community and sm.message.text.strip()
+        if sm.message.public and is_http_url(sm.message.url) and sm.message.community and sm.message.text.strip()
     ]
     candidates.sort(key=lambda x: (-(x[1] * (0.25 + abs(x[0].composite))), x[0].message.key))
     out: list[dict] = []

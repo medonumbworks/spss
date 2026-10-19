@@ -171,3 +171,30 @@ def test_cli_rejects_unknown_model(tmp_path):
     proc = subprocess.run([sys.executable, str(HUB), "--out", str(tmp_path / "f.json"), "--models", "gpt"],
                           capture_output=True, text=True, timeout=60)
     assert proc.returncode == 2 and "unknown model" in proc.stderr
+
+
+def test_odd_items_from_third_party_feeds_do_not_break_the_feed(monkeypatch, tmp_path):
+    """A relative RSS link and a lone UTF-16 surrogate in Reddit JSON used to make the run fail
+    (feed validation error / UnicodeEncodeError), so nothing was published for up to 48 h."""
+    monkeypatch.setattr(reddit.time, "sleep", lambda s: None)
+    tg, news = _fixture_http()
+    news.add(rss.FEEDS[1][1], b"""<?xml version="1.0"?><rss version="2.0"><channel><title>CoinDesk</title>
+      <item><title>Bitcoin miners sell record amounts</title><link>/markets/2026/10/19/bitcoin-miners</link>
+      <pubDate>Mon, 19 Oct 2026 09:30:00 GMT</pubDate></item>
+      <item><title>Bitcoin treasury firm files</title><link>urn:uuid:1234</link>
+      <pubDate>Mon, 19 Oct 2026 09:20:00 GMT</pubDate></item></channel></rss>""")
+    news.add(reddit.listing_url("CryptoMarkets"), json.dumps({"data": {"children": [{"data": {
+        "id": "zz1", "title": "Bitcoin \\ud83d broken emoji", "selftext": "", "subreddit": "CryptoMarkets",
+        "permalink": "/r/CryptoMarkets/comments/zz1/x/", "created_utc": (NOW - timedelta(hours=2)).timestamp(), "score": 3}}]}},
+    ).replace("\\\\ud83d", "\\ud83d"))
+    feed, _, _ = hub.run(args(), now=NOW, tg_http=tg, news_http=news, account_env={}, pipeline_factory=fake_pipeline_factory)
+    assert validate_feed(feed) == [], validate_feed(feed)
+    urls = [s["url"] for a in feed["assets"] for s in a["samples"]]
+    assert "https://www.coindesk.com/markets/2026/10/19/bitcoin-miners" in urls
+    assert all(u.startswith("https://") for u in urls)
+    texts = [s["text"] for a in feed["assets"] for s in a["samples"]]
+    assert any(t.startswith("Bitcoin � broken emoji") for t in texts)
+    from sentiment_hub.feed import write_feed
+
+    out = write_feed(feed, tmp_path / "feed.json")
+    assert validate_feed(json.loads(out.read_text(encoding="utf-8"))) == []

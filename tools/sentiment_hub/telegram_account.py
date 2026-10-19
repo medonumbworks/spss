@@ -367,6 +367,12 @@ async def collect_async(
         name = type(exc).__name__
         if any(k in name for k in ("AuthKey", "SessionRevoked", "SessionExpired", "Unauthorized", "UserDeactivated")):
             return SourceResult(NAME, "unauthorized", detail=f"{name}; run login.py again")
+        seconds = _flood_seconds(exc)
+        if seconds is not None:  # e.g. a long flood wait while listing the dialogs
+            reader.state.flood_skips += 1
+            log.warning("telegram_account: flood wait %ds; keeping what was read", seconds)
+            status = "ok" if reader.state.messages else "rate_limited"
+            return SourceResult(NAME, status, reader.state.messages, detail=_detail(reader.state, f"flood wait {seconds}s"))
         log.warning("telegram_account failed: %s", name)
         return SourceResult(NAME, "error", reader.state.messages, detail=_detail(reader.state, name))
     finally:

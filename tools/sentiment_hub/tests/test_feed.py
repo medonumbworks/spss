@@ -130,6 +130,9 @@ def test_missing_sources_are_reported_as_disabled(now):
         (lambda f: f["assets"][0]["bySource"]["telegram_public"].update(mentions=99), "sum"),
         (lambda f: f["assets"].append(copy.deepcopy(f["assets"][-1])), "duplicate"),
         (lambda f: f["market"].update(mentions=True), "market.mentions"),
+        (lambda f: f["assets"][0]["samples"][0].update(url="/news/relative"), "http(s) URL"),
+        (lambda f: f.update(schema=f.pop("schema")), "out of order"),
+        (lambda f: f["assets"][0].update(symbol=f["assets"][0].pop("symbol")), "out of order"),
     ],
 )
 def test_validator_rejects(sample_feed, mutate, expected):

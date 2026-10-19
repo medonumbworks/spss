@@ -120,3 +120,10 @@ def test_empty_input(now):
     agg = aggregate([], [], build_matchers(ASSETS), now, ["vader"])
     assert agg.assets == []
     assert agg.market == {"mentions": 0, "composite": 0.0, "bullish": 0.0, "bearish": 0.0, "neutral": 0.0}
+
+
+def test_samples_need_an_absolute_http_url(now):
+    good = scored("Bitcoin good link", now, 0, i=1, vader=0.5)
+    bad = scored("Bitcoin relative link", now, 0, i=2, vader=0.9)
+    bad.message.url = "/news/relative"
+    assert [s["text"] for s in pick_samples([(good, 1.0), (bad, 1.0)])] == ["Bitcoin good link"]

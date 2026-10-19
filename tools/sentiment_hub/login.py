@@ -115,8 +115,13 @@ async def interactive_login(out: Path | None) -> int:
 
     print(f"\nLogged in as {getattr(me, 'first_name', '') or 'your account'} (id {getattr(me, 'id', '?')}).\n")
     if out is not None:
-        out.write_text(session + "\n", encoding="utf-8")
-        os.chmod(out, 0o600)
+        # Mode 600 before anything is written (write_text + chmod would leave the secret
+        # world-readable for a moment, also when the file already existed with wider permissions).
+        fd = os.open(out, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        if hasattr(os, "fchmod"):  # POSIX (and Windows from Python 3.13 on)
+            os.fchmod(fd, 0o600)
+        with os.fdopen(fd, "w", encoding="utf-8") as fh:
+            fh.write(session + "\n")
         print(f"Session string written to {out} (mode 600). Delete the file after adding the secret.")
         hint = f"<contents of {out}>"
     else:

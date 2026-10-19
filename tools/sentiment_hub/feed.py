@@ -14,7 +14,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Sequence
 
-from sentiment_hub.common import SOURCE_NAMES, STATUSES, SourceResult, iso_z, utf16_len
+from sentiment_hub.common import SOURCE_NAMES, STATUSES, SourceResult, is_http_url, iso_z, utf16_len
 from sentiment_hub.nlp import ALL_MODELS
 
 SCHEMA = "cryptopulse.sentiment-feed/v1"
@@ -132,6 +132,8 @@ def _check_keys(obj: Any, keys: Sequence[str], where: str, errors: list[str]) ->
         errors.append(f"{where}: missing {missing}")
     if extra:
         errors.append(f"{where}: unexpected {extra}")
+    if not missing and not extra and list(obj) != list(keys):
+        errors.append(f"{where}: keys out of order, expected {list(keys)}")
     return not missing
 
 
@@ -271,7 +273,7 @@ def validate_feed(feed: Any) -> list[str]:
             for k in ("community", "url"):
                 if not isinstance(s[k], str) or not s[k]:
                     errors.append(f"{w}.{k}: expected non-empty string")
-            if isinstance(s["url"], str) and not s["url"].startswith(("https://", "http://")):
+            if isinstance(s["url"], str) and s["url"] and not is_http_url(s["url"]):
                 errors.append(f"{w}.url: expected http(s) URL")
             if not isinstance(s["ts"], str) or not _TS_RE.match(s["ts"]):
                 errors.append(f"{w}.ts: expected YYYY-MM-DDTHH:MM:SSZ")

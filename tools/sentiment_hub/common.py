@@ -22,6 +22,7 @@ _FAILURE_PRIORITY = ("rate_limited", "unauthorized", "unavailable", "error")
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 _WS_RE = re.compile(r"\s+")
+_SURROGATE_RE = re.compile("[\ud800-\udfff]")
 
 
 @dataclass
@@ -88,10 +89,20 @@ def parse_iso(value: str | None) -> datetime | None:
 
 
 def clean_text(text: str | None) -> str:
-    """Collapse all whitespace runs to one space and trim."""
+    """Collapse all whitespace runs to one space and trim. Surrogate code points (from broken
+    JSON escapes such as ``"\\ud83d"`` or HTML char refs) are paired up where possible and
+    otherwise replaced by U+FFFD, because they cannot be encoded as UTF-8 or UTF-16 and would
+    crash the feed writer."""
     if not text:
         return ""
+    if _SURROGATE_RE.search(text):
+        text = text.encode("utf-16-le", "surrogatepass").decode("utf-16-le", "replace")
     return _WS_RE.sub(" ", text).strip()
+
+
+def is_http_url(url: object) -> bool:
+    """The feed only carries absolute ``http(s)://`` links (``validate_feed`` checks this)."""
+    return isinstance(url, str) and url.startswith(("https://", "http://")) and len(url) > len("https://")
 
 
 def utf16_len(text: str) -> int:

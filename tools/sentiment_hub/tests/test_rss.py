@@ -98,3 +98,24 @@ def test_collect_all_down(now):
     assert result.items == []
     assert result.detail.startswith("0/6 feeds")
     assert len(rss.FEEDS) == 6
+
+
+def test_links_are_made_absolute_and_non_http_links_dropped(now):
+    xml = b"""<?xml version="1.0"?><rss version="2.0"><channel><title>x</title>
+    <item><title>Relative link</title><link>/news/relative</link><pubDate>Mon, 19 Oct 2026 09:00:00 GMT</pubDate></item>
+    <item><title>Protocol-relative link</title><link>//cdn.example.org/a</link><pubDate>Mon, 19 Oct 2026 09:01:00 GMT</pubDate></item>
+    <item><title>Tag id as link</title><link>tag:example.org,2026:7</link><pubDate>Mon, 19 Oct 2026 09:02:00 GMT</pubDate></item>
+    <item><title>Upper-case scheme</title><link>HTTPS://Example.org/Up</link><pubDate>Mon, 19 Oct 2026 09:03:00 GMT</pubDate></item>
+    </channel></rss>"""
+    feeds = (("Example", "https://example.org/feed/rss"),)
+    http = FakeHttp()
+    http.add(feeds[0][1], xml)
+    result = rss.collect(http, now, feeds=feeds)
+    assert [m.url for m in result.items] == [
+        "https://example.org/news/relative",
+        "https://cdn.example.org/a",
+        None,
+        "https://Example.org/Up",
+    ]
+    assert rss.absolute_link("  ", feeds[0][1]) is None
+    assert rss.absolute_link("javascript:alert(1)", feeds[0][1]) is None

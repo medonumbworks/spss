@@ -299,3 +299,14 @@ def test_entity_helpers():
     assert ta.entity_username(Chat(1, "t")) is None
     assert ta.is_chat_entity(Channel(1, "t")) and ta.is_chat_entity(Chat(1, "t"))
     assert not ta.is_chat_entity(User(1))
+
+
+def test_long_flood_wait_while_listing_dialogs_is_rate_limited(now):
+    class FloodingDialogs(FakeClient):
+        async def iter_dialogs(self):
+            raise FloodWaitError(request=None, capture=900)
+            yield  # pragma: no cover - makes this an async generator
+
+    result, _ = run_collect(FloodingDialogs(now))
+    assert result.status == "rate_limited"
+    assert "flood wait 900s" in result.detail

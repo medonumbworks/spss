@@ -54,7 +54,7 @@ Each source returns its items plus one status: `ok`, `empty`, `rate_limited`, `u
 |---|---|---|
 | `telegram_public` | every entry of `channels.json`, `https://t.me/s/<handle>` | BeautifulSoup parses `div.tgme_widget_message[data-post]`; paginates with `?before=<smallest id>` until 48 h are covered or 5 pages; 1 request/s for the host, 4 channels in flight, browser User-Agent; 404s and redirects to `t.me/<handle>` (groups have no preview) are skipped; 12 min budget. `detail` = `readable/attempted channels (...)` |
 | `telegram_account` | your groups/supergroups/channels + public catalogue handles | see below; `disabled` without secrets |
-| `rss` | CoinTelegraph, CoinDesk, Decrypt, Bitcoin Magazine, CryptoSlate, The Block | `xml.etree` only; HTML entities such as `&nbsp;` are repaired; undated items are skipped |
+| `rss` | CoinTelegraph, CoinDesk, Decrypt, Bitcoin Magazine, CryptoSlate, The Block | `xml.etree` only; HTML entities such as `&nbsp;` are repaired; undated items are skipped; relative links are resolved against the feed URL and non-http(s) links (`tag:`, `urn:`) dropped |
 | `reddit` | r/CryptoCurrency, r/CryptoMarkets, r/altcoin, r/SatoshiStreetBets `new.json?limit=100` | descriptive User-Agent; Reddit often answers 403/429 to cloud IPs, which is recorded and skipped |
 
 A post that both Telegram sources read is counted once (same key `tg:<handle>/<id>`); identical
@@ -186,7 +186,8 @@ Guarantees (checked by `feed.validate_feed`, which runs before every write):
 * `assets`: only `mentions > 0`, sorted by `mentions` desc (ties: total weight); `scores` holds
   only models that scored this asset; `bySource` mentions add up to `mentions`
 * `samples`: at most 5, never from a private chat, `text` 1..280 characters (counted as UTF-16
-  units like Kotlin's `String.length`, cut texts end with `…`), `community` and `url` non-empty
+  units like Kotlin's `String.length`, cut texts end with `…`), `community` non-empty, `url` an
+  absolute `http(s)://` link; texts never contain lone UTF-16 surrogates (replaced by U+FFFD)
 * when every source fails the feed is still written: statuses filled in, `market` all zero,
   `assets: []`
 
@@ -198,8 +199,9 @@ It installs the requirements (CPU torch from `download.pytorch.org/whl/cpu`; if 
 the run continues with VADER only), caches pip and `~/.cache/huggingface`, runs the tests, runs the
 hub with all models and the optional Telegram secrets, then force-pushes `feed.json` and a short
 README as a single orphan commit to the branch `sentiment-feed` with the built-in `GITHUB_TOKEN`
-(`permissions: contents: write`), so the repository does not grow. A failing run publishes
-nothing and the previous feed stays online.
+(`permissions: contents: write`), so the repository does not grow. The checkout does not persist
+that token (`persist-credentials: false`): only the publish step sees it, not pip, the tests or
+the hub. A failing run publishes nothing and the previous feed stays online.
 
 Note: GitHub pauses scheduled workflows of public repositories after 60 days without repository
 activity; re-enable it in the Actions tab if that happens. `raw.githubusercontent.com` caches

@@ -37,6 +37,10 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
+        with:
+          # The write token must not sit in .git/config while pip packages, the tests and the hub
+          # (which parses untrusted web content) run; only the publish step gets it, via env.
+          persist-credentials: false
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5

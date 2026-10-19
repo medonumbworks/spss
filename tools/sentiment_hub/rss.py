@@ -13,8 +13,9 @@ from datetime import datetime, timedelta
 from email.utils import parsedate_to_datetime
 from html.entities import name2codepoint
 from typing import Sequence
+from urllib.parse import urljoin, urlsplit
 
-from sentiment_hub.common import Message, SourceResult, as_utc, clean_text, combine_statuses, describe_counts, parse_iso, status_for_http
+from sentiment_hub.common import Message, SourceResult, as_utc, clean_text, combine_statuses, describe_counts, is_http_url, parse_iso, status_for_http
 from sentiment_hub.net import NetError
 
 log = logging.getLogger("sentiment_hub.rss")
@@ -146,6 +147,22 @@ def parse_feed(content: bytes | str) -> list[FeedItem]:
     return items
 
 
+def absolute_link(link: str | None, feed_url: str) -> str | None:
+    """Item links resolved against the feed URL; only absolute ``http(s)`` links are kept (a
+    relative ``/news/x`` or a ``tag:``/``urn:`` id would otherwise end up as a sample URL and make
+    the whole feed fail validation)."""
+    if not link or not link.strip():
+        return None
+    try:
+        parts = urlsplit(urljoin(feed_url, link.strip()))
+    except ValueError:
+        return None
+    if parts.scheme.lower() not in ("http", "https") or not parts.netloc or any(c.isspace() for c in parts.geturl()):
+        return None
+    url = parts._replace(scheme=parts.scheme.lower()).geturl()
+    return url if is_http_url(url) else None
+
+
 def item_text(item: FeedItem) -> str:
     """Headline plus summary; this is what gets scored and mention-matched."""
     if item.summary and item.summary != item.title:
@@ -200,7 +217,8 @@ def collect(
                 continue
             if item.ts < cutoff or item.ts > now + timedelta(minutes=10):
                 continue
-            key = "rss:" + (item.link or item.guid or item.title).strip().lower()
+            link = absolute_link(item.link, url)
+            key = "rss:" + (link or item.guid or item.title).strip().lower()
             if key in seen:
                 continue
             seen.add(key)
@@ -211,7 +229,7 @@ def collect(
                     key=key,
                     text=item_text(item),
                     ts=item.ts,
-                    url=item.link,
+                    url=link,
                     community=name,
                     public=True,
                     engagement=0.0,
