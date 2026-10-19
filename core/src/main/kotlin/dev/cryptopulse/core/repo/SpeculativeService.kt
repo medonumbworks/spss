@@ -56,6 +56,7 @@ class SpeculativeService(
     /**
      * @param taken rows already in the list (Bitpanda); their tickers and CoinGecko ids are reserved.
      * @param usdToQuote multiply a USD price by this to get the quote currency (null = unknown).
+     * @param previous the last snapshot's rows: memecoins to fall back on, and contract checks to keep.
      */
     suspend fun load(cfg: AppConfig, taken: List<AssetRow>, trendingIds: List<String>, usdToQuote: Double?, previous: List<AssetRow>): Result {
         val warnings = ArrayList<String>()
@@ -77,8 +78,9 @@ class SpeculativeService(
                         symbols += t.symbol
                     }
                 } else {
-                    // nobody answered: keep the last known memecoin rows rather than dropping the tier
-                    previous.filter { it.asset.tier == Tier.MEME && it.asset.symbol !in symbols }.forEach { rows += it.copy(forecast = null); symbols += it.asset.symbol }
+                    // nobody answered: keep the last known memecoin rows (in this currency) rather than dropping the tier
+                    previous.filter { it.asset.tier == Tier.MEME && it.asset.symbol !in symbols && it.market?.currency == cfg.currency }
+                        .forEach { rows += it.copy(forecast = null); symbols += it.asset.symbol }
                 }
             } else {
                 memes.forEach { m -> m.coingeckoId?.let { memeIds += it } }
@@ -113,7 +115,7 @@ class SpeculativeService(
 
         val dexTrendingIds = HashSet<String>()
         if (cfg.showDexRadar) {
-            rows += dexRadar(cfg, symbols, ids, usdToQuote, dexTrendingIds, warnings)
+            rows += dexRadar(cfg, symbols, ids, usdToQuote, dexTrendingIds, warnings, previous)
         }
         return Result(rows, memeIds, dexTrendingIds, warnings, memeSymbols)
     }
@@ -178,6 +180,7 @@ class SpeculativeService(
         usdToQuote: Double?,
         dexTrendingIds: MutableSet<String>,
         warnings: MutableList<String>,
+        previous: List<AssetRow>,
     ): List<AssetRow> {
         val candidates = LinkedHashMap<String, Candidate>()
         fun candidate(chain: String, address: String): Candidate = candidates.getOrPut(key(chain, address)) { Candidate(chain, address) }
@@ -231,9 +234,10 @@ class SpeculativeService(
         }
         if (reachable == 0) return emptyList()
 
-        // one uniform, deep-pool view of every candidate (DexScreener answers 30 tokens per call)
+        // one uniform, deep-pool view of every candidate (DexScreener answers 30 tokens per call); those
+        // without any data yet (promotions, pump.fun) go first, as they are dropped without a lookup
         candidates.values.filter { !isQuote(it) }.groupBy { it.chainId }.forEach { (chain, list) ->
-            when (val r = dexScreener.tokens(chain, list.take(MAX_LOOKUPS_PER_CHAIN).map { it.address })) {
+            when (val r = dexScreener.tokens(chain, list.sortedBy { it.info != null }.take(MAX_LOOKUPS_PER_CHAIN).map { it.address })) {
                 is SourceResult.Success -> r.value.forEach { pair ->
                     val c = candidates[key(chain, pair.baseAddress)] ?: return@forEach
                     val previous = c.info
@@ -275,6 +279,12 @@ class SpeculativeService(
         // checks go first to tokens that can get a forecast at all; the rest are blocked anyway
         val toCheck = kept.sortedBy { if (couldForecast(it.third, now)) 0 else 1 }.take(cfg.dexSafetyTopN).map { it.first }
         val safetyByKey = if (cfg.safetyChecks) safetyFor(toCheck, warnings) else emptyMap()
+        // the last snapshot's checks, including what opening a token added
+        val earlierSafety = previous.filter { cfg.safetyChecks && it.asset.tier == Tier.DEX }.mapNotNull { row ->
+            val chain = row.asset.chainId ?: return@mapNotNull null
+            val contract = row.asset.contract ?: return@mapNotNull null
+            row.safety?.let { key(chain, contract) to it }
+        }.toMap()
         return kept.map { (c, sym, info) ->
             symbols += sym
             val fx = usdToQuote
@@ -303,30 +313,47 @@ class SpeculativeService(
                 asset = Asset(sym, c.name ?: sym, c.coingeckoId, tier = Tier.DEX, tags = tags, chainId = c.chainId, contract = c.address),
                 market = market,
                 dex = info,
-                safety = safetyByKey[key(c.chainId, c.address)],
+                safety = keptSafety(safetyByKey[key(c.chainId, c.address)], earlierSafety[key(c.chainId, c.address)], now),
             )
         }
     }
 
     /**
+     * The new check plus what a check within [KEEP_SAFETY_MS] found, the worse answer winning: the
+     * honeypot.is simulation only runs when a token is opened, and its verdict must outlive the next
+     * refresh. The result keeps the earlier time, so a kept finding expires instead of being renewed
+     * by every refresh.
+     */
+    private fun keptSafety(fresh: TokenSafety?, earlier: TokenSafety?, nowMs: Long): TokenSafety? {
+        val old = earlier?.takeIf { nowMs - it.checkedAtMs < KEEP_SAFETY_MS } ?: return fresh
+        return fresh?.combinedWith(old)?.copy(checkedAtMs = minOf(fresh.checkedAtMs, old.checkedAtMs)) ?: old
+    }
+
+    /**
      * Contract checks, most active tokens first. Cached results (6 h) are free; at most
      * [NEW_CHECKS_PER_REFRESH] new checks per refresh keep GoPlus' anonymous quota intact, so coverage
-     * grows over a few refreshes. Unchecked DEX tokens are shown without a forecast.
+     * grows over a few refreshes. Once GoPlus says the quota is used up, only cached checks are read.
+     * Unchecked DEX tokens are shown without a forecast.
      */
     private suspend fun safetyFor(list: List<Candidate>, warnings: MutableList<String>): Map<String, TokenSafety> {
         val out = HashMap<String, TokenSafety>()
         var newChecks = 0
+        var rateLimited = false
         for (c in list) {
             if (!safety.supports(c.chainId)) continue
-            if (newChecks >= NEW_CHECKS_PER_REFRESH && !safety.isCached(c.chainId, c.address)) continue
+            val cached = safety.isCached(c.chainId, c.address)
+            if ((rateLimited || newChecks >= NEW_CHECKS_PER_REFRESH) && !cached) continue
             when (val r = safety.check(c.chainId, c.address)) {
                 is SourceResult.Success -> {
-                    if (!r.fromCache) newChecks++
+                    if (!cached) newChecks++
                     r.value?.let { out[key(c.chainId, c.address)] = it }
                 }
-                is SourceResult.Failure -> {
-                    if (r.status == dev.cryptopulse.core.model.SourceStatus.RATE_LIMITED) { warnings += "Safety checks: ${r.message}"; break }
-                    newChecks++
+                is SourceResult.Failure -> when {
+                    r.status == dev.cryptopulse.core.model.SourceStatus.RATE_LIMITED -> {
+                        if (!rateLimited) warnings += "Safety checks: ${r.message}"
+                        rateLimited = true
+                    }
+                    !cached -> newChecks++
                 }
             }
         }
@@ -344,8 +371,11 @@ class SpeculativeService(
     companion object {
         private const val TAG = "Speculative"
         const val MEME_CATEGORY = "meme-token"
-        private const val MAX_LOOKUPS_PER_CHAIN = 120
+        private const val MAX_LOOKUPS_PER_CHAIN = 210
         const val NEW_CHECKS_PER_REFRESH = 12
+
+        /** How long a contract check carries over to later refreshes (the checks' own cache time). */
+        const val KEEP_SAFETY_MS = 6 * 3_600_000L
 
         /** Pool quote assets and stablecoins: never radar tokens themselves. */
         val QUOTE_SYMBOLS: Set<String> = setOf(

@@ -77,7 +77,11 @@ class GeckoTerminalApi(
         private val JSON = mapOf("Accept" to "application/json")
 
         /** GeckoTerminal network ids that DexScreener (and the rest of the app) spell differently. */
-        private val TO_DEXSCREENER = mapOf("eth" to "ethereum", "polygon_pos" to "polygon", "avax" to "avalanche", "arbitrum" to "arbitrum", "optimism" to "optimism")
+        private val TO_DEXSCREENER = mapOf(
+            "eth" to "ethereum", "polygon_pos" to "polygon", "avax" to "avalanche", "cro" to "cronos", "ftm" to "fantom",
+            "sui-network" to "sui", "xdai" to "gnosischain", "one" to "harmony", "polygon_zkevm" to "polygonzkevm",
+            "arbitrum_nova" to "arbitrumnova",
+        )
 
         fun dexScreenerChain(network: String): String = TO_DEXSCREENER[network] ?: network
 

@@ -14,6 +14,7 @@ import dev.cryptopulse.core.util.Logger
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
 
@@ -45,6 +46,37 @@ class HttpTest {
         assertEquals("cached", r.body)
         assertTrue(r.fromCache)
         assertEquals(3, t.countRequests("/x"), "1 initial + 2 attempts")
+    }
+
+    @Test
+    fun rejectedAnswersAreNotCachedAndKeepTheLastGoodOne() = runTest {
+        var body = "good"
+        val t = FakeTransport().onUrlContaining("x") { req -> HttpResponse(200, body, emptyMap(), req.url) }
+        val cache = HttpCache(null, clock)
+        val http = Http(t, fastLimiter(clock), cache, clock, Logger.NONE, sleeper = {})
+        val accept = { b: String -> b == "good" }
+        http.getText("https://a.test/x", ttlMs = 60_000, staleOkMs = 3_600_000, accept = accept)
+        body = "error inside a 200"
+        now += 120_000
+        val stale = http.getText("https://a.test/x", ttlMs = 60_000, staleOkMs = 3_600_000, accept = accept)
+        assertIs<HttpResult.Ok>(stale)
+        assertEquals("good", stale.body, "the earlier good answer beats the rejected one")
+        assertTrue(stale.fromCache)
+        assertEquals("good", cache.get("https://a.test/x")!!.body, "the rejected body did not overwrite it")
+        assertFalse(http.isFresh("https://a.test/x", 60_000, accept))
+        // nothing good to fall back on: the rejected body is returned, but never cached
+        val first = http.getText("https://a.test/x2", ttlMs = 60_000, accept = accept) as HttpResult.Ok
+        assertEquals("error inside a 200", first.body)
+        assertFalse(first.fromCache)
+        assertFalse(http.isFresh("https://a.test/x2", 60_000, accept))
+        http.getText("https://a.test/x2", ttlMs = 60_000, accept = accept)
+        assertEquals(2, t.countRequests("/x2"), "asked again instead of replaying the error")
+        // a rejected body cached before (by an older version) is not served either
+        cache.put("https://a.test/x3", "error inside a 200")
+        body = "good"
+        assertFalse(http.isFresh("https://a.test/x3", 60_000, accept))
+        assertEquals("good", (http.getText("https://a.test/x3", ttlMs = 60_000, accept = accept) as HttpResult.Ok).body)
+        assertEquals(1, t.countRequests("/x3"))
     }
 
     @Test

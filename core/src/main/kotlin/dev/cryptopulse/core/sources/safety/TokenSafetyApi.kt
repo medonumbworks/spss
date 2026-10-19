@@ -28,7 +28,7 @@ class TokenSafetyApi(
     private val honeypotBase: String = "https://api.honeypot.is/v2",
 ) {
     /** A fresh cached check exists, so [check] would not use any quota. */
-    fun isCached(chainId: String, address: String): Boolean = http.isFresh(urlFor(chainId, address) ?: return false, 6 * 3_600_000L)
+    fun isCached(chainId: String, address: String): Boolean = http.isFresh(urlFor(chainId, address) ?: return false, 6 * 3_600_000L, ::isGoPlusAnswer)
 
     private fun urlFor(chainId: String, address: String): String? = when {
         chainId == "solana" -> "$goplusBase/solana/token_security?contract_addresses=$address"
@@ -41,13 +41,15 @@ class TokenSafetyApi(
 
     /**
      * GoPlus contract check of one token. One address per call: GoPlus silently answers only the
-     * first address of a comma-separated EVM list. Cached for 6 h, so repeated refreshes are free;
-     * [SourceResult.Success.fromCache] tells callers whether the call used any quota.
+     * first address of a comma-separated EVM list. Answers are cached for 6 h, so repeated refreshes
+     * are free; [SourceResult.Success.fromCache] tells callers whether the call used any quota. Quota
+     * (4029) and partial-data (2) replies come inside a 200 and are never cached: the last good answer
+     * is used instead while it is under 3 days old.
      */
     suspend fun check(chainId: String, address: String): SourceResult<TokenSafety?> {
         val solana = chainId == "solana"
         val url = urlFor(chainId, address) ?: return SourceResult.Failure(SourceStatus.EMPTY, "No free safety check for $chainId")
-        return when (val r = http.getText(url, JSON, ttlMs = 6 * 3_600_000L, staleOkMs = 3 * 24 * 3_600_000L, retries = 0)) {
+        return when (val r = http.getText(url, JSON, ttlMs = 6 * 3_600_000L, staleOkMs = 3 * 24 * 3_600_000L, retries = 0, accept = ::isGoPlusAnswer)) {
             is HttpResult.Failed -> SourceResult.failureOf(r, "GoPlus")
             is HttpResult.Ok -> try {
                 when (val code = JsonUtil.parse(r.body)["code"].int) {
@@ -90,7 +92,10 @@ class TokenSafetyApi(
             "zksync" to "324", "scroll" to "534352", "mantle" to "5000", "cronos" to "25", "abstract" to "2741",
         )
         private val HONEYPOT_CHAINS = setOf("1", "56", "8453")
-        private val ZERO_OWNERS = setOf("", "0x0000000000000000000000000000000000000000", "0x000000000000000000000000000000000000dead")
+        private val BURN_ADDRESSES = setOf("0x0000000000000000000000000000000000000000", "0x000000000000000000000000000000000000dead")
+
+        /** GoPlus reports errors in the body of a 200: only code 1 is an answer. */
+        private fun isGoPlusAnswer(body: String): Boolean = runCatching { JsonUtil.parse(body)["code"].int == 1 }.getOrDefault(false)
 
         private fun flag(el: JsonElement?): Boolean? = when (el.str) { "1" -> true; "0" -> false; else -> null }
 
@@ -101,8 +106,10 @@ class TokenSafetyApi(
             val result = JsonUtil.parse(body)["result"].obj ?: return emptyMap()
             return result.mapNotNull { (address, o) ->
                 if (o.obj == null || o.obj!!.isEmpty()) return@mapNotNull null
-                val owner = o["owner_address"].str?.lowercase().orEmpty()
-                val renounced = owner in ZERO_OWNERS
+                // only the zero or dead address is renounced: GoPlus answers "" for "no owner or owner not
+                // found" (role-based minting or pausing, for one) and leaves the field out when it does not know
+                val owner = o["owner_address"].str?.trim()?.lowercase()
+                val renounced = owner?.takeIf { it.isNotEmpty() }?.let { it in BURN_ADDRESSES }
                 // owner-only switches do nothing once ownership is renounced (PEPE has a blacklist and a pause
                 // switch in its code, but nobody can use them)
                 val powers = buildList {
@@ -113,7 +120,7 @@ class TokenSafetyApi(
                     if ((o["honeypot_with_same_creator"].int ?: 0) > 0) add("creator made honeypots before")
                     if (flag(o["cannot_sell_all"]) == true) add("holders cannot sell everything")
                     if (flag(o["cannot_buy"]) == true) add("buying is blocked")
-                    if (!renounced) {
+                    if (renounced != true) {
                         if (flag(o["transfer_pausable"]) == true) add("transfers can be paused")
                         if (flag(o["is_blacklisted"]) == true) add("owner can blacklist wallets")
                         if (flag(o["slippage_modifiable"]) == true) add("owner can change the tax")
@@ -123,13 +130,17 @@ class TokenSafetyApi(
                 }
                 val holders = o["holders"].arr.orEmpty()
                 val lp = o["lp_holders"].arr.orEmpty()
-                val lpLocked = lp.filter { h -> h["is_locked"].int == 1 || h["address"].str?.lowercase() in ZERO_OWNERS }.sumOf { (it["percent"].dbl ?: 0.0) * 100 }
+                // LP tokens held by the token's own renounced contract (most of PEPE's) can never be withdrawn
+                val lpLocked = lp.filter { h ->
+                    val holder = h["address"].str?.lowercase()
+                    h["is_locked"].int == 1 || holder in BURN_ADDRESSES || (renounced == true && holder == address.lowercase())
+                }.sumOf { (it["percent"].dbl ?: 0.0) * 100 }
                 address.lowercase() to TokenSafety(
                     source = "goplus",
                     honeypot = flag(o["is_honeypot"]),
                     buyTaxPct = pct(o["buy_tax"]),
                     sellTaxPct = pct(o["sell_tax"]),
-                    mintable = flag(o["is_mintable"])?.let { it && !renounced },
+                    mintable = flag(o["is_mintable"])?.let { it && renounced != true },
                     ownerPowers = powers,
                     ownerRenounced = renounced,
                     openSource = flag(o["is_open_source"]),

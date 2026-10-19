@@ -17,8 +17,9 @@ import kotlin.math.roundToInt
  * that more than doubled showed manufactured volume. Hence:
  *  - hard blocks (no "up" probability at all): honeypot, sell/buy tax >= 20%, someone can change
  *    balances or freeze holders, live mint authority or owner backdoors (unless CEX-listed/trusted),
- *    pool liquidity < $10k, pool younger than 24 h, still on the pump.fun bonding curve, and DEX
- *    tokens whose contract could not be checked (fail closed);
+ *    pool liquidity < $10k, pool younger than 24 h, still on the pump.fun bonding curve, DEX
+ *    tokens whose contract (or, on EVM chains, selling) could not be checked, and trending coins
+ *    without a market-cap rank or under $10M, whose contracts nobody checks (fail closed);
  *  - score >= 75 also blocks the probability ("extreme risk");
  *  - below that, the forecast is shrunk toward 50% in proportion to the score ([shrink]).
  */
@@ -33,6 +34,7 @@ object RiskScorer {
     const val LABEL_UNVERIFIED = "Unverified"
 
     const val MIN_LIQUIDITY_USD = 10_000.0
+    const val MIN_UNCHECKED_TRENDING_CAP = 10_000_000.0
     const val PROHIBITIVE_TAX_PCT = 20.0
     const val BLOCK_SCORE = 75
 
@@ -54,7 +56,8 @@ object RiskScorer {
             else -> 18.0.also { reasons += "Memecoin: price driven by attention, not by revenue" }
         }
         val exemptByListing = safety?.trusted == true || safety?.cexListed?.isNotEmpty() == true
-        val mcap = market?.marketCap ?: dex?.marketCapUsd ?: dex?.fdvUsd
+        // CoinGecko reports 0 when it lacks the circulating supply: unknown, not a micro cap
+        val mcap = market?.marketCap?.takeIf { it > 0 } ?: dex?.marketCapUsd?.takeIf { it > 0 } ?: dex?.fdvUsd?.takeIf { it > 0 }
 
         // size: small caps move (and die) fastest
         when {
@@ -94,8 +97,10 @@ object RiskScorer {
                 ageH < 24 * 90 -> score += 3
             }
             if (dex.pumpFunGraduated == false) block(LABEL_TOO_NEW, "Still on the pump.fun bonding curve (about 99% never graduate)")
-            val cap = dex.marketCapUsd ?: dex.fdvUsd
-            if (liq != null && cap != null && cap > 0 && liq >= MIN_LIQUIDITY_USD) {
+            val cap = dex.marketCapUsd?.takeIf { it > 0 } ?: dex.fdvUsd
+            // holders of a coin that big exchanges list, or one worth $1B+, can exit elsewhere
+            val otherExits = safety?.cexListed?.isNotEmpty() == true || (cap ?: 0.0) >= 1e9
+            if (liq != null && cap != null && cap > 0 && liq >= MIN_LIQUIDITY_USD && !otherExits) {
                 val ratio = liq / cap
                 if (ratio < 0.02) { score += 15; reasons += "Pool holds only ${pct(ratio * 100)} of the market cap: large holders cannot exit" }
                 else if (ratio < 0.05) score += 8
@@ -114,6 +119,10 @@ object RiskScorer {
 
         if (safety != null) {
             if (safety.honeypot == true) block(LABEL_RED_FLAG, "Honeypot: buying works, selling does not")
+            // GoPlus leaves both out when it could not simulate a trade (closed source, for one): untested is not passed
+            if (tier == Tier.DEX && dex != null && dex.chainId != "solana" && safety.honeypot == null && safety.sellTaxPct == null) {
+                block(LABEL_UNVERIFIED, "Selling could not be tested (no honeypot or tax result)")
+            }
             val sell = safety.sellTaxPct
             val buy = safety.buyTaxPct
             val tax = maxOf(sell ?: 0.0, buy ?: 0.0)
@@ -142,6 +151,14 @@ object RiskScorer {
             if (safety.trusted == true) score -= 20
         } else if (tier == Tier.DEX) {
             block(LABEL_UNVERIFIED, "Contract not checked yet (open the token to run the free checks)")
+        } else if (tier == Tier.TRENDING && (market?.marketCapRank == null || mcap == null || mcap < MIN_UNCHECKED_TRENDING_CAP)) {
+            // trending lists carry days-old DEX tokens too, and nothing checks their contract or pools
+            val why = when {
+                market?.marketCapRank == null -> "no market-cap rank"
+                mcap == null -> "an unknown market cap"
+                else -> "a market cap of only ${money(mcap)}"
+            }
+            block(LABEL_UNVERIFIED, "Trending coin with $why: its contract and pools are not checked")
         }
 
         val blocked = blockLabel != null || score >= BLOCK_SCORE

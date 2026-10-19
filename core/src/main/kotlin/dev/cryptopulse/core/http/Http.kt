@@ -24,6 +24,9 @@ sealed class HttpResult {
  *  - fresh cache entry (age < ttlMs): returned immediately, no network;
  *  - otherwise one network attempt (plus retries on 429/5xx/IOException);
  *  - on failure an entry younger than staleOkMs is returned as `Ok(fromCache = true)`;
+ *  - a 2xx body that `accept` rejects (an error inside a 200, like GoPlus' quota reply) is never
+ *    cached and never replaces a cached body: it counts as a failure, and is only returned (uncached)
+ *    when no accepted entry younger than staleOkMs exists;
  *  - identical concurrent calls are serialized per cache key so only one hits the network.
  */
 class Http(
@@ -44,44 +47,39 @@ class Http(
         cacheKey: String = url,
         retries: Int = 2,
         timeoutMs: Long = 20_000,
+        accept: (String) -> Boolean = { true },
     ): HttpResult {
-        val now = clock.nowMs()
-        if (ttlMs > 0) {
-            cache.get(cacheKey)?.let { entry ->
-                val age = entry.ageMs(now)
-                if (age < ttlMs) return HttpResult.Ok(entry.body, fromCache = true, ageMs = age)
-            }
-        }
+        if (ttlMs > 0) fresh(cacheKey, ttlMs, accept)?.let { return it }
         val lock = keyLocks.getOrPut(cacheKey) { Mutex() }
         return lock.withLock {
             // another coroutine may have refreshed it while we waited
-            if (ttlMs > 0) {
-                cache.get(cacheKey)?.let { entry ->
-                    val age = entry.ageMs(clock.nowMs())
-                    if (age < ttlMs) return@withLock HttpResult.Ok(entry.body, fromCache = true, ageMs = age)
-                }
-            }
+            if (ttlMs > 0) fresh(cacheKey, ttlMs, accept)?.let { return@withLock it }
             val result = fetchWithRetry(HttpRequest(url, headers, timeoutMs = timeoutMs), retries)
-            when (result) {
-                is HttpResult.Ok -> {
-                    if (ttlMs > 0 || staleOkMs > 0) cache.put(cacheKey, result.body)
-                    result
+            if (result is HttpResult.Ok && accept(result.body)) {
+                if (ttlMs > 0 || staleOkMs > 0) cache.put(cacheKey, result.body)
+                return@withLock result
+            }
+            val stale = cache.get(cacheKey)?.takeIf { accept(it.body) }
+            when {
+                stale != null && stale.ageMs(clock.nowMs()) < staleOkMs -> {
+                    val reason = if (result is HttpResult.Failed) result.reason else "rejected answer"
+                    logger.warn(TAG, "Using stale cache for $url after failure: $reason")
+                    HttpResult.Ok(stale.body, fromCache = true, ageMs = stale.ageMs(clock.nowMs()))
                 }
-                is HttpResult.Failed -> {
-                    val stale = cache.get(cacheKey)
-                    if (stale != null && stale.ageMs(clock.nowMs()) < staleOkMs) {
-                        logger.warn(TAG, "Using stale cache for $url after failure: ${result.reason}")
-                        HttpResult.Ok(stale.body, fromCache = true, ageMs = stale.ageMs(clock.nowMs()))
-                    } else {
-                        result.copy(staleBody = stale?.body)
-                    }
-                }
+                result is HttpResult.Failed -> result.copy(staleBody = stale?.body)
+                else -> result
             }
         }
     }
 
-    /** A cached body for [cacheKey] younger than [ttlMs] exists (a [getText] would not hit the network). */
-    fun isFresh(cacheKey: String, ttlMs: Long): Boolean = cache.get(cacheKey)?.let { it.ageMs(clock.nowMs()) < ttlMs } == true
+    /** A cached body for [cacheKey] younger than [ttlMs] that [accept] takes exists (a [getText] would not hit the network). */
+    fun isFresh(cacheKey: String, ttlMs: Long, accept: (String) -> Boolean = { true }): Boolean = fresh(cacheKey, ttlMs, accept) != null
+
+    private fun fresh(cacheKey: String, ttlMs: Long, accept: (String) -> Boolean): HttpResult.Ok? {
+        val entry = cache.get(cacheKey) ?: return null
+        val age = entry.ageMs(clock.nowMs())
+        return if (age < ttlMs && accept(entry.body)) HttpResult.Ok(entry.body, fromCache = true, ageMs = age) else null
+    }
 
     /** POST/other methods are rare (Bitpanda quotes etc.); no caching. */
     suspend fun request(request: HttpRequest, retries: Int = 1): HttpResult = fetchWithRetry(request, retries)

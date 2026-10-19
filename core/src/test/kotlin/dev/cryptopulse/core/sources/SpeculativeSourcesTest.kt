@@ -1,6 +1,9 @@
 package dev.cryptopulse.core.sources
 
 import dev.cryptopulse.core.FIXTURE_NOW_MS
+import dev.cryptopulse.core.http.HttpResponse
+import dev.cryptopulse.core.model.SourceStatus
+import dev.cryptopulse.core.model.TokenSafety
 import dev.cryptopulse.core.sources.cex.CexDataApi
 import dev.cryptopulse.core.sources.coingecko.CoinGeckoApi
 import dev.cryptopulse.core.sources.dex.DexScreenerApi
@@ -11,6 +14,7 @@ import dev.cryptopulse.core.sources.safety.TokenSafetyApi
 import dev.cryptopulse.core.testHttp
 import dev.cryptopulse.core.testing.FakeTransport
 import dev.cryptopulse.core.testing.Fixtures
+import dev.cryptopulse.core.util.Clock
 import dev.cryptopulse.core.util.JsonUtil
 import dev.cryptopulse.core.util.arr
 import dev.cryptopulse.core.util.get
@@ -83,6 +87,11 @@ class SpeculativeSourcesTest {
         assertTrue(torch.info.url!!.startsWith("https://www.geckoterminal.com/robinhood/pools/"))
         assertEquals("ethereum", GeckoTerminalApi.dexScreenerChain("eth"))
         assertEquals("eth", GeckoTerminalApi.geckoTerminalNetwork("ethereum"))
+        assertEquals(
+            listOf("cronos", "fantom", "sui", "gnosischain", "arbitrum", "base"),
+            listOf("cro", "ftm", "sui-network", "xdai", "arbitrum", "base").map { GeckoTerminalApi.dexScreenerChain(it) },
+        )
+        assertEquals(listOf("cro", "sui-network", "arbitrum", "solana"), listOf("cronos", "sui", "arbitrum", "solana").map { GeckoTerminalApi.geckoTerminalNetwork(it) })
         assertEquals(4, GeckoTerminalApi.parsePools(spec("geckoterminal_new_pools.json"), "gt_new").size)
     }
 
@@ -113,6 +122,7 @@ class SpeculativeSourcesTest {
         assertEquals(true, pepe.ownerRenounced)
         assertTrue(pepe.ownerPowers.isEmpty(), "PEPE's blacklist/pause switches are unusable: ${pepe.ownerPowers}")
         assertEquals(false, pepe.mintable)
+        assertTrue(pepe.lpLockedPct!! > 99, "LP held by PEPE's own renounced contract is as good as burnt: ${pepe.lpLockedPct}")
         assertEquals(listOf("Binance", "Coinbase"), pepe.cexListed)
         assertTrue(pepe.holderCount!! > 500_000)
         assertTrue(pepe.top10HolderPct!! in 1.0..100.0)
@@ -133,6 +143,57 @@ class SpeculativeSourcesTest {
         assertEquals(25.0, s.sellTaxPct!!, 1e-9)
         assertEquals(80.0, s.top10HolderPct!!, 1e-9)
         assertTrue(listOf("owner can change balances", "transfers can be paused", "owner can blacklist wallets").all { it in s.ownerPowers })
+    }
+
+    @Test
+    fun goPlusOnlyCountsTheZeroOrDeadAddressAsRenounced() {
+        fun parse(owner: String) = TokenSafetyApi.parseGoPlusEvm(
+            """{"code":1,"result":{"0xabc":{$owner"is_open_source":"1","is_mintable":"1","transfer_pausable":"1","slippage_modifiable":"1",
+            "lp_holders":[{"address":"","percent":"0.9","is_locked":0},{"address":"0xabc","percent":"0.05","is_locked":0}]}}}""",
+            0,
+        ).getValue("0xabc")
+        // "" means "no owner or owner not found" (role-based minting, for one); a missing field means unknown
+        for (s in listOf(parse(""""owner_address":"","""), parse(""))) {
+            assertNull(s.ownerRenounced)
+            assertEquals(true, s.mintable, "the mint switch stays")
+            assertTrue(listOf("transfers can be paused", "owner can change the tax").all { it in s.ownerPowers }, "${s.ownerPowers}")
+            assertEquals(0.0, s.lpLockedPct, "an empty LP holder address is not a burn address")
+        }
+        val dead = parse(""""owner_address":"0x000000000000000000000000000000000000dEaD",""")
+        assertEquals(true, dead.ownerRenounced)
+        assertEquals(false, dead.mintable)
+        assertTrue(dead.ownerPowers.isEmpty())
+        assertEquals(5.0, dead.lpLockedPct!!, 1e-9, "LP held by the renounced token contract itself")
+    }
+
+    @Test
+    fun goPlusQuotaRepliesAreNeverCached() = runTest {
+        var now = FIXTURE_NOW_MS
+        val clock = Clock { now }
+        var body = """{"code":4029,"message":"too many requests","result":{}}"""
+        val t = FakeTransport().onUrlContaining("gopluslabs.io") { req -> HttpResponse(200, body, emptyMap(), req.url) }
+        val api = TokenSafetyApi(testHttp(t, clock), clock)
+        val pepe = "0x6982508145454ce325ddbe47a25d4ec3d2311933"
+        val limited = api.check("ethereum", pepe)
+        assertIs<SourceResult.Failure>(limited)
+        assertEquals(SourceStatus.RATE_LIMITED, limited.status)
+        assertFalse(api.isCached("ethereum", pepe), "a quota reply is not a check")
+        body = spec("goplus_eth.json")
+        now += 60_000
+        val ok = api.check("ethereum", pepe)
+        assertIs<SourceResult.Success<*>>(ok)
+        assertFalse(ok.fromCache, "GoPlus is asked again")
+        assertTrue(api.isCached("ethereum", pepe))
+        // hours later the quota is used up, or GoPlus has partial data: the last good check stays in use
+        for (error in listOf("""{"code":4029,"result":{}}""", """{"code":2,"message":"partial data","result":{}}""")) {
+            body = error
+            now += 7 * 3_600_000L
+            val kept = api.check("ethereum", pepe)
+            assertIs<SourceResult.Success<*>>(kept)
+            assertTrue(kept.fromCache)
+            assertEquals(true, (kept.value as TokenSafety).ownerRenounced)
+        }
+        assertEquals(4, t.countRequests("gopluslabs.io"))
     }
 
     @Test

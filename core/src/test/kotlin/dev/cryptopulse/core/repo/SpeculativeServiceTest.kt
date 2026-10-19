@@ -2,10 +2,12 @@ package dev.cryptopulse.core.repo
 
 import dev.cryptopulse.core.analysis.risk.RiskScorer
 import dev.cryptopulse.core.config.AppConfig
+import dev.cryptopulse.core.http.HttpResponse
 import dev.cryptopulse.core.model.Asset
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.MarketData
 import dev.cryptopulse.core.model.Tier
+import dev.cryptopulse.core.model.TokenSafety
 import dev.cryptopulse.core.sources.coingecko.CoinGeckoApi
 import dev.cryptopulse.core.sources.dex.DexScreenerApi
 import dev.cryptopulse.core.sources.dex.GeckoTerminalApi
@@ -102,6 +104,8 @@ class SpeculativeServiceTest {
         val down = service(FakeTransport().failUrlContaining("coingecko")).load(AppConfig(showDexRadar = false), bitpanda, emptyList(), 0.9, previous)
         assertEquals(listOf("SHIB"), down.rows.map { it.asset.symbol })
         assertTrue(down.warnings.any { it.startsWith("Memecoins") })
+        val usd = service(FakeTransport().failUrlContaining("coingecko")).load(AppConfig(currency = "USD", showDexRadar = false), bitpanda, emptyList(), 1.0, previous)
+        assertTrue(usd.rows.isEmpty(), "EUR prices are not reused in a USD list")
     }
 
     @Test
@@ -132,6 +136,65 @@ class SpeculativeServiceTest {
     }
 
     @Test
+    fun aUsedUpQuotaSkipsNewChecksButKeepsCachedOnes() = runTest {
+        val (a, b, c) = listOf("a", "b", "c").map { "0x" + it.repeat(40) }
+        var quotaLeft = true
+        val t = FakeTransport()
+            .onUrlContaining("networks/trending_pools", body = gtPools("eth", a, b, c))
+            .onUrlContaining("gopluslabs.io/api/v1/token_security/1") { req ->
+                HttpResponse(200, if (quotaLeft) goPlusEvm(req.url.substringAfter("contract_addresses=")) else QUOTA_REPLY, emptyMap(), req.url)
+            }
+        val http = testHttp(t, clock)
+        val checks = TokenSafetyApi(http, clock)
+        val svc = SpeculativeService(CoinGeckoApi(http), DexScreenerApi(http), GeckoTerminalApi(http), PumpFunApi(http), checks, clock, Logger.NONE)
+        checks.check("ethereum", c)
+        quotaLeft = false
+        val limited = svc.load(DEX_ONLY, bitpanda, emptyList(), 0.9, emptyList())
+        assertEquals(listOf("TK0", "TK1", "TK2"), limited.rows.map { it.asset.symbol })
+        assertNull(limited.rows[0].safety)
+        assertNull(limited.rows[1].safety)
+        assertNotNull(limited.rows[2].safety, "a cached check after the quota reply is still read")
+        assertEquals(0, t.countRequests("contract_addresses=$b"), "no new checks once GoPlus says the quota is used up")
+        assertEquals(1, limited.warnings.count { it.startsWith("Safety checks") })
+        quotaLeft = true
+        val back = svc.load(DEX_ONLY, bitpanda, emptyList(), 0.9, emptyList())
+        assertTrue(back.rows.all { it.safety != null }, "the quota reply was not cached")
+    }
+
+    @Test
+    fun aHoneypotFoundWhenTheTokenWasOpenedSurvivesTheNextRefresh() = runTest {
+        val a = "0x" + "a".repeat(40)
+        // GoPlus misses it; honeypot.is (run when the token was opened) did not
+        val t = FakeTransport()
+            .onUrlContaining("networks/trending_pools", body = gtPools("eth", a))
+            .onUrlContaining("gopluslabs.io/api/v1/token_security/1", body = goPlusEvm(a))
+        val found = TokenSafety("goplus", honeypot = true, buyTaxPct = 0.0, sellTaxPct = 100.0, checkedAtMs = SPEC_NOW_MS - 3_600_000L)
+        val opened = AssetRow(Asset("TK0", "Token 0", tier = Tier.DEX, chainId = "ethereum", contract = "0x" + "A".repeat(40)), safety = found)
+        val svc = service(t)
+        val row = svc.load(DEX_ONLY, bitpanda, emptyList(), 0.9, listOf(opened)).rows.single()
+        assertEquals(true, row.safety!!.honeypot)
+        assertEquals(100.0, row.safety.sellTaxPct)
+        assertEquals(SPEC_NOW_MS - 3_600_000L, row.safety.checkedAtMs, "kept findings keep their time, so they expire")
+        assertEquals(RiskScorer.LABEL_RED_FLAG, RiskScorer.assess(row.asset.tier, row.market, row.dex, row.safety, SPEC_NOW_MS)!!.label)
+        val stale = opened.copy(safety = found.copy(checkedAtMs = SPEC_NOW_MS - 7 * 3_600_000L))
+        assertEquals(false, svc.load(DEX_ONLY, bitpanda, emptyList(), 0.9, listOf(stale)).rows.single().safety!!.honeypot, "older than the checks' 6 h cache")
+    }
+
+    @Test
+    fun tokensWithoutPoolDataAreLookedUpFirst() = runTest {
+        val gt = List(130) { "GtMint$it" }
+        val t = FakeTransport()
+            .onUrlContaining("networks/trending_pools", body = gtPools("solana", *gt.toTypedArray()))
+            .onUrlContaining("pump.fun/coins/currently-live", body = "[]")
+            .onUrlContaining("pump.fun/coins?", body = spec("pumpfun_top.json"))
+        service(t).load(DEX_ONLY.copy(dexIncludePumpFun = true), bitpanda, emptyList(), 0.9, emptyList())
+        val looked = t.requests.filter { "/tokens/v1/solana/" in it.url }.flatMap { it.url.substringAfter("/tokens/v1/solana/").split(",") }
+        val pump = PumpFunApi.parse(spec("pumpfun_top.json")).map { it.mint }
+        assertEquals(pump, looked.take(pump.size), "pump.fun tokens have no pool data until DexScreener answers")
+        assertEquals((pump + gt).toSet(), looked.toSet())
+    }
+
+    @Test
     fun keysAreCaseSensitiveExceptOnEvm() {
         assertEquals(SpeculativeService.key("base", "0xABC"), SpeculativeService.key("base", "0xabc"))
         assertFalse(SpeculativeService.key("solana", "AbC") == SpeculativeService.key("solana", "abc"))
@@ -140,5 +203,27 @@ class SpeculativeServiceTest {
     companion object {
         /** 2026-10-19T12:00:00Z, just after the samples were captured. */
         const val SPEC_NOW_MS = 1_792_411_200_000L
+
+        private val DEX_ONLY = AppConfig(showMemecoins = false, showTrending = false, dexIncludeNewPools = false, dexIncludePumpFun = false)
+        private const val QUOTA_REPLY = """{"code":4029,"message":"too many requests","result":{}}"""
+
+        /** GeckoTerminal trending pools for made-up tokens (TK0, TK1, ...): 80 days old, deep and busy, most traded first. */
+        fun gtPools(network: String, vararg addresses: String): String {
+            val data = addresses.mapIndexed { i, a ->
+                """{"id":"${network}_pool$i","type":"pool","attributes":{"name":"TK$i / WETH","address":"pool$i","base_token_price_usd":"1.5",
+                "reserve_in_usd":"500000","fdv_usd":"5000000","market_cap_usd":"5000000","pool_created_at":"2026-08-01T00:00:00Z",
+                "price_change_percentage":{"h1":"1","h24":"5"},"volume_usd":{"h1":"10000","h24":"${300_000 - i}"},
+                "transactions":{"h24":{"buys":900,"sells":800,"buyers":300,"sellers":250}}},
+                "relationships":{"base_token":{"data":{"id":"${network}_$a","type":"token"}},"network":{"data":{"id":"$network","type":"network"}},
+                "dex":{"data":{"id":"uniswap_v2","type":"dex"}}}}"""
+            }
+            val tokens = addresses.mapIndexed { i, a -> """{"id":"${network}_$a","type":"token","attributes":{"address":"$a","symbol":"TK$i","name":"Token $i"}}""" }
+            return """{"data":[${data.joinToString(",")}],"included":[${tokens.joinToString(",")}]}"""
+        }
+
+        /** A clean, renounced GoPlus EVM answer. */
+        fun goPlusEvm(address: String): String =
+            """{"code":1,"message":"OK","result":{"$address":{"is_open_source":"1","is_honeypot":"0","buy_tax":"0","sell_tax":"0",
+            "owner_address":"0x0000000000000000000000000000000000000000","holder_count":"5000"}}}"""
     }
 }
