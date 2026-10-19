@@ -51,7 +51,8 @@ class SentimentService(
     private val clock: Clock = Clock.SYSTEM,
     private val logger: Logger = Logger.STDERR,
 ) {
-    private class Cached<T>(val value: T, val atMs: Long)
+    /** @param channels extra (project) Telegram channels the value was computed with, lowercase. */
+    private class Cached<T>(val value: T, val atMs: Long, val channels: Set<String> = emptySet())
 
     private val assetCache = ConcurrentHashMap<String, Cached<SentimentSummary>>()
     private var globalCache: Cached<SentimentSummary>? = null
@@ -108,7 +109,9 @@ class SentimentService(
     suspend fun forAsset(asset: Asset, force: Boolean = false, extraChannels: List<String> = emptyList()): SentimentSummary {
         val config = configProvider()
         val now = clock.nowMs()
-        assetCache[asset.symbol]?.let { if (!force && now - it.atMs < config.sentimentTtlMs) return it.value }
+        // a summary computed without the project's own channel (list, MCP sentiment tool) must not stand in for one with it
+        val channels = extraChannels.mapTo(HashSet()) { it.lowercase() }
+        assetCache[asset.symbol]?.let { if (!force && now - it.atMs < config.sentimentTtlMs && it.channels.containsAll(channels)) return it.value }
 
         val matcher = MentionMatcher(asset)
         val samples = ArrayList<SentimentSample>()
@@ -194,7 +197,7 @@ class SentimentService(
 
         val hub = hubFor(asset.symbol)
         val summary = aggregator.summarize(asset.symbol, dedupe(samples), statuses, now, listOfNotNull(hub))
-        assetCache[asset.symbol] = Cached(summary, now)
+        assetCache[asset.symbol] = Cached(summary, now, channels)
         return summary
     }
 

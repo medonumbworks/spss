@@ -22,6 +22,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
+import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
 class RepositoryTest {
@@ -135,6 +136,20 @@ class RepositoryTest {
         val s = cp.sentiment.forAsset(cp.repository.row("SOL")!!.asset, force = true)
         assertTrue(s.perSource.none { it.source == SentimentSource.SENTIMENT_HUB && it.sampleCount > 0 })
         assertEquals(SourceStatus.OK, s.perSource.single { it.source == SentimentSource.TELEGRAM }.status, "the phone scans Telegram itself again")
+    }
+
+    @Test
+    fun aCachedSummaryWithoutTheProjectChannelIsNotReusedForOneWithIt() = runTest {
+        val t = fullTransport()
+        val cp = app(t)
+        cp.repository.refresh()
+        val sol = cp.repository.row("SOL")!!.asset
+        val plain = cp.sentiment.forAsset(sol)
+        assertSame(plain, cp.sentiment.forAsset(sol), "cached")
+        val withChannel = cp.sentiment.forAsset(sol, extraChannels = listOf("SolanaProjectNews"))
+        assertEquals(1, t.countRequests("t.me/s/SolanaProjectNews"), "the project's channel is read even though a summary was cached")
+        assertSame(withChannel, cp.sentiment.forAsset(sol, extraChannels = listOf("solanaprojectnews")))
+        assertSame(withChannel, cp.sentiment.forAsset(sol), "a summary with the channel also answers calls without it")
     }
 
     @Test
