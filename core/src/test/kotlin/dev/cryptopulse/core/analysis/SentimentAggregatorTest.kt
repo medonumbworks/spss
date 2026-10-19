@@ -66,3 +66,15 @@ class SentimentAggregatorTest {
         assertEquals(0.0, s.confidence)
     }
 }
+
+class RealScorerIntegrationTest {
+    @org.junit.jupiter.api.Test
+    fun vaderCryptoScorerFeedsTheAggregator() {
+        val agg = DefaultSentimentAggregator(dev.cryptopulse.core.CryptoPulse.defaultScorer())
+        val now = dev.cryptopulse.core.FIXTURE_NOW_MS
+        val bull = agg.sampleFromPost(SocialPost(SentimentSource.TELEGRAM, "1", "SOL to the moon 🚀🚀 breakout confirmed", createdMs = now), now)
+        val bear = agg.sampleFromPost(SocialPost(SentimentSource.REDDIT, "2", "Total rug pull, devs drained the liquidity. Scam.", createdMs = now), now)
+        kotlin.test.assertTrue(bull.score > 0.5, "bull=${bull.score}")
+        kotlin.test.assertTrue(bear.score < -0.5, "bear=${bear.score}")
+    }
+}

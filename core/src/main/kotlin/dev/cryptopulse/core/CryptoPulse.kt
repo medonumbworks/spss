@@ -4,6 +4,7 @@ import dev.cryptopulse.core.analysis.Forecaster
 import dev.cryptopulse.core.analysis.SentimentScorer
 import dev.cryptopulse.core.analysis.forecast.DefaultForecastEngine
 import dev.cryptopulse.core.analysis.sentiment.DefaultSentimentAggregator
+import dev.cryptopulse.core.analysis.sentiment.LexiconSentimentScorer
 import dev.cryptopulse.core.config.AppConfig
 import dev.cryptopulse.core.http.DiskStore
 import dev.cryptopulse.core.http.Http
@@ -93,12 +94,7 @@ class CryptoPulse private constructor(
             return CryptoPulse(repository, sentiment, http, holder)
         }
 
-        /** VADER + crypto slang when available on the classpath; the neutral fallback keeps the app usable otherwise. */
-        fun defaultScorer(): SentimentScorer = try {
-            val cls = Class.forName("dev.cryptopulse.core.analysis.sentiment.LexiconSentimentScorer")
-            cls.getDeclaredConstructor().newInstance() as SentimentScorer
-        } catch (_: Throwable) {
-            SentimentScorer { dev.cryptopulse.core.analysis.TextSentiment(0.0) }
-        }
+        /** VADER (vaderSentiment 3.3.2 port) with the crypto slang lexicon; loaded once and thread-safe. */
+        fun defaultScorer(): SentimentScorer = LexiconSentimentScorer()
     }
 }
