@@ -93,13 +93,14 @@ def _name_regex(name: str) -> re.Pattern[str]:
 
 
 class MentionMatcher:
-    def __init__(self, asset: Asset) -> None:
+    def __init__(self, asset: Asset, cashtag_only: bool = False) -> None:
+        """``cashtag_only``: a ticker discovered from cashtags (no name, no bare-symbol matches)."""
         self.symbol = asset.symbol
-        self.ambiguous = len(asset.symbol) <= 2 or asset.symbol in AMBIGUOUS_SYMBOLS
+        self.ambiguous = cashtag_only or len(asset.symbol) <= 2 or asset.symbol in AMBIGUOUS_SYMBOLS
         self._cashtag = re.compile(r"\$" + re.escape(asset.symbol) + r"\b", re.IGNORECASE)
         self._bare = re.compile(r"\b" + re.escape(asset.symbol) + r"\b")
         placeholder = asset.coingecko_id is None and asset.name == asset.symbol
-        names = build_names(asset.name, asset.symbol, self.ambiguous, placeholder) + list(EXTRA_NAMES.get(asset.symbol, ()))
+        names = [] if cashtag_only else build_names(asset.name, asset.symbol, self.ambiguous, placeholder) + list(EXTRA_NAMES.get(asset.symbol, ()))
         self._names = [_name_regex(n) for n in names]
         # Every regex match implies one of these appears in the case-folded text, so checking
         # them first only skips texts that cannot match (pure speed-up, same results).

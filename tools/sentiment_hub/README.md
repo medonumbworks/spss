@@ -13,6 +13,11 @@ app and MCP server. It runs every hour on GitHub Actions (free for the public re
  4 subreddits  ──► reddit           (public .json listings)                    ─┘    FinBERT, CryptoBERT
 ```
 
+Besides the Bitpanda snapshot, every run also counts the 250 largest memecoins (CoinGecko "Meme"
+category, one keyless call; the app shows the ones Bitpanda lacks as its MEME tier) and brand-new
+`$TICKER` cashtags that at least two communities use three or more times. Discovered cashtags are
+matched by cashtag only, never by name or bare ticker. `--no-memecoins` turns both off.
+
 Everything is free: no paid API, no API key except your own Telegram login (optional).
 
 ## Run it locally
@@ -29,7 +34,7 @@ python -m pytest -q tools/sentiment_hub/tests
 
 ```
 hub.py --out PATH [--models vader,finbert,cryptobert] [--hours 24] [--assets PATH] [--channels PATH]
-       [--lexicon PATH] [--max-channels N] [--no-reddit] [--no-rss] [--no-telegram] [-v]
+       [--lexicon PATH] [--max-channels N] [--no-reddit] [--no-rss] [--no-telegram] [--no-memecoins] [-v]
 ```
 
 | option | default |

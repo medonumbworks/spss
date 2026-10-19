@@ -3,7 +3,7 @@
 
     python tools/sentiment_hub/hub.py --out feed.json [--models vader,finbert,cryptobert]
         [--hours 24] [--assets PATH] [--channels PATH] [--lexicon PATH] [--max-channels N]
-        [--no-reddit] [--no-rss] [--no-telegram]
+        [--no-reddit] [--no-rss] [--no-telegram] [--no-memecoins]
 
 Logs go to stderr and the run ends with a one-line summary. Every source is optional: when all
 of them fail the hub still writes a valid feed with the statuses and no assets.
@@ -28,13 +28,13 @@ from datetime import datetime, timedelta
 from typing import Any, Callable, Mapping
 
 from sentiment_hub import __version__
-from sentiment_hub import reddit, rss, telegram_account, telegram_public
+from sentiment_hub import memecoins, reddit, rss, telegram_account, telegram_public
 from sentiment_hub.aggregate import aggregate, message_weight
-from sentiment_hub.assets import DEFAULT_LEXICON_PATH, load_assets, load_channels
+from sentiment_hub.assets import DEFAULT_LEXICON_PATH, Asset, load_assets, load_channels
 from sentiment_hub.common import SOURCE_NAMES, Message, SourceResult, parse_iso, utcnow
 from sentiment_hub.feed import build_feed, validate_feed, write_feed
 from sentiment_hub.lexicon import load_lexicon
-from sentiment_hub.mentions import build_matchers
+from sentiment_hub.mentions import MentionMatcher, build_matchers
 from sentiment_hub.net import BROWSER_USER_AGENT, HttpClient
 from sentiment_hub.nlp import ALL_MODELS, parse_models, score_messages
 
@@ -60,6 +60,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--no-reddit", action="store_true", help="skip Reddit")
     p.add_argument("--no-rss", action="store_true", help="skip the news feeds")
     p.add_argument("--no-telegram", action="store_true", help="skip both Telegram sources")
+    p.add_argument("--no-memecoins", action="store_true", help="count Bitpanda assets only (no CoinGecko memecoins, no discovered cashtags)")
     p.add_argument("--telegram-budget", type=float, default=DEFAULT_TELEGRAM_BUDGET_S, metavar="SECONDS", help=argparse.SUPPRESS)
     p.add_argument("--account-budget", type=float, default=DEFAULT_ACCOUNT_BUDGET_S, metavar="SECONDS", help=argparse.SUPPRESS)
     p.add_argument("--now", default=None, help=argparse.SUPPRESS)  # ISO timestamp, for reproducible runs
@@ -234,13 +235,20 @@ def run(
     models_requested = parse_models(args.models)
 
     assets, assets_note = load_assets(args.assets)
+    news_http = news_http or HttpClient(user_agent=NEWS_USER_AGENT, timeout=20)
+    meme_note = "off"
+    if not getattr(args, "no_memecoins", False):
+        memes, meme_note = memecoins.fetch_memecoins(news_http)
+        before = len(assets)
+        assets = memecoins.merge_assets(assets, memes)
+        meme_note = f"{meme_note}, {len(assets) - before} not on Bitpanda"
     entries, channels_note = load_channels(args.channels)
     if args.max_channels is not None:
         entries = entries[: max(0, args.max_channels)]
     lexicon, lexicon_note = load_lexicon(args.lexicon or DEFAULT_LEXICON_PATH)
     log.info(
-        "start: %d assets (%s), %d Telegram entries (%s), lexicon %s, models %s, window %dh",
-        len(assets), assets_note, len(entries), channels_note, lexicon_note, ",".join(models_requested), hours,
+        "start: %d assets (%s; memecoins: %s), %d Telegram entries (%s), lexicon %s, models %s, window %dh",
+        len(assets), assets_note, meme_note, len(entries), channels_note, lexicon_note, ",".join(models_requested), hours,
     )
 
     results = collect_sources(args, entries, now, lookback, tg_http, news_http, account_env, account_client_factory)
@@ -261,7 +269,14 @@ def run(
     if lexicon_note != "loaded":
         notes.append("crypto lexicon missing, plain VADER")
 
-    agg = aggregate(report.scored, previous, build_matchers(assets), now, report.models)
+    matchers = build_matchers(assets)
+    if not getattr(args, "no_memecoins", False):
+        # brand-new tickers that several communities talk about: tracked by "$TICKER" only
+        fresh = memecoins.discover_cashtags(current, {a.symbol for a in assets})
+        matchers += [MentionMatcher(Asset(symbol=s, name=s), cashtag_only=True) for s in fresh]
+        if fresh:
+            log.info("tracking %d new cashtags: %s", len(fresh), ", ".join(fresh[:15]))
+    agg = aggregate(report.scored, previous, matchers, now, report.models)
     feed = build_feed(now, hours, report.models, [results[n] for n in SOURCE_NAMES if n in results], agg.market, agg.assets)
     return feed, results, notes
 

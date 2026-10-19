@@ -55,7 +55,7 @@ def test_everything_down_still_writes_a_valid_feed(tmp_path, monkeypatch):
     }
     assert feed["sources"][1]["detail"] == "no TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION secrets"
     assert len(tg.calls) == 3  # every catalogue channel was tried (cointelegraph, solana, gone_channel); groups have no preview
-    assert len(news.calls) == len(rss.FEEDS) + len(reddit.SUBREDDITS)
+    assert len(news.calls) == len(rss.FEEDS) + len(reddit.SUBREDDITS) + 1  # + the CoinGecko memecoin list
 
 
 def test_one_source_crashing_does_not_fail_the_run(monkeypatch):
