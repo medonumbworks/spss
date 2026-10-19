@@ -73,8 +73,8 @@ class MentionMatcher(asset: Asset) {
             "vision", "soon", "kite", "plasma", "beam", "grass", "sonic", "lighter", "canton", "sun", "flare", "orca", "dash",
             "stellar", "cosmos", "polygon", "optimism", "render", "compound", "theta", "tron", "quant", "mantle", "aster",
             "stacks", "jupiter", "kaia", "conflux", "monad", "golem", "horizen", "pendle", "maple", "falcon", "zebec",
-            "magic", "core", "blast", "notcoin", "home", "tree", "band", "celo", "flow", "near", "pi", "doge", "pepe",
-            "useless", "useless coin", "fantom", "gnosis", "osmosis", "harmony", "ankr", "storj", "ontology", "waves",
+            "magic", "core", "blast", "home", "tree", "band", "flow", "near", "pi",
+            "useless", "useless coin", "fantom", "gnosis", "osmosis", "harmony", "ontology", "waves",
         )
         private const val CONTEXT_WORDS = "token|tokens|coin|coins|network|protocol|price|crypto|chain|blockchain|ecosystem|foundation|labs|mainnet|staking|airdrop|etf"
         private val GENERIC_WORDS = setOf("the", "network", "protocol", "token", "coin", "finance", "chain", "global", "official", "ethereum", "bitcoin", "standard", "internet", "basic", "trust", "eur", "usd")

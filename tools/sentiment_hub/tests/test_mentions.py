@@ -8,7 +8,7 @@ import pytest
 from conftest import REPO_ROOT, fixture_path
 
 from sentiment_hub.assets import Asset, load_assets
-from sentiment_hub.mentions import AMBIGUOUS_SYMBOLS, GENERIC_WORDS, MentionMatcher, build_names, matched_symbols
+from sentiment_hub.mentions import AMBIGUOUS_SYMBOLS, COMMON_WORD_NAMES, CONTEXT_WORDS, GENERIC_WORDS, MentionMatcher, build_names, matched_symbols
 
 KOTLIN = REPO_ROOT / "core/src/main/kotlin/dev/cryptopulse/core/repo/MentionMatcher.kt"
 
@@ -43,8 +43,8 @@ def m(symbol: str, name: str) -> MentionMatcher:
         ("BTC", "Bitcoin", "BITCOIN!", True),
         ("BTC", "Bitcoin", "bitcoiners unite", False),
         ("SOL", "Solana", "Solana's validators", True),
-        # parenthesised parts are dropped from names ("Sun (New)" -> "Sun")
-        ("SUN", "Sun (New)", "the sun is shining", True),
+        # parenthesised parts are dropped ("Sun (New)" -> "Sun"); a name equal to an ambiguous symbol needs a cashtag
+        ("SUN", "Sun (New)", "the sun is shining", False),
         ("SUN", "Sun (New)", "new listing", False),
         # first-word alias for multi-word names
         ("BEST", "Bitpanda Ecosystem Token", "Bitpanda launches staking", True),
@@ -52,7 +52,15 @@ def m(symbol: str, name: str) -> MentionMatcher:
         ("SAND", "The Sandbox", "the beach", False),
         ("SAND", "The Sandbox", "The Sandbox metaverse", True),
         ("USDG", "Global Dollar", "global markets", False),
-        ("NEAR", "NEAR Protocol", "near the top", True),  # Kotlin quirk: alias "NEAR" is case-insensitive
+        ("NEAR", "NEAR Protocol", "near the top", False),  # first word equals the ambiguous symbol
+        ("NEAR", "NEAR Protocol", "NEAR Protocol upgrade", True),
+        # everyday-word names need a crypto context word
+        ("XLM", "Stellar", "a stellar quarter for tech stocks", False),
+        ("XLM", "Stellar", "Stellar network upgrade goes live", True),
+        ("XLM", "Stellar", "XLM breaks out", True),
+        ("VSN", "Vision", "our vision for 2027", False),
+        ("VSN", "Vision", "the Vision token merge", True),
+        ("PI", "Pi", "pi is 3.14", False),
         # blank texts never match
         ("BTC", "Bitcoin", "   ", False),
         ("BTC", "Bitcoin", "", False),
@@ -96,6 +104,8 @@ def test_lists_match_kotlin_source():
     source = KOTLIN.read_text(encoding="utf-8")
     assert _kotlin_set(source, "AMBIGUOUS_SYMBOLS") == set(AMBIGUOUS_SYMBOLS)
     assert _kotlin_set(source, "GENERIC_WORDS") == set(GENERIC_WORDS)
+    assert _kotlin_set(source, "COMMON_WORD_NAMES") == set(COMMON_WORD_NAMES)
+    assert f'CONTEXT_WORDS = "{CONTEXT_WORDS}"' in source
 
 
 def test_matched_symbols_with_fixture_assets():
@@ -116,9 +126,15 @@ def _reference(asset: Asset, text: str) -> bool:
         return False
     if re.search(r"\$" + re.escape(asset.symbol) + r"\b", text, re.IGNORECASE):
         return True
-    if any(re.search(r"\b" + re.escape(n) + r"\b", text, re.IGNORECASE) for n in build_names(asset.name)):
-        return True
-    if len(asset.symbol) <= 2 or asset.symbol in AMBIGUOUS_SYMBOLS:
+    ambiguous = len(asset.symbol) <= 2 or asset.symbol in AMBIGUOUS_SYMBOLS
+    for n in build_names(asset.name, asset.symbol, ambiguous):
+        if n.lower() in COMMON_WORD_NAMES:
+            pattern = r"\b" + re.escape(n) + r"\s+(" + CONTEXT_WORDS + r")\b"
+        else:
+            pattern = r"\b" + re.escape(n) + r"\b"
+        if re.search(pattern, text, re.IGNORECASE):
+            return True
+    if ambiguous:
         return False
     return re.search(r"\b" + re.escape(asset.symbol) + r"\b", text) is not None
 

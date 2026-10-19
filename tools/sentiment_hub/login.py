@@ -88,7 +88,7 @@ async def interactive_login(out: Path | None) -> int:
         print("api_id must be a number", file=sys.stderr)
         return 2
     api_hash = (os.environ.get("TELEGRAM_API_HASH") or getpass.getpass("api_hash (hidden): ")).strip()
-    phone = input("phone number in international format (e.g. +43664...): ").strip()
+    phone = input("phone number in international format (e.g. +38591...): ").strip()
 
     client = TelegramClient(StringSession(), api_id, api_hash, device_model=DEVICE_MODEL, receive_updates=False)
     await client.connect()
