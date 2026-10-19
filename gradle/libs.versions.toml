@@ -15,6 +15,7 @@ androidxLifecycle = "2.9.4"
 androidxCompose = "1.9.4"
 androidxMaterial3 = "1.4.0"
 androidxMaterialIcons = "1.7.8"
+androidxWork = "2.10.1"
 androidCompileSdk = "36"
 androidMinSdk = "26"
 androidTargetSdk = "36"
@@ -41,6 +42,7 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidxCompose" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "androidxMaterial3" }
 androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "androidxMaterialIcons" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "androidxWork" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

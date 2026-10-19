@@ -91,6 +91,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.work.runtime.ktx) // hourly background forecast-alert check
 
     testImplementation(kotlin("test"))
     testImplementation(libs.kotlinx.coroutines.test)

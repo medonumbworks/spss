@@ -1,5 +1,9 @@
 package dev.cryptopulse.app.ui
 
+import android.Manifest
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,6 +43,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.cryptopulse.app.BuildConfig
+import dev.cryptopulse.app.ui.components.KeyValue
 import dev.cryptopulse.app.ui.components.SectionCard
 import dev.cryptopulse.core.config.AppConfig
 import dev.cryptopulse.core.model.Forecast
@@ -81,6 +86,8 @@ fun SettingsScreen(vm: AppViewModel) {
                 ToggleRow("Fear & Greed index", cfg.fearGreedEnabled) { v -> vm.updateConfig { it.copy(fearGreedEnabled = v) } }
             }
 
+            NotificationsCard(vm, cfg)
+
             SectionCard(
                 "Beyond Bitpanda",
                 subtitle = "Information only: these coins cannot be bought on Bitpanda. Most memecoins and DEX tokens lose most of their value.",
@@ -116,12 +123,67 @@ fun SettingsScreen(vm: AppViewModel) {
                 KeyField("Bitpanda API key (only if the public price list stops working)", cfg.bitpandaApiKey.orEmpty()) { v -> vm.updateConfig { it.copy(bitpandaApiKey = v.ifBlank { null }) } }
             }
 
+            AccuracyCard(vm)
+
             SectionCard("About") {
                 Text("CryptoPulse ${BuildConfig.VERSION_NAME}", fontWeight = FontWeight.SemiBold)
                 Text("Prices: Bitpanda (ticker), CoinGecko, Coinpaprika, Binance public data. Memecoins and DEX tokens: CoinGecko, GeckoTerminal, DexScreener, pump.fun; contract checks: GoPlus, honeypot.is. Mood: alternative.me Fear & Greed. Crowd: Reddit, StockTwits, Telegram, news, Binance/Bybit/OKX futures. Text sentiment: VADER with a crypto slang lexicon on the phone; FinBERT and CryptoBERT in the cloud hub.", style = MaterialTheme.typography.bodySmall)
                 Text(Forecast.DISCLAIMER, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Spacer(Modifier.height(24.dp))
+        }
+    }
+}
+
+@Composable
+private fun NotificationsCard(vm: AppViewModel, cfg: AppConfig) {
+    // launched on turning the switch on; the result needs no handling, the worker re-checks before posting
+    val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
+    SectionCard("Notifications") {
+        ToggleRow("Alert when a Bitpanda coin's 24 h up-chance crosses the threshold", cfg.alertsEnabled) { v ->
+            vm.updateConfig { it.copy(alertsEnabled = v) }
+            if (v && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) permission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+        Text(
+            "Checked hourly in the background. Crossing-based: each coin notifies once until it falls back below.",
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        if (cfg.alertsEnabled) {
+            var threshold by remember(cfg.alertThresholdPct) { mutableFloatStateOf(cfg.alertThresholdPct.toFloat()) }
+            Text("Threshold: ${threshold.toInt()}%", style = MaterialTheme.typography.labelMedium)
+            Slider(
+                value = threshold,
+                onValueChange = { threshold = it },
+                valueRange = 50f..80f,
+                steps = 29, // whole percent steps between 50 and 80
+                onValueChangeFinished = { vm.updateConfig { it.copy(alertThresholdPct = threshold.toInt()) } },
+            )
+        }
+    }
+}
+
+@Composable
+private fun AccuracyCard(vm: AppViewModel) {
+    val stats = remember { vm.journalStats() }
+    SectionCard(
+        "Forecast accuracy",
+        subtitle = "Every forecast shown is logged and scored against the real price once its horizon passes. Brier: lower is better, 0.25 is a coin flip.",
+    ) {
+        // a scored 50:50 call counts as neither pending nor evaluated, so check both
+        if (stats.perHorizon.values.none { it.evaluated > 0 }) {
+            Text("No forecasts have come due yet", style = MaterialTheme.typography.bodyMedium)
+            if (stats.total > 0) {
+                stats.perHorizon.forEach { (label, r) -> if (r.pending > 0) KeyValue("Pending $label", "${r.pending}") }
+            }
+        } else {
+            stats.perHorizon.forEach { (label, r) ->
+                Text("Next $label", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
+                KeyValue("Evaluated", "${r.evaluated}")
+                r.hitRate?.let { KeyValue("Hit rate", "${r.hits} of ${r.evaluated} (${(it * 100).toInt()}%)") }
+                r.brier?.let { KeyValue("Brier score", "%.3f".format(it)) }
+                KeyValue("Pending", "${r.pending}")
+            }
         }
     }
 }

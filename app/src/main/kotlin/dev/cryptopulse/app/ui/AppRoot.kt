@@ -13,5 +13,6 @@ fun AppRoot(vm: AppViewModel) {
         Screen.Market -> MarketScreen(vm)
         is Screen.Detail -> DetailScreen(vm, s.symbol)
         Screen.Settings -> SettingsScreen(vm)
+        Screen.Buzz -> BuzzScreen(vm)
     }
 }

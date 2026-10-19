@@ -4,12 +4,15 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dev.cryptopulse.app.CryptoPulseApp
+import dev.cryptopulse.app.work.AlertScheduler
+import dev.cryptopulse.core.analysis.journal.JournalStats
 import dev.cryptopulse.core.config.AppConfig
 import dev.cryptopulse.core.model.AssetDetail
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.MarketSnapshot
 import dev.cryptopulse.core.model.RefreshStatus
 import dev.cryptopulse.core.model.SourceStatus
+import dev.cryptopulse.core.sources.feed.BuzzEntry
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -61,6 +64,7 @@ sealed interface Screen {
     data object Market : Screen
     data class Detail(val symbol: String) : Screen
     data object Settings : Screen
+    data object Buzz : Screen
 }
 
 data class DetailState(val symbol: String, val loading: Boolean = true, val detail: AssetDetail? = null, val error: String? = null)
@@ -107,6 +111,10 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val _hub = MutableStateFlow(HubState(SourceStatus.DISABLED, null))
     val hub: StateFlow<HubState> = _hub.asStateFlow()
 
+    /** Telegram buzz ranking; null until the first load, empty when the hub has no mention data. */
+    private val _buzz = MutableStateFlow<List<BuzzEntry>?>(null)
+    val buzz: StateFlow<List<BuzzEntry>?> = _buzz.asStateFlow()
+
     val list: StateFlow<ListState> = combine(repo.snapshot, _query, _filter, _sort, _tier) { snap, q, f, s, t ->
         val all = snap?.rows.orEmpty()
         val counts = ListTier.entries.associateWith { tier -> all.count { ListOptions.inTier(it, tier) } }
@@ -116,6 +124,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private var refreshJob: Job? = null
     private var enrichJob: Job? = null
     private var detailJob: Job? = null
+    private var buzzJob: Job? = null
 
     init {
         refresh(force = false)
@@ -140,6 +149,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 repo.refresh(force)
                 _hub.value = cp.sentiment.feedState().let { HubState(it.first, it.second) }
+                // keep the buzz tab in step with the refresh once it was opened at least once
+                if (_buzz.value != null || _screen.value == Screen.Buzz) loadBuzz()
                 startEnrichment()
             } catch (e: CancellationException) {
                 throw e
@@ -166,7 +177,25 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun open(screen: Screen) {
         _screen.value = screen
         if (screen is Screen.Detail) loadDetail(screen.symbol, force = false)
+        if (screen is Screen.Buzz) loadBuzz()
     }
+
+    fun loadBuzz(force: Boolean = false) {
+        if (buzzJob?.isActive == true) return
+        buzzJob = viewModelScope.launch(Dispatchers.Default) {
+            try {
+                _buzz.value = repo.telegramBuzz(force = force)
+            } catch (e: CancellationException) {
+                throw e
+            } catch (_: Exception) {
+                // hub unreachable: show the empty state rather than loading forever, keep old data if any
+                if (_buzz.value == null) _buzz.value = emptyList()
+            }
+        }
+    }
+
+    /** Realised accuracy of every forecast the engine issued (the forecast journal). */
+    fun journalStats(): JournalStats = repo.journalStats()
 
     fun back(): Boolean = when (_screen.value) {
         Screen.Market -> false
@@ -198,6 +227,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         _config.value = new
         app.settings.save(new)
         cp.updateConfig(new)
+        if (new.alertsEnabled != old.alertsEnabled || new.alertThresholdPct != old.alertThresholdPct) AlertScheduler.sync(app, new)
         if (needsRefresh(old, new)) refresh(force = true, restart = true)
     }
 

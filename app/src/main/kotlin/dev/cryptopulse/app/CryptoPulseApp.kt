@@ -3,6 +3,7 @@ package dev.cryptopulse.app
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import dev.cryptopulse.app.work.AlertScheduler
 import dev.cryptopulse.core.CryptoPulse
 import dev.cryptopulse.core.config.AppConfig
 import dev.cryptopulse.core.http.FileDiskStore
@@ -28,6 +29,8 @@ class CryptoPulseApp : Application() {
             store = FileDiskStore(File(cacheDir, "cryptopulse")),
             logger = AndroidLogger,
         )
+        // hourly "forecast crossed the threshold" notifications; a no-op when the setting is off
+        AlertScheduler.sync(this, cryptoPulse.config)
     }
 }
 

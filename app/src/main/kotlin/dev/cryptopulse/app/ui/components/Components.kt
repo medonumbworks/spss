@@ -136,6 +136,20 @@ fun RiskPill(risk: RiskAssessment?, long: Boolean = false) {
     )
 }
 
+/** Pump-and-dump suspicion marker; the detail screen lists the reasons. */
+@Composable
+fun PumpPill() {
+    val c = LocalMarketColors.current
+    Text(
+        text = "PUMP?",
+        color = c.down,
+        style = MaterialTheme.typography.labelSmall,
+        fontWeight = FontWeight.Bold,
+        maxLines = 1,
+        modifier = Modifier.clip(RoundedCornerShape(6.dp)).background(c.down.copy(alpha = 0.12f)).padding(horizontal = 6.dp, vertical = 2.dp),
+    )
+}
+
 /** Small 0-100 bar: green near a local low, red near a local high. */
 @Composable
 fun BottomMeter(score: Int?, modifier: Modifier = Modifier, width: Dp = 64.dp, height: Dp = 6.dp) {

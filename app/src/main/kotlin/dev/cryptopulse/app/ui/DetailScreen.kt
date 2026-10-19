@@ -59,11 +59,15 @@ import dev.cryptopulse.core.model.BottomAssessment
 import dev.cryptopulse.core.model.Direction
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.HorizonForecast
+import dev.cryptopulse.core.model.PumpAlert
 import dev.cryptopulse.core.model.SentimentSource
 import dev.cryptopulse.core.model.SentimentSummary
 import dev.cryptopulse.core.model.SourceStatus
 import dev.cryptopulse.core.model.Tier
+import dev.cryptopulse.core.sources.polymarket.PredictionMarket
 import dev.cryptopulse.core.util.Text as Fmt
+import java.time.Instant
+import java.time.ZoneId
 import kotlin.math.abs
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -114,6 +118,7 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
                 return@Column
             }
             PriceHeader(row, currency, state?.detail)
+            row.pump?.let { PumpCard(it) }
             if (!row.asset.onBitpanda) SpeculativeCard(row)
             ChartCard(row, state?.detail)
             row.forecast?.let { f ->
@@ -122,6 +127,7 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
                 BottomCard(f.bottom, row.upOrNull(f.d7))
             }
             SentimentCard(row.sentiment)
+            state?.detail?.predictionMarkets?.takeIf { it.isNotEmpty() }?.let { PolymarketCard(it) }
             state?.detail?.let { MoreDataCard(it, currency) }
             val notes = (row.forecast?.coverage?.notes.orEmpty() + state?.detail?.warnings.orEmpty()).distinct()
             if (notes.isNotEmpty()) {
@@ -183,6 +189,45 @@ private fun ageText(ms: Long): String {
     val h = ms / 3_600_000.0
     return if (h < 48) "${h.toInt().coerceAtLeast(0)} h" else "${(h / 24).toInt()} days"
 }
+
+/** Conservative pump patterns fired for this coin; the absence of a warning never means safe. */
+@Composable
+private fun PumpCard(pump: PumpAlert) {
+    val c = LocalMarketColors.current
+    SectionCard("Pump-and-dump warning", subtitle = "Sudden price, volume or hype moves match common pump patterns. No warning does not mean safe.") {
+        pump.reasons.forEach { Text("• $it", style = MaterialTheme.typography.bodySmall, color = c.down) }
+    }
+}
+
+/** This coin's Polymarket markets, most traded first (see PolymarketApi). */
+@Composable
+private fun PolymarketCard(markets: List<PredictionMarket>) {
+    val uri = LocalUriHandler.current
+    SectionCard("Polymarket", subtitle = "Real-money prediction markets; information only.") {
+        markets.forEachIndexed { i, m ->
+            if (i > 0) HorizontalDivider()
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Text(m.question, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
+                Text("${(m.probability * 100).toInt()}% ${m.outcome}", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                FractionBar(m.probability, MaterialTheme.colorScheme.primary, height = 4.dp)
+                val meta = listOfNotNull(
+                    m.volume24hUsd?.let { "24h volume ${capText(it, "USD")}" },
+                    m.endDateMs?.let { "ends ${endDateText(it)}" },
+                ).joinToString("  ·  ")
+                if (meta.isNotEmpty()) Text(meta, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text(
+                    "Open on Polymarket",
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.clickable { runCatching { uri.openUri(m.url) } },
+                )
+            }
+        }
+    }
+}
+
+/** ISO date ("2026-12-31") in the phone's time zone; markets resolve on a day, not a minute. */
+private fun endDateText(ms: Long): String = Instant.ofEpochMilli(ms).atZone(ZoneId.systemDefault()).toLocalDate().toString()
 
 @Composable
 private fun PriceHeader(row: AssetRow, currency: String, detail: AssetDetail?) {

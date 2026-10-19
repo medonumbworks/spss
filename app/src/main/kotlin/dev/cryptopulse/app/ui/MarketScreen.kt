@@ -55,6 +55,7 @@ import dev.cryptopulse.app.ui.components.BottomMeter
 import dev.cryptopulse.app.ui.components.ChangePill
 import dev.cryptopulse.app.ui.components.CoinIcon
 import dev.cryptopulse.app.ui.components.ProbabilityChip
+import dev.cryptopulse.app.ui.components.PumpPill
 import dev.cryptopulse.app.ui.components.RiskPill
 import dev.cryptopulse.app.ui.components.SentimentDot
 import dev.cryptopulse.app.ui.components.Sparkline
@@ -97,6 +98,8 @@ fun MarketScreen(vm: AppViewModel) {
                     }
                 },
                 actions = {
+                    // text instead of an icon: the extended Material icon set is not a dependency
+                    TextButton(onClick = { vm.open(Screen.Buzz) }) { Text("Buzz") }
                     IconButton(onClick = { vm.refresh(force = true) }) { Icon(Icons.Filled.Refresh, contentDescription = "Refresh") }
                     IconButton(onClick = { vm.open(Screen.Settings) }) { Icon(Icons.Filled.Settings, contentDescription = "Settings") }
                 },
@@ -298,6 +301,7 @@ private fun AssetRowItem(row: AssetRow, currency: String, onClick: () -> Unit) {
                 ProbabilityChip("24h", f?.h24)
                 ProbabilityChip("7d", f?.d7)
                 RiskPill(row.risk)
+                if (row.pump != null) PumpPill()
                 if (f != null && f.bottom.label != "Pegged" && f.bottom.label != DefaultForecastEngine.NOT_ASSESSED && f.bottom.label != DefaultForecastEngine.NO_HISTORY && row.risk?.blocked != true) BottomMeter(f.bottom.score, width = 40.dp)
             }
         }
