@@ -8,6 +8,11 @@ import dev.cryptopulse.core.model.Asset
 import dev.cryptopulse.core.model.AssetDetail
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.CoinCommunity
+import dev.cryptopulse.core.analysis.journal.ForecastAlert
+import dev.cryptopulse.core.analysis.journal.ForecastAlerts
+import dev.cryptopulse.core.analysis.journal.ForecastJournal
+import dev.cryptopulse.core.analysis.journal.JournalStats
+import dev.cryptopulse.core.analysis.risk.PumpDetector
 import dev.cryptopulse.core.analysis.risk.RiskScorer
 import dev.cryptopulse.core.model.DerivativesSnapshot
 import dev.cryptopulse.core.model.DexInfo
@@ -30,6 +35,10 @@ import dev.cryptopulse.core.sources.SourceResult
 import dev.cryptopulse.core.sources.cex.CexDataApi
 import dev.cryptopulse.core.sources.dex.Candle
 import dev.cryptopulse.core.sources.dex.GeckoTerminalApi
+import dev.cryptopulse.core.sources.feed.BuzzEntry
+import dev.cryptopulse.core.sources.feed.telegramBuzz
+import dev.cryptopulse.core.sources.polymarket.PolymarketApi
+import dev.cryptopulse.core.sources.polymarket.PredictionMarket
 import dev.cryptopulse.core.sources.safety.TokenSafetyApi
 import dev.cryptopulse.core.universe.AssetUniverse
 import dev.cryptopulse.core.universe.UniverseResult
@@ -72,6 +81,8 @@ class MarketRepository(
     private val cex: CexDataApi? = null,
     private val geckoTerminal: GeckoTerminalApi? = null,
     private val safetyApi: TokenSafetyApi? = null,
+    /** Polymarket prediction markets; null = feature off. */
+    private val polymarket: PolymarketApi? = null,
 ) {
     @Volatile
     var config: AppConfig = initialConfig
@@ -108,6 +119,16 @@ class MarketRepository(
      * [SpeculativeService.KEEP_SAFETY_MS].
      */
     private val openedChecks = ConcurrentHashMap<String, TokenSafety>()
+
+    /** Logs every issued forecast and scores it once its horizon has passed. */
+    private val journal = ForecastJournal(store, clock)
+
+    /** Crossing detector for the "chance of rising above X%" notifications. */
+    private val alerts = ForecastAlerts(store, clock)
+
+    /** Polymarket markets of the last refresh, for forecasts recomputed outside a refresh. */
+    @Volatile
+    private var lastPolymarket: List<PredictionMarket> = emptyList()
 
     init {
         // keep the persisted market context so forecasts made before the first network refresh use it
@@ -158,6 +179,14 @@ class MarketRepository(
             val feed = if (cfg.sentimentFeedUrl.isNotBlank()) sentiment.feed(force) else null
             sentiment.feedState().let { (st, msg) -> if (feed == null && msg != null && st != SourceStatus.DISABLED) warnings += msg }
 
+            val predictionMarkets = if (cfg.polymarketEnabled && polymarket != null) {
+                when (val r = polymarket.cryptoMarkets()) {
+                    is SourceResult.Success -> r.value
+                    is SourceResult.Failure -> { warnings += "Polymarket: ${r.message}"; emptyList() }
+                }
+            } else emptyList()
+            lastPolymarket = predictionMarkets
+
             setStatus("Computing forecasts", 0.8f)
             val nowMs = clock.nowMs()
             val visible = visibleAssets(uni, markets, warnings)
@@ -165,8 +194,11 @@ class MarketRepository(
             val bitpandaRows = visible.map { asset ->
                 val market = markets[asset.symbol]
                 val sent = sentiment.cached(asset.symbol) ?: sentiment.fromFeed(asset, feed) ?: previousRows[asset.symbol]?.sentiment
-                val forecast = market?.let { safeForecast(asset, it, emptyList(), emptyList(), context, sent, funding[asset.symbol], null, nowMs) }
-                AssetRow(asset, market, forecast, sent)
+                val fa = feed?.assets?.get(asset.symbol)
+                val forecast = market?.let {
+                    safeForecast(asset, it, emptyList(), emptyList(), context, sent, funding[asset.symbol], null, nowMs, polymarketUp24 = upDown(predictionMarkets, asset, nowMs))
+                }
+                AssetRow(asset, market, forecast, sent, pump = PumpDetector.assess(market, null, fa?.mentions, fa?.spike, nowMs))
             }
 
             val usdToQuote = usdRate(uni, cfg, markets, funding)
@@ -195,7 +227,8 @@ class MarketRepository(
                     val risk = RiskScorer.assess(row.asset.tier, row.market, row.dex, row.safety, nowMs)
                     val sent = sentiment.cached(row.asset.symbol) ?: sentiment.fromFeed(row.asset, feed) ?: previousRows[row.asset.symbol]?.sentiment
                     val forecast = row.market?.let { safeForecast(row.asset, it, emptyList(), emptyList(), context, sent, fundingFor(row.asset, funding), null, nowMs, row.dex, risk) }
-                    row.copy(sentiment = sent, forecast = forecast, risk = risk)
+                    val fa = feed?.assets?.get(row.asset.symbol)
+                    row.copy(sentiment = sent, forecast = forecast, risk = risk, pump = PumpDetector.assess(row.market, row.dex, fa?.mentions, fa?.spike, nowMs))
                 }
             val rows = (tagged + extra).sortedWith(ROW_ORDER)
 
@@ -212,6 +245,13 @@ class MarketRepository(
             openedChecks.entries.removeIf { nowMs - it.value.checkedAtMs >= SpeculativeService.KEEP_SAFETY_MS }
             _snapshot.value = snap
             persist(snap)
+            try {
+                // score the forecasts that came due at today's prices, then log the fresh calls
+                journal.evaluate(snap.rows.mapNotNull { r -> r.market?.price?.let { p -> r.asset.symbol to p } }.toMap(), snap.currency)
+                journal.record(snap.rows, snap.currency)
+            } catch (e: Exception) {
+                logger.warn(TAG, "forecast journal failed", e)
+            }
             _status.value = RefreshStatus.Idle
             snap
         } catch (e: CancellationException) {
@@ -262,6 +302,8 @@ class MarketRepository(
                 binanceDaily(row)?.let { daily = it; warnings += "Daily history from Binance (CoinGecko did not answer)" }
             }
             val dexDetail = if (row.asset.tier == Tier.DEX) loadDex(row, warnings) else null
+            val polymarkets = if (cfg.polymarketEnabled && polymarket != null) polymarket.cryptoMarkets().valueOrNull.orEmpty() else emptyList()
+            val relatedMarkets = if (polymarkets.isEmpty()) emptyList() else PolymarketApi.forAsset(polymarkets, row.asset.symbol, row.asset.name)
             val sent: SentimentSummary? = try {
                 sentiment.forAsset(row.asset, force, listOfNotNull(telegramHandle(row)))
             } catch (e: CancellationException) {
@@ -289,7 +331,8 @@ class MarketRepository(
             val hourly = hourlyPoints(latest.market, now)
             val risk = RiskScorer.assess(latest.asset.tier, latest.market, latest.dex, latest.safety, now)
             val forecast = latest.market?.let {
-                safeForecast(latest.asset, it, daily.map { p -> p.value }, dailyVolumes, lastContext, sent, deriv, community?.sentimentVotesUpPct, now, latest.dex, risk)
+                safeForecast(latest.asset, it, daily.map { p -> p.value }, dailyVolumes, lastContext, sent, deriv, community?.sentimentVotesUpPct, now, latest.dex, risk,
+                    polymarketUp24 = upDown(polymarkets, latest.asset, now))
             }
             val newRow = latest.copy(forecast = forecast ?: latest.forecast, sentiment = sent ?: latest.sentiment, risk = risk)
             if (inList != null) {
@@ -306,6 +349,7 @@ class MarketRepository(
                 bitpandaPrices = lastUniverse?.bitpandaPrices?.get(symbol) ?: emptyMap(),
                 fetchedAtMs = now,
                 warnings = warnings,
+                predictionMarkets = relatedMarkets,
             )
             if (inList != null && config.currency == snap.currency) detailCache[key] = detail
             detail
@@ -346,7 +390,8 @@ class MarketRepository(
             val latest = row(row.asset.symbol)?.takeIf { identity(it.asset) == identity(row.asset) }
             if (s != null && latest != null) {
                 val fc = latest.market?.let {
-                    safeForecast(latest.asset, it, emptyList(), emptyList(), lastContext, s, fundingFor(latest.asset, fundingCache?.second), null, clock.nowMs(), latest.dex, latest.risk)
+                    safeForecast(latest.asset, it, emptyList(), emptyList(), lastContext, s, fundingFor(latest.asset, fundingCache?.second), null, clock.nowMs(), latest.dex, latest.risk,
+                        polymarketUp24 = upDown(lastPolymarket, latest.asset, clock.nowMs()))
                 }
                 updateRow(latest.copy(sentiment = s, forecast = fc ?: latest.forecast))
             }
@@ -515,6 +560,7 @@ class MarketRepository(
         nowMs: Long,
         dex: DexInfo? = null,
         risk: RiskAssessment? = null,
+        polymarketUp24: Double? = null,
     ): Forecast? = try {
         forecaster.forecast(
             ForecastInput(
@@ -528,6 +574,7 @@ class MarketRepository(
                 derivatives = deriv,
                 communityVotesUpPct = votesUp,
                 dex = dex,
+                polymarketUp24 = polymarketUp24,
                 risk = risk,
                 nowMs = nowMs,
             ),
@@ -554,6 +601,21 @@ class MarketRepository(
         val mark = funding["BTC"]?.markPrice
         return if (btc != null && mark != null && mark > 0) btc / mark else null
     }
+
+    /** Realized accuracy of every forecast the engine issued, per horizon (the forecast journal). */
+    fun journalStats(): JournalStats = journal.stats()
+
+    /** Bitpanda coins whose 24 h chance of rising crossed [thresholdPct] since the last check. */
+    fun alertCrossings(thresholdPct: Int = config.alertThresholdPct): List<ForecastAlert> =
+        alerts.crossings(_snapshot.value?.rows.orEmpty(), thresholdPct)
+
+    /** Most-talked-about coins in the hub's Telegram window, spikes vs the 7-day baseline first. */
+    suspend fun telegramBuzz(limit: Int = 50, force: Boolean = false): List<BuzzEntry> =
+        (if (config.sentimentFeedUrl.isNotBlank()) sentiment.feed(force) else null)?.telegramBuzz(limit).orEmpty()
+
+    /** Polymarket's daily up-or-down probability for one coin, or null without such a market. */
+    private fun upDown(markets: List<PredictionMarket>, asset: Asset, nowMs: Long): Double? =
+        if (markets.isEmpty()) null else PolymarketApi.upDownProbability(markets, asset.symbol, asset.name, nowMs)
 
     /** USD -> [currency] as of the last refresh; null when unknown. */
     private fun usdTo(currency: String): Double? =

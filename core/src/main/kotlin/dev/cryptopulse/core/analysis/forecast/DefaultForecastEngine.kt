@@ -225,6 +225,12 @@ class DefaultForecastEngine : Forecaster {
 
     private fun crowdSignals(input: ForecastInput, horizon: Horizon): List<Contribution> {
         val out = ArrayList<Contribution>()
+        // real-money crowd: Polymarket's daily up-or-down market, at a third of its own conviction
+        input.polymarketUp24?.takeIf { horizon == Horizon.H24 && it > 0.0 && it < 1.0 }?.let { p ->
+            val c = (ln(p / (1 - p)) * 0.35).coerceIn(-0.40, 0.40)
+            out += Contribution("polymarket", "Polymarket crowd", p, c,
+                "Polymarket's daily market gives ${(p * 100).toInt()}% chance of ending the day up")
+        }
         input.sentiment?.takeIf { it.totalSamples > 0 }?.let { s ->
             val w = if (horizon == Horizon.H24) 0.6 else 0.45
             val c = s.composite * s.confidence * w

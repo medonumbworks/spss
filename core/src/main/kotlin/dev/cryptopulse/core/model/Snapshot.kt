@@ -1,5 +1,6 @@
 package dev.cryptopulse.core.model
 
+import dev.cryptopulse.core.sources.polymarket.PredictionMarket
 import kotlinx.serialization.Serializable
 
 /** One row of the market list: the asset, its market data and (when computed) forecast and sentiment. */
@@ -15,6 +16,8 @@ data class AssetRow(
     val safety: TokenSafety? = null,
     /** Risk for everything that is not on Bitpanda; null for Bitpanda assets. */
     val risk: RiskAssessment? = null,
+    /** Pump-and-dump warning (sudden price/volume/hype spikes); null when nothing looks pumped. */
+    val pump: PumpAlert? = null,
 ) {
     /** The horizon's chance of going up, or null when there is none (risk block, too little history). */
     fun upOrNull(h: HorizonForecast?): Double? = h?.takeIf { risk?.blocked != true && it.hasCall }?.probabilityUp
@@ -48,6 +51,8 @@ data class AssetDetail(
     val bitpandaPrices: Map<String, Double> = emptyMap(),
     val fetchedAtMs: Long,
     val warnings: List<String> = emptyList(),
+    /** Polymarket prediction markets about this coin, most traded first. */
+    val predictionMarkets: List<PredictionMarket> = emptyList(),
 )
 
 @Serializable

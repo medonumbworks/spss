@@ -12,6 +12,7 @@ import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.model.TokenSafety
 import kotlin.math.abs
 import kotlin.math.exp
+import kotlin.math.ln
 import kotlin.math.sin
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -157,5 +158,18 @@ class SpeculativeForecastTest {
         val c = pumped.h24.signals.first { it.name == "dex_move_24h" }.contribution
         assertTrue(c < 0, "a 400% day weighs toward down")
         assertTrue(pumped.h24.probabilityUp <= calm.h24.probabilityUp)
+    }
+
+    @Test
+    fun polymarketCrowdIsA24hSignalOnly() {
+        val base = input(meme, null, null, hourly(168))
+        val with = engine.forecast(base.copy(polymarketUp24 = 0.65))
+        val without = engine.forecast(base)
+        val sig = with.h24.signals.first { it.name == "polymarket" }
+        assertEquals(0.35 * ln(0.65 / 0.35), sig.contribution, 1e-3, "a third of the crowd's own conviction")
+        assertTrue(with.h24.probabilityUp > without.h24.probabilityUp, "a bullish crowd nudges the day up")
+        assertTrue(with.d7.signals.none { it.name == "polymarket" }, "a daily market says nothing about 7 days")
+        val capped = engine.forecast(base.copy(polymarketUp24 = 0.99)).h24.signals.first { it.name == "polymarket" }
+        assertEquals(0.40, capped.contribution, 1e-9, "extreme crowd odds are capped")
     }
 }

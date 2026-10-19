@@ -61,6 +61,11 @@ data class AppConfig(
     val dexIncludePumpFun: Boolean = true,
     /** Free contract checks (GoPlus, honeypot.is) for the most active DEX tokens. */
     val safetyChecks: Boolean = true,
+    /** Polymarket prediction markets: related markets in the detail view and the daily up-or-down 24 h signal. */
+    val polymarketEnabled: Boolean = true,
+    /** Notify when a Bitpanda coin's 24 h chance of rising crosses [alertThresholdPct]. */
+    val alertsEnabled: Boolean = true,
+    val alertThresholdPct: Int = 50,
     val dexSafetyTopN: Int = 60,
 ) {
     companion object {

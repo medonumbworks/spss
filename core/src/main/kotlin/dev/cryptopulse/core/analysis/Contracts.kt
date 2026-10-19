@@ -33,6 +33,8 @@ data class ForecastInput(
     val dex: DexInfo? = null,
     /** Risk of a non-Bitpanda asset; a blocked risk suppresses the up/down call. */
     val risk: RiskAssessment? = null,
+    /** Polymarket's daily "up or down" market for this coin: crowd probability of ending the day up. */
+    val polymarketUp24: Double? = null,
     val nowMs: Long,
 )
 
