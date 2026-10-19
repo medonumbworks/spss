@@ -82,6 +82,11 @@ def m(symbol: str, name: str, coingecko_id: str | None = "resolved") -> MentionM
         ("RLUSD", "Ripple USD", "Ripple wins its case", False),
         ("STG", "Stargate Finance", "OpenAI's Stargate data centers", False),
         ("SPX", "SPX6900", "SPX hits a record as stocks rally", False),
+        ("JST", "JUST", "I just bought more", False),
+        ("JST", "JUST", "JUST token airdrop", True),
+        ("ICX", "ICON", "an icon of the industry", False),
+        ("RPL", "Rocket Pool", "rocket emoji everywhere", False),
+        ("RPL", "Rocket Pool", "Rocket Pool node operators", True),
         # proper nouns that are not English words match on their own
         ("PENDLE", "Pendle", "Pendle TVL climbs to $5B", True),
         ("KAIA", "Kaia", "Kaia partners with LINE", True),

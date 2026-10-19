@@ -33,6 +33,8 @@ class MentionMatcherTest {
         assertTrue(MentionMatcher(Asset("PENDLE", "Pendle")).matches("Pendle TVL climbs to 5B"))
         assertTrue(MentionMatcher(Asset("DOGE", "Doge", "dogecoin")).matches("Dogecoin jumps 12%"))
         assertTrue(MentionMatcher(Asset("FLOKI", "FLOKI", "floki")).matches("Floki Inu launches a game"), "a real coin named like its ticker")
+        assertFalse(MentionMatcher(Asset("JST", "JUST", "just")).matches("I just bought more"))
+        assertTrue(MentionMatcher(Asset("JST", "JUST", "just")).matches("JUST token airdrop"))
         val people = MentionMatcher(Asset("PEOPLE", "PEOPLE"))
         assertFalse(people.matches("So many people feel safe"), "an unnamed listing must not match the word")
         assertTrue(people.matches("PEOPLE rallies 30%"))

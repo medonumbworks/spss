@@ -44,6 +44,14 @@ jobs:
           print("tools:", names)
           assert len(names) == 9, names
           PY
+      - name: Live data check (real APIs, informational)
+        # Fixture tests cannot see API changes; this runs one real refresh from GitHub's network.
+        continue-on-error: true
+        timeout-minutes: 10
+        run: |
+          timeout 540 mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp check 2>live-check-err.log | tee live-check.md
+          cat live-check.md >> "$GITHUB_STEP_SUMMARY"
+          tail -n 40 live-check-err.log || true
       - name: Package MCP server
         run: |
           cd mcp-server/build/install

@@ -78,13 +78,15 @@ class MentionMatcher(asset: Asset) {
             "magic", "core", "blast", "home", "tree", "band", "flow", "near", "pi",
             "useless", "useless coin", "osmosis", "harmony", "ontology", "waves",
             "curve", "stargate", "gate", "immutable", "movement", "story", "space", "book", "metal", "nano",
-            "memecoin", "the graph",
+            "memecoin", "the graph", "just", "symbol", "turbo", "peanut", "syndicate", "icon", "dusk", "brett",
+            "walrus", "treehouse", "kava", "mina", "balancer", "gala", "aztec",
         )
         private const val CONTEXT_WORDS = "token|tokens|coin|coins|network|protocol|price|crypto|chain|blockchain|ecosystem|foundation|labs|mainnet|staking|airdrop|etf|finance|dao|dex|swap"
         /** Never used as a first-word alias ("Reserve Rights" is not "the Federal Reserve"). */
         private val GENERIC_WORDS = setOf(
             "the", "network", "protocol", "token", "coin", "finance", "chain", "global", "official", "ethereum", "bitcoin", "standard",
             "internet", "basic", "trust", "eur", "usd", "reserve", "world", "yield", "across", "ripple", "defi",
+            "rocket", "oasis", "sahara", "boba", "vulcan", "enzyme",
         )
         /** Common names that differ from the listing name. */
         private val EXTRA_NAMES: Map<String, List<String>> = mapOf("DOGE" to listOf("Dogecoin"))

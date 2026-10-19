@@ -24,6 +24,7 @@ Usage:
   cryptopulse-mcp                       MCP over stdio (Claude Desktop, Claude Code, Cursor, ...)
   cryptopulse-mcp --http [port]         MCP over Streamable HTTP on http://127.0.0.1:<port>/mcp (default 3333)
   cryptopulse-mcp digest [en|hr]        Print a market digest (used by the Telegram notifier)
+  cryptopulse-mcp check                 Refresh once from the live APIs and print a health report
 
 Environment (all optional):
   CRYPTOPULSE_CURRENCY      EUR (default), USD, CHF, GBP
@@ -60,6 +61,11 @@ fun main(args: Array<String>) {
             val app = createApp()
             val snap = runBlocking { app.repository.refresh(force = true).also { app.repository.enrichSentiment(10) } }
             println(Digest.build(app.repository.snapshot.value ?: snap, args.getOrNull(1) ?: "en"))
+            exitProcess(0)
+        }
+        "check" -> {
+            val app = createApp()
+            println(runBlocking { LiveCheck.run(app) })
             exitProcess(0)
         }
         "--http" -> runHttp(args.getOrNull(1)?.toIntOrNull() ?: 3333)

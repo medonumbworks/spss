@@ -290,8 +290,13 @@ class SentimentService(
                 timestampMs = s.tsMs,
             )
         }
-        // "mentions versus the previous day" only means something for a current document
-        val buzz = fa.mentionsPrev?.takeIf { it > 0 && weight >= 1.0 }?.let { fa.mentions.toDouble() / it }
+        // "mentions versus the previous day" only means something for a current document. Compare shares
+        // of all mentions, not counts: the hub reads fewer old posts (preview pages run out), so raw
+        // counts would show every coin's attention rising.
+        val buzz = fa.mentionsPrev?.takeIf { it > 0 && weight >= 1.0 }?.let { prev ->
+            val (total, totalPrev) = doc.mentionTotals
+            if (total <= 0 || totalPrev <= 0) null else (fa.mentions.toDouble() / total) / (prev.toDouble() / totalPrev)
+        }
         return SourceSentiment(
             source = SentimentSource.SENTIMENT_HUB,
             status = SourceStatus.OK,

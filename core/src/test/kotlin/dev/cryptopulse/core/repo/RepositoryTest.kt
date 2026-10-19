@@ -64,7 +64,8 @@ class RepositoryTest {
         assertEquals(22, snap.context!!.fearGreed!!.value)
         val sol = cp.repository.row("SOL")!!
         assertEquals(SentimentSource.SENTIMENT_HUB, sol.sentiment!!.perSource.single { it.sampleCount > 0 }.source, "list uses the cloud hub")
-        assertEquals(2.0, sol.sentiment!!.perSource.first().buzzRatio)
+        // share of all mentions: (120 / 420) / (60 / 370), not the raw 120 / 60
+        assertEquals(1.762, sol.sentiment!!.perSource.first().buzzRatio!!, 1e-3)
         assertTrue(sol.forecast!!.h24.signals.any { it.name == "sentiment" })
         assertEquals(Direction.FLAT, cp.repository.row("USDT")?.forecast?.h24?.direction ?: Direction.FLAT)
         val pepe = cp.repository.row("PEPE")!!

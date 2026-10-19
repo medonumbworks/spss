@@ -56,6 +56,9 @@ data class SentimentFeedDoc(
     val assets: Map<String, FeedAsset>,
 ) {
     fun ageMs(nowMs: Long): Long = (nowMs - generatedAtMs).coerceAtLeast(0)
+
+    /** Sum of all assets' mentions in the current and in the previous window. */
+    val mentionTotals: Pair<Int, Int> get() = assets.values.sumOf { it.mentions } to assets.values.sumOf { it.mentionsPrev ?: 0 }
     val telegramAccountConnected: Boolean get() = sources.any { it.name == "telegram_account" && it.status == "ok" }
 }
 

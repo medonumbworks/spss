@@ -37,21 +37,23 @@ AMBIGUOUS_SYMBOLS: frozenset[str] = frozenset(
 # Copied verbatim from MentionMatcher.GENERIC_WORDS.
 GENERIC_WORDS: frozenset[str] = frozenset(
     {
-        "across", "basic", "bitcoin", "chain", "coin", "defi", "ethereum", "eur", "finance", "global",
-        "internet", "network", "official", "protocol", "reserve", "ripple", "standard", "the", "token",
-        "trust", "usd", "world", "yield",
+        "across", "basic", "bitcoin", "boba", "chain", "coin", "defi", "enzyme", "ethereum", "eur",
+        "finance", "global", "internet", "network", "oasis", "official", "protocol", "reserve", "ripple",
+        "rocket", "sahara", "standard", "the", "token", "trust", "usd", "vulcan", "world", "yield",
     }
 )
 
 # Copied verbatim from MentionMatcher.COMMON_WORD_NAMES: names that are everyday words need a context word.
 COMMON_WORD_NAMES: frozenset[str] = frozenset(
     {
-        "aster", "band", "beam", "blast", "book", "canton", "compound", "core", "cosmos", "curve", "dash",
-        "falcon", "flare", "flow", "gate", "golem", "grass", "harmony", "home", "immutable", "jupiter",
-        "kite", "lighter", "magic", "mantle", "maple", "memecoin", "metal", "monad", "movement", "nano",
-        "near", "ontology", "optimism", "orca", "osmosis", "pi", "plasma", "polygon", "quant", "render",
-        "sonic", "soon", "space", "stacks", "stargate", "stellar", "story", "sun", "the graph", "theta",
-        "tree", "tron", "useless", "useless coin", "vision", "waves",
+        "aster", "aztec", "balancer", "band", "beam", "blast", "book", "brett", "canton", "compound", "core",
+        "cosmos", "curve", "dash", "dusk", "falcon", "flare", "flow", "gala", "gate", "golem", "grass",
+        "harmony", "home", "icon", "immutable", "jupiter", "just", "kava", "kite", "lighter", "magic",
+        "mantle", "maple", "memecoin", "metal", "mina", "monad", "movement", "nano", "near", "ontology",
+        "optimism", "orca", "osmosis", "peanut", "pi", "plasma", "polygon", "quant", "render", "sonic",
+        "soon", "space", "stacks", "stargate", "stellar", "story", "sun", "symbol", "syndicate", "the graph",
+        "theta", "tree", "treehouse", "tron", "turbo", "useless", "useless coin", "vision", "walrus",
+        "waves",
     }
 )
 
