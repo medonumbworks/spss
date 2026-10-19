@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CryptoPulse</title>
+<meta name="description" content="Hourly crypto forecasts, Telegram buzz and forecast accuracy. Information only, not financial advice.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#10141b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <img src="icon.svg" alt="" width="28" height="28">
+    <h1>CryptoPulse</h1>
+  </div>
+  <div class="status">
+    <span id="updated" class="chip" hidden></span>
+    <span id="fg" class="chip" hidden></span>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Sections">
+  <button role="tab" id="tabbtn-overview" data-tab="overview" aria-selected="true" aria-controls="tab-overview">Overview</button>
+  <button role="tab" id="tabbtn-telegram" data-tab="telegram" aria-selected="false" aria-controls="tab-telegram">Telegram</button>
+  <button role="tab" id="tabbtn-accuracy" data-tab="accuracy" aria-selected="false" aria-controls="tab-accuracy">Accuracy</button>
+  <button role="tab" id="tabbtn-about" data-tab="about" aria-selected="false" aria-controls="tab-about">About</button>
+</nav>
+
+<p id="note" class="note" hidden></p>
+<ul id="warnings" class="warnings" hidden></ul>
+
+<main>
+  <section id="tab-overview" role="tabpanel" aria-labelledby="tabbtn-overview">
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search coin or symbol" aria-label="Search coin or symbol" autocomplete="off">
+      <div id="tiers" class="chips" role="group" aria-label="Tier filter">
+        <button data-tier="ALL" aria-pressed="true">All</button>
+        <button data-tier="BITPANDA" aria-pressed="false">Bitpanda</button>
+        <button data-tier="MEME" aria-pressed="false">Memecoins</button>
+        <button data-tier="TRENDING" aria-pressed="false">Trending</button>
+        <button data-tier="DEX" aria-pressed="false">DEX</button>
+      </div>
+    </div>
+    <table id="coins">
+      <caption class="sr-only">Coins with price changes, forecasts and risk. Tap a column header to sort.</caption>
+      <thead>
+        <tr>
+          <th scope="col"><button data-sort="name" data-kind="str">Coin</button></th>
+          <th scope="col" class="num"><button data-sort="price">Price</button></th>
+          <th scope="col" class="num"><button data-sort="chg24h">24h</button></th>
+          <th scope="col" class="num"><button data-sort="chg7d">7d</button></th>
+          <th scope="col" class="num"><button data-sort="up24">Up 24h</button></th>
+          <th scope="col" class="num"><button data-sort="up7">Up 7d</button></th>
+          <th scope="col" class="num"><button data-sort="bottomScore">Bottom</button></th>
+          <th scope="col" class="num"><button data-sort="risk">Risk</button></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p id="rows-empty" class="quiet" hidden>No coins match.</p>
+
+    <h2>Polymarket</h2>
+    <p class="quiet">Crowd-priced odds for crypto questions, from polymarket.com.</p>
+    <ul id="polymarket" class="cards"></ul>
+    <p id="polymarket-empty" class="quiet" hidden>No open markets right now.</p>
+  </section>
+
+  <section id="tab-telegram" role="tabpanel" aria-labelledby="tabbtn-telegram" hidden>
+    <h2>Telegram buzz</h2>
+    <p id="buzz-meta" class="quiet">What public crypto channels are talking about, ranked by mentions in the last 24 hours.</p>
+    <ol id="buzz" class="cards"></ol>
+    <p id="buzz-empty" class="quiet" hidden>No buzz data yet.</p>
+  </section>
+
+  <section id="tab-accuracy" role="tabpanel" aria-labelledby="tabbtn-accuracy" hidden>
+    <h2>Forecast accuracy</h2>
+    <p class="quiet">Every forecast the engine issued is logged and scored against the realized price.</p>
+    <div id="accuracy" class="acc"></div>
+    <p id="accuracy-empty" class="quiet" hidden>No scored forecasts yet.</p>
+  </section>
+
+  <section id="tab-about" role="tabpanel" aria-labelledby="tabbtn-about" hidden>
+    <h2>About</h2>
+    <h3>Data sources</h3>
+    <ul class="plain">
+      <li>Prices, market caps and history: CoinGecko, with Coinpaprika as a fallback</li>
+      <li>DEX radar: GeckoTerminal, DexScreener and pump.fun; contract checks by GoPlus and honeypot.is</li>
+      <li>Fear &amp; Greed index: alternative.me</li>
+      <li>Social buzz: public Telegram channels, Reddit and crypto news feeds</li>
+      <li>Derivatives positioning: Binance and Bybit public endpoints</li>
+      <li>Prediction markets: Polymarket</li>
+    </ul>
+    <h3>Update cadence</h3>
+    <p>A GitHub Actions job rebuilds this dashboard every hour. The header shows how old the data you are
+      looking at is; when it is more than two hours old the Telegram tab also tries a live refresh from the
+      sentiment feed.</p>
+    <h3>Limitations</h3>
+    <ul class="plain">
+      <li><strong>Information only, not financial advice.</strong> The forecasts are probabilities, not
+        recommendations, and short-term crypto moves are mostly noise.</li>
+      <li>Everything is built on free, keyless APIs with strict rate limits, so numbers can lag or be
+        missing for a while.</li>
+      <li>Most memecoins and DEX tokens lose most of their value; many are outright scams. The risk score
+        and pump warnings are heuristics, not guarantees either way.</li>
+      <li>The app never links to a place to buy any coin.</li>
+    </ul>
+  </section>
+</main>
+
+<p id="load-error" class="note warn" hidden>Could not load dashboard data. <button id="retry" type="button">Retry</button></p>
+
+<footer>
+  <p id="notes" class="quiet"></p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
