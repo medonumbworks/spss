@@ -15,7 +15,7 @@ plus a crypto slang overlay. It needs no network access, no API key and no model
    collapse to one space and the text is trimmed. Other words keep their case, because VADER boosts
    ALL CAPS words.
 2. **Score with VADER**: the bundled `vader_lexicon.txt` (7,506 words, emoticons, slang) overlaid with
-   `crypto_lexicon.tsv` (431 entries; crypto values win). All VADER rules apply unchanged: negation
+   `crypto_lexicon.tsv` (447 entries; crypto values win). All VADER rules apply unchanged: negation
    ("not bullish"), boosters ("very", "kinda"), ALL CAPS, `!`/`?` emphasis, "but" shifts, idioms.
 3. **Report** `TextSentiment(score, matchedPositive, matchedNegative, hits)`: `score` is VADER's compound
    (-1..1); the lists hold up to 8 distinct lexicon tokens with positive/negative *raw* valence, in order
@@ -32,7 +32,7 @@ plus a crypto slang overlay. It needs no network access, no API key and no model
 `crypto_lexicon.tsv` is UTF-8 with `#` comments: `term<TAB>valence[<TAB>comment]` with valence in [-4, 4],
 or `EMOJI<TAB>valence<TAB>emoji_<name>` for emoji. The file header contains the 18-line Python reader that
 the cloud twin uses, and the normalizer KDoc gives the equivalent Python `re` calls. Parity is tested: `vader_reference.tsv`
-(194 sentences scored by the Python package) and `crypto_reference.tsv` (73 sentences scored by the Python
+(194 sentences scored by the Python package) and `crypto_reference.tsv` (83 sentences scored by the Python
 twin, including the exact normalized text) must match within 1e-3 (the VADER rows even match exactly, digit for digit).
 
 ## Why VADER fits a phone
@@ -60,6 +60,11 @@ twin, including the exact normalized text) must match within 1e-3 (the VADER row
 - **Inherited VADER 3.3.2 quirks are kept on purpose** for parity: "kind of" before a negative word makes
   it *more* negative, the "but" rule rescales the first equal value, and a zero-valence word in ALL CAPS
   gets -0.733. The normalizer only matches phrases written with single spaces ("rug  pull" is missed).
+- **Overlapping phrases chain into one token.** `_` is not a word character for the phrase matcher, so
+  "strong buy" + "buy signal" turn "strong buy signal" into the single token `strong_buy_signal`, which
+  scores 0 unless it is a lexicon entry itself. The combinations that occur in real posts are entries
+  ("to the moon soon", "strong sell signal", "interest rate cut", "panic sell-off", ...);
+  `CryptoLexiconTest` lists the remaining chains, which are left unscored on purpose.
 
 ## How FinBERT and CryptoBERT complement it
 

@@ -158,6 +158,20 @@ class LexiconSentimentScorerTest {
     }
 
     @Test
+    fun `chained phrases keep their sentiment`() {
+        // Overlapping phrases become one token ("strong_buy_signal"); these combinations are entries.
+        assertAbove(0.3, "BTC to the moon soon")
+        assertAbove(0.3, "ETH flashing a strong buy signal")
+        assertBelow(-0.3, "Strong sell signal on the daily")
+        assertAbove(0.0, "Fed interest rate cut expected")
+        assertBelow(0.0, "Another interest rate hike")
+        assertBelow(0.0, "Local top is in")
+        assertAbove(0.0, "local bottom is in")
+        assertBelow(-0.3, "Panic sell-off hits altcoins")
+        assertAbove(0.3, "whales buying the dip again")
+    }
+
+    @Test
     fun `case of phrases and tags does not matter`() {
         assertEquals(s("rug pull"), s("Rug Pull"))
         assertEquals(s("Bitcoin to the moon"), s("#Bitcoin to the moon"))

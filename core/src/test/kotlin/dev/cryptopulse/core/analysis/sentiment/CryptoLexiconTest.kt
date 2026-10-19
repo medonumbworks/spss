@@ -96,6 +96,47 @@ class CryptoLexiconTest {
     }
 
     @Test
+    fun `overlapping phrases chain into lexicon entries unless listed as unscored`() {
+        // '_' is not a word character for the phrase matcher (rule c), so phrases that share words chain
+        // into ONE token: "strong buy" + "buy signal" -> "strong_buy_signal". That token scores only if it
+        // is an entry itself. The chains below do not occur in real posts and are knowingly left unscored;
+        // a new overlap fails this test until its combined phrase is added or listed here.
+        val unscored = listOf(
+            "bottom is in the green", "bottom is in the red", "de-peg restored", "frozen withdrawals halted",
+            "frozen withdrawals paused", "funds stolen funds", "halted withdrawals halted", "halted withdrawals paused",
+            "in the green candle", "in the green candles", "in the red candle", "in the red candles",
+            "local bottom is in the green", "local bottom is in the red", "local top is in the green",
+            "local top is in the red", "lost its peg restored", "number go up only", "open interest rate",
+            "open interest rate cut", "open interest rate cuts", "open interest rate hike", "open interest rate hikes",
+            "open interest rates", "panic sell signal", "paused withdrawals halted", "paused withdrawals paused",
+            "stolen funds stolen", "strong buy the dip", "top is in the green", "top is in the red",
+            "withdrawals halted withdrawals", "withdrawals paused withdrawals",
+        )
+        val hyphenated = lexicon.terms.keys.filter { '-' in it && '_' !in it && !it.startsWith(CryptoLexicon.EMOJI_TOKEN_PREFIX) }
+        val chains = sortedSetOf<String>()
+        for (a in lexicon.phrases) {
+            val aw = a.split(' ')
+            for (b in lexicon.phrases) {
+                val bw = b.split(' ')
+                for (k in 1 until minOf(aw.size, bw.size)) {
+                    if (a != b && aw.takeLast(k) == bw.take(k)) chains += (aw + bw.drop(k)).joinToString(" ")
+                }
+            }
+            // a phrase next to a hyphenated term that starts or ends with one of its words: "panic sell-off"
+            for (t in hyphenated) {
+                if (t.startsWith(aw.last() + "-")) chains += (aw.dropLast(1) + t).joinToString(" ")
+                if (t.endsWith("-" + aw.first())) chains += (listOf(t) + aw.drop(1)).joinToString(" ")
+            }
+        }
+        val vader = Vader.cryptoDefault()
+        val lost = chains.filter { chain -> vader.analyze(chain).lexiconValences.any { it == null } }
+        assertEquals(unscored, lost)
+        for (scored in listOf("to the moon soon", "strong buy signal", "strong sell signal", "interest rate cut", "panic sell-off")) {
+            assertTrue(scored in chains && scored in lexicon.phrases, scored)
+        }
+    }
+
+    @Test
     fun `parsed collections are read-only so the shared instance cannot be altered`() {
         @Suppress("UNCHECKED_CAST")
         val terms = lexicon.terms as MutableMap<String, Double>
