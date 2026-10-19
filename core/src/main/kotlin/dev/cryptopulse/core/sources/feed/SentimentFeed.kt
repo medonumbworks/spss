@@ -32,6 +32,10 @@ data class FeedAsset(
     val symbol: String,
     val mentions: Int,
     val mentionsPrev: Int? = null,
+    /** Average mentions per window over the hub's trailing 7 days; null until the hub publishes it. */
+    val baseline7d: Double? = null,
+    /** mentions vs [baseline7d] as published by the hub; null in feeds from older hubs. */
+    val spike: Double? = null,
     val composite: Double,
     val scores: Map<String, Double> = emptyMap(),
     val bullish: Double = 0.0,
@@ -104,6 +108,8 @@ class SentimentFeedApi(
                     symbol = sym,
                     mentions = a["mentions"].int ?: 0,
                     mentionsPrev = a["mentionsPrev"].int,
+                    baseline7d = a["baseline7d"].dbl,
+                    spike = a["spike"].dbl,
                     composite = (a["composite"].dbl ?: 0.0).coerceIn(-1.0, 1.0),
                     scores = a["scores"].obj?.mapNotNull { (k, v) -> v.dbl?.let { k to it } }?.toMap().orEmpty(),
                     bullish = a["bullish"].dbl ?: 0.0,

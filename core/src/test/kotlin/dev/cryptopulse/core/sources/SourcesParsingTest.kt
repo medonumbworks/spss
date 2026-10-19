@@ -150,6 +150,11 @@ class SourcesParsingTest {
         assertTrue(doc.telegramAccountConnected)
         val sol = doc.assets.getValue("SOL")
         assertEquals(120, sol.mentions)
+        assertEquals(45.0, sol.baseline7d)
+        assertEquals(2.67, sol.spike)
+        // Feeds from older hubs do not carry the buzz fields; they must read as null, not fail.
+        assertNull(doc.assets.getValue("BTC").baseline7d)
+        assertNull(doc.assets.getValue("BTC").spike)
         assertEquals(0.45, sol.scores["cryptobert"])
         assertEquals(40 to 0.45, sol.bySource["telegram_account"])
         assertEquals(1, sol.samples.size)
