@@ -224,9 +224,9 @@ private fun SearchAndFilters(list: ListState, vm: AppViewModel) {
             shape = MaterialTheme.shapes.large,
         )
         Row(Modifier.horizontalScroll(rememberScrollState()).padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            ListTier.entries.forEach { t ->
+            ListOptions.visibleTiers(list.tierCounts, list.tier).forEach { t ->
                 val n = list.tierCounts[t] ?: 0
-                if (t == ListTier.ALL || n > 0) FilterChip(selected = list.tier == t, onClick = { vm.setTier(t) }, label = { Text(if (t == ListTier.ALL) t.label else "${t.label} $n") })
+                FilterChip(selected = list.tier == t, onClick = { vm.setTier(t) }, label = { Text(if (t == ListTier.ALL) t.label else "${t.label} $n") })
             }
         }
         Row(Modifier.horizontalScroll(rememberScrollState()).padding(top = 2.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -306,7 +306,8 @@ private fun AssetRowItem(row: AssetRow, currency: String, onClick: () -> Unit) {
             Spacer(Modifier.width(8.dp))
         }
         Column(horizontalAlignment = Alignment.End) {
-            Text(priceText(m?.bitpandaPrice ?: m?.price, ""), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Medium, maxLines = 1)
+            // a DEX price stays in USD when there is no USD rate for the list currency; say so
+            Text(priceText(m?.bitpandaPrice ?: m?.price, m?.currency?.takeIf { it != currency } ?: ""), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Medium, maxLines = 1)
             Spacer(Modifier.height(2.dp))
             ChangePill(m?.change24hPct)
         }

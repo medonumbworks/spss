@@ -85,7 +85,7 @@ fun ProbabilityChip(label: String, h: HorizonForecast?) {
         null -> Triple(c.neutral, MaterialTheme.colorScheme.surfaceVariant, "·")
     }
     // no number at all for red-flagged, unchecked or too-young tokens (see RiskScorer)
-    val noCall = h?.signals?.firstOrNull()?.name in NO_CALL_SIGNALS
+    val noCall = h?.hasCall == false
     val pct = if (noCall) "—" else h?.let { "${(it.probabilityUp * 100).toInt()}%" } ?: "—"
     Text(
         text = if (noCall) "$label —" else "$label $arrow $pct",
@@ -95,8 +95,6 @@ fun ProbabilityChip(label: String, h: HorizonForecast?) {
         modifier = Modifier.clip(RoundedCornerShape(6.dp)).background(bg).padding(horizontal = 6.dp, vertical = 2.dp),
     )
 }
-
-private val NO_CALL_SIGNALS = setOf("risk_blocked", "history")
 
 /** "MEME" / "TRENDING" / "DEX" label for coins that Bitpanda does not list. */
 @Composable

@@ -52,6 +52,7 @@ import dev.cryptopulse.app.ui.components.SectionCard
 import dev.cryptopulse.app.ui.components.capText
 import dev.cryptopulse.app.ui.components.priceText
 import dev.cryptopulse.app.ui.theme.LocalMarketColors
+import dev.cryptopulse.core.analysis.forecast.DefaultForecastEngine
 import dev.cryptopulse.core.model.AssetDetail
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.BottomAssessment
@@ -73,7 +74,8 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
     val state = detailState?.takeIf { it.symbol == symbol }
     val snapshot by vm.snapshot.collectAsStateWithLifecycle()
     val row: AssetRow? = state?.detail?.row ?: snapshot?.rows?.firstOrNull { it.asset.symbol == symbol }
-    val currency = snapshot?.currency ?: "EUR"
+    // DEX prices stay in USD when there is no USD rate for the list currency; label them with their own
+    val currency = row?.market?.currency ?: snapshot?.currency ?: "EUR"
 
     Scaffold(
         topBar = {
@@ -113,9 +115,9 @@ fun DetailScreen(vm: AppViewModel, symbol: String) {
             if (!row.asset.onBitpanda) SpeculativeCard(row)
             ChartCard(row, state?.detail)
             row.forecast?.let { f ->
-                ForecastCard("Next 24 hours", f.h24, currency)
-                ForecastCard("Next 7 days", f.d7, currency)
-                BottomCard(f.bottom, f.d7)
+                ForecastCard("Next 24 hours", f.h24, noCallReason(row, f.h24), currency)
+                ForecastCard("Next 7 days", f.d7, noCallReason(row, f.d7), currency)
+                BottomCard(f.bottom, row.upOrNull(f.d7))
             }
             SentimentCard(row.sentiment)
             state?.detail?.let { MoreDataCard(it, currency) }
@@ -225,9 +227,31 @@ private fun ChartCard(row: AssetRow, detail: AssetDetail?) {
     }
 }
 
+/** Why [h] gets no number at all (red flags, unchecked contract, too little history), or null when it has a call. */
+internal fun noCallReason(row: AssetRow, h: HorizonForecast): String? = when {
+    row.upOrNull(h) != null -> null
+    !h.hasCall -> h.signals.firstOrNull()?.description ?: "No forecast"
+    else -> "No forecast (${row.risk?.label?.lowercase() ?: "red flags"})"
+}
+
+/** [noCall]: see [noCallReason]; the 0.5 such a horizon carries is a placeholder, not a coin flip. */
 @Composable
-private fun ForecastCard(title: String, h: HorizonForecast, currency: String) {
+private fun ForecastCard(title: String, h: HorizonForecast, noCall: String?, currency: String) {
     val c = LocalMarketColors.current
+    if (noCall != null) {
+        SectionCard(title) {
+            Row(verticalAlignment = Alignment.Bottom) {
+                Text("—", style = MaterialTheme.typography.displaySmall, color = c.neutral, fontWeight = FontWeight.Bold)
+                Spacer(Modifier.width(8.dp))
+                Column {
+                    Text("chance of going up", style = MaterialTheme.typography.bodyMedium)
+                    Text("No forecast", style = MaterialTheme.typography.labelLarge, color = c.neutral)
+                }
+            }
+            Text(noCall, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+        return
+    }
     val color = when (h.direction) {
         Direction.UP -> c.up
         Direction.DOWN -> c.down
@@ -274,16 +298,20 @@ private fun ForecastCard(title: String, h: HorizonForecast, currency: String) {
     }
 }
 
+/** [d7Up]: the 7-day chance of going up, null when that horizon has no call. */
 @Composable
-private fun BottomCard(b: BottomAssessment, d7: HorizonForecast) {
+private fun BottomCard(b: BottomAssessment, d7Up: Double?) {
     SectionCard("Is this the lowest price?", subtitle = "Nobody knows the absolute bottom. This measures how close the price is to its recent lows and whether rebound conditions are present.") {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("${b.score}", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-            Text("/100  ", style = MaterialTheme.typography.bodyMedium)
-            Text(b.label, style = MaterialTheme.typography.titleSmall)
+        // blocked tokens (red flags, too new, unchecked) get no score: their 50 is a placeholder, the reasons say why
+        if (b.label != DefaultForecastEngine.NOT_ASSESSED) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("${b.score}", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
+                Text("/100  ", style = MaterialTheme.typography.bodyMedium)
+                Text(b.label, style = MaterialTheme.typography.titleSmall)
+            }
+            BottomMeter(b.score, Modifier.fillMaxWidth(), width = 300.dp, height = 10.dp)
         }
-        BottomMeter(b.score, Modifier.fillMaxWidth(), width = 300.dp, height = 10.dp)
-        Text("Chance of trading higher in 7 days: ${(d7.probabilityUp * 100).toInt()}%", style = MaterialTheme.typography.bodyMedium)
+        d7Up?.let { Text("Chance of trading higher in 7 days: ${(it * 100).toInt()}%", style = MaterialTheme.typography.bodyMedium) }
         b.reasons.forEach { Text("• $it", style = MaterialTheme.typography.bodySmall) }
         b.distanceTo7dLowPct?.let { KeyValue("Above 7-day low", "+${"%.1f".format(it)}%") }
         b.distanceTo30dLowPct?.let { KeyValue("Above 30-day low", "+${"%.1f".format(it)}%") }

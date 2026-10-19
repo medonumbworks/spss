@@ -198,13 +198,20 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         _config.value = new
         app.settings.save(new)
         cp.updateConfig(new)
-        val tiersChanged = new.showMemecoins != old.showMemecoins || new.showTrending != old.showTrending || new.showDexRadar != old.showDexRadar ||
-            new.dexIncludeNewPools != old.dexIncludeNewPools || new.dexIncludePumpFun != old.dexIncludePumpFun || new.safetyChecks != old.safetyChecks
-        if (new.currency != old.currency || new.sentimentFeedUrl != old.sentimentFeedUrl || tiersChanged) refresh(force = true, restart = true)
+        if (needsRefresh(old, new)) refresh(force = true, restart = true)
     }
 
     fun telegramChannelCount(): Pair<Int, Int> {
         val dir = cp.sentiment.telegramDirectory
         return cp.sentiment.channelsToScan(_config.value).size to dir.entries.size
     }
+}
+
+/** True when a settings change alters which coins are listed or how they are priced, so the list is rebuilt at once. */
+internal fun needsRefresh(old: AppConfig, new: AppConfig): Boolean {
+    val tiersChanged = new.showMemecoins != old.showMemecoins || new.showTrending != old.showTrending || new.showDexRadar != old.showDexRadar ||
+        new.memecoinCount != old.memecoinCount || new.dexRadarMax != old.dexRadarMax ||
+        new.dexMinLiquidityUsd != old.dexMinLiquidityUsd || new.dexMinVolume24hUsd != old.dexMinVolume24hUsd ||
+        new.dexIncludeNewPools != old.dexIncludeNewPools || new.dexIncludePumpFun != old.dexIncludePumpFun || new.safetyChecks != old.safetyChecks
+    return new.currency != old.currency || new.sentimentFeedUrl != old.sentimentFeedUrl || tiersChanged
 }
