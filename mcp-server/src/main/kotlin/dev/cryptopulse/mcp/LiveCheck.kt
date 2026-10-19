@@ -2,6 +2,7 @@ package dev.cryptopulse.mcp
 
 import dev.cryptopulse.core.CryptoPulse
 import dev.cryptopulse.core.model.SentimentSummary
+import dev.cryptopulse.core.sources.polymarket.PolymarketApi
 import kotlinx.coroutines.CancellationException
 
 /**
@@ -37,6 +38,16 @@ object LiveCheck {
         appendLine("- Context: Fear & Greed ${ctx?.fearGreed?.let { "${it.value} (${it.classification})" } ?: "missing"}, global ${if (ctx?.global != null) "ok" else "missing"}, BTC trend ${ctx?.btcTrendScore?.let { "%.2f".format(it) } ?: "missing"}, trending ${ctx?.trendingCoingeckoIds?.size ?: 0}")
         val (hubStatus, hubMessage) = app.sentiment.feedState()
         appendLine("- Cloud hub feed: $hubStatus${hubMessage?.let { " ($it)" } ?: ""}; list rows with hub sentiment: ${rows.count { (it.sentiment?.totalSamples ?: 0) > 0 }}")
+        val journal = repo.journalStats()
+        val evaluated = journal.perHorizon.values.sumOf { it.evaluated }
+        val hits = journal.perHorizon.values.sumOf { it.hits }
+        appendLine("- Forecast journal: ${journal.total} logged, $evaluated evaluated, hit rate ${if (evaluated > 0) Format.pct(hits.toDouble() / evaluated) else "—"}")
+        val buzz = repo.telegramBuzz()
+        appendLine("- Telegram buzz: ${buzz.size} coins${buzz.firstOrNull()?.let { ", top ${it.symbol} ${Format.buzzNorm(it)}" } ?: ""}")
+        // alertCrossings() is deliberately NOT called here: it consumes the persisted crossing state, which
+        // would eat a notifier's pending alerts whenever this check shares its cache directory with one.
+        // Counting the rows currently at/above the default threshold is side-effect free.
+        appendLine("- Coins at/above 50% up-chance (24h): ${rows.count { (it.upOrNull(it.forecast?.h24) ?: 0.0) >= 0.5 }}")
         if (snap.warnings.isNotEmpty()) {
             appendLine("- Warnings:")
             snap.warnings.forEach { appendLine("  - $it") }
@@ -50,6 +61,8 @@ object LiveCheck {
                 appendLine("- Price ${d.row.market?.price} ${snap.currency}, Bitpanda ${d.bitpandaPrices}")
                 appendLine("- History: ${d.daily.size} daily, ${d.hourly.size} hourly; community votes up ${d.community?.sentimentVotesUpPct ?: "missing"}")
                 appendLine("- Derivatives: funding ${d.derivatives?.fundingRate ?: "missing"} (${d.derivatives?.source ?: "-"}), long/short ${d.derivatives?.longShortRatio ?: "missing"}")
+                appendLine("- Polymarket: ${d.predictionMarkets.size} markets" +
+                    (PolymarketApi.upDownProbability(d.predictionMarkets, symbol, d.row.asset.name, System.currentTimeMillis())?.let { ", up-or-down for $symbol: ${Format.pct(it)}" } ?: ""))
                 f?.let {
                     appendLine("- Forecast: 24h ${Format.pct(it.h24.probabilityUp)} up (confidence ${Format.pct(it.h24.confidence)}), 7d ${Format.pct(it.d7.probabilityUp)} up, bottom ${it.bottom.score}/100 ${it.bottom.label}")
                     it.d7.backtest?.let { bt -> appendLine("- 7d backtest: ${Format.pct(bt.hitRate)} vs ${Format.pct(bt.baselineHitRate)} by chance on ~${bt.effectiveSamples} independent windows") }

@@ -2,14 +2,18 @@ package dev.cryptopulse.mcp
 
 import dev.cryptopulse.core.CryptoPulse
 import dev.cryptopulse.core.analysis.forecast.DefaultForecastEngine
+import dev.cryptopulse.core.analysis.journal.JournalStats
 import dev.cryptopulse.core.config.AppConfig
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.HorizonForecast
 import dev.cryptopulse.core.model.MarketSnapshot
+import dev.cryptopulse.core.model.PumpAlert
 import dev.cryptopulse.core.model.RiskAssessment
 import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.repo.SentimentService
+import dev.cryptopulse.core.sources.feed.BuzzEntry
+import dev.cryptopulse.core.sources.polymarket.PredictionMarket
 import dev.cryptopulse.core.util.Text
 import io.modelcontextprotocol.kotlin.sdk.server.Server
 import io.modelcontextprotocol.kotlin.sdk.server.ServerOptions
@@ -168,12 +172,30 @@ class CryptoPulseTools(
         ) { req -> safe { telegramSources(req.arguments) } }
 
         server.addTool(
+            name = "telegram_buzz",
+            title = "Telegram buzz ranking",
+            description = "The coins public crypto Telegram talks about most right now: mentions in the current window, the spike vs each coin's own 7-day norm, " +
+                "sentiment and a linked example post. A big spike on a small coin often precedes (or is) a pump.",
+            inputSchema = schema(emptyList(), "limit" to prop("integer", "Max coins (default 25, max 50)")),
+            toolAnnotations = readOnly,
+        ) { req -> safe { buzz(req.arguments) } }
+
+        server.addTool(
+            name = "forecast_accuracy",
+            title = "Realized forecast accuracy",
+            description = "How often CryptoPulse's issued forecasts were actually right: every forecast is logged when issued and scored against the realized price " +
+                "once its horizon passes (out-of-sample, unlike the backtest). Hit rate vs a coin flip and vs the share of coins that simply rose, " +
+                "average stated probability and Brier score, per horizon.",
+            toolAnnotations = readOnly,
+        ) { _ -> safe { accuracy() } }
+
+        server.addTool(
             name = "daily_digest",
             title = "Digest",
-            description = "A short daily briefing (best 24h/7d odds, coins near lows, biggest moves, mood). lang=hr for Croatian.",
+            description = "A short daily briefing (best 24h/7d odds, coins near lows, biggest moves, mood, Telegram buzz, fresh alert crossings). lang=hr for Croatian.",
             inputSchema = schema(emptyList(), "lang" to prop("string", "en or hr", enum = listOf("en", "hr"))),
             toolAnnotations = readOnly,
-        ) { req -> safe { CallToolResult(listOf(TextContent(Digest.build(snapshot(), req.arguments.str("lang") ?: "en")))) } }
+        ) { req -> safe { digest(req.arguments) } }
 
         server.addPrompt(
             name = "crypto_briefing",
@@ -253,18 +275,75 @@ class CryptoPulseTools(
         snapshot()
         val deep = args.bool("deep") ?: true
         app.repository.row(symbol) ?: throw IllegalArgumentException(unknown(symbol))
-        val row = if (deep) app.repository.detail(symbol).row else app.repository.row(symbol)!!
+        // the deep path already loads the detail; its Polymarket markets ride along at no extra cost
+        val detail = if (deep) app.repository.detail(symbol) else null
+        val row = detail?.row ?: app.repository.row(symbol)!!
         val f = row.forecast ?: return CallToolResult(listOf(TextContent("No market data for $symbol right now, so no forecast.")), isError = true)
-        return CallToolResult(listOf(TextContent(Format.forecast(row.asset.name, f, row))), structuredContent = forecastJson(row, f))
+        val markets = detail?.predictionMarkets.orEmpty()
+        return CallToolResult(listOf(TextContent(Format.forecast(row.asset.name, f, row, markets))), structuredContent = forecastJson(row, f, markets))
     }
 
     /** The forecast plus the row's risk; a horizon without a call (red flags, too new) gets probabilityUp null, not its 0.5 placeholder. */
-    private fun forecastJson(row: AssetRow, f: Forecast): JsonObject {
+    private fun forecastJson(row: AssetRow, f: Forecast, markets: List<PredictionMarket> = emptyList()): JsonObject {
         val o = encode(Forecast.serializer(), f)
         fun horizon(key: String, h: HorizonForecast): Pair<String, JsonElement> =
             key to if (row.upOrNull(h) != null) o.getValue(key) else JsonObject(o.getValue(key).jsonObject + ("probabilityUp" to JsonNull))
         val risk = row.risk?.let { "risk" to json.encodeToJsonElement(RiskAssessment.serializer(), it) }
-        return JsonObject(o + listOfNotNull(horizon("h24", f.h24), horizon("d7", f.d7), risk))
+        val pump = row.pump?.let { "pump" to json.encodeToJsonElement(PumpAlert.serializer(), it) }
+        val pm = markets.takeIf { it.isNotEmpty() }?.let { "predictionMarkets" to json.encodeToJsonElement(ListSerializer(PredictionMarket.serializer()), it) }
+        return JsonObject(o + listOfNotNull(horizon("h24", f.h24), horizon("d7", f.d7), risk, pump, pm))
+    }
+
+    private suspend fun buzz(args: JsonObject?): CallToolResult {
+        val limit = (args.int("limit") ?: 25).coerceIn(1, 50)
+        val entries = app.repository.telegramBuzz(limit)
+        if (entries.isEmpty()) {
+            return CallToolResult(listOf(TextContent("No Telegram buzz right now: the cloud sentiment hub feed is empty, disabled or unreachable.")))
+        }
+        val text = Format.buzzTable(entries) + "\n_Mentions come from the hourly cloud hub (public Telegram channels + news)._"
+        val structured = buildJsonObject { put("buzz", json.encodeToJsonElement(ListSerializer(BuzzEntry.serializer()), entries)) }
+        return CallToolResult(listOf(TextContent(text)), structuredContent = structured)
+    }
+
+    private suspend fun accuracy(): CallToolResult {
+        snapshot() // a refresh logs the forecasts it issues and scores the entries that came due
+        val stats = app.repository.journalStats()
+        val structured = encode(JournalStats.serializer(), stats)
+        if (stats.total == 0) {
+            return CallToolResult(
+                listOf(TextContent("The forecast journal is empty: forecasts are logged at issue time and scored once their horizon passes, so accuracy numbers appear after the first forecasts come due.")),
+                structuredContent = structured,
+            )
+        }
+        val text = buildString {
+            appendLine("## Realized forecast accuracy (${stats.total} logged forecasts)")
+            appendLine("Every issued forecast is logged at issue time and scored against the realized price after its horizon: these probabilities are tracked out-of-sample, unlike the backtest, which only replays history.")
+            for ((label, h) in stats.perHorizon) {
+                appendLine()
+                appendLine("### $label horizon")
+                appendLine("- Evaluated: ${h.evaluated} (${h.hits} hits) · pending: ${h.pending}")
+                if (h.evaluated > 0) {
+                    appendLine("- Hit rate: ${Format.pct(h.hitRate)} vs 50% for a coin flip, vs ${Format.pct(h.upShare)} that simply rose")
+                    appendLine("- Average stated probability of rising: ${Format.pct(h.avgProbability)}")
+                    appendLine("- Brier score: ${"%.3f".format(h.brier)} (0.25 = coin flip, lower is better)")
+                } else {
+                    appendLine("- Nothing evaluated yet: entries are scored once their horizon passes.")
+                }
+            }
+        }
+        return CallToolResult(listOf(TextContent(text)), structuredContent = structured)
+    }
+
+    private suspend fun digest(args: JsonObject?): CallToolResult {
+        val snap = snapshot()
+        val extras = Digest.Extras(
+            buzz = app.repository.telegramBuzz(5),
+            journal = app.repository.journalStats(),
+            // crossings fire once per crossing by design: the digest is the MCP user's own alert feed
+            alerts = if (app.config.alertsEnabled) app.repository.alertCrossings() else emptyList(),
+            alertThresholdPct = app.config.alertThresholdPct,
+        )
+        return CallToolResult(listOf(TextContent(Digest.build(snap, args.str("lang") ?: "en", extras = extras))))
     }
 
     private suspend fun sentiment(args: JsonObject?): CallToolResult {

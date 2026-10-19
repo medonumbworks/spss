@@ -6,10 +6,16 @@ import dev.cryptopulse.core.model.Direction
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.HorizonForecast
 import dev.cryptopulse.core.model.MarketData
+import dev.cryptopulse.core.model.PumpAlert
 import dev.cryptopulse.core.model.SentimentSummary
 import dev.cryptopulse.core.model.SourceStatus
 import dev.cryptopulse.core.model.Tier
+import dev.cryptopulse.core.sources.feed.BuzzEntry
+import dev.cryptopulse.core.sources.polymarket.PredictionMarket
 import dev.cryptopulse.core.util.Text
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 /** Markdown helpers shared by the MCP tools and the Telegram digest. */
 object Format {
@@ -29,6 +35,11 @@ object Format {
 
     /** Bottom labels whose score is only a placeholder (stablecoins, tokens with no forecast). */
     val NO_BOTTOM_LABELS: Set<String> = setOf("Pegged", DefaultForecastEngine.NOT_ASSESSED, DefaultForecastEngine.NO_HISTORY)
+
+    /** Explains the ⚠ marker once, under any table that contains it. */
+    const val PUMP_LEGEND: String = "⚠ = pump-and-dump warning: the shape of the move matches manipulation; get_forecast names the reasons."
+
+    private val DAY: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneOffset.UTC)
 
     /** "Up" column text: a probability, or why there is none. */
     private fun up(r: AssetRow, h: HorizonForecast?): String = when {
@@ -52,12 +63,16 @@ object Format {
         rows.forEachIndexed { i, r ->
             val m = r.market
             val f = r.forecast
-            append("| ${i + 1} | ${r.asset.name} (${r.asset.symbol}) | ${tierCell(r)} | ${priceCell(m, currency)} | ")
+            append("| ${i + 1} | ${r.asset.name} (${r.asset.symbol})${pumpMark(r.pump)} | ${tierCell(r)} | ${priceCell(m, currency)} | ")
             append("${Text.formatPct(m?.change24hPct, 1)} | ${Text.formatPct(m?.change7dPct, 1)} | ")
             append("${up(r, f?.h24)} | ${up(r, f?.d7)} | ")
             append("${f?.bottom?.takeIf { it.label !in NO_BOTTOM_LABELS && r.risk?.blocked != true }?.score ?: "—"} | ${r.risk?.let { "${it.score} ${it.label}" } ?: "—"} | ")
             append("${r.sentiment?.let { "${it.label} (${it.totalSamples})" } ?: "—"} |")
             appendLine()
+        }
+        if (rows.any { it.pump != null }) {
+            appendLine()
+            appendLine(PUMP_LEGEND)
         }
     }
 
@@ -67,14 +82,43 @@ object Format {
         rows.forEachIndexed { i, r ->
             val m = r.market
             val d = r.dex
-            append("| ${i + 1} | ${r.asset.name} (${r.asset.symbol}) | ${r.asset.tier.label}${if ("boosted" in r.asset.tags) " · boosted" else ""}${if ("pumpfun" in r.asset.tags) " · pump.fun" else ""} | ")
+            append("| ${i + 1} | ${r.asset.name} (${r.asset.symbol})${pumpMark(r.pump)} | ${r.asset.tier.label}${if ("boosted" in r.asset.tags) " · boosted" else ""}${if ("pumpfun" in r.asset.tags) " · pump.fun" else ""} | ")
             append("${d?.chainId ?: "—"} | ${priceCell(m, currency)} | ${Text.formatPct(m?.change1hPct, 1)} | ${Text.formatPct(m?.change24hPct, 1)} | ")
             // pool volume is in USD; CoinGecko volume (memecoins, trending coins) is in the row's own currency
             append("${usd(d?.liquidityUsd)} | ${d?.volumeUsd?.h24?.let { usd(it) } ?: money(m?.volume24h, m?.currency ?: "USD")} | ${age(d?.pairCreatedAtMs, nowMs)} | ")
             append("${d?.txnsH24?.let { "${it.buys}/${it.sells}" } ?: "—"} | ${up(r, r.forecast?.h24)} | ${r.risk?.let { "${it.score} ${it.label}" } ?: "—"} |")
             appendLine()
         }
+        if (rows.any { it.pump != null }) {
+            appendLine()
+            appendLine(PUMP_LEGEND)
+        }
     }
+
+    private fun pumpMark(pump: PumpAlert?): String = if (pump != null) " ⚠" else ""
+
+    /** "vs 7-day norm" text: the hub's spike ratio ("x2.67"), or the previous window when it has no baseline. */
+    fun buzzNorm(e: BuzzEntry): String = when {
+        e.spike != null -> "x" + "%.2f".format(e.spike).trimEnd('0').trimEnd('.')
+        e.mentionsPrev != null -> "prev ${e.mentionsPrev}"
+        else -> "—"
+    }
+
+    /** The `telegram_buzz` table: one linked example post per coin so claims can be checked at the source. */
+    fun buzzTable(entries: List<BuzzEntry>): String = buildString {
+        appendLine("| # | Coin | Mentions (24 h) | vs 7-day norm | Sentiment | Top post |")
+        appendLine("|---|------|-----------------|---------------|-----------|----------|")
+        entries.forEachIndexed { i, e ->
+            val top = e.samples.firstOrNull()?.let { s ->
+                "[${cell(Text.truncate(s.text, 90))}](${s.url})${s.community?.let { c -> " — ${cell(c)}" } ?: ""}"
+            } ?: "—"
+            appendLine("| ${i + 1} | ${e.symbol} | ${e.mentions} | ${buzzNorm(e)} | ${"%+.2f".format(e.composite)} | $top |")
+        }
+    }
+
+    /** Markdown tables and link texts break on pipes, brackets and newlines; posts can contain all three. */
+    private fun cell(text: String): String =
+        text.replace('\n', ' ').replace("|", "\\|").replace("[", "\\[").replace("]", "\\]")
 
     fun usd(v: Double?): String = money(v, "USD")
 
@@ -99,7 +143,7 @@ object Format {
         }
     }
 
-    fun forecast(name: String, f: Forecast, row: AssetRow? = null): String = buildString {
+    fun forecast(name: String, f: Forecast, row: AssetRow? = null, markets: List<PredictionMarket> = emptyList()): String = buildString {
         appendLine("## $name (${f.symbol}) — ${Text.formatPrice(f.price, f.currency)}")
         appendLine(f.summary)
         appendLine()
@@ -123,9 +167,11 @@ object Format {
                 )
                 appendLine("Contract checks (${s.source}): ${checks.joinToString(", ")}${if (s.ownerPowers.isNotEmpty()) "; ${s.ownerPowers.joinToString()}" else ""}.")
             }
+            pumpWarning(r.pump)
             appendLine(SPECULATIVE_NOTICE)
             appendLine()
         }
+        if (row?.asset?.onBitpanda == true) pumpWarning(row.pump)
         for (h in listOf(f.h24, f.d7)) {
             // red flags or too little history: the 0.5 is a placeholder, so no number, range or drivers
             if (!h.hasCall || row?.risk?.blocked == true) {
@@ -156,8 +202,29 @@ object Format {
             ).takeIf { it.isNotEmpty() }?.let { appendLine("Distances: ${it.joinToString(" · ")}") }
             appendLine()
         }
+        if (markets.isNotEmpty()) {
+            appendLine("### Polymarket")
+            markets.take(3).forEach { m ->
+                val facts = listOfNotNull(
+                    "${m.outcome} ${pct(m.probability)}",
+                    m.volume24hUsd?.let { "24 h volume ${usd(it)}" },
+                    m.endDateMs?.let { "ends ${DAY.format(Instant.ofEpochMilli(it))}" },
+                )
+                appendLine("- [${cell(m.question)}](${m.url}) — ${facts.joinToString(" · ")}")
+            }
+            appendLine("_Market odds by Polymarket: crowd prices, not CryptoPulse forecasts._")
+            appendLine()
+        }
         if (f.coverage.notes.isNotEmpty()) appendLine("Data notes: ${f.coverage.notes.joinToString("; ")}")
         appendLine("_${Forecast.DISCLAIMER}_")
+    }
+
+    /** [PumpDetector][dev.cryptopulse.core.analysis.risk.PumpDetector]'s reasons are already user-ready sentences. */
+    private fun StringBuilder.pumpWarning(pump: PumpAlert?) {
+        if (pump == null) return
+        appendLine("### Pump-and-dump warning")
+        pump.reasons.forEach { appendLine("- $it") }
+        appendLine()
     }
 
     fun sentiment(s: SentimentSummary): String = buildString {

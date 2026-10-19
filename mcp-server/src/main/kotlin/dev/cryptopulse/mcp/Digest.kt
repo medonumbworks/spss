@@ -1,7 +1,11 @@
 package dev.cryptopulse.mcp
 
+import dev.cryptopulse.core.analysis.journal.ForecastAlert
+import dev.cryptopulse.core.analysis.journal.JournalStats
 import dev.cryptopulse.core.analysis.risk.RiskScorer
+import dev.cryptopulse.core.model.Horizon
 import dev.cryptopulse.core.model.MarketSnapshot
+import dev.cryptopulse.core.sources.feed.BuzzEntry
 import dev.cryptopulse.core.util.Text
 import java.time.Instant
 import java.time.ZoneOffset
@@ -9,7 +13,19 @@ import java.time.format.DateTimeFormatter
 
 /** Short market digest (English or Croatian) for the Telegram notifier and the `daily_digest` tool. */
 object Digest {
-    fun build(snap: MarketSnapshot, lang: String = "en", top: Int = 5): String {
+    /**
+     * What the repository knows but the snapshot does not carry: Telegram buzz, the forecast journal
+     * and fresh alert crossings. The default keeps every existing `Digest.build(snap, lang)` call
+     * compiling; callers with a repository at hand pass the real thing.
+     */
+    data class Extras(
+        val buzz: List<BuzzEntry> = emptyList(),
+        val journal: JournalStats? = null,
+        val alerts: List<ForecastAlert> = emptyList(),
+        val alertThresholdPct: Int = 50,
+    )
+
+    fun build(snap: MarketSnapshot, lang: String = "en", top: Int = 5, extras: Extras = Extras()): String {
         val hr = lang.lowercase().startsWith("hr")
         // the main lists are about coins one can buy on Bitpanda; speculative tiers get their own section
         val all = snap.rows.filter { it.market?.price != null && it.forecast != null && it.forecast!!.bottom.label != "Pegged" }
@@ -51,6 +67,22 @@ object Digest {
                     .forEach { appendLine("• ${it.asset.symbol} (${it.asset.tier.label}) ${Format.pct(it.forecast!!.h24.probabilityUp)} 24h · ${t("risk", "rizik")} ${it.risk?.score ?: "—"}/100") }
                 spec.filter { it.dex != null }.sortedByDescending { it.dex!!.volumeUsd.h24 ?: 0.0 }.take(3).takeIf { it.isNotEmpty() }?.let { hot ->
                     appendLine(t("Most traded DEX tokens: ", "Najtrgovaniji DEX tokeni: ") + hot.joinToString(" · ") { "${it.asset.symbol} ${Text.formatPct(it.market?.change24hPct, 0)} (${it.risk?.label?.let { l -> riskLabel(l, hr) } ?: "?"})" })
+                }
+            }
+            val buzz = extras.buzz.take(top)
+            val record = extras.journal?.perHorizon?.get(Horizon.H24.label)?.takeIf { it.evaluated > 0 }
+            if (buzz.isNotEmpty() || record != null || extras.alerts.isNotEmpty()) {
+                appendLine()
+                if (buzz.isNotEmpty()) {
+                    appendLine(t("🔥 Telegram buzz (vs 7-day norm): ", "🔥 Telegram buzz (naspram 7-dnevnog prosjeka): ") +
+                        buzz.joinToString(" · ") { "${it.symbol} ${Format.buzzNorm(it)} (${it.mentions})" })
+                }
+                record?.let {
+                    appendLine(t("Realized 24h hit rate so far: ", "Dosadašnja točnost 24h prognoza: ") + "${Format.pct(it.hitRate)} (${it.hits}/${it.evaluated})")
+                }
+                if (extras.alerts.isNotEmpty()) {
+                    appendLine(t("🔔 Newly above ${extras.alertThresholdPct}% up-chance (24h): ", "🔔 Novo iznad ${extras.alertThresholdPct}% šanse rasta (24h): ") +
+                        extras.alerts.take(top).joinToString(" · ") { "${it.symbol} ${Format.pct(it.probabilityUp)}" })
                 }
             }
             appendLine()
