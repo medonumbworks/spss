@@ -64,11 +64,16 @@ promoted tokens younger than 3 days. Bands: under 25 lower, 25-49 elevated, 50-7
 
 ## Forecast changes for these tiers
 
-* The model's probability is pulled toward 50% in proportion to the risk:
-  `p = 0.5 + (p_model - 0.5) * (1 - score / 75)`.
-* DEX tokens start from a pessimistic prior (24 h: -0.10 logit, 7 d: -0.28, more for pools younger
-  than 3 days), are clamped to 20-80% before the risk shrink, and need **3 days of trading for a 24 h
-  call and 3 weeks for a 7-day call**; younger pools show "not enough history".
+* Each tier starts from a pessimistic base rate `b` (a logit; 24 h / 7 d): DEX -0.10 / -0.28, another
+  -0.08 / -0.15 for pools younger than 3 days; trending -0.03 / -0.10; memecoins 0 / -0.04. The prior
+  is `prior = 1 / (1 + e^-b)` (50% for Bitpanda coins).
+* Thin data coverage, and then risk, pull the model's probability toward that prior, not toward 50%:
+  `p = prior + (p_model - prior) * (1 - score / 75)`. More risk means less weight on the model, and `p`
+  always lies between the model's answer and the prior, so risk alone can never lift a token above
+  its base rate.
+* DEX tokens are shrunk harder for coverage, are clamped to 20-80% before the risk shrink, and need
+  **3 days of trading for a 24 h call and 3 weeks for a 7-day call**; younger pools show "not enough
+  history" and no number, in the summary line too.
 * DEX trading flow: last-hour momentum (small), give-back after very large 24 h pumps, unique buyers
   vs sellers over 6 h (GeckoTerminal) or trade counts, and volume acceleration in the direction of the
   last hour. All weights are small; these signals are noisy and often manipulated.

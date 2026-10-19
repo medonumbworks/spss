@@ -36,6 +36,7 @@ class SpeculativeForecastTest {
     private val meme = Asset("SHIB", "Shiba Inu", "shiba-inu", tier = Tier.MEME)
 
     private fun hourly(n: Int, start: Double = 1.0) = (0 until n).map { i -> start * exp(0.001 * i + 0.01 * sin(i / 3.0)) }
+    private fun sigmoid(x: Double) = 1.0 / (1.0 + exp(-x))
 
     private fun input(asset: Asset, d: DexInfo?, safety: TokenSafety?, sparkline: List<Double> = emptyList()): ForecastInput {
         val market = MarketData(asset.symbol, currency = "EUR", price = sparkline.lastOrNull() ?: 0.01, marketCap = 8e6, change24hPct = d?.priceChangePct?.h24, sparkline7d = sparkline)
@@ -86,7 +87,9 @@ class SpeculativeForecastTest {
             assertEquals("risk_blocked", h.signals.single().name)
         }
         assertEquals(DefaultForecastEngine.NOT_ASSESSED, f.bottom.label)
+        assertNull(f.bottom.reboundProbability7d)
         assertTrue(f.summary.contains("No forecast"))
+        assertFalse(f.summary.contains("% up"), f.summary)
     }
 
     @Test
@@ -95,22 +98,56 @@ class SpeculativeForecastTest {
         assertEquals(0.5, twoDays.h24.probabilityUp, "24 h needs 3 days of trading")
         assertEquals("history", twoDays.h24.signals.first().name)
         assertEquals(0.5, twoDays.d7.probabilityUp)
+        assertTrue(twoDays.summary.startsWith("Moon Token: not enough history for 24h, not enough history for 7 days."), twoDays.summary)
+        assertFalse(twoDays.summary.contains("% up"), "the 0.5 placeholder is not a forecast: ${twoDays.summary}")
+        assertNull(twoDays.bottom.reboundProbability7d)
         val tenDays = engine.forecast(input(dexAsset, dex(10.0), clean, hourly(168)))
         assertTrue(tenDays.h24.signals.none { it.name == "history" })
         assertEquals("history", tenDays.d7.signals.first().name, "7 d needs 3 weeks")
+        assertTrue(tenDays.summary.contains(" for 24h (${(tenDays.h24.probabilityUp * 100).toInt()}% up), not enough history for 7 days."), tenDays.summary)
+        assertNull(tenDays.bottom.reboundProbability7d)
         val month = engine.forecast(input(dexAsset, dex(40.0), clean, hourly(168)))
         assertTrue(month.d7.signals.none { it.name == "history" })
         assertTrue(month.d7.signals.any { it.name == "base_rate" && it.contribution < 0 }, "DEX tokens start from a pessimistic prior")
         assertTrue(month.h24.signals.any { it.name == "dex_buy_pressure" })
+        assertEquals(month.d7.probabilityUp, month.bottom.reboundProbability7d)
     }
 
     @Test
-    fun riskPullsTheProbabilityTowardACoinFlip() {
+    fun withOnlyItsBaseRateADexTokenGetsExactlyThePrior() {
+        // no candles and no trading flow: coverage is minimal, but shrinking may not soften the prior toward 50/50
+        val quiet = dex(40.0).copy(priceChangePct = DexWindow(), volumeUsd = DexWindow(), txnsH6 = DexTxns(), txnsH24 = DexTxns())
+        val f = engine.forecast(input(dexAsset, quiet, clean))
+        assertTrue(f.h24.hasCall && f.d7.hasCall, "${f.h24.signals}")
+        assertEquals(sigmoid(-0.10), f.h24.probabilityUp, 1e-4)
+        assertEquals(sigmoid(-0.28), f.d7.probabilityUp, 1e-4)
+    }
+
+    @Test
+    fun riskPullsTheProbabilityTowardThePriorNotACoinFlip() {
         val series = (0 until 168).map { i -> 1.0 * exp(0.004 * i) } // strong uptrend
         val lowRisk = engine.forecast(input(meme, null, null, series).copy(risk = null))
         val withRisk = engine.forecast(input(meme, null, null, series))
-        assertTrue(abs(withRisk.h24.probabilityUp - 0.5) < abs(lowRisk.h24.probabilityUp - 0.5) + 1e-9)
+        assertTrue(abs(withRisk.h24.probabilityUp - 0.5) < abs(lowRisk.h24.probabilityUp - 0.5) + 1e-9, "memecoins have no 24 h base rate: the prior is 50%")
         assertTrue(withRisk.summary.endsWith("not on Bitpanda."), withRisk.summary)
+
+        // the same 40-day DEX pool, only the risk score differs: the 7-day model is bearish on the
+        // drifting series and bullish on the falling one (a rebound), and both converge on the prior
+        val prior = sigmoid(-0.28)
+        val falling = (0 until 168).map { i -> exp(-0.003 * i + 0.01 * sin(i / 3.0)) }
+        for (series in listOf(hourly(168), falling)) {
+            val base = input(dexAsset, dex(40.0), clean, series)
+            val p = listOf(0, 40, 60, 74).map { s -> engine.forecast(base.copy(risk = base.risk!!.copy(score = s))).d7.probabilityUp }
+            assertTrue(p.zipWithNext().all { (a, b) -> abs(b - prior) <= abs(a - prior) + 1e-4 }, "more risk, less weight on the model: $p")
+            assertTrue(p.all { it in minOf(p.first(), prior) - 1e-4..maxOf(p.first(), prior) + 1e-4 }, "p stays between the model and the prior: $p")
+            assertEquals(prior, p.last(), 0.005)
+        }
+        val bearish = input(dexAsset, dex(40.0), clean, hourly(168))
+        val safe = engine.forecast(bearish.copy(risk = bearish.risk!!.copy(score = 0))).d7
+        val risky = engine.forecast(bearish.copy(risk = bearish.risk!!.copy(score = 74))).d7
+        assertTrue(safe.probabilityUp < prior, "the model is bearish here: ${safe.probabilityUp}")
+        assertTrue(risky.probabilityUp <= prior + 1e-4, "risk never lifts a token above its pessimistic prior: ${risky.probabilityUp}")
+        assertEquals(Direction.DOWN, risky.direction, "a very risky DEX token keeps the bearish base rate, not a coin flip")
     }
 
     @Test

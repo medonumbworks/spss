@@ -17,6 +17,8 @@ import kotlin.math.tanh
  *    seller pressure and volume acceleration. Weights are small: these signals are noisy.
  */
 internal object Speculative {
+    /** Signal name of the tier's prior; the forecast shrinks toward it instead of 50 %. */
+    const val BASE_RATE = "base_rate"
 
     fun signals(input: ForecastInput, horizon: Horizon): List<Contribution> {
         val tier = input.asset.tier
@@ -43,7 +45,7 @@ internal object Speculative {
             tier == Tier.TRENDING -> "Coins that trend today often cool off once attention moves on"
             else -> "Memecoins outside the largest ones tend to drift down between hype waves"
         }
-        return Contribution("base_rate", "Base rate for this kind of token", null, logit, text)
+        return Contribution(BASE_RATE, "Base rate for this kind of token", null, logit, text)
     }
 
     private fun flow(dex: DexInfo, horizon: Horizon): List<Contribution> {

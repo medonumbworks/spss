@@ -29,7 +29,8 @@ import kotlin.math.tanh
  *       + market context (BTC trend, Fear & Greed as a contrarian signal, total market cap move)
  *       + crowd (social sentiment, attention spikes, futures funding and long/short positioning, community votes)
  *
- * The probability is then shrunk toward 50 % according to data coverage, and clamped to 15-85 %:
+ * The probability is then shrunk toward the prior (50 %, or the base rate of a tier that is not on
+ * Bitpanda) according to data coverage and risk, and clamped to 15-85 %:
  * nobody can predict crypto prices with certainty and the UI must never suggest otherwise.
  */
 class DefaultForecastEngine : Forecaster {
@@ -66,7 +67,7 @@ class DefaultForecastEngine : Forecaster {
         val d7Built = buildHorizon(Horizon.D7, price, hourly, daily, tech7, techScale7, ctx7 + crowd7 + bottomSignal, bt7, input)
         val (h24, d7) = historyGate(input, h24Built, d7Built)
 
-        val finalBottom = bottom.copy(reboundProbability7d = d7.probabilityUp)
+        val finalBottom = bottom.copy(reboundProbability7d = d7.probabilityUp.takeIf { d7.hasCall })
         val coverage = DataCoverage(
             hourlyPoints = hourly.size,
             dailyPoints = daily.size,
@@ -110,12 +111,15 @@ class DefaultForecastEngine : Forecaster {
         val pRaw = 1.0 / (1.0 + exp(-logit))
 
         val coverage = coverageScore(horizon, hourly, daily, input)
+        // the prior is 50 % for Bitpanda coins and the tier's (pessimistic) base rate for the others
+        val prior = 1.0 / (1.0 + exp(-(all.firstOrNull { it.name == Speculative.BASE_RATE }?.logit ?: 0.0)))
         // DEX-only tokens: noisier data, so shrink harder toward the (already pessimistic) prior
         val dexOnly = input.asset.tier == Tier.DEX
         val shrink = (0.55 + 0.35 * coverage) * (if (dexOnly) 0.8 else 1.0)
-        val pModel = if (dexOnly) (0.5 + (pRaw - 0.5) * shrink).coerceIn(0.2, 0.8) else (0.5 + (pRaw - 0.5) * shrink).coerceIn(0.15, 0.85)
-        // the riskier the token, the closer to a coin flip (0 at risk score 75, where it is blocked)
-        val p = 0.5 + (pModel - 0.5) * RiskScorer.shrink(input.risk)
+        val pModel = if (dexOnly) (prior + (pRaw - prior) * shrink).coerceIn(0.2, 0.8) else (prior + (pRaw - prior) * shrink).coerceIn(0.15, 0.85)
+        // the riskier the token, the closer to its prior (all the way at risk score 75, where it is blocked);
+        // shrinking toward 50 % instead would make the riskiest tokens look the least bearish
+        val p = prior + (pModel - prior) * RiskScorer.shrink(input.risk)
         val direction = when {
             p >= 0.55 -> Direction.UP
             p <= 0.45 -> Direction.DOWN
@@ -385,9 +389,13 @@ class DefaultForecastEngine : Forecaster {
             h.probabilityUp <= 0.45 -> "slightly bearish"
             else -> "no clear direction"
         }
-        val p24 = (h24.probabilityUp * 100).toInt()
-        val p7 = (d7.probabilityUp * 100).toInt()
-        return "$name: ${word(h24)} for 24h ($p24% up), ${word(d7)} for 7 days ($p7% up). ${bottom.label}."
+        // a horizon without a call only holds a 0.5 placeholder, so it gets no number
+        fun call(h: HorizonForecast, span: String) = when {
+            h.hasCall -> "${word(h)} for $span (${(h.probabilityUp * 100).toInt()}% up)"
+            h.signals.first().name == "history" -> "not enough history for $span"
+            else -> "no forecast for $span"
+        }
+        return "$name: ${call(h24, "24h")}, ${call(d7, "7 days")}. ${bottom.label}."
     }
 
     companion object {
