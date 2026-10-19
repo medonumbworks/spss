@@ -105,6 +105,17 @@ class SpeculativeSourcesTest {
     }
 
     @Test
+    fun candlesAreAskedForTheTokenAndFallBackWhenThatIsRejected() = runTest {
+        val t = FakeTransport()
+            .onUrlContaining("&token=", code = 400, body = "{\"errors\":[{\"status\":\"400\"}]}")
+            .onUrlContaining("/ohlcv/hour", body = spec("geckoterminal_ohlcv.json"))
+        val r = GeckoTerminalApi(testHttp(t)).hourlyCandles("solana", "POOL", 168, token = "MINT")
+        assertEquals(48, (r as SourceResult.Success).value.size)
+        assertEquals(1, t.countRequests("&token=MINT"), "the token's own candles are asked for first")
+        assertEquals(2, t.countRequests("/ohlcv/hour"))
+    }
+
+    @Test
     fun pumpFunTokensKnowWhetherTheyGraduated() {
         val coins = PumpFunApi.parse(spec("pumpfun_top.json"))
         assertEquals(listOf("UDR", "XTO", "EVERNORTHX"), coins.map { it.symbol })

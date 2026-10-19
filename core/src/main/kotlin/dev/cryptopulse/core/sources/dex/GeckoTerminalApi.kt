@@ -50,12 +50,18 @@ class GeckoTerminalApi(
     suspend fun newPools(page: Int = 1): SourceResult<List<GtPool>> =
         pools("$base/networks/new_pools?include=base_token&page=${page.coerceIn(1, 10)}", "gt_new", 5 * 60_000L)
 
-    /** Hourly candles of one pool, oldest first (at most 1000; 168 = one week). */
-    /** [token]: the token's contract, so the candles are its own price even when it is the pool's quote side. */
+    /**
+     * Hourly candles of one pool, oldest first (at most 1000; 168 = one week). [token]: the token's
+     * contract, so the candles are its own price even when it is the pool's quote side; if GeckoTerminal
+     * rejects it (HTTP 400/404/422), the pool's default (base token) candles are read instead.
+     */
     suspend fun hourlyCandles(network: String, poolAddress: String, limit: Int = 168, token: String? = null): SourceResult<List<Candle>> {
-        val url = "$base/networks/$network/pools/$poolAddress/ohlcv/hour?aggregate=1&limit=${limit.coerceIn(1, 1000)}&currency=usd" +
-            (token?.let { "&token=$it" } ?: "")
-        return when (val r = http.getText(url, JSON, ttlMs = 15 * 60_000L, staleOkMs = 6 * 3_600_000L, retries = 1)) {
+        val plain = "$base/networks/$network/pools/$poolAddress/ohlcv/hour?aggregate=1&limit=${limit.coerceIn(1, 1000)}&currency=usd"
+        var r = http.getText(if (token == null) plain else "$plain&token=$token", JSON, ttlMs = 15 * 60_000L, staleOkMs = 6 * 3_600_000L, retries = 1)
+        if (token != null && r is HttpResult.Failed && r.code in REJECTED) {
+            r = http.getText(plain, JSON, ttlMs = 15 * 60_000L, staleOkMs = 6 * 3_600_000L, retries = 1)
+        }
+        return when (r) {
             is HttpResult.Failed -> SourceResult.failureOf(r, "GeckoTerminal candles")
             is HttpResult.Ok -> try {
                 SourceResult.Success(parseCandles(r.body), r.fromCache, r.ageMs)
@@ -76,6 +82,8 @@ class GeckoTerminalApi(
         }
 
     companion object {
+        private val REJECTED = setOf(400, 404, 422)
+
         private val JSON = mapOf("Accept" to "application/json")
 
         /** GeckoTerminal network ids that DexScreener (and the rest of the app) spell differently. */
