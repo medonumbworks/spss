@@ -16,6 +16,7 @@ import dev.cryptopulse.core.model.BottomAssessment
 import dev.cryptopulse.core.model.HorizonForecast
 import dev.cryptopulse.core.model.Horizon
 import dev.cryptopulse.core.model.MarketData
+import dev.cryptopulse.core.model.Signal
 import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.testing.FakeTransport
 import dev.cryptopulse.core.testing.Fixtures
@@ -125,5 +126,12 @@ class ExtrasWiringTest {
         assertEquals(listOf("AAA"), alerts.crossings(rows, 55).map { it.symbol }, "only Bitpanda coins above the threshold alert")
         alerts.crossings(emptyList(), 55)
         assertTrue(alerts.crossings(rows, 55).isEmpty(), "an empty refresh must not re-arm old alerts")
+        // a history-gated forecast is not a drop below the threshold either
+        val gated = rows.map { r ->
+            if (r.asset.symbol != "AAA") r
+            else r.copy(forecast = r.forecast!!.let { fc -> fc.copy(h24 = fc.h24.copy(signals = listOf(Signal("history", "History", contribution = 0.0, description = "x")))) })
+        }
+        alerts.crossings(gated, 55)
+        assertTrue(alerts.crossings(rows, 55).isEmpty(), "the call coming back is not a new crossing")
     }
 }

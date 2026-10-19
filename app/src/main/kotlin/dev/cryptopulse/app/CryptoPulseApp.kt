@@ -27,6 +27,8 @@ class CryptoPulseApp : Application() {
             config = settings.load(),
             transport = OkHttpTransport(userAgent = "CryptoPulse/${BuildConfig.VERSION_NAME} (Android; +https://github.com/medonumbworks/spss)"),
             store = FileDiskStore(File(cacheDir, "cryptopulse")),
+            // the journal and alert state must survive a cache wipe; the HTTP cache need not
+            durableStore = FileDiskStore(File(filesDir, "cryptopulse")),
             logger = AndroidLogger,
         )
         // hourly "forecast crossed the threshold" notifications; a no-op when the setting is off

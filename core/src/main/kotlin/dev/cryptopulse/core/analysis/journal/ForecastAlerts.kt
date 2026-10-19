@@ -47,8 +47,15 @@ class ForecastAlerts(
         val fresh = ArrayList<ForecastAlert>()
         for (row in rows) {
             if (row.asset.tier != Tier.BITPANDA) continue
-            val f = row.forecast ?: continue
-            val p = row.upOrNull(f.h24)?.takeIf { it >= threshold } ?: continue
+            val f = row.forecast
+            val p = f?.let { row.upOrNull(it.h24) }
+            if (p == null) {
+                // a temporarily gated or missing forecast is not a drop below the threshold: the call
+                // coming back must not fire the same alert again
+                previous[row.asset.symbol]?.let { above[row.asset.symbol] = it }
+                continue
+            }
+            if (p < threshold) continue
             above[row.asset.symbol] = previous[row.asset.symbol] ?: now
             if (row.asset.symbol !in previous) {
                 fresh += ForecastAlert(row.asset.symbol, row.asset.name, p, f.h24.confidence, row.market?.price, row.market?.currency)

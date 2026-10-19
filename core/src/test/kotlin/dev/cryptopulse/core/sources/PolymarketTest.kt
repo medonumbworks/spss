@@ -109,6 +109,8 @@ class PolymarketTest {
         // "Will the price of Bitcoin be above $86,000..." must not become a THE market
         assertTrue(PolymarketApi.forAsset(markets, "THE", "The Token").isEmpty())
         assertTrue(PolymarketApi.forAsset(markets, "ONE", "Harmony").isEmpty(), "AMBIGUOUS_SYMBOLS are cashtag/name-only")
+        assertTrue(PolymarketApi.forAsset(markets, "UPX", "Up").isEmpty(), "a one-word everyday name never matches prose")
+        assertTrue(PolymarketApi.forAsset(markets, "JST", "JUST").isEmpty(), "COMMON_WORD_NAMES follow MentionMatcher")
         assertTrue(PolymarketApi.forAsset(markets, "BTC", "Bitcoin").isNotEmpty(), "real tickers still match")
     }
 }

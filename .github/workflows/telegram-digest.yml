@@ -46,6 +46,14 @@ jobs:
             echo "configured=false" >> "$GITHUB_OUTPUT"
             echo "::notice::No Telegram secrets yet; see tools/sentiment_hub/README.md. Skipping."
           fi
+      - name: Keep the digest's own forecast journal and alert state between runs
+        if: steps.check.outputs.configured == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/cryptopulse-digest
+          key: digest-state-${{ github.run_id }}
+          restore-keys: |
+            digest-state-
       - uses: actions/checkout@v4
         if: steps.check.outputs.configured == 'true'
       - uses: actions/setup-java@v4
@@ -69,7 +77,7 @@ jobs:
         env:
           LANG_CHOICE: ${{ github.event.inputs.lang || vars.DIGEST_LANG || 'hr' }}
         run: |
-          mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp digest "$LANG_CHOICE" > digest.md
+          CRYPTOPULSE_CACHE_DIR="$HOME/.cache/cryptopulse-digest" mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp digest "$LANG_CHOICE" > digest.md
           cat digest.md
       - name: Send it to Telegram
         if: steps.check.outputs.configured == 'true'

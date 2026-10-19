@@ -69,6 +69,9 @@ class CryptoPulse private constructor(
             logger: Logger = Logger.STDERR,
             rateLimiter: RateLimiter = RateLimiter(clock = clock),
             telegramDirectory: TelegramDirectory = TelegramDirectory.loadBundled(),
+            /** Accumulating state (forecast journal, alert crossings); falls back to [store]. On Android
+             *  this should be filesDir-backed: the cache dir is wiped under storage pressure. */
+            durableStore: DiskStore? = null,
         ): CryptoPulse {
             val holder = ConfigHolder(config)
             val http = Http(transport, rateLimiter, HttpCache(store, clock), clock, logger)
@@ -106,6 +109,7 @@ class CryptoPulse private constructor(
                 geckoTerminal = geckoTerminal,
                 safetyApi = safety,
                 polymarket = PolymarketApi(http),
+                durableStore = durableStore,
             )
             return CryptoPulse(repository, sentiment, http, holder)
         }

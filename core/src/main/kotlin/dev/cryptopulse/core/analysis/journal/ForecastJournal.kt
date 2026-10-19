@@ -2,6 +2,7 @@ package dev.cryptopulse.core.analysis.journal
 
 import dev.cryptopulse.core.http.DiskStore
 import dev.cryptopulse.core.model.AssetRow
+import dev.cryptopulse.core.model.MarketData
 import dev.cryptopulse.core.model.Forecast
 import dev.cryptopulse.core.model.Horizon
 import dev.cryptopulse.core.model.HorizonForecast
@@ -15,6 +16,8 @@ import kotlinx.serialization.json.Json
 @Serializable
 data class JournalEntry(
     val symbol: String,
+    /** [dev.cryptopulse.core.model.Asset.tokenKey]: beyond Bitpanda a ticker can move to another token. */
+    val token: String = "",
     val tier: Tier,
     val horizon: Horizon,
     /** P(up) exactly as the model said it, including the calibration of the day. */
@@ -88,31 +91,34 @@ class ForecastJournal(
      * risk-blocked and no-call horizons are never logged). A (symbol, horizon) pair whose newest entry
      * is younger than the horizon's stride is skipped. Returns how many entries were added.
      */
-    fun record(rows: List<AssetRow>, currency: String): Int = synchronized(lock) {
+    fun record(rows: List<AssetRow>): Int = synchronized(lock) {
         val list = loaded()
         val nowMs = clock.nowMs()
-        // newest issue time per (symbol, horizon) so the stride holds across restarts too
+        // newest issue time per (token, horizon) so the stride holds across restarts too
         val newest = HashMap<String, Long>()
         for (e in list) {
-            val key = e.symbol + "|" + e.horizon.name
+            val key = e.token + "|" + e.horizon.name
             if (e.atMs > (newest[key] ?: Long.MIN_VALUE)) newest[key] = e.atMs
         }
         var added = 0
         for (row in rows) {
-            val price = row.market?.price ?: continue
+            val market = row.market ?: continue
+            val price = market.price ?: continue
             val forecast = row.forecast ?: continue
             for (horizon in Horizon.entries) {
                 val p = row.upOrNull(forecast.at(horizon)) ?: continue
-                val key = row.asset.symbol + "|" + horizon.name
+                val key = row.asset.tokenKey + "|" + horizon.name
                 val last = newest[key]
                 if (last != null && nowMs - last < strideMs(horizon)) continue
                 list += JournalEntry(
                     symbol = row.asset.symbol,
+                    token = row.asset.tokenKey,
                     tier = row.asset.tier,
                     horizon = horizon,
                     probabilityUp = p,
                     price = price,
-                    currency = currency,
+                    // the row's own currency: a DEX row can stay quoted in USD inside an EUR snapshot
+                    currency = market.currency,
                     atMs = nowMs,
                     dueMs = nowMs + horizon.hours * HOUR_MS,
                     modelVersion = forecast.modelVersion,
@@ -129,29 +135,35 @@ class ForecastJournal(
     }
 
     /**
-     * Scores every pending entry whose due date has passed against [prices] (current price per symbol,
-     * quoted in [currency]). An entry is scored only against its own currency; a 50:50 call gets its
-     * realised price but hit = null and does not count as evaluated. Entries that stay unevaluable for
-     * half a horizon past their due date are dropped. Returns how many entries got a directional verdict.
+     * Scores every pending entry whose due date has passed against the same token's current price, in
+     * the entry's own currency. A 50:50 call gets its realised price but hit = null and does not count
+     * as evaluated. An entry more than half a horizon past its due date is dropped, scorable or not: a
+     * price seen that late measures a different horizon. Returns how many got a directional verdict.
      */
-    fun evaluate(prices: Map<String, Double>, currency: String): Int = synchronized(lock) {
+    fun evaluate(rows: List<AssetRow>): Int = synchronized(lock) {
         val list = loaded()
         val nowMs = clock.nowMs()
+        val byToken = HashMap<String, MarketData>()
+        for (row in rows) row.market?.takeIf { it.price != null }?.let { byToken[row.asset.tokenKey] = it }
         var scored = 0
         var changed = false
         val iter = list.listIterator()
         while (iter.hasNext()) {
             val e = iter.next()
             if (e.evalAtMs != null || e.dueMs > nowMs) continue
-            val price = prices[e.symbol]
-            if (price != null && e.currency == currency) {
+            if (nowMs > e.dueMs + e.horizon.hours * HOUR_MS / 2) {
+                // too late to score fairly, and unevaluable entries (token gone, currency switched) end here too
+                iter.remove()
+                changed = true
+                continue
+            }
+            // entries from before the token field match any token with their ticker
+            val m = byToken[e.token] ?: if (e.token.isEmpty()) byToken.entries.firstOrNull { it.key.contains("|" + e.symbol + "|") || it.key.endsWith("|" + e.symbol) }?.value else null
+            val price = m?.price
+            if (price != null && e.currency == m.currency) {
                 val hit = if (e.probabilityUp == 0.5) null else (price > e.price) == (e.probabilityUp > 0.5)
                 iter.set(e.copy(evalPrice = price, evalAtMs = nowMs, hit = hit))
                 if (hit != null) scored++
-                changed = true
-            } else if (nowMs > e.dueMs + e.horizon.hours * HOUR_MS / 2) {
-                // unevaluable: the asset left the list or the quote currency switched
-                iter.remove()
                 changed = true
             }
         }

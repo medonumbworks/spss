@@ -45,6 +45,9 @@
  *     "volume24hUsd": 1200000, "endDateMs": 1760915999000,
  *     "url": "https://polymarket.com/event/...", "symbols": ["BTC"]
  *   }, ...],
+ *   "alerts": [{"symbol": "BTC", "name": "Bitcoin",// Bitpanda coins whose 24 h up-chance crossed the
+ *     "probabilityUp": 0.57, "price": 73045.34,  // threshold this run; the CI Telegram step reads it,
+ *     "currency": "EUR"}, ...],                  // this page ignores it (public data either way)
  *   "warnings": ["..."],                         // shown as amber banners under the tabs
  *   "notes": ["..."]                             // footer lines (cadence, disclaimer)
  * }
@@ -397,7 +400,7 @@ function renderAccuracy() {
     stat(fmtProb(a.avgProbability), 'avg forecast');
     stat(isNum(a.brier) ? a.brier.toFixed(3) : '—', 'Brier score (lower is better)');
     stat(isNum(a.pending) ? String(a.pending) : '—', 'pending');
-    if (isNum(a.upShare)) stat(fmtProb(a.upShare), 'calls that said "up"');
+    if (isNum(a.upShare)) stat(fmtProb(a.upShare), 'share that actually rose (baseline)');
     card.append(grid);
     if (isNum(a.hits) && isNum(a.evaluated)) {
       card.append(el('p', { class: 'acc-note', text: a.hits + ' of ' + a.evaluated + ' evaluated forecasts were on the right side.' }));
@@ -418,7 +421,7 @@ function note(text) {
 /* Merge a cryptopulse.sentiment-feed/v1 payload into state.data.buzz by symbol. */
 function mergeFeed(feed) {
   if (!feed || typeof feed !== 'object') return false;
-  const assets = arr(feed.assets).filter((a) => a && str(a.symbol));
+  const assets = arr(feed.assets).filter((a) => a && str(a.symbol) && isNum(a.mentions) && a.mentions > 0);
   if (!assets.length) return false;
   const bySymbol = new Map();
   const merged = [];
@@ -440,8 +443,11 @@ function mergeFeed(feed) {
     entry.samples = arr(a.samples)
       .filter((s) => s && str(s.text))
       .map((s) => ({ text: s.text, url: s.url, community: s.community, score: s.score }));
-    // the feed carries no 7-day baseline, so recompute the spike from the stale one we kept
-    if (isNum(entry.baseline7d) && entry.baseline7d > 0 && isNum(entry.mentions)) {
+    // the feed publishes its own 7-day baseline and spike; fall back to recomputing from a stale one
+    if (isNum(a.baseline7d)) entry.baseline7d = a.baseline7d;
+    if (isNum(a.spike)) {
+      entry.spike = a.spike;
+    } else if (isNum(entry.baseline7d) && entry.baseline7d > 0 && isNum(entry.mentions)) {
       const ratio = entry.mentions / entry.baseline7d;
       entry.spike = ratio >= 1.5 ? Math.round(ratio * 100) / 100 : null;
     }

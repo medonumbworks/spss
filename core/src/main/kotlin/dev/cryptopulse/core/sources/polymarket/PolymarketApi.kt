@@ -117,12 +117,22 @@ class PolymarketApi(
         private fun matchesAsset(m: PredictionMarket, symbol: String, name: String): Boolean {
             val sym = symbol.trim().removePrefix("$").uppercase()
             if (sym.isNotEmpty() && sym in m.symbols) return true
-            if (name.isNotBlank() && wholeWord(name.trim()).containsMatchIn(m.question)) return true
+            // a one-word name that is an everyday word ("Up", "Just", "Gold") would match market prose
+            val cleanName = name.trim()
+            val wordName = !cleanName.contains(' ') &&
+                (cleanName.lowercase() in MentionMatcher.COMMON_WORD_NAMES || cleanName.lowercase() in PROSE_WORDS)
+            if (cleanName.isNotBlank() && !wordName && wholeWord(cleanName).containsMatchIn(m.question)) return true
             // bare tickers follow MentionMatcher's rules: case-sensitive, and never for tickers that are
             // everyday words (THE matched "Will the price of Bitcoin..." before this guard)
             return sym.length > 2 && sym !in MentionMatcher.AMBIGUOUS_SYMBOLS && sym.lowercase() !in MentionMatcher.COMMON_WORD_NAMES &&
                 wholeWord(sym, ignoreCase = false).containsMatchIn(m.question)
         }
+
+        /** Words every market question is made of; never evidence that it is about a coin of that name. */
+        private val PROSE_WORDS = setOf(
+            "up", "down", "will", "the", "price", "token", "coin", "above", "below", "hit", "reach", "day",
+            "one", "first", "gold", "cash", "cat", "law", "best", "launch", "market", "year", "month",
+        )
 
         private fun wholeWord(term: String, ignoreCase: Boolean = true) =
             Regex("(?<![\\p{L}\\p{N}])${Regex.escape(term)}(?![\\p{L}\\p{N}])", if (ignoreCase) setOf(RegexOption.IGNORE_CASE) else emptySet())

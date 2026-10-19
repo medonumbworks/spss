@@ -99,7 +99,7 @@ object Format {
 
     /** "vs 7-day norm" text: the hub's spike ratio ("x2.67"), or the previous window when it has no baseline. */
     fun buzzNorm(e: BuzzEntry): String = when {
-        e.spike != null -> "x" + "%.2f".format(e.spike).trimEnd('0').trimEnd('.')
+        e.spike != null -> "x" + String.format(java.util.Locale.ROOT, "%.2f", e.spike).trimEnd('0').trimEnd('.')
         e.mentionsPrev != null -> "prev ${e.mentionsPrev}"
         else -> "—"
     }

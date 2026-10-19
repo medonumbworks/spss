@@ -37,6 +37,14 @@ function serveWebDir() {
       res.writeHead(404); res.end('not found'); return;
     }
     res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream' });
+    // the committed sample ages past the 2 h live-refresh trigger within hours of being written; the
+    // main pass must stay hermetic, so the server rejuvenates it (the stale passes route their own copy)
+    if (file === DASH_JSON) {
+      const fresh = JSON.parse(fs.readFileSync(file, 'utf8'));
+      fresh.generatedAt = new Date().toISOString().replace(/\.\d+Z$/, 'Z');
+      res.end(JSON.stringify(fresh));
+      return;
+    }
     res.end(fs.readFileSync(file));
   });
   return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve(server)));

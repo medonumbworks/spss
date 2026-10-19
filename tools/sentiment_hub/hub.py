@@ -284,7 +284,7 @@ def run(
         # spikes vs the 7-day baseline: compare against the mean of previous runs' counts, then
         # record this run's counts (all matched assets) so future runs can do the same
         history = load_history(args.history)
-        base = baselines(history, now)
+        base = baselines(history, now, min_age=timedelta(hours=hours))
         for a in agg.assets:
             a["baseline7d"] = base.get(a["symbol"])
         append_run(history, now, {a["symbol"]: a["mentions"] for a in agg.assets})

@@ -10,6 +10,8 @@ on:
   schedule:
     - cron: '41 * * * *'
   workflow_dispatch:
+  # push runs rebuild the site but never send Telegram alerts (see that step's guard): a stale
+  # branch would otherwise restore the hourly cache cold or out of order and re-announce crossings
   push:
     branches-ignore:
       - sentiment-feed
@@ -80,10 +82,13 @@ jobs:
           fresh="$RUNNER_TEMP/dashboard.fresh.json"
           cp "$RUNNER_TEMP/site/data/dashboard.json" "$fresh"
           cp -r web/. "$RUNNER_TEMP/site/"
+          # a changed shell must invalidate the service worker's precache without a hand-bumped version
+          sed -i "s/cryptopulse-shell-v1/cryptopulse-shell-${GITHUB_SHA::12}/" "$RUNNER_TEMP/site/sw.js"
           rm -rf "$RUNNER_TEMP/site/tools"   # development-only validation script, not part of the site
           cp "$fresh" "$RUNNER_TEMP/site/data/dashboard.json"
 
       - name: Telegram alerts (optional secrets)
+        if: github.event_name != 'push'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

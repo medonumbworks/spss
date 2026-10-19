@@ -72,6 +72,9 @@ class MarketRepository(
     private val sentiment: SentimentService,
     private val forecaster: Forecaster,
     private val store: DiskStore? = null,
+    /** Accumulating state (forecast journal, alert crossings); falls back to [store]. On Android this
+     *  should live in filesDir: the cache dir is wiped under storage pressure. */
+    durableStore: DiskStore? = null,
     private val clock: Clock = Clock.SYSTEM,
     private val logger: Logger = Logger.STDERR,
     initialConfig: AppConfig = AppConfig(),
@@ -121,10 +124,10 @@ class MarketRepository(
     private val openedChecks = ConcurrentHashMap<String, TokenSafety>()
 
     /** Logs every issued forecast and scores it once its horizon has passed. */
-    private val journal = ForecastJournal(store, clock)
+    private val journal = ForecastJournal(durableStore ?: store, clock)
 
     /** Crossing detector for the "chance of rising above X%" notifications. */
-    private val alerts = ForecastAlerts(store, clock)
+    private val alerts = ForecastAlerts(durableStore ?: store, clock)
 
     /** Polymarket markets of the last refresh, for forecasts recomputed outside a refresh. */
     @Volatile
@@ -182,7 +185,7 @@ class MarketRepository(
             val predictionMarkets = if (cfg.polymarketEnabled && polymarket != null) {
                 when (val r = polymarket.cryptoMarkets()) {
                     is SourceResult.Success -> r.value
-                    is SourceResult.Failure -> { warnings += "Polymarket: ${r.message}"; emptyList() }
+                    is SourceResult.Failure -> { warnings += r.message; emptyList() }
                 }
             } else emptyList()
             lastPolymarket = predictionMarkets
@@ -247,8 +250,8 @@ class MarketRepository(
             persist(snap)
             try {
                 // score the forecasts that came due at today's prices, then log the fresh calls
-                journal.evaluate(snap.rows.mapNotNull { r -> r.market?.price?.let { p -> r.asset.symbol to p } }.toMap(), snap.currency)
-                journal.record(snap.rows, snap.currency)
+                journal.evaluate(snap.rows)
+                journal.record(snap.rows)
             } catch (e: Exception) {
                 logger.warn(TAG, "forecast journal failed", e)
             }

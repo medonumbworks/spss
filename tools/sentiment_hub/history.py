@@ -82,11 +82,12 @@ def append_run(history: dict, generated_at: datetime, counts: Mapping[str, int])
     return history
 
 
-def baselines(history: dict, now: datetime) -> dict[str, float]:
-    """Per-symbol mean mention count over the entries older than 24 h; a symbol absent from an
-    old entry counts as 0 there. Empty when fewer than ``MIN_BASELINE_ENTRIES`` entries qualify:
+def baselines(history: dict, now: datetime, min_age: timedelta = BASELINE_MIN_AGE) -> dict[str, float]:
+    """Per-symbol mean mention count over the entries older than ``min_age`` (at least one window
+    length, or the current window would contaminate its own norm); a symbol absent from an old
+    entry counts as 0 there. Empty when fewer than ``MIN_BASELINE_ENTRIES`` entries qualify:
     too little history to call anything a spike."""
-    cutoff = iso_z(as_utc(now) - BASELINE_MIN_AGE)
+    cutoff = iso_z(as_utc(now) - max(min_age, BASELINE_MIN_AGE))
     old = [e["counts"] for e in history.get("entries") or [] if e["ts"] < cutoff]
     if len(old) < MIN_BASELINE_ENTRIES:
         return {}
