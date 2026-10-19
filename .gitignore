@@ -23,3 +23,6 @@ Thumbs.db
 # Python (legacy Streamlit script)
 __pycache__/
 *.pyc
+
+# Claude Code local state (agent worktrees, settings)
+.claude/
