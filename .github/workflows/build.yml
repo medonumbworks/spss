@@ -42,7 +42,7 @@ jobs:
           tools = next(l for l in lines if l.get("id") == 2)["result"]["tools"]
           names = sorted(t["name"] for t in tools)
           print("tools:", names)
-          assert len(names) == 9, names
+          assert len(names) == 10, names
           PY
       - name: Live data check (real APIs, informational)
         # Fixture tests cannot see API changes; this runs one real refresh from GitHub's network.

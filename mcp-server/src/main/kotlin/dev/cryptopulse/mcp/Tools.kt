@@ -2,8 +2,10 @@ package dev.cryptopulse.mcp
 
 import dev.cryptopulse.core.CryptoPulse
 import dev.cryptopulse.core.config.AppConfig
+import dev.cryptopulse.core.analysis.forecast.DefaultForecastEngine
 import dev.cryptopulse.core.model.AssetRow
 import dev.cryptopulse.core.model.MarketSnapshot
+import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.repo.SentimentService
 import dev.cryptopulse.core.util.Text
 import io.modelcontextprotocol.kotlin.sdk.server.Server
@@ -61,12 +63,14 @@ class CryptoPulseTools(
 
         server.addTool(
             name = "market_overview",
-            title = "Bitpanda crypto overview",
-            description = "All cryptocurrencies tradeable on Bitpanda with live price, 24h/7d change, the probability of going up in the next 24 hours and 7 days, " +
-                "a 0-100 'near the bottom' score and social sentiment. Free data: Bitpanda, CoinGecko, Reddit, StockTwits, Telegram, news, Fear & Greed, futures funding.",
+            title = "Crypto overview (Bitpanda + memecoins + DEX radar)",
+            description = "Every cryptocurrency tradeable on Bitpanda, plus (for information only) the largest memecoins, today's trending coins and speculative DEX-only tokens, " +
+                "with live price, 24h/7d change, the probability of going up in the next 24 hours and 7 days, a 0-100 'near the bottom' score, social sentiment and, " +
+                "for everything not on Bitpanda, a 0-100 risk score. Free data: Bitpanda, CoinGecko, GeckoTerminal, DexScreener, pump.fun, GoPlus, Reddit, StockTwits, Telegram, news.",
             inputSchema = schema(
                 required = emptyList(),
                 "currency" to prop("string", "Quote currency: EUR (default), USD, CHF or GBP", enum = AppConfig.SUPPORTED_CURRENCIES),
+                "tier" to prop("string", "Which coins: all (default), bitpanda, meme (memecoins incl. Bitpanda ones), trending, dex, speculative (everything not on Bitpanda)", enum = TIER_FILTERS),
                 "sort" to prop("string", "Sort order", enum = listOf("market_cap", "change_24h", "change_7d", "up_24h", "up_7d", "bottom_score", "sentiment")),
                 "limit" to prop("integer", "Max rows (default 50, max 600)"),
                 "query" to prop("string", "Optional filter by name or symbol"),
@@ -75,10 +79,28 @@ class CryptoPulseTools(
         ) { req -> safe { overview(req.arguments) } }
 
         server.addTool(
+            name = "speculative_radar",
+            title = "Memecoins and DEX radar",
+            description = "Speculative coins that Bitpanda does not list: the largest memecoins, CoinGecko's trending coins, and DEX-only tokens from GeckoTerminal trending/new pools, " +
+                "DexScreener boosts/profiles/takeovers and pump.fun, with liquidity, pool age, buyers vs sellers, contract checks (GoPlus/honeypot.is) and a 0-100 risk score. " +
+                "Tokens with red flags, pools younger than 24 h or unchecked contracts get no 'up' probability. Information only; most such tokens lose most of their value.",
+            inputSchema = schema(
+                emptyList(),
+                "tier" to prop("string", "meme, trending, dex or speculative (all three, default)", enum = listOf("speculative", "meme", "trending", "dex")),
+                "sort" to prop("string", "Sort order (default volume)", enum = listOf("volume", "change_24h", "up_24h", "risk", "liquidity", "newest", "market_cap")),
+                "max_risk" to prop("integer", "Only tokens with risk score <= this (0-100)"),
+                "hide_blocked" to prop("boolean", "Leave out tokens without a forecast (red flags, too new, unverified); default false"),
+                "limit" to prop("integer", "Max rows (default 40, max 300)"),
+            ),
+            toolAnnotations = readOnly,
+        ) { req -> safe { radar(req.arguments) } }
+
+        server.addTool(
             name = "get_forecast",
             title = "Forecast for one coin",
-            description = "Explainable forecast for one Bitpanda coin: probability of going up in 24h and 7 days, likely price range, the drivers behind it, " +
-                "a walk-forward backtest, and whether the price is near a local low. deep=true loads 1 year of daily history and fresh per-coin sentiment (slower).",
+            description = "Explainable forecast for one coin (Bitpanda, memecoin or DEX token): probability of going up in 24h and 7 days, likely price range, the drivers behind it, " +
+                "a walk-forward backtest, whether the price is near a local low and, for coins not on Bitpanda, the risk score, contract checks and where it trades. " +
+                "deep=true loads history (1 year daily, or a week of hourly DEX candles), fresh contract checks and per-coin sentiment (slower).",
             inputSchema = schema(listOf("symbol"), "symbol" to prop("string", "Ticker, e.g. BTC, SOL, BEST"), "deep" to prop("boolean", "Load 1-year history and per-coin sentiment (default true)")),
             toolAnnotations = readOnly,
         ) { req -> safe { forecast(req.arguments) } }
@@ -95,9 +117,11 @@ class CryptoPulseTools(
         server.addTool(
             name = "find_opportunities",
             title = "Find coins likely to rise",
-            description = "Ranks Bitpanda coins by the probability of rising (weighted by confidence), optionally only those near a local low. Not financial advice.",
+            description = "Ranks coins by the probability of rising (weighted by confidence), optionally only those near a local low. Bitpanda coins by default; " +
+                "tier=all adds memecoins and DEX tokens that passed the risk checks. Not financial advice.",
             inputSchema = schema(
                 emptyList(),
+                "tier" to prop("string", "bitpanda (default), all, meme, trending, dex or speculative", enum = TIER_FILTERS),
                 "horizon" to prop("string", "24h or 7d (default 7d)", enum = listOf("24h", "7d")),
                 "min_probability" to prop("number", "Minimum probability of going up, 0-1 (default 0.55)"),
                 "near_bottom" to prop("boolean", "Only coins with bottom score >= 60"),
@@ -189,7 +213,8 @@ class CryptoPulseTools(
         val snap = snapshot()
         val query = args.str("query")?.lowercase()
         val limit = (args.int("limit") ?: 50).coerceIn(1, 600)
-        var rows = snap.rows.filter { query == null || it.asset.symbol.lowercase().contains(query) || it.asset.name.lowercase().contains(query) }
+        val tier = tierFilter(args.str("tier"), "all")
+        var rows = snap.rows.filter { inTier(it, tier) && (query == null || it.asset.symbol.lowercase().contains(query) || it.asset.name.lowercase().contains(query)) }
         rows = when (args.str("sort")) {
             "change_24h" -> rows.sortedByDescending { it.market?.change24hPct ?: Double.NEGATIVE_INFINITY }
             "change_7d" -> rows.sortedByDescending { it.market?.change7dPct ?: Double.NEGATIVE_INFINITY }
@@ -201,6 +226,8 @@ class CryptoPulseTools(
         }.take(limit)
         val header = buildString {
             appendLine("Bitpanda cryptocurrencies: ${snap.universeSize} (list source: ${snap.universeSource.name.lowercase().replace('_', ' ')}), prices in ${snap.currency}, updated ${ageText(snap.fetchedAtMs)}.")
+            val extra = snap.rows.groupingBy { it.asset.tier }.eachCount().filterKeys { it != Tier.BITPANDA }
+            if (extra.isNotEmpty()) appendLine("Not on Bitpanda (information only): " + extra.entries.joinToString { "${it.value} ${it.key.label.lowercase()}" } + ". Showing: $tier.")
             snap.context?.fearGreed?.let { appendLine("Fear & Greed: ${it.value} (${it.classification}).") }
             if (snap.warnings.isNotEmpty()) appendLine("Notes: ${snap.warnings.take(4).joinToString("; ")}")
             appendLine()
@@ -221,7 +248,7 @@ class CryptoPulseTools(
         app.repository.row(symbol) ?: throw IllegalArgumentException(unknown(symbol))
         val row = if (deep) app.repository.detail(symbol).row else app.repository.row(symbol)!!
         val f = row.forecast ?: return CallToolResult(listOf(TextContent("No market data for $symbol right now, so no forecast.")), isError = true)
-        return CallToolResult(listOf(TextContent(Format.forecast(row.asset.name, f))), structuredContent = encode(dev.cryptopulse.core.model.Forecast.serializer(), f))
+        return CallToolResult(listOf(TextContent(Format.forecast(row.asset.name, f, row))), structuredContent = encode(dev.cryptopulse.core.model.Forecast.serializer(), f))
     }
 
     private suspend fun sentiment(args: JsonObject?): CallToolResult {
@@ -246,9 +273,11 @@ class CryptoPulseTools(
         val minP = args.dbl("min_probability") ?: 0.55
         val nearBottom = args.bool("near_bottom") ?: false
         val limit = (args.int("limit") ?: 15).coerceIn(1, 100)
+        val tier = tierFilter(args.str("tier"), "bitpanda")
         val ranked = snap.rows.mapNotNull { r ->
+            if (!inTier(r, tier) || r.risk?.blocked == true) return@mapNotNull null
             val f = r.forecast ?: return@mapNotNull null
-            if (f.bottom.label == "Pegged") return@mapNotNull null
+            if (f.bottom.label in NO_BOTTOM_LABELS) return@mapNotNull null
             val h = if (horizon == "24h") f.h24 else f.d7
             if (h.probabilityUp < minP) return@mapNotNull null
             if (nearBottom && f.bottom.score < 60) return@mapNotNull null
@@ -257,7 +286,8 @@ class CryptoPulseTools(
         val text = buildString {
             appendLine("Coins with >= ${Format.pct(minP)} chance of rising over $horizon${if (nearBottom) " and near a local low" else ""}: ${ranked.size}")
             ranked.forEachIndexed { i, (r, h, _) ->
-                appendLine("${i + 1}. ${r.asset.name} (${r.asset.symbol}) ${Format.pct(h.probabilityUp)} up, confidence ${Format.pct(h.confidence)}, bottom score ${r.forecast!!.bottom.score} — ${h.signals.firstOrNull()?.description ?: ""}")
+                val where = if (r.asset.onBitpanda) "" else " [${r.asset.tier.label}, ${r.risk?.label?.lowercase() ?: "risk unknown"}, not on Bitpanda]"
+                appendLine("${i + 1}. ${r.asset.name} (${r.asset.symbol})$where ${Format.pct(h.probabilityUp)} up, confidence ${Format.pct(h.confidence)}, bottom score ${r.forecast!!.bottom.score} — ${h.signals.firstOrNull()?.description ?: ""}")
             }
             appendLine("_Probabilities, not certainties. Not financial advice._")
         }
@@ -267,6 +297,7 @@ class CryptoPulseTools(
                     add(buildJsonObject {
                         put("symbol", r.asset.symbol); put("name", r.asset.name); put("probabilityUp", h.probabilityUp)
                         put("confidence", h.confidence); put("bottomScore", r.forecast!!.bottom.score); put("rankScore", score)
+                        put("tier", r.asset.tier.name); r.risk?.let { put("riskScore", it.score) }
                         r.market?.price?.let { put("price", it) }
                     })
                 }
@@ -283,8 +314,9 @@ class CryptoPulseTools(
             for (s in symbols) {
                 val r = snap.rows.firstOrNull { it.asset.symbol == s }
                 val m = r?.market
-                if (m == null) { appendLine("$s: ${if (r == null) "not on Bitpanda (or unknown)" else "no price data right now"}"); continue }
-                appendLine("${r.asset.name} ($s): ${Text.formatPrice(m.bitpandaPrice ?: m.price, snap.currency)} · 1h ${Text.formatPct(m.change1hPct, 2)} · 24h ${Text.formatPct(m.change24hPct, 2)} · 7d ${Text.formatPct(m.change7dPct, 2)} · 30d ${Text.formatPct(m.change30dPct, 1)}")
+                if (m == null) { appendLine("$s: ${if (r == null) "not in the list (Bitpanda, memecoins, DEX radar)" else "no price data right now"}"); continue }
+                val note = if (r.asset.onBitpanda) "" else " [${r.asset.tier.label}, not on Bitpanda]"
+                appendLine("${r.asset.name} ($s)$note: ${Text.formatPrice(m.bitpandaPrice ?: m.price, snap.currency)} · 1h ${Text.formatPct(m.change1hPct, 2)} · 24h ${Text.formatPct(m.change24hPct, 2)} · 7d ${Text.formatPct(m.change7dPct, 2)} · 30d ${Text.formatPct(m.change30dPct, 1)}")
             }
         }
         return CallToolResult(listOf(TextContent(text)))
@@ -293,7 +325,7 @@ class CryptoPulseTools(
     private suspend fun assets(args: JsonObject?): CallToolResult {
         val snap = snapshot()
         val q = args.str("query")?.lowercase()
-        val list = snap.rows.map { it.asset }.filter { q == null || it.symbol.lowercase().contains(q) || it.name.lowercase().contains(q) }
+        val list = snap.rows.map { it.asset }.filter { it.onBitpanda && (q == null || it.symbol.lowercase().contains(q) || it.name.lowercase().contains(q)) }
         val text = "Bitpanda crypto list (${snap.universeSource.name.lowercase().replace('_', ' ')}): ${list.size} assets\n" +
             list.joinToString(", ") { "${it.symbol} (${it.name})" }
         return CallToolResult(listOf(TextContent(text)))
@@ -349,7 +381,54 @@ class CryptoPulseTools(
     private fun requireSymbol(args: JsonObject?): String =
         args.str("symbol")?.let { Text.normalizeSymbol(it) }?.takeIf { it.isNotEmpty() } ?: throw IllegalArgumentException("symbol is required, e.g. BTC")
 
-    private fun unknown(symbol: String) = "$symbol is not in the Bitpanda crypto list. Use list_bitpanda_assets to see what is available."
+    private fun unknown(symbol: String) = "$symbol is not in the list (Bitpanda coins, memecoins, trending coins and the DEX radar). Use list_bitpanda_assets or speculative_radar to see what is available."
+
+    private fun tierFilter(raw: String?, default: String): String {
+        val t = raw?.trim()?.lowercase()?.ifEmpty { null } ?: return default
+        require(t in TIER_FILTERS) { "tier must be one of $TIER_FILTERS" }
+        return t
+    }
+
+    private fun inTier(r: AssetRow, filter: String): Boolean = when (filter) {
+        "all" -> true
+        "bitpanda" -> r.asset.onBitpanda
+        "meme" -> r.asset.isMeme
+        "trending" -> r.asset.tier == Tier.TRENDING || "trending" in r.asset.tags
+        "dex" -> r.asset.tier == Tier.DEX
+        "speculative" -> !r.asset.onBitpanda
+        else -> true
+    }
+
+    private suspend fun radar(args: JsonObject?): CallToolResult {
+        val snap = snapshot()
+        val tier = tierFilter(args.str("tier"), "speculative").let { if (it == "all" || it == "bitpanda") "speculative" else it }
+        val maxRisk = args.int("max_risk")
+        val hideBlocked = args.bool("hide_blocked") ?: false
+        val limit = (args.int("limit") ?: 40).coerceIn(1, 300)
+        var rows = snap.rows.filter { !it.asset.onBitpanda && inTier(it, tier) }
+            .filter { maxRisk == null || (it.risk?.score ?: 100) <= maxRisk }
+            .filter { !hideBlocked || it.risk?.blocked != true }
+        rows = when (args.str("sort")) {
+            "change_24h" -> rows.sortedByDescending { it.market?.change24hPct ?: Double.NEGATIVE_INFINITY }
+            "up_24h" -> rows.sortedByDescending { if (it.risk?.blocked == true) -1.0 else it.forecast?.h24?.probabilityUp ?: 0.0 }
+            "risk" -> rows.sortedBy { it.risk?.score ?: 101 }
+            "liquidity" -> rows.sortedByDescending { it.dex?.liquidityUsd ?: -1.0 }
+            "newest" -> rows.sortedByDescending { it.dex?.pairCreatedAtMs ?: Long.MIN_VALUE }
+            "market_cap" -> rows.sortedByDescending { it.market?.marketCap ?: -1.0 }
+            else -> rows.sortedByDescending { it.dex?.volumeUsd?.h24 ?: it.market?.volume24h ?: -1.0 }
+        }.take(limit)
+        val text = buildString {
+            appendLine("Speculative coins not on Bitpanda ($tier): ${rows.size} shown, prices in ${snap.currency}, updated ${ageText(snap.fetchedAtMs)}.")
+            appendLine(Format.SPECULATIVE_NOTICE)
+            appendLine()
+            append(Format.radarTable(rows, System.currentTimeMillis()))
+        }
+        val structured = buildJsonObject {
+            put("currency", snap.currency)
+            put("rows", json.encodeToJsonElement(ListSerializer(AssetRow.serializer()), rows.map { compact(it) }))
+        }
+        return CallToolResult(listOf(TextContent(text)), structuredContent = structured)
+    }
 
     private fun ageText(ms: Long): String {
         val min = (System.currentTimeMillis() - ms) / 60_000
@@ -366,7 +445,9 @@ class CryptoPulseTools(
     private fun <T> encode(serializer: KSerializer<T>, value: T): JsonObject = json.encodeToJsonElement(serializer, value).jsonObject
 
     companion object {
-        const val VERSION = "0.1.0"
+        const val VERSION = "0.2.0"
+        val TIER_FILTERS = listOf("all", "bitpanda", "meme", "trending", "dex", "speculative")
+        private val NO_BOTTOM_LABELS = setOf("Pegged", DefaultForecastEngine.NOT_ASSESSED)
         private val json = Json { encodeDefaults = true; explicitNulls = false }
 
         private fun JsonObject?.str(key: String): String? = this?.get(key)?.let { (it as? JsonPrimitive)?.contentOrNull }?.trim()?.takeIf { it.isNotEmpty() }

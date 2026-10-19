@@ -1,5 +1,6 @@
 package dev.cryptopulse.mcp
 
+import dev.cryptopulse.core.analysis.risk.RiskScorer
 import dev.cryptopulse.core.model.MarketSnapshot
 import dev.cryptopulse.core.util.Text
 import java.time.Instant
@@ -10,7 +11,10 @@ import java.time.format.DateTimeFormatter
 object Digest {
     fun build(snap: MarketSnapshot, lang: String = "en", top: Int = 5): String {
         val hr = lang.lowercase().startsWith("hr")
-        val rows = snap.rows.filter { it.market?.price != null && it.forecast != null && it.forecast!!.bottom.label != "Pegged" }
+        // the main lists are about coins one can buy on Bitpanda; speculative tiers get their own section
+        val all = snap.rows.filter { it.market?.price != null && it.forecast != null && it.forecast!!.bottom.label != "Pegged" }
+        val rows = all.filter { it.asset.onBitpanda }
+        val spec = all.filter { !it.asset.onBitpanda }
         val time = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm 'UTC'").withZone(ZoneOffset.UTC).format(Instant.ofEpochMilli(snap.fetchedAtMs))
         val cur = snap.currency
         val ctx = snap.context
@@ -39,8 +43,30 @@ object Digest {
             val movers = rows.filter { it.market!!.change24hPct != null }.sortedByDescending { kotlin.math.abs(it.market!!.change24hPct!!) }.take(3)
             if (movers.isNotEmpty()) appendLine(t("Biggest moves: ", "Najveći pomaci: ") + movers.joinToString(" · ") { "${it.asset.symbol} ${Text.formatPct(it.market!!.change24hPct, 1)}" })
             ctx?.globalSentiment?.let { appendLine(t("Social mood: ", "Raspoloženje na mrežama: ") + "${it.label} (${it.totalSamples})") }
+            if (spec.isNotEmpty()) {
+                appendLine()
+                appendLine(t("🎲 Memecoins & DEX radar (not on Bitpanda, very high risk):", "🎲 Memecoini i DEX radar (nisu na Bitpandi, vrlo visok rizik):"))
+                spec.filter { it.risk?.blocked != true && it.forecast!!.h24.signals.firstOrNull()?.name != "history" }
+                    .sortedByDescending { it.forecast!!.h24.probabilityUp * (0.5 + it.forecast!!.h24.confidence) }.take(3)
+                    .forEach { appendLine("• ${it.asset.symbol} (${it.asset.tier.label}) ${Format.pct(it.forecast!!.h24.probabilityUp)} 24h · ${t("risk", "rizik")} ${it.risk?.score ?: "—"}/100") }
+                spec.filter { it.dex != null }.sortedByDescending { it.dex!!.volumeUsd.h24 ?: 0.0 }.take(3).takeIf { it.isNotEmpty() }?.let { hot ->
+                    appendLine(t("Most traded DEX tokens: ", "Najtrgovaniji DEX tokeni: ") + hot.joinToString(" · ") { "${it.asset.symbol} ${Text.formatPct(it.market?.change24hPct, 0)} (${it.risk?.label?.let { l -> riskLabel(l, hr) } ?: "?"})" })
+                }
+            }
             appendLine()
             append(t("Not financial advice. Probabilities, not certainties.", "Nije financijski savjet. Vjerojatnosti, ne sigurnosti."))
         }
+    }
+
+    private fun riskLabel(label: String, hr: Boolean): String = if (!hr) label.lowercase() else when (label) {
+        RiskScorer.LABEL_LOWER -> "niži rizik"
+        RiskScorer.LABEL_ELEVATED -> "povišen rizik"
+        RiskScorer.LABEL_HIGH -> "visok rizik"
+        RiskScorer.LABEL_EXTREME -> "ekstreman rizik"
+        RiskScorer.LABEL_RED_FLAG -> "crvene zastavice"
+        RiskScorer.LABEL_TOO_NEW -> "prenov"
+        RiskScorer.LABEL_ILLIQUID -> "premala likvidnost"
+        RiskScorer.LABEL_UNVERIFIED -> "neprovjeren"
+        else -> label
     }
 }

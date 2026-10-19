@@ -37,6 +37,13 @@ class McpServerTest {
     private val clock = Clock.fixed(now)
 
     private val transport = FakeTransport()
+        // memecoins and DEX radar (payloads captured live; routes before the generic /coins/markets one)
+        .onUrlContaining("category=meme-token", body = Fixtures.read("spec/coingecko_meme_markets.json"))
+        .onUrlContaining("networks/trending_pools", body = Fixtures.read("spec/geckoterminal_trending.json"))
+        .onUrlContaining("networks/new_pools", body = Fixtures.read("spec/geckoterminal_new_pools.json"))
+        .onUrlContaining("/token-boosts/top/v1", body = Fixtures.read("spec/dexscreener_boosts_top.json"))
+        .onUrlContaining("/tokens/v1/solana/", body = Fixtures.read("spec/dexscreener_tokens_boosted.json"))
+        .onUrlContaining("gopluslabs.io/api/v1/solana/", body = Fixtures.read("spec/goplus_sol.json"))
         .onUrlContaining("api.bitpanda.com/v1/ticker", body = Fixtures.read("bitpanda_ticker.json"))
         .onUrlContaining("/coins/list", body = Fixtures.read("coingecko_coins_list.json"))
         .onUrlContaining("/coins/markets", body = Fixtures.read("coingecko_markets.json"))
@@ -85,7 +92,10 @@ class McpServerTest {
     fun listsAllTools() = runBlocking {
         val names = client.listTools().tools.map { it.name }.toSet()
         assertEquals(
-            setOf("market_overview", "get_forecast", "get_sentiment", "find_opportunities", "get_prices", "list_bitpanda_assets", "market_mood", "telegram_sources", "daily_digest"),
+            setOf(
+                "market_overview", "speculative_radar", "get_forecast", "get_sentiment", "find_opportunities", "get_prices", "list_bitpanda_assets",
+                "market_mood", "telegram_sources", "daily_digest",
+            ),
             names,
         )
         assertEquals("cryptopulse", client.serverVersion?.name)
@@ -108,7 +118,25 @@ class McpServerTest {
         assertTrue(text(opp).contains("chance of rising"))
 
         val prices = client.callTool("get_prices", mapOf("symbols" to "BTC, eth,XYZ"))
-        assertTrue(text(prices).contains("72,529.49 EUR") && text(prices).contains("XYZ: not on Bitpanda"), text(prices))
+        assertTrue(text(prices).contains("72,529.49 EUR") && text(prices).contains("XYZ: not in the list"), text(prices))
+    }
+
+    @Test
+    fun speculativeRadarAndTierFilters() = runBlocking {
+        val radar = client.callTool("speculative_radar", mapOf("tier" to "dex", "limit" to 10))
+        val t = text(radar)
+        assertTrue(t.contains("Not on Bitpanda; information only"), t)
+        assertTrue(t.contains("TORCH") && t.contains("robinhood"), t)
+        assertTrue(t.contains("Unverified") || t.contains("Too new"), "no probability without checks: $t")
+        val memes = client.callTool("market_overview", mapOf("tier" to "meme", "limit" to 20))
+        assertTrue(text(memes).contains("SHIB") && text(memes).contains("Memecoin"), text(memes))
+        val bitpandaOnly = client.callTool("market_overview", mapOf("tier" to "bitpanda", "limit" to 600))
+        assertTrue(!text(bitpandaOnly).contains("TORCH"), text(bitpandaOnly))
+        val torch = client.callTool("get_forecast", mapOf("symbol" to "TORCH", "deep" to false))
+        val ft = text(torch)
+        assertTrue(ft.contains("Not on Bitpanda: DEX radar") && ft.contains("No forecast"), ft)
+        val badTier = client.callTool("market_overview", mapOf("tier" to "stocks"))
+        assertEquals(true, badTier.isError)
     }
 
     @Test
@@ -123,6 +151,6 @@ class McpServerTest {
         assertTrue(text(tg).contains("Telegram directory"), text(tg))
         val bad = client.callTool("get_forecast", mapOf("symbol" to "NOPE"))
         assertEquals(true, bad.isError)
-        assertTrue(text(bad).contains("not in the Bitpanda crypto list"), text(bad))
+        assertTrue(text(bad).contains("is not in the list"), text(bad))
     }
 }
