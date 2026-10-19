@@ -61,7 +61,16 @@ fun main(args: Array<String>) {
         "digest" -> {
             val app = createApp()
             val snap = runBlocking { app.repository.refresh(force = true).also { app.repository.enrichSentiment(10) } }
-            println(Digest.build(app.repository.snapshot.value ?: snap, args.getOrNull(1) ?: "en"))
+            // alertCrossings() consumes the persisted crossing state of this cache dir: fine for the
+            // telegram-digest workflow (its own cache), but do not share CRYPTOPULSE_CACHE_DIR with
+            // another alert consumer such as the dashboard workflow
+            val extras = Digest.Extras(
+                buzz = runBlocking { app.repository.telegramBuzz(5) },
+                journal = app.repository.journalStats(),
+                alerts = if (app.config.alertsEnabled) app.repository.alertCrossings() else emptyList(),
+                alertThresholdPct = app.config.alertThresholdPct,
+            )
+            println(Digest.build(app.repository.snapshot.value ?: snap, args.getOrNull(1) ?: "en", extras = extras))
             exitProcess(0)
         }
         "check" -> {
