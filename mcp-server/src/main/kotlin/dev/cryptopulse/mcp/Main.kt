@@ -74,7 +74,9 @@ private fun runStdio() {
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     val tools = CryptoPulseTools(createApp(), scope)
     val server = tools.createServer()
-    val transport = StdioServerTransport(System.`in`.asInput(), protocolOut.asSink().buffered())
+    // MCP stdio clients shut a server down by closing its stdin; exit shortly after EOF so nothing lingers.
+    val input = ExitOnEofInputStream(System.`in`) { protocolOut.flush() }
+    val transport = StdioServerTransport(input.asInput(), protocolOut.asSink().buffered())
     runBlocking {
         val session = server.createSession(transport)
         val done = Job()
@@ -82,6 +84,26 @@ private fun runStdio() {
         done.join()
     }
     exitProcess(0)
+}
+
+/** Calls [beforeExit] and exits the JVM ~1.5 s after the wrapped stream reports end of input. */
+private class ExitOnEofInputStream(input: java.io.InputStream, private val beforeExit: () -> Unit) : java.io.FilterInputStream(input) {
+    @Volatile
+    private var scheduled = false
+
+    override fun read(): Int = super.read().also { if (it < 0) scheduleExit() }
+
+    override fun read(b: ByteArray, off: Int, len: Int): Int = super.read(b, off, len).also { if (it < 0) scheduleExit() }
+
+    private fun scheduleExit() {
+        if (scheduled) return
+        scheduled = true
+        Thread {
+            Thread.sleep(1_500)
+            runCatching { beforeExit() }
+            exitProcess(0)
+        }.apply { isDaemon = true; name = "stdin-eof-exit" }.start()
+    }
 }
 
 private fun runHttp(port: Int) {

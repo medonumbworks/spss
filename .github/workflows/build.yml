@@ -34,7 +34,8 @@ jobs:
             '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}' \
             '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
             '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
-            | timeout 60 mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp 2>/dev/null > mcp-out.jsonl
+            | timeout 60 mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp 2>mcp-err.log > mcp-out.jsonl \
+            || { echo "server exit code $?"; cat mcp-err.log; exit 1; }
           python3 - <<'PY'
           import json
           lines = [json.loads(l) for l in open("mcp-out.jsonl") if l.strip()]
