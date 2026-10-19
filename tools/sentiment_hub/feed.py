@@ -26,7 +26,7 @@ MAX_SAMPLE_CHARS = 280
 TOP_KEYS = ("schema", "generatedAt", "windowHours", "models", "sources", "market", "assets")
 SOURCE_KEYS = ("name", "status", "items", "detail")
 MARKET_KEYS = ("mentions", "composite", "bullish", "bearish", "neutral")
-ASSET_KEYS = ("symbol", "mentions", "mentionsPrev", "composite", "scores", "bullish", "bearish", "neutral", "bySource", "samples")
+ASSET_KEYS = ("symbol", "mentions", "mentionsPrev", "baseline7d", "spike", "composite", "scores", "bullish", "bearish", "neutral", "bySource", "samples")
 BY_SOURCE_KEYS = ("mentions", "composite")
 SAMPLE_KEYS = ("text", "score", "source", "community", "url", "ts")
 _TS_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
@@ -44,6 +44,14 @@ def rnd(value: float) -> float:
         return 0.0
     out = round(float(value), DECIMALS)
     return 0.0 if out == 0 else out
+
+
+def spike_ratio(mentions: int, baseline: float | None) -> float | None:
+    """``mentions`` vs the 7-day baseline, rounded to 2 decimals; ``None`` without a usable
+    baseline (missing, or below 1 mention/run where the ratio would explode on noise)."""
+    if baseline is None or baseline < 1.0:
+        return None
+    return round(mentions / baseline, 2)
 
 
 def _source_entry(result: SourceResult) -> dict:
@@ -67,11 +75,14 @@ def build_feed(
     for a in assets:
         if a["mentions"] <= 0:
             continue
+        baseline = a.get("baseline7d")  # attached by the hub when it has a history; else null
         out_assets.append(
             {
                 "symbol": a["symbol"],
                 "mentions": int(a["mentions"]),
                 "mentionsPrev": int(a["mentionsPrev"]),
+                "baseline7d": None if baseline is None else round(float(baseline), 2),
+                "spike": spike_ratio(int(a["mentions"]), baseline),
                 "composite": rnd(a["composite"]),
                 "scores": {m: rnd(a["scores"][m]) for m in ALL_MODELS if m in a["scores"]},
                 "bullish": rnd(a["bullish"]),
@@ -149,6 +160,17 @@ def _check_score(v: Any, where: str, errors: list[str], lo: float = -1.0, hi: fl
         errors.append(f"{where}: {v} outside [{lo}, {hi}]")
     elif not _decimals_ok(float(v)):
         errors.append(f"{where}: {v} has more than {DECIMALS} decimals")
+
+
+def _check_baseline(v: Any, where: str, errors: list[str]) -> None:
+    """``baseline7d``/``spike`` are null when there is no (usable) history, otherwise a
+    non-negative number with at most 2 decimals."""
+    if v is None:
+        return
+    if not _is_num(v) or v < 0:
+        errors.append(f"{where}: expected non-negative number or null, got {v!r}")
+    elif abs(round(v, 2) - v) > 1e-9:
+        errors.append(f"{where}: {v} has more than 2 decimals")
 
 
 def _check_shares(obj: dict, where: str, errors: list[str], has_mentions: bool) -> None:
@@ -236,6 +258,8 @@ def validate_feed(feed: Any) -> list[str]:
             errors.append(f"{where}.mentions: more than market.mentions")
         if not _is_int(a["mentionsPrev"]) or a["mentionsPrev"] < 0:
             errors.append(f"{where}.mentionsPrev: expected non-negative integer")
+        _check_baseline(a["baseline7d"], f"{where}.baseline7d", errors)
+        _check_baseline(a["spike"], f"{where}.spike", errors)
         _check_score(a["composite"], f"{where}.composite", errors)
         _check_shares(a, where, errors, has_mentions=True)
         scores = a["scores"]

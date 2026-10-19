@@ -9,7 +9,7 @@ from datetime import timedelta
 
 from conftest import FakeHttp, NOW, REPO_ROOT, fixture_bytes, fixture_path
 
-from sentiment_hub import hub, memecoins, reddit, rss
+from sentiment_hub import history, hub, memecoins, reddit, rss
 from sentiment_hub.common import Message, SourceResult
 from sentiment_hub.feed import validate_feed
 from sentiment_hub.net import NetError
@@ -131,6 +131,43 @@ def test_full_run_on_fixtures(monkeypatch, tmp_path):
     assert json.loads(out.read_text())["schema"] == "cryptopulse.sentiment-feed/v1"
 
 
+def test_run_with_history_uses_baselines_and_records_the_run(monkeypatch, tmp_path):
+    monkeypatch.setattr(reddit.time, "sleep", lambda s: None)
+    path = tmp_path / "history.json"
+    # 8 earlier runs, all older than 24 h, so they form the baseline: BTC 2, ETH 4 per run
+    seeded = history.empty_history()
+    for i in range(8):
+        history.append_run(seeded, NOW - timedelta(hours=32 - i), {"BTC": 2, "ETH": 4})
+    history.save_history(seeded, path)
+    tg, news = _fixture_http()
+    feed, _, _ = hub.run(args("--history", str(path)), now=NOW, tg_http=tg, news_http=news, account_env={}, pipeline_factory=fake_pipeline_factory)
+    assert validate_feed(feed) == [], validate_feed(feed)
+    by_symbol = {a["symbol"]: a for a in feed["assets"]}
+    assert by_symbol["BTC"]["baseline7d"] == 2.0 and by_symbol["BTC"]["spike"] == 1.5  # 3 mentions / 2
+    # SOL never appeared in any old entry: a brand-new symbol has no baseline at all
+    assert by_symbol["SOL"]["baseline7d"] is None and by_symbol["SOL"]["spike"] is None
+    # this run's counts were appended for the next run to use
+    saved = history.load_history(path)
+    assert len(saved["entries"]) == 9
+    last = saved["entries"][-1]
+    assert last["ts"] == "2026-10-19T10:00:00Z"
+    assert last["counts"]["BTC"] == by_symbol["BTC"]["mentions"] == 3
+
+
+def test_run_with_too_little_history_leaves_baselines_null(monkeypatch, tmp_path):
+    monkeypatch.setattr(reddit.time, "sleep", lambda s: None)
+    path = tmp_path / "history.json"
+    seeded = history.empty_history()
+    for i in range(3):  # below MIN_BASELINE_ENTRIES
+        history.append_run(seeded, NOW - timedelta(hours=30 - i), {"BTC": 2})
+    history.save_history(seeded, path)
+    tg, news = _fixture_http()
+    feed, _, _ = hub.run(args("--history", str(path)), now=NOW, tg_http=tg, news_http=news, account_env={}, pipeline_factory=fake_pipeline_factory)
+    assert validate_feed(feed) == [], validate_feed(feed)
+    assert all(a["baseline7d"] is None and a["spike"] is None for a in feed["assets"])
+    assert len(history.load_history(path)["entries"]) == 4  # the run was still recorded
+
+
 def test_public_post_seen_by_both_telegram_sources_counts_once():
     ts = NOW - timedelta(hours=1)
     pub = SourceResult("telegram_public", "ok", [Message("telegram_public", "tg:cointelegraph/1", "Bitcoin up", ts, "https://t.me/cointelegraph/1", "cointelegraph")])
@@ -155,15 +192,20 @@ def test_split_windows():
 def test_cli_with_all_sources_disabled(tmp_path):
     """Real subprocess, no network needed: proves the script entry point and exit code."""
     out = tmp_path / "feed.json"
+    hist = tmp_path / "history.json"
     proc = subprocess.run(
         [sys.executable, str(HUB), "--out", str(out), "--no-telegram", "--no-rss", "--no-reddit",
-         "--assets", str(fixture_path("assets_small.json")), "--models", "vader"],
+         "--assets", str(fixture_path("assets_small.json")), "--models", "vader", "--history", str(hist)],
         capture_output=True, text=True, timeout=120,
     )
     assert proc.returncode == 0, proc.stderr
     feed = json.loads(out.read_text(encoding="utf-8"))
     assert validate_feed(feed) == []
     assert [s["status"] for s in feed["sources"]] == ["disabled"] * 4
+    # --history writes the file even on an empty run (first run starts the baseline window)
+    saved = history.load_history(hist)
+    assert saved["schema"] == "cryptopulse.mention-history/v1"
+    assert len(saved["entries"]) == 1 and saved["entries"][0]["counts"] == {}
     last = proc.stderr.strip().splitlines()[-1]
     assert last.startswith("sentiment-hub ") and "telegram_public disabled" in last
 

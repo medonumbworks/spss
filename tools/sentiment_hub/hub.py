@@ -2,8 +2,8 @@
 """CryptoPulse sentiment hub: collect -> score -> aggregate -> publish one JSON feed.
 
     python tools/sentiment_hub/hub.py --out feed.json [--models vader,finbert,cryptobert]
-        [--hours 24] [--assets PATH] [--channels PATH] [--lexicon PATH] [--max-channels N]
-        [--no-reddit] [--no-rss] [--no-telegram] [--no-memecoins]
+        [--hours 24] [--assets PATH] [--channels PATH] [--lexicon PATH] [--history PATH]
+        [--max-channels N] [--no-reddit] [--no-rss] [--no-telegram] [--no-memecoins]
 
 Logs go to stderr and the run ends with a one-line summary. Every source is optional: when all
 of them fail the hub still writes a valid feed with the statuses and no assets.
@@ -33,6 +33,7 @@ from sentiment_hub.aggregate import PROMO_CATEGORIES, aggregate, message_weight
 from sentiment_hub.assets import DEFAULT_LEXICON_PATH, Asset, load_assets, load_channels
 from sentiment_hub.common import SOURCE_NAMES, Message, SourceResult, parse_iso, utcnow
 from sentiment_hub.feed import build_feed, is_feed_symbol, validate_feed, write_feed
+from sentiment_hub.history import append_run, baselines, load_history, save_history
 from sentiment_hub.lexicon import load_lexicon
 from sentiment_hub.mentions import MentionMatcher, build_matchers
 from sentiment_hub.net import BROWSER_USER_AGENT, HttpClient
@@ -56,6 +57,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--assets", default=None, help="Bitpanda asset snapshot (default core/src/main/resources/bitpanda/bitpanda_snapshot.json)")
     p.add_argument("--channels", default=None, help="Telegram channel catalogue (default core/src/main/resources/telegram/channels.json)")
     p.add_argument("--lexicon", default=None, help="crypto VADER overlay (default core/src/main/resources/sentiment/crypto_lexicon.tsv)")
+    p.add_argument("--history", default=None, metavar="PATH", help="mention-count history JSON, read and updated in place; enables baseline7d/spike in the feed")
     p.add_argument("--max-channels", type=int, default=None, metavar="N", help="read only the N highest-confidence catalogue entries")
     p.add_argument("--no-reddit", action="store_true", help="skip Reddit")
     p.add_argument("--no-rss", action="store_true", help="skip the news feeds")
@@ -278,6 +280,16 @@ def run(
         if fresh:
             log.info("tracking %d new cashtags: %s", len(fresh), ", ".join(fresh[:15]))
     agg = aggregate(report.scored, previous, matchers, now, report.models, promo_communities=promo)
+    if getattr(args, "history", None):
+        # spikes vs the 7-day baseline: compare against the mean of previous runs' counts, then
+        # record this run's counts (all matched assets) so future runs can do the same
+        history = load_history(args.history)
+        base = baselines(history, now)
+        for a in agg.assets:
+            a["baseline7d"] = base.get(a["symbol"])
+        append_run(history, now, {a["symbol"]: a["mentions"] for a in agg.assets})
+        save_history(history, args.history)
+        log.info("history: %d runs recorded in %s, baselines for %d symbols", len(history["entries"]), args.history, len(base))
     # an asset whose symbol the feed cannot carry ("币安人生") must never block the whole feed
     odd = [a["symbol"] for a in agg.assets if not is_feed_symbol(a["symbol"])]
     if odd:

@@ -45,7 +45,8 @@ python -m pytest -q tools/sentiment_hub/tests
 
 ```
 hub.py --out PATH [--models vader,finbert,cryptobert] [--hours 24] [--assets PATH] [--channels PATH]
-       [--lexicon PATH] [--max-channels N] [--no-reddit] [--no-rss] [--no-telegram] [--no-memecoins] [-v]
+       [--lexicon PATH] [--history PATH] [--max-channels N] [--no-reddit] [--no-rss] [--no-telegram]
+       [--no-memecoins] [-v]
 ```
 
 | option | default |
@@ -55,6 +56,7 @@ hub.py --out PATH [--models vader,finbert,cryptobert] [--hours 24] [--assets PAT
 | `--assets` | `core/src/main/resources/bitpanda/bitpanda_snapshot.json` (built-in top 25 when missing) |
 | `--channels` | `core/src/main/resources/telegram/channels.json` (5 built-in channels when missing) |
 | `--lexicon` | `core/src/main/resources/sentiment/crypto_lexicon.tsv` (plain VADER when missing) |
+| `--history` | off; a mention-count history JSON that is read before the run and written back updated. Enables `baseline7d`/`spike` in the feed (null without it) |
 | `--max-channels` | all entries; `N` keeps the N highest-confidence ones |
 
 Logs go to stderr; the last line is a one-line summary. Exit code 0 whenever a valid feed was
@@ -183,7 +185,7 @@ the valence under `emoji_<name>`. Before VADER, in this order:
  ],
  "market": {"mentions": 1650, "composite": 0.12, "bullish": 0.41, "bearish": 0.22, "neutral": 0.37},
  "assets": [
-  {"symbol": "BTC", "mentions": 120, "mentionsPrev": 95, "composite": 0.21,
+  {"symbol": "BTC", "mentions": 120, "mentionsPrev": 95, "baseline7d": 86.5, "spike": 1.39, "composite": 0.21,
    "scores": {"vader": 0.18, "finbert": 0.25, "cryptobert": 0.30},
    "bullish": 0.45, "bearish": 0.15, "neutral": 0.40,
    "bySource": {"telegram_public": {"mentions": 80, "composite": 0.2}},
@@ -203,11 +205,34 @@ Guarantees (checked by `feed.validate_feed`, which runs before every write):
   summing to 1 (+-0.001) when there are mentions, all 0 otherwise
 * `assets`: only `mentions > 0`, sorted by `mentions` desc (ties: total weight); `scores` holds
   only models that scored this asset; `bySource` mentions add up to `mentions`
+* `baseline7d` and `spike` are always present but nullable (2 decimals, never negative):
+  `baseline7d` = mean mentions per run over the history entries older than 24 h (see below), null
+  without `--history` or with fewer than 6 such entries (or for a symbol the history has never
+  seen); `spike` = `mentions / baseline7d`, null when `baseline7d` is null or below 1.0 (a tiny
+  denominator would turn noise into a huge ratio). Surfaces show "spike vs the 7-day baseline"
+  from these two numbers
 * `samples`: at most 5, never from a private chat, `text` 1..280 characters (counted as UTF-16
   units like Kotlin's `String.length`, cut texts end with `…`), `community` non-empty, `url` an
   absolute `http(s)://` link; texts never contain lone UTF-16 surrogates (replaced by U+FFFD)
 * when every source fails the feed is still written: statuses filled in, `market` all zero,
   `assets: []`
+
+### Mention history `cryptopulse.mention-history/v1`
+
+`--history PATH` keeps a rolling record of every run's per-asset mention counts, published as
+`history.json` next to the feed:
+
+```json
+{"schema": "cryptopulse.mention-history/v1",
+ "entries": [{"ts": "2026-10-19T10:00:00Z", "counts": {"BTC": 251, "ETH": 118}}]}
+```
+
+One entry per run (compact JSON, entries older than 7 days dropped, at most 200 kept). The
+baseline for a symbol is the mean of its counts over the entries **older than 24 h** - every count
+is already a rolling 24 h window, so younger entries overlap the current one and are excluded; a
+symbol absent from an old entry counts as 0 there. Fewer than 6 qualifying entries (fresh branch,
+long outage) means no baselines at all for that run. A missing or corrupt history file is replaced
+by an empty one and the run continues; the Kotlin parser never reads this file.
 
 ## GitHub Actions
 
@@ -215,8 +240,10 @@ Guarantees (checked by `feed.validate_feed`, which runs before every write):
 pushes that touch `tools/sentiment_hub/**` or the workflow (any branch except `sentiment-feed`).
 It installs the requirements (CPU torch from `download.pytorch.org/whl/cpu`; if that install fails
 the run continues with VADER only), caches pip and `~/.cache/huggingface`, runs the tests, runs the
-hub with all models and the optional Telegram secrets, then force-pushes `feed.json` and a short
-README as a single orphan commit to the branch `sentiment-feed` with the built-in `GITHUB_TOKEN`
+hub with all models and the optional Telegram secrets, then force-pushes `feed.json`,
+`history.json` (fetched back from the branch before the run, so the baseline survives the
+single-commit force-push) and a short README as one orphan commit to the branch `sentiment-feed`
+with the built-in `GITHUB_TOKEN`
 (`permissions: contents: write`), so the repository does not grow. The checkout does not persist
 that token (`persist-credentials: false`): only the publish step sees it, not pip, the tests or
 the hub. A failing run publishes nothing and the previous feed stays online.
@@ -237,6 +264,7 @@ files for about 5 minutes.
 | `telegram_public.py`, `telegram_account.py`, `rss.py`, `reddit.py` | sources |
 | `aggregate.py` | weights, per-asset and market numbers, samples |
 | `feed.py` | feed builder, validator, atomic writer |
+| `history.py` | rolling mention-count history and the 7-day baselines |
 | `net.py`, `common.py` | HTTP client with per-host rate limits, shared types |
 | `notify.py`, `login.py` | Telegram report sender, one-time Telegram login |
 | `tests/` | pytest suite with hand-written fixtures; no network, transformers always mocked |

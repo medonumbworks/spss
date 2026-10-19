@@ -57,8 +57,9 @@ def test_feed_matches_contract(sample_feed):
     assert sample_feed["market"]["mentions"] == 4
 
     btc = sample_feed["assets"][0]
-    assert list(btc) == ["symbol", "mentions", "mentionsPrev", "composite", "scores", "bullish", "bearish", "neutral", "bySource", "samples"]
+    assert list(btc) == ["symbol", "mentions", "mentionsPrev", "baseline7d", "spike", "composite", "scores", "bullish", "bearish", "neutral", "bySource", "samples"]
     assert btc["symbol"] == "BTC" and btc["mentions"] == 3 and btc["mentionsPrev"] == 1
+    assert btc["baseline7d"] is None and btc["spike"] is None  # no mention history was attached
     assert list(btc["scores"]) == ["vader", "finbert", "cryptobert"]
     assert list(btc["bySource"]) == ["telegram_public", "telegram_account"]
     assert list(btc["samples"][0]) == ["text", "score", "source", "community", "url", "ts"]
@@ -67,6 +68,26 @@ def test_feed_matches_contract(sample_feed):
     assert all("private chat" not in s["text"] for a in sample_feed["assets"] for s in a["samples"])
     sol = next(a for a in sample_feed["assets"] if a["symbol"] == "SOL")
     assert sol["samples"] == []
+
+
+def test_baseline_and_spike_in_the_feed(now):
+    items = [
+        _scored("Bitcoin to new highs", now, 1, i=1, vader=0.7),
+        _scored("Bitcoin dumps", now, 2, i=2, vader=-0.5),
+        _scored("Ethereum upgrade went fine", now, 2, source="rss", i=3, vader=0.3),
+        _scored("Solana is back", now, 3, source="rss", i=4, vader=0.1),
+    ]
+    agg = aggregate(items, [], build_matchers(ASSETS), now, ["vader"])
+    # what hub.run attaches from history.baselines: BTC has a baseline, ETH's is too small
+    # for a meaningful ratio, SOL never appeared in the old entries
+    for a in agg.assets:
+        a["baseline7d"] = {"BTC": 4 / 3, "ETH": 0.5, "SOL": 0.0}[a["symbol"]]
+    feed = build_feed(now, 24, ["vader"], sources(now), agg.market, agg.assets)
+    assert validate_feed(feed) == []
+    by_symbol = {a["symbol"]: a for a in feed["assets"]}
+    assert by_symbol["BTC"]["baseline7d"] == 1.33 and by_symbol["BTC"]["spike"] == 1.5  # 2 / (4/3)
+    assert by_symbol["ETH"]["baseline7d"] == 0.5 and by_symbol["ETH"]["spike"] is None  # baseline < 1
+    assert by_symbol["SOL"]["baseline7d"] == 0.0 and by_symbol["SOL"]["spike"] is None
 
 
 def test_numbers_rounded_to_4_decimals(sample_feed):
@@ -121,6 +142,10 @@ def test_missing_sources_are_reported_as_disabled(now):
         (lambda f: f["assets"].reverse(), "sorted"),
         (lambda f: f["assets"][0].update(composite=1.5), "outside"),
         (lambda f: f["assets"][0].update(composite=0.123456), "decimals"),
+        (lambda f: f["assets"][0].update(baseline7d="2.5"), "baseline7d"),
+        (lambda f: f["assets"][0].update(spike=-0.5), "spike"),
+        (lambda f: f["assets"][0].update(spike=1.234), "2 decimals"),
+        (lambda f: f["assets"][0].pop("baseline7d"), "missing"),
         (lambda f: f["assets"][0].update(bullish=0.9), "shares"),
         (lambda f: f["assets"][0].update(mentions=0), "mentions"),
         (lambda f: f["assets"][0]["samples"][0].update(text="x" * 281), "text"),

@@ -74,6 +74,13 @@ jobs:
       - name: Run tests
         run: python -m pytest -q tools/sentiment_hub/tests
 
+      - name: Fetch the previous mention history
+        # The 7-day baseline needs the counts of earlier runs; they live next to the feed on the
+        # publish branch. A missing file (first run, branch recreated) just means no baselines.
+        run: |
+          mkdir -p "$RUNNER_TEMP/feed"
+          curl -fsSL -o "$RUNNER_TEMP/feed/history.json" "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/sentiment-feed/history.json" || true
+
       - name: Run the hub
         env:
           # Optional: without these secrets the telegram_account source reports "disabled".
@@ -82,7 +89,7 @@ jobs:
           TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
           # Optional repository variable; "1" lets the hub join up to 5 public groups per run.
           TELEGRAM_AUTO_JOIN: ${{ vars.TELEGRAM_AUTO_JOIN }}
-        run: python tools/sentiment_hub/hub.py --out "$RUNNER_TEMP/feed/feed.json" --models "$MODELS"
+        run: python tools/sentiment_hub/hub.py --out "$RUNNER_TEMP/feed/feed.json" --models "$MODELS" --history "$RUNNER_TEMP/feed/history.json"
 
       - name: Publish to the sentiment-feed branch
         env:
@@ -93,6 +100,10 @@ jobs:
           rm -rf "$pub"
           mkdir -p "$pub"
           cp "$RUNNER_TEMP/feed/feed.json" "$pub/feed.json"
+          # the mention history rides along so the next run can compute the 7-day baselines
+          if [ -f "$RUNNER_TEMP/feed/history.json" ]; then
+            cp "$RUNNER_TEMP/feed/history.json" "$pub/history.json"
+          fi
           # an all-sources-failed run must not replace the last good feed (the app fades old feeds by itself)
           if ! python -c 'import json, sys; sys.exit(0 if json.load(open(sys.argv[1]))["assets"] else 1)' "$pub/feed.json"; then
             echo "Feed has no assets (every source failed?); keeping the previously published feed."
@@ -116,6 +127,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add feed.json README.md
+          if [ -f history.json ]; then git add history.json; fi
           git commit -q -m "Sentiment feed ${generated}"
           git push --force --quiet "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/sentiment-feed
           echo "Published https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/sentiment-feed/feed.json (${generated})"
