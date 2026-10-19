@@ -1,5 +1,6 @@
 package dev.cryptopulse.core.repo
 
+import dev.cryptopulse.core.analysis.risk.RiskScorer
 import dev.cryptopulse.core.config.AppConfig
 import dev.cryptopulse.core.model.Asset
 import dev.cryptopulse.core.model.AssetRow
@@ -12,6 +13,7 @@ import dev.cryptopulse.core.sources.SourceResult
 import dev.cryptopulse.core.sources.dex.DexScreenerApi
 import dev.cryptopulse.core.sources.dex.GeckoTerminalApi
 import dev.cryptopulse.core.sources.dex.PumpFunApi
+import dev.cryptopulse.core.sources.paprika.CoinpaprikaApi
 import dev.cryptopulse.core.sources.safety.TokenSafetyApi
 import dev.cryptopulse.core.util.Clock
 import dev.cryptopulse.core.util.Logger
@@ -19,7 +21,8 @@ import dev.cryptopulse.core.util.Text
 
 /**
  * Everything beyond Bitpanda's list, for information only:
- *  - MEME: the largest memecoins by market cap (CoinGecko "Meme" category) that Bitpanda lacks,
+ *  - MEME: the largest memecoins by market cap (CoinGecko "Meme" category, or Coinpaprika's "meme-coin"
+ *    tag when CoinGecko refuses) that Bitpanda lacks,
  *  - TRENDING: CoinGecko's trending coins that Bitpanda lacks,
  *  - DEX: tokens that trade only on decentralised exchanges, found through GeckoTerminal trending
  *    and new pools, DexScreener boosts/profiles/community takeovers and pump.fun.
@@ -36,6 +39,7 @@ class SpeculativeService(
     private val safety: TokenSafetyApi,
     private val clock: Clock = Clock.SYSTEM,
     private val logger: Logger = Logger.STDERR,
+    private val paprika: CoinpaprikaApi? = null,
 ) {
     data class Result(
         /** New rows (no forecast yet), memecoins and trending coins first, then DEX tokens. */
@@ -45,6 +49,8 @@ class SpeculativeService(
         /** CoinGecko ids whose pools trend on DEXes right now. */
         val dexTrendingIds: Set<String>,
         val warnings: List<String>,
+        /** Bitpanda tickers that Coinpaprika tags as memecoins (only filled when CoinGecko refused). */
+        val memeSymbols: Set<String> = emptySet(),
     )
 
     /**
@@ -57,12 +63,23 @@ class SpeculativeService(
         val ids = taken.mapNotNullTo(HashSet()) { it.asset.coingeckoId }
         val rows = ArrayList<AssetRow>()
         val memeIds = HashSet<String>()
+        val memeSymbols = HashSet<String>()
 
         if (cfg.showMemecoins) {
             val memes = memecoins(cfg, warnings)
             if (memes == null) {
-                // CoinGecko refused: keep the last known memecoin rows rather than dropping the tier
-                previous.filter { it.asset.tier == Tier.MEME && it.asset.symbol !in symbols }.forEach { rows += it.copy(forecast = null); symbols += it.asset.symbol }
+                val fallback = paprikaMemecoins(cfg, taken)
+                if (fallback != null) {
+                    memeSymbols += fallback.second
+                    for (t in fallback.first) {
+                        if (t.symbol in symbols) continue
+                        rows += AssetRow(Asset(t.symbol, t.name, null, tier = Tier.MEME, tags = listOf("meme")), t.market)
+                        symbols += t.symbol
+                    }
+                } else {
+                    // nobody answered: keep the last known memecoin rows rather than dropping the tier
+                    previous.filter { it.asset.tier == Tier.MEME && it.asset.symbol !in symbols }.forEach { rows += it.copy(forecast = null); symbols += it.asset.symbol }
+                }
             } else {
                 memes.forEach { m -> m.coingeckoId?.let { memeIds += it } }
                 for (m in memes) {
@@ -98,8 +115,35 @@ class SpeculativeService(
         if (cfg.showDexRadar) {
             rows += dexRadar(cfg, symbols, ids, usdToQuote, dexTrendingIds, warnings)
         }
-        return Result(rows, memeIds, dexTrendingIds, warnings)
+        return Result(rows, memeIds, dexTrendingIds, warnings, memeSymbols)
     }
+
+    /**
+     * Coinpaprika's memecoins (one tickers call for every coin, one cached tag call): the
+     * [AppConfig.memecoinCount] best ranked that Bitpanda lacks, and the Bitpanda tickers that are
+     * memecoins (same ticker and name). Null when Coinpaprika is unavailable too. No sparklines, so
+     * these forecasts lean on the 1 h / 24 h / 7 d / 30 d changes.
+     */
+    private suspend fun paprikaMemecoins(cfg: AppConfig, taken: List<AssetRow>): Pair<List<PaprikaRow>, Set<String>>? {
+        val api = paprika ?: return null
+        val tagged = (api.tagCoins(CoinpaprikaApi.MEME_TAG) as? SourceResult.Success)?.value?.takeIf { it.isNotEmpty() } ?: return null
+        val tickers = (api.tickers(cfg.currency) as? SourceResult.Success)?.value ?: return null
+        val listed = taken.associate { it.asset.symbol to it.asset.name.lowercase() }
+        val memes = tickers.filter { it.id in tagged && it.market.price != null }
+        val bitpandaMemes = memes.filter { listed[Text.normalizeSymbol(it.symbol)] == it.name.lowercase() }.mapTo(HashSet()) { Text.normalizeSymbol(it.symbol) }
+        val rows = memes.asSequence()
+            .map { t -> PaprikaRow(Text.normalizeSymbol(t.symbol), t.name, t.rank ?: Int.MAX_VALUE, t.market) }
+            .filter { it.symbol.isNotEmpty() && it.symbol !in listed && it.symbol !in QUOTE_SYMBOLS }
+            .sortedBy { it.rank }
+            .distinctBy { it.symbol }
+            .take(cfg.memecoinCount.coerceIn(1, 1000))
+            .map { it.copy(market = it.market.copy(symbol = it.symbol)) }
+            .toList()
+        logger.debug(TAG, "memecoins from Coinpaprika: ${rows.size} rows, ${bitpandaMemes.size} Bitpanda coins tagged")
+        return rows to bitpandaMemes
+    }
+
+    private data class PaprikaRow(val symbol: String, val name: String, val rank: Int, val market: MarketData)
 
     private suspend fun memecoins(cfg: AppConfig, warnings: MutableList<String>): List<MarketData>? {
         val out = ArrayList<MarketData>()
@@ -227,8 +271,10 @@ class SpeculativeService(
         if (copycats > 0) logger.debug(TAG, "DEX radar: left out $copycats tokens named like listed coins")
         logger.debug(TAG, "DEX radar: ${kept.size} kept, $dust below the liquidity/volume floor, ${candidates.size} candidates")
 
-        val safetyByKey = if (cfg.safetyChecks) safetyFor(kept.take(cfg.dexSafetyTopN).map { it.first }, warnings) else emptyMap()
         val now = clock.nowMs()
+        // checks go first to tokens that can get a forecast at all; the rest are blocked anyway
+        val toCheck = kept.sortedBy { if (couldForecast(it.third, now)) 0 else 1 }.take(cfg.dexSafetyTopN).map { it.first }
+        val safetyByKey = if (cfg.safetyChecks) safetyFor(toCheck, warnings) else emptyMap()
         return kept.map { (c, sym, info) ->
             symbols += sym
             val fx = usdToQuote
@@ -285,6 +331,12 @@ class SpeculativeService(
             }
         }
         return out
+    }
+
+    /** Not blocked by liquidity, pool age or the pump.fun bonding curve (see [RiskScorer.assess]). */
+    private fun couldForecast(info: DexInfo, nowMs: Long): Boolean {
+        val created = info.pairCreatedAtMs ?: return false
+        return (info.liquidityUsd ?: 0.0) >= RiskScorer.MIN_LIQUIDITY_USD && nowMs - created >= 24 * 3_600_000L && info.pumpFunGraduated != false
     }
 
     private fun isQuote(c: Candidate): Boolean = c.symbol?.let { Text.normalizeSymbol(it) in QUOTE_SYMBOLS } == true

@@ -31,7 +31,7 @@ pump_top	https://frontend-api-v3.pump.fun/coins?offset=0&limit=5&sort=market_cap
 # --- alternatives to CoinGecko for prices/history (keyless)
 paprika_tickers	https://api.coinpaprika.com/v1/tickers?quotes=USD,EUR	1
 paprika_tags	https://api.coinpaprika.com/v1/tags	1
-paprika_meme_tag	https://api.coinpaprika.com/v1/tags/memes?additional_fields=coins	1
+paprika_meme_tag	https://api.coinpaprika.com/v1/tags/meme-coin?additional_fields=coins	1
 binance_vision_ticker	https://data-api.binance.vision/api/v3/ticker/24hr?symbols=%5B%22PEPEUSDT%22,%22WIFUSDT%22%5D	1
 binance_vision_klines	https://data-api.binance.vision/api/v3/klines?symbol=PEPEUSDT&interval=1h&limit=3	1
 binance_vision_exchangeinfo	https://data-api.binance.vision/api/v3/exchangeInfo?permissions=SPOT&symbolStatus=TRADING	1

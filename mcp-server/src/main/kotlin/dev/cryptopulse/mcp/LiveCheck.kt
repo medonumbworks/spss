@@ -22,11 +22,12 @@ object LiveCheck {
             return@buildString
         }
         val rows = snap.rows
-        appendLine("- Universe: ${snap.universeSource}, ${rows.size} assets shown of ${snap.universeSize} (${snap.currency})")
+        appendLine("- Universe: ${snap.universeSource}, ${snap.universeSize} Bitpanda assets, ${rows.size} rows in total (${snap.currency})")
         appendLine("- Market data: ${rows.count { it.market?.price != null }} priced, ${rows.count { it.market?.sparkline7d?.isNotEmpty() == true }} with 7-day sparkline, ${rows.count { it.market?.bitpandaPrice != null }} with a Bitpanda price")
         appendLine("- Forecasts: ${rows.count { it.forecast != null }}, of which pegged ${rows.count { it.forecast?.bottom?.label == "Pegged" }}")
         val tiers = rows.groupingBy { it.asset.tier }.eachCount()
-        appendLine("- Tiers: ${tiers.entries.joinToString { "${it.key.label} ${it.value}" }}; Bitpanda coins tagged meme ${rows.count { it.asset.onBitpanda && it.asset.isMeme }}")
+        appendLine("- Tiers: ${tiers.entries.joinToString { "${it.key.label} ${it.value}" }}; Bitpanda coins tagged meme ${rows.count { it.asset.onBitpanda && it.asset.isMeme }}; " +
+            "memecoin prices from ${rows.filter { it.asset.tier == dev.cryptopulse.core.model.Tier.MEME }.mapNotNull { it.market?.source }.distinct().joinToString().ifEmpty { "-" }}")
         val dex = rows.filter { it.asset.tier == dev.cryptopulse.core.model.Tier.DEX }
         if (dex.isNotEmpty()) {
             appendLine("- DEX radar: ${dex.size} tokens on ${dex.mapNotNull { it.asset.chainId }.distinct().joinToString()}; contract checked ${dex.count { it.safety != null }}; " +

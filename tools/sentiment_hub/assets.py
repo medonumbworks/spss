@@ -32,6 +32,8 @@ class Asset:
     coingecko_id: str | None = None
     rank: int | None = None
     verified: bool = True
+    # False for coins Bitpanda does not list (memecoins); their names and tickers match more strictly
+    listed: bool = True
 
 
 @dataclass(frozen=True)

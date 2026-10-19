@@ -12,6 +12,11 @@ Keep the two in sync: the app and the hub must agree on which texts talk about w
   followed by a crypto context word ("Stellar network", "Vision token").
 * The bare symbol (case-sensitive, whole word) counts only when the symbol is not ambiguous
   (length <= 2 or listed in ``AMBIGUOUS_SYMBOLS``).
+* Coins Bitpanda does not list (``Asset.listed`` False: memecoins) are stricter, because their
+  tickers and names are often plain words ("WOULD", "Mistake", ELON in "ELON MUSK SAYS"): no bare
+  ticker, no first-word alias, and a one-word name needs a context word unless it contains "coin"
+  or "inu" ("Fartcoin").
+* A cashtag needs a letter in the ticker: "$4" and "$67.8K" are prices, "$1INCH" is a ticker.
 """
 
 from __future__ import annotations
@@ -67,14 +72,22 @@ _PARENS_RE = re.compile(r"\s*\(.*?\)\s*")
 _SPACES_RE = re.compile(r"\s+")
 
 
-def build_names(name: str, symbol: str = "", ambiguous: bool = False, placeholder: bool = False) -> list[str]:
+_SAYS_COIN_RE = re.compile(r"coin|inu", re.IGNORECASE)
+
+
+def needs_context(name: str) -> bool:
+    """``needsContext``: a one-word name of an unlisted coin, unless the name says it is a coin."""
+    return " " not in name.strip() and not _SAYS_COIN_RE.search(name)
+
+
+def build_names(name: str, symbol: str = "", ambiguous: bool = False, placeholder: bool = False, unlisted: bool = False) -> list[str]:
     """``buildNames``: "Bitpanda Ecosystem Token" -> ["Bitpanda Ecosystem Token", "Bitpanda"]."""
     cleaned = _PARENS_RE.sub(" ", name).strip()
     out: list[str] = []
     if len(cleaned) >= 3 and not placeholder and not (ambiguous and cleaned.lower() == symbol.lower()):
         out.append(cleaned)
     words = [w for w in _SPACES_RE.split(cleaned) if w.strip()]
-    if len(words) >= 2:
+    if len(words) >= 2 and not unlisted:
         first = words[0]
         if (
             len(first) >= 4
@@ -86,8 +99,8 @@ def build_names(name: str, symbol: str = "", ambiguous: bool = False, placeholde
     return out
 
 
-def _name_regex(name: str) -> re.Pattern[str]:
-    if name.lower() in COMMON_WORD_NAMES:
+def _name_regex(name: str, unlisted: bool = False) -> re.Pattern[str]:
+    if name.lower() in COMMON_WORD_NAMES or (unlisted and needs_context(name)):
         return re.compile(r"\b" + re.escape(name) + r"\s+(" + CONTEXT_WORDS + r")\b", re.IGNORECASE)
     return re.compile(r"\b" + re.escape(name) + r"\b", re.IGNORECASE)
 
@@ -96,12 +109,15 @@ class MentionMatcher:
     def __init__(self, asset: Asset, cashtag_only: bool = False) -> None:
         """``cashtag_only``: a ticker discovered from cashtags (no name, no bare-symbol matches)."""
         self.symbol = asset.symbol
-        self.ambiguous = cashtag_only or len(asset.symbol) <= 2 or asset.symbol in AMBIGUOUS_SYMBOLS
-        self._cashtag = re.compile(r"\$" + re.escape(asset.symbol) + r"\b", re.IGNORECASE)
+        unlisted = not asset.listed
+        word_like = len(asset.symbol) <= 2 or asset.symbol in AMBIGUOUS_SYMBOLS
+        self.ambiguous = cashtag_only or unlisted or word_like
+        has_letter = any(ch.isalpha() for ch in asset.symbol)
+        self._cashtag = re.compile(r"\$" + re.escape(asset.symbol) + r"\b", re.IGNORECASE) if has_letter else None
         self._bare = re.compile(r"\b" + re.escape(asset.symbol) + r"\b")
         placeholder = asset.coingecko_id is None and asset.name == asset.symbol
-        names = [] if cashtag_only else build_names(asset.name, asset.symbol, self.ambiguous, placeholder) + list(EXTRA_NAMES.get(asset.symbol, ()))
-        self._names = [_name_regex(n) for n in names]
+        names = [] if cashtag_only else build_names(asset.name, asset.symbol, word_like, placeholder, unlisted) + list(EXTRA_NAMES.get(asset.symbol, ()))
+        self._names = [_name_regex(n, unlisted) for n in names]
         # Every regex match implies one of these appears in the case-folded text, so checking
         # them first only skips texts that cannot match (pure speed-up, same results).
         self._needles = tuple({asset.symbol.casefold(), *(n.casefold() for n in names)})
@@ -113,7 +129,7 @@ class MentionMatcher:
         haystack = folded if folded is not None else text.casefold()
         if not any(n in haystack for n in self._needles):
             return False
-        if self._cashtag.search(text):
+        if self._cashtag is not None and self._cashtag.search(text):
             return True
         if any(rx.search(text) for rx in self._names):
             return True

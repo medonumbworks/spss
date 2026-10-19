@@ -5,7 +5,7 @@ only**: none of these coins can be bought on Bitpanda, and the app never links t
 
 | Tier | What | Source (free, keyless) | Forecast |
 |---|---|---|---|
-| `MEME` | the 250 largest memecoins by market cap that Bitpanda does not list | CoinGecko `/coins/markets?category=meme-token` (with 7-day sparklines) | same model as Bitpanda coins, with a risk shrink |
+| `MEME` | the 250 largest memecoins by market cap that Bitpanda does not list | CoinGecko `/coins/markets?category=meme-token` (with 7-day sparklines); when CoinGecko answers 429, Coinpaprika's `meme-coin` tag (about 2,500 coins) with `/v1/tickers` | same model as Bitpanda coins, with a risk shrink |
 | `TRENDING` | CoinGecko's trending coins that Bitpanda does not list | CoinGecko `/search/trending` + `/coins/markets?ids=` | same, with a risk shrink and a small "cools off" prior |
 | `DEX` | tokens that trade only on decentralised exchanges | GeckoTerminal trending and new pools, DexScreener boosts / profiles / community takeovers, pump.fun top and live coins; one DexScreener lookup (30 tokens per call) gives every token the same fields | trading-flow model, gated by pool age and contract checks |
 
@@ -23,7 +23,8 @@ the "Memecoins" filter shows them too.
    always copycats); pools under $10k liquidity or $10k 24 h volume (both adjustable).
 4. At most 150 tokens, most traded first. Prices are converted from USD with the Bitpanda ticker's
    BTC EUR/USD ratio.
-5. Contract checks: GoPlus (EVM chains and Solana) for the most active tokens, one address per call
+5. Contract checks: GoPlus (EVM chains and Solana), first for the tokens that can get a forecast at
+   all (pool at least 24 h old, $10k liquidity, off the pump.fun bonding curve), most active first, one address per call
    (GoPlus silently answers only the first address of a list), at most 12 new checks per refresh;
    checks are cached for 6 hours, so coverage grows over a few refreshes. Opening a token re-checks it
    and adds the honeypot.is buy/sell simulation (Ethereum, BSC, Base) and a week of hourly candles from
@@ -72,13 +73,18 @@ promoted tokens younger than 3 days. Bands: under 25 lower, 25-49 elevated, 50-7
   vs sellers over 6 h (GeckoTerminal) or trade counts, and volume acceleration in the direction of the
   last hour. All weights are small; these signals are noisy and often manipulated.
 * A token's own Telegram channel (from its DexScreener links) is read for sentiment when the token is
-  opened; DEX tickers only count as mentions with a `$` cashtag or the full name.
+  opened.
+* Mentions of coins Bitpanda does not list are matched strictly, because their tickers and names are
+  often plain words (WOULD, "Mistake", ELON in "ELON MUSK SAYS"): only a `$` cashtag or the full name
+  counts, a one-word name needs a context word ("would token") unless it says it is a coin
+  ("Fartcoin"), and a cashtag needs a letter ("$4.98" is a price).
 
 ## Cloud hub
 
 The hourly sentiment hub (`tools/sentiment_hub`) also counts mentions of the 250 largest memecoins
 (one CoinGecko call per run) and of new `$TICKER` cashtags that at least two communities use three
-times or more (tracked by cashtag only), so DEX tokens can get hub sentiment too.
+times or more (tracked by cashtag only; stock and ETF tickers such as `$AAPL` or `$MSTR` are left out),
+so DEX tokens can get hub sentiment too.
 
 ## Attribution and terms
 

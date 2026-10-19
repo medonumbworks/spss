@@ -39,8 +39,24 @@ class CoinpaprikaApi(
         }
     }
 
+    /** Ids of the coins with one tag ("meme-coin": about 2,500 memecoins). Tags change slowly, so this is cached for a day. */
+    suspend fun tagCoins(tagId: String): SourceResult<Set<String>> =
+        when (val r = http.getText("$base/tags/$tagId?additional_fields=coins", JSON, ttlMs = 24 * 3_600_000L, staleOkMs = 7 * 24 * 3_600_000L, retries = 1)) {
+            is HttpResult.Failed -> SourceResult.failureOf(r, "Coinpaprika")
+            is HttpResult.Ok -> try {
+                SourceResult.Success(parseTagCoins(r.body), r.fromCache, r.ageMs)
+            } catch (e: Exception) {
+                SourceResult.parseError("Coinpaprika", e)
+            }
+        }
+
     companion object {
         private val JSON = mapOf("Accept" to "application/json")
+        const val MEME_TAG = "meme-coin"
+
+        /** `{"id": "meme-coin", ..., "coins": ["doge-dogecoin", ...]}`; entries may also be objects with an id. */
+        fun parseTagCoins(body: String): Set<String> =
+            JsonUtil.parse(body)["coins"].arr.orEmpty().mapNotNullTo(LinkedHashSet()) { it.str ?: it["id"].str }
 
         fun parseTickers(body: String, quote: String): List<PaprikaTicker> =
             JsonUtil.parse(body).arr.orEmpty().mapNotNull { t ->

@@ -10,6 +10,7 @@ import dev.cryptopulse.core.sources.coingecko.CoinGeckoApi
 import dev.cryptopulse.core.sources.dex.DexScreenerApi
 import dev.cryptopulse.core.sources.dex.GeckoTerminalApi
 import dev.cryptopulse.core.sources.dex.PumpFunApi
+import dev.cryptopulse.core.sources.paprika.CoinpaprikaApi
 import dev.cryptopulse.core.sources.safety.TokenSafetyApi
 import dev.cryptopulse.core.testHttp
 import dev.cryptopulse.core.testing.FakeTransport
@@ -45,7 +46,7 @@ class SpeculativeServiceTest {
 
     private fun service(t: FakeTransport): SpeculativeService {
         val http = testHttp(t, clock)
-        return SpeculativeService(CoinGeckoApi(http), DexScreenerApi(http), GeckoTerminalApi(http), PumpFunApi(http), TokenSafetyApi(http, clock), clock, Logger.NONE)
+        return SpeculativeService(CoinGeckoApi(http), DexScreenerApi(http), GeckoTerminalApi(http), PumpFunApi(http), TokenSafetyApi(http, clock), clock, Logger.NONE, CoinpaprikaApi(http))
     }
 
     private val bitpanda = listOf(
@@ -101,6 +102,22 @@ class SpeculativeServiceTest {
         val down = service(FakeTransport().failUrlContaining("coingecko")).load(AppConfig(showDexRadar = false), bitpanda, emptyList(), 0.9, previous)
         assertEquals(listOf("SHIB"), down.rows.map { it.asset.symbol })
         assertTrue(down.warnings.any { it.startsWith("Memecoins") })
+    }
+
+    @Test
+    fun coinpaprikaFillsTheMemeTierWhenCoinGeckoRefuses() = runTest {
+        val t = FakeTransport()
+            .failUrlContaining("coingecko")
+            .onUrlContaining("coinpaprika.com/v1/tags/meme-coin", body = spec("coinpaprika_meme_tag.json"))
+            .onUrlContaining("coinpaprika.com/v1/tickers", body = spec("coinpaprika_tickers.json"))
+        val taken = listOf(AssetRow(Asset("DOGE", "Dogecoin", "dogecoin"), MarketData("DOGE", "dogecoin", currency = "EUR", price = 0.07)))
+        val r = service(t).load(AppConfig(showDexRadar = false), taken, emptyList(), 0.9, emptyList())
+        val memes = r.rows.filter { it.asset.tier == Tier.MEME }
+        assertEquals(listOf("PEPE", "BONK", "WIF"), memes.map { it.asset.symbol }, "best ranked first; Bitpanda keeps DOGE")
+        assertEquals("coinpaprika", memes.first().market!!.source)
+        assertEquals("EUR", memes.first().market!!.currency)
+        assertEquals(setOf("DOGE"), r.memeSymbols, "Bitpanda's DOGE gets the meme tag by ticker and name")
+        assertTrue(r.warnings.any { it.startsWith("Memecoins") })
     }
 
     @Test

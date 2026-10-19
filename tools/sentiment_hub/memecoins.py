@@ -30,9 +30,14 @@ RETRY_AFTER_429_S = 20.0
 
 # "$" + a letter + up to 14 letters/digits, not inside a word or a "$$" run; "$100k" is a price, not a ticker
 CASHTAG_RE = re.compile(r"(?<![\w$])\$([A-Za-z][A-Za-z0-9]{1,14})\b")
-# never tokens of their own: quote assets, fiat and stablecoins
+# never tokens of their own: quote assets, fiat, stablecoins, and stock or ETF tickers that crypto news uses
 NOT_TOKENS = frozenset(
-    {"USD", "USDT", "USDC", "EUR", "GBP", "CHF", "JPY", "SOL", "ETH", "BTC", "BNB", "WETH", "WSOL", "DAI", "USDE", "USD1", "FDUSD", "PYUSD", "SPX", "SPY", "QQQ", "DXY"}
+    {
+        "USD", "USDT", "USDC", "EUR", "GBP", "CHF", "JPY", "SOL", "ETH", "BTC", "BNB", "WETH", "WSOL", "DAI", "USDE", "USD1", "FDUSD",
+        "PYUSD", "SPX", "SPY", "QQQ", "DXY", "IWM", "DIA", "VIX", "AAPL", "MSFT", "NVDA", "TSLA", "AMZN", "GOOG", "GOOGL", "META",
+        "NFLX", "AMD", "INTC", "AVGO", "TSM", "ARM", "SMCI", "PLTR", "ORCL", "CRWV", "COIN", "HOOD", "MSTR", "MARA", "RIOT", "CLSK",
+        "HUT", "CIFR", "IREN", "GLXY", "CRCL", "BMNR", "SBET", "GME", "AMC", "IBIT", "ETHA", "FBTC", "GBTC", "BITO", "SPCX",
+    }
 )
 
 
@@ -59,10 +64,11 @@ def fetch_memecoins(http, retries: int = 1, sleep: Callable[[float], None] = tim
                 continue
             symbol = normalize_symbol(str(row.get("symbol") or ""))
             cg = row.get("id")
-            if not symbol or not isinstance(cg, str) or symbol in NOT_TOKENS:
+            # "4" or "67" would only ever match prices ("$4.98")
+            if not symbol or not isinstance(cg, str) or symbol in NOT_TOKENS or not any(ch.isalpha() for ch in symbol):
                 continue
             rank = row.get("market_cap_rank")
-            out.append(Asset(symbol=symbol, name=str(row.get("name") or symbol).strip(), coingecko_id=cg, rank=rank if isinstance(rank, int) else None, verified=False))
+            out.append(Asset(symbol=symbol, name=str(row.get("name") or symbol).strip(), coingecko_id=cg, rank=rank if isinstance(rank, int) else None, verified=False, listed=False))
         return out, f"{len(out)} memecoins"
     return [], "HTTP 429"
 

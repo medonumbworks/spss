@@ -1,6 +1,7 @@
 package dev.cryptopulse.core.repo
 
 import dev.cryptopulse.core.model.Asset
+import dev.cryptopulse.core.model.Tier
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -38,5 +39,21 @@ class MentionMatcherTest {
         val people = MentionMatcher(Asset("PEOPLE", "PEOPLE"))
         assertFalse(people.matches("So many people feel safe"), "an unnamed listing must not match the word")
         assertTrue(people.matches("PEOPLE rallies 30%"))
+    }
+
+    @Test
+    fun unlistedCoinsMatchStrictly() {
+        val would = MentionMatcher(Asset("WOULD", "would", "would", tier = Tier.MEME))
+        assertFalse(would.matches("I would buy the dip"))
+        assertFalse(would.matches("WOULD YOU SELL NOW"))
+        assertTrue(would.matches("\$WOULD pumps"))
+        assertTrue(would.matches("would token listed on a DEX"))
+        val elon = MentionMatcher(Asset("ELON", "Dogelon Mars", "dogelon-mars", tier = Tier.MEME))
+        assertFalse(elon.matches("ELON MUSK SAYS HE WILL GIVE SHARES"))
+        assertFalse(elon.matches("Dogelon fans are back"), "no first-word alias for unlisted coins")
+        assertTrue(elon.matches("Dogelon Mars rallies 20%"))
+        assertTrue(MentionMatcher(Asset("FARTCOIN", "Fartcoin", "fartcoin", tier = Tier.MEME)).matches("Fartcoin rallies"))
+        assertFalse(MentionMatcher(Asset("4", "4", "four", tier = Tier.MEME)).matches("Liquidated Long: \$169K at \$4.982"))
+        assertTrue(MentionMatcher(Asset("1INCH", "1inch", "1inch")).matches("\$1INCH breaks out"))
     }
 }

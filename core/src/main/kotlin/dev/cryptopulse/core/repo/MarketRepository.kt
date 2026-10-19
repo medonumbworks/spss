@@ -171,7 +171,7 @@ class MarketRepository(
             }
             spec?.let { warnings += it.warnings }
             val trendingIds = context.trendingCoingeckoIds.toSet()
-            val tagged = bitpandaRows.map { row -> withTags(row, spec?.memeIds.orEmpty(), trendingIds, spec?.dexTrendingIds.orEmpty()) }
+            val tagged = bitpandaRows.map { row -> withTags(row, spec?.memeIds.orEmpty(), spec?.memeSymbols.orEmpty(), trendingIds, spec?.dexTrendingIds.orEmpty()) }
             val extra = spec?.rows.orEmpty().map { row ->
                 val risk = RiskScorer.assess(row.asset.tier, row.market, row.dex, row.safety, nowMs)
                 val sent = sentiment.cached(row.asset.symbol) ?: sentiment.fromFeed(row.asset, feed) ?: previousRows[row.asset.symbol]?.sentiment
@@ -517,12 +517,12 @@ class MarketRepository(
         return if (btc != null && mark != null && mark > 0) btc / mark else null
     }
 
-    private fun withTags(row: AssetRow, memeIds: Set<String>, trendingIds: Set<String>, dexTrendingIds: Set<String>): AssetRow {
-        val id = row.asset.coingeckoId ?: return row
+    private fun withTags(row: AssetRow, memeIds: Set<String>, memeSymbols: Set<String>, trendingIds: Set<String>, dexTrendingIds: Set<String>): AssetRow {
+        val id = row.asset.coingeckoId
         val add = buildList {
-            if (id in memeIds) add("meme")
-            if (id in trendingIds) add("trending")
-            if (id in dexTrendingIds) add("dex_trending")
+            if ((id != null && id in memeIds) || row.asset.symbol in memeSymbols) add("meme")
+            if (id != null && id in trendingIds) add("trending")
+            if (id != null && id in dexTrendingIds) add("dex_trending")
         }
         if (add.isEmpty()) return row
         return row.copy(asset = row.asset.copy(tags = (row.asset.tags + add).distinct()))

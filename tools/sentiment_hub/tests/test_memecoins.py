@@ -19,6 +19,7 @@ ROWS = [
     {"id": "shiba-inu", "symbol": "shib", "name": "Shiba Inu", "market_cap_rank": 30},
     {"id": "dogwifcoin", "symbol": "wif", "name": "dogwifhat", "market_cap_rank": 90},
     {"id": "usd1-meme", "symbol": "usd1", "name": "Not a meme"},
+    {"id": "four-meme", "symbol": "4", "name": "4"},
     {"symbol": "noid"},
 ]
 
@@ -32,6 +33,7 @@ def test_fetch_memecoins_parses_and_skips_non_tokens():
     assets, note = memecoins.fetch_memecoins(http)
     assert [a.symbol for a in assets] == ["DOGE", "SHIB", "WIF"]
     assert assets[1].coingecko_id == "shiba-inu" and assets[1].rank == 30
+    assert not assets[0].listed, "memecoins from CoinGecko are not Bitpanda listings"
     assert note == "3 memecoins"
 
 
@@ -77,3 +79,30 @@ def test_cashtag_only_matcher_ignores_words():
     assert m.matches("$moody breaks out")
     assert not m.matches("MOODY breaks out")
     assert not m.matches("feeling moody today")
+
+
+def test_unlisted_memecoins_match_strictly():
+    would = MentionMatcher(Asset("WOULD", "would", "would", listed=False))
+    assert not would.matches("I would buy the dip")
+    assert not would.matches("WOULD YOU SELL NOW")
+    assert would.matches("$WOULD pumps")
+    assert would.matches("would token listed on a DEX")
+    elon = MentionMatcher(Asset("ELON", "Dogelon Mars", "dogelon-mars", listed=False))
+    assert not elon.matches("ELON MUSK SAYS HE WILL GIVE SHARES")
+    assert not elon.matches("Dogelon fans are back"), "no first-word alias for unlisted coins"
+    assert elon.matches("Dogelon Mars rallies 20%")
+    assert MentionMatcher(Asset("FARTCOIN", "Fartcoin", "fartcoin", listed=False)).matches("Fartcoin rallies")
+    assert MentionMatcher(Asset("HPOS", "HarryPotterObamaSonic10Inu (ETH)", "hpos", listed=False)).matches("HarryPotterObamaSonic10Inu is back")
+    # listed coins keep the looser rules
+    assert MentionMatcher(Asset("PENDLE", "Pendle", "pendle")).matches("Pendle TVL climbs")
+
+
+def test_cashtags_need_a_letter():
+    four = MentionMatcher(Asset("4", "4", "four", listed=False))
+    assert not four.matches("Liquidated Long: $169K at $4.982")
+    assert MentionMatcher(Asset("1INCH", "1inch", "1inch")).matches("$1INCH breaks out")
+
+
+def test_stock_cashtags_are_not_new_tokens():
+    messages = [msg("$AAPL and $MSTR up, $WOJAK too", c, i) for i, c in enumerate(["a", "b", "c"])]
+    assert memecoins.discover_cashtags(messages, known=set()) == ["WOJAK"]
