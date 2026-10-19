@@ -21,7 +21,11 @@ application {
     mainClass.set("dev.cryptopulse.mcp.MainKt")
     applicationName = "cryptopulse-mcp"
     // slf4j-simple logs to stderr so stdout stays reserved for the MCP stdio transport.
-    applicationDefaultJvmArgs = listOf("-Dorg.slf4j.simpleLogger.logFile=System.err", "-Dorg.slf4j.simpleLogger.defaultLogLevel=warn")
+    applicationDefaultJvmArgs = listOf(
+        "-Dorg.slf4j.simpleLogger.logFile=System.err",
+        "-Dorg.slf4j.simpleLogger.defaultLogLevel=warn",
+        "-Dkotlin-logging.logStartupMessage=false",
+    )
 }
 
 dependencies {
@@ -34,6 +38,13 @@ dependencies {
     testImplementation(libs.mcp.client)
     testImplementation(libs.ktor.client.cio)
     testImplementation(libs.kotlinx.coroutines.test)
+}
+
+sourceSets {
+    test {
+        // reuse the recorded API responses of :core
+        resources.srcDir("../core/src/test/resources")
+    }
 }
 
 tasks.test {
