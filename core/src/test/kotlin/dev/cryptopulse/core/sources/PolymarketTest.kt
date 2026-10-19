@@ -103,4 +103,12 @@ class PolymarketTest {
         assertEquals(30.0, rate.requestsPerMinute)
         assertEquals(5, rate.burst)
     }
+
+    @Test
+    fun aTickerThatIsAnEverydayWordNeverMatchesProse() {
+        // "Will the price of Bitcoin be above $86,000..." must not become a THE market
+        assertTrue(PolymarketApi.forAsset(markets, "THE", "The Token").isEmpty())
+        assertTrue(PolymarketApi.forAsset(markets, "ONE", "Harmony").isEmpty(), "AMBIGUOUS_SYMBOLS are cashtag/name-only")
+        assertTrue(PolymarketApi.forAsset(markets, "BTC", "Bitcoin").isNotEmpty(), "real tickers still match")
+    }
 }

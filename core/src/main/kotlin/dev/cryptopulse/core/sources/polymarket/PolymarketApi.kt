@@ -2,6 +2,7 @@ package dev.cryptopulse.core.sources.polymarket
 
 import dev.cryptopulse.core.http.Http
 import dev.cryptopulse.core.http.HttpResult
+import dev.cryptopulse.core.repo.MentionMatcher
 import dev.cryptopulse.core.sources.SourceResult
 import dev.cryptopulse.core.util.Dates
 import dev.cryptopulse.core.util.JsonUtil
@@ -117,11 +118,14 @@ class PolymarketApi(
             val sym = symbol.trim().removePrefix("$").uppercase()
             if (sym.isNotEmpty() && sym in m.symbols) return true
             if (name.isNotBlank() && wholeWord(name.trim()).containsMatchIn(m.question)) return true
-            return sym.length > 2 && wholeWord(sym).containsMatchIn(m.question)
+            // bare tickers follow MentionMatcher's rules: case-sensitive, and never for tickers that are
+            // everyday words (THE matched "Will the price of Bitcoin..." before this guard)
+            return sym.length > 2 && sym !in MentionMatcher.AMBIGUOUS_SYMBOLS && sym.lowercase() !in MentionMatcher.COMMON_WORD_NAMES &&
+                wholeWord(sym, ignoreCase = false).containsMatchIn(m.question)
         }
 
-        private fun wholeWord(term: String) =
-            Regex("(?<![\\p{L}\\p{N}])${Regex.escape(term)}(?![\\p{L}\\p{N}])", RegexOption.IGNORE_CASE)
+        private fun wholeWord(term: String, ignoreCase: Boolean = true) =
+            Regex("(?<![\\p{L}\\p{N}])${Regex.escape(term)}(?![\\p{L}\\p{N}])", if (ignoreCase) setOf(RegexOption.IGNORE_CASE) else emptySet())
 
         /** `"[\"Yes\", \"No\"]"`: gamma encodes these arrays as JSON inside a JSON string. */
         private fun jsonStrings(raw: String?): List<String> =
