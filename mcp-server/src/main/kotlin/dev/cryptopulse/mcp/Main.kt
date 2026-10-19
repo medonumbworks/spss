@@ -25,6 +25,7 @@ Usage:
   cryptopulse-mcp --http [port]         MCP over Streamable HTTP on http://127.0.0.1:<port>/mcp (default 3333)
   cryptopulse-mcp digest [en|hr]        Print a market digest (used by the Telegram notifier)
   cryptopulse-mcp check                 Refresh once from the live APIs and print a health report
+  cryptopulse-mcp export <path>         Refresh once and write the PWA dashboard JSON (cryptopulse.dashboard/v1)
 
 Environment (all optional):
   CRYPTOPULSE_CURRENCY      EUR (default), USD, CHF, GBP
@@ -66,6 +67,17 @@ fun main(args: Array<String>) {
         "check" -> {
             val app = createApp()
             println(runBlocking { LiveCheck.run(app) })
+            exitProcess(0)
+        }
+        "export" -> {
+            val out = args.getOrNull(1) ?: run { System.err.println(USAGE); exitProcess(2) }
+            val app = createApp()
+            val body = runBlocking { Export.build(app) }
+            val file = File(out).absoluteFile
+            file.parentFile?.mkdirs()
+            file.writeText(body)
+            val snap = app.repository.snapshot.value
+            println("Dashboard: ${snap?.rows?.size ?: 0} rows, ${snap?.warnings?.size ?: 0} warnings, ${body.length} chars -> $file")
             exitProcess(0)
         }
         "--http" -> runHttp(args.getOrNull(1)?.toIntOrNull() ?: 3333)

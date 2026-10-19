@@ -17,6 +17,28 @@ free compute; no account or API key is required.
 Every push to the repository builds and tests everything with GitHub Actions
 (`.github/workflows/build.yml`) and replaces that release.
 
+## Dashboard (PWA)
+
+A lightweight web dashboard with the same data, no install needed: every coin with its 24h/7d
+up-probability and pump warnings, the Telegram buzz ranking, Polymarket odds and the realised
+accuracy of past forecasts. The `dashboard` workflow (`.github/workflows/dashboard.yml`)
+recomputes everything hourly (`cryptopulse-mcp export`, schema `cryptopulse.dashboard/v1`
+documented in `web/app.js`) and publishes the static site from `web/`:
+
+* **https://medonumbworks.github.io/spss/** — once GitHub Pages is on (the workflow tries to
+  enable it itself; otherwise flip Settings → Pages → Source to "GitHub Actions" once).
+* The [`pwa` branch](https://github.com/medonumbworks/spss/tree/pwa) always holds the latest
+  published site as plain files, whatever the Pages setting.
+
+Install it on Android like an app: open the URL in Chrome → menu (⋮) → **Add to Home screen** →
+Install. It keeps working offline with the last downloaded data. Like the sentiment hub, GitHub
+runs the hourly schedule only on the default branch; until then run it from the Actions tab.
+
+When a Bitpanda coin's 24 h chance of rising crosses the 50 % threshold, the hourly run can also
+send a short Telegram message. It reuses the `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` secrets
+of the `telegram-digest` workflow; without them that step just logs that it skipped. As with
+everything here: information only, probabilities, not financial advice.
+
 ## What you see
 
 * **Market list**: all Bitpanda coins sorted by market cap (like the Bitpanda app), with price,
@@ -128,6 +150,9 @@ The older Streamlit prototype (`spss8.py`) is kept as it was.
 
 * **Aplikacija**: na mobitelu otvori https://github.com/medonumbworks/spss/releases/tag/apk-latest,
   preuzmi `CryptoPulse.apk` i instaliraj (dopusti instalaciju iz preglednika).
+* **Nadzorna ploča (PWA)**: https://medonumbworks.github.io/spss/ (rezerva: grana `pwa`) — satno
+  osvježen pregled svih coinova, Telegram buzz, Polymarket i točnost prošlih prognoza u
+  pregledniku. Na Androidu: Chrome → izbornik (⋮) → "Dodaj na početni zaslon". Samo informativno.
 * Prikazuje sve kriptovalute s Bitpande, cijene, **vjerojatnost rasta u 24 h i 7 dana**, ocjenu
   "blizu dna" i sentiment s Reddita, StockTwitsa, Telegrama i vijesti. Sve je besplatno, bez ključeva.
 * **VADER** radi na mobitelu (s rječnikom kripto slenga), **FinBERT i CryptoBERT** rade besplatno
