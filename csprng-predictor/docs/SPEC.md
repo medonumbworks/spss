@@ -231,7 +231,10 @@ Default strategies (`Strategies.defaults(ModelParams p)` returns them in this or
 8. `repeat`    — numbers in the last draw get `repeatRate()`, the others get `1 - repeatRate()`;
                  uniform when no last draw.
 9. `pairs`     — co-occurrence affinity with the last draw: for each j, sum over i in last
-                 draw of `(P[i][j] + 1) / (counts[i] + 2)`; uniform when no last draw.
+                 draw, i != j, of `(P[i][j] + 1) / (counts[i] + 2)`; numbers that are in the
+                 last draw sum over only 10 partners, so their score is scaled by 11/10.
+                 (The self term i == j is left out on purpose: it would just repeat the
+                 `repeat` expert.) Uniform when no last draw.
 
 ### 1.7 Model parameters — `ModelParams`
 ```java
@@ -303,7 +306,8 @@ public final class Model {
 2. Loss `l_k = 1 - hits_k / 11`. Hedge: `w_k *= exp(-eta * l_k)`; normalise; fixed share:
    `w_k = (1 - share) * w_k + share / K`.
 3. Per-number bias: for each i, `target = actual.contains(i+1) ? 1 : 0`,
-   `expected = p.scores[i] / 11` (a probability), `b[i] = (1 - biasDecay) * b[i] + biasRate * (target - expected)`,
+   `expected = min(1, max(0, p.scores[i]))` (scores sum to 11, so `scores[i]` is already the
+   inclusion probability of number i+1), `b[i] = (1 - biasDecay) * b[i] + biasRate * (target - expected)`,
    clamp to [-1, 1].
 4. `observed++`.
 Weights start at `1/K` and biases at 0. All arithmetic must be deterministic (no

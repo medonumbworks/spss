@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Date -->
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/label_draw_date" />
+
+            <Button
+                android:id="@+id/btnDate"
+                style="@style/SecondaryButton"
+                android:layout_marginTop="0dp"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnToday"
+                    style="@style/SecondaryButton"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:text="@string/today" />
+
+                <Button
+                    android:id="@+id/btnYesterday"
+                    style="@style/SecondaryButton"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:text="@string/yesterday" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Quick entry -->
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/label_quick_entry" />
+
+            <EditText
+                android:id="@+id/quickEntry"
+                style="@style/FieldInput"
+                android:digits="0123456789 ,;.-/+"
+                android:hint="@string/quick_entry_hint"
+                android:imeOptions="actionDone"
+                android:inputType="text|textNoSuggestions" />
+
+            <TextView
+                android:id="@+id/quickError"
+                style="@style/SecondaryText"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/text_error"
+                android:visibility="gone" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:layout_marginTop="4dp"
+                android:text="@string/quick_entry_help" />
+        </LinearLayout>
+
+        <!-- Grid -->
+        <LinearLayout style="@style/Card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/CardTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/label_pick_numbers" />
+
+                <TextView
+                    android:id="@+id/selectedCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.medonumbworks.csprngpredictor.ui.NumberGridView
+                android:id="@+id/gridSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/saveProgressRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/saving" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnClear"
+                style="@style/SecondaryButton"
+                android:layout_width="0dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:text="@string/clear" />
+
+            <Button
+                android:id="@+id/btnSave"
+                style="@style/PrimaryButton"
+                android:layout_width="0dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="@string/save" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

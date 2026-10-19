@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive icon foreground layer: a white ring around 11 white dots (the 11
+     picked numbers, rows of 4-3-4). 108dp canvas; everything stays inside the
+     66dp safe zone centred at (54,54): the ring's outer edge is at radius 23.6. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Ring: centre (54,54), radius 22, stroke 3.2 -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="3.2"
+        android:pathData="M32,54 a22,22 0 1,0 44,0 a22,22 0 1,0 -44,0 Z" />
+
+    <!-- Top row: 4 dots, radius 2.8, spacing 8 -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M39.2,47.07 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z
+            M47.2,47.07 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z
+            M55.2,47.07 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z
+            M63.2,47.07 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z" />
+
+    <!-- Middle row: 3 dots, offset by half a spacing (hexagonal packing) -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M43.2,54 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z
+            M51.2,54 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z
+            M59.2,54 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z" />
+
+    <!-- Bottom row: 4 dots -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M39.2,60.93 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z
+            M47.2,60.93 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z
+            M55.2,60.93 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z
+            M63.2,60.93 a2.8,2.8 0 1,0 5.6,0 a2.8,2.8 0 1,0 -5.6,0 Z" />
+</vector>
