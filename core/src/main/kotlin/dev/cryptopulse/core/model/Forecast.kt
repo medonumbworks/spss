@@ -58,7 +58,14 @@ data class HorizonForecast(
     val expectedMovePct: Double? = null,
     val signals: List<Signal> = emptyList(),
     val backtest: BacktestStats? = null,
-)
+) {
+    /** False when there is no call at all (safety red flags, too little history): [probabilityUp] is then a 0.5 placeholder. */
+    val hasCall: Boolean get() = signals.firstOrNull()?.name !in NO_CALL_SIGNALS
+
+    companion object {
+        val NO_CALL_SIGNALS: Set<String> = setOf("risk_blocked", "history")
+    }
+}
 
 /** "Is this the lowest price?" assessment. */
 @Serializable

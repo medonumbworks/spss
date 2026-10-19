@@ -15,7 +15,10 @@ data class AssetRow(
     val safety: TokenSafety? = null,
     /** Risk for everything that is not on Bitpanda; null for Bitpanda assets. */
     val risk: RiskAssessment? = null,
-)
+) {
+    /** The horizon's chance of going up, or null when there is none (risk block, too little history). */
+    fun upOrNull(h: HorizonForecast?): Double? = h?.takeIf { risk?.blocked != true && it.hasCall }?.probabilityUp
+}
 
 @Serializable
 data class MarketSnapshot(

@@ -85,7 +85,34 @@ data class TokenSafety(
     /** GoPlus marks a few well-known tokens as trusted. */
     val trusted: Boolean? = null,
     val checkedAtMs: Long = 0,
-)
+) {
+    /**
+     * Both checks together, the worse answer winning: a honeypot or owner power either source reports
+     * stays, the higher tax counts. Used to add honeypot.is to GoPlus and to keep earlier findings.
+     */
+    fun combinedWith(other: TokenSafety): TokenSafety = TokenSafety(
+        source = listOf(source, other.source).flatMap { it.split('+') }.distinct().joinToString("+"),
+        honeypot = worst(honeypot, other.honeypot),
+        buyTaxPct = listOfNotNull(buyTaxPct, other.buyTaxPct).maxOrNull(),
+        sellTaxPct = listOfNotNull(sellTaxPct, other.sellTaxPct).maxOrNull(),
+        mintable = worst(mintable, other.mintable),
+        freezable = worst(freezable, other.freezable),
+        ownerPowers = (ownerPowers + other.ownerPowers).distinct(),
+        ownerRenounced = if (ownerRenounced == false || other.ownerRenounced == false) false else ownerRenounced ?: other.ownerRenounced,
+        openSource = if (openSource == false || other.openSource == false) false else openSource ?: other.openSource,
+        proxy = worst(proxy, other.proxy),
+        transferFeePct = listOfNotNull(transferFeePct, other.transferFeePct).maxOrNull(),
+        holderCount = holderCount ?: other.holderCount,
+        top10HolderPct = listOfNotNull(top10HolderPct, other.top10HolderPct).maxOrNull(),
+        creatorPct = listOfNotNull(creatorPct, other.creatorPct).maxOrNull(),
+        lpLockedPct = listOfNotNull(lpLockedPct, other.lpLockedPct).minOrNull(),
+        cexListed = (cexListed + other.cexListed).distinct(),
+        trusted = if (trusted == false || other.trusted == false) false else trusted ?: other.trusted,
+        checkedAtMs = maxOf(checkedAtMs, other.checkedAtMs),
+    )
+
+    private fun worst(a: Boolean?, b: Boolean?): Boolean? = if (a == true || b == true) true else a ?: b
+}
 
 /** 0..100, higher = riskier, with the reasons; [blocked] = never show an "up" probability. */
 @Serializable
