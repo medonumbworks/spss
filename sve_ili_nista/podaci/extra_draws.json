@@ -441,5 +441,26 @@
   "sources": [
    "snimka zaslona korisnika"
   ]
+ },
+ {
+  "date": "19.10.2026",
+  "kolo": 292,
+  "numbers": [
+   3,
+   4,
+   5,
+   7,
+   8,
+   9,
+   10,
+   12,
+   14,
+   15,
+   21
+  ],
+  "status": "user-screenshot",
+  "sources": [
+   "snimka zaslona korisnika"
+  ]
  }
 ]
