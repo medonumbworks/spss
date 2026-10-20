@@ -1,0 +1,336 @@
+{
+ "diag": {
+  "bayes": {
+   "prior": "Beta(1,1) flat prior in the numeric fields; Beta(50,50) (100 pseudo-draws at 0.5) computed in parallel and reported in results.json and in this summary",
+   "min_posterior_mean": 0.45593,
+   "max_posterior_mean": 0.53343,
+   "min_prob_rate_above_half": 0.0118,
+   "max_prob_rate_above_half": 0.957,
+   "hierarchical_between_number_sd_estimate": 0.00364,
+   "bayes_factor_uniform_vs_free": 8.08e+23,
+   "summary": "656 draws, 7216 ball slots. Per-number counts range 299 (no. 13) to 350 (nos. 7 and 15); null mean 328. Beta(1,1) posterior means 0.456-0.533; 95% intervals: only no. 13 excludes 0.5 ([0.418,0.494]), nos. 7/15 are [0.495,0.571]; one of 22 intervals missing 0.5 is exactly what 22 independent-looking tests produce at 5%. P(p_n>0.5): min 0.012 (no. 13), max 0.957 (nos. 7, 15). Beta(50,50) shrinks to 0.462-0.529 and P(p>0.5) 0.017-0.945 (CI for no. 13 then [0.426,0.497]). Dispersion test with the 11-of-22 covariance (Var=N/4, Cov=-N/84, so sum (c-N/2)^2/((N/4)(22/21)) ~ chi2_21): Q=21.70, p=0.417 analytic, 0.452 by 500-history Monte Carlo - the spread of counts is exactly what uniform draws give. Hierarchical method of moments: sample variance of rates 4.125e-4 vs null expectation 3.992e-4 (MC 4.03e-4) -> tau^2=1.33e-5, tau=0.0036, i.e. true inclusion rates differ by at most ~0.4 percentage points around 0.5 and even that is within the sampling noise of tau itself. Bayes factors for 'all p_n=0.5' vs free rates: product-binomial Beta(1,1) marginal likelihood (variance-correct) 8.1e23 (log10 23.9); Beta(50,50) 2.5e5; Dirichlet-multinomial on ball slots alpha=1: 5.3e24, alpha=0.5: 3.7e28, alpha=50: 1.2e7; BIC approximation with n=656 draws 4.3e24 (with n=7216 slots 1.1e38). Every variant is decisive for the uniform model. Implication for picking numbers: the posterior ranking is noise. Even taking the Beta(1,1) posterior means literally and playing the 11 highest (7,15,19,16,3,17,1,8,5,21,22) would multiply the jackpot probability by only 1.22 (1/352716 -> about 1/288000) under a conditional-Bernoulli model, and the walk-forward 'long-run frequency' ticket shows that ranking does not even persist out of sample (5.504 hits/draw vs 5.5). No number deserves preference; the complement symmetry means the 'cold' ticket is equally (un)attractive."
+  },
+  "entropy": {
+   "shannon_bits": 4.45829,
+   "max_bits": 4.45943,
+   "compression_ratio_observed": 1.0061,
+   "compression_ratio_simulated_mean": 1.0061,
+   "compression_ratio_simulated_sd": 0,
+   "serial_test_p": 0.474,
+   "summary": "Shannon entropy of the empirical number distribution 4.45829 bits vs log2(22)=4.45943; the 0.0011-bit deficit equals the finite-sample deficit of uniform histories (500-history MC mean 4.45832, sd 0.00034, z=-0.08). Compression of the 656x22 incidence matrix packed to 1804 bytes: zlib(9) ratio 1.00610 observed, simulated 1.00610 +- 0.0 (z=0; degenerate because zlib/lzma emit incompressible input as stored blocks with fixed overhead, lzma 1.0333 likewise identical for all histories); the informative variants are bz2 1.2373 vs 1.2192 +- 0.0087 (z=+2.08, observed LESS compressible than 99% of uniform histories) and zlib on the sorted numbers-as-bytes encoding (7216 bytes) 0.4020 vs 0.3988 +- 0.0017 (z=+1.86, also less compressible). No compressor finds structure. Serial test: overlap of consecutive draws vs Hypergeometric(22,11,11) in bins <=3,4,5,6,7,>=8: chi2=4.54 on 5 df, p=0.474 (MC p=0.456); mean lag-1 overlap 5.565 vs 5.5 (z=+1.38); lag 1..10 overlap z-scores +1.38,+0.46,+1.03,-0.36,-0.28,-1.27,-0.51,+1.54,+1.88,+0.46 (none significant after 10 lags); lag-1 conditional entropy H(X_t|X_t-1)=0.99990 bits, mutual information 0.0001 bits, P(1|1)=0.506, P(1|0)=0.494. Other diagnostics: Wald-Wolfowitz runs test aggregated over the 22 number series z=-1.42 (p=0.16), 0/22 numbers individually significant; sum of drawn numbers mean 127.1 vs 126.5 (z=+0.45); even-count mean 5.41 vs 5.5 (z=-1.89, p=0.06); weekday x number association MC p=0.20; pooled gap distribution vs Geometric(1/2) chi2=4.81 on 5 df, p=0.44. All axes are consistent with i.i.d. uniform 11-of-22 draws."
+  },
+  "ml": {
+   "model": "Per-number ridge logistic regression (numpy Newton/IRLS, L2=1 on standardized features): lags 1..7 of the number's 0/1 series, rolling frequency over last 30 and 90 draws, current gap, day-of-week one-hot (17 features + intercept); walk-forward on draws t=200..655 (0-based), refit every 20 draws (23 refits) using only draws < refit time; random tie-break; Monte-Carlo null (4000 sims) conditional on the prediction sequence",
+   "n_test_draws": 456,
+   "logloss_model": 0.73708,
+   "logloss_baseline": 0.693147,
+   "brier_model": 0.26798,
+   "brier_baseline": 0.25,
+   "auc": 0.5065,
+   "top11_mean_hits": 5.5636,
+   "top11_z": 1.132,
+   "top11_extreme_frac": 0.0768,
+   "random_baseline_mean_hits": 5.5017,
+   "summary": "Per-number LR is WORSE than the coin-flip baseline out of sample: log-loss 0.7371 vs ln2=0.6931 (paired per-draw t=+12.1 in the wrong direction; MC p that a null draw sequence would give an equal or lower log-loss = 0.22), Brier 0.2680 vs 0.25, AUC 0.5065 (MC p=0.12). It is badly overconfident: predicted deciles 0.26 -> observed 0.49, 0.75 -> observed 0.51; predicted probabilities span 0.015-0.988 with no corresponding signal. Its top-11 ticket scored 5.564 hits/draw vs 5.5 (z=+1.13, p=0.26 normal, 0.24 MC) and produced FEWER extreme outcomes (<=3 or >=8 hits) than chance: 0.0768 vs 0.0861 (35 of 456 draws; MC p=0.79), hits histogram 2:2,3:15,4:64,5:143,6:126,7:88,8:17,9:1, never 0/1/10/11. Stronger ridge (L2=10): log-loss 0.7145, hits 5.546 (z=0.82), extreme 0.0724. Pooled LR (shared coefficients): log-loss 0.6944, AUC 0.491, hits 5.496, extreme 0.1075 (MC p=0.07). Markov lag-1 per number: log-loss 0.6957, AUC 0.499, hits 5.478. Pooled gap-hazard ('due' numbers): log-loss 0.6938, hits 5.546 (tie-break average 5.489). Hot-30 rule: hits 5.393 (z=-1.91, p=0.056), its exact complement cold-30: 5.607 (same |z|, extreme 0.0680) - the smallest p among all tests. Hot-90: 5.456; long-run frequency: 5.504. Random-ticket baseline (2000 random tickets per draw vs real outcomes): 5.5017 hits, extreme 0.0861; the SD of mean hits across 4000 one-random-ticket-per-draw strategies is 0.0557 vs theory 1.2002/sqrt(456)=0.0562, validating the z formula. Holm-Bonferroni over 45 model x metric tests: min raw p=0.056, min adjusted p=1.0. If the per-number LR probabilities were literally true the top ticket's jackpot odds would be 50x better (median 23x) - but those probabilities are refuted by the out-of-sample log-loss; under the pooled LR the implied multiplier is 1.19 and under the static posterior-mean ticket 1.22. Realised predictive power: none."
+  },
+  "other_models": [
+   {
+    "name": "logreg_pooled_L2=1 (shared coefficients, same features)",
+    "metric": "mean log-loss (MC one-sided p)",
+    "value": 0.69442,
+    "baseline": 0.693147,
+    "p_value": 0.967
+   },
+   {
+    "name": "logreg_pooled_L2=1",
+    "metric": "top-11 mean hits (two-sided normal p)",
+    "value": 5.4956,
+    "baseline": 5.5,
+    "p_value": 0.938
+   },
+   {
+    "name": "logreg_pooled_L2=1",
+    "metric": "top-11 extreme fraction (MC one-sided p)",
+    "value": 0.1075,
+    "baseline": 0.0861,
+    "p_value": 0.0695
+   },
+   {
+    "name": "logreg_per_number_L2=10",
+    "metric": "mean log-loss (MC one-sided p)",
+    "value": 0.71446,
+    "baseline": 0.693147,
+    "p_value": 0.141
+   },
+   {
+    "name": "logreg_per_number_L2=10",
+    "metric": "top-11 mean hits (two-sided normal p)",
+    "value": 5.5461,
+    "baseline": 5.5,
+    "p_value": 0.413
+   },
+   {
+    "name": "markov_lag1_per_number (Laplace-smoothed transition rates)",
+    "metric": "mean log-loss (MC one-sided p)",
+    "value": 0.69574,
+    "baseline": 0.693147,
+    "p_value": 0.569
+   },
+   {
+    "name": "markov_lag1_per_number",
+    "metric": "AUC (MC one-sided p)",
+    "value": 0.4994,
+    "baseline": 0.5,
+    "p_value": 0.548
+   },
+   {
+    "name": "markov_lag1_per_number",
+    "metric": "top-11 mean hits (two-sided normal p)",
+    "value": 5.4781,
+    "baseline": 5.5,
+    "p_value": 0.696
+   },
+   {
+    "name": "gap_hazard_pooled ('due' numbers, hazard by current gap)",
+    "metric": "mean log-loss (MC one-sided p)",
+    "value": 0.69378,
+    "baseline": 0.693147,
+    "p_value": 0.678
+   },
+   {
+    "name": "gap_hazard_pooled",
+    "metric": "top-11 mean hits (two-sided normal p; tie-break average 5.489)",
+    "value": 5.5461,
+    "baseline": 5.5,
+    "p_value": 0.413
+   },
+   {
+    "name": "rolling_freq_30_hot (11 hottest numbers of last 30 draws)",
+    "metric": "top-11 mean hits (two-sided normal p; tie-break average 5.391)",
+    "value": 5.3925,
+    "baseline": 5.5,
+    "p_value": 0.0559
+   },
+   {
+    "name": "rolling_freq_30_hot",
+    "metric": "mean log-loss of shrunk window frequency (MC one-sided p)",
+    "value": 0.7041,
+    "baseline": 0.693147,
+    "p_value": 0.808
+   },
+   {
+    "name": "cold_30 (exact complement of hot-30 ticket)",
+    "metric": "top-11 mean hits (two-sided normal p; mirror of hot-30)",
+    "value": 5.6075,
+    "baseline": 5.5,
+    "p_value": 0.0559
+   },
+   {
+    "name": "cold_30 (exact complement of hot-30 ticket)",
+    "metric": "top-11 extreme fraction (MC one-sided p)",
+    "value": 0.068,
+    "baseline": 0.0861,
+    "p_value": 0.931
+   },
+   {
+    "name": "rolling_freq_90_hot",
+    "metric": "top-11 mean hits (two-sided normal p)",
+    "value": 5.4561,
+    "baseline": 5.5,
+    "p_value": 0.435
+   },
+   {
+    "name": "longrun_freq_hot (11 most frequent numbers over all prior draws)",
+    "metric": "top-11 mean hits (two-sided normal p)",
+    "value": 5.5044,
+    "baseline": 5.5,
+    "p_value": 0.938
+   },
+   {
+    "name": "longrun_freq_hot",
+    "metric": "top-11 extreme fraction (MC one-sided p)",
+    "value": 0.1031,
+    "baseline": 0.0861,
+    "p_value": 0.11
+   },
+   {
+    "name": "random_ticket_baseline (2000 random tickets per draw vs real outcomes)",
+    "metric": "mean hits",
+    "value": 5.5017,
+    "baseline": 5.5
+   },
+   {
+    "name": "random_ticket_baseline",
+    "metric": "extreme fraction",
+    "value": 0.0861,
+    "baseline": 0.0861
+   },
+   {
+    "name": "Holm-Bonferroni over all 45 model x metric tests",
+    "metric": "min adjusted p (min raw p = 0.0559)",
+    "value": 1,
+    "baseline": 0.05,
+    "p_value": 1
+   }
+  ],
+  "predictive_power_found": false,
+  "script_path": "/tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/portfolio/agents/diag/diag_analysis.py",
+  "overall": "The 656-draw history (01.01.2025-19.10.2026, one empty row skipped, Dan column matches the dates, one 2-day calendar gap) is statistically indistinguishable from i.i.d. uniform 11-of-22 draws on every axis examined: marginal frequencies (chi2 dispersion p=0.42, hierarchical between-number SD 0.0036, Bayes factors of 1e5-1e24 for 'all rates = 0.5' depending on prior), Shannon entropy (z=-0.08 vs uniform histories), compressibility (no compressor beats the uniform-history reference; bz2 and byte encodings find the real data slightly LESS compressible), serial dependence (lag-1 overlap chi2 p=0.47, conditional entropy 0.99990 bits, lags 1-10 all |z|<1.9), runs, gaps, sums, parity and weekday effects. In strictly chronological walk-forward validation over 456 test draws, no predictor beats the random baseline: the per-number logistic regression is significantly WORSE than a coin flip (log-loss 0.737 vs 0.693, Brier 0.268 vs 0.25) because it fits noise, its AUC is 0.507, and its top-11 ticket scores 5.56 hits/draw (z=+1.1) with fewer extreme outcomes than chance (0.077 vs 0.086). Pooled LR, Markov lag-1, gap-hazard, hot/cold 30/90-draw and long-run frequency rules all land within noise (|z|<=1.9); the smallest raw p of 45 tests is 0.056 and the Holm-adjusted minimum is 1.0. Even the most charitable reading - taking the Beta(1,1) posterior means as true and playing the 11 highest - would raise the jackpot probability by a factor of 1.22 (1/352716 -> ~1/288000), moving the expected return of a 1.30 EUR ticket from 0.539 EUR (41.5%) to 0.590 EUR (45.4%) under the stated prize table, still a loss of more than half the stake; the realised out-of-sample edge is zero. predictive_power_found=false. Outputs: /tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/portfolio/agents/diag/diag_analysis.py (script), .../diag/results.json (all numbers incl. per-number posteriors, MC null distributions, calibration, economics), .../diag/run_log.txt (console log)."
+ },
+ "port": {
+  "portfolio10": {
+   "union_all": 61050,
+   "union_hi": 2440,
+   "union_jp": 20,
+   "p_any_prize": 0.08654271425169258,
+   "p_hi_prize": 0.0034588734279136757,
+   "p_jackpot": 2.835142154027603e-05,
+   "ev_total_eur": 5.389888749021876,
+   "payout_distribution": [
+    {
+     "payout_eur": 0,
+     "n_draws": 644382
+    },
+    {
+     "payout_eur": 26,
+     "n_draws": 56846
+    },
+    {
+     "payout_eur": 52,
+     "n_draws": 1746
+    },
+    {
+     "payout_eur": 78,
+     "n_draws": 18
+    },
+    {
+     "payout_eur": 260,
+     "n_draws": 2312
+    },
+    {
+     "payout_eur": 286,
+     "n_draws": 108
+    },
+    {
+     "payout_eur": 80000,
+     "n_draws": 20
+    }
+   ]
+  },
+  "f_k_overlap": [
+   {
+    "k": 0,
+    "joint_prize_draws": 6294,
+    "joint_hi_draws": 244
+   },
+   {
+    "k": 1,
+    "joint_prize_draws": 2244,
+    "joint_hi_draws": 44
+   },
+   {
+    "k": 2,
+    "joint_prize_draws": 948,
+    "joint_hi_draws": 8
+   },
+   {
+    "k": 3,
+    "joint_prize_draws": 324,
+    "joint_hi_draws": 0
+   },
+   {
+    "k": 4,
+    "joint_prize_draws": 72,
+    "joint_hi_draws": 0
+   },
+   {
+    "k": 5,
+    "joint_prize_draws": 0,
+    "joint_hi_draws": 0
+   },
+   {
+    "k": 6,
+    "joint_prize_draws": 0,
+    "joint_hi_draws": 0
+   },
+   {
+    "k": 7,
+    "joint_prize_draws": 72,
+    "joint_hi_draws": 0
+   },
+   {
+    "k": 8,
+    "joint_prize_draws": 324,
+    "joint_hi_draws": 0
+   },
+   {
+    "k": 9,
+    "joint_prize_draws": 948,
+    "joint_hi_draws": 8
+   },
+   {
+    "k": 10,
+    "joint_prize_draws": 2244,
+    "joint_hi_draws": 44
+   },
+   {
+    "k": 11,
+    "joint_prize_draws": 6294,
+    "joint_hi_draws": 244
+   }
+  ],
+  "best3": {
+   "tickets": [
+    [
+     1,
+     2,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     14
+    ],
+    [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     12,
+     13,
+     16,
+     17
+    ],
+    [
+     1,
+     3,
+     4,
+     5,
+     8,
+     9,
+     11,
+     12,
+     15,
+     17,
+     19
+    ]
+   ],
+   "union_all_13": 79932,
+   "union_hi_13": 3172,
+   "union_jp_13": 26,
+   "p_any_prize_13": 0.11330929132786718,
+   "exhaustive": true,
+   "method": "Exact. All 352716 candidate 11-subsets containing number 1 (the other 352716 are complements with identical prize sets) were evaluated exactly at every step: for the union U of the current portfolio, cnt(c)=#{d in U: |c&d| in H} was computed for ALL candidates simultaneously with two zeta transforms over the 2^22 lattice (N(S)=#{d in U: S subset d} by superset-sum; cnt(c)=sum_{S subset c} w(|S|)N(S) by subset-sum, w(s)=sum_{h in H}(-1)^(s-h)C(s,h)), verified against direct vectorised popcount (6294/244 for every candidate when U=all draws; 40 random candidates vs direct count at step 1; final 13-portfolio re-evaluated by direct popcount). Greedy 3 picks (gain = 6294 - overlap_all, tie-break 244 - overlap_hi, then lowest 22-bit mask), then coordinate-ascent swaps, each swap step exhaustive over all candidates; one full sweep found no improvement. Duplicates and complements of existing tickets excluded. Result 79932 = 61050 + 3*6294 equals the absolute upper bound (each ticket wins in exactly 6294 draws), so the triple is a certified global optimum for union_all; likewise union_hi 3172 = 2440 + 3*244 and union_jp 26 = 20 + 6 are the maxima. The optimum is highly non-unique: 1816 candidates have win sets fully disjoint from the 10-ticket union (gain 6294), 814019 pairs and 116006224 triples of them are mutually disjoint, and every such triple yields the identical 13-ticket payout distribution."
+  },
+  "random3_union_all_mean": 78138.79333333333,
+  "random3_union_all_max": 79288,
+  "script_path": "/tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/portfolio/agents/portfolio/portfolio_exact.py",
+  "notes": "All numbers are exact counts over the 705432 enumerated draws (22-bit integers, numpy bitwise_count); runtime ~20 s. Results JSON: /tmp/claude-0/-home-user-spss/133e74c5-7dba-5a24-94e5-4c9205b6e08b/scratchpad/work/portfolio/agents/portfolio/results.json. Sanity checks passed: single ticket wins in 6294 draws (2 jackpot + 242 at 260 + 6050 at 26), payout sum 380220, EV 0.5389889 EUR. PORTFOLIO 10 (unchanged): union_all 61050 (max possible 62940, so 1890 draws lost to overlap), union_hi 2440 (max 2440, no overlap in the high tiers), union_jp 20 (max 20); P(any prize)=0.086543, P(>=260)=0.003459, P(jackpot)=2.835e-5 (1 in 35272); EV 5.389889 EUR on a 13.00 EUR stake (41.46 % return); payout distribution: 0 EUR in 644382 draws, 26 in 56846, 52 in 1746, 78 in 18, 260 in 2312, 286 in 108, 80000 in 20. Pairwise shared numbers among the 10 range 3..8 (three pairs share 8 or 3 numbers, i.e. distance 3 to a ticket/complement). OVERLAP f(k) (joint any-prize / joint >=260 draws): k=0,11: 6294/244 (identical prize sets: complement pair); k=1,10: 2244/44; k=2,9: 948/8; k=3,8: 324/0; k=4,7: 72/0; k=5,6: 0/0. Hence two tickets have DISJOINT win sets iff they share exactly 5 or 6 numbers; pair union of two tickets is at most 12588 draws. BEST 3 ADDITIONAL TICKETS: [1,2,4,5,6,7,8,9,10,11,14], [1,2,3,4,5,6,7,12,13,16,17], [1,3,4,5,8,9,11,12,15,17,19]. They share exactly 5 or 6 numbers with every existing ticket and with each other, so their win sets are disjoint from the current union and from each other: 13-ticket union_all 79932 (P=0.113309, 1 in 8.83), union_hi 3172 (P=0.0044965), union_jp 26 (P=3.686e-5); gain over the 10-ticket portfolio is exactly 3*6294=18882 draws, the theoretical maximum, so this is a certified global optimum (not just per-step exhaustive). 13-ticket payout distribution: 0 EUR in 625500 draws, 26 in 74996, 52 in 1746, 78 in 18, 260 in 3038, 286 in 108, 80000 in 26; EV 7.006855 EUR on 16.90 EUR stake (EV is additive, so ticket choice never changes the expected return of 41.46 %; union maximisation only reshapes the distribution: more frequent, never-stacked small wins). Ties: 1816 candidates achieve the full gain at step 1 (837 at step 2, 362 at step 3; 116006224 optimal triples exist in total); the reported triple is the lexicographically smallest by 22-bit mask at each step; any optimal triple gives the identical payout distribution. RANDOM COMPARISON: 300 random triples (seed 20261020, uniform 11-subsets, duplicates/complements of existing or each other rejected; 0 rejections occurred): union_all mean 78138.79, std 672.68, min 75190, max 79288; union_hi mean 3169.09, max 3172; none reached 79932. HISTORICAL NOTE (data file used only for this; 656 valid draws, the empty 27.06.2026 row skipped): the 10-ticket portfolio would have won something in 68 of 656 past draws (null expectation 56.77) paying 2522 EUR total against 8528 EUR of stakes; the 13-ticket portfolio in 89 draws (expected 74.33) paying 3302 EUR against 11086 EUR. These are in-sample back-tests under the null and carry no predictive value. CAVEATS: the 260/26 EUR tiers come from secondary sources as instructed; all counts (union_all, union_hi, union_jp, f(k) for any-prize) depend only on which hit counts pay, not on the amounts, so only ev_total_eur and payout values would change if the lower tiers differ."
+ }
+}
