@@ -1,0 +1,20 @@
+{
+ "version": 1,
+ "generated": "2026-10-19",
+ "assets": [
+  {"symbol": "BTC", "name": "Bitcoin", "coingeckoId": "bitcoin", "rank": 1, "verified": true},
+  {"symbol": "ETH", "name": "Ethereum", "coingeckoId": "ethereum", "rank": 2, "verified": true},
+  {"symbol": "SOL", "name": "Solana", "coingeckoId": "solana", "rank": 7, "verified": true},
+  {"symbol": "DOGE", "name": "Doge", "coingeckoId": "dogecoin", "rank": 11, "verified": true},
+  {"symbol": "LINK", "name": "Chainlink", "coingeckoId": "chainlink", "rank": 12, "verified": true},
+  {"symbol": "NEAR", "name": "NEAR Protocol", "coingeckoId": "near", "rank": 14, "verified": true},
+  {"symbol": "XRP", "name": "XRP", "coingeckoId": "ripple", "rank": 5, "verified": true},
+  {"symbol": "M", "name": "MemeCore", "coingeckoId": "memecore", "rank": 49, "verified": true},
+  {"symbol": "SUN", "name": "Sun (New)", "coingeckoId": "sun-token", "rank": 120, "verified": true},
+  {"symbol": "BEST", "name": "Bitpanda Ecosystem Token", "coingeckoId": "bitpanda-ecosystem-token", "rank": null, "verified": true},
+  {"symbol": "PYTH", "name": "Pyth Network", "coingeckoId": "pyth-network", "rank": 90, "verified": false},
+  {"symbol": "SAND", "name": "The Sandbox", "coingeckoId": "the-sandbox", "rank": 110, "verified": true},
+  {"symbol": "usdg", "name": "Global Dollar", "coingeckoId": "global-dollar", "rank": 28, "verified": true},
+  {"symbol": "BTC", "name": "Duplicate Bitcoin row", "coingeckoId": "bitcoin", "rank": 1, "verified": true}
+ ]
+}

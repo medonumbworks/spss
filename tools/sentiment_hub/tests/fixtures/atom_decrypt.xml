@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>Decrypt</title>
+  <id>https://decrypt.co/</id>
+  <updated>2026-10-19T09:30:00Z</updated>
+  <link rel="self" href="https://decrypt.co/feed"/>
+  <link rel="alternate" href="https://decrypt.co/"/>
+  <entry>
+    <title type="html">Ethereum &lt;em&gt;staking&lt;/em&gt; hits new high</title>
+    <id>tag:decrypt.co,2026:post-1</id>
+    <link rel="enclosure" href="https://cdn.decrypt.co/eth.jpg" type="image/jpeg"/>
+    <link rel="alternate" type="text/html" href="https://decrypt.co/300001/ethereum-staking-new-high"/>
+    <published>2026-10-19T07:00:00Z</published>
+    <updated>2026-10-19T07:30:00Z</updated>
+    <summary type="html">&lt;p&gt;More than 35M ETH is now staked, a bullish sign for the network.&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <title>Dogecoin traders brace for volatility</title>
+    <id>tag:decrypt.co,2026:post-2</id>
+    <link href="https://decrypt.co/300002/dogecoin-volatility"/>
+    <updated>2026-10-18T23:15:00+02:00</updated>
+    <content type="html">&lt;div&gt;Doge options open interest doubled overnight.&lt;/div&gt;</content>
+  </entry>
+</feed>

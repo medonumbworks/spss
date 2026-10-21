@@ -1,0 +1,183 @@
+# Hourly dashboard: one full CryptoPulse refresh exported as data/dashboard.json (schema
+# cryptopulse.dashboard/v1, documented in web/app.js) and published together with the PWA shell
+# from web/ to the single-commit branch `pwa` and, when enabled, to GitHub Pages:
+#   https://medonumbworks.github.io/spss/
+# Optional Telegram alerts reuse the TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID secrets of the
+# telegram-digest workflow. Free for public repositories.
+name: dashboard
+
+on:
+  schedule:
+    - cron: '41 * * * *'
+  workflow_dispatch:
+  # push runs rebuild the site but never send Telegram alerts (see that step's guard): a stale
+  # branch would otherwise restore the hourly cache cold or out of order and re-announce crossings
+  push:
+    branches-ignore:
+      - sentiment-feed
+      - pwa
+      - api-samples
+    paths:
+      - 'web/**'
+      - '.github/workflows/dashboard.yml'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: dashboard
+  cancel-in-progress: false
+
+jobs:
+  dashboard:
+    name: Export and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          # The write token must not sit in .git/config while Gradle and the export (which parses
+          # untrusted web content) run; only the publish step gets it, via env.
+          persist-credentials: false
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      # The forecast journal and the alert state live in the cache directory. Every hourly run
+      # scores the forecasts that came due and logs the fresh ones, so the accuracy numbers only
+      # fill in when that state survives between runs: run_id makes each run save an updated copy
+      # and restore-keys pulls the newest previous one.
+      - name: Restore the journal and alert state
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/cryptopulse-dashboard
+          key: dashboard-state-${{ github.run_id }}
+          restore-keys: |
+            dashboard-state-
+
+      - name: Build the CryptoPulse engine
+        run: ./gradlew :mcp-server:installDist -Pcryptopulse.skipAndroid=true -q
+
+      - name: Export the dashboard data
+        env:
+          COINGECKO_DEMO_KEY: ${{ secrets.COINGECKO_DEMO_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/site/data"
+          CRYPTOPULSE_CACHE_DIR="$HOME/.cache/cryptopulse-dashboard" \
+            timeout 600 mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp export "$RUNNER_TEMP/site/data/dashboard.json"
+
+      - name: Assemble the site
+        run: |
+          set -euo pipefail
+          # web/ ships a committed sample at data/dashboard.json; keep the fresh export aside
+          # while copying the shell so the fresh file wins
+          fresh="$RUNNER_TEMP/dashboard.fresh.json"
+          cp "$RUNNER_TEMP/site/data/dashboard.json" "$fresh"
+          cp -r web/. "$RUNNER_TEMP/site/"
+          # a changed shell must invalidate the service worker's precache without a hand-bumped version
+          sed -i "s/cryptopulse-shell-v[0-9]*/cryptopulse-shell-${GITHUB_SHA::12}/" "$RUNNER_TEMP/site/sw.js"
+          grep -q "cryptopulse-shell-${GITHUB_SHA::12}" "$RUNNER_TEMP/site/sw.js"   # fail loudly if the name ever stops matching
+          rm -rf "$RUNNER_TEMP/site/tools"   # development-only validation script, not part of the site
+          cp "$fresh" "$RUNNER_TEMP/site/data/dashboard.json"
+
+      - name: Telegram alerts (optional secrets)
+        if: github.event_name != 'push'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          set -euo pipefail
+          if [ -z "${TELEGRAM_BOT_TOKEN:-}" ] || [ -z "${TELEGRAM_CHAT_ID:-}" ]; then
+            echo "No TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID secrets; skipping alert delivery."
+            exit 0
+          fi
+          python3 - "$RUNNER_TEMP/site/data/dashboard.json" > "$RUNNER_TEMP/alert.txt" <<'PY'
+          import json, sys
+          alerts = (json.load(open(sys.argv[1])).get("alerts") or [])[:10]
+          sign = {"EUR": "€", "USD": "$", "GBP": "£"}
+          def coin(a):
+              where = ""
+              p = a.get("price")
+              if isinstance(p, (int, float)):
+                  cur = a.get("currency") or ""
+                  amount = f"{p:,.0f}" if p >= 100 else f"{p:,.4g}"
+                  where = f" ({sign.get(cur, cur + ' ' if cur else '')}{amount})"
+              return f"{a['symbol']} {round(100 * a['probabilityUp'])}%{where}"
+          if alerts:
+              print("CryptoPulse: 24h up-chance crossings — " + ", ".join(coin(a) for a in alerts))
+          PY
+          if [ ! -s "$RUNNER_TEMP/alert.txt" ]; then
+            echo "No fresh threshold crossings this run."
+            exit 0
+          fi
+          cat "$RUNNER_TEMP/alert.txt"
+          # the token only travels in env and the curl arguments, never in the log
+          curl -fsS -o /dev/null -X POST \
+            --data-urlencode "chat_id=$TELEGRAM_CHAT_ID" \
+            --data-urlencode "disable_web_page_preview=true" \
+            --data-urlencode "text@$RUNNER_TEMP/alert.txt" \
+            "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
+            || echo "::warning::Telegram send failed; the dashboard still publishes."
+
+      # The branch publish mirrors sentiment-hub.yml: the pwa branch always holds exactly the
+      # current site as one fresh commit, so it works with zero repository settings.
+      - name: Publish the site to the pwa branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          pub="$RUNNER_TEMP/site"
+          generated=$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))["generatedAt"])' "$pub/data/dashboard.json")
+          cat > "$pub/README.md" <<EOF
+          # CryptoPulse dashboard (PWA)
+
+          Machine-generated every hour by the [dashboard workflow](https://github.com/${GITHUB_REPOSITORY}/actions/workflows/dashboard.yml)
+          from ${GITHUB_REF_NAME}@${GITHUB_SHA::7}. Last update: ${generated}.
+
+          - Live site (once GitHub Pages is on): https://medonumbworks.github.io/spss/
+          - To serve this branch instead: Settings -> Pages -> Source "Deploy from a branch" -> \`pwa\` / root
+          - Data contract: \`data/dashboard.json\`, schema \`cryptopulse.dashboard/v1\` (documented in \`web/app.js\` on the main branch)
+
+          This branch is replaced by a single new commit on every run; do not commit to it.
+          Forecasts are statistical estimates, information only, not financial advice.
+          EOF
+          cd "$pub"
+          git init -q -b pwa
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Dashboard ${generated}"
+          git push --force --quiet "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/pwa
+          echo "Published the dashboard to the pwa branch (${generated})"
+
+      # GitHub Pages, best effort: configure-pages tries to enable Pages itself, but on some repos
+      # that needs a one-time manual flip of Settings -> Pages -> Source to "GitHub Actions" (or to
+      # the pwa branch). Until then these steps fail quietly and the pwa branch above still works.
+      # No job-level `environment:` on purpose: a github-pages environment restricted to the default
+      # branch would otherwise block the whole job (export, alerts, branch publish included).
+      - name: Enable GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+        continue-on-error: true
+        with:
+          enablement: true
+
+      - name: Upload the site to Pages
+        if: steps.pages.outcome == 'success'
+        uses: actions/upload-pages-artifact@v3
+        continue-on-error: true
+        with:
+          path: ${{ runner.temp }}/site
+
+      - name: Deploy to Pages (environment github-pages)
+        if: steps.pages.outcome == 'success'
+        uses: actions/deploy-pages@v4
+        continue-on-error: true

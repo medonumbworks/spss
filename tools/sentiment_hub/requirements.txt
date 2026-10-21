@@ -1,0 +1,5 @@
+# Runtime dependencies of the sentiment hub (VADER-only scoring works with just these).
+requests>=2.31,<3
+beautifulsoup4>=4.12,<5
+vaderSentiment==3.3.2
+telethon>=1.36,<2

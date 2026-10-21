@@ -1,0 +1,68 @@
+# name<TAB>url<TAB>delay seconds before the request (CoinGecko keyless needs ~20 s from GitHub IPs)
+# --- CoinGecko: meme categories, trending
+cg_categories_list	https://api.coingecko.com/api/v3/coins/categories/list	1
+cg_meme_markets	https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=meme-token&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h,24h,7d,30d	20
+cg_trending	https://api.coingecko.com/api/v3/search/trending	20
+cg_categories	https://api.coingecko.com/api/v3/coins/categories?order=market_cap_change_24h_desc	20
+# --- GeckoTerminal (keyless, 30 calls/min)
+gt_trending	https://api.geckoterminal.com/api/v2/networks/trending_pools?include=base_token&page=1&duration=24h	1
+gt_trending_sol	https://api.geckoterminal.com/api/v2/networks/solana/trending_pools?include=base_token&page=1	2
+gt_new_pools	https://api.geckoterminal.com/api/v2/networks/new_pools?include=base_token&page=1	2
+gt_ohlcv	https://api.geckoterminal.com/api/v2/networks/solana/pools/{gt_trending_sol.data.0.attributes.address}/ohlcv/hour?aggregate=1&limit=168&currency=usd	2
+gt_token_info	https://api.geckoterminal.com/api/v2/networks/solana/tokens/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm/info	2
+gt_ohlcv_token	https://api.geckoterminal.com/api/v2/networks/solana/pools/D6NdKrKNQPmRZCCnG1GqXtF7MMoHB7qR6GU5TkG59Qz1/ohlcv/hour?aggregate=1&limit=24&currency=usd&token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm	30
+gt_networks	https://api.geckoterminal.com/api/v2/networks?page=1	2
+# --- DexScreener (keyless, 60-300 calls/min)
+ds_boosts_top	https://api.dexscreener.com/token-boosts/top/v1	1
+ds_boosts_latest	https://api.dexscreener.com/token-boosts/latest/v1	1
+ds_profiles_latest	https://api.dexscreener.com/token-profiles/latest/v1	1
+ds_takeovers	https://api.dexscreener.com/community-takeovers/latest/v1	1
+ds_tokens	https://api.dexscreener.com/tokens/v1/{ds_boosts_top.0.chainId}/{ds_boosts_top.0.tokenAddress}	1
+ds_tokens_wif	https://api.dexscreener.com/tokens/v1/solana/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm	1
+ds_search	https://api.dexscreener.com/latest/dex/search?q=pepe	1
+# --- token safety checks (keyless)
+goplus_eth	https://api.gopluslabs.io/api/v1/token_security/1?contract_addresses=0x6982508145454ce325ddbe47a25d4ec3d2311933	1
+goplus_sol	https://api.gopluslabs.io/api/v1/solana/token_security?contract_addresses=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm	1
+rugcheck	https://api.rugcheck.xyz/v1/tokens/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm/report/summary	1
+honeypot	https://api.honeypot.is/v2/IsHoneypot?address=0x6982508145454ce325ddbe47a25d4ec3d2311933	1
+# --- pump.fun (unofficial frontend API)
+pump_live	https://frontend-api-v3.pump.fun/coins/currently-live?limit=5&offset=0&includeNsfw=false	1
+pump_king	https://frontend-api-v3.pump.fun/coins/king-of-the-hill?includeNsfw=false	1
+pump_top	https://frontend-api-v3.pump.fun/coins?offset=0&limit=5&sort=market_cap&order=DESC&includeNsfw=false	1
+# --- alternatives to CoinGecko for prices/history (keyless)
+paprika_tickers	https://api.coinpaprika.com/v1/tickers?quotes=USD,EUR	1
+paprika_tags	https://api.coinpaprika.com/v1/tags	1
+paprika_meme_tag	https://api.coinpaprika.com/v1/tags/meme-coin?additional_fields=coins	1
+binance_vision_ticker	https://data-api.binance.vision/api/v3/ticker/24hr?symbols=%5B%22PEPEUSDT%22,%22WIFUSDT%22%5D	1
+binance_vision_klines	https://data-api.binance.vision/api/v3/klines?symbol=PEPEUSDT&interval=1h&limit=3	1
+binance_vision_exchangeinfo	https://data-api.binance.vision/api/v3/exchangeInfo?permissions=SPOT&symbolStatus=TRADING	1
+okx_funding	https://www.okx.com/api/v5/public/funding-rate?instId=PEPE-USDT-SWAP	1
+mexc_ticker_one	https://api.mexc.com/api/v3/ticker/24hr?symbol=PEPEUSDT	1
+gate_ticker_one	https://api.gateio.ws/api/v4/spot/tickers?currency_pair=PEPE_USDT	1
+# --- verification of batch behaviour and second-opinion safety sources
+goplus_eth_two	https://api.gopluslabs.io/api/v1/token_security/1?contract_addresses=0x6982508145454ce325ddbe47a25d4ec3d2311933,0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce	2
+goplus_sol_two	https://api.gopluslabs.io/api/v1/solana/token_security?contract_addresses=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm,DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263	2
+gt_token_info_young	https://api.geckoterminal.com/api/v2/networks/solana/tokens/{ds_boosts_top.0.tokenAddress}/info	3
+# --- Polymarket gamma API (keyless): crypto prediction markets
+polymarket_events_crypto	https://gamma-api.polymarket.com/events?tag_slug=crypto&closed=false&order=volume24hr&ascending=false&limit=50	1
+polymarket_markets_top	https://gamma-api.polymarket.com/markets?closed=false&order=volume24hr&ascending=false&limit=50	2
+polymarket_search_btc	https://gamma-api.polymarket.com/public-search?q=bitcoin&limit_per_type=10	2
+polymarket_events_top	https://gamma-api.polymarket.com/events?closed=false&order=volume24hr&ascending=false&limit=25	2
+# --- Forecast post-mortem (XRP / NEAR / TRX, last ~16 days): hourly + daily candles, FX, mood, funding history
+bn_1h_xrp	https://data-api.binance.vision/api/v3/klines?symbol=XRPUSDT&interval=1h&limit=400	1
+bn_1h_near	https://data-api.binance.vision/api/v3/klines?symbol=NEARUSDT&interval=1h&limit=400	1
+bn_1h_trx	https://data-api.binance.vision/api/v3/klines?symbol=TRXUSDT&interval=1h&limit=400	1
+bn_1h_btc	https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=400	1
+bn_1h_eth	https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=1h&limit=400	1
+bn_1h_eurusdt	https://data-api.binance.vision/api/v3/klines?symbol=EURUSDT&interval=1h&limit=400	1
+bn_1d_xrp	https://data-api.binance.vision/api/v3/klines?symbol=XRPUSDT&interval=1d&limit=400	1
+bn_1d_near	https://data-api.binance.vision/api/v3/klines?symbol=NEARUSDT&interval=1d&limit=400	1
+bn_1d_trx	https://data-api.binance.vision/api/v3/klines?symbol=TRXUSDT&interval=1d&limit=400	1
+bn_1d_btc	https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=400	1
+fng_hist	https://api.alternative.me/fng/?limit=20	1
+okx_fund_hist_trx	https://www.okx.com/api/v5/public/funding-rate-history?instId=TRX-USDT-SWAP&limit=30	1
+okx_fund_hist_xrp	https://www.okx.com/api/v5/public/funding-rate-history?instId=XRP-USDT-SWAP&limit=30	1
+okx_fund_hist_near	https://www.okx.com/api/v5/public/funding-rate-history?instId=NEAR-USDT-SWAP&limit=30	1
+cg_chart_tron	https://api.coingecko.com/api/v3/coins/tron/market_chart?vs_currency=eur&days=10	20
+cg_chart_ripple	https://api.coingecko.com/api/v3/coins/ripple/market_chart?vs_currency=eur&days=10	20
+cg_chart_near	https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=eur&days=10	20

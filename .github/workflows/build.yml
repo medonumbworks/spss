@@ -1,0 +1,123 @@
+name: build
+
+# Builds and tests everything on every push. Pushes publish the installable APK as the
+# "apk-latest" GitHub release so it can be downloaded straight to a phone.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  jvm:
+    name: Core + MCP server tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Test core and MCP server
+        run: ./gradlew :core:test :mcp-server:test :mcp-server:installDist -Pcryptopulse.skipAndroid=true --stacktrace
+      - name: MCP stdio smoke test
+        run: |
+          printf '%s\n' \
+            '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"ci","version":"0"}}}' \
+            '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+            '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+            | timeout 60 mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp 2>mcp-err.log > mcp-out.jsonl \
+            || { echo "server exit code $?"; cat mcp-err.log; exit 1; }
+          python3 - <<'PY'
+          import json
+          lines = [json.loads(l) for l in open("mcp-out.jsonl") if l.strip()]
+          tools = next(l for l in lines if l.get("id") == 2)["result"]["tools"]
+          names = sorted(t["name"] for t in tools)
+          print("tools:", names)
+          assert len(names) == 12, names
+          PY
+      - name: Live data check (real APIs, informational)
+        # Fixture tests cannot see API changes; this runs one real refresh from GitHub's network.
+        continue-on-error: true
+        timeout-minutes: 10
+        run: |
+          timeout 540 mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp check 2>live-check-err.log | tee live-check.md
+          cat live-check.md >> "$GITHUB_STEP_SUMMARY"
+          tail -n 40 live-check-err.log || true
+      - name: Package MCP server
+        run: |
+          cd mcp-server/build/install
+          zip -qr ../../../cryptopulse-mcp.zip cryptopulse-mcp
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cryptopulse-mcp
+          path: cryptopulse-mcp.zip
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: jvm-test-reports
+          path: "**/build/reports/tests/"
+
+  android:
+    name: Android APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Android SDK info
+        # ubuntu-latest ships the Android SDK with accepted licences; AGP downloads missing platforms itself.
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls "$ANDROID_HOME/platforms" "$ANDROID_HOME/build-tools" || true
+      - name: Build debug APK
+        run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --stacktrace
+      - name: Rename APK
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/debug/app-debug.apk dist/CryptoPulse.apk
+          ls -la dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CryptoPulse-apk
+          path: dist/CryptoPulse.apk
+
+  publish:
+    name: Publish APK release
+    needs: [jvm, android]
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: CryptoPulse-apk
+          path: dist
+      - uses: actions/download-artifact@v4
+        with:
+          name: cryptopulse-mcp
+          path: dist
+      - name: Replace the apk-latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release delete apk-latest --yes --cleanup-tag || true
+          gh release create apk-latest dist/CryptoPulse.apk dist/cryptopulse-mcp.zip \
+            --prerelease \
+            --target "${GITHUB_SHA}" \
+            --title "CryptoPulse - latest build" \
+            --notes "Built from ${GITHUB_REF_NAME} at ${GITHUB_SHA}. Install CryptoPulse.apk on Android 8+ (allow installs from your browser). cryptopulse-mcp.zip is the MCP server (needs Java 17+). Probabilities, not financial advice."

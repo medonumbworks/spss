@@ -1,0 +1,17 @@
+# Small crypto overlay used by the tests (same format as core/src/main/resources/sentiment/crypto_lexicon.tsv).
+# term<TAB>valence<TAB>optional comment
+hodl	2.0	holding = bullish
+rekt	-3.0
+fud	-1.8	fear, uncertainty, doubt
+bullish	2.6
+bearish	-2.6
+to the moon	3.0	phrase -> to_the_moon
+the moon	0.5	shorter phrase, applied after "to the moon"
+bull run	2.4
+rug pull	-3.4
+Buy The Dip	1.5	mixed case in the file is lowercased
+🚀	2.5	emoji_rocket
+📉	-2.0	emoji_chart_decreasing
+💎🙌	2.2	emoji_diamond_hands
+this line has no valence column
+broken	not-a-number

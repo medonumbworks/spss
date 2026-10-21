@@ -1,0 +1,86 @@
+name: telegram-digest
+
+# Sends a short market briefing (best 24h/7d odds, coins near lows, biggest moves) to your own
+# Telegram three times a day. Free: runs on GitHub Actions.
+#
+# Needs EITHER the Telethon account secrets (sent to your "Saved Messages"):
+#   TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION   (see tools/sentiment_hub/README.md)
+# OR a bot (sent to the chat you choose):
+#   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+# Language: repository variable DIGEST_LANG = hr (default) or en.
+on:
+  schedule:
+    - cron: "41 5,11,17 * * *"
+  workflow_dispatch:
+    inputs:
+      lang:
+        description: "Language (hr or en)"
+        required: false
+        default: "hr"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: telegram-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+      TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+      TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      COINGECKO_DEMO_KEY: ${{ secrets.COINGECKO_DEMO_KEY }}
+    steps:
+      - name: Check that a Telegram destination is configured
+        id: check
+        run: |
+          if [ -n "$TELEGRAM_SESSION" ] || { [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; }; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No Telegram secrets yet; see tools/sentiment_hub/README.md. Skipping."
+          fi
+      - name: Keep the digest's own forecast journal and alert state between runs
+        if: steps.check.outputs.configured == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/cryptopulse-digest
+          key: digest-state-${{ github.run_id }}
+          restore-keys: |
+            digest-state-
+      - uses: actions/checkout@v4
+        if: steps.check.outputs.configured == 'true'
+      - uses: actions/setup-java@v4
+        if: steps.check.outputs.configured == 'true'
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v4
+        if: steps.check.outputs.configured == 'true'
+      - uses: actions/setup-python@v5
+        if: steps.check.outputs.configured == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/sentiment_hub/requirements.txt
+      - name: Build the CryptoPulse engine
+        if: steps.check.outputs.configured == 'true'
+        run: ./gradlew :mcp-server:installDist -Pcryptopulse.skipAndroid=true -q
+      - name: Create the digest
+        if: steps.check.outputs.configured == 'true'
+        env:
+          LANG_CHOICE: ${{ github.event.inputs.lang || vars.DIGEST_LANG || 'hr' }}
+        run: |
+          CRYPTOPULSE_CACHE_DIR="$HOME/.cache/cryptopulse-digest" mcp-server/build/install/cryptopulse-mcp/bin/cryptopulse-mcp digest "$LANG_CHOICE" > digest.md
+          cat digest.md
+      - name: Send it to Telegram
+        if: steps.check.outputs.configured == 'true'
+        run: |
+          pip install -q -r tools/sentiment_hub/requirements.txt
+          python tools/sentiment_hub/notify.py digest.md

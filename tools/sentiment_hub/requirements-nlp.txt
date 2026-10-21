@@ -1,0 +1,9 @@
+# Optional transformer scorers (FinBERT, CryptoBERT) on CPU-only torch:
+#   pip install -r tools/sentiment_hub/requirements-nlp.txt --extra-index-url https://download.pytorch.org/whl/cpu
+# The option line below makes a plain `pip install -r` use the CPU wheel index too; pip then picks
+# torch `2.x.y+cpu` (a local version sorts above PyPI's CUDA build `2.x.y`). If that index is
+# unreachable pip falls back to the multi-GB CUDA build from PyPI. torch >= 2.6 because
+# transformers 4.50+ refuses to load the `.bin` weights of these models with older torch.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.6,<2.11
+transformers>=4.46,<5

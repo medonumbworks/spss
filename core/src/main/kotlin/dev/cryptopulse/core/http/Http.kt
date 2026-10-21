@@ -1,0 +1,134 @@
+package dev.cryptopulse.core.http
+
+import dev.cryptopulse.core.util.Clock
+import dev.cryptopulse.core.util.Logger
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import java.io.IOException
+import java.util.concurrent.ConcurrentHashMap
+
+sealed class HttpResult {
+    data class Ok(val body: String, val fromCache: Boolean, val ageMs: Long, val code: Int = 200) : HttpResult()
+    data class Failed(val reason: String, val code: Int? = null, val staleBody: String? = null) : HttpResult() {
+        val isRateLimited: Boolean get() = code == 429
+        val isUnauthorized: Boolean get() = code == 401 || code == 403
+        val isGeoBlocked: Boolean get() = code == 451
+    }
+}
+
+/**
+ * Facade every data source uses: cache -> rate limiter -> transport -> retry/backoff -> stale fallback.
+ *
+ * Caching semantics of [getText]:
+ *  - fresh cache entry (age < ttlMs): returned immediately, no network;
+ *  - otherwise one network attempt (plus retries on 429/5xx/IOException);
+ *  - on failure an entry younger than staleOkMs is returned as `Ok(fromCache = true)`;
+ *  - a 2xx body that `accept` rejects (an error inside a 200, like GoPlus' quota reply) is never
+ *    cached and never replaces a cached body: it counts as a failure, and is only returned (uncached)
+ *    when no accepted entry younger than staleOkMs exists;
+ *  - identical concurrent calls are serialized per cache key so only one hits the network.
+ */
+class Http(
+    private val transport: HttpTransport,
+    private val rateLimiter: RateLimiter = RateLimiter(),
+    private val cache: HttpCache = HttpCache(),
+    private val clock: Clock = Clock.SYSTEM,
+    private val logger: Logger = Logger.STDERR,
+    private val sleeper: suspend (Long) -> Unit = { delay(it) },
+) {
+    private val keyLocks = ConcurrentHashMap<String, Mutex>()
+
+    suspend fun getText(
+        url: String,
+        headers: Map<String, String> = emptyMap(),
+        ttlMs: Long = 0L,
+        staleOkMs: Long = ttlMs * 12,
+        cacheKey: String = url,
+        retries: Int = 2,
+        timeoutMs: Long = 20_000,
+        accept: (String) -> Boolean = { true },
+    ): HttpResult {
+        if (ttlMs > 0) fresh(cacheKey, ttlMs, accept)?.let { return it }
+        val lock = keyLocks.getOrPut(cacheKey) { Mutex() }
+        return lock.withLock {
+            // another coroutine may have refreshed it while we waited
+            if (ttlMs > 0) fresh(cacheKey, ttlMs, accept)?.let { return@withLock it }
+            val result = fetchWithRetry(HttpRequest(url, headers, timeoutMs = timeoutMs), retries)
+            if (result is HttpResult.Ok && accept(result.body)) {
+                if (ttlMs > 0 || staleOkMs > 0) cache.put(cacheKey, result.body)
+                return@withLock result
+            }
+            val stale = cache.get(cacheKey)?.takeIf { accept(it.body) }
+            when {
+                stale != null && stale.ageMs(clock.nowMs()) < staleOkMs -> {
+                    val reason = if (result is HttpResult.Failed) result.reason else "rejected answer"
+                    logger.warn(TAG, "Using stale cache for $url after failure: $reason")
+                    HttpResult.Ok(stale.body, fromCache = true, ageMs = stale.ageMs(clock.nowMs()))
+                }
+                result is HttpResult.Failed -> result.copy(staleBody = stale?.body)
+                else -> result
+            }
+        }
+    }
+
+    /** A cached body for [cacheKey] younger than [ttlMs] that [accept] takes exists (a [getText] would not hit the network). */
+    fun isFresh(cacheKey: String, ttlMs: Long, accept: (String) -> Boolean = { true }): Boolean = fresh(cacheKey, ttlMs, accept) != null
+
+    private fun fresh(cacheKey: String, ttlMs: Long, accept: (String) -> Boolean): HttpResult.Ok? {
+        val entry = cache.get(cacheKey) ?: return null
+        val age = entry.ageMs(clock.nowMs())
+        return if (age < ttlMs && accept(entry.body)) HttpResult.Ok(entry.body, fromCache = true, ageMs = age) else null
+    }
+
+    /** POST/other methods are rare (Bitpanda quotes etc.); no caching. */
+    suspend fun request(request: HttpRequest, retries: Int = 1): HttpResult = fetchWithRetry(request, retries)
+
+    private suspend fun fetchWithRetry(request: HttpRequest, retries: Int): HttpResult {
+        var attempt = 0
+        var lastFailure: HttpResult.Failed? = null
+        val host = RateLimiter.hostOf(request.url)
+        // the host told us to slow down: answer at once so callers fall back to cached data
+        // instead of queueing more requests that keep the IP rate-limited
+        val cooldown = rateLimiter.cooldownMs(host)
+        if (cooldown > 0) return HttpResult.Failed("HTTP 429 (rate limited, retry in ${cooldown / 1000} s)", 429)
+        while (attempt <= retries) {
+            rateLimiter.acquire(host)
+            val response = try {
+                transport.execute(request)
+            } catch (e: IOException) {
+                lastFailure = HttpResult.Failed("network: ${e.message ?: e::class.simpleName}")
+                logger.debug(TAG, "attempt ${attempt + 1} failed for ${request.url}: ${e.message}")
+                null
+            } catch (e: IllegalArgumentException) {
+                return HttpResult.Failed("bad request: ${e.message}")
+            }
+            if (response != null) {
+                if (response.isSuccess) return HttpResult.Ok(response.body, fromCache = false, ageMs = 0, code = response.code)
+                lastFailure = HttpResult.Failed("HTTP ${response.code}", response.code)
+                val retryable = response.code == 429 || response.code == 408 || response.code in 500..599
+                if (!retryable) return lastFailure
+                val retryAfter = response.retryAfterMs
+                if (response.code == 429) {
+                    val wait = retryAfter ?: DEFAULT_429_COOLDOWN_MS
+                    rateLimiter.penalize(host, clock.nowMs() + wait)
+                    // waiting a few seconds is fine; a longer wait would freeze the refresh
+                    if (wait > MAX_INLINE_WAIT_MS || attempt >= retries) return lastFailure
+                    sleeper(wait.coerceAtLeast(1_000))
+                } else if (attempt < retries) sleeper(retryAfter?.coerceIn(1_000, 30_000) ?: backoffMs(attempt))
+            } else if (attempt < retries) {
+                sleeper(backoffMs(attempt))
+            }
+            attempt++
+        }
+        return lastFailure ?: HttpResult.Failed("unknown failure")
+    }
+
+    private fun backoffMs(attempt: Int): Long = (1_500L shl attempt).coerceAtMost(12_000L)
+
+    private companion object {
+        const val TAG = "Http"
+        const val DEFAULT_429_COOLDOWN_MS = 60_000L
+        const val MAX_INLINE_WAIT_MS = 5_000L
+    }
+}

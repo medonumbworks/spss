@@ -1,0 +1,3797 @@
+{
+ "version": 1,
+ "updated": "2026-10-19",
+ "note": "Public crypto Telegram channels and groups read by CryptoPulse. kind=channel: read on the phone and in the cloud hub via the t.me/s web preview (no login). kind=group: read by the cloud hub through the user's own Telegram account (by username, without joining). Compiled from web research on 2026-10-19; confidence < 0.6 means memory-only. Handles that fail are skipped at runtime. Categories meme_project (official memecoin channels, many are verification portals with little text), dex_trending (paid trending slots: counted as mentions, weighted low in sentiment) and listings were added on 2026-10-19 from CoinGecko, Trust Wallet and tonkeeper data.",
+ "entries": [
+  {
+   "handle": "binance_announcements",
+   "title": "Binance Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.98,
+   "evidence": "https://tgstat.com/channel/@binance_announcements"
+  },
+  {
+   "handle": "cointelegraph",
+   "title": "Cointelegraph",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.97,
+   "evidence": "https://tgstat.com/channel/@cointelegraph"
+  },
+  {
+   "handle": "Bybit_Announcements",
+   "title": "Bybit Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "MNT"
+   ],
+   "confidence": 0.95,
+   "evidence": "https://tgstat.com/channel/@Bybit_Announcements"
+  },
+  {
+   "handle": "OKXAnnouncements",
+   "title": "OKX Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "OKB"
+   ],
+   "confidence": 0.95,
+   "evidence": "https://tgstat.com/channel/@OKXAnnouncements"
+  },
+  {
+   "handle": "WatcherGuru",
+   "title": "Watcher Guru",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.95,
+   "evidence": "https://tlmtr.io/en/channels/1556054753-watcherguru/posts"
+  },
+  {
+   "handle": "whale_alert_io",
+   "title": "Whale Alert",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.95,
+   "evidence": "https://tgstat.com/channel/@whale_alert_io"
+  },
+  {
+   "handle": "investigations",
+   "title": "Investigations by ZachXBT",
+   "kind": "channel",
+   "lang": "en",
+   "category": "analytics",
+   "symbols": [],
+   "confidence": 0.93,
+   "evidence": "https://tgstat.com/channel/@investigations"
+  },
+  {
+   "handle": "CardanoAnnouncements",
+   "title": "Cardano Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ADA"
+   ],
+   "confidence": 0.92,
+   "evidence": "https://tgstat.com/channel/@CardanoAnnouncements"
+  },
+  {
+   "handle": "forklog",
+   "title": "ForkLog",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.92,
+   "evidence": "https://tgstat.ru/en/channel/@forklog"
+  },
+  {
+   "handle": "PancakeSwapAnn",
+   "title": "PancakeSwap Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "CAKE"
+   ],
+   "confidence": 0.92,
+   "evidence": "https://tgstat.com/channel/@PancakeSwapAnn"
+  },
+  {
+   "handle": "trust_announcements",
+   "title": "Trust Wallet - Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "TWT"
+   ],
+   "confidence": 0.92,
+   "evidence": "https://tgstat.com/channel/@trust_announcements"
+  },
+  {
+   "handle": "CoinMarketCapAnnouncements",
+   "title": "CoinMarketCap Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/channel/@CoinMarketCapAnnouncements"
+  },
+  {
+   "handle": "cryptoquant_official",
+   "title": "CryptoQuant",
+   "kind": "channel",
+   "lang": "en",
+   "category": "analytics",
+   "symbols": [],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/channel/@cryptoquant_official"
+  },
+  {
+   "handle": "glassnode",
+   "title": "Glassnode",
+   "kind": "channel",
+   "lang": "en",
+   "category": "analytics",
+   "symbols": [],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/channel/@glassnode"
+  },
+  {
+   "handle": "HTXGlobalAnnouncementChannel",
+   "title": "HTX Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "HT"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/channel/@HTXGlobalAnnouncementChannel"
+  },
+  {
+   "handle": "Kucoin_News",
+   "title": "KuCoin Announcement",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "KCS"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/channel/@Kucoin_News"
+  },
+  {
+   "handle": "RBCCrypto",
+   "title": "РБК Крипто",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.ru/en/channel/@RBCCrypto"
+  },
+  {
+   "handle": "the_block_crypto",
+   "title": "The Block News Feed",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/channel/@the_block_crypto"
+  },
+  {
+   "handle": "toncoin",
+   "title": "Toncoin / Gram",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "TON"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ton/info/info.json ; https://tgstat.com/channel/@gram (same channel, alias @toncoin)"
+  },
+  {
+   "handle": "wublockchainenglish",
+   "title": "Wu Blockchain News (English)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.9,
+   "evidence": "https://www.et.tgstat.com/channel/@wublockchainenglish ; https://crypticweb3.com/top-crypto-telegram-channels-2026/"
+  },
+  {
+   "handle": "incrypted",
+   "title": "Incrypted",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.88,
+   "evidence": "https://uk.tgstat.com/en/channel/@incrypted"
+  },
+  {
+   "handle": "arbitrum",
+   "title": "Arbitrum Announcements Official",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ARB"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@arbitrum"
+  },
+  {
+   "handle": "BeInCryptoES",
+   "title": "BeInCrypto ES Noticias",
+   "kind": "channel",
+   "lang": "es",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@BeInCryptoES"
+  },
+  {
+   "handle": "binance_cn",
+   "title": "币安公告 (Binance CN announcements)",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://cn.tgstat.com/channel/@binance_cn"
+  },
+  {
+   "handle": "Bitgetannouncements",
+   "title": "Bitget Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "BGB"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@Bitgetannouncements"
+  },
+  {
+   "handle": "bitpanda_announcements",
+   "title": "Bitpanda Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "bitpanda",
+   "symbols": [
+    "BEST"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@bitpanda_announcements ; repo docs/research/bitpanda_candidates_research_2026-10-17.json"
+  },
+  {
+   "handle": "bitsmedia",
+   "title": "BITS.MEDIA",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.ru/en/channel/@bitsmedia"
+  },
+  {
+   "handle": "CoinbaseItaliaOfficial",
+   "title": "Coinbase Italia",
+   "kind": "channel",
+   "lang": "it",
+   "category": "exchange",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://help.coinbase.com/de/coinbase/privacy-and-security/avoid-scams/telegram-scams"
+  },
+  {
+   "handle": "coingeckonews",
+   "title": "CoinGecko News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@coingeckonews"
+  },
+  {
+   "handle": "coinnesskr",
+   "title": "COINNESS News Feed",
+   "kind": "channel",
+   "lang": "ko",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@coinnesskr"
+  },
+  {
+   "handle": "criptonoticias",
+   "title": "CriptoNoticias",
+   "kind": "channel",
+   "lang": "es",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@criptonoticias"
+  },
+  {
+   "handle": "CryptoComOfficialAnnouncements",
+   "title": "Crypto.com Announcement Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "CRO"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@CryptoComOfficialAnnouncements"
+  },
+  {
+   "handle": "CryptoRankNews",
+   "title": "CryptoRank Analytics",
+   "kind": "channel",
+   "lang": "en",
+   "category": "analytics",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@CryptoRankNews"
+  },
+  {
+   "handle": "DeCenter",
+   "title": "DeCenter — блокчейн, биткоин, инвестиции",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.ru/en/channel/@DeCenter"
+  },
+  {
+   "handle": "decryptnews",
+   "title": "Decrypt",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tlmtr.io/en/channels/1452034482-decryptnews/posts"
+  },
+  {
+   "handle": "FlokiInuToken",
+   "title": "Floki Entry Portal (Official)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "FLOKI"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xcf0C122c6b73ff809C693DB761e7BaeBe62b6a2E/info.json"
+  },
+  {
+   "handle": "lookonchainchannel",
+   "title": "Lookonchain",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://news.jeremywhittaker.com/item/lookonchainchannel-8797/"
+  },
+  {
+   "handle": "oneminuteletter",
+   "title": "One-minute letter (Cointelegraph)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@oneminuteletter"
+  },
+  {
+   "handle": "PolygonAnnouncements",
+   "title": "Polygon Official Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "POL"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@PolygonAnnouncements"
+  },
+  {
+   "handle": "quantnetworkannouncements",
+   "title": "Quant Network Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "QNT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x4a220E6096B25EADb88358cb44068A3248254675/info.json"
+  },
+  {
+   "handle": "TreeNewsFeed",
+   "title": "Tree News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@TreeNewsFeed"
+  },
+  {
+   "handle": "binance_ru",
+   "title": "Binance Новости",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.82,
+   "evidence": "https://tgstat.ru/en/channel/@binance_ru"
+  },
+  {
+   "handle": "BingXAnnouncement",
+   "title": "BingX Announcement",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [],
+   "confidence": 0.82,
+   "evidence": "https://tgstat.com/channel/@BingXAnnouncement"
+  },
+  {
+   "handle": "okx_ru",
+   "title": "OKX Новости",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "OKB"
+   ],
+   "confidence": 0.82,
+   "evidence": "https://tgstat.ru/en/channel/@okx_ru"
+  },
+  {
+   "handle": "coindesk_korea",
+   "title": "CoinDesk Korea",
+   "kind": "channel",
+   "lang": "ko",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/channel/@coindesk_korea"
+  },
+  {
+   "handle": "CoinDeskGlobal",
+   "title": "CoinDesk News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/channel/@CoinDeskGlobal"
+  },
+  {
+   "handle": "Cointelegraph_Es",
+   "title": "Cointelegraph en Español",
+   "kind": "channel",
+   "lang": "es",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/channel/@Cointelegraph_Es"
+  },
+  {
+   "handle": "cryptoquant_kr",
+   "title": "CryptoQuant Korean",
+   "kind": "channel",
+   "lang": "ko",
+   "category": "analytics",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/channel/@cryptoquant_kr"
+  },
+  {
+   "handle": "DefiantNews",
+   "title": "The Defiant Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/channel/@DefiantNews"
+  },
+  {
+   "handle": "defillama_tg",
+   "title": "DefiLlama Official Round Up",
+   "kind": "channel",
+   "lang": "en",
+   "category": "analytics",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://ir.tgstat.com/channel/@defillama_tg"
+  },
+  {
+   "handle": "theblockbeats",
+   "title": "律动 BlockBeats",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://cn.tgstat.com/channel/@community8848 (search snippet t.me/theblockbeats)"
+  },
+  {
+   "handle": "WalterBloomberg",
+   "title": "Walter Bloomberg",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/channel/@WalterBloomberg"
+  },
+  {
+   "handle": "WuBlockchain",
+   "title": "Wu Blockchain",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/channel/@WuBlockchain"
+  },
+  {
+   "handle": "Binance_UA_official",
+   "title": "Binance Новини (Ukraine)",
+   "kind": "channel",
+   "lang": "uk",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://uk.tgstat.com/en/channel/@Binance_UA_official"
+  },
+  {
+   "handle": "BinanceLiquidations",
+   "title": "Binance Futures Liquidations",
+   "kind": "channel",
+   "lang": "en",
+   "category": "analytics",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@BinanceLiquidations"
+  },
+  {
+   "handle": "BithumbExchange",
+   "title": "Bithumb 빗썸 공식 채널",
+   "kind": "channel",
+   "lang": "ko",
+   "category": "exchange",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@BithumbExchange"
+  },
+  {
+   "handle": "bloomberg",
+   "title": "Bloomberg",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@bloomberg"
+  },
+  {
+   "handle": "coinotag",
+   "title": "COINOTAG",
+   "kind": "channel",
+   "lang": "tr",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@coinotag"
+  },
+  {
+   "handle": "Coinspeaker",
+   "title": "Coinspeaker",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@Coinspeaker"
+  },
+  {
+   "handle": "CryptocurrencyNewsLive",
+   "title": "Cryptocurrency News Live",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@CryptocurrencyNewsLive"
+  },
+  {
+   "handle": "cryptoslatenews",
+   "title": "CryptoSlate News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@cryptoslatenews"
+  },
+  {
+   "handle": "deribit_notifications",
+   "title": "Deribit Notifications",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "BTC",
+    "ETH"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@deribit_notifications"
+  },
+  {
+   "handle": "forklogfeed",
+   "title": "ForkLog Feed",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.ru/en/channel/@forklog (mentions @forklogfeed)"
+  },
+  {
+   "handle": "icodrops",
+   "title": "ICO Drops - ICO News & Alerts",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@icodrops"
+  },
+  {
+   "handle": "JrKripto",
+   "title": "JrKripto Haber",
+   "kind": "channel",
+   "lang": "tr",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@JrKripto"
+  },
+  {
+   "handle": "kaspachannel",
+   "title": "Kaspa Official Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "KAS"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@kaspachannel"
+  },
+  {
+   "handle": "KryptoKompassDe",
+   "title": "KRYPTO NEWS DE",
+   "kind": "channel",
+   "lang": "de",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@KryptoKompassDe"
+  },
+  {
+   "handle": "MEXCofficialNews",
+   "title": "MEXC Community Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "MX"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@MEXCofficialNews"
+  },
+  {
+   "handle": "nearprotocolnews",
+   "title": "NEAR Protocol Announcements Official",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "NEAR"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@nearprotocolnews"
+  },
+  {
+   "handle": "OfficialTether",
+   "title": "Tether Official",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "USDT"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB/info.json"
+  },
+  {
+   "handle": "OKXArabicChannel",
+   "title": "OKX MENA Announcement",
+   "kind": "channel",
+   "lang": "ar",
+   "category": "exchange",
+   "symbols": [
+    "OKB"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://ir.tgstat.com/channel/@OKXArabicChannel"
+  },
+  {
+   "handle": "pendlefinance",
+   "title": "Pendle",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "PENDLE"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@pendlefinance"
+  },
+  {
+   "handle": "solanaannouncements",
+   "title": "Solana - Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "SOL"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@solanaannouncements"
+  },
+  {
+   "handle": "Sui_Foundation_News_Korean",
+   "title": "Sui Foundation News Korean",
+   "kind": "channel",
+   "lang": "ko",
+   "category": "project",
+   "symbols": [
+    "SUI"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@Sui_Foundation_News_Korean"
+  },
+  {
+   "handle": "tonblockchain",
+   "title": "TON Blockchain",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "TON"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ton/info/info.json"
+  },
+  {
+   "handle": "WhiteBIT",
+   "title": "WhiteBIT News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "WBT"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@WhiteBIT"
+  },
+  {
+   "handle": "binancenews",
+   "title": "Crypto Rekt Liquidations Bot (unofficial)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@binancenews"
+  },
+  {
+   "handle": "binancetr",
+   "title": "Binance Türkçe",
+   "kind": "channel",
+   "lang": "tr",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@binancetr"
+  },
+  {
+   "handle": "bybitkazakh",
+   "title": "Bybit Kazakhstan",
+   "kind": "channel",
+   "lang": "kk",
+   "category": "exchange",
+   "symbols": [
+    "MNT"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://kaz.tgstat.com/en/channel/@bybitkazakh"
+  },
+  {
+   "handle": "coin98",
+   "title": "Coin98 Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "C98"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://ir.tgstat.com/channel/@coin98"
+  },
+  {
+   "handle": "CRYPTO_insider_deutscher",
+   "title": "CRYPTO INSIDER Deutscher",
+   "kind": "channel",
+   "lang": "de",
+   "category": "news",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@CRYPTO_insider_deutscher"
+  },
+  {
+   "handle": "hbarchatnews",
+   "title": "Hedera Hashgraph HBAR News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "HBAR"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@hbarchatnews"
+  },
+  {
+   "handle": "HuobiTurkiyeDuyuru",
+   "title": "HTX Türkiye Resmi Duyuru Kanalı",
+   "kind": "channel",
+   "lang": "tr",
+   "category": "exchange",
+   "symbols": [
+    "HT"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@HuobiTurkiyeDuyuru"
+  },
+  {
+   "handle": "HyperliquidLiquidations",
+   "title": "Hyperliquid Liquidations (Hyperlens)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "analytics",
+   "symbols": [
+    "HYPE"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tlmtr.io/en/channels/2485283245-hyperliquidliquidations/posts"
+  },
+  {
+   "handle": "sandboxnews",
+   "title": "The Sandbox Official ANN Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "SAND"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@sandboxgame (links t.me/sandboxnews)"
+  },
+  {
+   "handle": "slezisatoshi",
+   "title": "Слезы Сатоши",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.ru/en/channel/@slezisatoshi"
+  },
+  {
+   "handle": "terra_announcements",
+   "title": "Terra - Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "LUNA",
+    "LUNC"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@terra_announcements"
+  },
+  {
+   "handle": "TezosAnnouncements",
+   "title": "Tezos Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "XTZ"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@TezosAnnouncements"
+  },
+  {
+   "handle": "whale_alert",
+   "title": "Whale Alert (Twitter mirror)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@whale_alert"
+  },
+  {
+   "handle": "zksync",
+   "title": "zkSync",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ZK"
+   ],
+   "confidence": 0.68,
+   "evidence": "https://tgstat.com/channel/@zksync"
+  },
+  {
+   "handle": "beincrypto_trading",
+   "title": "BeInCrypto Новости (RU)",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.65,
+   "evidence": "https://telemetr.me/content/beincrypto_trading"
+  },
+  {
+   "handle": "binanceeastafrica_announcements",
+   "title": "Binance East Africa Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@binanceeastafrica_announcements"
+  },
+  {
+   "handle": "BingXVietnamAnnouncements",
+   "title": "BingX Thông Báo Tiếng Việt",
+   "kind": "channel",
+   "lang": "vi",
+   "category": "exchange",
+   "symbols": [],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@BingXVietnamAnnouncements"
+  },
+  {
+   "handle": "channelholo",
+   "title": "Holo",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "HOT"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6c6EE5e31d828De241282B9606C8e98Ea48526E2/info.json"
+  },
+  {
+   "handle": "cosmosproject",
+   "title": "Cosmos Network ~ $ATOM",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ATOM"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/ru/channel/@cosmosproject"
+  },
+  {
+   "handle": "ENFAnnouncements",
+   "title": "ENF Announcements - EOS Network Foundation",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "EOS"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@ENFAnnouncements"
+  },
+  {
+   "handle": "satoshi_club_channel",
+   "title": "Crypto News by Satoshi Club",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@satoshi_club_channel"
+  },
+  {
+   "handle": "telonews_es",
+   "title": "Telo News Español - Cripto",
+   "kind": "channel",
+   "lang": "es",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@telonews_es"
+  },
+  {
+   "handle": "toncoin_cn",
+   "title": "Toncoin 中文频道",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "project",
+   "symbols": [
+    "TON"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://cn.tgstat.com/channel/@toncoin_cn"
+  },
+  {
+   "handle": "tronnetworklive",
+   "title": "TRON Foundation Russia channel",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "project",
+   "symbols": [
+    "TRX"
+   ],
+   "confidence": 0.65,
+   "evidence": "TGStat search snippet: Tron Foundation Russia lists t.me/tronnetworklive"
+  },
+  {
+   "handle": "whalebotalerts",
+   "title": "WhaleBot Alerts",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@whalebotalerts"
+  },
+  {
+   "handle": "xinfin",
+   "title": "XinFin Updates [XDC]",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "XDC"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@xinfin"
+  },
+  {
+   "handle": "aptos_official",
+   "title": "Aptos Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "APT"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@aptos (names @aptos_official as announcements channel)"
+  },
+  {
+   "handle": "Atamertuysaler",
+   "title": "Kripto w/Atamert Uysaler",
+   "kind": "channel",
+   "lang": "tr",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@Atamertuysaler"
+  },
+  {
+   "handle": "binancenft_announcements",
+   "title": "Binance NFT Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@binancenft_announcements"
+  },
+  {
+   "handle": "biswap_news",
+   "title": "Biswap Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "BSW"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@biswap_news"
+  },
+  {
+   "handle": "bitcoin",
+   "title": "Bitcoin",
+   "kind": "channel",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.4,
+   "evidence": "https://tlmtr.io/es/channels/1193342710-bitcoin/posts"
+  },
+  {
+   "handle": "BybitVietnamese_News",
+   "title": "Bybit Việt Nam News",
+   "kind": "channel",
+   "lang": "vi",
+   "category": "exchange",
+   "symbols": [
+    "MNT"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@BybitVietnamese (announcement channel @BybitVietnamese_News)"
+  },
+  {
+   "handle": "chainlinkofficial",
+   "title": "Chainlink Official",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "LINK"
+   ],
+   "confidence": 0.6,
+   "evidence": "model knowledge"
+  },
+  {
+   "handle": "Crypto_Germany_official",
+   "title": "Crypto Germany",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.4,
+   "evidence": "https://tgstat.com/channel/@Crypto_Germany_official"
+  },
+  {
+   "handle": "cryptocommunities",
+   "title": "Crypto Communities",
+   "kind": "channel",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@cryptocommunities"
+  },
+  {
+   "handle": "dfinitycommunity_news",
+   "title": "Dfinity (ICP) Community News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "ICP"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@dfinitycommunity_news"
+  },
+  {
+   "handle": "injectiveannouncements",
+   "title": "Injective Protocol Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "INJ"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@injectiveannouncements"
+  },
+  {
+   "handle": "PolkadotAnnouncements",
+   "title": "Polkadot Official Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "DOT"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@PolkadotAnnouncements"
+  },
+  {
+   "handle": "r_cryptocurrency",
+   "title": "CryptoCurrency (Reddit feed)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@r_cryptocurrency"
+  },
+  {
+   "handle": "rendertoken",
+   "title": "RNDR (Render Network)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "RENDER"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@rendertoken"
+  },
+  {
+   "handle": "suicommunity_news",
+   "title": "Sui Community",
+   "kind": "channel",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "SUI"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@suicommunity_news"
+  },
+  {
+   "handle": "vietnamtradecoinchannel",
+   "title": "TradeCoinVN News",
+   "kind": "channel",
+   "lang": "vi",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@vietnamtradecoinchannel"
+  },
+  {
+   "handle": "altcoin",
+   "title": "Altcoins Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@altcoin"
+  },
+  {
+   "handle": "bitcoinblackpill_BR",
+   "title": "Educação Real - Canal oficial",
+   "kind": "channel",
+   "lang": "pt",
+   "category": "news",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@bitcoinblackpill_BR"
+  },
+  {
+   "handle": "coiniseasy",
+   "title": "코인이지 공지방",
+   "kind": "channel",
+   "lang": "ko",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@coiniseasy"
+  },
+  {
+   "handle": "criptomaniacosbr",
+   "title": "Alertas - Criptomaníacos",
+   "kind": "channel",
+   "lang": "pt",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@criptomaniacosbr"
+  },
+  {
+   "handle": "crypto_nft_web3_news",
+   "title": "Crypto & NFT News — Web3",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@crypto_nft_web3_news"
+  },
+  {
+   "handle": "HuobiU",
+   "title": "Huobi Україна Офіційний канал",
+   "kind": "channel",
+   "lang": "uk",
+   "category": "exchange",
+   "symbols": [
+    "HT"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@HuobiU"
+  },
+  {
+   "handle": "RippleXRPClub",
+   "title": "XRP-FLR Community Notes",
+   "kind": "channel",
+   "lang": "ru",
+   "category": "community",
+   "symbols": [
+    "XRP",
+    "FLR"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@ripplexrpclub"
+  },
+  {
+   "handle": "cbinsider",
+   "title": "Coin Bureau Insider",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.4,
+   "evidence": "https://in.tgstat.com/channel/@cbinsider"
+  },
+  {
+   "handle": "dgcrncy",
+   "title": "العملات الرقمية والبلوكشين",
+   "kind": "channel",
+   "lang": "ar",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.5,
+   "evidence": "https://tgstat.com/channel/@dgcrncy/stat"
+  },
+  {
+   "handle": "ethereumnews",
+   "title": "Ethereum News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [
+    "ETH"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://www.et.tgstat.com/channel/@ethereumnews"
+  },
+  {
+   "handle": "xdcNews",
+   "title": "#XDC NEWS",
+   "kind": "channel",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "XDC"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://tgstat.com/channel/@xdcNews"
+  },
+  {
+   "handle": "Bitcoin_Magazine",
+   "title": "Bitcoin Magazine (officialness unverified)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "news",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.4,
+   "evidence": "https://ir.tgstat.com/channel/@Bitcoin_Magazine (officialness unclear)"
+  },
+  {
+   "handle": "binanceexchange",
+   "title": "Binance English",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://kryptos.io/blog/top-10-free-crypto-telegram-channels-you-need-to-follow (t.me/binanceexchange)"
+  },
+  {
+   "handle": "BybitEnglish",
+   "title": "Bybit English",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "MNT"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/chat/@BybitEnglish"
+  },
+  {
+   "handle": "Cardano",
+   "title": "Cardano Official Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ADA"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/chat/@Cardano"
+  },
+  {
+   "handle": "OKXOfficial_English",
+   "title": "OKX English",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "OKB"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://tgstat.com/chat/@OKXOfficial_English"
+  },
+  {
+   "handle": "PancakeSwap",
+   "title": "PancakeSwap",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "CAKE"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82/info.json"
+  },
+  {
+   "handle": "Aavesome",
+   "title": "Aave Fam (Verified) Official Announcements",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "AAVE"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://tgstat.com/chat/@Aavesome"
+  },
+  {
+   "handle": "avalancheavax",
+   "title": "Avalanche (Official)",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "AVAX"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://tgstat.com/chat/@avalancheavax"
+  },
+  {
+   "handle": "MultiversX",
+   "title": "MultiversX",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "EGLD"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/elrond/info/info.json"
+  },
+  {
+   "handle": "polygonofficial",
+   "title": "Polygon Official Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "POL"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://tgstat.com/chat/@polygonofficial"
+  },
+  {
+   "handle": "tronnetworkEN",
+   "title": "TRON OFFICIAL MAIN GROUP",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "TRX"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://tgstat.com/chat/@tronnetworkEN"
+  },
+  {
+   "handle": "bitgetEN",
+   "title": "Bitget English",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "BGB"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/chat/@bitgetEN/stat"
+  },
+  {
+   "handle": "coingecko",
+   "title": "CoinGecko",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/chat/@coingecko"
+  },
+  {
+   "handle": "cryptonear",
+   "title": "NEAR Protocol Official",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "NEAR"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/chat/@cryptonear"
+  },
+  {
+   "handle": "curvefi",
+   "title": "Curve Finance",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "CRV"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xD533a949740bb3306d119CC777fa900bA034cd52/info.json"
+  },
+  {
+   "handle": "graphprotocol",
+   "title": "The Graph",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "GRT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xc944E90C64B2c07662A292be6244BDf05Cda44a7/info.json"
+  },
+  {
+   "handle": "Kucoin_Exchange",
+   "title": "KuCoin Exchange",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "KCS"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/chat/@Kucoin_Exchange"
+  },
+  {
+   "handle": "lidofinance",
+   "title": "Lido",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "LDO"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x5A98FcBEA516Cf06857215779Fd812CA3beF1B32/info.json"
+  },
+  {
+   "handle": "mantlenetwork",
+   "title": "Mantle",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "MNT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x3c3a81e81dc49A522A592e7622A7E711c06bf354/info.json"
+  },
+  {
+   "handle": "MEXCEnglish",
+   "title": "MEXC English (Official)",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "MX"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/channel/@MEXCofficialNews (links t.me/MEXCEnglish)"
+  },
+  {
+   "handle": "OneInchNetwork",
+   "title": "1inch Network",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "1INCH"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x111111111117dC0aa78b770fA6A738034120C302/info.json"
+  },
+  {
+   "handle": "pepecoineth",
+   "title": "Pepe",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "PEPE"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6982508145454Ce325dDbE47a25d4ec3d2311933/info.json"
+  },
+  {
+   "handle": "Pyth_Network",
+   "title": "Pyth Network",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "PYTH"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3/info.json"
+  },
+  {
+   "handle": "raydiumprotocol",
+   "title": "Raydium",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "RAY"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R/info.json"
+  },
+  {
+   "handle": "shibainuthedogecoinkiller",
+   "title": "Shiba Inu - The Dogecoin Killer",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "SHIB"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE/info.json"
+  },
+  {
+   "handle": "aptos",
+   "title": "Aptos",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "APT"
+   ],
+   "confidence": 0.82,
+   "evidence": "https://tgstat.com/chat/@aptos"
+  },
+  {
+   "handle": "BinanceRussianSpeaking",
+   "title": "Комьюнити Binance",
+   "kind": "group",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.82,
+   "evidence": "https://tgstat.ru/en/chat/@BinanceRussianSpeaking"
+  },
+  {
+   "handle": "kaspaenglish",
+   "title": "Kaspa Official Telegram",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "KAS"
+   ],
+   "confidence": 0.82,
+   "evidence": "https://tgstat.com/chat/@kaspaenglish"
+  },
+  {
+   "handle": "Sonic_English",
+   "title": "Sonic English",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "S"
+   ],
+   "confidence": 0.82,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/sonic/info/info.json"
+  },
+  {
+   "handle": "AkashNW",
+   "title": "Akash Network",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "AKT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@AkashNW"
+  },
+  {
+   "handle": "algorand",
+   "title": "Algorand",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ALGO"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://forum.algorand.co/t/live-telegram-ama-tomorrow-for-python-sdk-and-developer-focused-questions/839 (t.me/algorand)"
+  },
+  {
+   "handle": "BinanceArabic",
+   "title": "Binance Arabic",
+   "kind": "group",
+   "lang": "ar",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@BinanceArabic"
+  },
+  {
+   "handle": "BinanceItalian",
+   "title": "Binance Italian",
+   "kind": "group",
+   "lang": "it",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@BinanceItalian"
+  },
+  {
+   "handle": "BinancePortuguese",
+   "title": "Binance Português",
+   "kind": "group",
+   "lang": "pt",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@BinancePortuguese"
+  },
+  {
+   "handle": "BingXOfficial",
+   "title": "BingX - Empowering Traders",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@BingXOfficial/stat"
+  },
+  {
+   "handle": "BitMEX_Group",
+   "title": "BitMEX English",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@BitMEX_Group"
+  },
+  {
+   "handle": "CryptoComOfficial",
+   "title": "Crypto.com",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "CRO"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@CryptoComOfficial"
+  },
+  {
+   "handle": "ethena_labs",
+   "title": "Ethena",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ENA"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x57e114B691Db790C35207b2e685D4A43181e6061/info.json"
+  },
+  {
+   "handle": "FlareNetwork",
+   "title": "Flare Network (official & verified group)",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "FLR"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@FlareNetwork"
+  },
+  {
+   "handle": "hashgraph",
+   "title": "Hedera Community Chat ($HBAR)",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "HBAR"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://www.et.tgstat.com/chat/@hashgraph"
+  },
+  {
+   "handle": "joininjective",
+   "title": "Injective Official",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "INJ"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/channel/@injectiveannouncements (names t.me/joininjective)"
+  },
+  {
+   "handle": "ondofinance",
+   "title": "Ondo Finance",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ONDO"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xfAbA6f8e4a5E8Ab82F62fe7C39859FA577269BE3/info.json"
+  },
+  {
+   "handle": "PolkadotOfficial",
+   "title": "Polkadot Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "DOT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@PolkadotOfficial"
+  },
+  {
+   "handle": "sandboxgame",
+   "title": "[Official] The Sandbox",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "SAND"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://tgstat.com/chat/@sandboxgame"
+  },
+  {
+   "handle": "ankrnetwork",
+   "title": "Ankr",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ANKR"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x8290333ceF9e6D528dD5618Fb97a76f268f3EDD4/info.json"
+  },
+  {
+   "handle": "axieinfinity",
+   "title": "Axie Infinity",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "AXS"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/ethereum-lists/tokens/master/tokens/eth/0xBB0E17EF65F82Ab018d8EDd776e8DD940327B28b.json"
+  },
+  {
+   "handle": "binance_kz",
+   "title": "Binance Kazakhstan",
+   "kind": "group",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://kaz.tgstat.com/en/chat/@binance_kz"
+  },
+  {
+   "handle": "Binance_Polish",
+   "title": "Binance Polish",
+   "kind": "group",
+   "lang": "pl",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/chat/@Binance_Polish"
+  },
+  {
+   "handle": "BybitRussian",
+   "title": "BYBIT Комьюнити",
+   "kind": "group",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "MNT"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.ru/en/chat/@BybitRussian"
+  },
+  {
+   "handle": "chiliz_io",
+   "title": "Chiliz",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "CHZ"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x3506424F91fD33084466F402d5D97f05F8e3b4AF/info.json"
+  },
+  {
+   "handle": "enjin_coin",
+   "title": "Enjin",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "ENJ"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xF629cBd94d3791C9250152BD8dfBDF380E2a3B9c/info.json"
+  },
+  {
+   "handle": "GMX_IO",
+   "title": "GMX",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "GMX"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/arbitrum/assets/0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a/info.json"
+  },
+  {
+   "handle": "htxglobalofficial",
+   "title": "HTX English Group 1",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "HT"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/channel/@HTXGlobalAnnouncementChannel (links t.me/htxglobalofficial)"
+  },
+  {
+   "handle": "iearnfinance",
+   "title": "Yearn Finance",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "YFI"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e/info.json"
+  },
+  {
+   "handle": "immutablex",
+   "title": "Immutable X",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "IMX"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xF57e7e7C23978C3cAEC3C3548E3D615c346e79fF/info.json"
+  },
+  {
+   "handle": "loopring_en",
+   "title": "Loopring",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "LRC"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xBBbbCA6A901c926F240b89EacB641d8Aec7AEafD/info.json"
+  },
+  {
+   "handle": "MMCrypto",
+   "title": "MMCrypto (Deutsch)",
+   "kind": "group",
+   "lang": "de",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/chat/@MMCrypto"
+  },
+  {
+   "handle": "singularitynet",
+   "title": "SingularityNET",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "AGIX",
+    "FET"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x5B7533812759B45C2B44C19e320ba2cD2681b542/info.json"
+  },
+  {
+   "handle": "BitgetRussian",
+   "title": "Bitget Комьюнити",
+   "kind": "group",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "BGB"
+   ],
+   "confidence": 0.72,
+   "evidence": "https://tgstat.com/chat/@BitgetRussian"
+  },
+  {
+   "handle": "API3DAO",
+   "title": "API3",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "API3"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x0b38210ea11411557c13457D4dA7dC6ea731B88a/info.json"
+  },
+  {
+   "handle": "bfxtelegram",
+   "title": "Bitfinex",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "LEO"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x2AF5D2aD76741191D15Dfe7bF6aC92d4Bd912Ca3/info.json"
+  },
+  {
+   "handle": "BingXEnglish",
+   "title": "BingX English",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@BingXEnglish"
+  },
+  {
+   "handle": "BitcoinersGermany",
+   "title": "Bitcoin Germany",
+   "kind": "group",
+   "lang": "de",
+   "category": "community",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@BitcoinersGermany"
+  },
+  {
+   "handle": "bybitukrainian",
+   "title": "Bybit Україна",
+   "kind": "group",
+   "lang": "uk",
+   "category": "exchange",
+   "symbols": [
+    "MNT"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://uk.tgstat.com/en/chat/@bybitukrainian/stat"
+  },
+  {
+   "handle": "BybitVietnamese",
+   "title": "Bybit Việt Nam",
+   "kind": "group",
+   "lang": "vi",
+   "category": "exchange",
+   "symbols": [
+    "MNT"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@BybitVietnamese"
+  },
+  {
+   "handle": "convexEthChat",
+   "title": "Convex Finance",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "CVX"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x4e3FBD56CD56c3e72c1403e103b45Db9da5B9D2B/info.json"
+  },
+  {
+   "handle": "COTInetwork",
+   "title": "COTI",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "COTI"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/ethereum-lists/tokens/master/tokens/eth/0xDDB3422497E61e13543BeA06989C0789117555c5.json"
+  },
+  {
+   "handle": "cryptobantergroup",
+   "title": "Crypto Banter",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@cryptobantergroup"
+  },
+  {
+   "handle": "Cryptocom_IT",
+   "title": "Crypto.com Italian",
+   "kind": "group",
+   "lang": "it",
+   "category": "exchange",
+   "symbols": [
+    "CRO"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@Cryptocom_IT"
+  },
+  {
+   "handle": "Cryptocom_PL",
+   "title": "Crypto.com Polska",
+   "kind": "group",
+   "lang": "pl",
+   "category": "exchange",
+   "symbols": [
+    "CRO"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@Cryptocom_PL"
+  },
+  {
+   "handle": "Cryptocom_RS",
+   "title": "Crypto.com Srbija",
+   "kind": "group",
+   "lang": "sr",
+   "category": "exchange",
+   "symbols": [
+    "CRO"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@Cryptocom_RS"
+  },
+  {
+   "handle": "fantomfoundation",
+   "title": "Fantom Foundation",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "FTM",
+    "S"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/fantom/info/info.json"
+  },
+  {
+   "handle": "GoGalaGames",
+   "title": "Gala Games",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "GALA"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xd1d2Eb1B1e90B638588728b4130137D262C87cae/info.json"
+  },
+  {
+   "handle": "hederahashgraph",
+   "title": "Hedera Official",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "HBAR"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/channel/@hbarchatnews (points to t.me/hederahashgraph)"
+  },
+  {
+   "handle": "mantanetworkofficial",
+   "title": "Manta Network",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "MANTA"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/manta/info/info.json"
+  },
+  {
+   "handle": "nexofinance",
+   "title": "Nexo",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "NEXO"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xB62132e35a6c13ee1EE0f84dC5d40bad8d815206/info.json"
+  },
+  {
+   "handle": "OceanProtocol_Community",
+   "title": "Ocean Protocol Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "OCEAN"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x967da4048cD07aB37855c090aAF366e4ce1b9F48/info.json"
+  },
+  {
+   "handle": "okx_russian",
+   "title": "OKX Russian Community",
+   "kind": "group",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "OKB"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.ru/en/channel/@okx_ru (community t.me/okx_russian)"
+  },
+  {
+   "handle": "Ripple",
+   "title": "Ripple - XRP",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "XRP"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@Ripple"
+  },
+  {
+   "handle": "tronnetworkRU",
+   "title": "TRON Foundation чат",
+   "kind": "group",
+   "lang": "ru",
+   "category": "project",
+   "symbols": [
+    "TRX"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://tgstat.com/chat/@tronnetworkEN (search snippet t.me/tronnetworkRU)"
+  },
+  {
+   "handle": "yieldguildgames",
+   "title": "Yield Guild Games",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "YGG"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x25f8087EAD173b73D6e8B84329989A8eEA16CF73/info.json"
+  },
+  {
+   "handle": "EOSNetworkFoundation",
+   "title": "EOS Network Foundation",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "EOS"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@ENFAnnouncements (links t.me/EOSNetworkFoundation)"
+  },
+  {
+   "handle": "huobiproofficial",
+   "title": "HTX (Huobi) Official English",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "HT"
+   ],
+   "confidence": 0.4,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6f259637dcD74C767781E37Bc6133cd6A68aa161/info.json"
+  },
+  {
+   "handle": "indodaxroom",
+   "title": "INDODAX Official Group",
+   "kind": "group",
+   "lang": "id",
+   "category": "exchange",
+   "symbols": [],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/chat/@indodaxroom/stat"
+  },
+  {
+   "handle": "KuCoin_Exchange_New",
+   "title": "KuCoin Exchange (new group)",
+   "kind": "group",
+   "lang": "en",
+   "category": "exchange",
+   "symbols": [
+    "KCS"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/chat/@Kucoin_Exchange (links t.me/KuCoin_Exchange_New)"
+  },
+  {
+   "handle": "Neo_Blockchain",
+   "title": "NEO Blockchain",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "NEO"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/chat/@Neo_Blockchain"
+  },
+  {
+   "handle": "StellarLumens",
+   "title": "Stellar Lumens XLM/STR Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "XLM"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/chat/@StellarLumens"
+  },
+  {
+   "handle": "tezosplatform",
+   "title": "Tezos (community chat)",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "XTZ"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/channel/@tezosplatform"
+  },
+  {
+   "handle": "worldcoin",
+   "title": "Worldcoin",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "WLD"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x163f8C2467924be0ae7B5347228CABF260318753/info.json"
+  },
+  {
+   "handle": "zksync_community",
+   "title": "zkSync community",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "ZK"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://tgstat.com/chat/@zksync_community"
+  },
+  {
+   "handle": "audius",
+   "title": "Audius",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "AUDIO"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://raw.githubusercontent.com/ethereum-lists/tokens/master/tokens/eth/0x18aAA7115705e8be94bfFEBDE57Af9BFc265B998.json"
+  },
+  {
+   "handle": "Binance_Armenian",
+   "title": "Binance Armenia",
+   "kind": "group",
+   "lang": "hy",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.ru/en/channel/@binance_ru (lists AM chat @Binance_Armenian)"
+  },
+  {
+   "handle": "BinanceKyrgyz",
+   "title": "Binance Kyrgyzstan",
+   "kind": "group",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "BNB"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.ru/en/channel/@binance_ru (lists KG chat @BinanceKyrgyz)"
+  },
+  {
+   "handle": "bitcoin_brazil",
+   "title": "Bitcoin Brazil",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@bitcoin_brazil"
+  },
+  {
+   "handle": "BitcoinersAustralia",
+   "title": "Bitcoin Australia",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@BitcoinersAustralia"
+  },
+  {
+   "handle": "BitcoinersCanada",
+   "title": "Bitcoin Canada",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@BitcoinersCanada"
+  },
+  {
+   "handle": "BlockBeats_App",
+   "title": "BlockBeats 交流群",
+   "kind": "group",
+   "lang": "zh",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "TGStat search snippet: BlockBeats channel page lists chat t.me/BlockBeats_App"
+  },
+  {
+   "handle": "CosmosEcosystemChat",
+   "title": "Cosmos Ecosystem Chat",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "ATOM"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@CosmosEcosystemChat"
+  },
+  {
+   "handle": "CriptoSinCensura",
+   "title": "Cripto Sin Censura",
+   "kind": "group",
+   "lang": "es",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@CriptoSinCensura"
+  },
+  {
+   "handle": "defiant1s",
+   "title": "World Liberty Financial (DeFiant Ones)",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "WLFI"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdA5e1988097297dCdc1f90D4dFE7909e847CBeF6/info.json"
+  },
+  {
+   "handle": "EthTrader",
+   "title": "Ether News & Chat",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "ETH"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@EthTrader"
+  },
+  {
+   "handle": "EvmosOrg",
+   "title": "Evmos",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "EVMOS"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/evmos/info/info.json"
+  },
+  {
+   "handle": "kasparnd",
+   "title": "Kaspa R&D (view-only)",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "KAS"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/channel/@kaspachannel (mentions t.me/kasparnd)"
+  },
+  {
+   "handle": "SuperVerseDAO",
+   "title": "SuperVerse",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "SUPER"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xe53EC727dbDEB9E2d5456c3be40cFF031AB40A55/info.json"
+  },
+  {
+   "handle": "vechainandfriends",
+   "title": "VeChain and Friends",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "VET"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://en.tgstat.com/ratings/chats/crypto?sort=members_t (VeChain Official retired -> t.me/vechainandfriends)"
+  },
+  {
+   "handle": "XrpFlareForum",
+   "title": "XRP Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "XRP",
+    "FLR"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://tgstat.com/chat/@XrpFlareForum"
+  },
+  {
+   "handle": "bitcoinjapangroup",
+   "title": "Bitcoin Japan group",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BTC"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/chat/@bitcoinjapangroup"
+  },
+  {
+   "handle": "BSC_GERMANY",
+   "title": "Crypto Germany",
+   "kind": "group",
+   "lang": "de",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/chat/@BSC_GERMANY"
+  },
+  {
+   "handle": "elliotradescrypto",
+   "title": "EllioTrades Crypto Crew",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/chat/@elliotradescrypto"
+  },
+  {
+   "handle": "EOSproject",
+   "title": "EOS",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "EOS"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/chat/@EOSproject"
+  },
+  {
+   "handle": "gateiorussiachat",
+   "title": "Gate.io Russia & CIS",
+   "kind": "group",
+   "lang": "ru",
+   "category": "exchange",
+   "symbols": [
+    "GT"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@gateiorussiachat"
+  },
+  {
+   "handle": "WINkLink_Oracle_official",
+   "title": "WINkLink",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "WIN"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/tron/assets/TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7/info.json"
+  },
+  {
+   "handle": "APE_crypto",
+   "title": "APE Coin Crypto (community)",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "APE"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://tgstat.com/chat/@APE_crypto"
+  },
+  {
+   "handle": "Conflux_English",
+   "title": "Conflux Network English",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "CFX"
+   ],
+   "confidence": 0.5,
+   "evidence": "model knowledge"
+  },
+  {
+   "handle": "EOS_Global",
+   "title": "EOS / Vaulta Global",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "EOS"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://tgstat.com/chat/@EOSproject (points to t.me/EOS_Global for Vaulta)"
+  },
+  {
+   "handle": "CelestiaCommunity",
+   "title": "Celestia Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "project",
+   "symbols": [
+    "TIA"
+   ],
+   "confidence": 0.45,
+   "evidence": "model knowledge"
+  },
+  {
+   "handle": "ShibaInu_Dogecoinkiller",
+   "title": "Pre-screen for ShibaSwap: $SHIB $LEASH $BONE",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SHIB",
+    "BONE",
+    "LEASH"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/ShibaInu_Dogecoinkiller (channel preview exists, about 99k subscribers) ; https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/shiba-inu.json (CoinGecko shiba-inu telegram_channel_identifier, savedAt 2026-10-19)",
+   "note": "Changed from group to channel. This is a gateway channel, so expect mostly pinned notices. Its pinned notice says the Shiba team now recognises only @ShibariumTechnologies as the official Telegram group."
+  },
+  {
+   "handle": "dogwifcoin",
+   "title": "dogwifhat",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "WIF"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://t.me/dogwifcoin (about 30.8k members, 531 online, so it is a group) ; https://x.com/dogwifcoin (profile links it) ; Tanish431 CoinGecko dogwifcoin.json (savedAt 2026-10-19)",
+   "note": "Memes go to a separate @WIF_MEMES."
+  },
+  {
+   "handle": "pengutg",
+   "title": "Pengu Army - Entry",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PENGU"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://x.com/pudgypenguins/status/1869463875256713394 ('The official PENGU Telegram') ; https://t.me/pengutg (about 48.7k subscribers, behind a human-verification gate) ; Tanish431 CoinGecko pudgy-penguins.json (2026-10-19)",
+   "note": "Changed from group to channel. It is an entry/verification channel: the chat sits behind it, so t.me/s shows little text."
+  },
+  {
+   "handle": "SPX6900Portal",
+   "title": "SPX6900 Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SPX"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/SPX6900Portal (channel, about 17.9k subscribers, links spx6900.com) ; Tanish431 CoinGecko spx6900.json (2026-10-19)",
+   "note": "Verification portal with little text. The lookalike @spx6900_portal (with an underscore, about 112 members) is NOT the CoinGecko-listed handle."
+  },
+  {
+   "handle": "basedbrett",
+   "title": "$BRETT PORTAL",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BRETT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/basedbrett ('$BRETT PORTAL', about 34.6k subscribers) ; https://www.kucoin.com/announcement/en-brett-brett-gets-listed-on-kucoin ; feyfry CoinGecko based-brett (last_updated 2026-02-03)",
+   "note": "Changed from group to channel. Portal with little text. Do not confuse with @basedbrettmemes."
+  },
+  {
+   "handle": "popcatsolana",
+   "title": "$POPCAT SOLANA",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "POPCAT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/s/popcatsolana (channel, about 14.1k subscribers, protected by @SafeguardRobot) ; feyfry CoinGecko popcat (2026-02-03)",
+   "note": "Changed from group to channel. Safeguard portal with little text."
+  },
+  {
+   "handle": "mogcoinYUP",
+   "title": "mog coin waiting room",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MOG"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://telegram.me/s/mogcoinYUP ('mog coin waiting room', about 16k subscribers) ; Bybit MOG listing notice and https://x.com/MogCoin both link it ; feyfry CoinGecko mog-coin (2026-02-03)",
+   "note": "Changed from group to channel. Waiting-room portal with little readable text."
+  },
+  {
+   "handle": "pnutportal",
+   "title": "PNUT Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PNUT"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://t.me/pnutportal (about 13.3k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/2qEHjDLDLbuBgRYvsxhc5D6uDWAivNFZGan56P1tpump/info.json ; feyfry CoinGecko peanut-the-squirrel (2026-02-03)",
+   "note": "Verification portal with little text."
+  },
+  {
+   "handle": "GoatseusMaximusSolanaPortal",
+   "title": "Goatseus Maximus Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "GOAT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/GoatseusMaximusSolanaPortal (about 10.2k subscribers) ; exchange pages cite it as the community chat ; feyfry CoinGecko goatseus-maximus (2026-02-03)",
+   "note": "Portal. Trust Wallet still lists @GoatseusMaximusSolana. Medium '$GOAT airdrop' posts that reuse this link follow a scam pattern."
+  },
+  {
+   "handle": "mewsworld",
+   "title": "MEW Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MEW"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/s/mewsworld ('MEW Portal', about 18-22k subscribers) ; https://www.globenewswire.com/news-release/2025/01/20/3012216/0/en/ (MEW press release lists it) ; feyfry CoinGecko cat-in-a-dogs-world (2026-02-03)",
+   "note": "Changed from group to channel. Portal. Trust Wallet's MEW entry is broken (it links Clearpool's X account)."
+  },
+  {
+   "handle": "ETHNEIROCTO",
+   "title": "Neiro Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "NEIRO"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://t.me/s/ETHNEIROCTO ('Neiro Announcements', about 17k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x812Ba41e071C7b7fA4EBcFB62dF5F45f6fA853Ee/info.json ; feyfry CoinGecko neiro-3 (2026-02-03)",
+   "note": "Changed from group to channel. It is the announcements channel, so t.me/s is readable. This is the CTO Neiro (0x812B..., neiroeth.io)."
+  },
+  {
+   "handle": "TurboToadToken",
+   "title": "Turbo Toad Token Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "TURBO"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://t.me/TurboToadToken (portal, about 361 subscribers) ; https://turbotoken.io/turbo-token-official-links ; HTX token page ; feyfry CoinGecko turbo (2026-02-03, telegram count only 5)",
+   "note": "Changed from group to channel. It is official but tiny, a portal with almost no readable text. Low value."
+  },
+  {
+   "handle": "BOOK_OF_MEME",
+   "title": "BOOK OF MEME",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BOME"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://t.me/BOOK_OF_MEME (about 33k subscribers) ; feyfry CoinGecko book-of-meme (2026-02-03)",
+   "note": "Changed from group to channel. Only CoinGecko ties it to BOME; Trust Wallet lists no Telegram."
+  },
+  {
+   "handle": "dogs_community",
+   "title": "DOGS Community",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "DOGS"
+   ],
+   "confidence": 0.9,
+   "evidence": "https://t.me/dogs_community (channel, millions of subscribers) ; feyfry CoinGecko dogs-2 (snapshot 2025-06-26, not 2026-02-03)",
+   "note": "Do not also add @dogs (likely an alias)."
+  },
+  {
+   "handle": "notcoin",
+   "title": "Notcoin Community",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "NOT"
+   ],
+   "confidence": 0.95,
+   "evidence": "https://t.me/s/notcoin (about 8.6M subscribers) ; https://tgstat.com/channel/@notcoin ; feyfry CoinGecko notcoin (2026-02-03)",
+   "note": "The lookalike @notcoin_scam uses the same title and links another domain."
+  },
+  {
+   "handle": "hamster_kombat",
+   "title": "Hamster Kombat Announcement",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "HMSTR"
+   ],
+   "confidence": 0.92,
+   "evidence": "https://t.me/s/hamster_kombat (about 20M subscribers) ; https://tgstat.com/channel/@hamster_kombat ; feyfry CoinGecko hamster-kombat (snapshot 2025-06-26)",
+   "note": "Very large and mostly about the game."
+  },
+  {
+   "handle": "hamster_kombat_chat",
+   "title": "Hamster Kombat Chat (ENG)",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "HMSTR"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://t.me/hamster_kombat_chat (about 59.5k members, welcome text calls it the official chat) ; https://tgstat.com/chat/@hamster_kombat_chat",
+   "note": "The official announcement channel's description now links @hamster_kombat_chat_2 as the community chat, so this group may be the older or overflow one. TGStat data is stale."
+  },
+  {
+   "handle": "SimonsCatWorld",
+   "title": "Simon's Cat Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "CAT"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://tgstat.com/chat/@SimonsCatWorld (group, about 75k members) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0x6894CDe390a3f51155ea41Ed24a33A4827d3063D/info.json ; feyfry CoinGecko simon-s-cat (snapshot 2025-06-26)",
+   "note": "Token community. It is not run by Simon Tofield's studio."
+  },
+  {
+   "handle": "degentokenbase",
+   "title": "Degen",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "DEGEN"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://t.me/s/degentokenbase (preview exists, about 26-30k subscribers, a listing dated 2026-09-26) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/base/assets/0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed/info.json ; feyfry CoinGecko degen-base (2026-02-03)",
+   "note": "Changed from group to channel based on the t.me/s preview and the 'subscribers' count. But an X post mentions a 'Developers topic on our Telegram group'. If t.me/s returns no posts, read it as a group."
+  },
+  {
+   "handle": "chillguycto",
+   "title": "just a chill guy CTO",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "CHILLGUY"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/chillguycto (about 25.7k members) ; https://x.com/chillguycto/status/1861644058617053473 ('tg group') ; feyfry CoinGecko chill-guy (snapshot 2025-06-26)"
+  },
+  {
+   "handle": "babydogecoin",
+   "title": "Baby Doge Announcements",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BABYDOGE"
+   ],
+   "confidence": 0.92,
+   "evidence": "https://t.me/s/babydogecoin ; https://x.com/BabyDoge/status/1807745971100451093 (official post announcing the channel) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0xc748673057861a797275CD8A068AbB95A902e8de/info.json"
+  },
+  {
+   "handle": "BabyDogeArmy",
+   "title": "Baby Doge Chat",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BABYDOGE"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://tgstat.com/chat/@BabyDogeArmy ; https://t.me/babydogearmy (about 99.6k members) ; linked as the chat from https://t.me/BabyDogeCoin"
+  },
+  {
+   "handle": "MemeCoreLabs",
+   "title": "MemeCore",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "M"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/s/MemeCoreLabs (about 119k subscribers) ; Tanish431 CoinGecko memecore.json (2026-10-19)",
+   "note": "Changed from group to channel. A separate community group, @MemeCoreCommunity, exists but was not verified. MemeCore is a meme-themed Layer 1."
+  },
+  {
+   "handle": "BinanceLife_token",
+   "title": "币安人生 (BinanceLife)",
+   "kind": "group",
+   "lang": "zh",
+   "category": "meme_project",
+   "symbols": [
+    "币安人生"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/bianrensheng.json (CoinGecko telegram_channel_identifier, 2026-10-19)",
+   "note": "Only CoinGecko lists this handle; no other source confirms it, and community-led BNB memes attract fake groups. Kind not verified (kept as group because the hub account can read either kind). The ticker is non-ASCII."
+  },
+  {
+   "handle": "ThePippinCo",
+   "title": "Pippin",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PIPPIN"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/pippin.json (CoinGecko, 2026-03-16, about 4k members)",
+   "note": "Only CoinGecko lists this handle. pippin.love links a private invite group (t.me/+7cN7...) instead, and I could not confirm the two are the same. Kind not verified."
+  },
+  {
+   "handle": "sirenbsc",
+   "title": "SIREN",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SIREN"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/sirenbsc (about 40k members) ; https://x.com/genius_sirenbsc (bio links it) ; https://dappbay.bnbchain.org/detail/sirenai ; Tanish431 CoinGecko siren-2.json (2026-06-12)"
+  },
+  {
+   "handle": "apeandpepe",
+   "title": "APEPE #1",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "APEPE"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/apeandpepe (about 121k members) ; BscScan contract source header names it ; Tanish431 CoinGecko ape-and-pepe.json (2026-10-19)",
+   "note": "Overflow groups @apeandpepe2 and @apeandpepe03 exist. There is also an announcement channel, @APEPE_Official, which was not verified."
+  },
+  {
+   "handle": "BUILDonBsc_AI",
+   "title": "BUILDon (B)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "B"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/build-on.json (CoinGecko, 2026-10-06; the handle matches X @BUILDonBsc_AI)",
+   "note": "Only CoinGecko lists this handle and no t.me page was found. Kind not verified. The one-letter ticker B will cause false matches."
+  },
+  {
+   "handle": "blorbmemehood",
+   "title": "BLORB",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BLORB"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://raw.githubusercontent.com/Tanish431/CC_FrontProj-2/HEAD/public/coins/blorb.json (CoinGecko, 2026-09-20)",
+   "note": "Only CoinGecko lists this handle and no t.me page was found. Several BLORB tokens exist on different chains. Kind not verified."
+  },
+  {
+   "handle": "fomeme",
+   "title": "$FO Group 1",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "FO"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/fomeme (the official group, about 71k members) ; https://nicegram.app/hub/channel/fomemechannel (links back to it) ; Tanish431 CoinGecko official-fo.json (2026-04-28)",
+   "note": "The news channel @fomemechannel (about 121k) would be readable through t.me/s; a second group, @fomeme2, also exists."
+  },
+  {
+   "handle": "nutofficialcommunity",
+   "title": "$NUT || Official Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "NUT"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://t.me/nutofficialcommunity (about 15k members, 879 online) ; feyfry CoinGecko nut (last_updated 2025-06-24, not 2026-02-03)",
+   "note": "This was a presale coin promoted through paid press releases."
+  },
+  {
+   "handle": "auracoinsol",
+   "title": "aura",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "AURA"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://t.me/auracoinsol (about 7.8k subscribers) ; https://coinmarketcap.com/currencies/aura/ ; Trust Wallet solana/DtR4D9FtVoTX2569gaL837ZgrB6wNjj6tkmnX9Rdk9B2 info.json",
+   "note": "Changed from group to channel based on the 'subscribers' count on the t.me page; listings call it a 'community chat'. If t.me/s is empty, read it as a group. The ticker AURA collides with other tokens."
+  },
+  {
+   "handle": "LordCheems_Bsc",
+   "title": "Cheems (BSC)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "CHEEMS"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://www.globenewswire.com/news-release/2025/02/28/3034644/0/en/ (project press release lists t.me/LordCheems_Bsc) ; feyfry CoinGecko cheems-token (2026-02-03)",
+   "note": "Kind not verified. @CheemsOfficial and @cheemsuserbot are unrelated."
+  },
+  {
+   "handle": "DogelonMars",
+   "title": "Dogelon Mars",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "ELON"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://t.me/DogelonMars (about 38.5k members, 1,029 online) ; https://x.com/DogelonMars (profile links it)",
+   "note": "The ticker ELON collides with mentions of Elon Musk."
+  },
+  {
+   "handle": "snekcoinada",
+   "title": "Snek (EN)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SNEK"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://x.com/snek/status/1815533002258108629 (official socials: 'Telegram (EN)') ; https://t.me/snekcoinada (about 8.3k members, 148 online)"
+  },
+  {
+   "handle": "miladymemecoinchannel",
+   "title": "Milady",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "LADYS"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/s/miladymemecoinchannel (about 29.6k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x12970E6868f88f6557B76120662c1B3E50A646bf/info.json",
+   "note": "BitMart also lists @miladymemecoin; it was not verified."
+  },
+  {
+   "handle": "TheOnlyAndyLeft",
+   "title": "ANDY",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "ANDY"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://t.me/TheOnlyAndyLeft (channel, about 4.4k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x68BbEd6A47194EFf1CF514B50Ea91895597fc91E/info.json",
+   "note": "Changed from group to channel. Small; the CoinGecko snapshot is from 2025-06."
+  },
+  {
+   "handle": "hpos10i",
+   "title": "HarryPotterObamaSonic10Inu",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BITCOIN"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/hpos10i (about 16.9k subscribers) ; OKX NFT collection page and CoinCarp list it ; feyfry CoinGecko harrypotterobamasonic10in (2026-02-03)",
+   "note": "Changed from group to channel. The ticker BITCOIN collides with BTC. @hpos10i20 belongs to a separate '2.0' token."
+  },
+  {
+   "handle": "myroSOL",
+   "title": "$MYRO | The Solana Founders Dog",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MYRO"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/myroSOL (about 21-23k subscribers) ; Trust Wallet solana/HhJpBhRRn4g56VsyLuT8DL5Bv31HkXqsrahTTUCZeZg4 info.json",
+   "note": "Changed from group to channel. The CoinGecko snapshot is from 2025-05."
+  },
+  {
+   "handle": "aixbtportal",
+   "title": "aixbt Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "AIXBT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/aixbtportal (about 8k subscribers) ; https://aixbt-labs.gitbook.io/v1/links/socials (calls it the public chat) ; feyfry CoinGecko aixbt (2026-02-03)",
+   "note": "Portal. The official news feed is @aixbtfeed (not verified here), and aixbt.tech links a differently spelled @aixbt_portal."
+  },
+  {
+   "handle": "fwogportal",
+   "title": "$FWOG | PORTAL",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "FWOG"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/fwogportal (about 11k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/A8C3xuqscfmyLrte3VmTqrAq8kgMASius9AFNANwpump/info.json ; CoinCarp MEXC listing",
+   "note": "Portal. FWOG on ETH is a different token."
+  },
+  {
+   "handle": "michiportal",
+   "title": "$MICHI Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MICHI"
+   ],
+   "confidence": 0.6,
+   "evidence": "https://t.me/s/michiportal (about 4.6k-7.6k subscribers) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/5mbK36SZ7J19An8jFochhQS4of8g6BwUjbeCSxBSoWdp/info.json",
+   "note": "Portal. The token migrated its liquidity to a new ...pump contract through migrate.fun, so Trust Wallet's contract address may be the pre-migration token."
+  },
+  {
+   "handle": "GigaChadSol",
+   "title": "GIGACHAD",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "GIGA"
+   ],
+   "confidence": 0.55,
+   "evidence": "https://t.me/GigaChadSol (group, about 18k members) ; https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/63LfDmNb3MQ8mw9MtZ2To9bEA2M71kZUUGq5tiJxcqj9/info.json",
+   "note": "CoinGecko (2026-02) no longer lists a Telegram and now points to a different website, so this group may be abandoned by the team."
+  },
+  {
+   "handle": "KekiusMaximusOnEthportal",
+   "title": "Kekius Maximus community portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "KEKIUS"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://t.me/KekiusMaximusOnEthportal (about 10.2k subscribers) ; https://www.kekiusmaximus.vip/ links it ; BitMart listing ; feyfry CoinGecko kekius-maximus (snapshot 2025-06-24)",
+   "note": "Portal. Rival Kekius teams exist: Trust Wallet lists a different website (kekiusmaximuserc.com) and X account."
+  },
+  {
+   "handle": "actportal",
+   "title": "ACT I Community Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "ACT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/actportal (about 8.4k subscribers, Safeguard portal) ; Trust Wallet solana/GJAFwWjJ3vnTsrQVabjBVK2TYB1YtRCQXRDfDgUnpump info.json",
+   "note": "Verification portal."
+  },
+  {
+   "handle": "Testonbsc",
+   "title": "Test (TST)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "TST"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://x.com/TestonBSC/status/1887721487957639415 (official X lists t.me/Testonbsc) ; feyfry CoinGecko test-3 (snapshot 2025-06-26)",
+   "note": "Kind not verified. The ticker TST is generic."
+  },
+  {
+   "handle": "mubarak_cto",
+   "title": "Mubarak - Announcement",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "MUBARAK"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/mubarak_cto (channel, about 8.8k subscribers) ; feyfry CoinGecko mubarak (snapshot 2025-06-26) ; Bitget listing post tags @mubarak_cto",
+   "note": "Changed from group to channel. The posts are heavily promotional."
+  },
+  {
+   "handle": "comedian_ban",
+   "title": "Comedian (BAN)",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "BAN"
+   ],
+   "confidence": 0.5,
+   "evidence": "feyfry CoinGecko comedian (2026-02-03, about 5.2k members)",
+   "note": "Only CoinGecko lists this handle. CoinCarp lists t.me/ctosol_ban instead and Trust Wallet lists no Telegram. Kind not verified."
+  },
+  {
+   "handle": "nonplayablecoin",
+   "title": "Non-Playable Coin",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "NPC"
+   ],
+   "confidence": 0.85,
+   "evidence": "https://t.me/nonplayablecoin (about 7.9k subscribers) ; https://www.npc.com/ links it ; Tanish431 CoinGecko non-playable-coin.json (2026-10-09)",
+   "note": "Changed from group to channel. The ticker NPC is also a slang word."
+  },
+  {
+   "handle": "LofiOnSui",
+   "title": "Lofi on Sui Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "LOFI"
+   ],
+   "confidence": 0.65,
+   "evidence": "https://t.me/LofiOnSui (about 6.6k subscribers) ; CoinCarp lofitheyeti ; feyfry CoinGecko lofi-2 (snapshot 2025-06-26)",
+   "note": "Changed from group to channel. Portal with little text."
+  },
+  {
+   "handle": "pepecoins",
+   "title": "PepeCoin Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PEPECOIN"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://t.me/pepecoins ('Official Portal to join PepeCoin', about 1.1k subscribers) ; Trust Wallet ethereum/0xA9E8aCf069C58aEc8825542845Fd754e41a9489A info.json ; https://x.com/pepecoins",
+   "note": "Changed from group to channel. It is a tiny portal with almost no text. This is the older PEPECOIN (pepecoin.io), not PEPE."
+  },
+  {
+   "handle": "zerebro0x",
+   "title": "Zerebro",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "ZEREBRO"
+   ],
+   "confidence": 0.5,
+   "evidence": "https://linktr.ee/0xzerebro (official Linktree: 'Telegram: Contact @zerebro0x') ; feyfry CoinGecko zerebro (snapshot 2025-06-26)",
+   "note": "Kind not verified, and the Linktree 'Contact' wording could mean a user account. An invite page shows a separate group, @zerebro_portal (about 5.9k members)."
+  },
+  {
+   "handle": "GriffainSOL",
+   "title": "Griffain Portal",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "GRIFFAIN"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://t.me/GriffainSOL (about 6.9k subscribers) ; https://bitmart.zendesk.com/hc/en-us/articles/31754029517851 ; feyfry CoinGecko griffain (snapshot 2025-06-26)",
+   "note": "Changed from group to channel. Portal. @GriffainBot is the app."
+  },
+  {
+   "handle": "notpixel_channel",
+   "title": "Not Pixel Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PX"
+   ],
+   "confidence": 0.88,
+   "evidence": "https://t.me/s/notpixel_channel (Telegram-verified, about 3.9M+ subscribers) ; https://raw.githubusercontent.com/tonkeeper/ton-assets/main/jettons.json (PX jetton social)",
+   "note": "Mostly about the game."
+  },
+  {
+   "handle": "pump_tech_updates",
+   "title": "Pump Developer Updates",
+   "kind": "channel",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "PUMP"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://t.me/s/pump_tech_updates (about 6k subscribers) ; https://pump.fun/docs/mayhem-mode (developer channel link)",
+   "note": "Posts rarely; the latest cached post was old. These are technical notices with almost no sentiment."
+  },
+  {
+   "handle": "four_meme",
+   "title": "Four.Meme (Official Group Chat)",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://t.me/four_meme (about 107.6k members) ; https://linktr.ee/four.meme (lists a Telegram Community and a separate Official Channel)",
+   "note": "The Official Channel's handle was not found."
+  },
+  {
+   "handle": "gmgnai",
+   "title": "GMGN Degen Group - Official",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [],
+   "confidence": 0.85,
+   "evidence": "https://docs.gmgn.ai/index/contact-us ('GMGN Group: https://t.me/gmgnai') ; https://t.me/gmgnai (about 23k members)",
+   "note": "The Chinese group is @gmgn_official. @gmgn_ai is only a portal for the alert channels."
+  },
+  {
+   "handle": "bubblemaps",
+   "title": "Bubblemaps Community",
+   "kind": "group",
+   "lang": "en",
+   "category": "community",
+   "symbols": [
+    "BMT"
+   ],
+   "confidence": 0.8,
+   "evidence": "https://t.me/bubblemaps (official community, about 8.4k members, links regional groups) ; feyfry CoinGecko bubblemaps (snapshot 2025-06-26)",
+   "note": "Category changed from whales to community, since this is a product and token chat. Avoid @bubblemapsportal: it points to the lookalike domain bubblymaps.com and has about 172 subscribers."
+  },
+  {
+   "handle": "trendingssol",
+   "title": "SOL TRENDING (Deluge)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.7,
+   "evidence": "https://t.me/s/trendingssol ; https://tgstat.com/channel/@trendingssol (about 135k subscribers, part of @delugecash)",
+   "note": "Slots are paid through @delugetrendbot, so this measures paid attention."
+  },
+  {
+   "handle": "BSCTRENDING",
+   "title": "BSC TRENDING (LIVE)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://telemetr.me/content/bsctrending (about 45.6k subscribers, powered by @buytech) ; https://tgstat.com/channel/@BuyBotTech",
+   "note": "Paid trending placement."
+  },
+  {
+   "handle": "BuyBotTrending",
+   "title": "BuyBot Tech Trending",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://x.com/BuyBotTech (profile links t.me/BuyBotTrending) ; https://tgstat.com/channel/@BuyBotTracker",
+   "note": "Paid trending placement across several chains."
+  },
+  {
+   "handle": "BASETRENDINGLIVE",
+   "title": "BASE TRENDING (LIVE)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@BASETRENDINGLIVE",
+   "note": "An automated feed with paid 'Boost Trending' slots."
+  },
+  {
+   "handle": "trendingonds",
+   "title": "Trending on DEX Screener (unofficial)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://telemetr.io/en/channels/1266195491-trendingonds (about 10k subscribers, Aug 2025)",
+   "note": "Unofficial. A separate @TrendingOnDS has about 7.2k subscribers; do not add both."
+  },
+  {
+   "handle": "DSTrendingSolana",
+   "title": "Solana - Trending on DEX Screener (unofficial)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://t.me/DSTrendingSolana ; https://telemetr.io/en/channels/2075630283-dstrendingsolana/marketing",
+   "note": "An unofficial mirror of DEX Screener trending."
+  },
+  {
+   "handle": "dstrends_bsc",
+   "title": "DEX Screener Trends: BSC (unofficial)",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.6,
+   "evidence": "https://t.me/s/dstrends_bsc (about 6.3k subscribers) ; https://tgstat.com/channel/@dstrends_bsc",
+   "note": "An unofficial mirror."
+  },
+  {
+   "handle": "dexpaidalerts",
+   "title": "DEX Paid - NEW Alerts - DEXScreener",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.5,
+   "evidence": "https://telemetr.io/en/channels/2166128600-dexpaidalerts/posts",
+   "note": "A launch-activity signal, not sentiment: mostly contract addresses."
+  },
+  {
+   "handle": "pumpfunraydium",
+   "title": "Pump.fun - PumpSwap Migration",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.5,
+   "evidence": "https://telemetr.io/en/channels/2082594782-pumpfunraydium",
+   "note": "A third-party feed sourced from @PumpFunHotCalls; high volume and mostly contract addresses."
+  },
+  {
+   "handle": "cherrytrending",
+   "title": "Cherry Trending: SOL, PUMPFUN",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@cherrytrending ; https://t.me/cherrytrending (about 648k subscribers; @CherryTGBot names it its Trending Hub)",
+   "note": "Paid trending placement; the subscriber count may be inflated."
+  },
+  {
+   "handle": "dextoolsnews",
+   "title": "DEXTools Spotlight",
+   "kind": "channel",
+   "lang": "en",
+   "category": "dex_trending",
+   "symbols": [],
+   "confidence": 0.5,
+   "evidence": "https://t.me/s/DEXToolsNews (about 11.6k subscribers; posts are DEXTools platform updates) ; https://telemetr.io/en/channels/1394392545-dextoolsnews",
+   "note": "Not confirmed official; Telemetr marks it unverified. DEXTools' blog names @DEXToolsCommunity as its official group. Spotlight posts are probably paid placements."
+  },
+  {
+   "handle": "GateOfficialNews",
+   "title": "Gate News",
+   "kind": "channel",
+   "lang": "en",
+   "category": "listings",
+   "symbols": [
+    "GT"
+   ],
+   "confidence": 0.75,
+   "evidence": "https://www.gate.com/community (lists 'Gate News' @GateOfficialNews)",
+   "note": "Listed as official, but the subscriber count and activity could not be confirmed (one mirror shows about 55). @gateio_english_news is another Gate English channel with a long post history (not verified). Avoid @GateioOfficialNews."
+  },
+  {
+   "handle": "GateZhNews",
+   "title": "Gate 官方公告",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "listings",
+   "symbols": [
+    "GT"
+   ],
+   "confidence": 0.7,
+   "evidence": "https://www.gate.com/community (lists 'Gate 官方公告' @GateZhNews)"
+  },
+  {
+   "handle": "BWEnews",
+   "title": "方程式新闻 BWEnews",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.88,
+   "evidence": "https://t.me/s/BWEnews (about 73k subscribers) ; https://telemetr.io/en/channels/1279597711-bwenews/posts (about 2 posts a day, mid-Oct 2026) ; https://x.com/bwenews",
+   "note": "Bilingual Chinese and English. A fast listing wire; some items are AI-generated and unchecked."
+  },
+  {
+   "handle": "BWEnews_KR",
+   "title": "BWEnews 한국어",
+   "kind": "channel",
+   "lang": "ko",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://tgstat.com/channel/@BWEnews_KR ; https://t.me/s/BWEnews_KR",
+   "note": "Shares branding and a Linktree with @BWEnews, but the subscriber data (about 2.9k) is old."
+  },
+  {
+   "handle": "CexAlerts",
+   "title": "CEX Alerts",
+   "kind": "channel",
+   "lang": "en",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://t.me/s/CexAlerts ; https://telemetr.io/en/channels/1958121663-cexalerts/posts (about 49-54k subscribers)",
+   "note": "A third-party aggregator. It also posts 'likely to list' predictions, not only confirmed listings."
+  },
+  {
+   "handle": "coin_listing",
+   "title": "Coin listing",
+   "kind": "channel",
+   "lang": "en",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://t.me/s/coin_listing ; https://tgstat.com/channel/@coin_listing",
+   "note": "A third-party aggregator that also sells a paid websocket feed."
+  },
+  {
+   "handle": "newcoinlistingbot",
+   "title": "New Coins Listings",
+   "kind": "channel",
+   "lang": "en",
+   "category": "listings",
+   "symbols": [],
+   "confidence": 0.55,
+   "evidence": "https://t.me/s/newcoinlistingbot ; https://tgstat.com/channel/@newcoinlistingbot (about 5.2-5.8k subscribers)",
+   "note": "Automated template posts, despite the 'bot' in the handle."
+  },
+  {
+   "handle": "OnchainLens",
+   "title": "Onchain Lens Channel",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.75,
+   "evidence": "https://t.me/s/OnchainLens ; https://www.onchainlens.ai/ (site points to the Telegram channel) ; https://telemetr.io/en/channels/2203893277-onchainlens/posts",
+   "note": "About 3-5k subscribers."
+  },
+  {
+   "handle": "NansenSmartAlerts",
+   "title": "Nansen Smart Alerts",
+   "kind": "channel",
+   "lang": "en",
+   "category": "whales",
+   "symbols": [],
+   "confidence": 0.45,
+   "evidence": "https://t.me/NansenSmartAlerts (about 1.1k subscribers; directs users to nansen.ai) ; https://twitter.com/nansen_ai/status/1590723158910197760",
+   "note": "Small and possibly dormant; activity could not be confirmed."
+  },
+  {
+   "handle": "ChannelPANews",
+   "title": "PANews Web3丨加密货币丨区块链新闻频道",
+   "kind": "channel",
+   "lang": "zh",
+   "category": "news",
+   "symbols": [],
+   "confidence": 0.8,
+   "evidence": "https://t.me/s/ChannelPANews (about 25k subscribers) ; https://x.com/PANewsCN/status/1455046984541229062 ; https://linktr.ee/PANewsLab",
+   "note": "General crypto news, not meme-specific. The English channel is @panewsen and the discussion group is @PANewsLab. PANews' X account @PANewsCN was hijacked in 2025."
+  },
+  {
+   "handle": "ShibariumTechnologies",
+   "title": "Shibarium Technologies",
+   "kind": "group",
+   "lang": "en",
+   "category": "meme_project",
+   "symbols": [
+    "SHIB",
+    "BONE"
+   ],
+   "confidence": 0.7,
+   "evidence": "Pinned notice in https://t.me/s/ShibaInu_Dogecoinkiller: the Shiba team recognises only @ShibariumTechnologies as the official group (about 19-23k members)"
+  }
+ ]
+}

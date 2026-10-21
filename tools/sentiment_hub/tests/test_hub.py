@@ -1,0 +1,281 @@
+"""End-to-end runs of the hub without network: everything failing, and a full run on fixtures."""
+
+from __future__ import annotations
+
+import json
+import subprocess
+import sys
+from datetime import timedelta
+
+from conftest import FakeHttp, NOW, REPO_ROOT, fixture_bytes, fixture_path
+
+from sentiment_hub import history, hub, memecoins, reddit, rss
+from sentiment_hub.common import Message, SourceResult
+from sentiment_hub.feed import validate_feed
+from sentiment_hub.net import NetError
+
+HUB = REPO_ROOT / "tools" / "sentiment_hub" / "hub.py"
+
+
+def args(*extra: str, out="feed.json"):
+    return hub.build_parser().parse_args(
+        ["--out", str(out), "--assets", str(fixture_path("assets_small.json")), "--channels", str(fixture_path("channels_small.json")),
+         "--lexicon", str(fixture_path("lexicon_small.tsv")), *extra]
+    )
+
+
+class DownHttp:
+    """Every request fails like a blocked host."""
+
+    def __init__(self):
+        self.calls = []
+
+    def limiter_for(self, url):
+        return None
+
+    def get(self, url, headers=None, allow_redirects=True):
+        self.calls.append(url)
+        raise NetError("ProxyError: blocked")
+
+
+def test_everything_down_still_writes_a_valid_feed(tmp_path, monkeypatch):
+    monkeypatch.setattr(reddit.time, "sleep", lambda s: None)
+    tg, news = DownHttp(), DownHttp()
+    feed, results, notes = hub.run(args("--models", "vader,finbert,cryptobert"), now=NOW, tg_http=tg, news_http=news, account_env={})
+    assert validate_feed(feed) == []
+    assert feed["assets"] == []
+    assert feed["models"] == []  # nothing was scored, so no scorer ran
+    assert feed["market"] == {"mentions": 0, "composite": 0.0, "bullish": 0.0, "bearish": 0.0, "neutral": 0.0}
+    statuses = {s["name"]: (s["status"], s["items"]) for s in feed["sources"]}
+    assert statuses == {
+        "telegram_public": ("unavailable", 0),
+        "telegram_account": ("disabled", 0),
+        "rss": ("unavailable", 0),
+        "reddit": ("unavailable", 0),
+    }
+    assert feed["sources"][1]["detail"] == "no TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION secrets"
+    # every catalogue channel was tried (cointelegraph, solana, gone_channel), each also at telegram.me; groups have no preview
+    assert sorted(tg.calls) == sorted(f"https://{host}/s/{h}" for host in ("t.me", "telegram.me") for h in ("cointelegraph", "solana", "gone_channel"))
+    assert len(news.calls) == len(rss.FEEDS) + len(reddit.SUBREDDITS) + 1  # + the CoinGecko memecoin list
+
+
+def test_one_source_crashing_does_not_fail_the_run(monkeypatch):
+    def boom(*a, **k):
+        raise RuntimeError("unexpected bug")
+
+    monkeypatch.setattr(hub.rss, "collect", boom)
+    feed, results, _ = hub.run(args("--no-telegram", "--no-reddit"), now=NOW, news_http=DownHttp())
+    assert results["rss"].status == "error" and results["rss"].detail == "RuntimeError"
+    assert validate_feed(feed) == []
+
+
+def _fixture_http():
+    tg = FakeHttp()
+    tg.add("https://t.me/s/cointelegraph", fixture_bytes("tme_cointelegraph_page1.html"))
+    tg.add("https://t.me/s/cointelegraph?before=9001", fixture_bytes("tme_cointelegraph_page2.html"))
+    tg.add("https://t.me/s/bitcoin_traders_chat", fixture_bytes("tme_group_landing.html"), final_url="https://t.me/bitcoin_traders_chat")
+    tg.add("https://t.me/s/gone_channel", b"", status=404)
+    news = FakeHttp()
+    news.add(rss.FEEDS[0][1], fixture_bytes("rss_cointelegraph.xml"))
+    news.add(rss.FEEDS[2][1], fixture_bytes("atom_decrypt.xml"))
+    news.add(reddit.listing_url("CryptoCurrency"), fixture_bytes("reddit_cryptocurrency_new.json"))
+    for sub in reddit.SUBREDDITS[1:]:
+        news.add(reddit.listing_url(sub), b"", status=403)
+    return tg, news
+
+
+def fake_pipeline_factory(task, model=None, tokenizer=None, device=None, **kwargs):
+    """Stands in for transformers.pipeline: no model download, deterministic scores."""
+    table = {
+        "ProsusAI/finbert": [{"label": "positive", "score": 0.5}, {"label": "negative", "score": 0.2}, {"label": "neutral", "score": 0.3}],
+        "ElKulako/cryptobert": [{"label": "Bearish", "score": 0.1}, {"label": "Neutral", "score": 0.3}, {"label": "Bullish", "score": 0.6}],
+    }[model]
+
+    def pipe(inputs, **kw):
+        assert kw["batch_size"] == 32 and kw["max_length"] == 128 and kw["truncation"] is True
+        return [list(table) for _ in inputs]
+
+    return pipe
+
+
+def test_full_run_on_fixtures(monkeypatch, tmp_path):
+    monkeypatch.setattr(reddit.time, "sleep", lambda s: None)
+    tg, news = _fixture_http()
+    feed, results, notes = hub.run(args(), now=NOW, tg_http=tg, news_http=news, account_env={}, pipeline_factory=fake_pipeline_factory)
+    assert validate_feed(feed) == [], validate_feed(feed)
+    assert feed["models"] == ["vader", "finbert", "cryptobert"]
+    src = {s["name"]: s for s in feed["sources"]}
+    assert src["telegram_public"]["status"] == "ok" and src["telegram_public"]["detail"].startswith("1/3 channels")
+    assert src["telegram_public"]["items"] == 8
+    assert src["rss"]["status"] == "ok" and src["reddit"]["status"] == "ok"
+    assert src["reddit"]["detail"] == "1/4 subreddits (3 HTTP 403)"
+    # current window: 5 Telegram posts, 4 headlines, 2 Reddit posts
+    assert feed["market"]["mentions"] == 11
+    mentions = [a["mentions"] for a in feed["assets"]]
+    assert mentions == sorted(mentions, reverse=True)
+    by_symbol = {a["symbol"]: a for a in feed["assets"]}
+    assert {"BTC", "ETH", "SOL", "DOGE"} <= set(by_symbol)
+    btc = by_symbol["BTC"]
+    assert btc["mentions"] == 3
+    assert btc["mentionsPrev"] == 1  # "BTC dominance climbs" is 32 h old; the 53 h old post is outside the lookback
+    assert set(btc["scores"]) == {"vader", "finbert", "cryptobert"}
+    assert btc["scores"]["finbert"] == 0.3 and btc["scores"]["cryptobert"] == 0.5
+    assert set(btc["bySource"]) == {"telegram_public", "rss"}
+    assert all(s["url"].startswith("https://") for a in feed["assets"] for s in a["samples"])
+    sol = by_symbol["SOL"]
+    assert any("Solana is back online" in s["text"] for s in sol["samples"])
+    out = tmp_path / "feed.json"
+    from sentiment_hub.feed import write_feed
+
+    write_feed(feed, out)
+    assert json.loads(out.read_text())["schema"] == "cryptopulse.sentiment-feed/v1"
+
+
+def test_run_with_history_uses_baselines_and_records_the_run(monkeypatch, tmp_path):
+    monkeypatch.setattr(reddit.time, "sleep", lambda s: None)
+    path = tmp_path / "history.json"
+    # 8 earlier runs, all older than 24 h, so they form the baseline: BTC 2, ETH 4 per run
+    seeded = history.empty_history()
+    for i in range(8):
+        history.append_run(seeded, NOW - timedelta(hours=32 - i), {"BTC": 2, "ETH": 4})
+    history.save_history(seeded, path)
+    tg, news = _fixture_http()
+    feed, _, _ = hub.run(args("--history", str(path)), now=NOW, tg_http=tg, news_http=news, account_env={}, pipeline_factory=fake_pipeline_factory)
+    assert validate_feed(feed) == [], validate_feed(feed)
+    by_symbol = {a["symbol"]: a for a in feed["assets"]}
+    assert by_symbol["BTC"]["baseline7d"] == 2.0 and by_symbol["BTC"]["spike"] == 1.5  # 3 mentions / 2
+    # SOL never appeared in any old entry: a brand-new symbol has no baseline at all
+    assert by_symbol["SOL"]["baseline7d"] is None and by_symbol["SOL"]["spike"] is None
+    # this run's counts were appended for the next run to use
+    saved = history.load_history(path)
+    assert len(saved["entries"]) == 9
+    last = saved["entries"][-1]
+    assert last["ts"] == "2026-10-19T10:00:00Z"
+    assert last["counts"]["BTC"] == by_symbol["BTC"]["mentions"] == 3
+
+
+def test_run_with_too_little_history_leaves_baselines_null(monkeypatch, tmp_path):
+    monkeypatch.setattr(reddit.time, "sleep", lambda s: None)
+    path = tmp_path / "history.json"
+    seeded = history.empty_history()
+    for i in range(3):  # below MIN_BASELINE_ENTRIES
+        history.append_run(seeded, NOW - timedelta(hours=30 - i), {"BTC": 2})
+    history.save_history(seeded, path)
+    tg, news = _fixture_http()
+    feed, _, _ = hub.run(args("--history", str(path)), now=NOW, tg_http=tg, news_http=news, account_env={}, pipeline_factory=fake_pipeline_factory)
+    assert validate_feed(feed) == [], validate_feed(feed)
+    assert all(a["baseline7d"] is None and a["spike"] is None for a in feed["assets"])
+    assert len(history.load_history(path)["entries"]) == 4  # the run was still recorded
+
+
+def test_public_post_seen_by_both_telegram_sources_counts_once():
+    ts = NOW - timedelta(hours=1)
+    pub = SourceResult("telegram_public", "ok", [Message("telegram_public", "tg:cointelegraph/1", "Bitcoin up", ts, "https://t.me/cointelegraph/1", "cointelegraph")])
+    acc = SourceResult("telegram_account", "ok", [
+        Message("telegram_account", "tg:cointelegraph/1", "Bitcoin up", ts, "https://t.me/cointelegraph/1", "cointelegraph"),
+        Message("telegram_account", "tgp:77/5", "spam", ts, None, None, public=False),
+        Message("telegram_account", "tgp:77/6", "spam", ts, None, None, public=False),  # same text, same private chat
+        Message("telegram_account", "tgp:78/6", "spam", ts, None, None, public=False),  # other private chat: kept
+    ])
+    merged, dropped = hub.merge_messages({"telegram_public": pub, "telegram_account": acc}, NOW, 48)
+    assert [m.key for m in merged] == ["tg:cointelegraph/1", "tgp:77/5", "tgp:78/6"]
+    assert dropped == 2
+
+
+def test_split_windows():
+    msgs = [Message("rss", str(h), "x", NOW - timedelta(hours=h)) for h in (0, 23.9, 24, 30, 47.9, 48)]
+    current, previous = hub.split_windows(msgs, NOW, 24)
+    assert [m.key for m in current] == ["0", "23.9"]
+    assert [m.key for m in previous] == ["24", "30", "47.9"]
+
+
+def test_cli_with_all_sources_disabled(tmp_path):
+    """Real subprocess, no network needed: proves the script entry point and exit code."""
+    out = tmp_path / "feed.json"
+    hist = tmp_path / "history.json"
+    proc = subprocess.run(
+        [sys.executable, str(HUB), "--out", str(out), "--no-telegram", "--no-rss", "--no-reddit",
+         "--assets", str(fixture_path("assets_small.json")), "--models", "vader", "--history", str(hist)],
+        capture_output=True, text=True, timeout=120,
+    )
+    assert proc.returncode == 0, proc.stderr
+    feed = json.loads(out.read_text(encoding="utf-8"))
+    assert validate_feed(feed) == []
+    assert [s["status"] for s in feed["sources"]] == ["disabled"] * 4
+    # --history writes the file even on an empty run (first run starts the baseline window)
+    saved = history.load_history(hist)
+    assert saved["schema"] == "cryptopulse.mention-history/v1"
+    assert len(saved["entries"]) == 1 and saved["entries"][0]["counts"] == {}
+    last = proc.stderr.strip().splitlines()[-1]
+    assert last.startswith("sentiment-hub ") and "telegram_public disabled" in last
+
+
+def test_cli_rejects_unknown_model(tmp_path):
+    proc = subprocess.run([sys.executable, str(HUB), "--out", str(tmp_path / "f.json"), "--models", "gpt"],
+                          capture_output=True, text=True, timeout=60)
+    assert proc.returncode == 2 and "unknown model" in proc.stderr
+
+
+def test_odd_items_from_third_party_feeds_do_not_break_the_feed(monkeypatch, tmp_path):
+    """A relative RSS link and a lone UTF-16 surrogate in Reddit JSON used to make the run fail
+    (feed validation error / UnicodeEncodeError), so nothing was published for up to 48 h."""
+    monkeypatch.setattr(reddit.time, "sleep", lambda s: None)
+    tg, news = _fixture_http()
+    news.add(rss.FEEDS[1][1], b"""<?xml version="1.0"?><rss version="2.0"><channel><title>CoinDesk</title>
+      <item><title>Bitcoin miners sell record amounts</title><link>/markets/2026/10/19/bitcoin-miners</link>
+      <pubDate>Mon, 19 Oct 2026 09:30:00 GMT</pubDate></item>
+      <item><title>Bitcoin treasury firm files</title><link>urn:uuid:1234</link>
+      <pubDate>Mon, 19 Oct 2026 09:20:00 GMT</pubDate></item></channel></rss>""")
+    news.add(reddit.listing_url("CryptoMarkets"), json.dumps({"data": {"children": [{"data": {
+        "id": "zz1", "title": "Bitcoin \\ud83d broken emoji", "selftext": "", "subreddit": "CryptoMarkets",
+        "permalink": "/r/CryptoMarkets/comments/zz1/x/", "created_utc": (NOW - timedelta(hours=2)).timestamp(), "score": 3}}]}},
+    ).replace("\\\\ud83d", "\\ud83d"))
+    feed, _, _ = hub.run(args(), now=NOW, tg_http=tg, news_http=news, account_env={}, pipeline_factory=fake_pipeline_factory)
+    assert validate_feed(feed) == [], validate_feed(feed)
+    urls = [s["url"] for a in feed["assets"] for s in a["samples"]]
+    assert "https://www.coindesk.com/markets/2026/10/19/bitcoin-miners" in urls
+    assert all(u.startswith("https://") for u in urls)
+    texts = [s["text"] for a in feed["assets"] for s in a["samples"]]
+    assert any(t.startswith("Bitcoin � broken emoji") for t in texts)
+    from sentiment_hub.feed import write_feed
+
+    out = write_feed(feed, tmp_path / "feed.json")
+    assert validate_feed(json.loads(out.read_text(encoding="utf-8"))) == []
+
+
+BINANCE_LIFE = {"id": "bianrensheng", "symbol": "币安人生", "name": "币安人生 (BinanceLife)", "market_cap_rank": 118}
+
+
+def _cjk_news(meme_rows: list) -> FakeHttp:
+    """The CoinGecko meme list plus one headline that names 币安人生 by cashtag."""
+    news = FakeHttp().add(memecoins.MEME_URL, json.dumps(meme_rows, ensure_ascii=False))
+    news.add(rss.FEEDS[0][1], """<?xml version="1.0"?><rss version="2.0"><channel><title>Cointelegraph</title>
+      <item><title>$币安人生 pumping again after CZ tweet; $WIF and Bitcoin follow</title>
+      <link>https://cointelegraph.com/news/binancelife-pumps</link><pubDate>Mon, 19 Oct 2026 09:30:00 GMT</pubDate></item>
+      </channel></rss>""")
+    return news
+
+
+def test_memecoin_with_a_cjk_ticker_does_not_block_the_feed():
+    """CoinGecko's meme top 250 has 币安人生; one "$币安人生" used to make the feed invalid
+    ("assets[0].symbol: expected uppercase letters/digits") and the hub published nothing."""
+    rows = [BINANCE_LIFE, {"id": "dogwifcoin", "symbol": "wif", "name": "dogwifhat", "market_cap_rank": 90}]
+    feed, _, notes = hub.run(args("--no-telegram", "--no-reddit", "--models", "vader"), now=NOW, news_http=_cjk_news(rows))
+    assert validate_feed(feed) == [], validate_feed(feed)
+    assert sorted(a["symbol"] for a in feed["assets"]) == ["BTC", "WIF"]
+    assert not any("dropped" in n for n in notes), "skipped by the memecoin list already, not by the guard"
+
+
+def test_assets_whose_symbols_the_feed_cannot_carry_are_dropped_and_logged(tmp_path, caplog):
+    """Any other way in (here a Bitpanda snapshot row): that asset is dropped, the rest is published."""
+    snapshot = json.loads(fixture_path("assets_small.json").read_text(encoding="utf-8"))
+    snapshot["assets"].append({"symbol": "币安人生", "name": "币安人生 (BinanceLife)", "coingeckoId": "bianrensheng", "rank": 118})
+    assets = tmp_path / "assets.json"
+    assets.write_text(json.dumps(snapshot, ensure_ascii=False), encoding="utf-8")
+    run_args = args("--assets", str(assets), "--no-telegram", "--no-reddit", "--no-memecoins", "--models", "vader")
+    with caplog.at_level("WARNING", logger="sentiment_hub"):
+        feed, _, notes = hub.run(run_args, now=NOW, news_http=_cjk_news([]))
+    assert validate_feed(feed) == [], validate_feed(feed)
+    assert [a["symbol"] for a in feed["assets"]] == ["BTC"]
+    assert "dropping 1 assets whose symbols the feed cannot carry: 币安人生" in caplog.text
+    assert "dropped symbols the feed cannot carry: 币安人生" in notes

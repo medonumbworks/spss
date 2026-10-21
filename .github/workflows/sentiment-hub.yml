@@ -1,0 +1,133 @@
+# Hourly free "sentiment hub": public Telegram channels, the owner's Telegram account (optional
+# secrets), crypto news RSS and Reddit, scored with VADER-crypto, FinBERT and CryptoBERT, published
+# as one JSON feed on the single-commit branch `sentiment-feed`:
+#   https://raw.githubusercontent.com/medonumbworks/spss/sentiment-feed/feed.json
+# Free for public repositories. See tools/sentiment_hub/README.md.
+name: sentiment-hub
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - sentiment-feed
+    paths:
+      - 'tools/sentiment_hub/**'
+      - '.github/workflows/sentiment-hub.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sentiment-hub
+  cancel-in-progress: false
+
+jobs:
+  hub:
+    name: Collect, score and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      MODELS: vader,finbert,cryptobert
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+      PYTHONUNBUFFERED: '1'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          # The write token must not sit in .git/config while pip packages, the tests and the hub
+          # (which parses untrusted web content) run; only the publish step gets it, via env.
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            tools/sentiment_hub/requirements.txt
+            tools/sentiment_hub/requirements-nlp.txt
+            tools/sentiment_hub/requirements-dev.txt
+
+      - name: Cache Hugging Face models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          # cache keys may not contain commas, so the model list is not part of the key
+          key: hf-${{ runner.os }}-finbert-cryptobert-${{ hashFiles('tools/sentiment_hub/requirements-nlp.txt') }}
+          restore-keys: |
+            hf-${{ runner.os }}-finbert-cryptobert-
+
+      - name: Install runtime and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r tools/sentiment_hub/requirements.txt -r tools/sentiment_hub/requirements-dev.txt
+
+      - name: Install FinBERT/CryptoBERT dependencies (CPU torch)
+        # If this ever fails the hub still runs and publishes with VADER only.
+        continue-on-error: true
+        run: pip install -r tools/sentiment_hub/requirements-nlp.txt --extra-index-url https://download.pytorch.org/whl/cpu
+
+      - name: Run tests
+        run: python -m pytest -q tools/sentiment_hub/tests
+
+      - name: Fetch the previous mention history
+        # The 7-day baseline needs the counts of earlier runs; they live next to the feed on the
+        # publish branch. A missing file (first run, branch recreated) just means no baselines.
+        run: |
+          mkdir -p "$RUNNER_TEMP/feed"
+          curl -fsSL -o "$RUNNER_TEMP/feed/history.json" "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/sentiment-feed/history.json" || true
+
+      - name: Run the hub
+        env:
+          # Optional: without these secrets the telegram_account source reports "disabled".
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+          # Optional repository variable; "1" lets the hub join up to 5 public groups per run.
+          TELEGRAM_AUTO_JOIN: ${{ vars.TELEGRAM_AUTO_JOIN }}
+        run: python tools/sentiment_hub/hub.py --out "$RUNNER_TEMP/feed/feed.json" --models "$MODELS" --history "$RUNNER_TEMP/feed/history.json"
+
+      - name: Publish to the sentiment-feed branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          pub="$RUNNER_TEMP/publish"
+          rm -rf "$pub"
+          mkdir -p "$pub"
+          cp "$RUNNER_TEMP/feed/feed.json" "$pub/feed.json"
+          # the mention history rides along so the next run can compute the 7-day baselines
+          if [ -f "$RUNNER_TEMP/feed/history.json" ]; then
+            cp "$RUNNER_TEMP/feed/history.json" "$pub/history.json"
+          fi
+          # an all-sources-failed run must not replace the last good feed (the app fades old feeds by itself)
+          if ! python -c 'import json, sys; sys.exit(0 if json.load(open(sys.argv[1]))["assets"] else 1)' "$pub/feed.json"; then
+            echo "Feed has no assets (every source failed?); keeping the previously published feed."
+            exit 0
+          fi
+          generated=$(python -c 'import json, sys; print(json.load(open(sys.argv[1]))["generatedAt"])' "$pub/feed.json")
+          cat > "$pub/README.md" <<EOF
+          # CryptoPulse sentiment feed
+
+          Machine-generated every hour by the [sentiment-hub workflow](https://github.com/${GITHUB_REPOSITORY}/actions/workflows/sentiment-hub.yml)
+          from ${GITHUB_REF_NAME}@${GITHUB_SHA::7}. Last update: ${generated}.
+
+          - Feed: https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/sentiment-feed/feed.json
+          - Schema: \`cryptopulse.sentiment-feed/v1\`, documented in \`tools/sentiment_hub/README.md\`
+
+          This branch is replaced by a single new commit on every run; do not commit to it.
+          The scores are automated text analysis of public posts and headlines, not financial advice.
+          EOF
+          cd "$pub"
+          git init -q -b sentiment-feed
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed.json README.md
+          if [ -f history.json ]; then git add history.json; fi
+          git commit -q -m "Sentiment feed ${generated}"
+          git push --force --quiet "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/sentiment-feed
+          echo "Published https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/sentiment-feed/feed.json (${generated})"

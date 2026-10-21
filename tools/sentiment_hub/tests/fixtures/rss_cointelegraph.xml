@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title><![CDATA[Cointelegraph.com News]]></title>
+    <link>https://cointelegraph.com</link>
+    <description><![CDATA[Recent news from Cointelegraph]]></description>
+    <atom:link href="https://cointelegraph.com/rss" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Mon, 19 Oct 2026 09:55:00 +0000</lastBuildDate>
+    <item>
+      <title><![CDATA[Bitcoin price rallies as ETF inflows surge to record]]></title>
+      <link>https://cointelegraph.com/news/bitcoin-price-rallies-etf-inflows</link>
+      <guid isPermaLink="false">https://cointelegraph.com/news/bitcoin-price-rallies-etf-inflows</guid>
+      <atom:link href="https://cointelegraph.com/news/bitcoin-price-rallies-etf-inflows" rel="alternate"/>
+      <dc:creator><![CDATA[Jane Doe]]></dc:creator>
+      <pubDate>Mon, 19 Oct 2026 08:45:00 +0000</pubDate>
+      <category><![CDATA[Bitcoin]]></category>
+      <description><![CDATA[<p style="float:right; margin:0 0 10px 15px; width:240px;"><img src="https://images.cointelegraph.com/btc.jpg"></p><p>Spot Bitcoin ETFs saw <strong>$1.2 billion</strong> of net inflows&nbsp;on Friday, the strongest day since March.</p>]]></description>
+      <media:content url="https://images.cointelegraph.com/btc.jpg" medium="image"/>
+    </item>
+    <item>
+      <title>Solana DEX volume drops 30% as memecoin mania cools</title>
+      <link>https://cointelegraph.com/news/solana-dex-volume-drops</link>
+      <guid>https://cointelegraph.com/news/solana-dex-volume-drops</guid>
+      <pubDate>Sun, 18 Oct 2026 21:10:00 GMT</pubDate>
+      <description>Traders are rotating out of SOL memecoins &amp; into stablecoins.</description>
+    </item>
+    <item>
+      <title>Three-day-old story about Cardano governance</title>
+      <link>https://cointelegraph.com/news/cardano-governance-old</link>
+      <pubDate>Thu, 15 Oct 2026 10:00:00 +0000</pubDate>
+      <description>Too old for the 48 hour window.</description>
+    </item>
+    <item>
+      <title>Undated sponsored post</title>
+      <link>https://cointelegraph.com/press-releases/undated</link>
+      <description>No pubDate on purpose.</description>
+    </item>
+  </channel>
+</rss>

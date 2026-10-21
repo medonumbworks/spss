@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Example</title>
+<entry><title>Ethereum upgrade goes live on mainnet</title><link rel="alternate" href="https://example.invalid/eth"/><published>2026-10-17T09:00:00Z</published><summary>The upgrade was a success.</summary></entry>
+</feed>

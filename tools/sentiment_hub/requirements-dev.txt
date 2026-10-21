@@ -1,0 +1,2 @@
+# Test dependencies (the tests never touch the network and never download models).
+pytest>=8
