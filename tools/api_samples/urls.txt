@@ -48,3 +48,21 @@ polymarket_events_crypto	https://gamma-api.polymarket.com/events?tag_slug=crypto
 polymarket_markets_top	https://gamma-api.polymarket.com/markets?closed=false&order=volume24hr&ascending=false&limit=50	2
 polymarket_search_btc	https://gamma-api.polymarket.com/public-search?q=bitcoin&limit_per_type=10	2
 polymarket_events_top	https://gamma-api.polymarket.com/events?closed=false&order=volume24hr&ascending=false&limit=25	2
+# --- Forecast post-mortem (XRP / NEAR / TRX, last ~16 days): hourly + daily candles, FX, mood, funding history
+bn_1h_xrp	https://data-api.binance.vision/api/v3/klines?symbol=XRPUSDT&interval=1h&limit=400	1
+bn_1h_near	https://data-api.binance.vision/api/v3/klines?symbol=NEARUSDT&interval=1h&limit=400	1
+bn_1h_trx	https://data-api.binance.vision/api/v3/klines?symbol=TRXUSDT&interval=1h&limit=400	1
+bn_1h_btc	https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=400	1
+bn_1h_eth	https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=1h&limit=400	1
+bn_1h_eurusdt	https://data-api.binance.vision/api/v3/klines?symbol=EURUSDT&interval=1h&limit=400	1
+bn_1d_xrp	https://data-api.binance.vision/api/v3/klines?symbol=XRPUSDT&interval=1d&limit=400	1
+bn_1d_near	https://data-api.binance.vision/api/v3/klines?symbol=NEARUSDT&interval=1d&limit=400	1
+bn_1d_trx	https://data-api.binance.vision/api/v3/klines?symbol=TRXUSDT&interval=1d&limit=400	1
+bn_1d_btc	https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=400	1
+fng_hist	https://api.alternative.me/fng/?limit=20	1
+okx_fund_hist_trx	https://www.okx.com/api/v5/public/funding-rate-history?instId=TRX-USDT-SWAP&limit=30	1
+okx_fund_hist_xrp	https://www.okx.com/api/v5/public/funding-rate-history?instId=XRP-USDT-SWAP&limit=30	1
+okx_fund_hist_near	https://www.okx.com/api/v5/public/funding-rate-history?instId=NEAR-USDT-SWAP&limit=30	1
+cg_chart_tron	https://api.coingecko.com/api/v3/coins/tron/market_chart?vs_currency=eur&days=10	20
+cg_chart_ripple	https://api.coingecko.com/api/v3/coins/ripple/market_chart?vs_currency=eur&days=10	20
+cg_chart_near	https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=eur&days=10	20
