@@ -214,7 +214,7 @@ class MarketRepository(
                     throw e
                 } catch (e: Exception) {
                     logger.warn(TAG, "speculative tiers failed", e)
-                    warnings += "Memecoins/DEX radar: ${e.message}"
+                    warnings += "Coins beyond Bitpanda: ${e.message}"
                     null
                 }
             }
@@ -506,7 +506,8 @@ class MarketRepository(
         val btcTrend = btc?.let { btcTrendScore(it) }
         val cached = lastContext
         if (!force && cached != null && now - cached.fetchedAtMs < cfg.contextTtlMs) {
-            return cached.copy(btcChange24hPct = btc?.change24hPct, btcChange7dPct = btc?.change7dPct, btcTrendScore = btcTrend)
+            return cached.copy(btcChange24hPct = btc?.change24hPct, btcChange7dPct = btc?.change7dPct, btcTrendScore = btcTrend,
+                btcHourly = btc?.sparkline7d.orEmpty())
                 .also { lastContext = it }
         }
         val fg = if (cfg.fearGreedEnabled) {
@@ -530,6 +531,7 @@ class MarketRepository(
             btcChange24hPct = btc?.change24hPct,
             btcChange7dPct = btc?.change7dPct,
             btcTrendScore = btcTrend,
+            btcHourly = btc?.sparkline7d.orEmpty(),
             globalSentiment = globalSent,
             trendingCoingeckoIds = trending,
             fetchedAtMs = now,
@@ -612,9 +614,16 @@ class MarketRepository(
     fun alertCrossings(thresholdPct: Int = config.alertThresholdPct): List<ForecastAlert> =
         alerts.crossings(_snapshot.value?.rows.orEmpty(), thresholdPct)
 
-    /** Most-talked-about coins in the hub's Telegram window, spikes vs the 7-day baseline first. */
-    suspend fun telegramBuzz(limit: Int = 50, force: Boolean = false): List<BuzzEntry> =
-        (if (config.sentimentFeedUrl.isNotBlank()) sentiment.feed(force) else null)?.telegramBuzz(limit).orEmpty()
+    /**
+     * Most-talked-about coins in the hub's Telegram window, spikes vs the 7-day baseline first. Only
+     * coins in the current list: the hub also counts memecoins and new cashtags, which the app does
+     * not show.
+     */
+    suspend fun telegramBuzz(limit: Int = 50, force: Boolean = false): List<BuzzEntry> {
+        val feed = (if (config.sentimentFeedUrl.isNotBlank()) sentiment.feed(force) else null) ?: return emptyList()
+        val listed = _snapshot.value?.rows?.mapTo(HashSet()) { it.asset.symbol }
+        return feed.telegramBuzz(Int.MAX_VALUE).filter { listed == null || it.symbol in listed }.take(limit)
+    }
 
     /** Polymarket's daily up-or-down probability for one coin, or null without such a market. */
     private fun upDown(markets: List<PredictionMarket>, asset: Asset, nowMs: Long): Double? =
@@ -742,7 +751,14 @@ class MarketRepository(
     private fun loadPersisted(): MarketSnapshot? {
         val raw = store?.read(SNAPSHOT_KEY) ?: return null
         return try {
-            json.decodeFromString(MarketSnapshot.serializer(), raw)
+            val snap = json.decodeFromString(MarketSnapshot.serializer(), raw)
+            // a tier switched off since (memecoins, DEX radar) must not reappear on a cold start
+            val off = buildSet {
+                if (!config.showMemecoins) add(Tier.MEME)
+                if (!config.showTrending) add(Tier.TRENDING)
+                if (!config.showDexRadar) add(Tier.DEX)
+            }
+            if (off.isEmpty()) snap else snap.copy(rows = snap.rows.filter { it.asset.tier !in off })
         } catch (e: Exception) {
             logger.warn(TAG, "ignoring unreadable persisted snapshot", e)
             null

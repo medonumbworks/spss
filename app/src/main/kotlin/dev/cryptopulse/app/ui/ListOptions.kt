@@ -11,9 +11,7 @@ object ListOptions {
     fun inTier(r: AssetRow, tier: ListTier): Boolean = when (tier) {
         ListTier.ALL -> true
         ListTier.BITPANDA -> r.asset.onBitpanda
-        ListTier.MEME -> r.asset.isMeme
         ListTier.TRENDING -> r.asset.tier == Tier.TRENDING || "trending" in r.asset.tags
-        ListTier.DEX -> r.asset.tier == Tier.DEX
     }
 
     /** Tier chips: All, every tier with rows, and the selected one even when it has none, so an empty list keeps its cause in sight. */

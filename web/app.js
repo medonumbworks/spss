@@ -11,20 +11,20 @@
  *   "currency": "EUR",                           // default display currency (ISO 4217)
  *   "fearGreed": {"value": 59, "classification": "Greed"} | null,
  *   "accuracy": {                                // forecast journal, per horizon; either horizon may be missing
- *     "24h": {"pending": 12, "evaluated": 40, "hits": 22, "hitRate": 0.55,
+ *     "24h": {"pending": 12, "evaluated": 40, "hits": 22, "neutral": 5, "hitRate": 0.55,
  *             "avgProbability": 0.52, "brier": 0.248, "upShare": 0.5},
  *     "7d":  {...same keys...}
  *   },
  *   "rows": [{                                   // one entry per coin, any order (we sort client-side)
  *     "symbol": "BTC", "name": "Bitcoin",
- *     "tier": "BITPANDA" | "MEME" | "TRENDING" | "DEX",
- *     "tags": ["meme", ...],                     // "meme" puts a Bitpanda row in the Memecoins filter too
+ *     "tier": "BITPANDA" | "TRENDING",           // older exports may still carry MEME / DEX rows: hidden
+ *     "tags": ["meme", ...],                     // "meme" only adds a small tag next to the name
  *     "price": 73045.34, "currency": "EUR",      // per-row currency (DEX rows may stay in USD)
  *     "chg1h": 0.1, "chg24h": -1.2, "chg7d": 3.4,  // percent, null when unknown (e.g. token too new)
  *     "marketCap": 1.4e12,                       // in `currency`; default sort key, null sorts last
  *     "up24": 0.49, "up7": 0.51,                 // P(price higher in 24h / 7d); null = no call
  *     "conf24": 0.54,                            // confidence of the 24h call, null when no call
- *     "noCall": "Unverified",                    // optional short reason when up24/up7 are null (blocked / too new / unverified)
+ *     "noCall": "Unverified",                    // optional short reason when up24/up7 are null (blocked / too new / moves too little)
  *     "bottomScore": 25,                         // 0..100, 100 = at its lows; null when unknown
  *     "bottomLabel": "Upper part of its range",  // human label for bottomScore, null with it
  *     "risk": {"score": 62, "label": "High"} | null,       // rendered as "62 High"
@@ -194,9 +194,12 @@ const SORT_KEYS = {
   marketCap: (r) => (isNum(r.marketCap) ? r.marketCap : null),
 };
 
+// the memecoin and DEX-radar tiers were removed: an older export's rows of theirs stay hidden
+const REMOVED_TIERS = ['MEME', 'DEX'];
+
 function matchesTier(row, tier) {
+  if (REMOVED_TIERS.indexOf(row.tier) >= 0) return false;
   if (tier === 'ALL') return true;
-  if (tier === 'MEME') return row.tier === 'MEME' || arr(row.tags).indexOf('meme') >= 0;
   return row.tier === tier;
 }
 
@@ -230,7 +233,7 @@ function pctCell(label, value) {
   return numCell(label, fmtPct(value), isNum(value) ? (value > 0 ? 'pos' : value < 0 ? 'neg' : '') : 'null-cell');
 }
 
-/* "Up 24h"/"Up 7d": em dash plus the row's noCall reason (blocked / too new / unverified) */
+/* "Up 24h"/"Up 7d": em dash plus the row's noCall reason (blocked / too new / moves too little) */
 function probCell(label, value, noCall) {
   if (isNum(value)) return numCell(label, fmtProb(value));
   const td = el('td', { class: 'num null-cell', 'data-l': label, text: '—' });
@@ -400,6 +403,7 @@ function renderAccuracy() {
     stat(fmtProb(a.avgProbability), 'avg forecast');
     stat(isNum(a.brier) ? a.brier.toFixed(3) : '—', 'Brier score (lower is better)');
     stat(isNum(a.pending) ? String(a.pending) : '—', 'pending');
+    if (isNum(a.neutral) && a.neutral > 0) stat(String(a.neutral), 'neutral (moved less than half the expected range)');
     if (isNum(a.upShare)) stat(fmtProb(a.upShare), 'share that actually rose (baseline)');
     card.append(grid);
     if (isNum(a.hits) && isNum(a.evaluated)) {
@@ -421,7 +425,10 @@ function note(text) {
 /* Merge a cryptopulse.sentiment-feed/v1 payload into state.data.buzz by symbol. */
 function mergeFeed(feed) {
   if (!feed || typeof feed !== 'object') return false;
-  const assets = arr(feed.assets).filter((a) => a && str(a.symbol) && isNum(a.mentions) && a.mentions > 0);
+  // only coins this dashboard lists: the hub also counts memecoins and new cashtags
+  const listed = new Set(arr(state.data.rows).map((r) => r && r.symbol).filter(Boolean));
+  const assets = arr(feed.assets).filter((a) => a && str(a.symbol) && isNum(a.mentions) && a.mentions > 0 &&
+    (!listed.size || listed.has(a.symbol)));
   if (!assets.length) return false;
   const bySymbol = new Map();
   const merged = [];

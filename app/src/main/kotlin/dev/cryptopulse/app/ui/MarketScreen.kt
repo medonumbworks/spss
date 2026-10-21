@@ -263,9 +263,8 @@ private fun SpeculativeNotice() {
         color = LocalMarketColors.current.down.copy(alpha = 0.08f),
     ) {
         Text(
-            "Coins marked MEME, TRENDING or DEX are not on Bitpanda and are shown for information only. Most memecoins and DEX tokens lose most of " +
-                "their value. DEX tokens with red flags, pools younger than a day or unchecked contracts, and small unranked trending coins, get " +
-                "no forecast; the others get one with a risk discount.",
+            "Coins marked TRENDING are not on Bitpanda and are shown for information only. Small unranked trending coins get no forecast; " +
+                "the others get one with a risk discount.",
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier.padding(10.dp),
         )

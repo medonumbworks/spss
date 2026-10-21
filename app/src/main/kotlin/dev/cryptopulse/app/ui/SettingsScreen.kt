@@ -90,24 +90,9 @@ fun SettingsScreen(vm: AppViewModel) {
 
             SectionCard(
                 "Beyond Bitpanda",
-                subtitle = "Information only: these coins cannot be bought on Bitpanda. Most memecoins and DEX tokens lose most of their value.",
+                subtitle = "Information only: these coins cannot be bought on Bitpanda.",
             ) {
-                ToggleRow("Memecoins (top ${cfg.memecoinCount} by market cap)", cfg.showMemecoins) { v -> vm.updateConfig { it.copy(showMemecoins = v) } }
                 ToggleRow("Trending coins (CoinGecko)", cfg.showTrending) { v -> vm.updateConfig { it.copy(showTrending = v) } }
-                ToggleRow("DEX radar (trending pools, boosts, pump.fun)", cfg.showDexRadar) { v -> vm.updateConfig { it.copy(showDexRadar = v) } }
-                if (cfg.showDexRadar) {
-                    ToggleRow("Include brand-new pools (riskiest)", cfg.dexIncludeNewPools) { v -> vm.updateConfig { it.copy(dexIncludeNewPools = v) } }
-                    ToggleRow("Include pump.fun tokens", cfg.dexIncludePumpFun) { v -> vm.updateConfig { it.copy(dexIncludePumpFun = v) } }
-                    ToggleRow("Free contract checks (GoPlus, honeypot.is)", cfg.safetyChecks) { v -> vm.updateConfig { it.copy(safetyChecks = v) } }
-                    var minLiq by remember(cfg.dexMinLiquidityUsd) { mutableFloatStateOf(cfg.dexMinLiquidityUsd.toFloat()) }
-                    Text("Minimum pool liquidity: $${"%,.0f".format(minLiq)}", style = MaterialTheme.typography.labelMedium)
-                    Slider(
-                        value = minLiq,
-                        onValueChange = { minLiq = it },
-                        valueRange = 10_000f..500_000f,
-                        onValueChangeFinished = { vm.updateConfig { it.copy(dexMinLiquidityUsd = minLiq.toDouble()) } },
-                    )
-                }
             }
 
             TelegramCard(vm, cfg) { runCatching { uri.openUri(HUB_DOCS) } }
@@ -127,7 +112,7 @@ fun SettingsScreen(vm: AppViewModel) {
 
             SectionCard("About") {
                 Text("CryptoPulse ${BuildConfig.VERSION_NAME}", fontWeight = FontWeight.SemiBold)
-                Text("Prices: Bitpanda (ticker), CoinGecko, Coinpaprika, Binance public data. Memecoins and DEX tokens: CoinGecko, GeckoTerminal, DexScreener, pump.fun; contract checks: GoPlus, honeypot.is. Mood: alternative.me Fear & Greed. Crowd: Reddit, StockTwits, Telegram, news, Binance/Bybit/OKX futures. Text sentiment: VADER with a crypto slang lexicon on the phone; FinBERT and CryptoBERT in the cloud hub.", style = MaterialTheme.typography.bodySmall)
+                Text("Prices: Bitpanda (ticker), CoinGecko, Coinpaprika, Binance public data. Trending coins: CoinGecko. Mood: alternative.me Fear & Greed. Crowd: Reddit, StockTwits, Telegram, news, Binance/Bybit/OKX futures. Text sentiment: VADER with a crypto slang lexicon on the phone; FinBERT and CryptoBERT in the cloud hub.", style = MaterialTheme.typography.bodySmall)
                 Text(Forecast.DISCLAIMER, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
             Spacer(Modifier.height(24.dp))
@@ -168,10 +153,10 @@ private fun AccuracyCard(vm: AppViewModel) {
     val stats = remember { vm.journalStats() }
     SectionCard(
         "Forecast accuracy",
-        subtitle = "Every forecast shown is logged and scored against the real price once its horizon passes. Brier: lower is better, 0.25 is a coin flip.",
+        subtitle = "Every forecast shown is logged and scored against the real price once its horizon passes. A move smaller than half the expected range is neutral (noise), not a hit or a miss. Brier: lower is better, 0.25 is a coin flip.",
     ) {
         // a scored 50:50 call counts as neither pending nor evaluated, so check both
-        if (stats.perHorizon.values.none { it.evaluated > 0 }) {
+        if (stats.perHorizon.values.none { it.evaluated > 0 || it.neutral > 0 }) {
             Text("No forecasts have come due yet", style = MaterialTheme.typography.bodyMedium)
             if (stats.total > 0) {
                 stats.perHorizon.forEach { (label, r) -> if (r.pending > 0) KeyValue("Pending $label", "${r.pending}") }
@@ -181,6 +166,7 @@ private fun AccuracyCard(vm: AppViewModel) {
                 Text("Next $label", style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
                 KeyValue("Evaluated", "${r.evaluated}")
                 r.hitRate?.let { KeyValue("Hit rate", "${r.hits} of ${r.evaluated} (${(it * 100).toInt()}%)") }
+                if (r.neutral > 0) KeyValue("Neutral (moved too little)", "${r.neutral}")
                 r.brier?.let { KeyValue("Brier score", "%.3f".format(it)) }
                 KeyValue("Pending", "${r.pending}")
             }

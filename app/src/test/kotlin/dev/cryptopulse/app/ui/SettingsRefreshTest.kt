@@ -14,7 +14,7 @@ class SettingsRefreshTest {
         assertTrue(needsRefresh(base, base.copy(dexMinVolume24hUsd = 50_000.0)))
         assertTrue(needsRefresh(base, base.copy(dexRadarMax = 50)))
         assertTrue(needsRefresh(base, base.copy(memecoinCount = 100)))
-        assertTrue(needsRefresh(base, base.copy(showDexRadar = false)))
+        assertTrue(needsRefresh(base, base.copy(showTrending = !base.showTrending)))
         assertTrue(needsRefresh(base, base.copy(safetyChecks = false)))
         assertTrue(needsRefresh(base, base.copy(currency = "USD")))
     }

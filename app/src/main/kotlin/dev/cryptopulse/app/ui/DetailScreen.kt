@@ -150,7 +150,7 @@ private fun SpeculativeCard(row: AssetRow) {
         Tier.DEX -> "DEX-only token, not on Bitpanda"
         Tier.BITPANDA -> return
     }
-    SectionCard(title, subtitle = "Information only. Most memecoins and DEX tokens lose most of their value; no red flag does not mean safe.") {
+    SectionCard(title, subtitle = "Information only. Most small speculative coins lose most of their value; no red flag does not mean safe.") {
         row.risk?.let { r ->
             RiskPill(r, long = true)
             FractionBar(r.score / 100.0, if (r.blocked || r.score >= 50) c.down else c.warn)

@@ -66,7 +66,8 @@ class NoCallRowsTest {
         .onUrlContaining("sentiment-feed/feed.json", body = Fixtures.read("sentiment_feed.json"))
 
     private val app = CryptoPulse.create(
-        AppConfig(), transport, null,
+        // the speculative tiers are off by default; these fixtures exercise them
+        AppConfig(showMemecoins = true, showDexRadar = true), transport, null,
         scorer = SentimentScorer { TextSentiment(0.0) },
         clock = clock, logger = Logger.NONE,
         rateLimiter = RateLimiter(emptyMap(), Rate(1e6, 1_000_000), clock, sleeper = {}),

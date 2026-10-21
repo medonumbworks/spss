@@ -42,9 +42,7 @@
       <div id="tiers" class="chips" role="group" aria-label="Tier filter">
         <button data-tier="ALL" aria-pressed="true">All</button>
         <button data-tier="BITPANDA" aria-pressed="false">Bitpanda</button>
-        <button data-tier="MEME" aria-pressed="false">Memecoins</button>
         <button data-tier="TRENDING" aria-pressed="false">Trending</button>
-        <button data-tier="DEX" aria-pressed="false">DEX</button>
       </div>
     </div>
     <table id="coins">
@@ -80,7 +78,8 @@
 
   <section id="tab-accuracy" role="tabpanel" aria-labelledby="tabbtn-accuracy" hidden>
     <h2>Forecast accuracy</h2>
-    <p class="quiet">Every forecast the engine issued is logged and scored against the realized price.</p>
+    <p class="quiet">Every forecast the engine issued is logged and scored against the realized price. A move smaller
+      than half the expected range counts as neutral (noise), neither a hit nor a miss.</p>
     <div id="accuracy" class="acc"></div>
     <p id="accuracy-empty" class="quiet" hidden>No scored forecasts yet.</p>
   </section>
@@ -90,7 +89,6 @@
     <h3>Data sources</h3>
     <ul class="plain">
       <li>Prices, market caps and history: CoinGecko, with Coinpaprika as a fallback</li>
-      <li>DEX radar: GeckoTerminal, DexScreener and pump.fun; contract checks by GoPlus and honeypot.is</li>
       <li>Fear &amp; Greed index: alternative.me</li>
       <li>Social buzz: public Telegram channels, Reddit and crypto news feeds</li>
       <li>Derivatives positioning: Binance and Bybit public endpoints</li>
@@ -106,8 +104,11 @@
         recommendations, and short-term crypto moves are mostly noise.</li>
       <li>Everything is built on free, keyless APIs with strict rate limits, so numbers can lag or be
         missing for a while.</li>
-      <li>Most memecoins and DEX tokens lose most of their value; many are outright scams. The risk score
-        and pump warnings are heuristics, not guarantees either way.</li>
+      <li>A coin whose typical move over the horizon is under about 1 % (roughly what buying and
+        selling costs) gets no up/down call, only "Moves too little".</li>
+      <li>Trending coins that Bitpanda does not list are shown for information only; most small speculative
+        coins lose most of their value.</li>
+      <li>Pump warnings and risk scores are heuristics, not guarantees either way.</li>
       <li>The app never links to a place to buy any coin.</li>
     </ul>
   </section>

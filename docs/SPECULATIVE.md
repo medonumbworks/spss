@@ -1,5 +1,10 @@
 # Memecoins, trending coins and the DEX radar
 
+> **Current state:** only the `TRENDING` tier is on. The `MEME` and `DEX` tiers are switched off
+> (`AppConfig.showMemecoins` / `showDexRadar` default to false, the app resets them on start) and their
+> tabs are gone from the app and the dashboard; an older export's MEME/DEX rows stay hidden there. The
+> code below is kept and tested, but nothing turns it on. Bitpanda's own memecoins stay Bitpanda rows.
+
 Besides every coin Bitpanda lists, CryptoPulse shows three extra tiers. They are **information
 only**: none of these coins can be bought on Bitpanda, and the app never links to a place to buy.
 

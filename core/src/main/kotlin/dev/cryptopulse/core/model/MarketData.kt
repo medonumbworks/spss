@@ -119,6 +119,8 @@ data class MarketContext(
     val btcChange7dPct: Double? = null,
     /** -1..1 trend score for BTC derived from its own indicators (altcoins follow BTC). */
     val btcTrendScore: Double? = null,
+    /** BTC's hourly closes (7-day sparkline), so each coin's Bitcoin signal can follow its own beta. */
+    val btcHourly: List<Double> = emptyList(),
     /** Global crypto mood from r/CryptoCurrency, news feeds and similar broad sources. */
     val globalSentiment: SentimentSummary? = null,
     val trendingCoingeckoIds: List<String> = emptyList(),

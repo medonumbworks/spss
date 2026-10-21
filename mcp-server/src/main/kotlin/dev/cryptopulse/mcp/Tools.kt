@@ -72,8 +72,8 @@ class CryptoPulseTools(
 
         server.addTool(
             name = "market_overview",
-            title = "Crypto overview (Bitpanda + memecoins + DEX radar)",
-            description = "Every cryptocurrency tradeable on Bitpanda, plus (for information only) the largest memecoins, today's trending coins and speculative DEX-only tokens, " +
+            title = "Crypto overview (Bitpanda + trending coins)",
+            description = "Every cryptocurrency tradeable on Bitpanda, plus (for information only) today's trending coins; the memecoin and DEX-radar tiers are off by default, " +
                 "with live price, 24h/7d change, the probability of going up in the next 24 hours and 7 days, a 0-100 'near the bottom' score, social sentiment and, " +
                 "for everything not on Bitpanda, a 0-100 risk score. Free data: Bitpanda, CoinGecko, GeckoTerminal, DexScreener, pump.fun, GoPlus, Reddit, StockTwits, Telegram, news.",
             inputSchema = schema(
@@ -89,8 +89,9 @@ class CryptoPulseTools(
 
         server.addTool(
             name = "speculative_radar",
-            title = "Memecoins and DEX radar",
-            description = "Speculative coins that Bitpanda does not list: the largest memecoins, CoinGecko's trending coins, and DEX-only tokens from GeckoTerminal trending/new pools, " +
+            title = "Speculative radar (coins not on Bitpanda)",
+            description = "Speculative coins that Bitpanda does not list: CoinGecko's trending coins and, only when the memecoin and DEX-radar tiers are switched on (off by default), " +
+                "the largest memecoins and DEX-only tokens from GeckoTerminal trending/new pools, " +
                 "DexScreener boosts/profiles/takeovers and pump.fun, with liquidity, pool age, buyers vs sellers, contract checks (GoPlus/honeypot.is) and a 0-100 risk score. " +
                 "DEX tokens with red flags, pools younger than 24 h or unchecked contracts, and small unranked trending coins, get no 'up' probability; the others get one " +
                 "with a risk discount. Information only; most such tokens lose most of their value.",
@@ -322,6 +323,7 @@ class CryptoPulseTools(
                 appendLine()
                 appendLine("### $label horizon")
                 appendLine("- Evaluated: ${h.evaluated} (${h.hits} hits) · pending: ${h.pending}")
+                if (h.neutral > 0) appendLine("- Neutral: ${h.neutral} (the price moved less than half the expected range: noise, neither a hit nor a miss)")
                 if (h.evaluated > 0) {
                     appendLine("- Hit rate: ${Format.pct(h.hitRate)} vs 50% for a coin flip, vs ${Format.pct(h.upShare)} that simply rose")
                     appendLine("- Average stated probability of rising: ${Format.pct(h.avgProbability)}")

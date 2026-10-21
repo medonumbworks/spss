@@ -65,7 +65,9 @@ class DefaultForecastEngine : Forecaster {
         val bottomSignal = Contribution("bottom_score", "Distance from recent lows", bottom.score.toDouble(), (bottom.score - 50) / 50.0 * 0.18,
             "Bottom score ${bottom.score}/100: ${bottom.label.lowercase()}")
         val d7Built = buildHorizon(Horizon.D7, price, hourly, daily, tech7, techScale7, ctx7 + crowd7 + bottomSignal, bt7, input)
-        val (h24, d7) = historyGate(input, h24Built, d7Built)
+        val (h24Gated, d7Gated) = historyGate(input, h24Built, d7Built)
+        val h24 = lowMoveGate(h24Gated, hourly)
+        val d7 = lowMoveGate(d7Gated, hourly)
 
         val finalBottom = bottom.copy(reboundProbability7d = d7.probabilityUp.takeIf { d7.hasCall })
         val coverage = DataCoverage(
@@ -190,7 +192,11 @@ class DefaultForecastEngine : Forecaster {
         val isBtc = input.asset.symbol == "BTC"
         if (!isBtc) ctx.btcTrendScore?.let { t ->
             val w = if (horizon == Horizon.H24) 0.22 else 0.28
-            out += Contribution("btc_trend", "Bitcoin trend", t, t * w, if (t >= 0) "Bitcoin is trending up; most coins move with it" else "Bitcoin is trending down; most coins move with it")
+            // a coin that barely follows Bitcoin (TRX, beta ~0.1) must not inherit its trend in full
+            val beta = btcBeta(input.hourlyCloses, ctx.btcHourly)
+            val k = beta?.let { 0.3 + 0.7 * it.coerceIn(0.0, 3.0) } ?: 1.0
+            val follows = beta?.let { " (this coin moves about ${"%.1f".format(it)}x with it)" } ?: "; most coins move with it"
+            out += Contribution("btc_trend", "Bitcoin trend", t, t * w * k, (if (t >= 0) "Bitcoin is trending up" else "Bitcoin is trending down") + follows)
         }
         ctx.fearGreed?.let { fg ->
             val w = if (horizon == Horizon.H24) 0.08 else 0.22
@@ -213,6 +219,22 @@ class DefaultForecastEngine : Forecaster {
             out += Contribution("trending", "Trending on CoinGecko", 1.0, 0.05, "Among the most searched coins on CoinGecko today")
         }
         return out
+    }
+
+    /**
+     * Beta of the coin's hourly returns against Bitcoin's over their common last week; null with fewer
+     * than 48 aligned hours. Both series are CoinGecko 7-day sparklines, so they end at the same hour.
+     */
+    private fun btcBeta(coin: List<Double>, btc: List<Double>): Double? {
+        val n = minOf(coin.size, btc.size)
+        if (n < 49) return null
+        val x = Indicators.logReturns(coin.takeLast(n))
+        val y = Indicators.logReturns(btc.takeLast(n))
+        val my = y.average()
+        val mx = x.average()
+        val varY = y.sumOf { (it - my) * (it - my) }
+        if (varY <= 0.0) return null
+        return x.indices.sumOf { (x[it] - mx) * (y[it] - my) } / varY
     }
 
     /** CoinGecko's 14d/30d changes give a medium-term trend even without loaded daily history. */
@@ -349,6 +371,22 @@ class DefaultForecastEngine : Forecaster {
         return gate(h24, 72.0) to gate(d7, 21 * 24.0)
     }
 
+    /**
+     * No call when the coin's typical move over the horizon is smaller than the cost of trading it: an
+     * "up" for a coin that moves about 0.8% a day (TRX, in EUR) is a coin flip on noise. Measured over
+     * the whole hourly week, so one quiet day does not mute a normally volatile coin; Bitcoin itself
+     * runs about 1.6% on this measure.
+     */
+    private fun lowMoveGate(h: HorizonForecast, hourly: List<Double>): HorizonForecast {
+        if (!h.hasCall || hourly.size < 72) return h
+        val dailyPct = (Indicators.volatility(hourly, hourly.size) ?: return h) * sqrt(24.0) * 100
+        val movePct = dailyPct * sqrt(h.horizon.hours / 24.0)
+        if (movePct >= LOW_MOVE_PCT) return h
+        val note = "Typical ${h.horizon.label} move is only ${"%.2f".format(movePct)}%, below trading costs (~$LOW_MOVE_PCT%): no clear direction"
+        return h.copy(probabilityUp = 0.5, direction = Direction.FLAT, confidence = 0.0,
+            signals = listOf(Signal("low_move", "Small expected move", movePct, 0.0, note)) + h.signals.map { it.copy(contribution = 0.0) })
+    }
+
     /** Safety red flags, too new, too thin or unverified: no up/down call at all, only the reasons. */
     private fun blockedForecast(input: ForecastInput, price: Double?, risk: RiskAssessment): Forecast {
         val why = risk.reasons.filterNot { it.startsWith("Only on decentralised") }.take(3).joinToString("; ").ifEmpty { risk.label }
@@ -399,13 +437,16 @@ class DefaultForecastEngine : Forecaster {
         fun call(h: HorizonForecast, span: String) = when {
             h.hasCall -> "${word(h)} for $span (${(h.probabilityUp * 100).toInt()}% up)"
             h.signals.first().name == "history" -> "not enough history for $span"
+            h.signals.first().name == "low_move" -> "moves too little for a $span call"
             else -> "no forecast for $span"
         }
         return "$name: ${call(h24, "24h")}, ${call(d7, "7 days")}. ${bottom.label}."
     }
 
     companion object {
-        const val MODEL_VERSION = "cryptopulse-forecast-1.1"
+        const val MODEL_VERSION = "cryptopulse-forecast-1.2"
+        /** Below this typical move (in %) over a horizon a direction call is noise next to trading costs. */
+        const val LOW_MOVE_PCT = 1.0
         const val NOT_ASSESSED = "Not assessed"
         val STABLECOINS: Set<String> = setOf(
             "USDT", "USDC", "EURC", "USDG", "RLUSD", "USDD", "EURCV", "DAI", "FDUSD", "TUSD", "PYUSD", "USDE", "USDS", "USD1", "EURS", "USDQ", "EURQ",

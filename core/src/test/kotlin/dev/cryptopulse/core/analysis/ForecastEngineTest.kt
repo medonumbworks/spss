@@ -38,7 +38,8 @@ class ForecastEngineTest {
 
     @Test
     fun probabilitiesStayHumbleAndExplained() {
-        val f = engine.forecast(input("SOL", series(168, 100.0, 0.002)))
+        // a realistic ~2.5% daily move: calmer coins get no call at all (see lowMoveCoinsGetNoCall)
+        val f = engine.forecast(input("SOL", series(168, 100.0, 0.002, 0.02)))
         for (h in listOf(f.h24, f.d7)) {
             assertTrue(h.probabilityUp in 0.15..0.85, "p=${h.probabilityUp}")
             assertTrue(h.confidence in 0.05..0.9)
@@ -51,7 +52,7 @@ class ForecastEngineTest {
 
     @Test
     fun crowdedLongsAndGreedLowerTheOdds() {
-        val hourly = series(168, 100.0, 0.0005)
+        val hourly = series(168, 100.0, 0.0005, 0.02)
         val calm = engine.forecast(input("ETH", hourly))
         val greedy = engine.forecast(
             input(
@@ -66,7 +67,7 @@ class ForecastEngineTest {
 
     @Test
     fun bullishSentimentRaisesTheOdds() {
-        val hourly = series(168, 100.0, 0.0)
+        val hourly = series(168, 100.0, 0.0, 0.02)
         val base = engine.forecast(input("PEPE", hourly))
         val bull = engine.forecast(input("PEPE", hourly, sentiment = SentimentSummary("PEPE", 0.6, 0.9, "Very bullish", totalSamples = 200)))
         assertTrue(bull.h24.probabilityUp > base.h24.probabilityUp)
@@ -147,6 +148,43 @@ class ForecastEngineTest {
         assertEquals("Pegged", f.bottom.label)
         val coin = engine.forecast(input("CALM", hourly).copy(asset = Asset("CALM", "Calm Network")))
         assertTrue(coin.bottom.label != "Pegged", "no peg hint, no peg")
+    }
+
+    @Test
+    fun lowMoveCoinsGetNoCall() {
+        // about 0.5 % a day, calmer still than TRON: a 24 h call cannot beat the cost of trading it
+        val calm = engine.forecast(input("TRX", series(168, 0.3, 0.0005)))
+        assertEquals("low_move", calm.h24.signals.first().name)
+        assertEquals(false, calm.h24.hasCall)
+        assertEquals(0.5, calm.h24.probabilityUp)
+        assertEquals(Direction.FLAT, calm.h24.direction)
+        assertTrue(calm.h24.signals.drop(1).all { it.contribution == 0.0 }, "the drivers stay visible but carry no weight")
+        assertTrue("moves too little for a 24h call" in calm.summary, calm.summary)
+        assertTrue(calm.d7.hasCall, "a week is long enough to move past the costs")
+        // a normal coin keeps its call
+        val lively = engine.forecast(input("SOL", series(168, 100.0, 0.002, 0.02)))
+        assertTrue(lively.h24.hasCall && lively.h24.signals.none { it.name == "low_move" })
+    }
+
+    @Test
+    fun bitcoinsTrendCountsByHowMuchACoinFollowsIt() {
+        val rnd = Random(7)
+        val btcReturns = List(167) { (rnd.nextDouble() - 0.5) * 0.02 }
+        fun path(returns: List<Double>, start: Double) = returns.runningFold(start) { p, r -> p * exp(r) }
+        val btc = path(btcReturns, 60_000.0)
+        val follower = path(btcReturns.map { it * 1.5 }, 1.0)
+        val loner = path(List(167) { (rnd.nextDouble() - 0.5) * 0.03 }, 0.3)
+        val ctx = MarketContext(btcTrendScore = 0.6, btcHourly = btc)
+        fun trend(hourly: List<Double>, c: MarketContext) = engine.forecast(input("X", hourly, ctx = c)).h24.signals.first { it.name == "btc_trend" }
+        val high = trend(follower, ctx)
+        val low = trend(loner, ctx)
+        assertTrue(high.contribution > 0 && low.contribution > 0)
+        assertTrue(high.contribution > 2 * low.contribution, "${high.contribution} vs ${low.contribution}")
+        assertTrue("1.5x" in high.description, high.description)
+        // without Bitcoin's own series the coin is assumed to follow it fully
+        val unknown = trend(loner, ctx.copy(btcHourly = emptyList()))
+        assertTrue(unknown.contribution > low.contribution)
+        assertTrue("most coins move with it" in unknown.description)
     }
 
     @Test

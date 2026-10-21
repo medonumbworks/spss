@@ -45,13 +45,14 @@ data class AppConfig(
     /** How many CoinGecko market pages (250 each) to scan when mapping symbols to ids. */
     val coingeckoMappingPages: Int = 4,
     // ---- beyond Bitpanda: speculative tiers (information only, never tradeable in the app) ----
-    /** Largest memecoins by market cap (CoinGecko "Meme" category) that Bitpanda does not list. */
-    val showMemecoins: Boolean = true,
+    /** Largest memecoins by market cap (CoinGecko "Meme" category) that Bitpanda does not list.
+     *  Off, and gone from the app's UI: the user asked for a list without memecoins and DEX tokens. */
+    val showMemecoins: Boolean = false,
     val memecoinCount: Int = 250,
     /** CoinGecko's trending coins that Bitpanda does not list. */
     val showTrending: Boolean = true,
     /** DEX-only tokens: trending and new pools, DexScreener boosts/profiles/takeovers, pump.fun. */
-    val showDexRadar: Boolean = true,
+    val showDexRadar: Boolean = false,
     val dexRadarMax: Int = 150,
     /** DEX tokens with less pool liquidity or 24h volume than this (USD) are left out as dust. */
     val dexMinLiquidityUsd: Double = 10_000.0,

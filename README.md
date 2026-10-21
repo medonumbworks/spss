@@ -47,15 +47,13 @@ everything here: information only, probabilities, not financial advice.
 * **Coin detail**: 7D/90D/1Y chart with the likely 24h range, both forecasts with confidence, likely
   price range, the drivers behind them and a backtest, the bottom assessment, sentiment per source
   with example posts (tap to open), futures funding, long/short ratio, community votes.
-* **Beyond Bitpanda (information only)**: the 250 largest memecoins, today's trending coins and a
-  **DEX radar** of speculative tokens (GeckoTerminal trending/new pools, DexScreener boosts and
-  takeovers, pump.fun), marked `MEME` / `TRENDING` / `DEX`, each with a 0-100 risk score, free
-  contract checks (GoPlus, honeypot.is), pool liquidity, age and buyers vs sellers. Tokens with red
-  flags, pools younger than a day or unchecked contracts get no "up" probability. Tier chips switch
-  between All, Bitpanda, Memecoins, Trending and DEX radar. Details: [docs/SPECULATIVE.md](docs/SPECULATIVE.md).
-* **Settings**: currency (EUR, USD, CHF, GBP), each source on/off, the speculative tiers on/off
-  (and the minimum pool liquidity), how many Telegram channels the phone reads, the cloud hub,
-  optional keys.
+* **Beyond Bitpanda (information only)**: today's trending coins that Bitpanda does not list,
+  marked `TRENDING`, each with a 0-100 risk score; small unranked ones get no "up" probability. Tier
+  chips switch between All, Bitpanda and Trending. The memecoin and DEX-radar tiers are switched off
+  and gone from the app and the dashboard (Bitpanda's own memecoins such as DOGE, SHIB and PEPE stay
+  in the Bitpanda list). Details: [docs/SPECULATIVE.md](docs/SPECULATIVE.md).
+* **Settings**: currency (EUR, USD, CHF, GBP), each source on/off, trending coins on/off, how many
+  Telegram channels the phone reads, the cloud hub, optional keys.
 
 ## Where the data comes from (all free)
 
@@ -119,8 +117,8 @@ Or run it over HTTP: `cryptopulse-mcp --http 3333` and connect to `http://127.0.
 `cryptopulse-mcp check` refreshes once from the live APIs and prints a health report (CI runs it on
 every push and shows it in the job summary); `cryptopulse-mcp digest hr` prints the Croatian digest.
 
-Tools: `market_overview` (with `tier`: all, bitpanda, meme, trending, dex, speculative),
-`speculative_radar` (memecoins and DEX tokens with liquidity, pool age, contract checks and risk),
+Tools: `market_overview` (with `tier`: all, bitpanda, trending, speculative; meme and dex stay empty
+while those tiers are off), `speculative_radar` (coins not on Bitpanda, with risk scores),
 `get_forecast`, `get_sentiment`, `find_opportunities`, `get_prices`,
 `list_bitpanda_assets`, `market_mood`, `telegram_sources`, `daily_digest` (English or Croatian), and
 the `crypto_briefing` prompt. Optional environment variables: `CRYPTOPULSE_CURRENCY`,
@@ -130,6 +128,9 @@ the `crypto_briefing` prompt. Optional environment variables: `CRYPTOPULSE_CURRE
 
 Explained in [docs/FORECAST.md](docs/FORECAST.md): technical signals, market context and crowd signals
 combined into a logit, self-checked with a walk-forward backtest, shrunk toward 50 % when data is thin.
+A coin that typically moves less than 1 % over the horizon (less than the cost of trading) gets no
+call, Bitcoin's trend counts by how closely each coin follows Bitcoin, and the accuracy log treats a
+move inside half the expected range as neutral noise rather than a hit or a miss.
 
 ## Build it yourself
 
@@ -160,13 +161,14 @@ The older Streamlit prototype (`spss8.py`) is kept as it was.
 * **Telegram**: javni kanali rade odmah. Za tvoj Telegram račun (sve grupe u kojima jesi) dodaj tri
   tajne u GitHub repozitorij prema uputama u [docs/TELEGRAM_HR.md](docs/TELEGRAM_HR.md). Sažetak
   tržišta može stizati u tvoje "Saved Messages" na hrvatskom.
-* **Satni raspored** oblaka GitHub pokreće samo s glavne (default) grane. Dok ova grana nije spojena,
-  oblak se pokreće ručno: Actions → `sentiment-hub` → "Run workflow". Ako oblak zastane, aplikacija
-  stare podatke postupno zanemaruje (nakon 48 h potpuno) i sama čita Telegram.
-* **Memecoini i špekulativni tokeni**: uz Bitpandu aplikacija prikazuje 250 najvećih memecoina,
-  coinove koji su danas u trendu i **DEX radar** (novi i popularni tokeni s decentraliziranih burzi,
-  pump.fun). Označeni su s `MEME` / `TRENDING` / `DEX`, nisu na Bitpandi i služe samo za
-  informaciju. Svaki ima ocjenu rizika 0-100 i besplatnu provjeru ugovora (honeypot, porezi,
-  zamrzavanje, mintanje). Bez prognoze ostaju tokeni s crvenim zastavicama, mlađi od 24 h ili
-  neprovjereni. Većina takvih tokena izgubi većinu vrijednosti.
+* **Satni raspored** oblaka GitHub pokreće samo s glavne grane `main`, pa se hub, dashboard i
+  sažetak pokreću sami kad je kod u `main`. Ručno: Actions → `sentiment-hub` → "Run workflow". Ako
+  oblak zastane, aplikacija stare podatke postupno zanemaruje (nakon 48 h potpuno) i sama čita Telegram.
+* **Izvan Bitpande**: osim Bitpandinih coinova aplikacija prikazuje samo coinove koji su danas u
+  trendu (`TRENDING`), samo informativno, s ocjenom rizika 0-100. Kartice Memecoins i DEX su
+  uklonjene; Bitpandini memecoini (DOGE, SHIB, PEPE...) ostaju na popisu Bitpande.
+* **Pravila prognoze**: coin koji se u 24 h (ili 7 dana) tipično pomakne manje od 1 % (manje od
+  troška kupnje i prodaje) ne dobiva prognozu ("Moves too little"); trend Bitcoina računa se prema
+  tome koliko coin prati Bitcoin (TRON slabo, NEAR jako); pomak manji od pola očekivanog raspona u
+  dnevniku točnosti je neutralan (šum), ni pogodak ni promašaj.
 * Ovo su vjerojatnosti, ne sigurnosti, i nije financijski savjet.

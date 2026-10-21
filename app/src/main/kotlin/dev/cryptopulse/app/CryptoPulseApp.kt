@@ -53,7 +53,9 @@ class SettingsStore(context: Context) {
     private val prefs = context.getSharedPreferences("cryptopulse_settings", Context.MODE_PRIVATE)
     private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
 
-    fun load(): AppConfig = prefs.getString(KEY, null)?.let { runCatching { json.decodeFromString(AppConfig.serializer(), it) }.getOrNull() } ?: AppConfig()
+    // memecoins and the DEX radar left the app: settings saved by older versions must not switch them back on
+    fun load(): AppConfig = (prefs.getString(KEY, null)?.let { runCatching { json.decodeFromString(AppConfig.serializer(), it) }.getOrNull() } ?: AppConfig())
+        .copy(showMemecoins = false, showDexRadar = false)
 
     fun save(config: AppConfig) {
         prefs.edit().putString(KEY, json.encodeToString(AppConfig.serializer(), config)).apply()

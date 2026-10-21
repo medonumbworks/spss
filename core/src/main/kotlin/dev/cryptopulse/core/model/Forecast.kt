@@ -63,7 +63,7 @@ data class HorizonForecast(
     val hasCall: Boolean get() = signals.firstOrNull()?.name !in NO_CALL_SIGNALS
 
     companion object {
-        val NO_CALL_SIGNALS: Set<String> = setOf("risk_blocked", "history")
+        val NO_CALL_SIGNALS: Set<String> = setOf("risk_blocked", "history", "low_move")
     }
 }
 

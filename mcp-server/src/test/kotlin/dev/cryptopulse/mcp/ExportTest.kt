@@ -58,7 +58,8 @@ class ExportTest {
         .onUrlContaining("feed", body = Fixtures.read("atom_feed.xml"))
 
     private val app = CryptoPulse.create(
-        AppConfig(), transport, null,
+        // the speculative tiers are off by default; these fixtures exercise them
+        AppConfig(showMemecoins = true, showDexRadar = true), transport, null,
         scorer = SentimentScorer { TextSentiment(0.0) },
         clock = clock, logger = Logger.NONE,
         rateLimiter = RateLimiter(emptyMap(), Rate(1e6, 1_000_000), clock, sleeper = {}),
@@ -84,6 +85,7 @@ class ExportTest {
         val noCall = rows.filter { it["noCall"] != null }
         assertTrue(noCall.isNotEmpty())
         assertTrue(noCall.all { it["up24"] == null || it["up7"] == null }, noCall.toString())
+        assertTrue(noCall.all { it.getValue("noCall").jsonPrimitive.content.isNotBlank() }, noCall.toString())
 
         val buzz = out.getValue("buzz").jsonArray.map { it.jsonObject }
         assertTrue(buzz.isNotEmpty())
@@ -99,6 +101,7 @@ class ExportTest {
         val h24 = out.getValue("accuracy").jsonObject.getValue("24h").jsonObject
         assertTrue(h24.getValue("pending").jsonPrimitive.int >= 0, h24.toString())
         assertTrue(h24.getValue("evaluated").jsonPrimitive.int >= 0, h24.toString())
+        assertTrue(h24.getValue("neutral").jsonPrimitive.int >= 0, h24.toString())
 
         val pm = out.getValue("polymarket").jsonArray.map { it.jsonObject }
         assertTrue(pm.isNotEmpty() && pm.size <= 20, pm.toString())

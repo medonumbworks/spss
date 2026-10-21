@@ -123,14 +123,16 @@ async function shot(page, name) {
   await page.locator('#coins thead button[data-sort="name"]').click();
   if ((await page.locator('#rows tr .coin-name').first().textContent()) !== 'Bitcoin') problems.push('[main] name sort wrong');
 
-  // Memecoins filter folds in meme-tagged rows from other tiers
-  await page.locator('#tiers button[data-tier="MEME"]').click();
-  const memeSyms = await page.locator('#rows tr .coin-sym').allTextContents();
-  if (memeSyms.length !== 4 || !memeSyms.includes('DOGE') || !memeSyms.includes('TURBO')) {
-    problems.push(`[main] Memecoins filter wrong: ${JSON.stringify(memeSyms)}`);
+  // only All / Bitpanda / Trending: the memecoin and DEX tabs are gone
+  const tierChips = await page.locator('#tiers button').evaluateAll((bs) => bs.map((b) => b.dataset.tier));
+  if (JSON.stringify(tierChips) !== '["ALL","BITPANDA","TRENDING"]') problems.push(`[main] tier chips wrong: ${JSON.stringify(tierChips)}`);
+  await page.locator('#tiers button[data-tier="BITPANDA"]').click();
+  if ((await page.locator('#rows tr').count()) !== 6) problems.push('[main] Bitpanda filter wrong');
+  await page.locator('#tiers button[data-tier="TRENDING"]').click();
+  const trendSyms = await page.locator('#rows tr .coin-sym').allTextContents();
+  if (trendSyms.length !== 4 || !trendSyms.includes('WIF') || !trendSyms.includes('MOONCAT')) {
+    problems.push(`[main] Trending filter wrong: ${JSON.stringify(trendSyms)}`);
   }
-  await page.locator('#tiers button[data-tier="DEX"]').click();
-  if ((await page.locator('#rows tr').count()) !== 2) problems.push('[main] DEX filter wrong');
   await page.locator('#tiers button[data-tier="ALL"]').click();
 
   await page.fill('#search', 'dogwif');
@@ -241,6 +243,9 @@ async function shot(page, name) {
     rows: [
       { symbol: 'XYZ', name: 'Mystery', tier: 'WEIRD_NEW_TIER', unknownField: true },
       { symbol: 'ABC' },
+      // an export from before the memecoin and DEX tiers were removed: those rows stay hidden
+      { symbol: 'OLDMEME', tier: 'MEME' },
+      { symbol: 'OLDDEX', tier: 'DEX', currency: 'USD' },
     ],
   });
   await page.route('**/data/dashboard.json', (route) => route.fulfill({ contentType: 'application/json', body: minimal }));

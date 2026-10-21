@@ -61,6 +61,21 @@ class FormatTest {
     }
 
     @Test
+    fun lowMoveHorizonSaysItMovesTooLittle() {
+        val note = "Typical 24h move is only 0.55%, below trading costs (~1.0%): no clear direction"
+        val h24 = HorizonForecast(Horizon.H24, 0.5, Direction.FLAT, 0.0, 0.29, 0.31, 0.3,
+            listOf(Signal("low_move", "Small expected move", 0.55, 0.0, note), Signal("rsi14", "RSI", 30.0, 0.0, "Oversold")))
+        val d7 = called(Horizon.D7, 0.56, listOf(Signal("momentum_7d", "7d momentum", 2.0, 0.1, "Rising")))
+        val row = AssetRow(Asset("TRX", "TRON"), MarketData("TRX", currency = "EUR", price = 0.3, marketCap = 2.8e10), forecast(h24, d7, BottomAssessment(40, "Mid-range")))
+        val table = Format.overviewTable(listOf(row), "EUR")
+        assertTrue(table.contains("— (moves too little)"), table)
+        assertFalse(table.contains("■ 50%"), table)
+        val text = Format.forecast("TRON", row.forecast!!, row)
+        assertTrue(text.contains("### Next 24h: no forecast — $note"), text)
+        assertTrue(text.contains("### Next 7d: ▲ 56% chance of going up"), text)
+    }
+
+    @Test
     fun blockedTokenGetsNoProbabilityAndNoBottomScore() {
         val note = "No forecast (too new): Pool is only 5 h old"
         fun none(h: Horizon) = HorizonForecast(h, 0.5, Direction.FLAT, 0.0, signals = listOf(Signal("risk_blocked", "Safety red flags", 80.0, 0.0, note)))

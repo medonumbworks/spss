@@ -57,6 +57,7 @@ object Export {
                         put("pending", h.pending)
                         put("evaluated", h.evaluated)
                         put("hits", h.hits)
+                        put("neutral", h.neutral)
                         h.hitRate?.let { put("hitRate", it) }
                         h.avgProbability?.let { put("avgProbability", it) }
                         h.brier?.let { put("brier", it) }
@@ -105,8 +106,9 @@ object Export {
         up7?.let { put("up7", it) }
         if (up24 != null) f?.h24?.confidence?.let { put("conf24", it) }
         if (f != null && (up24 == null || up7 == null)) {
-            // same decision as Format.up: blocked rows show their risk label, the rest lack history
-            put("noCall", r.risk?.takeIf { it.blocked }?.label ?: "Not enough history")
+            // same decision as Format.up: blocked rows show their risk label, the rest say why the horizon has no call
+            val gated = if (up24 == null) f.h24 else f.d7
+            put("noCall", r.risk?.takeIf { it.blocked }?.label ?: if (gated.signals.firstOrNull()?.name == "low_move") "Moves too little" else "Not enough history")
         }
         // placeholder bottoms (pegged, no history, blocked) are not shown, like in the tables
         f?.bottom?.takeIf { it.label !in Format.NO_BOTTOM_LABELS && r.risk?.blocked != true }?.let {

@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const CACHE = 'cryptopulse-shell-v1';
+const CACHE = 'cryptopulse-shell-v2';
 const SHELL = [
   './',
   './index.html',

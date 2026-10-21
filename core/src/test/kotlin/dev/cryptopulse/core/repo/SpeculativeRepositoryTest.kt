@@ -91,7 +91,7 @@ class SpeculativeRepositoryTest {
         .onUrlContaining("sentiment-feed/feed.json", body = Fixtures.read("sentiment_feed.json"))
         .onUrlContaining("t.me/s/", body = Fixtures.read("telegram_preview.html"))
 
-    private fun app(t: HttpTransport, config: AppConfig = AppConfig(showMemecoins = false, showTrending = false), store: InMemoryDiskStore? = null) =
+    private fun app(t: HttpTransport, config: AppConfig = AppConfig(showMemecoins = false, showTrending = false, showDexRadar = true), store: InMemoryDiskStore? = null) =
         CryptoPulse.create(config, t, store, scorer, clock = clock, logger = Logger.NONE, rateLimiter = fastLimiter(clock))
 
     @Test
@@ -259,7 +259,7 @@ class SpeculativeRepositoryTest {
     @Test
     fun dexPricesUseAStablecoinRateWithoutBitpandaPricesOrFutures() = runTest {
         goplus[tokenA] = cleanGoPlus
-        val cp = app(transport(bitpanda = false), AppConfig(showMemecoins = false, showTrending = false, derivativesEnabled = false))
+        val cp = app(transport(bitpanda = false), AppConfig(showMemecoins = false, showTrending = false, showDexRadar = true, derivativesEnabled = false))
         val snap = cp.repository.refresh()
         assertEquals(ListingSource.BUNDLED_SNAPSHOT, snap.universeSource)
         val m = cp.repository.row("FROG")!!.market!!
@@ -269,11 +269,11 @@ class SpeculativeRepositoryTest {
 
     @Test
     fun memecoinsFromAnotherCurrencyAreNotReused() = runTest {
-        val cp = app(transport(), AppConfig(showTrending = false, showDexRadar = false))
+        val cp = app(transport(), AppConfig(showMemecoins = true, showTrending = false, showDexRadar = false))
         assertTrue(cp.repository.refresh().rows.any { it.asset.tier == Tier.MEME && it.market?.currency == "EUR" })
         // CoinGecko and Coinpaprika both refuse the memecoins after a switch to USD
         memecoinsUp = false
-        cp.updateConfig(AppConfig(currency = "USD", showTrending = false, showDexRadar = false))
+        cp.updateConfig(AppConfig(currency = "USD", showMemecoins = true, showTrending = false, showDexRadar = false))
         val usd = cp.repository.refresh()
         assertEquals("USD", usd.currency)
         assertTrue(usd.rows.all { it.market == null || it.market.currency == "USD" }, usd.rows.filter { it.market?.currency != "USD" }.map { it.asset.symbol }.toString())
@@ -309,6 +309,18 @@ class SpeculativeRepositoryTest {
         val cp = app(t, store = store)
         cp.repository.enrichSentiment(n = 5)
         assertEquals(1, t.countRequests("t.me/s/frogchannel"))
+    }
+
+    @Test
+    fun tiersSwitchedOffStayOutOfAPersistedSnapshot() = runTest {
+        val store = InMemoryDiskStore()
+        fun row(sym: String, tier: Tier) = AssetRow(Asset(sym, sym, tier = tier), MarketData(sym, currency = "EUR", price = 1.0, lastUpdatedMs = nowMs))
+        val old = listOf(row("BTC", Tier.BITPANDA), row("PEPE2", Tier.MEME), row("FROG", Tier.DEX), row("HOT", Tier.TRENDING))
+        store.write(MarketRepository.SNAPSHOT_KEY, Json.encodeToString(MarketSnapshot.serializer(),
+            MarketSnapshot("EUR", old, universeSource = ListingSource.BITPANDA_LEGACY_TICKER, universeSize = 1, fetchedAtMs = nowMs)))
+        // the defaults: memecoins and the DEX radar off, trending on
+        val cp = app(transport(), config = AppConfig(), store = store)
+        assertEquals(listOf("BTC", "HOT"), cp.repository.snapshot.value?.rows?.map { it.asset.symbol })
     }
 
     /** One GeckoTerminal trending pool on Ethereum for a token with the ticker FROG. */

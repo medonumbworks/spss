@@ -44,14 +44,14 @@
    "risk": null, "pump": null, "mentions": 23, "spike": null
   },
   {
-   "symbol": "PEPE", "name": "Pepe", "tier": "MEME", "tags": ["meme"],
+   "symbol": "PEPE", "name": "Pepe", "tier": "BITPANDA", "tags": ["meme"],
    "price": 5.98e-6, "currency": "EUR", "chg1h": -1.1, "chg24h": -4.2, "chg7d": -11.3,
    "marketCap": 2500000000, "up24": 0.46, "up7": 0.44, "conf24": 0.52,
    "bottomScore": 72, "bottomLabel": "Near its recent lows",
-   "risk": { "score": 55, "label": "High" }, "pump": null, "mentions": 64, "spike": null
+   "risk": null, "pump": null, "mentions": 64, "spike": null
   },
   {
-   "symbol": "WIF", "name": "dogwifhat", "tier": "MEME", "tags": ["meme"],
+   "symbol": "WIF", "name": "dogwifhat", "tier": "TRENDING", "tags": ["meme"],
    "price": 1.86, "currency": "EUR", "chg1h": 6.2, "chg24h": 38.5, "chg7d": 61.2,
    "marketCap": 1860000000, "up24": 0.41, "up7": 0.4, "conf24": 0.55,
    "bottomScore": 12, "bottomLabel": "At its recent highs",
@@ -71,27 +71,26 @@
    "risk": { "score": 58, "label": "High" }, "pump": null, "mentions": 41, "spike": 2.1
   },
   {
-   "symbol": "GIGA", "name": "Gigachad", "tier": "DEX", "tags": [],
-   "price": 0.0214, "currency": "USD", "chg1h": -2.3, "chg24h": 8.7, "chg7d": 24.1,
+   "symbol": "GIGA", "name": "Gigachad", "tier": "TRENDING", "tags": [],
+   "price": 0.0214, "currency": "EUR", "chg1h": -2.3, "chg24h": 8.7, "chg7d": 24.1,
    "marketCap": 203000000, "up24": 0.44, "up7": 0.42, "conf24": 0.52,
    "bottomScore": 29, "bottomLabel": "Upper part of its range",
    "risk": { "score": 71, "label": "Very high" }, "pump": null,
-   "mentions": 12, "spike": null,
-   "chain": "solana", "contract": "63LfDmNb3MQ8mw9MtZ2To9bEA2M71kZUUGq5tiJxcqj9"
+   "mentions": 12, "spike": null
   },
   {
-   "symbol": "MOONCAT", "name": "Moon Cat", "tier": "DEX", "tags": [],
-   "price": 0.00042, "currency": "USD", "chg1h": 4.0, "chg24h": 156.2, "chg7d": null,
+   "symbol": "MOONCAT", "name": "Moon Cat", "tier": "TRENDING", "tags": [],
+   "price": 0.00042, "currency": "EUR", "chg1h": 4.0, "chg24h": 156.2, "chg7d": null,
    "marketCap": 1250000, "up24": null, "up7": null, "conf24": null,
    "bottomScore": null, "bottomLabel": null,
    "risk": { "score": 86, "label": "Very high" },
    "pump": { "reasons": [
-    "+156% in 24 h on a pool younger than two days",
-    "liquidity under $50k; a single seller can move the price",
-    "contract not yet verified by GoPlus"
+    "+156% in 24 h with no market-cap rank yet",
+    "volume up 9× in a day while Telegram mentions spike",
+    "trending for less than two days"
    ] },
    "mentions": 18, "spike": null,
-   "noCall": "Unverified", "chain": "solana", "contract": "9vNqkTgAs1mPxWUykrVLKfmrejAvTzFkqSm9NAo1u2vX"
+   "noCall": "Unverified"
   }
  ],
  "buzz": [

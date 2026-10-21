@@ -30,6 +30,8 @@ data class JournalEntry(
     val dueMs: Long,
     /** Model version that issued the forecast, so recalibrations can be told apart in the stats. */
     val modelVersion: String,
+    /** Typical move (1 sigma, %) over the horizon when the call was made; half of it is the noise band. */
+    val movePct: Double? = null,
     val evalPrice: Double? = null,
     val evalAtMs: Long? = null,
     /**
@@ -57,6 +59,8 @@ data class HorizonRecord(
     val brier: Double?,
     /** Share of evaluated entries whose price actually ended higher. */
     val upShare: Double?,
+    /** Priced calls whose move stayed inside the noise band (half the typical move): not scored. */
+    val neutral: Int = 0,
 )
 
 /** [perHorizon] is keyed by [Horizon.label] ("24h", "7d"); [total] counts every stored entry. */
@@ -122,6 +126,10 @@ class ForecastJournal(
                     atMs = nowMs,
                     dueMs = nowMs + horizon.hours * HOUR_MS,
                     modelVersion = forecast.modelVersion,
+                    movePct = forecast.at(horizon).let { h ->
+                        val lo = h.expectedLow; val hi = h.expectedHigh
+                        if (lo != null && hi != null && price > 0) (hi - lo) / 2 / price * 100 else null
+                    },
                 )
                 newest[key] = nowMs
                 added++
@@ -161,7 +169,10 @@ class ForecastJournal(
             val m = byToken[e.token] ?: if (e.token.isEmpty()) byToken.entries.firstOrNull { it.key.contains("|" + e.symbol + "|") || it.key.endsWith("|" + e.symbol) }?.value else null
             val price = m?.price
             if (price != null && e.currency == m.currency) {
-                val hit = if (e.probabilityUp == 0.5) null else (price > e.price) == (e.probabilityUp > 0.5)
+                // a move inside half the typical move is noise: neither a hit nor a miss
+                val movedPct = kotlin.math.abs(price / e.price - 1) * 100
+                val noise = e.movePct != null && movedPct < e.movePct * NOISE_BAND
+                val hit = if (e.probabilityUp == 0.5 || noise) null else (price > e.price) == (e.probabilityUp > 0.5)
                 iter.set(e.copy(evalPrice = price, evalAtMs = nowMs, hit = hit))
                 if (hit != null) scored++
                 changed = true
@@ -183,6 +194,7 @@ class ForecastJournal(
             val ups = done.count { it.evalPrice!! > it.price }
             perHorizon[horizon.label] = HorizonRecord(
                 pending = all.count { it.evalAtMs == null },
+                neutral = all.count { it.evalAtMs != null && it.hit == null && it.probabilityUp != 0.5 },
                 evaluated = n,
                 hits = hits,
                 hitRate = if (n == 0) null else hits.toDouble() / n,
@@ -245,6 +257,9 @@ class ForecastJournal(
     }
 
     companion object {
+        /** A realised move under this share of the typical move counts as noise, not as a hit or a miss. */
+        const val NOISE_BAND = 0.5
+
         const val STORE_KEY = "forecast_journal"
         private const val HOUR_MS = 3_600_000L
 

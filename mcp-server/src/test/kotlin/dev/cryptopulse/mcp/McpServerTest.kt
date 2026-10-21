@@ -82,7 +82,8 @@ class McpServerTest {
         .onUrlContaining("feed", body = Fixtures.read("atom_feed.xml"))
 
     private val app = CryptoPulse.create(
-        AppConfig(), transport, null,
+        // the speculative tiers are off by default; these fixtures exercise them
+        AppConfig(showMemecoins = true, showDexRadar = true), transport, null,
         scorer = SentimentScorer { t -> TextSentiment(if ("surge" in t.lowercase() || "bullish" in t.lowercase()) 0.5 else 0.0) },
         clock = clock, logger = Logger.NONE,
         rateLimiter = RateLimiter(emptyMap(), Rate(1e6, 1_000_000), clock, sleeper = {}),

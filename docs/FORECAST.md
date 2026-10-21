@@ -10,7 +10,7 @@ conditions present?"). Everything is computed on the device (or in the MCP serve
 |-------|---------|--------|
 | Price (24h horizon) | RSI 14, Bollinger %B, last 24h move vs. volatility, 12h vs 48h trend, MACD histogram | CoinGecko 7-day hourly sparkline |
 | Price (7d horizon) | daily RSI 14, %B, 30-day momentum, 20 vs 50-day trend, last 7d move | CoinGecko 1-year daily history (detail screen) or 4-hour bars |
-| Market context | Bitcoin trend (alts follow BTC), Fear & Greed (contrarian), total market cap move, overall social mood, CoinGecko trending | CoinGecko, alternative.me, Reddit/news/Telegram |
+| Market context | Bitcoin trend (weighted by how closely the coin follows BTC), Fear & Greed (contrarian), total market cap move, overall social mood, CoinGecko trending | CoinGecko, alternative.me, Reddit/news/Telegram |
 | Crowd | coin sentiment x confidence, attention change, futures funding (contrarian), long/short accounts (contrarian), CoinGecko votes | Reddit, StockTwits, Telegram, news, cloud hub, Binance/Bybit, CoinGecko |
 
 Each signal adds a small signed amount to a logit. Weights are deliberately small because short-term
@@ -36,6 +36,23 @@ window count and the chance level.
   name or symbol must also say it is pegged ("USD", "Dollar", "Stable", ...).
 * Futures funding is converted to an 8-hour rate first (many contracts settle every 4 h or 1 h).
 * The likely range is about one standard deviation of recent volatility around a small drift.
+* **Too small to trade**: when a coin's typical move over the horizon (the standard deviation of the
+  last week's hourly returns, scaled to 24 h or 7 days) is under **1 %**, about the cost of buying
+  and selling once, there is no call ("Moves too little"); the drivers stay visible with zero weight.
+  Example: TRON moves about 0.8-0.9 % a day in EUR, so it gets no 24 h call while its 7-day call
+  stays; Bitcoin runs about 1.6 % and XRP about 3 % on the same measure.
+* **Bitcoin's trend counts by how much a coin follows it**: the Bitcoin-trend weight is multiplied by
+  0.3 + 0.7 x beta, where beta compares the coin's hourly returns with Bitcoin's over the last week
+  (clamped to 0-3). A coin with beta 0.1 (TRON) gets about a third of the weight, one with beta 2.9
+  (NEAR) about 2.3 times. Without Bitcoin's hourly series the plain weight applies.
+
+## Realized accuracy (forecast journal)
+
+Every call shown is logged with its price and likely range and scored once its horizon passes. A
+move smaller than half the likely range is **neutral**: noise, neither a hit nor a miss, and counted
+separately. Horizons without a call (too new, red flags, moves too little) are not logged; a 50 % call
+is priced but never scored. The hit rate is compared with 50 % and with the share of coins that
+simply rose.
 
 ## Bottom score
 
@@ -47,4 +64,4 @@ score, never make one. 70+ = near a local low, 55-70 lower part of the range,
 score only says whether the price is near recent lows *and* typical rebound conditions are present.
 The 7-day probability next to it is the actual estimate of whether it goes up from here.
 
-Model version: `cryptopulse-forecast-1.0` (see `core/src/main/kotlin/dev/cryptopulse/core/analysis/forecast`).
+Model version: `cryptopulse-forecast-1.2` (see `core/src/main/kotlin/dev/cryptopulse/core/analysis/forecast`).

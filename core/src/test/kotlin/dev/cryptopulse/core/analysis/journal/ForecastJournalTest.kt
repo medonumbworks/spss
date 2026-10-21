@@ -106,6 +106,23 @@ class ForecastJournalTest {
     }
 
     @Test
+    fun aMoveInsideTheNoiseBandIsNeitherAHitNorAMiss() {
+        // the forecast expected about +-2 %: anything under 1 % is noise
+        fun ranged(symbol: String) = row(symbol, 100.0, 0.7, null).let { r ->
+            r.copy(forecast = r.forecast!!.copy(h24 = r.forecast!!.h24.copy(expectedLow = 98.0, expectedHigh = 102.0)))
+        }
+        journal.record(listOf(ranged("FLAT"), ranged("DOWN"), ranged("UP"), row("OLD", 100.0, 0.7, null)))
+        now[0] += 24 * hour
+        val prices = listOf(priced("FLAT", 99.5), priced("DOWN", 97.0), priced("UP", 101.5), priced("OLD", 99.9))
+        assertEquals(3, journal.evaluate(prices), "FLAT moved 0.5 %: not scored; OLD has no range, so it is scored as before")
+        val s = journal.stats().perHorizon["24h"]!!
+        assertEquals(1, s.neutral)
+        assertEquals(3, s.evaluated)
+        assertEquals(1, s.hits, "UP hit; DOWN and OLD missed")
+        assertEquals(0, s.pending)
+    }
+
+    @Test
     fun everythingIsDroppedHalfAHorizonPastItsDueDate() {
         journal.record(listOf(row("GONE", 100.0, 0.7, null), row("LATE", 100.0, 0.3, null)))
         now[0] += 24 * hour + 1

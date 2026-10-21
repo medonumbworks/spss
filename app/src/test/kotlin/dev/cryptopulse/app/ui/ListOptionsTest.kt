@@ -29,17 +29,15 @@ class ListOptionsTest {
         val pepeOnBitpanda = row("PEPE", "Pepe", -5.0, 1e9).let { it.copy(asset = it.asset.copy(tags = listOf("meme"))) }
         val all = listOf(rows[0], rows[1], pepeOnBitpanda, meme, dex)
         assertEquals(listOf("BTC", "SOL", "PEPE"), ListOptions.apply(all, "", ListFilter.ALL, ListSort.MARKET_CAP, ListTier.BITPANDA).map { it.asset.symbol })
-        assertEquals(listOf("PEPE", "SHIB"), ListOptions.apply(all, "", ListFilter.ALL, ListSort.MARKET_CAP, ListTier.MEME).map { it.asset.symbol }, "Bitpanda memecoins count as memes")
-        assertEquals(listOf("MOON"), ListOptions.apply(all, "", ListFilter.ALL, ListSort.MARKET_CAP, ListTier.DEX).map { it.asset.symbol })
         assertEquals(listOf("BTC", "SOL", "PEPE", "SHIB", "MOON"), ListOptions.apply(all, "", ListFilter.ALL, ListSort.RISK).map { it.asset.symbol }, "Bitpanda coins first, then lowest risk")
         assertEquals(null, dex.upOrNull(null))
     }
 
     @Test
     fun selectedTierChipStaysWhenItsTierEmpties() {
-        val counts = mapOf(ListTier.ALL to 650, ListTier.BITPANDA to 650, ListTier.MEME to 0, ListTier.TRENDING to 0, ListTier.DEX to 0)
+        val counts = mapOf(ListTier.ALL to 650, ListTier.BITPANDA to 650, ListTier.TRENDING to 0)
         assertEquals(listOf(ListTier.ALL, ListTier.BITPANDA), ListOptions.visibleTiers(counts, ListTier.ALL))
-        assertEquals(listOf(ListTier.ALL, ListTier.BITPANDA, ListTier.DEX), ListOptions.visibleTiers(counts, ListTier.DEX), "DEX radar turned off while selected")
-        assertEquals(listOf(ListTier.ALL, ListTier.DEX), ListOptions.visibleTiers(emptyMap(), ListTier.DEX))
+        assertEquals(listOf(ListTier.ALL, ListTier.BITPANDA, ListTier.TRENDING), ListOptions.visibleTiers(counts, ListTier.TRENDING), "trending turned off while selected")
+        assertEquals(listOf(ListTier.ALL, ListTier.TRENDING), ListOptions.visibleTiers(emptyMap(), ListTier.TRENDING))
     }
 }

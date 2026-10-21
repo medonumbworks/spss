@@ -31,9 +31,7 @@ import kotlinx.coroutines.launch
 enum class ListTier(val label: String) {
     ALL("All"),
     BITPANDA("Bitpanda"),
-    MEME("Memecoins"),
     TRENDING("Trending"),
-    DEX("DEX radar"),
 }
 
 enum class ListFilter(val label: String) {

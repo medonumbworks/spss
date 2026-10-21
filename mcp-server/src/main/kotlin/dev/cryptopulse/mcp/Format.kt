@@ -45,6 +45,7 @@ object Format {
     private fun up(r: AssetRow, h: HorizonForecast?): String = when {
         r.risk?.blocked == true -> "— (${r.risk!!.label.lowercase()})"
         h?.signals?.firstOrNull()?.name == "history" -> "— (too new)"
+        h?.signals?.firstOrNull()?.name == "low_move" -> "— (moves too little)"
         else -> "${arrow(h)} ${pct(h?.probabilityUp)}"
     }
 
