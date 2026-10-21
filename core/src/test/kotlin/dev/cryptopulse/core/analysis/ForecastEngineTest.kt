@@ -238,7 +238,10 @@ class ForecastEngineTest {
         // daily history (Binance) without the hourly sparkline: a 7-day call, but none for 24 h
         val dailyOnly = engine.forecast(quoteOnly.copy(dailyCloses = series(365, 0.2, 0.001, 0.03)))
         assertEquals(false, dailyOnly.h24.hasCall)
+        assertTrue("only daily history" in dailyOnly.h24.signals.first().description, dailyOnly.h24.signals.first().description)
         assertTrue(dailyOnly.d7.hasCall)
+        // too few daily closes for the 7-day technicals: market mood alone is not a 7-day call either
+        assertEquals(false, engine.forecast(quoteOnly.copy(dailyCloses = series(10, 0.2, 0.001, 0.03))).d7.hasCall)
     }
 
     @Test

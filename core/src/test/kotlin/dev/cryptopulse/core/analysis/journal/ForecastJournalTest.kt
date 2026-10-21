@@ -133,6 +133,10 @@ class ForecastJournalTest {
         assertEquals(1, journal.stats().perHorizon["24h"]!!.pending, "it waits for a usable quote")
         val fresh = AssetRow(Asset("BTC", "BTC"), MarketData("BTC", currency = "EUR", price = 110.0, source = "coingecko", lastUpdatedMs = now[0] - 600_000))
         assertEquals(1, journal.evaluate(listOf(fresh)))
+        // nor is a call recorded on such a quote: its base price would predate the call
+        val reused = row("ETH", 100.0, 0.7, 0.6).let { r -> r.copy(market = r.market!!.copy(source = "coingecko", lastUpdatedMs = now[0] - 3 * hour)) }
+        val quoteOnly = row("SOL", 100.0, 0.7, 0.6).let { r -> r.copy(market = r.market!!.copy(source = "bitpanda")) }
+        assertEquals(0, journal.record(listOf(reused, quoteOnly)))
     }
 
     @Test

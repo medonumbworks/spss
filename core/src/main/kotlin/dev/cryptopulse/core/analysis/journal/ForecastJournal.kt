@@ -106,7 +106,9 @@ class ForecastJournal(
         }
         var added = 0
         for (row in rows) {
-            val market = row.market ?: continue
+            // the same quote rule as scoring: a call made on an hours-old reused row would be scored
+            // against a move that partly happened before it was issued
+            val market = row.market?.takeIf { usableQuote(it, nowMs) } ?: continue
             val price = market.price ?: continue
             val forecast = row.forecast ?: continue
             for (horizon in Horizon.entries) {
@@ -152,11 +154,7 @@ class ForecastJournal(
         val list = loaded()
         val nowMs = clock.nowMs()
         val byToken = HashMap<String, MarketData>()
-        // calls are only made on market data with a price history; a Bitpanda-only quote (other source,
-        // with its spread) or a row kept from an older refresh would score them against the wrong price
-        for (row in rows) row.market?.takeIf { m ->
-            m.price != null && m.source != BITPANDA_ONLY_SOURCE && (m.lastUpdatedMs == null || nowMs - m.lastUpdatedMs <= MAX_QUOTE_AGE_MS)
-        }?.let { byToken[row.asset.tokenKey] = it }
+        for (row in rows) row.market?.takeIf { usableQuote(it, nowMs) }?.let { byToken[row.asset.tokenKey] = it }
         var scored = 0
         var changed = false
         val iter = list.listIterator()
@@ -266,6 +264,14 @@ class ForecastJournal(
 
         const val STORE_KEY = "forecast_journal"
         private const val HOUR_MS = 3_600_000L
+        /**
+         * Calls are only made on market data with a price history: a Bitpanda-only quote (another
+         * source, with its spread) or a row kept from an older refresh would put the wrong price on
+         * either end of an entry.
+         */
+        private fun usableQuote(m: MarketData, nowMs: Long): Boolean =
+            m.price != null && m.source != BITPANDA_ONLY_SOURCE && (m.lastUpdatedMs == null || nowMs - m.lastUpdatedMs <= MAX_QUOTE_AGE_MS)
+
         /** MarketData.source of a row that has only the Bitpanda ticker price. */
         private const val BITPANDA_ONLY_SOURCE = "bitpanda"
         /** A quote older than this (a row reused while CoinGecko fails) does not score a forecast. */
