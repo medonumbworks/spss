@@ -1,0 +1,728 @@
+[
+ {
+  "name": "cg_categories_list",
+  "url": "https://api.coingecko.com/api/v3/coins/categories/list",
+  "status": 200,
+  "bytes": 68171,
+  "file": "cg_categories_list.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 91,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e207dcff0aa8a6-LAX"
+  }
+ },
+ {
+  "name": "cg_meme_markets",
+  "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&category=meme-token&order=market_cap_desc&per_page=5&page=1&sparkline=true&price_change_percentage=1h,24h,7d,30d",
+  "status": 200,
+  "bytes": 22525,
+  "file": "cg_meme_markets.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 453,
+  "headers": {
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e2085a6fdfa8a6-LAX"
+  }
+ },
+ {
+  "name": "cg_trending",
+  "url": "https://api.coingecko.com/api/v3/search/trending",
+  "status": 200,
+  "bytes": 71722,
+  "file": "cg_trending.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 66,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e208da3de74ea4-LAX"
+  }
+ },
+ {
+  "name": "cg_categories",
+  "url": "https://api.coingecko.com/api/v3/coins/categories?order=market_cap_change_24h_desc",
+  "status": 200,
+  "bytes": 355864,
+  "file": "cg_categories.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 91,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20957b84ca8a6-LAX"
+  }
+ },
+ {
+  "name": "gt_trending",
+  "url": "https://api.geckoterminal.com/api/v2/networks/trending_pools?include=base_token&page=1&duration=24h",
+  "status": 200,
+  "bytes": 38190,
+  "file": "gt_trending.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 4793,
+  "headers": {
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e2095e9ead3ad6-LAX"
+  }
+ },
+ {
+  "name": "gt_trending_sol",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/trending_pools?include=base_token&page=1",
+  "status": 200,
+  "bytes": 37308,
+  "file": "gt_trending_sol.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 2112,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20988fea1f7d3-LAX"
+  }
+ },
+ {
+  "name": "gt_new_pools",
+  "url": "https://api.geckoterminal.com/api/v2/networks/new_pools?include=base_token&page=1",
+  "status": 200,
+  "bytes": 35961,
+  "file": "gt_new_pools.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 135,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e209a2a9e93ad6-LAX"
+  }
+ },
+ {
+  "name": "gt_ohlcv",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/6DNxwecbtdNNstpB5tdnxZsfGe3HmsNgEUZhdue4b1PH/ohlcv/hour?aggregate=1&limit=168&currency=usd",
+  "status": 200,
+  "bytes": 2566,
+  "file": "gt_ohlcv.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 334,
+  "headers": {
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e209b00b1515f9-LAX"
+  }
+ },
+ {
+  "name": "gt_token_info",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/tokens/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm/info",
+  "status": 200,
+  "bytes": 4107,
+  "file": "gt_token_info.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 258,
+  "headers": {
+   "cf-cache-status": "REVALIDATED",
+   "CF-RAY": "a4e209be9a8bf7d3-LAX"
+  }
+ },
+ {
+  "name": "gt_ohlcv_token",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/pools/D6NdKrKNQPmRZCCnG1GqXtF7MMoHB7qR6GU5TkG59Qz1/ohlcv/hour?aggregate=1&limit=24&currency=usd&token=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+  "status": 200,
+  "bytes": 3031,
+  "file": "gt_ohlcv_token.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 383,
+  "headers": {
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e20a7bb9c0f7ab-LAX"
+  }
+ },
+ {
+  "name": "gt_networks",
+  "url": "https://api.geckoterminal.com/api/v2/networks?page=1",
+  "status": 200,
+  "bytes": 11172,
+  "file": "gt_networks.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 100,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20a8aa9e7ccdc-LAX"
+  }
+ },
+ {
+  "name": "ds_boosts_top",
+  "url": "https://api.dexscreener.com/token-boosts/top/v1",
+  "status": 200,
+  "bytes": 21364,
+  "file": "ds_boosts_top.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 70,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20a919ba078e8-LAX"
+  }
+ },
+ {
+  "name": "ds_boosts_latest",
+  "url": "https://api.dexscreener.com/token-boosts/latest/v1",
+  "status": 200,
+  "bytes": 23885,
+  "file": "ds_boosts_latest.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 57,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20a982e9b889a-LAX"
+  }
+ },
+ {
+  "name": "ds_profiles_latest",
+  "url": "https://api.dexscreener.com/token-profiles/latest/v1",
+  "status": 200,
+  "bytes": 23579,
+  "file": "ds_profiles_latest.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 58,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20a9eccd5c0cc-LAX"
+  }
+ },
+ {
+  "name": "ds_takeovers",
+  "url": "https://api.dexscreener.com/community-takeovers/latest/v1",
+  "status": 200,
+  "bytes": 4012,
+  "file": "ds_takeovers.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 48,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20aa56e22312c-LAX"
+  }
+ },
+ {
+  "name": "ds_tokens",
+  "url": "https://api.dexscreener.com/tokens/v1/solana/7thgKgtK1rp1UtLpWUZEuu9vakedTMoZzuyps6RGpump",
+  "status": 200,
+  "bytes": 1359,
+  "file": "ds_tokens.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 60,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20aac0f8da31e-LAX"
+  }
+ },
+ {
+  "name": "ds_tokens_wif",
+  "url": "https://api.dexscreener.com/tokens/v1/solana/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+  "status": 200,
+  "bytes": 1471,
+  "file": "ds_tokens_wif.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 75,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20ab2991fcbaf-LAX"
+  }
+ },
+ {
+  "name": "ds_search",
+  "url": "https://api.dexscreener.com/latest/dex/search?q=pepe",
+  "status": 200,
+  "bytes": 30463,
+  "file": "ds_search.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 46,
+  "headers": {
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20ab95e8ae66c-LAX"
+  }
+ },
+ {
+  "name": "goplus_eth",
+  "url": "https://api.gopluslabs.io/api/v1/token_security/1?contract_addresses=0x6982508145454ce325ddbe47a25d4ec3d2311933",
+  "status": 200,
+  "bytes": 10902,
+  "file": "goplus_eth.json",
+  "contentType": "application/json",
+  "ms": 430,
+  "headers": {
+   "cf-cache-status": "DYNAMIC",
+   "CF-RAY": "a4e20ac11e935708-LAX"
+  }
+ },
+ {
+  "name": "goplus_sol",
+  "url": "https://api.gopluslabs.io/api/v1/solana/token_security?contract_addresses=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+  "status": 200,
+  "bytes": 10320,
+  "file": "goplus_sol.json",
+  "contentType": "application/json",
+  "ms": 242,
+  "headers": {
+   "cf-cache-status": "DYNAMIC",
+   "CF-RAY": "a4e20ac8df7c2dec-LAX"
+  }
+ },
+ {
+  "name": "rugcheck",
+  "url": "https://api.rugcheck.xyz/v1/tokens/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm/report/summary",
+  "status": 200,
+  "bytes": 151,
+  "file": "rugcheck.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 413,
+  "headers": {}
+ },
+ {
+  "name": "honeypot",
+  "url": "https://api.honeypot.is/v2/IsHoneypot?address=0x6982508145454ce325ddbe47a25d4ec3d2311933",
+  "status": 200,
+  "bytes": 1615,
+  "file": "honeypot.json",
+  "contentType": "application/json",
+  "ms": 319,
+  "headers": {
+   "x-ratelimit-limit": "50",
+   "x-ratelimit-remaining": "50",
+   "x-ratelimit-reset": "1792604375",
+   "cf-cache-status": "DYNAMIC",
+   "CF-RAY": "a4e20ad9cb1ff7d6-LAX"
+  }
+ },
+ {
+  "name": "pump_live",
+  "url": "https://frontend-api-v3.pump.fun/coins/currently-live?limit=5&offset=0&includeNsfw=false",
+  "status": 200,
+  "bytes": 14554,
+  "file": "pump_live.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 175,
+  "headers": {
+   "x-ratelimit-limit": "60",
+   "x-ratelimit-remaining": "59",
+   "x-ratelimit-reset": "60",
+   "cf-cache-status": "DYNAMIC",
+   "CF-RAY": "a4e20ae208d020ad-LAX"
+  }
+ },
+ {
+  "name": "pump_king",
+  "url": "https://frontend-api-v3.pump.fun/coins/king-of-the-hill?includeNsfw=false",
+  "status": 404,
+  "bytes": 193,
+  "file": "pump_king.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 105,
+  "headers": {
+   "Date": "Wed, 21 Oct 2026 17:39:36 GMT",
+   "Content-Type": "application/json; charset=utf-8",
+   "Content-Length": "193",
+   "Connection": "close",
+   "vary": "Origin",
+   "access-control-allow-credentials": "true",
+   "access-control-expose-headers": "X-Degraded, Retry-After, cf-cache-status",
+   "etag": "W/\"5m3RNzEjp15fGxsWCcXkk785Tq4=\"",
+   "cf-cache-status": "DYNAMIC",
+   "set-cookie": "_cfuvid=eLXE5zQci1OTUBnTBU2vVPoC9J6XQZyQ9m.YpVgpJmQ-1792604376.4886742-1.0.1.1-YA1p_S.07eKnNjEwD9Lm1pU79oBGFCYcv9v6Qxk379k; HttpOnly; SameSite=None; Secure; Path=/; Domain=pump.fun",
+   "x-xss-protection": "1; mode=block",
+   "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+   "x-content-type-options": "nosniff",
+   "Server-Timing": "cfEdge;dur=7,cfOrigin;dur=60",
+   "expect-ct": "max-age=86400, enforce",
+   "referrer-policy": "same-origin",
+   "x-frame-options": "SAMEORIGIN",
+   "Server": "cloudflare",
+   "CF-RAY": "a4e20ae90b1172e0-LAX"
+  }
+ },
+ {
+  "name": "pump_top",
+  "url": "https://frontend-api-v3.pump.fun/coins?offset=0&limit=5&sort=market_cap&order=DESC&includeNsfw=false",
+  "status": 200,
+  "bytes": 9752,
+  "file": "pump_top.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 119,
+  "headers": {
+   "x-ratelimit-limit": "60",
+   "x-ratelimit-remaining": "59",
+   "x-ratelimit-reset": "60",
+   "cf-cache-status": "DYNAMIC",
+   "CF-RAY": "a4e20aeffc7af7e5-LAX"
+  }
+ },
+ {
+  "name": "paprika_tickers",
+  "url": "https://api.coinpaprika.com/v1/tickers?quotes=USD,EUR",
+  "status": 200,
+  "bytes": 2613874,
+  "file": "paprika_tickers.json",
+  "contentType": "application/json",
+  "ms": 383,
+  "headers": {
+   "ratelimit-limit": "20000",
+   "ratelimit-remaining": "7301",
+   "ratelimit-reset": "886966",
+   "cf-cache-status": "HIT",
+   "CF-RAY": "a4e20af7588d92c4-LAX"
+  }
+ },
+ {
+  "name": "paprika_tags",
+  "url": "https://api.coinpaprika.com/v1/tags",
+  "status": 200,
+  "bytes": 41903,
+  "file": "paprika_tags.json",
+  "contentType": "application/json",
+  "ms": 1425,
+  "headers": {
+   "ratelimit-limit": "20000",
+   "ratelimit-remaining": "19999",
+   "ratelimit-reset": "886820",
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e20affcf41ff84-LAX"
+  }
+ },
+ {
+  "name": "paprika_meme_tag",
+  "url": "https://api.coinpaprika.com/v1/tags/meme-coin?additional_fields=coins",
+  "status": 200,
+  "bytes": 28044,
+  "file": "paprika_meme_tag.json",
+  "contentType": "application/json",
+  "ms": 303,
+  "headers": {
+   "ratelimit-limit": "20000",
+   "ratelimit-remaining": "19999",
+   "ratelimit-reset": "886818",
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e20b0eff64b786-LAX"
+  }
+ },
+ {
+  "name": "binance_vision_ticker",
+  "url": "https://data-api.binance.vision/api/v3/ticker/24hr?symbols=%5B%22PEPEUSDT%22,%22WIFUSDT%22%5D",
+  "status": 200,
+  "bytes": 1058,
+  "file": "binance_vision_ticker.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 444,
+  "headers": {}
+ },
+ {
+  "name": "binance_vision_klines",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=PEPEUSDT&interval=1h&limit=3",
+  "status": 200,
+  "bytes": 494,
+  "file": "binance_vision_klines.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 446,
+  "headers": {}
+ },
+ {
+  "name": "binance_vision_exchangeinfo",
+  "url": "https://data-api.binance.vision/api/v3/exchangeInfo?permissions=SPOT&symbolStatus=TRADING",
+  "status": 200,
+  "bytes": 5953318,
+  "file": "binance_vision_exchangeinfo.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 1326,
+  "headers": {}
+ },
+ {
+  "name": "okx_funding",
+  "url": "https://www.okx.com/api/v5/public/funding-rate?instId=PEPE-USDT-SWAP",
+  "status": 200,
+  "bytes": 519,
+  "file": "okx_funding.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 205,
+  "headers": {
+   "CF-Ray": "a4e20b385a818901-LAX",
+   "CF-Cache-Status": "DYNAMIC"
+  }
+ },
+ {
+  "name": "mexc_ticker_one",
+  "url": "https://api.mexc.com/api/v3/ticker/24hr?symbol=PEPEUSDT",
+  "status": 200,
+  "bytes": 426,
+  "file": "mexc_ticker_one.json",
+  "contentType": "application/json",
+  "ms": 189,
+  "headers": {}
+ },
+ {
+  "name": "gate_ticker_one",
+  "url": "https://api.gateio.ws/api/v4/spot/tickers?currency_pair=PEPE_USDT",
+  "status": 200,
+  "bytes": 302,
+  "file": "gate_ticker_one.json",
+  "contentType": "application/json",
+  "ms": 541,
+  "headers": {}
+ },
+ {
+  "name": "goplus_eth_two",
+  "url": "https://api.gopluslabs.io/api/v1/token_security/1?contract_addresses=0x6982508145454ce325ddbe47a25d4ec3d2311933,0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce",
+  "status": 200,
+  "bytes": 10902,
+  "file": "goplus_eth_two.json",
+  "contentType": "application/json",
+  "ms": 240,
+  "headers": {
+   "cf-cache-status": "DYNAMIC",
+   "CF-RAY": "a4e20b56eb255708-LAX"
+  }
+ },
+ {
+  "name": "goplus_sol_two",
+  "url": "https://api.gopluslabs.io/api/v1/solana/token_security?contract_addresses=EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm,DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+  "status": 200,
+  "bytes": 10320,
+  "file": "goplus_sol_two.json",
+  "contentType": "application/json",
+  "ms": 233,
+  "headers": {
+   "cf-cache-status": "DYNAMIC",
+   "CF-RAY": "a4e20b64e8edfb84-LAX"
+  }
+ },
+ {
+  "name": "gt_token_info_young",
+  "url": "https://api.geckoterminal.com/api/v2/networks/solana/tokens/7thgKgtK1rp1UtLpWUZEuu9vakedTMoZzuyps6RGpump/info",
+  "status": 200,
+  "bytes": 1466,
+  "file": "gt_token_info_young.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 228,
+  "headers": {
+   "cf-cache-status": "REVALIDATED",
+   "CF-RAY": "a4e20b791cc5f7ab-LAX"
+  }
+ },
+ {
+  "name": "polymarket_events_crypto",
+  "url": "https://gamma-api.polymarket.com/events?tag_slug=crypto&closed=false&order=volume24hr&ascending=false&limit=50",
+  "status": 200,
+  "bytes": 2229038,
+  "file": "polymarket_events_crypto.json",
+  "contentType": "application/json",
+  "ms": 401,
+  "headers": {}
+ },
+ {
+  "name": "polymarket_markets_top",
+  "url": "https://gamma-api.polymarket.com/markets?closed=false&order=volume24hr&ascending=false&limit=50",
+  "status": 200,
+  "bytes": 356486,
+  "file": "polymarket_markets_top.json",
+  "contentType": "application/json",
+  "ms": 217,
+  "headers": {}
+ },
+ {
+  "name": "polymarket_search_btc",
+  "url": "https://gamma-api.polymarket.com/public-search?q=bitcoin&limit_per_type=10",
+  "status": 200,
+  "bytes": 527901,
+  "file": "polymarket_search_btc.json",
+  "contentType": "application/json",
+  "ms": 201,
+  "headers": {}
+ },
+ {
+  "name": "polymarket_events_top",
+  "url": "https://gamma-api.polymarket.com/events?closed=false&order=volume24hr&ascending=false&limit=25",
+  "status": 200,
+  "bytes": 4585049,
+  "file": "polymarket_events_top.json",
+  "contentType": "application/json",
+  "ms": 726,
+  "headers": {}
+ },
+ {
+  "name": "bn_1h_xrp",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=XRPUSDT&interval=1h&limit=400",
+  "status": 200,
+  "bytes": 66932,
+  "file": "bn_1h_xrp.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 669,
+  "headers": {}
+ },
+ {
+  "name": "bn_1h_near",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=NEARUSDT&interval=1h&limit=400",
+  "status": 200,
+  "bytes": 66760,
+  "file": "bn_1h_near.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 664,
+  "headers": {}
+ },
+ {
+  "name": "bn_1h_trx",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=TRXUSDT&interval=1h&limit=400",
+  "status": 200,
+  "bytes": 66023,
+  "file": "bn_1h_trx.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 673,
+  "headers": {}
+ },
+ {
+  "name": "bn_1h_btc",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=400",
+  "status": 200,
+  "bytes": 71386,
+  "file": "bn_1h_btc.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 662,
+  "headers": {}
+ },
+ {
+  "name": "bn_1h_eth",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=1h&limit=400",
+  "status": 200,
+  "bytes": 70522,
+  "file": "bn_1h_eth.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 663,
+  "headers": {}
+ },
+ {
+  "name": "bn_1h_eurusdt",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=EURUSDT&interval=1h&limit=400",
+  "status": 200,
+  "bytes": 64689,
+  "file": "bn_1h_eurusdt.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 663,
+  "headers": {}
+ },
+ {
+  "name": "bn_1d_xrp",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=XRPUSDT&interval=1d&limit=400",
+  "status": 200,
+  "bytes": 70039,
+  "file": "bn_1d_xrp.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 670,
+  "headers": {}
+ },
+ {
+  "name": "bn_1d_near",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=NEARUSDT&interval=1d&limit=400",
+  "status": 200,
+  "bytes": 68665,
+  "file": "bn_1d_near.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 664,
+  "headers": {}
+ },
+ {
+  "name": "bn_1d_trx",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=TRXUSDT&interval=1d&limit=400",
+  "status": 200,
+  "bytes": 69260,
+  "file": "bn_1d_trx.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 663,
+  "headers": {}
+ },
+ {
+  "name": "bn_1d_btc",
+  "url": "https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=400",
+  "status": 200,
+  "bytes": 74641,
+  "file": "bn_1d_btc.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 662,
+  "headers": {}
+ },
+ {
+  "name": "fng_hist",
+  "url": "https://api.alternative.me/fng/?limit=20",
+  "status": 200,
+  "bytes": 1961,
+  "file": "fng_hist.json",
+  "contentType": "application/json",
+  "ms": 239,
+  "headers": {}
+ },
+ {
+  "name": "okx_fund_hist_trx",
+  "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=TRX-USDT-SWAP&limit=30",
+  "status": 200,
+  "bytes": 5856,
+  "file": "okx_fund_hist_trx.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 153,
+  "headers": {
+   "CF-Ray": "a4e20c268fa89dea-LAX",
+   "CF-Cache-Status": "DYNAMIC"
+  }
+ },
+ {
+  "name": "okx_fund_hist_xrp",
+  "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=XRP-USDT-SWAP&limit=30",
+  "status": 200,
+  "bytes": 5848,
+  "file": "okx_fund_hist_xrp.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 152,
+  "headers": {
+   "CF-Ray": "a4e20c2dcb034022-LAX",
+   "CF-Cache-Status": "DYNAMIC"
+  }
+ },
+ {
+  "name": "okx_fund_hist_near",
+  "url": "https://www.okx.com/api/v5/public/funding-rate-history?instId=NEAR-USDT-SWAP&limit=30",
+  "status": 200,
+  "bytes": 5640,
+  "file": "okx_fund_hist_near.json",
+  "contentType": "application/json;charset=UTF-8",
+  "ms": 150,
+  "headers": {
+   "CF-Ray": "a4e20c34fd86a7f5-LAX",
+   "CF-Cache-Status": "DYNAMIC"
+  }
+ },
+ {
+  "name": "cg_chart_tron",
+  "url": "https://api.coingecko.com/api/v3/coins/tron/market_chart?vs_currency=eur&days=10",
+  "status": 200,
+  "bytes": 25229,
+  "file": "cg_chart_tron.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 184,
+  "headers": {
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e20cb2ee124ea4-LAX"
+  }
+ },
+ {
+  "name": "cg_chart_ripple",
+  "url": "https://api.coingecko.com/api/v3/coins/ripple/market_chart?vs_currency=eur&days=10",
+  "status": 200,
+  "bytes": 24870,
+  "file": "cg_chart_ripple.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 187,
+  "headers": {
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e20d3119f44ea4-LAX"
+  }
+ },
+ {
+  "name": "cg_chart_near",
+  "url": "https://api.coingecko.com/api/v3/coins/near/market_chart?vs_currency=eur&days=10",
+  "status": 200,
+  "bytes": 24665,
+  "file": "cg_chart_near.json",
+  "contentType": "application/json; charset=utf-8",
+  "ms": 181,
+  "headers": {
+   "cf-cache-status": "EXPIRED",
+   "CF-RAY": "a4e20daf48a54ea4-LAX"
+  }
+ }
+]
