@@ -206,6 +206,9 @@ class ForecastEngineTest {
         assertTrue("1.5x" in timed.description, timed.description)
         val untimed = trend(MarketContext(btcTrendScore = 0.6, btcHourly = btc), null)
         assertTrue("1.5x" in untimed.description, "the neighbouring slips are tried even without end times: ${untimed.description}")
+        // a stale last-price time on a sparkline that is in fact current still finds the true pairing
+        val staleStamp = trend(MarketContext(btcTrendScore = 0.6, btcHourly = btcAll.dropLast(1).takeLast(168), btcHourlyEndMs = end), end - 5 * 3_600_000L)
+        assertTrue("1.5x" in staleStamp.description, staleStamp.description)
         // too far apart to line up: the plain weight, not a made-up beta
         val stale = trend(MarketContext(btcTrendScore = 0.6, btcHourly = btc, btcHourlyEndMs = end), end - 20 * 3_600_000L)
         assertTrue("most coins move with it" in stale.description, stale.description)

@@ -227,14 +227,15 @@ class DefaultForecastEngine : Forecaster {
      * than 48 paired hours or when the two series end too far apart. Both are 7-day hourly sparklines,
      * but not always from the same response: a later or cached chunk can end an hour or more before
      * Bitcoin's. Hourly returns barely correlate across hours, so a one-hour slip would read as beta ~0.
-     * The end times ([coinEndMs], [btcEndMs]) give the expected slip; the best-correlated of it and its
-     * two neighbours is used, which also absorbs a sampling grid that does not sit on the hour.
+     * The end times ([coinEndMs], [btcEndMs]) give the expected slip; the best-correlated of it, its two
+     * neighbours and no slip at all (a stale last-price time on a current sparkline) is used, which also
+     * absorbs a sampling grid that does not sit on the hour.
      */
     private fun btcBeta(coin: List<Double>, coinEndMs: Long?, btc: List<Double>, btcEndMs: Long?): Double? {
         val expected = if (coinEndMs != null && btcEndMs != null) ((btcEndMs - coinEndMs).toDouble() / HOUR_MS).roundToInt() else 0
         if (abs(expected) > MAX_BETA_SLIP_HOURS) return null
         var best: Pair<Double, Double>? = null // correlation to beta
-        for (slip in expected - 1..expected + 1) {
+        for (slip in ((expected - 1)..(expected + 1)) + (-1..1)) {
             // slip > 0: Bitcoin's series runs [slip] hours further, so its newest points have no partner
             val c = if (slip < 0) coin.dropLast(-slip) else coin
             val b = if (slip > 0) btc.dropLast(slip) else btc
