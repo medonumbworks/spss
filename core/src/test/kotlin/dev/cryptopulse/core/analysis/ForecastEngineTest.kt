@@ -219,6 +219,25 @@ class ForecastEngineTest {
     }
 
     @Test
+    fun noPriceHistoryMeansNoCall() {
+        // a Bitpanda quote only (CoinGecko rate-limited): mood and base rates alone are not a forecast
+        val quoteOnly = ForecastInput(
+            asset = Asset("TRX", "TRON"),
+            market = MarketData("TRX", currency = "EUR", price = 0.3),
+            hourlyCloses = emptyList(),
+            context = MarketContext(fearGreed = FearGreed(30, "Fear", 0), btcTrendScore = 0.4),
+            nowMs = FIXTURE_NOW_MS,
+        )
+        val f = engine.forecast(quoteOnly)
+        for (h in listOf(f.h24, f.d7)) {
+            assertEquals(false, h.hasCall)
+            assertEquals("history", h.signals.first().name)
+            assertTrue(h.signals.drop(1).all { it.contribution == 0.0 })
+        }
+        assertTrue("not enough history" in f.summary, f.summary)
+    }
+
+    @Test
     fun shortHistoryStillProducesAForecast() {
         val f = engine.forecast(input("NEW", series(10, 1.0, 0.01)))
         assertTrue(f.h24.probabilityUp in 0.15..0.85)

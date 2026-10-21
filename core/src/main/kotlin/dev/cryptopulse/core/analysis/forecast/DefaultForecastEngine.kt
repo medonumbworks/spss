@@ -67,8 +67,8 @@ class DefaultForecastEngine : Forecaster {
             "Bottom score ${bottom.score}/100: ${bottom.label.lowercase()}")
         val d7Built = buildHorizon(Horizon.D7, price, hourly, daily, tech7, techScale7, ctx7 + crowd7 + bottomSignal, bt7, input)
         val (h24Gated, d7Gated) = historyGate(input, h24Built, d7Built)
-        val h24 = lowMoveGate(h24Gated, hourly)
-        val d7 = lowMoveGate(d7Gated, hourly)
+        val h24 = noPriceGate(lowMoveGate(h24Gated, hourly), input, hourly, daily)
+        val d7 = noPriceGate(lowMoveGate(d7Gated, hourly), input, hourly, daily)
 
         val finalBottom = bottom.copy(reboundProbability7d = d7.probabilityUp.takeIf { d7.hasCall })
         val coverage = DataCoverage(
@@ -384,6 +384,18 @@ class DefaultForecastEngine : Forecaster {
         // band for coins whose symbol or name says they are pegged
         val pegHint = PEG_HINT.containsMatchIn(symbol) || PEG_NAME_HINT.containsMatchIn(name)
         return pegHint && cv < 0.01 && abs(change7d ?: 0.0) < 3.0
+    }
+
+    /**
+     * No price series at all (CoinGecko rate-limited, only a Bitpanda quote): what is left is market
+     * mood and base rates, the same for every coin, so there is no call rather than a 50 % that looks
+     * like one. A DEX token's pool trading (buyers vs sellers, volume) is its own data, so it keeps its call.
+     */
+    private fun noPriceGate(h: HorizonForecast, input: ForecastInput, hourly: List<Double>, daily: List<Double>): HorizonForecast {
+        if (!h.hasCall || input.dex != null || hourly.size >= 2 || daily.size >= 2) return h
+        val note = "Not enough history: no price history right now (market data unavailable), so no ${h.horizon.label} call"
+        return HorizonForecast(h.horizon, 0.5, Direction.FLAT, 0.0, null, null, null,
+            listOf(Signal("history", "Not enough history", 0.0, 0.0, note)) + h.signals.map { it.copy(contribution = 0.0) })
     }
 
     /**
