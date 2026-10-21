@@ -4,6 +4,7 @@ import dev.cryptopulse.core.CryptoPulse
 import dev.cryptopulse.core.analysis.SentimentScorer
 import dev.cryptopulse.core.analysis.TextSentiment
 import dev.cryptopulse.core.config.AppConfig
+import dev.cryptopulse.core.http.HttpResponse
 import dev.cryptopulse.core.http.Rate
 import dev.cryptopulse.core.http.RateLimiter
 import dev.cryptopulse.core.testing.FakeTransport
@@ -119,5 +120,32 @@ class ExportTest {
         }
 
         assertTrue(out.getValue("notes").jsonArray.size >= 2, "cadence and disclaimer notes expected")
+    }
+
+    @Test
+    fun aRateLimitedRefreshIsRetriedOnceBeforeExporting() = runBlocking {
+        val start = 1_760_713_200_000L
+        val now = longArrayOf(start)
+        val c = Clock { now[0] }
+        // CoinGecko answers 429 for the first minute, as when several CI jobs start at once
+        val t = FakeTransport()
+            .onUrlContaining("api.bitpanda.com/v1/ticker", body = Fixtures.read("bitpanda_ticker.json"))
+            .onUrlContaining("/coins/list", body = Fixtures.read("coingecko_coins_list.json"))
+            .onUrlContaining("/coins/markets") { req ->
+                if (now[0] < start + 60_000) HttpResponse(429, "", emptyMap(), req.url) else HttpResponse(200, Fixtures.read("coingecko_markets.json"), emptyMap(), req.url)
+            }
+            .onUrlContaining("alternative.me", body = Fixtures.read("fear_greed.json"))
+        fun app() = CryptoPulse.create(
+            AppConfig(), t, null, scorer = SentimentScorer { TextSentiment(0.0) }, clock = c, logger = Logger.NONE,
+            rateLimiter = RateLimiter(emptyMap(), Rate(1e6, 1_000_000), c, sleeper = {}),
+        )
+        fun calls(json: String) = Json.parseToJsonElement(json).jsonObject.getValue("rows").jsonArray.count { it.jsonObject["up24"] != null }
+        var waits = 0
+        // still inside the cooldown after the wait: only Bitpanda quotes, so no coin gets a call
+        assertEquals(0, calls(Export.build(app()) { waits++ }), "no price history, no fake 50 % calls")
+        assertEquals(1, waits, "one wait, then the export goes out with what it has")
+        val retried = calls(Export.build(app()) { waits++; now[0] += 65_000 })
+        assertEquals(2, waits)
+        assertTrue(retried > 0, "the retry past the cooldown brought the price history back")
     }
 }

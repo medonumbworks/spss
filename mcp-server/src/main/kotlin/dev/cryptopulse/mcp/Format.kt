@@ -44,7 +44,7 @@ object Format {
     /** "Up" column text: a probability, or why there is none. */
     private fun up(r: AssetRow, h: HorizonForecast?): String = when {
         r.risk?.blocked == true -> "— (${r.risk!!.label.lowercase()})"
-        h?.signals?.firstOrNull()?.name == "history" -> "— (too new)"
+        h?.signals?.firstOrNull()?.name == "history" -> if (r.asset.tier == Tier.DEX) "— (too new)" else "— (not enough history)"
         h?.signals?.firstOrNull()?.name == "low_move" -> "— (moves too little)"
         else -> "${arrow(h)} ${pct(h?.probabilityUp)}"
     }

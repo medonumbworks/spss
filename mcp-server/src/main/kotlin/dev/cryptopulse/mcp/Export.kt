@@ -13,6 +13,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
 import kotlinx.serialization.json.putJsonObject
+import kotlinx.coroutines.delay
 import java.time.Instant
 
 /**
@@ -27,10 +28,18 @@ object Export {
     private const val BUZZ_LIMIT = 50
     private const val SAMPLES_PER_BUZZ = 3
     private const val POLYMARKET_LIMIT = 20
+    /** CoinGecko's 429 cooldown is about a minute; one wait past it before giving up on price history. */
+    private const val RATE_LIMIT_RETRY_MS = 65_000L
 
-    suspend fun build(app: CryptoPulse): String {
+    suspend fun build(app: CryptoPulse, waitOutRateLimit: suspend () -> Unit = { delay(RATE_LIMIT_RETRY_MS) }): String {
         val repo = app.repository
-        val snap = repo.refresh(force = true)
+        var snap = repo.refresh(force = true)
+        // jobs that start together on shared CI addresses (a push to main starts four) can all be
+        // rate-limited at once: without any price history every coin would show "not enough history"
+        if (snap.rows.isNotEmpty() && snap.rows.none { it.market?.sparkline7d.orEmpty().isNotEmpty() }) {
+            waitOutRateLimit()
+            snap = repo.refresh(force = true)
+        }
         val buzz = repo.telegramBuzz(BUZZ_LIMIT)
         val buzzBySymbol = buzz.associateBy { it.symbol }
         // The repository keeps its Polymarket list private; this direct call reuses the refresh's

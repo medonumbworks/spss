@@ -219,6 +219,32 @@ class ForecastEngineTest {
     }
 
     @Test
+    fun noPriceHistoryMeansNoCall() {
+        // a Bitpanda quote only (CoinGecko rate-limited): mood and base rates alone are not a forecast
+        val quoteOnly = ForecastInput(
+            asset = Asset("TRX", "TRON"),
+            market = MarketData("TRX", currency = "EUR", price = 0.3),
+            hourlyCloses = emptyList(),
+            context = MarketContext(fearGreed = FearGreed(30, "Fear", 0), btcTrendScore = 0.4),
+            nowMs = FIXTURE_NOW_MS,
+        )
+        val f = engine.forecast(quoteOnly)
+        for (h in listOf(f.h24, f.d7)) {
+            assertEquals(false, h.hasCall)
+            assertEquals("history", h.signals.first().name)
+            assertTrue(h.signals.drop(1).all { it.contribution == 0.0 })
+        }
+        assertTrue("not enough history" in f.summary, f.summary)
+        // daily history (Binance) without the hourly sparkline: a 7-day call, but none for 24 h
+        val dailyOnly = engine.forecast(quoteOnly.copy(dailyCloses = series(365, 0.2, 0.001, 0.03)))
+        assertEquals(false, dailyOnly.h24.hasCall)
+        assertTrue("only daily history" in dailyOnly.h24.signals.first().description, dailyOnly.h24.signals.first().description)
+        assertTrue(dailyOnly.d7.hasCall)
+        // too few daily closes for the 7-day technicals: market mood alone is not a 7-day call either
+        assertEquals(false, engine.forecast(quoteOnly.copy(dailyCloses = series(10, 0.2, 0.001, 0.03))).d7.hasCall)
+    }
+
+    @Test
     fun shortHistoryStillProducesAForecast() {
         val f = engine.forecast(input("NEW", series(10, 1.0, 0.01)))
         assertTrue(f.h24.probabilityUp in 0.15..0.85)

@@ -123,6 +123,23 @@ class ForecastJournalTest {
     }
 
     @Test
+    fun onlyAFreshQuoteFromTheSameKindOfSourceScores() {
+        journal.record(listOf(row("BTC", 100.0, 0.7, null)))
+        now[0] += 24 * hour
+        val bitpandaOnly = AssetRow(Asset("BTC", "BTC"), MarketData("BTC", currency = "EUR", price = 110.0, source = "bitpanda"))
+        val stale = AssetRow(Asset("BTC", "BTC"), MarketData("BTC", currency = "EUR", price = 110.0, source = "coingecko", lastUpdatedMs = now[0] - 3 * hour))
+        assertEquals(0, journal.evaluate(listOf(bitpandaOnly)), "CoinGecko rate-limited: only the Bitpanda ticker is known")
+        assertEquals(0, journal.evaluate(listOf(stale)), "a row kept from a refresh three hours ago")
+        assertEquals(1, journal.stats().perHorizon["24h"]!!.pending, "it waits for a usable quote")
+        val fresh = AssetRow(Asset("BTC", "BTC"), MarketData("BTC", currency = "EUR", price = 110.0, source = "coingecko", lastUpdatedMs = now[0] - 600_000))
+        assertEquals(1, journal.evaluate(listOf(fresh)))
+        // nor is a call recorded on such a quote: its base price would predate the call
+        val reused = row("ETH", 100.0, 0.7, 0.6).let { r -> r.copy(market = r.market!!.copy(source = "coingecko", lastUpdatedMs = now[0] - 3 * hour)) }
+        val quoteOnly = row("SOL", 100.0, 0.7, 0.6).let { r -> r.copy(market = r.market!!.copy(source = "bitpanda")) }
+        assertEquals(0, journal.record(listOf(reused, quoteOnly)))
+    }
+
+    @Test
     fun everythingIsDroppedHalfAHorizonPastItsDueDate() {
         journal.record(listOf(row("GONE", 100.0, 0.7, null), row("LATE", 100.0, 0.3, null)))
         now[0] += 24 * hour + 1

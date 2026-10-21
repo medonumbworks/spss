@@ -41,6 +41,12 @@ window count and the chance level.
   and selling once, there is no call ("Moves too little"); the drivers stay visible with zero weight.
   Example: TRON moves about 0.8-0.9 % a day in EUR, so it gets no 24 h call while its 7-day call
   stays; Bitcoin runs about 1.6 % and XRP about 3 % on the same measure.
+* **No price history, no call**: when a coin has no price series at all (for example CoinGecko is
+  rate-limited and only the Bitpanda quote is known), what is left is market mood and base rates,
+  the same for every coin, so both horizons say "Not enough history" instead of a 50 % that looks
+  like a forecast. The 24 h call needs hourly prices; without them the 7-day call needs 40 days of
+  daily closes. The hourly dashboard export waits out one rate limit and retries before giving up.
+  The accuracy log only records and scores calls on a fresh quote from the same kind of source.
 * **Bitcoin's trend counts by how much a coin follows it**: the Bitcoin-trend weight is multiplied by
   0.3 + 0.7 x beta, where beta compares the coin's hourly returns with Bitcoin's over the last week
   (clamped to 0-3). A coin with beta 0.1 (TRON) gets about a third of the weight, one with beta 2.9

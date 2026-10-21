@@ -67,8 +67,8 @@ class DefaultForecastEngine : Forecaster {
             "Bottom score ${bottom.score}/100: ${bottom.label.lowercase()}")
         val d7Built = buildHorizon(Horizon.D7, price, hourly, daily, tech7, techScale7, ctx7 + crowd7 + bottomSignal, bt7, input)
         val (h24Gated, d7Gated) = historyGate(input, h24Built, d7Built)
-        val h24 = lowMoveGate(h24Gated, hourly)
-        val d7 = lowMoveGate(d7Gated, hourly)
+        val h24 = noPriceGate(lowMoveGate(h24Gated, hourly), input, hourly, daily)
+        val d7 = noPriceGate(lowMoveGate(d7Gated, hourly), input, hourly, daily)
 
         val finalBottom = bottom.copy(reboundProbability7d = d7.probabilityUp.takeIf { d7.hasCall })
         val coverage = DataCoverage(
@@ -387,6 +387,24 @@ class DefaultForecastEngine : Forecaster {
     }
 
     /**
+     * No price series at all (CoinGecko rate-limited, only a Bitpanda quote): what is left is market
+     * mood and base rates, the same for every coin, so there is no call rather than a 50 % that looks
+     * like one. The 24 h call is built from hourly prices only, so daily history alone does not save it;
+     * the 7-day call needs the daily technicals (40 days) when there are no hourly prices.
+     * A DEX token's pool trading (buyers vs sellers, volume) is its own data, so it keeps its call.
+     */
+    private fun noPriceGate(h: HorizonForecast, input: ForecastInput, hourly: List<Double>, daily: List<Double>): HorizonForecast {
+        if (!h.hasCall || input.dex != null || hourly.size >= 2 || (h.horizon == Horizon.D7 && daily.size >= MIN_DAILY_FOR_7D)) return h
+        val note = if (daily.size >= 2) {
+            "Not enough history: no hourly prices right now (only daily history), so no ${h.horizon.label} call"
+        } else {
+            "Not enough history: no price history right now (market data unavailable), so no ${h.horizon.label} call"
+        }
+        return HorizonForecast(h.horizon, 0.5, Direction.FLAT, 0.0, null, null, null,
+            listOf(Signal("history", "Not enough history", 0.0, 0.0, note)) + h.signals.map { it.copy(contribution = 0.0) })
+    }
+
+    /**
      * DEX tokens: a 24-hour call needs 3 days of trading and a 7-day call 3 weeks; younger pools get
      * "not enough history" instead of a number.
      */
@@ -478,6 +496,8 @@ class DefaultForecastEngine : Forecaster {
         const val MODEL_VERSION = "cryptopulse-forecast-1.2"
         /** Below this typical move (in %) over a horizon a direction call is noise next to trading costs. */
         const val LOW_MOVE_PCT = 1.0
+        /** Daily closes the 7-day technicals need (Technical.mediumTerm) when there are no hourly prices. */
+        private const val MIN_DAILY_FOR_7D = 40
         /** Beyond this many hours between the coin's and Bitcoin's series the beta is not attempted. */
         private const val MAX_BETA_SLIP_HOURS = 12
         private const val HOUR_MS = 3_600_000L

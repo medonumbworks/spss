@@ -53,14 +53,15 @@ jobs:
       # The forecast journal and the alert state live in the cache directory. Every hourly run
       # scores the forecasts that came due and logs the fresh ones, so the accuracy numbers only
       # fill in when that state survives between runs: run_id makes each run save an updated copy
-      # and restore-keys pulls the newest previous one.
+      # and restore-keys pulls the newest previous one. v2: the first run on main logged forecasts made
+      # without any price data (CoinGecko rate-limited), which must not be scored.
       - name: Restore the journal and alert state
         uses: actions/cache@v4
         with:
           path: ~/.cache/cryptopulse-dashboard
-          key: dashboard-state-${{ github.run_id }}
+          key: dashboard-state-v2-${{ github.run_id }}
           restore-keys: |
-            dashboard-state-
+            dashboard-state-v2-
 
       - name: Build the CryptoPulse engine
         run: ./gradlew :mcp-server:installDist -Pcryptopulse.skipAndroid=true -q
