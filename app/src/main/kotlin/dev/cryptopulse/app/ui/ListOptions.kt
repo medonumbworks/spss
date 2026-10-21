@@ -46,7 +46,6 @@ object ListOptions {
             ListSort.VOLUME -> filtered.sortedByDescending { it.dex?.volumeUsd?.h24 ?: it.market?.volume24h ?: -1.0 }
             // Bitpanda coins have no risk score; they come first (they are the regulated, tradeable ones)
             ListSort.RISK -> filtered.sortedBy { it.risk?.score ?: -1 }
-            ListSort.NEWEST -> filtered.sortedByDescending { it.dex?.pairCreatedAtMs ?: Long.MIN_VALUE }
             ListSort.NAME -> filtered.sortedBy { it.asset.name.lowercase() }
         }
     }

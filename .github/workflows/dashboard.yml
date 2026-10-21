@@ -83,7 +83,8 @@ jobs:
           cp "$RUNNER_TEMP/site/data/dashboard.json" "$fresh"
           cp -r web/. "$RUNNER_TEMP/site/"
           # a changed shell must invalidate the service worker's precache without a hand-bumped version
-          sed -i "s/cryptopulse-shell-v1/cryptopulse-shell-${GITHUB_SHA::12}/" "$RUNNER_TEMP/site/sw.js"
+          sed -i "s/cryptopulse-shell-v[0-9]*/cryptopulse-shell-${GITHUB_SHA::12}/" "$RUNNER_TEMP/site/sw.js"
+          grep -q "cryptopulse-shell-${GITHUB_SHA::12}" "$RUNNER_TEMP/site/sw.js"   # fail loudly if the name ever stops matching
           rm -rf "$RUNNER_TEMP/site/tools"   # development-only validation script, not part of the site
           cp "$fresh" "$RUNNER_TEMP/site/data/dashboard.json"
 

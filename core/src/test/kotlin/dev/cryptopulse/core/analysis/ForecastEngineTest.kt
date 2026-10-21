@@ -10,6 +10,7 @@ import dev.cryptopulse.core.model.FearGreed
 import dev.cryptopulse.core.model.MarketContext
 import dev.cryptopulse.core.model.MarketData
 import dev.cryptopulse.core.model.SentimentSummary
+import dev.cryptopulse.core.model.Signal
 import kotlin.math.exp
 import kotlin.math.sin
 import kotlin.math.sqrt
@@ -185,6 +186,33 @@ class ForecastEngineTest {
         val unknown = trend(loner, ctx.copy(btcHourly = emptyList()))
         assertTrue(unknown.contribution > low.contribution)
         assertTrue("most coins move with it" in unknown.description)
+    }
+
+    @Test
+    fun betaSurvivesASeriesThatEndsAnHourEarlier() {
+        val rnd = Random(11)
+        val returns = List(169) { (rnd.nextDouble() - 0.5) * 0.02 }
+        val btcAll = returns.runningFold(60_000.0) { p, r -> p * exp(r) }
+        val coinAll = returns.map { it * 1.5 }.runningFold(1.0) { p, r -> p * exp(r) }
+        val btc = btcAll.takeLast(168)
+        // a cached chunk: the coin's sparkline stops one hour before Bitcoin's
+        val coin = coinAll.dropLast(1).takeLast(168)
+        val end = FIXTURE_NOW_MS
+        fun trend(ctx: MarketContext, coinEnd: Long?): Signal {
+            val base = input("X", coin, ctx = ctx)
+            return engine.forecast(base.copy(market = base.market!!.copy(lastUpdatedMs = coinEnd))).h24.signals.first { it.name == "btc_trend" }
+        }
+        val timed = trend(MarketContext(btcTrendScore = 0.6, btcHourly = btc, btcHourlyEndMs = end), end - 3_600_000L)
+        assertTrue("1.5x" in timed.description, timed.description)
+        val untimed = trend(MarketContext(btcTrendScore = 0.6, btcHourly = btc), null)
+        assertTrue("1.5x" in untimed.description, "the neighbouring slips are tried even without end times: ${untimed.description}")
+        // too far apart to line up: the plain weight, not a made-up beta
+        val stale = trend(MarketContext(btcTrendScore = 0.6, btcHourly = btc, btcHourlyEndMs = end), end - 20 * 3_600_000L)
+        assertTrue("most coins move with it" in stale.description, stale.description)
+        // a bad point in Bitcoin's series skips that hour instead of breaking every forecast
+        val broken = btc.toMutableList().also { it[100] = 0.0 }
+        val f = engine.forecast(input("X", coin, ctx = MarketContext(btcTrendScore = 0.6, btcHourly = broken)))
+        assertTrue(f.h24.signals.any { it.name == "btc_trend" && "x with it" in it.description })
     }
 
     @Test

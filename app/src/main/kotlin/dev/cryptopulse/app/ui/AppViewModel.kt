@@ -54,7 +54,6 @@ enum class ListSort(val label: String) {
     SENTIMENT("Sentiment"),
     VOLUME("Volume 24h"),
     RISK("Lowest risk"),
-    NEWEST("Newest pools"),
     NAME("Name"),
 }
 

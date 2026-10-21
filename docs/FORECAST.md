@@ -49,7 +49,8 @@ window count and the chance level.
 ## Realized accuracy (forecast journal)
 
 Every call shown is logged with its price and likely range and scored once its horizon passes. A
-move smaller than half the likely range is **neutral**: noise, neither a hit nor a miss, and counted
+move smaller than half the typical move (a quarter of the likely range, which spans one typical move
+either way) is **neutral**: noise, neither a hit nor a miss, and counted
 separately. Horizons without a call (too new, red flags, moves too little) are not logged; a 50 % call
 is priced but never scored. The hit rate is compared with 50 % and with the share of coins that
 simply rose.

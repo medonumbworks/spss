@@ -507,7 +507,7 @@ class MarketRepository(
         val cached = lastContext
         if (!force && cached != null && now - cached.fetchedAtMs < cfg.contextTtlMs) {
             return cached.copy(btcChange24hPct = btc?.change24hPct, btcChange7dPct = btc?.change7dPct, btcTrendScore = btcTrend,
-                btcHourly = btc?.sparkline7d.orEmpty())
+                btcHourly = btc?.sparkline7d.orEmpty(), btcHourlyEndMs = btc?.lastUpdatedMs)
                 .also { lastContext = it }
         }
         val fg = if (cfg.fearGreedEnabled) {
@@ -532,6 +532,7 @@ class MarketRepository(
             btcChange7dPct = btc?.change7dPct,
             btcTrendScore = btcTrend,
             btcHourly = btc?.sparkline7d.orEmpty(),
+            btcHourlyEndMs = btc?.lastUpdatedMs,
             globalSentiment = globalSent,
             trendingCoingeckoIds = trending,
             fetchedAtMs = now,
@@ -617,12 +618,12 @@ class MarketRepository(
     /**
      * Most-talked-about coins in the hub's Telegram window, spikes vs the 7-day baseline first. Only
      * coins in the current list: the hub also counts memecoins and new cashtags, which the app does
-     * not show.
+     * not show. Without a snapshot yet one is loaded first (throws when that fails).
      */
     suspend fun telegramBuzz(limit: Int = 50, force: Boolean = false): List<BuzzEntry> {
         val feed = (if (config.sentimentFeedUrl.isNotBlank()) sentiment.feed(force) else null) ?: return emptyList()
-        val listed = _snapshot.value?.rows?.mapTo(HashSet()) { it.asset.symbol }
-        return feed.telegramBuzz(Int.MAX_VALUE).filter { listed == null || it.symbol in listed }.take(limit)
+        val listed = (_snapshot.value ?: refresh()).rows.mapTo(HashSet()) { it.asset.symbol }
+        return feed.telegramBuzz(Int.MAX_VALUE).filter { it.symbol in listed }.take(limit)
     }
 
     /** Polymarket's daily up-or-down probability for one coin, or null without such a market. */

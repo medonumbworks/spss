@@ -79,7 +79,7 @@ class CryptoPulseTools(
             inputSchema = schema(
                 required = emptyList(),
                 "currency" to prop("string", "Quote currency: EUR (default), USD, CHF or GBP", enum = AppConfig.SUPPORTED_CURRENCIES),
-                "tier" to prop("string", "Which coins: all (default), bitpanda, meme (memecoins incl. Bitpanda ones), trending, dex, speculative (everything not on Bitpanda)", enum = TIER_FILTERS),
+                "tier" to prop("string", "Which coins: all (default), bitpanda, trending, speculative (everything not on Bitpanda); meme and dex stay empty while those tiers are off (the default)", enum = TIER_FILTERS),
                 "sort" to prop("string", "Sort order", enum = listOf("market_cap", "change_24h", "change_7d", "up_24h", "up_7d", "bottom_score", "sentiment")),
                 "limit" to prop("integer", "Max rows (default 50, max 600)"),
                 "query" to prop("string", "Optional filter by name or symbol"),
@@ -129,7 +129,7 @@ class CryptoPulseTools(
             name = "find_opportunities",
             title = "Find coins likely to rise",
             description = "Ranks coins by the probability of rising (weighted by confidence), optionally only those near a local low. Bitpanda coins by default; " +
-                "tier=all adds memecoins and DEX tokens that passed the risk checks. Not financial advice.",
+                "tier=all adds trending coins (and memecoins or DEX tokens if those tiers are on) that passed the risk checks. Not financial advice.",
             inputSchema = schema(
                 emptyList(),
                 "tier" to prop("string", "bitpanda (default), all, meme, trending, dex or speculative", enum = TIER_FILTERS),
@@ -323,11 +323,13 @@ class CryptoPulseTools(
                 appendLine()
                 appendLine("### $label horizon")
                 appendLine("- Evaluated: ${h.evaluated} (${h.hits} hits) · pending: ${h.pending}")
-                if (h.neutral > 0) appendLine("- Neutral: ${h.neutral} (the price moved less than half the expected range: noise, neither a hit nor a miss)")
+                if (h.neutral > 0) appendLine("- Neutral: ${h.neutral} (the price moved less than half its typical move, a quarter of the likely range: noise, neither a hit nor a miss)")
                 if (h.evaluated > 0) {
                     appendLine("- Hit rate: ${Format.pct(h.hitRate)} vs 50% for a coin flip, vs ${Format.pct(h.upShare)} that simply rose")
                     appendLine("- Average stated probability of rising: ${Format.pct(h.avgProbability)}")
                     appendLine("- Brier score: ${"%.3f".format(h.brier)} (0.25 = coin flip, lower is better)")
+                } else if (h.neutral > 0) {
+                    appendLine("- No hit rate yet: every forecast that came due moved too little to count either way.")
                 } else {
                     appendLine("- Nothing evaluated yet: entries are scored once their horizon passes.")
                 }
@@ -415,7 +417,7 @@ class CryptoPulseTools(
             for (s in symbols) {
                 val r = snap.rows.firstOrNull { it.asset.symbol == s }
                 val m = r?.market
-                if (m == null) { appendLine("$s: ${if (r == null) "not in the list (Bitpanda, memecoins, DEX radar)" else "no price data right now"}"); continue }
+                if (m == null) { appendLine("$s: ${if (r == null) "not in the list (Bitpanda and trending coins)" else "no price data right now"}"); continue }
                 val note = if (r.asset.onBitpanda) "" else " [${r.asset.tier.label}, not on Bitpanda]"
                 appendLine("${r.asset.name} ($s)$note: ${Text.formatPrice(m.bitpandaPrice ?: m.price, m.currency)} · 1h ${Text.formatPct(m.change1hPct, 2)} · 24h ${Text.formatPct(m.change24hPct, 2)} · 7d ${Text.formatPct(m.change7dPct, 2)} · 30d ${Text.formatPct(m.change30dPct, 1)}")
             }
@@ -482,7 +484,7 @@ class CryptoPulseTools(
     private fun requireSymbol(args: JsonObject?): String =
         args.str("symbol")?.let { Text.normalizeSymbol(it) }?.takeIf { it.isNotEmpty() } ?: throw IllegalArgumentException("symbol is required, e.g. BTC")
 
-    private fun unknown(symbol: String) = "$symbol is not in the list (Bitpanda coins, memecoins, trending coins and the DEX radar). Use list_bitpanda_assets or speculative_radar to see what is available."
+    private fun unknown(symbol: String) = "$symbol is not in the list (Bitpanda coins and today's trending coins). Use list_bitpanda_assets or speculative_radar to see what is available."
 
     private fun tierFilter(raw: String?, default: String): String {
         val t = raw?.trim()?.lowercase()?.ifEmpty { null } ?: return default

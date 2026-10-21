@@ -5,6 +5,7 @@ import dev.cryptopulse.core.analysis.journal.JournalStats
 import dev.cryptopulse.core.analysis.risk.RiskScorer
 import dev.cryptopulse.core.model.Horizon
 import dev.cryptopulse.core.model.MarketSnapshot
+import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.sources.feed.BuzzEntry
 import dev.cryptopulse.core.util.Text
 import java.time.Instant
@@ -31,6 +32,9 @@ object Digest {
         val all = snap.rows.filter { it.market?.price != null && it.forecast != null && it.forecast!!.bottom.label != "Pegged" }
         val rows = all.filter { it.asset.onBitpanda }
         val spec = all.filter { !it.asset.onBitpanda }
+        // a horizon without a call (it moves too little, too new, blocked) carries a 0.5 placeholder, never a ranking
+        val called24 = rows.filter { it.upOrNull(it.forecast!!.h24) != null }
+        val called7 = rows.filter { it.upOrNull(it.forecast!!.d7) != null }
         val time = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm 'UTC'").withZone(ZoneOffset.UTC).format(Instant.ofEpochMilli(snap.fetchedAtMs))
         val cur = snap.currency
         val ctx = snap.context
@@ -42,26 +46,31 @@ object Digest {
             ctx?.global?.marketCapChange24hPct?.let { appendLine(t("Total market 24h", "Cijelo tržište 24h") + ": ${Text.formatPct(it, 1)}") }
             appendLine()
             appendLine(t("▲ Best odds to rise in 24h:", "▲ Najveća šansa rasta u 24h:"))
-            rows.sortedByDescending { it.forecast!!.h24.probabilityUp * (0.5 + it.forecast!!.h24.confidence) }.take(top).forEach {
+            called24.sortedByDescending { it.forecast!!.h24.probabilityUp * (0.5 + it.forecast!!.h24.confidence) }.take(top).forEach {
                 appendLine("• ${it.asset.symbol} ${Format.pct(it.forecast!!.h24.probabilityUp)} · ${Text.formatPrice(it.market!!.bitpandaPrice ?: it.market!!.price)} ${Text.formatPct(it.market!!.change24hPct, 1)}")
             }
             appendLine(t("▲ Best odds to rise in 7 days:", "▲ Najveća šansa rasta u 7 dana:"))
-            rows.sortedByDescending { it.forecast!!.d7.probabilityUp * (0.5 + it.forecast!!.d7.confidence) }.take(top).forEach {
+            called7.sortedByDescending { it.forecast!!.d7.probabilityUp * (0.5 + it.forecast!!.d7.confidence) }.take(top).forEach {
                 appendLine("• ${it.asset.symbol} ${Format.pct(it.forecast!!.d7.probabilityUp)}")
             }
             val bottoms = rows.filter { it.forecast!!.bottom.score >= 65 }.sortedByDescending { it.forecast!!.bottom.score }.take(top)
             if (bottoms.isNotEmpty()) {
                 appendLine(t("⬇ Near local lows (bottom score):", "⬇ Blizu lokalnog dna (ocjena dna):"))
-                bottoms.forEach { appendLine("• ${it.asset.symbol} ${it.forecast!!.bottom.score}/100, 7d ${Format.pct(it.forecast!!.d7.probabilityUp)}") }
+                bottoms.forEach { appendLine("• ${it.asset.symbol} ${it.forecast!!.bottom.score}/100, 7d ${Format.pct(it.upOrNull(it.forecast!!.d7))}") }
             }
             appendLine(t("▼ Highest odds to fall in 24h:", "▼ Najveća šansa pada u 24h:"))
-            rows.sortedBy { it.forecast!!.h24.probabilityUp }.take(3).forEach { appendLine("• ${it.asset.symbol} ${Format.pct(1 - it.forecast!!.h24.probabilityUp)}") }
+            called24.sortedBy { it.forecast!!.h24.probabilityUp }.take(3).forEach { appendLine("• ${it.asset.symbol} ${Format.pct(1 - it.forecast!!.h24.probabilityUp)}") }
             val movers = rows.filter { it.market!!.change24hPct != null }.sortedByDescending { kotlin.math.abs(it.market!!.change24hPct!!) }.take(3)
             if (movers.isNotEmpty()) appendLine(t("Biggest moves: ", "Najveći pomaci: ") + movers.joinToString(" · ") { "${it.asset.symbol} ${Text.formatPct(it.market!!.change24hPct, 1)}" })
             ctx?.globalSentiment?.let { appendLine(t("Social mood: ", "Raspoloženje na mrežama: ") + "${it.label} (${it.totalSamples})") }
             if (spec.isNotEmpty()) {
                 appendLine()
-                appendLine(t("🎲 Memecoins & DEX radar (not on Bitpanda, very high risk):", "🎲 Memecoini i DEX radar (nisu na Bitpandi, vrlo visok rizik):"))
+                val beyond = if (spec.all { it.asset.tier == Tier.TRENDING }) {
+                    t("🎲 Trending, not on Bitpanda (information only, high risk):", "🎲 U trendu, nisu na Bitpandi (samo informativno, visok rizik):")
+                } else {
+                    t("🎲 Memecoins, trending & DEX radar (not on Bitpanda, very high risk):", "🎲 Memecoini, trend i DEX radar (nisu na Bitpandi, vrlo visok rizik):")
+                }
+                appendLine(beyond)
                 spec.filter { it.upOrNull(it.forecast!!.h24) != null }
                     .sortedByDescending { it.forecast!!.h24.probabilityUp * (0.5 + it.forecast!!.h24.confidence) }.take(3)
                     .forEach { appendLine("• ${it.asset.symbol} (${it.asset.tier.label}) ${Format.pct(it.forecast!!.h24.probabilityUp)} 24h · ${t("risk", "rizik")} ${it.risk?.score ?: "—"}/100") }

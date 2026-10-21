@@ -153,7 +153,7 @@ private fun AccuracyCard(vm: AppViewModel) {
     val stats = remember { vm.journalStats() }
     SectionCard(
         "Forecast accuracy",
-        subtitle = "Every forecast shown is logged and scored against the real price once its horizon passes. A move smaller than half the expected range is neutral (noise), not a hit or a miss. Brier: lower is better, 0.25 is a coin flip.",
+        subtitle = "Every forecast shown is logged and scored against the real price once its horizon passes. A move smaller than half the coin's typical move is neutral (noise), not a hit or a miss. Brier: lower is better, 0.25 is a coin flip.",
     ) {
         // a scored 50:50 call counts as neither pending nor evaluated, so check both
         if (stats.perHorizon.values.none { it.evaluated > 0 || it.neutral > 0 }) {

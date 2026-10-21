@@ -403,7 +403,7 @@ function renderAccuracy() {
     stat(fmtProb(a.avgProbability), 'avg forecast');
     stat(isNum(a.brier) ? a.brier.toFixed(3) : '—', 'Brier score (lower is better)');
     stat(isNum(a.pending) ? String(a.pending) : '—', 'pending');
-    if (isNum(a.neutral) && a.neutral > 0) stat(String(a.neutral), 'neutral (moved less than half the expected range)');
+    if (isNum(a.neutral) && a.neutral > 0) stat(String(a.neutral), 'neutral (moved less than half its typical move)');
     if (isNum(a.upShare)) stat(fmtProb(a.upShare), 'share that actually rose (baseline)');
     card.append(grid);
     if (isNum(a.hits) && isNum(a.evaluated)) {

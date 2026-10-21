@@ -19,6 +19,7 @@ import kotlin.math.exp
 import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.roundToInt
 import kotlin.math.sqrt
 import kotlin.math.tanh
 
@@ -193,8 +194,8 @@ class DefaultForecastEngine : Forecaster {
         if (!isBtc) ctx.btcTrendScore?.let { t ->
             val w = if (horizon == Horizon.H24) 0.22 else 0.28
             // a coin that barely follows Bitcoin (TRX, beta ~0.1) must not inherit its trend in full
-            val beta = btcBeta(input.hourlyCloses, ctx.btcHourly)
-            val k = beta?.let { 0.3 + 0.7 * it.coerceIn(0.0, 3.0) } ?: 1.0
+            val beta = btcBeta(input.hourlyCloses, input.market?.lastUpdatedMs, ctx.btcHourly, ctx.btcHourlyEndMs)?.coerceIn(0.0, 3.0)
+            val k = beta?.let { 0.3 + 0.7 * it } ?: 1.0
             val follows = beta?.let { " (this coin moves about ${"%.1f".format(it)}x with it)" } ?: "; most coins move with it"
             out += Contribution("btc_trend", "Bitcoin trend", t, t * w * k, (if (t >= 0) "Bitcoin is trending up" else "Bitcoin is trending down") + follows)
         }
@@ -223,18 +224,47 @@ class DefaultForecastEngine : Forecaster {
 
     /**
      * Beta of the coin's hourly returns against Bitcoin's over their common last week; null with fewer
-     * than 48 aligned hours. Both series are CoinGecko 7-day sparklines, so they end at the same hour.
+     * than 48 paired hours or when the two series end too far apart. Both are 7-day hourly sparklines,
+     * but not always from the same response: a later or cached chunk can end an hour or more before
+     * Bitcoin's. Hourly returns barely correlate across hours, so a one-hour slip would read as beta ~0.
+     * The end times ([coinEndMs], [btcEndMs]) give the expected slip; the best-correlated of it and its
+     * two neighbours is used, which also absorbs a sampling grid that does not sit on the hour.
      */
-    private fun btcBeta(coin: List<Double>, btc: List<Double>): Double? {
+    private fun btcBeta(coin: List<Double>, coinEndMs: Long?, btc: List<Double>, btcEndMs: Long?): Double? {
+        val expected = if (coinEndMs != null && btcEndMs != null) ((btcEndMs - coinEndMs).toDouble() / HOUR_MS).roundToInt() else 0
+        if (abs(expected) > MAX_BETA_SLIP_HOURS) return null
+        var best: Pair<Double, Double>? = null // correlation to beta
+        for (slip in expected - 1..expected + 1) {
+            // slip > 0: Bitcoin's series runs [slip] hours further, so its newest points have no partner
+            val c = if (slip < 0) coin.dropLast(-slip) else coin
+            val b = if (slip > 0) btc.dropLast(slip) else btc
+            val fit = pairedBeta(c, b) ?: continue
+            if (best == null || fit.first > best.first) best = fit
+        }
+        return best?.second
+    }
+
+    /** (correlation, beta) of paired hourly log returns; an hour with a non-positive price on either side is skipped. */
+    private fun pairedBeta(coin: List<Double>, btc: List<Double>): Pair<Double, Double>? {
         val n = minOf(coin.size, btc.size)
-        if (n < 49) return null
-        val x = Indicators.logReturns(coin.takeLast(n))
-        val y = Indicators.logReturns(btc.takeLast(n))
-        val my = y.average()
+        val c = coin.takeLast(n)
+        val b = btc.takeLast(n)
+        val x = ArrayList<Double>(n)
+        val y = ArrayList<Double>(n)
+        for (i in 1 until n) {
+            if (c[i - 1] > 0 && c[i] > 0 && b[i - 1] > 0 && b[i] > 0) {
+                x += ln(c[i] / c[i - 1])
+                y += ln(b[i] / b[i - 1])
+            }
+        }
+        if (x.size < 48) return null
         val mx = x.average()
+        val my = y.average()
+        val cov = x.indices.sumOf { (x[it] - mx) * (y[it] - my) }
+        val varX = x.sumOf { (it - mx) * (it - mx) }
         val varY = y.sumOf { (it - my) * (it - my) }
-        if (varY <= 0.0) return null
-        return x.indices.sumOf { (x[it] - mx) * (y[it] - my) } / varY
+        if (varY <= 0.0 || varX <= 0.0 || !cov.isFinite()) return null
+        return cov / sqrt(varX * varY) to cov / varY
     }
 
     /** CoinGecko's 14d/30d changes give a medium-term trend even without loaded daily history. */
@@ -447,6 +477,9 @@ class DefaultForecastEngine : Forecaster {
         const val MODEL_VERSION = "cryptopulse-forecast-1.2"
         /** Below this typical move (in %) over a horizon a direction call is noise next to trading costs. */
         const val LOW_MOVE_PCT = 1.0
+        /** Beyond this many hours between the coin's and Bitcoin's series the beta is not attempted. */
+        private const val MAX_BETA_SLIP_HOURS = 12
+        private const val HOUR_MS = 3_600_000L
         const val NOT_ASSESSED = "Not assessed"
         val STABLECOINS: Set<String> = setOf(
             "USDT", "USDC", "EURC", "USDG", "RLUSD", "USDD", "EURCV", "DAI", "FDUSD", "TUSD", "PYUSD", "USDE", "USDS", "USD1", "EURS", "USDQ", "EURQ",

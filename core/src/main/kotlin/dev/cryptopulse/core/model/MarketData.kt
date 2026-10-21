@@ -121,6 +121,8 @@ data class MarketContext(
     val btcTrendScore: Double? = null,
     /** BTC's hourly closes (7-day sparkline), so each coin's Bitcoin signal can follow its own beta. */
     val btcHourly: List<Double> = emptyList(),
+    /** When [btcHourly] ends (BTC's last price update in that response), to line it up with each coin's series. */
+    val btcHourlyEndMs: Long? = null,
     /** Global crypto mood from r/CryptoCurrency, news feeds and similar broad sources. */
     val globalSentiment: SentimentSummary? = null,
     val trendingCoingeckoIds: List<String> = emptyList(),

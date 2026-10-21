@@ -130,7 +130,7 @@ Explained in [docs/FORECAST.md](docs/FORECAST.md): technical signals, market con
 combined into a logit, self-checked with a walk-forward backtest, shrunk toward 50 % when data is thin.
 A coin that typically moves less than 1 % over the horizon (less than the cost of trading) gets no
 call, Bitcoin's trend counts by how closely each coin follows Bitcoin, and the accuracy log treats a
-move inside half the expected range as neutral noise rather than a hit or a miss.
+move smaller than half the typical move as neutral noise rather than a hit or a miss.
 
 ## Build it yourself
 
@@ -169,6 +169,6 @@ The older Streamlit prototype (`spss8.py`) is kept as it was.
   uklonjene; Bitpandini memecoini (DOGE, SHIB, PEPE...) ostaju na popisu Bitpande.
 * **Pravila prognoze**: coin koji se u 24 h (ili 7 dana) tipično pomakne manje od 1 % (manje od
   troška kupnje i prodaje) ne dobiva prognozu ("Moves too little"); trend Bitcoina računa se prema
-  tome koliko coin prati Bitcoin (TRON slabo, NEAR jako); pomak manji od pola očekivanog raspona u
+  tome koliko coin prati Bitcoin (TRON slabo, NEAR jako); pomak manji od pola tipičnog pomaka u
   dnevniku točnosti je neutralan (šum), ni pogodak ni promašaj.
 * Ovo su vjerojatnosti, ne sigurnosti, i nije financijski savjet.
