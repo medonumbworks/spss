@@ -235,6 +235,10 @@ class ForecastEngineTest {
             assertTrue(h.signals.drop(1).all { it.contribution == 0.0 })
         }
         assertTrue("not enough history" in f.summary, f.summary)
+        // daily history (Binance) without the hourly sparkline: a 7-day call, but none for 24 h
+        val dailyOnly = engine.forecast(quoteOnly.copy(dailyCloses = series(365, 0.2, 0.001, 0.03)))
+        assertEquals(false, dailyOnly.h24.hasCall)
+        assertTrue(dailyOnly.d7.hasCall)
     }
 
     @Test

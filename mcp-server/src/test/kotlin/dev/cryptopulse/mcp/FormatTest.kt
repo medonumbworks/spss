@@ -61,6 +61,16 @@ class FormatTest {
     }
 
     @Test
+    fun noHistorySaysTooNewOnlyForAPool() {
+        val noPrices = gated(Horizon.H24, "Not enough history: no price history right now (market data unavailable), so no 24h call")
+        val f = forecast(noPrices, gated(Horizon.D7, "Not enough history"), BottomAssessment(50, DefaultForecastEngine.NO_HISTORY))
+        val coin = AssetRow(Asset("BTC", "Bitcoin"), MarketData("BTC", currency = "EUR", price = 70_000.0, marketCap = 1.4e12), f)
+        val table = Format.overviewTable(listOf(coin), "EUR")
+        assertTrue(table.contains("— (not enough history)") && !table.contains("too new"), table)
+        assertTrue(Format.overviewTable(listOf(dexRow("MOON", "USD", RiskAssessment(60, "High risk"), f)), "EUR").contains("— (too new)"))
+    }
+
+    @Test
     fun lowMoveHorizonSaysItMovesTooLittle() {
         val note = "Typical 24h move is only 0.55%, below trading costs (~1.0%): no clear direction"
         val h24 = HorizonForecast(Horizon.H24, 0.5, Direction.FLAT, 0.0, 0.29, 0.31, 0.3,

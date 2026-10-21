@@ -389,10 +389,11 @@ class DefaultForecastEngine : Forecaster {
     /**
      * No price series at all (CoinGecko rate-limited, only a Bitpanda quote): what is left is market
      * mood and base rates, the same for every coin, so there is no call rather than a 50 % that looks
-     * like one. A DEX token's pool trading (buyers vs sellers, volume) is its own data, so it keeps its call.
+     * like one. The 24 h call is built from hourly prices only, so daily history alone does not save it.
+     * A DEX token's pool trading (buyers vs sellers, volume) is its own data, so it keeps its call.
      */
     private fun noPriceGate(h: HorizonForecast, input: ForecastInput, hourly: List<Double>, daily: List<Double>): HorizonForecast {
-        if (!h.hasCall || input.dex != null || hourly.size >= 2 || daily.size >= 2) return h
+        if (!h.hasCall || input.dex != null || hourly.size >= 2 || (h.horizon == Horizon.D7 && daily.size >= 2)) return h
         val note = "Not enough history: no price history right now (market data unavailable), so no ${h.horizon.label} call"
         return HorizonForecast(h.horizon, 0.5, Direction.FLAT, 0.0, null, null, null,
             listOf(Signal("history", "Not enough history", 0.0, 0.0, note)) + h.signals.map { it.copy(contribution = 0.0) })

@@ -152,7 +152,11 @@ class ForecastJournal(
         val list = loaded()
         val nowMs = clock.nowMs()
         val byToken = HashMap<String, MarketData>()
-        for (row in rows) row.market?.takeIf { it.price != null }?.let { byToken[row.asset.tokenKey] = it }
+        // calls are only made on market data with a price history; a Bitpanda-only quote (other source,
+        // with its spread) or a row kept from an older refresh would score them against the wrong price
+        for (row in rows) row.market?.takeIf { m ->
+            m.price != null && m.source != BITPANDA_ONLY_SOURCE && (m.lastUpdatedMs == null || nowMs - m.lastUpdatedMs <= MAX_QUOTE_AGE_MS)
+        }?.let { byToken[row.asset.tokenKey] = it }
         var scored = 0
         var changed = false
         val iter = list.listIterator()
@@ -262,6 +266,10 @@ class ForecastJournal(
 
         const val STORE_KEY = "forecast_journal"
         private const val HOUR_MS = 3_600_000L
+        /** MarketData.source of a row that has only the Bitpanda ticker price. */
+        private const val BITPANDA_ONLY_SOURCE = "bitpanda"
+        /** A quote older than this (a row reused while CoinGecko fails) does not score a forecast. */
+        private const val MAX_QUOTE_AGE_MS = 2 * HOUR_MS
 
         private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
         private val serializer = ListSerializer(JournalEntry.serializer())
