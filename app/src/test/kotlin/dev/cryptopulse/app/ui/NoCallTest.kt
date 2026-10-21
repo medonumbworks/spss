@@ -12,6 +12,7 @@ import dev.cryptopulse.core.model.MarketData
 import dev.cryptopulse.core.model.RiskAssessment
 import dev.cryptopulse.core.model.Tier
 import dev.cryptopulse.core.model.TokenSafety
+import kotlin.math.sin
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -34,7 +35,8 @@ class NoCallTest {
             priceChangePct = DexWindow(h1 = 2.0, h6 = 5.0, h24 = 12.0), volumeUsd = DexWindow(h1 = 40_000.0, h24 = 600_000.0),
             txnsH6 = DexTxns(900, 700), txnsH24 = DexTxns(2700, 2100), pairCreatedAtMs = now - (ageDays * day).toLong(),
         )
-        val hourly = (0 until minOf(168, (ageDays * 24).toInt())).map { 0.01 * (1 + 0.001 * it) }
+        // a gentle climb with about a 2 % daily swing: calmer pools get no call at all (DefaultForecastEngine.LOW_MOVE_PCT)
+        val hourly = (0 until minOf(168, (ageDays * 24).toInt())).map { 0.01 * (1 + 0.001 * it) * (1 + 0.02 * sin(it / 3.0)) }
         val market = MarketData(sym, currency = "EUR", price = hourly.last(), marketCap = 8e6, change24hPct = 12.0, sparkline7d = hourly)
         val risk = RiskScorer.assess(Tier.DEX, market, dex, safety, now)
         val forecast = engine.forecast(ForecastInput(asset, market, hourly, dex = dex, risk = risk, nowMs = now))
