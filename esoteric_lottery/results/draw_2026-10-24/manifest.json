@@ -1,0 +1,331 @@
+{
+  "backtests": {
+    "eurojackpot": {
+      "failed_methods": [],
+      "reason": "no historical draw file supplied",
+      "reused_from": null,
+      "status": "not_run"
+    },
+    "joker": {
+      "failed_methods": [],
+      "reason": "no historical draw file supplied",
+      "reused_from": null,
+      "status": "not_run"
+    },
+    "sve_ili_nista": {
+      "failed_methods": [],
+      "reason": null,
+      "reused_from": {
+        "code_sha256": "dec08a52cff473bd1025dacb78cf6b18ae48153cbbbda8f294cb0cf19ab00613",
+        "generated_at": "2026-10-23T17:25:33+00:00",
+        "summary": "results/backtest/sve_ili_nista/summary.json"
+      },
+      "status": "reused"
+    }
+  },
+  "code_sha256": "dec08a52cff473bd1025dacb78cf6b18ae48153cbbbda8f294cb0cf19ab00613",
+  "command_line": {
+    "backtest_from": "results",
+    "draw_date": "2026-10-24",
+    "draw_time": null,
+    "readings": 4,
+    "skip_backtest": false
+  },
+  "config_sha256": "0d284f49b32f45c646c4cda4c2c32c752a6169d80f57d13e0c5d47eba224f2db",
+  "generated_at": "2026-10-23T17:25:35+00:00",
+  "git_commit_at_run": "04e682a27e94cb29c83e4a7f13283bef8690ad49",
+  "history_files_sha256": {
+    "data/Sve_ili_Nista_sva_kola.xlsx": "06e9c0a99fa848beca39c48b8019eb9c640e86ef5e46865a13ed8b58a1e631b4",
+    "data/sve_ili_nista_sva_kola.csv": "f94ad7a0e1378ed943ebb1e146eca47e97fc1864b1e27bfc98172dd6f0ec6f74"
+  },
+  "inputs": {
+    "birth_local": "1991-05-31T18:20:00+02:00",
+    "birth_place": "Zadar",
+    "birth_utc": "1991-05-31T16:20:00+00:00",
+    "draw_local": "2026-10-24T19:00:00+02:00",
+    "draw_place": "Zagreb",
+    "draw_utc": "2026-10-24T17:00:00+00:00"
+  },
+  "methods": {
+    "chaldean": {
+      "components": [
+        {
+          "detail": "",
+          "name": "draw_date_numbers",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "birth_date_numbers",
+          "status": "ran"
+        },
+        {
+          "detail": "no name in config.yaml (subject.name is null)",
+          "name": "name_number",
+          "status": "skipped"
+        },
+        {
+          "detail": "experimental",
+          "name": "place_name_numbers",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional (Cheiro) + experimental mapping",
+      "status": "partial"
+    },
+    "gematria": {
+      "components": [
+        {
+          "detail": "ordinal, reverse ordinal, Agrippa",
+          "name": "latin_ciphers",
+          "status": "ran"
+        },
+        {
+          "detail": "no name in config.yaml (subject.name is null)",
+          "name": "name_cipher",
+          "status": "skipped"
+        },
+        {
+          "detail": "no Hebrew text supplied (gematria.extra_texts)",
+          "name": "hebrew_mispar_hechrachi",
+          "status": "skipped"
+        },
+        {
+          "detail": "no Greek text supplied (gematria.extra_texts)",
+          "name": "greek_isopsephy",
+          "status": "skipped"
+        }
+      ],
+      "error": null,
+      "kind": "traditional ciphers + experimental text selection and mapping",
+      "status": "partial"
+    },
+    "iching": {
+      "components": [
+        {
+          "detail": "12 hexagrams cast",
+          "name": "yarrow_stalk_cast",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "king_wen_lookup",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional procedure, pseudo-random simulation (experimental)",
+      "status": "ran"
+    },
+    "lenormand": {
+      "components": [
+        {
+          "detail": "experimental",
+          "name": "day_of_month_cards",
+          "status": "ran"
+        },
+        {
+          "detail": "4 x 9",
+          "name": "seeded_grand_tableau",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional numbering + experimental seeded tableau",
+      "status": "ran"
+    },
+    "meihua": {
+      "components": [
+        {
+          "detail": "computed from Swiss Ephemeris new moons",
+          "name": "chinese_lunar_calendar",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "draw_time_cast",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "birth_time_cast",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional casting + experimental mapping",
+      "status": "ran"
+    },
+    "pythagorean": {
+      "components": [
+        {
+          "detail": "life path, birthday, attitude, pinnacles, challenges",
+          "name": "date_numbers",
+          "status": "ran"
+        },
+        {
+          "detail": "personal year/month/day, universal day",
+          "name": "personal_cycles",
+          "status": "ran"
+        },
+        {
+          "detail": "no name in config.yaml (subject.name is null)",
+          "name": "name_numbers",
+          "status": "skipped"
+        },
+        {
+          "detail": "experimental",
+          "name": "place_name_numbers",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional (modern numerology) + experimental mapping",
+      "status": "partial"
+    },
+    "tarot": {
+      "components": [
+        {
+          "detail": "",
+          "name": "greer_birth_cards",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "greer_year_cards",
+          "status": "ran"
+        },
+        {
+          "detail": "22 cards from a 78-card deck",
+          "name": "seeded_spread",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional numbering and birth cards + experimental seeded spread",
+      "status": "ran"
+    },
+    "vedic_astrology": {
+      "components": [
+        {
+          "detail": "",
+          "name": "sidereal_positions_lahiri",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "panchanga",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "whole_sign_lagna",
+          "status": "ran"
+        },
+        {
+          "detail": "maha/antar/pratyantar",
+          "name": "vimshottari_dasha",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional quantities + experimental mapping",
+      "status": "ran"
+    },
+    "western_astrology": {
+      "components": [
+        {
+          "detail": "Placidus (P), Moshier ephemeris",
+          "name": "natal_chart",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "transit_chart",
+          "status": "ran"
+        },
+        {
+          "detail": "40 aspects within orb",
+          "name": "transit_to_natal_aspects",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "standard astronomy + experimental mapping",
+      "status": "ran"
+    }
+  },
+  "packages": {
+    "PyYAML": "6.0.3",
+    "numpy": "2.5.4",
+    "openpyxl": "3.1.5",
+    "pandas": "3.1.0",
+    "pyswisseph": "2.10.3.2",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1"
+  },
+  "python": "3.13.17",
+  "readings": [
+    {
+      "reading": 1,
+      "seed": 20261023,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    },
+    {
+      "reading": 2,
+      "seed": 20261024,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    },
+    {
+      "reading": 3,
+      "seed": 20261025,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    },
+    {
+      "reading": 4,
+      "seed": 20261026,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    }
+  ]
+}

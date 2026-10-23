@@ -15,8 +15,9 @@ REGISTRY = {cls.key: cls for cls in (
 )}
 
 
-def build_methods(cfg: dict) -> list:
-    seed = int(cfg["seed"])
+def build_methods(cfg: dict, seed: int | None = None) -> list:
+    """Every enabled method; ``seed`` overrides ``cfg["seed"]`` (used for extra readings)."""
+    seed = int(cfg["seed"]) if seed is None else int(seed)
     enabled = cfg.get("methods", {})
     out = []
     for key, cls in REGISTRY.items():

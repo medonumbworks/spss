@@ -3,23 +3,37 @@
     "eurojackpot": {
       "failed_methods": [],
       "reason": "no historical draw file supplied",
+      "reused_from": null,
       "status": "not_run"
     },
     "joker": {
       "failed_methods": [],
       "reason": "no historical draw file supplied",
+      "reused_from": null,
       "status": "not_run"
     },
     "sve_ili_nista": {
       "failed_methods": [],
       "reason": null,
+      "reused_from": null,
       "status": "ran"
     }
   },
-  "code_sha256": "351613b3defd0ff3a463765714f3c7052a23de19a96157c89c4fe8dc831ee48a",
+  "code_sha256": "dec08a52cff473bd1025dacb78cf6b18ae48153cbbbda8f294cb0cf19ab00613",
+  "command_line": {
+    "backtest_from": null,
+    "draw_date": null,
+    "draw_time": null,
+    "readings": 1,
+    "skip_backtest": false
+  },
   "config_sha256": "0d284f49b32f45c646c4cda4c2c32c752a6169d80f57d13e0c5d47eba224f2db",
-  "generated_at": "2026-10-23T15:24:13+00:00",
-  "git_commit_at_run": "cadf9039bfdb6fd76e093fade94611d68da8f603",
+  "generated_at": "2026-10-23T17:25:33+00:00",
+  "git_commit_at_run": "04e682a27e94cb29c83e4a7f13283bef8690ad49",
+  "history_files_sha256": {
+    "data/Sve_ili_Nista_sva_kola.xlsx": "06e9c0a99fa848beca39c48b8019eb9c640e86ef5e46865a13ed8b58a1e631b4",
+    "data/sve_ili_nista_sva_kola.csv": "f94ad7a0e1378ed943ebb1e146eca47e97fc1864b1e27bfc98172dd6f0ec6f74"
+  },
   "inputs": {
     "birth_local": "1991-05-31T18:20:00+02:00",
     "birth_place": "Zadar",
@@ -247,5 +261,22 @@
     "scikit-learn": "1.9.1",
     "scipy": "1.18.1"
   },
-  "python": "3.13.17"
+  "python": "3.13.17",
+  "readings": [
+    {
+      "reading": 1,
+      "seed": 20261023,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    }
+  ]
 }

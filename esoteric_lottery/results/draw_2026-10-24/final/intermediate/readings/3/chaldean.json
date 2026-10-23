@@ -1,0 +1,245 @@
+{
+  "components": [
+    {
+      "detail": "",
+      "name": "draw_date_numbers",
+      "status": "ran"
+    },
+    {
+      "detail": "",
+      "name": "birth_date_numbers",
+      "status": "ran"
+    },
+    {
+      "detail": "no name in config.yaml (subject.name is null)",
+      "name": "name_number",
+      "status": "skipped"
+    },
+    {
+      "detail": "experimental",
+      "name": "place_name_numbers",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "sve_ili_nista": {
+      "main": 9
+    }
+  },
+  "digit_sequence": [
+    4,
+    2,
+    6,
+    8,
+    8,
+    31
+  ],
+  "error": null,
+  "intermediate": {
+    "birth": {
+      "date_compound": 29,
+      "date_reduced": 2,
+      "day_compound": 31,
+      "day_reduced": 4,
+      "weekday_planet": "Venus",
+      "weekday_planet_number": 6
+    },
+    "draw": {
+      "date_compound": 17,
+      "date_reduced": 8,
+      "day_compound": 24,
+      "day_reduced": 6,
+      "weekday_planet": "Saturn",
+      "weekday_planet_number": 8
+    },
+    "places": {
+      "birth_place": {
+        "compound": 15,
+        "reduced": 6,
+        "text": "Zadar"
+      },
+      "draw_place": {
+        "compound": 20,
+        "reduced": 2,
+        "text": "Zagreb"
+      }
+    }
+  },
+  "key": "chaldean",
+  "kind": "traditional (Cheiro) + experimental mapping",
+  "label": "Kaldejska numerologija (Cheiro)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        6,
+        12
+      ],
+      "main": [
+        2,
+        6,
+        8,
+        17,
+        24
+      ]
+    },
+    "joker": {
+      "digits": [
+        4,
+        2,
+        6,
+        8,
+        8,
+        1
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        2,
+        4,
+        6,
+        7,
+        8,
+        9,
+        11,
+        15,
+        17,
+        20,
+        22
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        12,
+        6,
+        8,
+        5,
+        2,
+        7,
+        4,
+        3,
+        9,
+        10,
+        11,
+        1
+      ],
+      "main": [
+        24,
+        6,
+        8,
+        17,
+        2,
+        31,
+        4,
+        29,
+        15,
+        20,
+        14,
+        48,
+        32,
+        36,
+        27,
+        41,
+        1,
+        28,
+        11,
+        40,
+        44,
+        22,
+        33,
+        39,
+        38,
+        47,
+        43,
+        42,
+        25,
+        23,
+        34,
+        49,
+        3,
+        19,
+        50,
+        37,
+        7,
+        5,
+        10,
+        16,
+        9,
+        35,
+        18,
+        46,
+        21,
+        30,
+        13,
+        26,
+        45,
+        12
+      ]
+    },
+    "joker": {
+      "digits": [
+        4,
+        2,
+        6,
+        8,
+        8,
+        1
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        2,
+        6,
+        8,
+        17,
+        9,
+        4,
+        7,
+        15,
+        20,
+        11,
+        22,
+        12,
+        5,
+        14,
+        3,
+        1,
+        21,
+        16,
+        13,
+        19,
+        10,
+        18
+      ]
+    }
+  },
+  "sequence": [
+    24,
+    6,
+    17,
+    8,
+    8,
+    31,
+    4,
+    29,
+    2,
+    6,
+    15,
+    6,
+    20,
+    2
+  ],
+  "sources": [
+    "Cheiro (W. J. Warner), Cheiro's Book of Numbers, London 1926 – letter table 1-8, compound numbers, planets",
+    "Place-name values and the lottery mapping are experimental"
+  ],
+  "status": "partial"
+}

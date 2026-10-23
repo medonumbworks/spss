@@ -1,0 +1,394 @@
+{
+  "components": [
+    {
+      "detail": "experimental",
+      "name": "day_of_month_cards",
+      "status": "ran"
+    },
+    {
+      "detail": "4 x 9",
+      "name": "seeded_grand_tableau",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "sve_ili_nista": {
+      "main": 11
+    }
+  },
+  "digit_sequence": [
+    5,
+    28,
+    14,
+    34,
+    19,
+    6
+  ],
+  "error": null,
+  "intermediate": {
+    "birth_day_card": {
+      "name": "Sun",
+      "number": 31
+    },
+    "draw_day_card": {
+      "name": "Heart",
+      "number": 24
+    },
+    "grand_tableau_rows": [
+      [
+        {
+          "name": "Tree",
+          "number": 5
+        },
+        {
+          "name": "Gentleman",
+          "number": 28
+        },
+        {
+          "name": "Fox",
+          "number": 14
+        },
+        {
+          "name": "Fish",
+          "number": 34
+        },
+        {
+          "name": "Tower",
+          "number": 19
+        },
+        {
+          "name": "Clouds",
+          "number": 6
+        },
+        {
+          "name": "Letter",
+          "number": 27
+        },
+        {
+          "name": "Whip",
+          "number": 11
+        },
+        {
+          "name": "Mountain",
+          "number": 21
+        }
+      ],
+      [
+        {
+          "name": "Coffin",
+          "number": 8
+        },
+        {
+          "name": "Moon",
+          "number": 32
+        },
+        {
+          "name": "Book",
+          "number": 26
+        },
+        {
+          "name": "Garden",
+          "number": 20
+        },
+        {
+          "name": "Sun",
+          "number": 31
+        },
+        {
+          "name": "Heart",
+          "number": 24
+        },
+        {
+          "name": "Stars",
+          "number": 16
+        },
+        {
+          "name": "Clover",
+          "number": 2
+        },
+        {
+          "name": "Child",
+          "number": 13
+        }
+      ],
+      [
+        {
+          "name": "Birds",
+          "number": 12
+        },
+        {
+          "name": "Snake",
+          "number": 7
+        },
+        {
+          "name": "Key",
+          "number": 33
+        },
+        {
+          "name": "Mice",
+          "number": 23
+        },
+        {
+          "name": "Crossroads",
+          "number": 22
+        },
+        {
+          "name": "Anchor",
+          "number": 35
+        },
+        {
+          "name": "Bouquet",
+          "number": 9
+        },
+        {
+          "name": "Ship",
+          "number": 3
+        },
+        {
+          "name": "Rider",
+          "number": 1
+        }
+      ],
+      [
+        {
+          "name": "Stork",
+          "number": 17
+        },
+        {
+          "name": "Cross",
+          "number": 36
+        },
+        {
+          "name": "Lady",
+          "number": 29
+        },
+        {
+          "name": "Dog",
+          "number": 18
+        },
+        {
+          "name": "Ring",
+          "number": 25
+        },
+        {
+          "name": "Scythe",
+          "number": 10
+        },
+        {
+          "name": "House",
+          "number": 4
+        },
+        {
+          "name": "Bear",
+          "number": 15
+        },
+        {
+          "name": "Lily",
+          "number": 30
+        }
+      ]
+    ]
+  },
+  "key": "lenormand",
+  "kind": "traditional numbering + experimental seeded tableau",
+  "label": "Lenormand (36 karata, Grand Tableau)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        7,
+        12
+      ],
+      "main": [
+        5,
+        14,
+        24,
+        28,
+        31
+      ]
+    },
+    "joker": {
+      "digits": [
+        5,
+        8,
+        4,
+        4,
+        9,
+        6
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        2,
+        4,
+        5,
+        6,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        19
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        7,
+        12,
+        5,
+        4,
+        2,
+        10,
+        8,
+        6,
+        11,
+        3,
+        9,
+        1
+      ],
+      "main": [
+        31,
+        24,
+        5,
+        28,
+        14,
+        34,
+        19,
+        6,
+        27,
+        11,
+        21,
+        8,
+        32,
+        26,
+        20,
+        16,
+        2,
+        13,
+        12,
+        7,
+        33,
+        23,
+        22,
+        35,
+        9,
+        3,
+        1,
+        17,
+        36,
+        29,
+        18,
+        25,
+        10,
+        4,
+        15,
+        30,
+        46,
+        47,
+        37,
+        45,
+        48,
+        44,
+        41,
+        42,
+        50,
+        43,
+        40,
+        38,
+        39,
+        49
+      ]
+    },
+    "joker": {
+      "digits": [
+        5,
+        8,
+        4,
+        4,
+        9,
+        6
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        9,
+        2,
+        5,
+        6,
+        14,
+        12,
+        11,
+        19,
+        8,
+        10,
+        4,
+        21,
+        13,
+        7,
+        1,
+        20,
+        3,
+        16,
+        22,
+        17,
+        18,
+        15
+      ]
+    }
+  },
+  "sequence": [
+    31,
+    24,
+    5,
+    28,
+    14,
+    34,
+    19,
+    6,
+    27,
+    11,
+    21,
+    8,
+    32,
+    26,
+    20,
+    31,
+    24,
+    16,
+    2,
+    13,
+    12,
+    7,
+    33,
+    23,
+    22,
+    35,
+    9,
+    3,
+    1,
+    17,
+    36,
+    29,
+    18,
+    25,
+    10,
+    4,
+    15,
+    30
+  ],
+  "sources": [
+    "J. K. Hechtel, Das Spiel der Hoffnung, c. 1799 – the 36 cards and their numbers",
+    "M. Katz & T. Goodwin, Learning Lenormand, 2013 – modern card list and Grand Tableau",
+    "Seeded tableau (numpy PCG64 + SHA-256) and day-of-month cards – experimental"
+  ],
+  "status": "ran"
+}

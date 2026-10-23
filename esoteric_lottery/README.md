@@ -33,9 +33,34 @@ Rezultati idu u `results/`:
 | `results/backtest/sve_ili_nista/summary.json` | validacija podataka, split, statistike, testovi, korekcije, kvaliteta izvlačenja |
 | `results/backtest/sve_ili_nista/predictions/<strategija>.json` | za svako kolo: listić, izvučeni brojevi, pogoci, sirovi brojevi metode |
 | `results/theoretical_probabilities.json` | egzaktne distribucije pogodaka i vjerojatnosti glavnog dobitka |
-| `results/manifest.json` | status svake metode i komponente, verzije paketa, SHA-256 konfiguracije i koda, vrijeme izvođenja |
+| `results/manifest.json` | status svake metode i komponente, verzije paketa, SHA-256 konfiguracije, koda i podataka, argumenti naredbenog retka, vrijeme izvođenja |
+| `results/draw_<datum>/` | ista struktura (bez `backtest/`) za kasnija izvlačenja pokrenuta s `--draw-date`; očitanja ≥ 2 u `final/intermediate/readings/<k>/` |
 
 `python main.py --skip-backtest` računa samo kombinacije; `--config` i `--results` mijenjaju putanje.
+
+### Drugo izvlačenje i više listića
+
+```bash
+.venv/bin/python main.py --draw-date 2026-10-24 --readings 4 --backtest-from results \
+                         --results results/draw_2026-10-24
+```
+
+* `--draw-date` / `--draw-time` mijenjaju samo trenutak izvlačenja (ostalo ostaje iz `config.yaml`).
+* `--readings N` daje N **očitanja**: očitanje *k* ponovno baca simulirane orakule (I Ching, tarot,
+  Lenormand) i SHA-256 tie-break sa seedom `seed + (k − 1)`. Očitanje 1 je identično običnom
+  izvođenju. Sirovi brojevi astronomskih i numeroloških metoda ne ovise o seedu; kod njih se može
+  promijeniti samo popuna brojeva koje metoda nije sama odredila. Primarni listić svakog očitanja je
+  ensemble s jednakim težinama; `combinations.json` dobiva `readings`, `tickets` i `coverage`
+  (različiti listići, pokriveni brojevi, zajednički brojevi po parovima), a izvještaj odjeljak
+  „Listići po očitanjima”.
+* `--backtest-from DIR` ponovno koristi backtest ranijeg izvođenja umjesto da ga računa: backtest ovisi
+  samo o konfiguraciji i povijesnim podacima, ne o datumu izvlačenja. Prije ponovne upotrebe
+  uspoređuju se SHA-256 `config.yaml` i datoteka s povijesti iz `DIR/manifest.json`; ako se razlikuju,
+  pipeline staje. Status u izvještaju i manifestu je „ponovno korišten” s putanjom i vremenom izvora.
+
+Očitanja ne mijenjaju vjerojatnost dobitka; četiri listića su četiri jednako (ne)vjerojatne
+kombinacije, i to međusobno korelirane (ensemble ih gradi iz istih determinističkih metoda, pa
+dijele 8–9 od 11 brojeva).
 
 ## Struktura
 
@@ -225,6 +250,25 @@ metode su u `results/final/combinations.json` i u izvještaju.
 Ove kombinacije imaju točno istu vjerojatnost kao bilo koje druge: Sve ili Ništa 11/11 (ili 0/11)
 1 : 705 432, Eurojackpot 5 + 2 1 : 139 838 160, Joker svih 6 znamenki 1 : 1 000 000. Eurojackpot i
 Joker kombinacije nisu ni backtestirane (nema podataka).
+
+### Četiri očitanja za 2026-10-24 19:00 (Zagreb)
+
+Izvođenje `--draw-date 2026-10-24 --readings 4 --backtest-from results`, rezultati u
+`results/draw_2026-10-24/` (izvještaj: [`results/draw_2026-10-24/REPORT.md`](results/draw_2026-10-24/REPORT.md)).
+Sve ili Ništa, ensemble s jednakim težinama po očitanju:
+
+| Očitanje | Seed | Sve ili Ništa 11/22 |
+|---|---|---|
+| 1 | 20261023 | 01 02 04 05 06 07 08 09 10 11 18 |
+| 2 | 20261024 | 01 02 03 04 07 08 09 10 11 14 18 |
+| 3 | 20261025 | 01 02 03 04 05 06 07 08 09 10 15 |
+| 4 | 20261026 | 01 02 04 05 07 08 09 10 11 12 14 |
+
+Četiri listića pokrivaju 15 od 22 broja (13, 16, 17, 19–22 nisu ni na jednom) i dijele 8–9 brojeva
+po paru. Ta **sklonost malim brojevima** je strukturno svojstvo ensemblea: numerološke metode daju
+pretežno jednoznamenkaste sirove brojeve, Meihua brojeve trigrama 1–8, pa Borda zbroj sustavno
+favorizira 1–11. Na očekivani broj pogodaka to ne utječe (5.5 za svaki listić), ali listići su
+međusobno korelirani. Pojedinačne metode (tablice u izvještaju) su raznolikije.
 
 ## Reproducibilnost
 

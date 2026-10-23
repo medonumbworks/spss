@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from methods.common import MethodOutput
 
-STATUS_HR = {"ran": "izvršeno", "partial": "djelomično", "failed": "neuspjelo", "skipped": "preskočeno",
+STATUS_HR = {"ran": "izvršeno", "partial": "djelomično", "failed": "neuspjelo", "skipped": "preskočeno", "reused": "ponovno korišten",
              "not_run": "nije pokrenuto"}
 STRATEGY_HR = {
     "ensemble_equal": "Ensemble (Borda, jednake težine) – primarni",
@@ -36,6 +36,14 @@ def _nums(xs):
     return " ".join(f"{n:02d}" for n in xs)
 
 
+def _ticket(game_key: str, picks: dict) -> str:
+    if game_key == "eurojackpot":
+        return f"{_nums(picks['main'])} + {_nums(picks['euro'])}"
+    if game_key == "joker":
+        return "".join(str(d) for d in picks["digits"])
+    return _nums(picks["main"])
+
+
 def _label(key: str, outputs: dict[str, MethodOutput]) -> str:
     if key in outputs:
         return outputs[key].label
@@ -55,7 +63,14 @@ def render(cfg: dict, manifest: dict, combinations: dict, backtests: dict, theor
           f"* Izvlačenje: {inp['draw_local']} ({inp['draw_place']}) = {inp['draw_utc']} UTC",
           f"* Ime: {'zadano' if cfg['subject'].get('name') else 'nije zadano (izračuni koji traže ime su preskočeni)'}",
           f"* Seed: {cfg['seed']}; konfiguracija SHA-256 `{manifest['config_sha256'][:16]}…`, "
-          f"kod SHA-256 `{manifest['code_sha256'][:16]}…`", ""]
+          f"kod SHA-256 `{manifest['code_sha256'][:16]}…`"]
+    n_readings = combinations.get("n_readings", 1)
+    if n_readings > 1:
+        seeds = ", ".join(str(r["seed"]) for r in combinations["readings"])
+        L.append(f"* Očitanja: {n_readings} (seedovi {seeds}); očitanje k ponovno baca simulirane orakule "
+                 "(I Ching, tarot, Lenormand) i SHA-256 tie-break sa seedom + (k − 1). Sirovi brojevi astronomskih i "
+                 "numeroloških metoda ne ovise o seedu; mijenja se samo popuna brojeva koje metoda nije sama odredila.")
+    L.append("")
 
     L += ["## Što se stvarno izvršilo", "", "| Metoda | Status | Komponenta | Status komponente | Napomena |",
           "|---|---|---|---|---|"]
@@ -68,10 +83,36 @@ def render(cfg: dict, manifest: dict, combinations: dict, backtests: dict, theor
     L.append("")
     for g, b in manifest["backtests"].items():
         reason = f" – {REASON_HR.get(b['reason'], b['reason'])}" if b.get("reason") else ""
+        if b.get("reused_from"):
+            reason = (f" – ponovno korišten iz `{b['reused_from']['summary']}` (izrađen {b['reused_from']['generated_at']}); "
+                      "backtest ne ovisi o datumu ciljanog izvlačenja, a konfiguracija i podaci su nepromijenjeni")
         L.append(f"* Backtest {g}: **{STATUS_HR.get(b['status'], b['status'])}**{reason}")
     L.append("")
 
-    L += ["## Konačne kombinacije", "",
+    if n_readings > 1:
+        L += ["## Listići po očitanjima", "",
+              "Primarni listić svakog očitanja je ensemble s jednakim težinama (Borda). Svi listići imaju jednaku "
+              "vjerojatnost dobitka; razlike među njima dolaze samo iz ponovno bačenih simuliranih orakula i "
+              "ponovno izvučenog tie-breaka.", ""]
+        for game_key, tickets in combinations["tickets"].items():
+            L += [f"### {combinations['games'][game_key]['label']}", "",
+                  "| Očitanje | Seed | Ensemble (jednake težine) | Ensemble (težine iz treniranja) |", "|---|---|---|---|"]
+            for t, r in zip(tickets, combinations["readings"]):
+                ens = r["games"][game_key]["ensembles"]
+                tw = next((e["picks"] for k, e in ens.items() if k.startswith("ensemble_train")), None)
+                L.append(f"| {t['reading']} | {t['seed']} | **{_ticket(game_key, t['picks'])}** | "
+                         f"{_ticket(game_key, tw) if tw else '–'} |")
+            for pool_name, c in combinations["coverage"].get(game_key, {}).items():
+                size = cfg["games"][game_key]["pools"][[p["name"] for p in cfg["games"][game_key]["pools"]].index(pool_name)]["size"]
+                pairs = ", ".join(f"{i + 1}–{j + 1}: {c['pairwise_common'][i][j]}"
+                                  for i in range(len(tickets)) for j in range(i + 1, len(tickets)))
+                L += ["", f"Pokrivenost (`{pool_name}`): {c['distinct_tickets']} različitih listića od {len(tickets)}, "
+                      f"pokriveno {c['numbers_covered']}/{size} brojeva; nikad odigrani: "
+                      f"{', '.join(map(str, c['numbers_never_played'])) or 'nema'}. Zajednički brojevi po parovima "
+                      f"očitanja: {pairs}."]
+            L.append("")
+
+    L += [f"## Konačne kombinacije{' (očitanje 1)' if n_readings > 1 else ''}", "",
           "Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunjava reproducibilni "
           "SHA-256 tie-break (vidi README, „Mapiranje u raspon”).", ""]
     for game_key, g in combinations["games"].items():
@@ -115,10 +156,14 @@ def render(cfg: dict, manifest: dict, combinations: dict, backtests: dict, theor
 
     for game_key, bt in backtests.items():
         L += [f"## Backtest: {game_key}", ""]
-        if bt.get("status") != "ran":
+        if bt.get("status") not in ("ran", "reused"):
             L += [f"Nije pokrenut: {REASON_HR.get(bt.get('reason'), bt.get('reason'))}. Bez povijesnih izvlačenja nema evaluacije; "
                   "kombinacije za ovu igru nisu testirane ni na čemu.", ""]
             continue
+        if bt.get("status") == "reused":
+            L += [f"Ponovno korišten iz `{bt['reused_from']['summary']}` (izrađen {bt['reused_from']['generated_at']}), "
+                  "bez ponovnog izračuna: backtest ovisi samo o konfiguraciji i povijesnim podacima, koji su provjereno "
+                  "nepromijenjeni (SHA-256), a ne o datumu ciljanog izvlačenja.", ""]
         v, sp = bt["validation"], bt["split"]
         L += ["### Podaci", "",
               f"* Datoteka `{v['file']}`: {v['rows_in_file']} redaka, {v['complete_draws']} potpunih izvlačenja "
@@ -235,7 +280,7 @@ def render(cfg: dict, manifest: dict, combinations: dict, backtests: dict, theor
     L += ["## Zaključak", ""]
     concl = []
     for game_key, bt in backtests.items():
-        if bt.get("status") != "ran":
+        if bt.get("status") not in ("ran", "reused"):
             concl.append(f"* {game_key}: backtest nije bio moguć ({REASON_HR.get(bt.get('reason'), bt.get('reason'))}); o uspješnosti se ne može reći ništa.")
             continue
         for pool_name, pr in bt["results"]["pools"].items():
