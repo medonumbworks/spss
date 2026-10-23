@@ -46,17 +46,23 @@ Rezultati idu u `results/`:
 ```
 
 * `--draw-date` / `--draw-time` mijenjaju samo trenutak izvlačenja (ostalo ostaje iz `config.yaml`).
-* `--readings N` daje N **očitanja**: očitanje *k* ponovno baca simulirane orakule (I Ching, tarot,
-  Lenormand) i SHA-256 tie-break sa seedom `seed + (k − 1)`. Očitanje 1 je identično običnom
-  izvođenju. Sirovi brojevi astronomskih i numeroloških metoda ne ovise o seedu; kod njih se može
-  promijeniti samo popuna brojeva koje metoda nije sama odredila. Primarni listić svakog očitanja je
-  ensemble s jednakim težinama; `combinations.json` dobiva `readings`, `tickets` i `coverage`
-  (različiti listići, pokriveni brojevi, zajednički brojevi po parovima), a izvještaj odjeljak
-  „Listići po očitanjima”.
-* `--backtest-from DIR` ponovno koristi backtest ranijeg izvođenja umjesto da ga računa: backtest ovisi
-  samo o konfiguraciji i povijesnim podacima, ne o datumu izvlačenja. Prije ponovne upotrebe
-  uspoređuju se SHA-256 `config.yaml` i datoteka s povijesti iz `DIR/manifest.json`; ako se razlikuju,
-  pipeline staje. Status u izvještaju i manifestu je „ponovno korišten” s putanjom i vremenom izvora.
+* `--readings N` daje N **očitanja**: očitanje *k* koristi seed `seed + (k − 1)` i njime ponovno baca
+  simulirane dijelove orakula (I Ching, miješanje tarota, Lenormandov Grand Tableau) te ponovno
+  izvlači SHA-256 tie-break svake metode; tie-break ensemblea dodatno se soli rednim brojem očitanja.
+  Očitanje 1 je identično običnom izvođenju. Sirovi brojevi Meihue, zapadne i vedske astrologije,
+  pitagorejske i kaldejske numerologije te gematrije ne ovise o seedu; kod njih se može promijeniti
+  samo popuna brojeva koje metoda nije sama odredila. Primarni listić svakog očitanja je ensemble s
+  jednakim težinama; `combinations.json` dobiva `readings`, `tickets` i `coverage` (različiti listići,
+  pokriveni brojevi, zajednički brojevi po parovima), a izvještaj odjeljak „Listići po očitanjima”.
+  Ako metoda padne u nekom očitanju, to piše u manifestu (`readings[*].not_ran`) i u izvještaju.
+* `--backtest-from DIR` ponovno koristi backtest ranijeg izvođenja umjesto da ga računa: backtest ne
+  ovisi o datumu izvlačenja, nego o konfiguraciji, povijesnim podacima i kodu koji ga računa. Sve
+  troje se prije upotrebe uspoređuje sa SHA-256 iz `DIR/manifest.json` (`config_sha256`,
+  `history_files_sha256`, `backtest_code_sha256`; potonji pokriva `methods/` i `evaluation/` bez
+  `report.py`, koji samo formatira već izračunate brojeve). Bilo kakva razlika, manifest bez tih
+  polja, nepostojeći `DIR` ili `DIR` jednak `--results` zaustavljaju pipeline s objašnjenjem — tipfeler
+  se nikad ne pretvori u tiho ponovno računanje. Status u izvještaju i manifestu je „ponovno korišten”
+  s putanjom izvora (relativnom na direktorij pipelinea) i provjerenim SHA-256 vrijednostima.
 
 Očitanja ne mijenjaju vjerojatnost dobitka; četiri listića su četiri jednako (ne)vjerojatne
 kombinacije, i to međusobno korelirane (ensemble ih gradi iz istih determinističkih metoda, pa
@@ -265,7 +271,7 @@ Sve ili Ništa, ensemble s jednakim težinama po očitanju:
 | 4 | 20261026 | 01 02 04 05 07 08 09 10 11 12 14 |
 
 Četiri listića pokrivaju 15 od 22 broja (13, 16, 17, 19–22 nisu ni na jednom) i dijele 8–9 brojeva
-po paru. Ta **sklonost malim brojevima** je strukturno svojstvo ensemblea: numerološke metode daju
+po paru; pokrivenost je opis odnosa među listićima, a ne mjera kvalitete. Ta **sklonost malim brojevima** je strukturno svojstvo ensemblea: numerološke metode daju
 pretežno jednoznamenkaste sirove brojeve, Meihua brojeve trigrama 1–8, pa Borda zbroj sustavno
 favorizira 1–11. Na očekivani broj pogodaka to ne utječe (5.5 za svaki listić), ali listići su
 međusobno korelirani. Pojedinačne metode (tablice u izvještaju) su raznolikije.
@@ -274,6 +280,9 @@ međusobno korelirani. Pojedinačne metode (tablice u izvještaju) su raznolikij
 
 * Jedan globalni seed (`seed: 20261023`); svako „slučajno” bacanje ili miješanje je PCG64 generator
   sjemen SHA-256-om ulaza, pa isti ulaz uvijek daje isti listić.
-* JSON se piše sa sortiranim ključevima i zaokruženim decimalama; dva uzastopna izvođenja daju
-  bajt-identične datoteke osim `generated_at` u `manifest.json`.
-* `manifest.json` bilježi SHA-256 konfiguracije i svih `.py` datoteka, verzije paketa i Pythona.
+* JSON se piše sa sortiranim ključevima i zaokruženim decimalama; dva izvođenja s istim argumentima
+  daju bajt-identične datoteke osim `generated_at` u `manifest.json`. (Izvještaj imenuje vlastiti
+  direktorij s rezultatima, pa se ta jedna rečenica mijenja ako se promijeni `--results`.)
+* `manifest.json` bilježi SHA-256 konfiguracije, svih `.py` datoteka (`code_sha256`), koda koji računa
+  backtest (`backtest_code_sha256`) i priloženih datoteka s poviješću, argumente naredbenog retka,
+  verzije paketa i Pythona.

@@ -7,7 +7,7 @@
 * Rođenje: 1991-05-31T18:20:00+02:00 (Zadar) = 1991-05-31T16:20:00+00:00 UTC
 * Izvlačenje: 2026-10-23T19:00:00+02:00 (Zagreb) = 2026-10-23T17:00:00+00:00 UTC
 * Ime: nije zadano (izračuni koji traže ime su preskočeni)
-* Seed: 20261023; konfiguracija SHA-256 `0d284f49b32f45c6…`, kod SHA-256 `dec08a52cff473bd…`
+* Seed: 20261023; konfiguracija SHA-256 `0d284f49b32f45c6…`, kod SHA-256 `7894ce791d377349…`
 
 ## Što se stvarno izvršilo
 
@@ -43,9 +43,9 @@
 | Lenormand (36 karata, Grand Tableau) | izvršeno | day_of_month_cards | izvršeno | experimental |
 |  |  | seeded_grand_tableau | izvršeno | 4 x 9 |
 
-* Backtest sve_ili_nista: **izvršeno**
-* Backtest eurojackpot: **nije pokrenuto** – nije priložena datoteka s povijesnim izvlačenjima
-* Backtest joker: **nije pokrenuto** – nije priložena datoteka s povijesnim izvlačenjima
+* Backtest sve_ili_nista: **izvršen**
+* Backtest eurojackpot: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
+* Backtest joker: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
 
 ## Konačne kombinacije
 
@@ -223,4 +223,4 @@ Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesn
 * eurojackpot: backtest nije bio moguć (nije priložena datoteka s povijesnim izvlačenjima); o uspješnosti se ne može reći ništa.
 * joker: backtest nije bio moguć (nije priložena datoteka s povijesnim izvlačenjima); o uspješnosti se ne može reći ništa.
 
-Detalji, izvori i ograničenja: `README.md`. Svi međurezultati: `results/final/intermediate/*.json`, `results/backtest/*/summary.json`, `results/backtest/*/predictions/*.json`.
+Detalji, izvori i ograničenja: `README.md`. Svi međurezultati su u direktoriju s rezultatima ovog pokretanja (`/home/user/spss/esoteric_lottery/results`): `final/combinations.json`, `final/intermediate/*.json`, `backtest/*/summary.json`, `backtest/*/predictions/*.json`.

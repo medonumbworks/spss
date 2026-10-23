@@ -90,23 +90,40 @@ def file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def code_digest() -> str:
+def _digest(paths: list[Path]) -> str:
     h = hashlib.sha256()
-    for p in sorted([ROOT / "main.py", *ROOT.glob("methods/*.py"), *ROOT.glob("evaluation/*.py")]):
+    for p in sorted(set(paths)):
         h.update(p.relative_to(ROOT).as_posix().encode())
         h.update(p.read_bytes())
     return h.hexdigest()
 
 
-def history_hashes(cfg: dict) -> dict[str, str]:
-    out = {}
+def code_digest() -> str:
+    """Every .py file of the pipeline."""
+    return _digest([ROOT / "main.py", *ROOT.glob("methods/*.py"), *ROOT.glob("evaluation/*.py")])
+
+
+def backtest_code_digest() -> str:
+    """The code a backtest result depends on: everything except the report renderer,
+    which only formats already-computed numbers. Reuse of a backtest requires this to
+    be unchanged."""
+    return _digest([ROOT / "main.py", *ROOT.glob("methods/*.py"),
+                    *(p for p in ROOT.glob("evaluation/*.py") if p.name != "report.py")])
+
+
+def history_hashes(cfg: dict, required: bool = True) -> dict[str, str | None]:
+    """SHA-256 of every supplied history file. With ``required=False`` a missing file is
+    recorded as null instead of raising (``--skip-backtest`` never reads them)."""
+    out: dict[str, str | None] = {}
     for hcfg in (cfg.get("history") or {}).values():
         if not hcfg:
             continue
-        out[hcfg["csv"]] = file_sha256(ROOT / hcfg["csv"])
-        x = hcfg.get("crosscheck_xlsx")
-        if x:
-            out[x["path"]] = file_sha256(ROOT / x["path"])
+        paths = [hcfg["csv"]] + ([hcfg["crosscheck_xlsx"]["path"]] if hcfg.get("crosscheck_xlsx") else [])
+        for rel in paths:
+            if required or (ROOT / rel).exists():
+                out[rel] = file_sha256(ROOT / rel)
+            else:
+                out[rel] = None
     return out
 
 
@@ -131,22 +148,48 @@ def run_final(methods, subject, event, games, out_dir: Path) -> dict[str, Method
     return outputs
 
 
-def reuse_backtest(from_dir: Path, game_key: str, config_sha: str, data_hashes: dict) -> dict | None:
-    """A previous run's backtest summary, after checking that config and data are unchanged."""
-    summary_path = from_dir / "backtest" / game_key / "summary.json"
-    if not summary_path.exists():
-        return None
+def reuse_backtest(from_dir: Path, game_key: str, config_sha: str, data_hashes: dict,
+                   code_sha: str) -> dict | None:
+    """A previous run's backtest summary, or None if that run has no backtest for this game.
+
+    A backtest result depends on the configuration, the history files and the code that
+    computes it — not on the target draw. All three are therefore verified against the
+    source run's manifest, and anything missing or different stops the pipeline rather
+    than silently recomputing (a mistyped directory must not look like a fresh run).
+    """
     manifest_path = from_dir / "manifest.json"
     if not manifest_path.exists():
-        raise SystemExit(f"--backtest-from: {manifest_path} is missing, the previous run cannot be verified")
+        raise SystemExit(f"--backtest-from: {manifest_path} does not exist, so nothing can be reused from there "
+                         "(check the path; it is relative to the current directory)")
     prev = json.loads(manifest_path.read_text(encoding="utf-8"))
     if prev.get("config_sha256") != config_sha:
         raise SystemExit(f"--backtest-from: config.yaml changed since {from_dir} was produced; rerun the backtest")
-    if prev.get("history_files_sha256") not in (None, data_hashes):
+    prev_data = prev.get("history_files_sha256")
+    if prev_data is None:
+        raise SystemExit(f"--backtest-from: {manifest_path} has no history_files_sha256, so the data behind its "
+                         "backtest cannot be verified; rerun the backtest")
+    if prev_data != data_hashes:
         raise SystemExit(f"--backtest-from: history files changed since {from_dir} was produced; rerun the backtest")
+    prev_code = prev.get("backtest_code_sha256")
+    if prev_code is None:
+        raise SystemExit(f"--backtest-from: {manifest_path} has no backtest_code_sha256 (it predates this check); "
+                         "rerun the backtest")
+    if prev_code != code_sha:
+        raise SystemExit(f"--backtest-from: the code that computes the backtest changed since {from_dir} was "
+                         "produced; rerun the backtest")
+    summary_path = from_dir / "backtest" / game_key / "summary.json"
+    if not summary_path.exists():
+        return None
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     summary["status"] = "reused"
-    summary["reused_from"] = {"summary": str(summary_path), "generated_at": prev.get("generated_at"),
+    # The path is stored relative to the pipeline directory so the report does not depend
+    # on the current working directory; no timestamp, so reruns stay byte-identical.
+    try:
+        rel = summary_path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        rel = str(summary_path.resolve())
+    summary["reused_from"] = {"summary": rel, "generated_at": prev.get("generated_at"),
+                              "config_sha256": config_sha, "backtest_code_sha256": prev_code,
                               "code_sha256": prev.get("code_sha256")}
     return summary
 
@@ -200,7 +243,11 @@ def main(argv: list[str] | None = None) -> int:
     subject, games = subject_of(cfg), games_from_config(cfg)
     event = event_of(cfg, args.draw_date, args.draw_time)
     seed = int(cfg["seed"])
-    config_sha, data_hashes = file_sha256(cfg_path), history_hashes(cfg)
+    config_sha = file_sha256(cfg_path)
+    data_hashes = history_hashes(cfg, required=not args.skip_backtest)
+    bt_code_sha = backtest_code_digest()
+    if args.backtest_from and Path(args.backtest_from).resolve() == out.resolve():
+        ap.error("--backtest-from must not be the same directory as --results (the provenance would point at itself)")
 
     print(f"[1/4] methods for the draw {event.local.isoformat()} ({event.place.name}), {args.readings} reading(s)")
     readings = []
@@ -213,8 +260,8 @@ def main(argv: list[str] | None = None) -> int:
             for o in outputs_k.values():
                 print(f"      {o.key:<18} {o.status}")
         else:
-            print(f"      reading {k} (seed {seed_k}): " + ", ".join(f"{o.key}={o.status}" for o in outputs_k.values()
-                                                                   if o.status != "ran") or "all ran")
+            odd = ", ".join(f"{o.key}={o.status}" for o in outputs_k.values() if o.status != "ran")
+            print(f"      reading {k} (seed {seed_k}): " + (odd or "all ran"))
     outputs = readings[0]["outputs"]
     methods = build_methods(cfg)
 
@@ -229,7 +276,8 @@ def main(argv: list[str] | None = None) -> int:
             backtests[game_key] = {"status": "not_run", "reason": "no historical draw file supplied"}
             print(f"      {game_key}: not run (no historical draw file supplied)")
             continue
-        reused = reuse_backtest(Path(args.backtest_from), game_key, config_sha, data_hashes) if args.backtest_from else None
+        reused = (reuse_backtest(Path(args.backtest_from), game_key, config_sha, data_hashes, bt_code_sha)
+                  if args.backtest_from else None)
         if reused:
             backtests[game_key] = reused
             print(f"      {game_key}: reused {reused['reused_from']['summary']}")
@@ -291,9 +339,10 @@ def main(argv: list[str] | None = None) -> int:
     manifest = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "python": platform.python_version(), "packages": versions,
-        "config_sha256": config_sha, "code_sha256": code_digest(), "history_files_sha256": data_hashes,
-        "git_commit_at_run": git_commit(),
-        "command_line": {"draw_date": args.draw_date, "draw_time": args.draw_time, "readings": args.readings,
+        "config_sha256": config_sha, "code_sha256": code_digest(), "backtest_code_sha256": bt_code_sha,
+        "history_files_sha256": data_hashes, "git_commit_at_run": git_commit(),
+        "command_line": {"config": args.config, "results": args.results, "draw_date": args.draw_date,
+                         "draw_time": args.draw_time, "readings": args.readings,
                          "skip_backtest": args.skip_backtest, "backtest_from": args.backtest_from},
         "inputs": {"birth_local": subject.birth_local.isoformat(), "birth_utc": subject.birth_utc.isoformat(),
                    "birth_place": subject.place.name, "draw_local": event.local.isoformat(),
@@ -301,7 +350,10 @@ def main(argv: list[str] | None = None) -> int:
         "methods": {k: {"status": o.status, "kind": o.kind, "error": o.error,
                         "components": [to_jsonable(c) for c in o.components]} for k, o in outputs.items()},
         "readings": [{"reading": r["reading"], "seed": r["seed"],
-                      "statuses": {k: o.status for k, o in r["outputs"].items()}} for r in readings],
+                      "statuses": {k: o.status for k, o in r["outputs"].items()},
+                      "not_ran": {k: {"status": o.status, "error": o.error,
+                                      "components": [to_jsonable(c) for c in o.components if c.status != "ran"]}
+                                  for k, o in r["outputs"].items() if o.status != "ran"}} for r in readings],
         "backtests": {k: {"status": v.get("status"), "reason": v.get("reason"),
                           "failed_methods": list(v.get("failed_methods", {})), "reused_from": v.get("reused_from")}
                       for k, v in backtests.items()},
