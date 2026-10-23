@@ -1,0 +1,775 @@
+{
+  "components": [
+    {
+      "detail": "Placidus (P), Moshier ephemeris",
+      "name": "natal_chart",
+      "status": "ran"
+    },
+    {
+      "detail": "",
+      "name": "transit_chart",
+      "status": "ran"
+    },
+    {
+      "detail": "38 aspects within orb",
+      "name": "transit_to_natal_aspects",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "sve_ili_nista": {
+      "main": 11
+    }
+  },
+  "digit_sequence": [
+    210,
+    358,
+    230,
+    211,
+    134,
+    143
+  ],
+  "error": null,
+  "intermediate": {
+    "aspects_transit_to_natal": [
+      {
+        "aspect": "square",
+        "deviation": 0.0079355825,
+        "natal": "MC",
+        "strength": 0.9986774029,
+        "transit": "ASC"
+      },
+      {
+        "aspect": "opposition",
+        "deviation": 0.0528350631,
+        "natal": "Mars",
+        "strength": 0.9933956171,
+        "transit": "Pluto"
+      },
+      {
+        "aspect": "sextile",
+        "deviation": 0.122382937,
+        "natal": "Sun",
+        "strength": 0.9694042658,
+        "transit": "Saturn"
+      },
+      {
+        "aspect": "square",
+        "deviation": 0.5446118055,
+        "natal": "ASC",
+        "strength": 0.9092313658,
+        "transit": "Mars"
+      },
+      {
+        "aspect": "trine",
+        "deviation": 0.7600549603,
+        "natal": "Mars",
+        "strength": 0.8733241733,
+        "transit": "Neptune"
+      },
+      {
+        "aspect": "opposition",
+        "deviation": 0.8332669886,
+        "natal": "Mercury",
+        "strength": 0.8958416264,
+        "transit": "Mercury"
+      },
+      {
+        "aspect": "trine",
+        "deviation": 0.8965124814,
+        "natal": "Jupiter",
+        "strength": 0.8505812531,
+        "transit": "Saturn"
+      },
+      {
+        "aspect": "square",
+        "deviation": 1.4495274675,
+        "natal": "Mercury",
+        "strength": 0.7584120887,
+        "transit": "Jupiter"
+      },
+      {
+        "aspect": "trine",
+        "deviation": 1.7113862241,
+        "natal": "Saturn",
+        "strength": 0.7147689626,
+        "transit": "Uranus"
+      },
+      {
+        "aspect": "sextile",
+        "deviation": 1.9315429324,
+        "natal": "Mars",
+        "strength": 0.5171142669,
+        "transit": "Uranus"
+      },
+      {
+        "aspect": "square",
+        "deviation": 2.0045905866,
+        "natal": "Mars",
+        "strength": 0.6659015689,
+        "transit": "Venus"
+      },
+      {
+        "aspect": "opposition",
+        "deviation": 2.136816569,
+        "natal": "Mars",
+        "strength": 0.7328979289,
+        "transit": "MC"
+      },
+      {
+        "aspect": "sextile",
+        "deviation": 2.160472683,
+        "natal": "Venus",
+        "strength": 0.4598818292,
+        "transit": "ASC"
+      },
+      {
+        "aspect": "conjunction",
+        "deviation": 2.5513941195,
+        "natal": "Pluto",
+        "strength": 0.6810757351,
+        "transit": "Mercury"
+      },
+      {
+        "aspect": "square",
+        "deviation": 2.7237324648,
+        "natal": "Mars",
+        "strength": 0.5460445892,
+        "transit": "Sun"
+      },
+      {
+        "aspect": "sextile",
+        "deviation": 3.1703423564,
+        "natal": "Saturn",
+        "strength": 0.2074144109,
+        "transit": "Saturn"
+      },
+      {
+        "aspect": "square",
+        "deviation": 3.2429753638,
+        "natal": "Uranus",
+        "strength": 0.459504106,
+        "transit": "Saturn"
+      },
+      {
+        "aspect": "conjunction",
+        "deviation": 3.4340716402,
+        "natal": "MC",
+        "strength": 0.570741045,
+        "transit": "Jupiter"
+      },
+      {
+        "aspect": "trine",
+        "deviation": 3.5484578308,
+        "natal": "Venus",
+        "strength": 0.4085903615,
+        "transit": "Mercury"
+      },
+      {
+        "aspect": "conjunction",
+        "deviation": 3.5900940934,
+        "natal": "Saturn",
+        "strength": 0.5512382383,
+        "transit": "Pluto"
+      },
+      {
+        "aspect": "sextile",
+        "deviation": 3.6325227029,
+        "natal": "MC",
+        "strength": 0.0918693243,
+        "transit": "Sun"
+      },
+      {
+        "aspect": "trine",
+        "deviation": 3.872063145,
+        "natal": "Venus",
+        "strength": 0.3546561425,
+        "transit": "Moon"
+      },
+      {
+        "aspect": "sextile",
+        "deviation": 3.9852160991,
+        "natal": "Jupiter",
+        "strength": 0.0036959752,
+        "transit": "Uranus"
+      },
+      {
+        "aspect": "square",
+        "deviation": 4.064299735,
+        "natal": "Pluto",
+        "strength": 0.3226167108,
+        "transit": "Mars"
+      },
+      {
+        "aspect": "trine",
+        "deviation": 4.6526002882,
+        "natal": "Mars",
+        "strength": 0.2245666186,
+        "transit": "Moon"
+      },
+      {
+        "aspect": "square",
+        "deviation": 4.7363175125,
+        "natal": "Moon",
+        "strength": 0.2106137479,
+        "transit": "Saturn"
+      },
+      {
+        "aspect": "conjunction",
+        "deviation": 4.7593456435,
+        "natal": "Sun",
+        "strength": 0.4050817946,
+        "transit": "Uranus"
+      },
+      {
+        "aspect": "square",
+        "deviation": 4.8341885757,
+        "natal": "Pluto",
+        "strength": 0.1943019041,
+        "transit": "Jupiter"
+      },
+      {
+        "aspect": "conjunction",
+        "deviation": 4.8756635252,
+        "natal": "Mercury",
+        "strength": 0.3905420593,
+        "transit": "ASC"
+      },
+      {
+        "aspect": "conjunction",
+        "deviation": 5.3944258499,
+        "natal": "Jupiter",
+        "strength": 0.3256967688,
+        "transit": "Mars"
+      },
+      {
+        "aspect": "square",
+        "deviation": 5.6475197432,
+        "natal": "Saturn",
+        "strength": 0.0587467095,
+        "transit": "Venus"
+      },
+      {
+        "aspect": "square",
+        "deviation": 5.7168660964,
+        "natal": "MC",
+        "strength": 0.0471889839,
+        "transit": "Mercury"
+      },
+      {
+        "aspect": "conjunction",
+        "deviation": 5.7797457256,
+        "natal": "Saturn",
+        "strength": 0.2775317843,
+        "transit": "MC"
+      },
+      {
+        "aspect": "square",
+        "deviation": 5.8009309684,
+        "natal": "Venus",
+        "strength": 0.0331781719,
+        "transit": "Sun"
+      },
+      {
+        "aspect": "opposition",
+        "deviation": 5.8639239684,
+        "natal": "Jupiter",
+        "strength": 0.2670095039,
+        "transit": "Pluto"
+      },
+      {
+        "aspect": "conjunction",
+        "deviation": 6.071082049,
+        "natal": "ASC",
+        "strength": 0.2411147439,
+        "transit": "Mercury"
+      },
+      {
+        "aspect": "opposition",
+        "deviation": 6.3878468642,
+        "natal": "Venus",
+        "strength": 0.201519142,
+        "transit": "MC"
+      },
+      {
+        "aspect": "opposition",
+        "deviation": 7.6682557249,
+        "natal": "Saturn",
+        "strength": 0.0414680344,
+        "transit": "Mars"
+      }
+    ],
+    "jd_ut": {
+      "birth": 2448408.1805555555,
+      "draw": 2461337.2083333335
+    },
+    "natal_chart": {
+      "cusps": [
+        224.8850288633,
+        254.4098552276,
+        289.5935942214,
+        326.6729770087,
+        358.9466215753,
+        24.4871094463,
+        44.8850288633,
+        74.4098552276,
+        109.5935942214,
+        146.6729770087,
+        178.9466215753,
+        204.4871094463
+      ],
+      "house_system": "P",
+      "points": {
+        "ASC": {
+          "degree_in_sign": 14.8850288633,
+          "house": 1,
+          "lon": 224.8850288633,
+          "retrograde": false,
+          "sign": "Scorpio",
+          "sign_number": 8,
+          "speed": null
+        },
+        "Jupiter": {
+          "degree_in_sign": 8.9459912079,
+          "house": 9,
+          "lon": 128.9459912079,
+          "retrograde": false,
+          "sign": "Leo",
+          "sign_number": 5,
+          "speed": 0.1571460205
+        },
+        "MC": {
+          "degree_in_sign": 26.6729770087,
+          "house": 10,
+          "lon": 146.6729770087,
+          "retrograde": false,
+          "sign": "Leo",
+          "sign_number": 5,
+          "speed": null
+        },
+        "Mars": {
+          "degree_in_sign": 3.0292321764,
+          "house": 9,
+          "lon": 123.0292321764,
+          "retrograde": false,
+          "sign": "Leo",
+          "sign_number": 5,
+          "speed": 0.5878976601
+        },
+        "Mercury": {
+          "degree_in_sign": 21.7893779009,
+          "house": 7,
+          "lon": 51.7893779009,
+          "retrograde": false,
+          "sign": "Taurus",
+          "sign_number": 2,
+          "speed": 1.7729229714
+        },
+        "Moon": {
+          "degree_in_sign": 14.5788212018,
+          "house": 2,
+          "lon": 284.5788212018,
+          "retrograde": false,
+          "sign": "Capricorn",
+          "sign_number": 10,
+          "speed": 11.7843492326
+        },
+        "Neptune": {
+          "degree_in_sign": 16.3031692606,
+          "house": 2,
+          "lon": 286.3031692606,
+          "retrograde": true,
+          "sign": "Capricorn",
+          "sign_number": 10,
+          "speed": -0.0201684658
+        },
+        "Pluto": {
+          "degree_in_sign": 18.4047167928,
+          "house": 1,
+          "lon": 228.4047167928,
+          "retrograde": true,
+          "sign": "Scorpio",
+          "sign_number": 8,
+          "speed": -0.0255321978
+        },
+        "Saturn": {
+          "degree_in_sign": 6.6721613329,
+          "house": 3,
+          "lon": 306.6721613329,
+          "retrograde": true,
+          "sign": "Aquarius",
+          "sign_number": 11,
+          "speed": -0.0231338496
+        },
+        "Sun": {
+          "degree_in_sign": 9.7201207523,
+          "house": 7,
+          "lon": 69.7201207523,
+          "retrograde": false,
+          "sign": "Gemini",
+          "sign_number": 3,
+          "speed": 0.9584043989
+        },
+        "Uranus": {
+          "degree_in_sign": 13.0854790531,
+          "house": 2,
+          "lon": 283.0854790531,
+          "retrograde": true,
+          "sign": "Capricorn",
+          "sign_number": 10,
+          "speed": -0.0313331155
+        },
+        "Venus": {
+          "degree_in_sign": 24.5045687431,
+          "house": 9,
+          "lon": 114.5045687431,
+          "retrograde": false,
+          "sign": "Cancer",
+          "sign_number": 4,
+          "speed": 1.0368922835
+        }
+      }
+    },
+    "point_weights": {
+      "natal:ASC": 2.1503461096,
+      "natal:Jupiter": 2.446983501,
+      "natal:MC": 2.7084767561,
+      "natal:Mars": 5.5532447629,
+      "natal:Mercury": 3.0447957745,
+      "natal:Moon": 1.2106137479,
+      "natal:Neptune": 1.0,
+      "natal:Pluto": 2.19799435,
+      "natal:Saturn": 2.85116814,
+      "natal:Sun": 2.3744860603,
+      "natal:Uranus": 1.459504106,
+      "natal:Venus": 2.4578256472,
+      "transit:ASC": 2.8491012915,
+      "transit:Jupiter": 2.5234550378,
+      "transit:MC": 2.2119488551,
+      "transit:Mars": 2.5990128797,
+      "transit:Mercury": 3.2738114508,
+      "transit:Moon": 1.5792227611,
+      "transit:Neptune": 1.8733241733,
+      "transit:Pluto": 2.8116433594,
+      "transit:Saturn": 3.6975177837,
+      "transit:Sun": 1.6710920854,
+      "transit:Uranus": 2.6406609993,
+      "transit:Venus": 1.7246482784
+    },
+    "transit_chart": {
+      "cusps": [
+        56.6650414261,
+        81.2791945652,
+        100.7953091771,
+        120.8924156073,
+        146.3996747716,
+        184.8190757892,
+        236.6650414261,
+        261.2791945652,
+        280.7953091771,
+        300.8924156073,
+        326.3996747716,
+        4.8190757892
+      ],
+      "house_system": "P",
+      "points": {
+        "ASC": {
+          "degree_in_sign": 26.6650414261,
+          "house": 1,
+          "lon": 56.6650414261,
+          "retrograde": false,
+          "sign": "Taurus",
+          "sign_number": 2,
+          "speed": null
+        },
+        "Jupiter": {
+          "degree_in_sign": 23.2389053685,
+          "house": 4,
+          "lon": 143.2389053685,
+          "retrograde": false,
+          "sign": "Leo",
+          "sign_number": 5,
+          "speed": 0.1395970552
+        },
+        "MC": {
+          "degree_in_sign": 0.8924156073,
+          "house": 10,
+          "lon": 300.8924156073,
+          "retrograde": false,
+          "sign": "Aquarius",
+          "sign_number": 11,
+          "speed": null
+        },
+        "Mars": {
+          "degree_in_sign": 14.3404170578,
+          "house": 4,
+          "lon": 134.3404170578,
+          "retrograde": false,
+          "sign": "Leo",
+          "sign_number": 5,
+          "speed": 0.5283452381
+        },
+        "Mercury": {
+          "degree_in_sign": 20.9561109123,
+          "house": 6,
+          "lon": 230.9561109123,
+          "retrograde": false,
+          "sign": "Scorpio",
+          "sign_number": 8,
+          "speed": 0.0767537501
+        },
+        "Moon": {
+          "degree_in_sign": 28.3766318881,
+          "house": 11,
+          "lon": 358.3766318881,
+          "retrograde": false,
+          "sign": "Pisces",
+          "sign_number": 12,
+          "speed": 13.4444978686
+        },
+        "Neptune": {
+          "degree_in_sign": 2.269177216,
+          "house": 11,
+          "lon": 2.269177216,
+          "retrograde": true,
+          "sign": "Aries",
+          "sign_number": 1,
+          "speed": -0.0236974441
+        },
+        "Pluto": {
+          "degree_in_sign": 3.0820672395,
+          "house": 10,
+          "lon": 303.0820672395,
+          "retrograde": false,
+          "sign": "Aquarius",
+          "sign_number": 11,
+          "speed": 0.003569577
+        },
+        "Saturn": {
+          "degree_in_sign": 9.8425036893,
+          "house": 12,
+          "lon": 9.8425036893,
+          "retrograde": true,
+          "sign": "Aries",
+          "sign_number": 1,
+          "speed": -0.0708443392
+        },
+        "Sun": {
+          "degree_in_sign": 0.3054997116,
+          "house": 6,
+          "lon": 210.3054997116,
+          "retrograde": false,
+          "sign": "Scorpio",
+          "sign_number": 8,
+          "speed": 0.9952383868
+        },
+        "Uranus": {
+          "degree_in_sign": 4.9607751088,
+          "house": 1,
+          "lon": 64.9607751088,
+          "retrograde": true,
+          "sign": "Gemini",
+          "sign_number": 3,
+          "speed": -0.0322408098
+        },
+        "Venus": {
+          "degree_in_sign": 1.0246415897,
+          "house": 6,
+          "lon": 211.0246415897,
+          "retrograde": true,
+          "sign": "Scorpio",
+          "sign_number": 8,
+          "speed": -0.6118850132
+        }
+      }
+    }
+  },
+  "key": "western_astrology",
+  "kind": "standard astronomy + experimental mapping",
+  "label": "Zapadna (tropska) astrologija",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        5,
+        8
+      ],
+      "main": [
+        8,
+        17,
+        18,
+        32,
+        43
+      ]
+    },
+    "joker": {
+      "digits": [
+        0,
+        8,
+        0,
+        1,
+        4,
+        3
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        1,
+        4,
+        5,
+        8,
+        9,
+        10,
+        13,
+        14,
+        15,
+        18,
+        19
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        5,
+        8,
+        10,
+        2,
+        3,
+        11,
+        4,
+        1,
+        12,
+        6,
+        7,
+        9
+      ],
+      "main": [
+        18,
+        43,
+        32,
+        8,
+        17,
+        10,
+        19,
+        21,
+        2,
+        42,
+        40,
+        1,
+        20,
+        9,
+        33,
+        30,
+        50,
+        16,
+        7,
+        29,
+        31,
+        41,
+        11,
+        44,
+        39,
+        3,
+        22,
+        49,
+        34,
+        15,
+        6,
+        28,
+        12,
+        38,
+        45,
+        4,
+        23,
+        48,
+        35,
+        14,
+        5,
+        27,
+        13,
+        37,
+        46,
+        24,
+        47,
+        36,
+        26,
+        25
+      ]
+    },
+    "joker": {
+      "digits": [
+        0,
+        8,
+        0,
+        1,
+        4,
+        3
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        8,
+        9,
+        19,
+        4,
+        14,
+        1,
+        18,
+        15,
+        5,
+        13,
+        10,
+        22,
+        7,
+        3,
+        20,
+        2,
+        17,
+        6,
+        16,
+        12,
+        21,
+        11
+      ]
+    }
+  },
+  "sequence": [
+    210,
+    358,
+    230,
+    211,
+    134,
+    143,
+    9,
+    64,
+    2,
+    303,
+    56,
+    300,
+    69,
+    284,
+    51,
+    114,
+    123,
+    128,
+    306,
+    283,
+    286,
+    228,
+    224,
+    146
+  ],
+  "sources": [
+    "Swiss Ephemeris 2.10 (Astrodienst), Moshier ephemeris, Placidus houses",
+    "Claudius Ptolemy, Tetrabiblos I.13 – the five aspects",
+    "Orbs and the zodiacal-density mapping are experimental, fixed a priori in config.yaml"
+  ],
+  "status": "ran"
+}

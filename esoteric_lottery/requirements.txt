@@ -1,0 +1,12 @@
+# Tested with Python 3.13 (Linux). Exact pins for reproducibility.
+# pyswisseph builds from source: use a virtualenv with a current setuptools
+# (python -m venv .venv && .venv/bin/pip install -U pip setuptools wheel).
+pyswisseph==2.10.3.2
+numpy==2.5.4
+scipy==1.18.1
+pandas==3.1.0
+scikit-learn==1.9.1
+PyYAML==6.0.3
+openpyxl==3.1.5
+tzdata==2026.5
+pytest==9.1.1

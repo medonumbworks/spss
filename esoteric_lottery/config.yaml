@@ -1,0 +1,98 @@
+# Esoteric lottery research pipeline – configuration.
+#
+# Everything that influences a number is here and was fixed BEFORE the first backtest
+# run (pre-registration). Nothing in this file may be changed in response to evaluation
+# results; see README.md, "Protokol".
+
+seed: 20261023            # global seed: seeded casts/shuffles, bootstrap, Monte Carlo
+
+subject:
+  name: null              # querent's full name; null -> name-based numerology/gematria are skipped
+  birth_date: "1991-05-31"
+  birth_time: "18:20"     # local civil time (zoneinfo gives CEST, UTC+2, for this date)
+  birth_place:
+    name: Zadar
+    lat: 44.1194           # city centre, GeoNames
+    lon: 15.2314
+    tz: Europe/Zagreb
+
+draw:
+  date: "2026-10-23"
+  time: "19:00"            # local civil time (CEST, UTC+2; DST ends 2026-10-25)
+  place:
+    name: Zagreb
+    lat: 45.8150
+    lon: 15.9819
+    tz: Europe/Zagreb
+
+games:
+  sve_ili_nista:
+    label: "Sve ili Ništa 11/22"
+    pools:
+      - {name: main, size: 22, pick: 11}
+  eurojackpot:
+    label: "Eurojackpot 5/50 + 2/12"
+    pools:
+      - {name: main, size: 50, pick: 5}
+      - {name: euro, size: 12, pick: 2}
+  joker:
+    label: "Joker (6 znamenki)"
+    pools:
+      - {name: digits, size: 10, pick: 6, kind: digits}
+
+methods:
+  meihua:
+    hour_basis: true_solar      # true_solar (sundial time, traditional) | civil
+  iching:
+    casts: 12                   # yarrow-stalk hexagrams cast per reading
+  western_astrology:
+    house_system: P             # Placidus
+    orbs: {conjunction: 8.0, opposition: 8.0, trine: 6.0, square: 6.0, sextile: 4.0}
+  vedic_astrology: {}
+  pythagorean: {}
+  chaldean: {}
+  gematria:
+    extra_texts: []             # optional Hebrew or Greek text (e.g. a name in Hebrew script)
+  tarot:
+    spread_size: 22
+  lenormand: {}
+
+history:
+  sve_ili_nista:
+    csv: data/sve_ili_nista_sva_kola.csv
+    sep: ";"
+    encoding: utf-8-sig
+    date_column: Datum
+    date_format: "%d.%m.%Y"
+    label_columns: [Godina, Kolo]
+    expected_frequency: daily
+    draw_time: "19:00"          # ASSUMPTION: the files carry no draw time; the target draw time is reused
+    pools:
+      main: [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11]
+    checks: {sum_column: Zbroj, even_column: Parni}
+    crosscheck_xlsx:
+      path: data/Sve_ili_Nista_sva_kola.xlsx
+      sheet: "Izvlačenja"
+      date_column: Datum
+      columns: [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10, B11]
+  eurojackpot: null             # no historical file supplied -> no backtest
+  joker: null                   # no historical file supplied -> no backtest
+
+evaluation:
+  evaluation_start: "2026-01-01"   # draws before: training (descriptive + fitting); from here: evaluation
+  primary_metric: mean_hits        # per draw, evaluation period
+  primary_test: exact_two_sided    # exact convolution of the hypergeometric null
+  correction: holm                 # family = every strategy evaluated on the pool (BH reported too)
+  alpha: 0.05
+  mc_replicates: 10000             # uniform random-ticket strategies
+  bootstrap_replicates: 10000
+  auc_bootstrap: 1000
+  quality_replicates: 2000
+  ensemble_beta: 0.5               # softmax temperature of the train-weighted ensemble (not tuned)
+  extreme_tail:
+    sve_ili_nista: [3, 8]          # secondary metric: hits <= 3 or >= 8 (both tails: "all" and "nothing")
+  controls:
+    hot_window: 30
+    logistic_warmup: 100
+    logistic_C: 1.0
+    cv_splits: 5

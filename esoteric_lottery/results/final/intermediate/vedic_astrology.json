@@ -1,0 +1,403 @@
+{
+  "components": [
+    {
+      "detail": "",
+      "name": "sidereal_positions_lahiri",
+      "status": "ran"
+    },
+    {
+      "detail": "",
+      "name": "panchanga",
+      "status": "ran"
+    },
+    {
+      "detail": "",
+      "name": "whole_sign_lagna",
+      "status": "ran"
+    },
+    {
+      "detail": "maha/antar/pratyantar",
+      "name": "vimshottari_dasha",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "sve_ili_nista": {
+      "main": 11
+    }
+  },
+  "digit_sequence": [
+    13,
+    26,
+    13,
+    25,
+    6,
+    1
+  ],
+  "error": null,
+  "intermediate": {
+    "ayanamsa_lahiri": {
+      "birth": 23.7371278743,
+      "draw": 24.2316145716
+    },
+    "draw_grahas": {
+      "Jupiter": {
+        "nakshatra": "Ashlesha",
+        "pada": 4,
+        "rashi": "Karka",
+        "sidereal_lon": 119.0050915429
+      },
+      "Ketu": {
+        "nakshatra": "Magha",
+        "pada": 1,
+        "rashi": "Simha",
+        "sidereal_lon": 122.2787351741
+      },
+      "Mars": {
+        "nakshatra": "Ashlesha",
+        "pada": 2,
+        "rashi": "Karka",
+        "sidereal_lon": 110.1066032323
+      },
+      "Mercury": {
+        "nakshatra": "Vishakha",
+        "pada": 3,
+        "rashi": "Tula",
+        "sidereal_lon": 206.7222970868
+      },
+      "Moon": {
+        "nakshatra": "Uttara Bhadrapada",
+        "pada": 1,
+        "rashi": "Meena",
+        "sidereal_lon": 334.1428180626
+      },
+      "Rahu": {
+        "nakshatra": "Dhanishta",
+        "pada": 3,
+        "rashi": "Kumbha",
+        "sidereal_lon": 302.2787351741
+      },
+      "Saturn": {
+        "nakshatra": "Uttara Bhadrapada",
+        "pada": 4,
+        "rashi": "Meena",
+        "sidereal_lon": 345.6086898638
+      },
+      "Sun": {
+        "nakshatra": "Chitra",
+        "pada": 4,
+        "rashi": "Tula",
+        "sidereal_lon": 186.071685886
+      },
+      "Venus": {
+        "nakshatra": "Swati",
+        "pada": 1,
+        "rashi": "Tula",
+        "sidereal_lon": 186.7908277642
+      }
+    },
+    "lagna": {
+      "birth": 201.1436666936,
+      "birth_rashi": "Tula",
+      "draw": 32.4312276006,
+      "draw_rashi": "Vrishabha"
+    },
+    "natal_grahas": {
+      "Jupiter": {
+        "nakshatra": "Pushya",
+        "pada": 4,
+        "rashi": "Karka",
+        "sidereal_lon": 105.2046290382
+      },
+      "Ketu": {
+        "nakshatra": "Punarvasu",
+        "pada": 3,
+        "rashi": "Mithuna",
+        "sidereal_lon": 87.4138108964
+      },
+      "Mars": {
+        "nakshatra": "Pushya",
+        "pada": 2,
+        "rashi": "Karka",
+        "sidereal_lon": 99.2878700066
+      },
+      "Mercury": {
+        "nakshatra": "Krittika",
+        "pada": 1,
+        "rashi": "Mesha",
+        "sidereal_lon": 28.0480157312
+      },
+      "Moon": {
+        "nakshatra": "Purva Ashadha",
+        "pada": 3,
+        "rashi": "Dhanu",
+        "sidereal_lon": 260.8374590321
+      },
+      "Rahu": {
+        "nakshatra": "Uttara Ashadha",
+        "pada": 1,
+        "rashi": "Dhanu",
+        "sidereal_lon": 267.4138108964
+      },
+      "Saturn": {
+        "nakshatra": "Shravana",
+        "pada": 1,
+        "rashi": "Makara",
+        "sidereal_lon": 282.9307991632
+      },
+      "Sun": {
+        "nakshatra": "Rohini",
+        "pada": 2,
+        "rashi": "Vrishabha",
+        "sidereal_lon": 45.9787585826
+      },
+      "Venus": {
+        "nakshatra": "Punarvasu",
+        "pada": 4,
+        "rashi": "Karka",
+        "sidereal_lon": 90.7632065734
+      }
+    },
+    "natal_moon": {
+      "nakshatra": 20,
+      "nakshatra_name": "Purva Ashadha",
+      "pada": 3
+    },
+    "panchanga_draw": {
+      "karana_index": 25,
+      "karana_name": "Kaulava",
+      "nakshatra": 26,
+      "nakshatra_name": "Uttara Bhadrapada",
+      "pada": 1,
+      "sunrise_utc": "2026-10-23T05:23:21.012611+00:00",
+      "tithi": 13,
+      "tithi_name": "Shukla Trayodashi",
+      "vara": 6,
+      "vara_name": "Shukravara (Venus)",
+      "yoga": 13,
+      "yoga_name": "Vyaghata"
+    },
+    "vimshottari_at_draw": {
+      "balance_at_birth_years": 8.7438114518,
+      "birth_nakshatra_lord": "Venus",
+      "periods": [
+        {
+          "length_years": 18.0,
+          "level": "maha",
+          "lord": "Rahu",
+          "number": 4,
+          "start_years_from_cycle": 43.0
+        },
+        {
+          "length_years": 2.4,
+          "level": "antar",
+          "lord": "Jupiter",
+          "number": 3,
+          "start_years_from_cycle": 45.7
+        },
+        {
+          "length_years": 0.34,
+          "level": "pratyantar",
+          "lord": "Mercury",
+          "number": 5,
+          "start_years_from_cycle": 46.4
+        }
+      ]
+    }
+  },
+  "key": "vedic_astrology",
+  "kind": "traditional quantities + experimental mapping",
+  "label": "Vedska astrologija (Jyotish, Panchanga, Vimshottari)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        2
+      ],
+      "main": [
+        4,
+        7,
+        13,
+        25,
+        26
+      ]
+    },
+    "joker": {
+      "digits": [
+        3,
+        6,
+        3,
+        5,
+        6,
+        1
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        12,
+        13,
+        20
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        2,
+        7,
+        4,
+        6,
+        5,
+        3,
+        8,
+        12,
+        11,
+        9,
+        10
+      ],
+      "main": [
+        13,
+        26,
+        7,
+        25,
+        4,
+        6,
+        1,
+        2,
+        5,
+        20,
+        12,
+        3,
+        9,
+        11,
+        14,
+        16,
+        15,
+        23,
+        10,
+        44,
+        40,
+        38,
+        22,
+        49,
+        39,
+        41,
+        27,
+        33,
+        36,
+        42,
+        8,
+        21,
+        19,
+        18,
+        30,
+        47,
+        34,
+        48,
+        31,
+        32,
+        24,
+        35,
+        17,
+        29,
+        37,
+        45,
+        28,
+        46,
+        43,
+        50
+      ]
+    },
+    "joker": {
+      "digits": [
+        3,
+        6,
+        3,
+        5,
+        6,
+        1
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        13,
+        4,
+        3,
+        7,
+        1,
+        6,
+        2,
+        5,
+        20,
+        12,
+        9,
+        11,
+        14,
+        16,
+        15,
+        10,
+        21,
+        17,
+        19,
+        18,
+        8,
+        22
+      ]
+    }
+  },
+  "sequence": [
+    13,
+    26,
+    13,
+    25,
+    6,
+    1,
+    2,
+    20,
+    7,
+    4,
+    3,
+    5,
+    7,
+    12,
+    4,
+    7,
+    4,
+    7,
+    12,
+    11,
+    5,
+    14,
+    26,
+    9,
+    16,
+    9,
+    15,
+    26,
+    23,
+    10
+  ],
+  "sources": [
+    "Brihat Parashara Hora Shastra (tr. R. Santhanam, 1984), ch. 46 – Vimshottari dasha",
+    "Surya Siddhanta / standard Panchanga definitions of tithi, nakshatra, yoga, karana, vara",
+    "Swiss Ephemeris SIDM_LAHIRI (Lahiri/Chitrapaksha ayanamsa, Indian Calendar Reform Committee 1955)",
+    "Planet numbers of Indian numerology (Sun 1 … Mars 9), e.g. Cheiro, Book of Numbers, 1926"
+  ],
+  "status": "ran"
+}
