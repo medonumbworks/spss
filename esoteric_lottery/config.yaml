@@ -78,6 +78,25 @@ history:
   eurojackpot: null             # no historical file supplied -> no backtest
   joker: null                   # no historical file supplied -> no backtest
 
+portfolio:
+  # Choosing which m of the candidate tickets to play TOGETHER. This cannot improve any
+  # single ticket (impossible), and cannot change the expected total hits (m x 5.5); it
+  # only decorrelates the m outcomes, which raises P(at least one ticket wins something).
+  # The objective depends on the pairwise overlaps alone, never on the drawn numbers.
+  enabled: true
+  tickets: 4
+  # Paying hit counts of Sve ili Ništa: symmetric tails. 11 or 0 is the jackpot tier,
+  # then 10/1, 9/2, 8/3; 4-7 pays nothing. The tier STRUCTURE agrees across public
+  # sources (lutrija.hr blocks automated access); the prize AMOUNTS do not, so no money
+  # figure is computed anywhere in this project.
+  paying_hits:
+    sve_ili_nista: [0, 1, 2, 3, 8, 9, 10, 11]
+  # A pair overlapping in 0 numbers is complementary: hits(A) + hits(Ā) = 11, so both
+  # land in a paying tier at the same time — no decorrelation. A pair overlapping in
+  # nearly all numbers is the same ticket twice. Both extremes are excluded.
+  overlap_range: [3, 8]
+  exact_evaluations: 200   # subsets scored by exact joint distribution, best proxy first
+
 evaluation:
   evaluation_start: "2026-01-01"   # draws before: training (descriptive + fitting); from here: evaluation
   primary_metric: mean_hits        # per draw, evaluation period

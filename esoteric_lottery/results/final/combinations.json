@@ -735,6 +735,583 @@
     }
   },
   "n_readings": 1,
+  "portfolio": {
+    "sve_ili_nista": {
+      "candidates": [
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "pythagorean"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            21
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "vedic_astrology"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            12,
+            13,
+            20
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "tarot"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            3,
+            7,
+            9,
+            10,
+            11,
+            13,
+            16,
+            18,
+            22
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "ensemble_equal"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            13,
+            15
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "chaldean"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            9,
+            14,
+            15,
+            16,
+            20
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "meihua"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            4,
+            6,
+            8,
+            9,
+            10,
+            15,
+            18,
+            19,
+            22
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "gematria"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            4,
+            8,
+            9,
+            10,
+            11,
+            15,
+            16,
+            21,
+            22
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "ensemble_train_weighted_sve_ili_nista"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            14,
+            15,
+            16
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "western_astrology"
+            }
+          ],
+          "ticket": [
+            1,
+            4,
+            5,
+            8,
+            9,
+            10,
+            13,
+            14,
+            15,
+            18,
+            19
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "lenormand"
+            }
+          ],
+          "ticket": [
+            1,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            16,
+            19
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "iching"
+            }
+          ],
+          "ticket": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            11,
+            14,
+            15,
+            17,
+            19,
+            20
+          ]
+        }
+      ],
+      "comparison": {
+        "chosen": {
+          "distribution_of_best_ticket_hits": {
+            "10": 0.0006861044,
+            "11": 5.6703e-06,
+            "4": 0.0028450652,
+            "5": 0.0811658672,
+            "6": 0.3545515372,
+            "7": 0.4017410608,
+            "8": 0.1419031175,
+            "9": 0.0171015775
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.688831808,
+            "1": 0.2791424262,
+            "2": 0.0307953141,
+            "3": 0.0012191111,
+            "4": 1.13406e-05
+          },
+          "expected_best_ticket_hits": 6.6527687998,
+          "expected_total_hits": 22.0,
+          "max_overlap": 7,
+          "min_overlap": 5,
+          "n_tickets": 4,
+          "one_in_at_least_one_paying": 3,
+          "p_at_least_one_jackpot_tier": 1.13406e-05,
+          "p_at_least_one_paying": 0.311168192,
+          "p_nothing_at_all": 0.688831808,
+          "pairwise_overlaps": [
+            6,
+            5,
+            6,
+            6,
+            7,
+            6
+          ],
+          "tickets": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              9,
+              12,
+              13,
+              20
+            ],
+            [
+              1,
+              2,
+              3,
+              7,
+              9,
+              10,
+              11,
+              13,
+              16,
+              18,
+              22
+            ],
+            [
+              1,
+              2,
+              4,
+              6,
+              8,
+              9,
+              10,
+              15,
+              18,
+              19,
+              22
+            ],
+            [
+              1,
+              2,
+              5,
+              6,
+              7,
+              9,
+              10,
+              11,
+              14,
+              15,
+              16
+            ]
+          ]
+        },
+        "same_ticket_m_times": {
+          "distribution_of_best_ticket_hits": {
+            "0": 1.4176e-06,
+            "1": 0.0001715261,
+            "10": 0.0001715261,
+            "11": 1.4176e-06,
+            "2": 0.0042881525,
+            "3": 0.0385933726,
+            "4": 0.1543734903,
+            "5": 0.302572041,
+            "6": 0.302572041,
+            "7": 0.1543734903,
+            "8": 0.0385933726,
+            "9": 0.0042881525
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.9138910625,
+            "4": 0.0861089375
+          },
+          "expected_best_ticket_hits": 5.5,
+          "expected_total_hits": 22.0,
+          "max_overlap": 11,
+          "min_overlap": 11,
+          "n_tickets": 4,
+          "one_in_at_least_one_paying": 12,
+          "p_at_least_one_jackpot_tier": 2.8351e-06,
+          "p_at_least_one_paying": 0.0861089375,
+          "p_nothing_at_all": 0.9138910625,
+          "pairwise_overlaps": [
+            11,
+            11,
+            11,
+            11,
+            11,
+            11
+          ],
+          "tickets": [
+            [
+              1,
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10,
+              11,
+              13,
+              15
+            ],
+            [
+              1,
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10,
+              11,
+              13,
+              15
+            ],
+            [
+              1,
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10,
+              11,
+              13,
+              15
+            ],
+            [
+              1,
+              2,
+              4,
+              5,
+              6,
+              7,
+              9,
+              10,
+              11,
+              13,
+              15
+            ]
+          ]
+        }
+      },
+      "distribution_of_best_ticket_hits": {
+        "10": 0.0006861044,
+        "11": 5.6703e-06,
+        "4": 0.0028450652,
+        "5": 0.0811658672,
+        "6": 0.3545515372,
+        "7": 0.4017410608,
+        "8": 0.1419031175,
+        "9": 0.0171015775
+      },
+      "distribution_of_winning_tickets": {
+        "0": 0.688831808,
+        "1": 0.2791424262,
+        "2": 0.0307953141,
+        "3": 0.0012191111,
+        "4": 1.13406e-05
+      },
+      "expected_best_ticket_hits": 6.6527687998,
+      "expected_total_hits": 22.0,
+      "max_overlap": 7,
+      "min_overlap": 5,
+      "n_tickets": 4,
+      "one_in_at_least_one_paying": 3,
+      "p_at_least_one_jackpot_tier": 1.13406e-05,
+      "p_at_least_one_paying": 0.311168192,
+      "p_nothing_at_all": 0.688831808,
+      "pairwise_overlaps": [
+        6,
+        5,
+        6,
+        6,
+        7,
+        6
+      ],
+      "paying_hits": [
+        0,
+        1,
+        2,
+        3,
+        8,
+        9,
+        10,
+        11
+      ],
+      "selection": {
+        "candidates": 11,
+        "exactly_evaluated": 200,
+        "neutral_overlap": 5.5,
+        "objective": "P(at least one ticket in a paying tier), exact; tie-break: expected hits of the best ticket, then SHA-256",
+        "overlap_filter": [
+          3,
+          8
+        ],
+        "overlap_filter_relaxed": false,
+        "sources": [
+          [
+            {
+              "reading": 1,
+              "source": "vedic_astrology"
+            }
+          ],
+          [
+            {
+              "reading": 1,
+              "source": "tarot"
+            }
+          ],
+          [
+            {
+              "reading": 1,
+              "source": "meihua"
+            }
+          ],
+          [
+            {
+              "reading": 1,
+              "source": "ensemble_train_weighted_sve_ili_nista"
+            }
+          ]
+        ],
+        "subsets_considered": 238,
+        "subsets_rejected_by_overlap_filter": 92
+      },
+      "single_ticket": {
+        "hit_pmf": {
+          "0": 1.4176e-06,
+          "1": 0.0001715261,
+          "10": 0.0001715261,
+          "11": 1.4176e-06,
+          "2": 0.0042881525,
+          "3": 0.0385933726,
+          "4": 0.1543734903,
+          "5": 0.302572041,
+          "6": 0.302572041,
+          "7": 0.1543734903,
+          "8": 0.0385933726,
+          "9": 0.0042881525
+        },
+        "one_in": 12,
+        "p_jackpot_tier": 2.8351e-06,
+        "p_paying": 0.0861089375
+      },
+      "status": "ran",
+      "tickets": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          12,
+          13,
+          20
+        ],
+        [
+          1,
+          2,
+          3,
+          7,
+          9,
+          10,
+          11,
+          13,
+          16,
+          18,
+          22
+        ],
+        [
+          1,
+          2,
+          4,
+          6,
+          8,
+          9,
+          10,
+          15,
+          18,
+          19,
+          22
+        ],
+        [
+          1,
+          2,
+          5,
+          6,
+          7,
+          9,
+          10,
+          11,
+          14,
+          15,
+          16
+        ]
+      ]
+    }
+  },
   "readings": [
     {
       "games": {

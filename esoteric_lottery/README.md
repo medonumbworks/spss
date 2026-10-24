@@ -35,6 +35,8 @@ Rezultati idu u `results/`:
 | `results/theoretical_probabilities.json` | egzaktne distribucije pogodaka i vjerojatnosti glavnog dobitka |
 | `results/manifest.json` | status svake metode i komponente, verzije paketa, SHA-256 konfiguracije, koda i podataka, argumenti naredbenog retka, vrijeme izvođenja |
 | `results/draw_<datum>/` | ista struktura (bez `backtest/`) za kasnija izvlačenja pokrenuta s `--draw-date`; očitanja ≥ 2 u `final/intermediate/readings/<k>/` |
+| `results/*/final/combinations.json` → `portfolio` | izabrani skup listića, egzaktna zajednička razdioba i usporedba sa svim alternativama |
+| `results/out_of_sample/log.json` | stvarno izvučeni brojevi i pogoci svih listića predviđenih prije izvlačenja |
 
 `python main.py --skip-backtest` računa samo kombinacije; `--config` i `--results` mijenjaju putanje.
 
@@ -66,7 +68,52 @@ Rezultati idu u `results/`:
 
 Očitanja ne mijenjaju vjerojatnost dobitka; četiri listića su četiri jednako (ne)vjerojatne
 kombinacije, i to međusobno korelirane (ensemble ih gradi iz istih determinističkih metoda, pa
-dijele 8–9 od 11 brojeva).
+dijele 8–11 od 11 brojeva). Upravo zato postoji izbor portfelja niže.
+
+### Izbor skupa listića — jedino što se stvarno može optimizirati
+
+Pojedinačni listić se **ne može** poboljšati. Ali kad se igra više listića odjednom, njihova
+*zajednička* razdioba nije nepromjenjiva:
+
+| Veličina | Može li se promijeniti? |
+|---|---|
+| Vjerojatnost dobitka po listiću (8,61 %, 1 u 12) | **Ne.** Ista za svaki listić od 11 brojeva. |
+| Očekivani zbroj pogodaka na 4 listića (22,0) | **Ne.** Nepromjenjiv, bez obzira na izbor. |
+| Vjerojatnost glavnog zgoditka po listiću (1 : 705 432) | **Ne.** |
+| **P(barem jedan od 4 listića nešto osvoji)** | **Da: 8,6 % → 31,5 %.** |
+| **P(barem jedan listić pogodi 11 ili 0)** | **Da: 2,8·10⁻⁶ → 1,13·10⁻⁵** (4 različite prilike umjesto 1). |
+
+Razlog je struktura isplate: Sve ili Ništa plaća na **oba kraja** (11 ili 0 glavni zgoditak, pa
+10/1, 9/2, 8/3; 4–7 ne donosi ništa). Dakle:
+
+* Četiri gotovo ista listića dobivaju i gube zajedno → ništa se ne dobiva.
+* Četiri **komplementarna** listića (preklapanje 0) su zamka: `pogoci(A) + pogoci(Ā) = 11`, pa oba
+  ulaze u isplativi razred u isti mah — savršeno korelirano, bez diverzifikacije (16,7 %).
+* Optimum je u sredini: preklapanja oko 5–6, nijedno 0 ni 11.
+
+`evaluation/portfolio.py` bira *m* listića iz onih koje su metode već proizvele, maksimizirajući
+P(barem jedan dobitan) **egzaktnim** izračunom zajedničke razdiobe (dekompozicija na atome
+Vennova dijagrama + dinamičko programiranje, bez simulacije). Parametri su u `config.yaml`
+(`portfolio:`).
+
+Ključno za poštenje: **cilj ovisi samo o preklapanjima listića, nikad o tome koji su brojevi na
+njima.** Skup i njegova kopija s preimenovanim brojevima imaju identičnu ocjenu — to je testirano
+(`test_objective_is_invariant_under_relabelling_the_numbers`). Izbor zato ne može sadržavati
+nikakvo predviđanje: to je kombinatorika, ne prognoza. Brojevi i dalje dolaze isključivo iz
+ezoteričnih metoda.
+
+Iznosi dobitaka nigdje se ne računaju: struktura razreda slaže se u javnim izvorima, ali se
+iznosi razlikuju, a `lutrija.hr` blokira automatski pristup.
+
+### Bilježenje stvarnog ishoda
+
+```bash
+.venv/bin/python main.py --score-drawn "2,3,6,7,8,9,11,13,20,21,22" --score-from results/draw_2026-10-24
+```
+
+Ocjenjuje kombinacije zapisane **prije** izvlačenja prema stvarno izvučenim brojevima i upisuje
+`results/out_of_sample/log.json` (po jedan zapis za svako kolo) i `summary.json`. To je jedini
+istinski van-uzorački dokaz koji projekt može skupljati; zapisi ostaju kakvi god bili.
 
 ## Struktura
 
@@ -275,6 +322,18 @@ po paru; pokrivenost je opis odnosa među listićima, a ne mjera kvalitete. Ta *
 pretežno jednoznamenkaste sirove brojeve, Meihua brojeve trigrama 1–8, pa Borda zbroj sustavno
 favorizira 1–11. Na očekivani broj pogodaka to ne utječe (5.5 za svaki listić), ali listići su
 međusobno korelirani. Pojedinačne metode (tablice u izvještaju) su raznolikije.
+
+## Van-uzoračka evidencija
+
+Prvo kolo predviđeno prije izvlačenja i ocijenjeno poslije:
+
+| Kolo | Izvučeno | Listića ocijenjeno | Prosjek pogodaka | Očekivano | Najbolji | U isplativom razredu |
+|---|---|---|---|---|---|---|
+| 2026-10-24 (297) | 2 3 6 7 8 9 11 13 20 21 22 | 44 | 5,477 | 5,500 | 8 (kaldejska) | 7 od 44 |
+
+Četiri primarna ensemble listića dala su 6, 6, 6 i 5 pogodaka (prosjek 5,75) — nijedan u isplativom
+razredu, jer 5–6 pogodaka je upravo mrtva sredina. To je jedno kolo i ne dokazuje ništa ni u jednom
+smjeru; zapis se vodi dalje (`results/out_of_sample/`).
 
 ## Reproducibilnost
 

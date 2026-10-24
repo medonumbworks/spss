@@ -1,5 +1,5 @@
 {
-  "backtest_code_sha256": "37d9df9e73971830d3fcb219b818c835a7e8714491cf5f3f7beda66d5ab2813e",
+  "backtest_code_sha256": "ee8f3a41e03cfbe4063c1ccc1dc2b3d52a7b1deaf2ea81a4e3cf8ba9084dc0fd",
   "backtests": {
     "eurojackpot": {
       "failed_methods": [],
@@ -17,16 +17,16 @@
       "failed_methods": [],
       "reason": null,
       "reused_from": {
-        "backtest_code_sha256": "37d9df9e73971830d3fcb219b818c835a7e8714491cf5f3f7beda66d5ab2813e",
-        "code_sha256": "7894ce791d377349f55910289e5e7f07d147b4b026ab31c4128420daf4fddea6",
-        "config_sha256": "0d284f49b32f45c646c4cda4c2c32c752a6169d80f57d13e0c5d47eba224f2db",
-        "generated_at": "2026-10-23T19:14:10+00:00",
+        "backtest_code_sha256": "ee8f3a41e03cfbe4063c1ccc1dc2b3d52a7b1deaf2ea81a4e3cf8ba9084dc0fd",
+        "code_sha256": "e794599749a6fff4d32273de5608c070fdbb62f35cafe3d590b45c6042dd6c72",
+        "config_sha256": "3243e4fb03b84ca7d7c9020990ccd32a427c442e5d3dcc51d0dcba710ce8eaad",
+        "generated_at": "2026-10-24T17:26:51+00:00",
         "summary": "results/backtest/sve_ili_nista/summary.json"
       },
       "status": "reused"
     }
   },
-  "code_sha256": "7894ce791d377349f55910289e5e7f07d147b4b026ab31c4128420daf4fddea6",
+  "code_sha256": "e794599749a6fff4d32273de5608c070fdbb62f35cafe3d590b45c6042dd6c72",
   "command_line": {
     "backtest_from": "results",
     "config": "/home/user/spss/esoteric_lottery/config.yaml",
@@ -36,9 +36,9 @@
     "results": "results/draw_2026-10-24",
     "skip_backtest": false
   },
-  "config_sha256": "0d284f49b32f45c646c4cda4c2c32c752a6169d80f57d13e0c5d47eba224f2db",
-  "generated_at": "2026-10-23T19:14:46+00:00",
-  "git_commit_at_run": "0f0f95d9c0d04895f9aac0848530d31431c5978d",
+  "config_sha256": "3243e4fb03b84ca7d7c9020990ccd32a427c442e5d3dcc51d0dcba710ce8eaad",
+  "generated_at": "2026-10-24T17:27:12+00:00",
+  "git_commit_at_run": "576bd4c26d6f8d217a63dd202f936e1a76571e0f",
   "history_files_sha256": {
     "data/Sve_ili_Nista_sva_kola.xlsx": "06e9c0a99fa848beca39c48b8019eb9c640e86ef5e46865a13ed8b58a1e631b4",
     "data/sve_ili_nista_sva_kola.csv": "f94ad7a0e1378ed943ebb1e146eca47e97fc1864b1e27bfc98172dd6f0ec6f74"

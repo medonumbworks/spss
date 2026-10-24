@@ -1,0 +1,265 @@
+{
+  "components": [
+    {
+      "detail": "life path, birthday, attitude, pinnacles, challenges",
+      "name": "date_numbers",
+      "status": "ran"
+    },
+    {
+      "detail": "personal year/month/day, universal day",
+      "name": "personal_cycles",
+      "status": "ran"
+    },
+    {
+      "detail": "no name in config.yaml (subject.name is null)",
+      "name": "name_numbers",
+      "status": "skipped"
+    },
+    {
+      "detail": "experimental",
+      "name": "place_name_numbers",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "sve_ili_nista": {
+      "main": 10
+    }
+  },
+  "digit_sequence": [
+    11,
+    1,
+    2,
+    9,
+    9,
+    4
+  ],
+  "error": null,
+  "intermediate": {
+    "cycles_at_draw": {
+      "personal_day": 9,
+      "personal_month": 2,
+      "personal_year": 1,
+      "universal_day": 9
+    },
+    "date_numbers": {
+      "attitude": 9,
+      "birthday": 4,
+      "birthday_compound": 31,
+      "challenges": [
+        1,
+        2,
+        1,
+        3
+      ],
+      "life_path": 11,
+      "life_path_components": {
+        "day": 4,
+        "month": 5,
+        "year": 2
+      },
+      "pinnacles": [
+        9,
+        6,
+        6,
+        7
+      ]
+    },
+    "place_numbers": {
+      "birth_place": {
+        "compound": 23,
+        "reduced": 5,
+        "text": "Zadar"
+      },
+      "draw_place": {
+        "compound": 32,
+        "reduced": 5,
+        "text": "Zagreb"
+      }
+    }
+  },
+  "key": "pythagorean",
+  "kind": "traditional (modern numerology) + experimental mapping",
+  "label": "Pitagorejska numerologija",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        9,
+        11
+      ],
+      "main": [
+        1,
+        2,
+        6,
+        9,
+        11
+      ]
+    },
+    "joker": {
+      "digits": [
+        1,
+        1,
+        2,
+        9,
+        9,
+        4
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        14
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        9,
+        11,
+        1,
+        2,
+        7,
+        6,
+        4,
+        5,
+        3,
+        8,
+        12,
+        10
+      ],
+      "main": [
+        9,
+        1,
+        11,
+        2,
+        6,
+        31,
+        4,
+        5,
+        7,
+        3,
+        23,
+        32,
+        39,
+        43,
+        44,
+        40,
+        28,
+        10,
+        14,
+        45,
+        22,
+        37,
+        47,
+        18,
+        24,
+        42,
+        8,
+        12,
+        19,
+        26,
+        35,
+        17,
+        16,
+        41,
+        48,
+        50,
+        15,
+        49,
+        20,
+        46,
+        34,
+        21,
+        27,
+        30,
+        33,
+        38,
+        25,
+        36,
+        13,
+        29
+      ]
+    },
+    "joker": {
+      "digits": [
+        1,
+        1,
+        2,
+        9,
+        9,
+        4
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        9,
+        1,
+        11,
+        2,
+        6,
+        4,
+        5,
+        7,
+        3,
+        10,
+        14,
+        8,
+        12,
+        19,
+        20,
+        13,
+        17,
+        18,
+        22,
+        16,
+        21,
+        15
+      ]
+    }
+  },
+  "sequence": [
+    9,
+    9,
+    11,
+    2,
+    1,
+    31,
+    4,
+    9,
+    9,
+    6,
+    6,
+    7,
+    1,
+    2,
+    1,
+    3,
+    23,
+    5,
+    32,
+    5
+  ],
+  "sources": [
+    "J. Jordan, Numerology: The Romance in Your Name, 1965 – letter table, core numbers",
+    "M. O. Goodwin, Numerology: The Complete Guide, 1981 – life path, pinnacles, challenges, personal cycles",
+    "Place-name numbers and the lottery mapping are experimental"
+  ],
+  "status": "partial"
+}

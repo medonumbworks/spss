@@ -1,0 +1,9 @@
+{
+  "difference": 0.25,
+  "draws": 1,
+  "expected_mean_hits": 5.5,
+  "mean_hits": 5.75,
+  "note": "Too few draws for any inference; kept as a running record.",
+  "primary_tickets": 4,
+  "tickets_in_paying_tier": 0
+}

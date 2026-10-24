@@ -7,7 +7,7 @@
 * Rođenje: 1991-05-31T18:20:00+02:00 (Zadar) = 1991-05-31T16:20:00+00:00 UTC
 * Izvlačenje: 2026-10-24T19:00:00+02:00 (Zagreb) = 2026-10-24T17:00:00+00:00 UTC
 * Ime: nije zadano (izračuni koji traže ime su preskočeni)
-* Seed: 20261023; konfiguracija SHA-256 `0d284f49b32f45c6…`, kod SHA-256 `7894ce791d377349…`
+* Seed: 20261023; konfiguracija SHA-256 `3243e4fb03b84ca7…`, kod SHA-256 `e794599749a6fff4…`
 * Očitanja: 4 (seedovi 20261023, 20261024, 20261025, 20261026). Očitanje k koristi seed 20261023 + (k − 1): njime se ponovno bacaju simulirani dijelovi orakula (I Ching, miješanje tarota, Lenormandov Grand Tableau) i ponovno izvlači SHA-256 tie-break svake metode, a tie-break ensemblea dodatno se soli rednim brojem očitanja. Sirovi brojevi Meihue, zapadne i vedske astrologije, pitagorejske i kaldejske numerologije te gematrije ne ovise o seedu; kod njih se mijenja samo popuna brojeva koje metoda nije sama odredila. Očitanje 1 je standardno pokretanje.
 
 ## Što se stvarno izvršilo
@@ -89,6 +89,36 @@ Pokrivenost (`euro`): različitih listića 4 od 4; pokriveni brojevi 5/12; ni na
 
 Za ovu igru nema ensemblea «Ensemble (težine iz razdoblja treniranja)» (stupac je prazan) jer backtest nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Nijedan listić za ovu igru nije ni na čemu testiran.
 
+## Izbor skupa listića (jedino što se stvarno može optimizirati)
+
+Pojedinačni listić se ne može poboljšati: pod nultom hipotezom svaki listić od 11 brojeva ima istu hipergeometrijsku razdiobu pogodaka, pa i istu vjerojatnost dobitka. Backtest u `results/` ne nalazi ništa što to pobija.
+
+Ono što se kod **više listića zajedno** mijenja jest njihova *zajednička* razdioba. Očekivani zbroj pogodaka je nepromjenjiv, ali vjerojatnost da **barem jedan** listić padne u isplativi razred ovisi o tome koliko se listići međusobno preklapaju. Dvije krajnosti su loše: gotovo isti listići dobivaju i gube zajedno, a **komplementarni** par (preklapanje 0) je zamka jer je tada `pogoci(A) + pogoci(Ā) = 11`, pa oba listića ulaze u isplativi razred u isti mah. Optimum je u sredini.
+
+Cilj ovisi **isključivo o preklapanjima listića**, nikad o tome koji su brojevi na njima: skup i njegova kopija s preimenovanim brojevima imaju identičnu ocjenu (`tests/test_portfolio.py`). Zato taj izbor ne sadrži nikakvo predviđanje — to je kombinatorika, ne prognoza. Sami brojevi i dalje dolaze isključivo iz ezoteričnih metoda; bira se samo koja će se četiri njihova listića igrati zajedno.
+
+### Sve ili Ništa 11/22
+
+Isplativi broj pogodaka: 0, 1, 2, 3, 8, 9, 10, 11 (razredi su simetrični: 11 ili 0 je glavni zgoditak, zatim 10/1, 9/2, 8/3; 4–7 ne donosi ništa). Iznosi dobitaka nigdje se ne računaju jer službena tablica nije provjerena.
+
+| # | Listić | Izvor (metoda#očitanje) |
+|---|---|---|
+| 1 | **01 02 03 04 05 07 09 11 12 14 20** | vedic_astrology#1, vedic_astrology#2, vedic_astrology#3, vedic_astrology#4 |
+| 2 | **01 03 04 08 09 10 12 15 16 18 22** | gematria#1, gematria#2, gematria#3, gematria#4 |
+| 3 | **01 04 05 06 07 08 09 10 13 18 19** | meihua#4 |
+| 4 | **02 04 06 07 08 09 11 15 17 20 22** | chaldean#3 |
+
+Preklapanja parova: [5, 5, 6, 6, 5, 5] (neutralno bi bilo 5.5). Izabrano egzaktnim izračunom zajedničke razdiobe: od 30 različitih listića koje su metode dale, 16870 kombinacija po četiri prošlo je filtar preklapanja [3, 8], a najboljih 200 ocijenjeno je egzaktno.
+
+| Skup listića | Preklapanja | P(barem jedan dobitan) | E[zbroj pogodaka] | E[najbolji listić] | P(barem jedan 11 ili 0) |
+|---|---|---|---|---|---|
+| **izabrani skup** | [5, 5, 6, 6, 5, 5] | **0.3147** (1 u 3) | 22.000 | 6.728 | 1.134e-05 |
+| 4 ensemble listića po očitanjima | [9, 9, 9, 8, 9, 8] | **0.2375** (1 u 4) | 22.000 | 6.268 | 1.134e-05 |
+| isti listić 4 puta | [11, 11, 11, 11, 11, 11] | **0.0861** (1 u 12) | 22.000 | 5.500 | 2.835e-06 |
+| jedan jedini listić | – | 0.0861 (1 u 12) | 5.500 | 5.500 | 2.835e-06 |
+
+**Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0861 (isti listić četiri puta) na 0.3147. **Što se nije promijenilo:** očekivani zbroj pogodaka je 22.0 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
+
 ## Konačne kombinacije (očitanje 1)
 
 Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunjava reproducibilni SHA-256 tie-break (vidi README, „Mapiranje u raspon”).
@@ -147,7 +177,7 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 
 ## Backtest: sve_ili_nista
 
-Ponovno korišten iz `results/backtest/sve_ili_nista/summary.json`, bez ponovnog izračuna. Backtest ne ovisi o datumu ciljanog izvlačenja, nego o konfiguraciji, povijesnim podacima i kodu koji ga računa; sve troje je provjereno nepromijenjeno (SHA-256 konfiguracije `0d284f49b32f45c6…`, koda `37d9df9e73971830…`, i povijesnih datoteka). Pokretanje koje ga je izračunalo navedeno je u `manifest.json` (`backtests.*.reused_from`).
+Ponovno korišten iz `results/backtest/sve_ili_nista/summary.json`, bez ponovnog izračuna. Backtest ne ovisi o datumu ciljanog izvlačenja, nego o konfiguraciji, povijesnim podacima i kodu koji ga računa; sve troje je provjereno nepromijenjeno (SHA-256 konfiguracije `3243e4fb03b84ca7…`, koda `ee8f3a41e03cfbe4…`, i povijesnih datoteka). Pokretanje koje ga je izračunalo navedeno je u `manifest.json` (`backtests.*.reused_from`).
 
 ### Podaci
 

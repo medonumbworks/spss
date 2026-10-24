@@ -145,10 +145,11 @@ def test_cli_reuses_a_backtest_end_to_end(tmp_path, root, cfg):
     assert header in report and header in first_report
     for line in ("| Meihua Yishu", "| I Ching"):
         assert line in report
-    # Every statistics row of the reused report is identical to the computed one
-    # (rows carrying a confidence interval, i.e. the evaluation and training tables).
+    # Every statistics row of the reused backtest is identical to the computed one
+    # (rows carrying a confidence interval, inside the backtest section only).
     def stat_rows(text):
-        return [l for l in text.splitlines() if l.startswith("| ") and " | [" in l]
+        body = text.split("## Backtest: sve_ili_nista", 1)[1]
+        return [l for l in body.splitlines() if l.startswith("| ") and " | [" in l]
     assert stat_rows(report) == stat_rows(first_report) != []
     comb = json.loads((second / "final" / "combinations.json").read_text(encoding="utf-8"))
     assert "ensemble_train_weighted_sve_ili_nista" in comb["readings"][1]["games"]["sve_ili_nista"]["ensembles"]

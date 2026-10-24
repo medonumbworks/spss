@@ -132,6 +132,56 @@ def render(cfg: dict, manifest: dict, combinations: dict, backtests: dict, theor
                 L.append(f"* očitanje {reading}, `{key}`: {v['error']}")
             L.append("")
 
+    pf = (combinations.get("portfolio") or {})
+    if any(p.get("status") == "ran" for p in pf.values()):
+        L += ["## Izbor skupa listića (jedino što se stvarno može optimizirati)", "",
+              "Pojedinačni listić se ne može poboljšati: pod nultom hipotezom svaki listić od 11 brojeva ima istu "
+              "hipergeometrijsku razdiobu pogodaka, pa i istu vjerojatnost dobitka. Backtest u `results/` ne nalazi "
+              "ništa što to pobija.", "",
+              "Ono što se kod **više listića zajedno** mijenja jest njihova *zajednička* razdioba. Očekivani zbroj "
+              "pogodaka je nepromjenjiv, ali vjerojatnost da **barem jedan** listić padne u isplativi razred ovisi o "
+              "tome koliko se listići međusobno preklapaju. Dvije krajnosti su loše: gotovo isti listići dobivaju i "
+              "gube zajedno, a **komplementarni** par (preklapanje 0) je zamka jer je tada `pogoci(A) + pogoci(Ā) = 11`, "
+              "pa oba listića ulaze u isplativi razred u isti mah. Optimum je u sredini.", "",
+              "Cilj ovisi **isključivo o preklapanjima listića**, nikad o tome koji su brojevi na njima: skup i "
+              "njegova kopija s preimenovanim brojevima imaju identičnu ocjenu (`tests/test_portfolio.py`). Zato taj "
+              "izbor ne sadrži nikakvo predviđanje — to je kombinatorika, ne prognoza. Sami brojevi i dalje dolaze "
+              "isključivo iz ezoteričnih metoda; bira se samo koja će se četiri njihova listića igrati zajedno.", ""]
+        for game_key, p in pf.items():
+            if p.get("status") != "ran":
+                continue
+            label = combinations["games"][game_key]["label"]
+            L += [f"### {label}", "",
+                  f"Isplativi broj pogodaka: {', '.join(map(str, p['paying_hits']))} (razredi su simetrični: 11 ili 0 "
+                  "je glavni zgoditak, zatim 10/1, 9/2, 8/3; 4–7 ne donosi ništa). Iznosi dobitaka nigdje se ne "
+                  "računaju jer službena tablica nije provjerena.", "",
+                  "| # | Listić | Izvor (metoda#očitanje) |", "|---|---|---|"]
+            for i, (t, src) in enumerate(zip(p["tickets"], p["selection"]["sources"]), 1):
+                origins = ", ".join(f"{s['source']}#{s['reading']}" for s in src)
+                L.append(f"| {i} | **{_nums(t)}** | {origins} |")
+            sel = p["selection"]
+            L += ["", f"Preklapanja parova: {p['pairwise_overlaps']} (neutralno bi bilo {sel['neutral_overlap']}). "
+                  f"Izabrano egzaktnim izračunom zajedničke razdiobe: od {sel['candidates']} različitih listića koje "
+                  f"su metode dale, {sel['subsets_considered']} kombinacija po četiri prošlo je filtar preklapanja "
+                  f"{sel['overlap_filter']}, a najboljih {sel['exactly_evaluated']} ocijenjeno je egzaktno.", "",
+                  "| Skup listića | Preklapanja | P(barem jedan dobitan) | E[zbroj pogodaka] | E[najbolji listić] | P(barem jedan 11 ili 0) |",
+                  "|---|---|---|---|---|---|"]
+            names = {"chosen": "**izabrani skup**", "readings_ensembles": "4 ensemble listića po očitanjima",
+                     "same_ticket_m_times": "isti listić 4 puta"}
+            for k, v in p["comparison"].items():
+                L.append(f"| {names.get(k, k)} | {v['pairwise_overlaps']} | **{v['p_at_least_one_paying']:.4f}** "
+                         f"(1 u {v['one_in_at_least_one_paying']}) | {v['expected_total_hits']:.3f} | "
+                         f"{v['expected_best_ticket_hits']:.3f} | {v['p_at_least_one_jackpot_tier']:.3e} |")
+            st = p["single_ticket"]
+            one = p["single_ticket_expected_hits"] = p["comparison"]["chosen"]["expected_total_hits"] / p["n_tickets"]
+            L += [f"| jedan jedini listić | – | {st['p_paying']:.4f} (1 u {st['one_in']}) | "
+                  f"{one:.3f} | {one:.3f} | {st['p_jackpot_tier']:.3e} |", "",
+                  f"**Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s "
+                  f"{p['comparison']['same_ticket_m_times']['p_at_least_one_paying']:.4f} (isti listić četiri puta) "
+                  f"na {p['p_at_least_one_paying']:.4f}. **Što se nije promijenilo:** očekivani zbroj pogodaka je "
+                  f"{p['expected_total_hits']:.1f} u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću "
+                  "ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.", ""]
+
     L += [f"## Konačne kombinacije{' (očitanje 1)' if n_readings > 1 else ''}", "",
           "Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunjava reproducibilni "
           "SHA-256 tie-break (vidi README, „Mapiranje u raspon”).", ""]

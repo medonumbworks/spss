@@ -34,7 +34,7 @@ import yaml
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
-from evaluation import report  # noqa: E402
+from evaluation import outcome, portfolio, report  # noqa: E402
 from evaluation.backtest import run_backtest  # noqa: E402
 from evaluation.data import crosscheck_xlsx, load_draws, membership_matrix, split_index  # noqa: E402
 from evaluation.quality import data_quality  # noqa: E402
@@ -233,9 +233,17 @@ def main(argv: list[str] | None = None) -> int:
                     help="number of readings; reading k re-seeds the simulated casts and the tie-break with seed + k - 1")
     ap.add_argument("--skip-backtest", action="store_true")
     ap.add_argument("--backtest-from", help="results directory of a previous run whose backtest is reused")
+    ap.add_argument("--score-drawn", metavar="NUMBERS",
+                    help="score an earlier run against the numbers actually drawn, e.g. "
+                         "--score-drawn '2,3,6,7,8,9,11,13,20,21,22' --score-from results/draw_2026-10-24; "
+                         "writes results/out_of_sample/ and exits")
+    ap.add_argument("--score-from", help="results directory holding the predictions to score")
+    ap.add_argument("--score-game", default="sve_ili_nista")
     args = ap.parse_args(argv)
     if args.readings < 1:
         ap.error("--readings must be at least 1")
+    if args.score_drawn and not args.score_from:
+        ap.error("--score-drawn needs --score-from (the run that predicted that draw)")
 
     cfg_path = Path(args.config)
     cfg = load_config(cfg_path)
@@ -248,6 +256,22 @@ def main(argv: list[str] | None = None) -> int:
     bt_code_sha = backtest_code_digest()
     if args.backtest_from and Path(args.backtest_from).resolve() == out.resolve():
         ap.error("--backtest-from must not be the same directory as --results (the provenance would point at itself)")
+
+    if args.score_drawn:
+        combos, source = outcome.load_combinations(Path(args.score_from))
+        pool = games[args.score_game].pools[0]
+        paying = (cfg.get("portfolio") or {}).get("paying_hits", {}).get(args.score_game, [])
+        record = outcome.score_predictions(combos, args.score_game, pool,
+                                           outcome.parse_numbers(args.score_drawn), paying, source)
+        log_path = out / "out_of_sample" / "log.json"
+        records = outcome.append_log(log_path, record)
+        write_json(log_path, records)
+        write_json(out / "out_of_sample" / "summary.json", outcome.summarize_log(records, pool))
+        print(f"      scored {record['tickets_scored']} tickets of {source} against {record['drawn']}")
+        print(f"      mean hits {record['mean_hits']:.3f} (expected {record['expected_hits_per_ticket']:.3f}), "
+              f"best {record['max_hits']}, in a paying tier: {record['tickets_in_paying_tier']}")
+        print(f"      wrote {log_path}")
+        return 0
 
     print(f"[1/4] methods for the draw {event.local.isoformat()} ({event.place.name}), {args.readings} reading(s)")
     readings = []
@@ -300,7 +324,7 @@ def main(argv: list[str] | None = None) -> int:
         write_json(bdir / "summary.json", summary)
         backtests[game_key] = summary
 
-    print("[3/4] ensembles")
+    print("[3/4] ensembles and ticket portfolio")
     ens_key = f"ensemble|{event.local.isoformat()}"
     for r in readings:
         suffix = "" if r["reading"] == 1 else f"|reading{r['reading']}"
@@ -327,6 +351,34 @@ def main(argv: list[str] | None = None) -> int:
                     "picks": r["ensembles"]["ensemble_equal"]["picks"][game_key]} for r in readings]
         combinations["tickets"][game_key] = tickets
         combinations["coverage"][game_key] = coverage(tickets, game)
+
+    pcfg = cfg.get("portfolio") or {}
+    portfolios: dict = {}
+    if pcfg.get("enabled"):
+        m = int(pcfg["tickets"])
+        for game_key, paying in (pcfg.get("paying_hits") or {}).items():
+            pool = games[game_key].pools[0]
+            cands = portfolio.candidate_tickets(readings, game_key, pool)
+            if len(cands) < m:
+                portfolios[game_key] = {"status": "not_run",
+                                        "reason": f"only {len(cands)} distinct candidate tickets, need {m}"}
+                continue
+            chosen = portfolio.select_portfolio(
+                cands, m, pool, paying, tuple(pcfg["overlap_range"]), int(pcfg["exact_evaluations"]),
+                f"portfolio|{event.local.isoformat()}|{game_key}")
+            chosen["status"] = "ran"
+            chosen["paying_hits"] = list(paying)
+            chosen["single_ticket"] = portfolio.single_ticket_reference(pool, paying)
+            chosen["comparison"] = portfolio.compare_structures(
+                [tuple(t) for t in chosen["tickets"]],
+                {"readings_ensembles": [tuple(t["picks"][pool.name]) for t in combinations["tickets"][game_key]],
+                 "same_ticket_m_times": [tuple(combinations["tickets"][game_key][0]["picks"][pool.name])] * m},
+                pool, paying)
+            chosen["candidates"] = cands
+            portfolios[game_key] = chosen
+            print(f"      portfolio {game_key}: P(at least one paying) "
+                  f"{chosen['p_at_least_one_paying']:.4f} from {len(cands)} candidates")
+    combinations["portfolio"] = portfolios
     write_json(out / "final" / "combinations.json", combinations)
 
     print("[4/4] manifest and report")
