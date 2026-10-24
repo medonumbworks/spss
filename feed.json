@@ -1,0 +1,2989 @@
+{
+ "schema": "cryptopulse.sentiment-feed/v1",
+ "generatedAt": "2026-10-24T18:11:08Z",
+ "windowHours": 24,
+ "models": [
+  "vader",
+  "finbert",
+  "cryptobert"
+ ],
+ "sources": [
+  {
+   "name": "telegram_public",
+   "status": "ok",
+   "items": 1562,
+   "detail": "158/186 channels (28 no_preview)"
+  },
+  {
+   "name": "telegram_account",
+   "status": "disabled",
+   "items": 0,
+   "detail": "no TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION secrets"
+  },
+  {
+   "name": "rss",
+   "status": "ok",
+   "items": 105,
+   "detail": "6/6 feeds"
+  },
+  {
+   "name": "reddit",
+   "status": "unauthorized",
+   "items": 0,
+   "detail": "0/4 subreddits (4 HTTP 403)"
+  }
+ ],
+ "market": {
+  "mentions": 852,
+  "composite": -0.09,
+  "bullish": 0.3779,
+  "bearish": 0.455,
+  "neutral": 0.1671
+ },
+ "assets": [
+  {
+   "symbol": "BTC",
+   "mentions": 179,
+   "mentionsPrev": 198,
+   "baseline7d": 276.46,
+   "spike": 0.65,
+   "composite": -0.2928,
+   "scores": {
+    "vader": -0.3383,
+    "finbert": -0.4389,
+    "cryptobert": -0.1813
+   },
+   "bullish": 0.2149,
+   "bearish": 0.6579,
+   "neutral": 0.1272,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 172,
+     "composite": -0.2967
+    },
+    "rss": {
+     "mentions": 7,
+     "composite": 0.0712
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #BTC Liquidated Long: $191K at $79230.43",
+     "score": -0.7295,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397360",
+     "ts": "2026-10-24T15:23:08Z"
+    },
+    {
+     "text": "🔴 #BTC Liquidated Long: $148K at $79212.30",
+     "score": -0.742,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397353",
+     "ts": "2026-10-24T15:22:58Z"
+    },
+    {
+     "text": "🔴 #BTC Liquidated Long: $173K at $79218.80",
+     "score": -0.7082,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397365",
+     "ts": "2026-10-24T15:26:01Z"
+    },
+    {
+     "text": "🔴 #BTC Liquidated Long: $111K at $79641.75",
+     "score": -0.6518,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397371",
+     "ts": "2026-10-24T16:20:34Z"
+    },
+    {
+     "text": "🔴 #BTC Liquidated Long: $190K at $79224.45",
+     "score": -0.6709,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397363",
+     "ts": "2026-10-24T15:25:51Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SOL",
+   "mentions": 138,
+   "mentionsPrev": 27,
+   "baseline7d": 185.62,
+   "spike": 0.74,
+   "composite": 0.0829,
+   "scores": {
+    "vader": -0.0192,
+    "finbert": -0.0826,
+    "cryptobert": 0.2428
+   },
+   "bullish": 0.5371,
+   "bearish": 0.3567,
+   "neutral": 0.1062,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 138,
+     "composite": 0.0829
+    }
+   },
+   "samples": [
+    {
+     "text": "JUST IN: Crypto is dumping $SOL falls under $100 $XRP falls under $1.30 $ETH falls under $2,350 Bitcoin $BTC falls under $80,000 Over $200,000,000 in leveraged crypto long positions have been liquidated in the past 60 minutes. @WatcherGuru",
+     "score": -0.4362,
+     "source": "telegram_public",
+     "community": "WatcherGuru",
+     "url": "https://t.me/WatcherGuru/15620",
+     "ts": "2026-10-24T14:23:43Z"
+    },
+    {
+     "text": "🟢 #SOL Liquidated Short: $153K at $100.62",
+     "score": -0.2024,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397382",
+     "ts": "2026-10-24T16:50:41Z"
+    },
+    {
+     "text": "🔴 #SOL Liquidated Long: $62.1K at $98.71",
+     "score": -0.2751,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397332",
+     "ts": "2026-10-24T15:21:47Z"
+    },
+    {
+     "text": "🎮 Залетай в Криптозмейку и соревнуйся за $250 В рамках месяца активностей Cryptober запускаем новую активность вместе с Trustee Plus . На этот раз три криптогильдии сойдутся в одной битве, а тебе нужно выбрать свою сторону. ⚔️ Как играть: • выбирай одну из трех гильдий: Ethereu…",
+     "score": 0.3823,
+     "source": "telegram_public",
+     "community": "incrypted",
+     "url": "https://t.me/incrypted/33095",
+     "ts": "2026-10-24T10:00:00Z"
+    },
+    {
+     "text": "🔴 #SOL Liquidated Long: $51K at $98.84",
+     "score": -0.2343,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397326",
+     "ts": "2026-10-24T15:21:21Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ETH",
+   "mentions": 124,
+   "mentionsPrev": 78,
+   "baseline7d": 134.92,
+   "spike": 0.92,
+   "composite": -0.2403,
+   "scores": {
+    "vader": -0.2896,
+    "finbert": -0.437,
+    "cryptobert": -0.0982
+   },
+   "bullish": 0.2732,
+   "bearish": 0.6316,
+   "neutral": 0.0952,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 120,
+     "composite": -0.2421
+    },
+    "rss": {
+     "mentions": 4,
+     "composite": -0.0127
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #ETH Liquidated Long: $326K at $2281.41",
+     "score": -0.6562,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397357",
+     "ts": "2026-10-24T15:23:05Z"
+    },
+    {
+     "text": "🔴 #ETH Liquidated Long: $152K at $2285.42",
+     "score": -0.7292,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397339",
+     "ts": "2026-10-24T15:22:06Z"
+    },
+    {
+     "text": "🔴 #ETH Liquidated Long: $108K at $2281.89",
+     "score": -0.6524,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397352",
+     "ts": "2026-10-24T15:22:58Z"
+    },
+    {
+     "text": "🔴 #ETH Liquidated Long: $107K at $2281.55",
+     "score": -0.6351,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397355",
+     "ts": "2026-10-24T15:23:02Z"
+    },
+    {
+     "text": "🔴 #ETH Liquidated Long: $126K at $2291.30",
+     "score": -0.7106,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397314",
+     "ts": "2026-10-24T15:19:24Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDT",
+   "mentions": 40,
+   "mentionsPrev": 52,
+   "baseline7d": 103.85,
+   "spike": 0.39,
+   "composite": 0.2009,
+   "scores": {
+    "vader": 0.1946,
+    "finbert": 0.0241,
+    "cryptobert": 0.3033
+   },
+   "bullish": 0.579,
+   "bearish": 0.0683,
+   "neutral": 0.3527,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 38,
+     "composite": 0.2029
+    },
+    "rss": {
+     "mentions": 2,
+     "composite": 0.026
+    }
+   },
+   "samples": [
+    {
+     "text": "📉 📉 📉 X100 Governance Takeover Leads to $4.85 Million USDT Drain in Ongoing Ethereum Attack Read Analysis",
+     "score": -0.4563,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104166",
+     "ts": "2026-10-24T15:03:19Z"
+    },
+    {
+     "text": "Tether's Bitcoin Mining Development Kit Gains Backing from 15 Mining Companies to Accelerate Automated Mining Tether announced that its open-source Mining Development Kit (MDK) has secured joint support and integration commitments from 15 leading mining companies, ASIC manufactu…",
+     "score": 0.6722,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26540",
+     "ts": "2026-10-24T12:20:04Z"
+    },
+    {
+     "text": "🚪 A NEW CHAPTER IS ON THE MENU! 🍽 Every great journey starts by opening a door. Ready to see what’s waiting on the other side? Sign up on KuCoin, complete your first trade, and get a chance to win a share of the 5,000 USDT reward pool ! Your next crypto adventure starts with o…",
+     "score": 0.5079,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/36859",
+     "ts": "2026-10-24T12:03:23Z"
+    },
+    {
+     "text": "🍁 New Trader Weekend Bonus! 🦊 ✨ Kick off your weekend with a 100 USDT Futures Voucher ! Start your crypto journey with KuFox this autumn. 👉 Join & Claim Your Weekend Bonus ⚡️ 2 Easy Steps to Claim: 1️⃣ Sign up for a KuCoin account. 2️⃣ Complete your 1st Futures trade > 99 USD…",
+     "score": 0.5471,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/36857",
+     "ts": "2026-10-24T11:00:37Z"
+    },
+    {
+     "text": "👨 👩 👧 👦 UNITED AS KUFAM: THE FAMILY REUNION IS HERE! 🎉 Hey KuFam! The group chat is buzzing, the relatives are arriving, and someone’s already arguing about the market. 😂 Sounds like a classic family reunion! Welcome to United as KuFam ! 🦊 💚 Gather your crypto family, jo…",
+     "score": 0.5486,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/36856",
+     "ts": "2026-10-24T10:15:25Z"
+    }
+   ]
+  },
+  {
+   "symbol": "HYPE",
+   "mentions": 27,
+   "mentionsPrev": 13,
+   "baseline7d": 25.92,
+   "spike": 1.04,
+   "composite": -0.0763,
+   "scores": {
+    "vader": -0.2293,
+    "finbert": -0.2719,
+    "cryptobert": 0.1343
+   },
+   "bullish": 0.2785,
+   "bearish": 0.5155,
+   "neutral": 0.206,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 27,
+     "composite": -0.0763
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #HYPE Liquidated Long: $73.1K at $74.40 - hyper lens",
+     "score": -0.4261,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/83583",
+     "ts": "2026-10-24T15:28:21Z"
+    },
+    {
+     "text": "🔴 #HYPE Liquidated Long: $81.8K at $74.58",
+     "score": -0.3326,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397344",
+     "ts": "2026-10-24T15:22:15Z"
+    },
+    {
+     "text": "🔴 #HYPE Liquidated Long: $207K at $74.65 - hyper lens",
+     "score": -0.4877,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/83496",
+     "ts": "2026-10-24T15:15:51Z"
+    },
+    {
+     "text": "🔴 #HYPE Liquidated Long: $92.2K at $74.43 - hyper lens",
+     "score": -0.3584,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/83579",
+     "ts": "2026-10-24T15:28:12Z"
+    },
+    {
+     "text": "🔴 #HYPE Liquidated Long: $123K at $74.56",
+     "score": -0.3111,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397319",
+     "ts": "2026-10-24T15:20:08Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDC",
+   "mentions": 24,
+   "mentionsPrev": 21,
+   "baseline7d": 33.23,
+   "spike": 0.72,
+   "composite": 0.1207,
+   "scores": {
+    "vader": 0.1238,
+    "finbert": 0.0478,
+    "cryptobert": 0.1591
+   },
+   "bullish": 0.4876,
+   "bearish": 0.1751,
+   "neutral": 0.3372,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 23,
+     "composite": 0.1265
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.1459
+    }
+   },
+   "samples": [
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 79,538 -2.5 -2.0 0.0 2 ETH 2,298 -4.4 -4.3 0.0 3 USDT 1.00 0.0 0.0 0.0 4 BNB 720.06 -3.5 0.9 0.0 5 XRP 1.26 -3.4 -2.0 0.0 6 USDC 1.00 0.0 0.0 0.0 7 SOL 99.46 -4.9 -3.6 0.0 8 TRX 0.33 -0.2 -1.7 0.0 9 STETH2,290.50 -4.8 -4.6 0.0 10 ZEC1,139.64 -…",
+     "score": 0.2589,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569218",
+     "ts": "2026-10-24T16:00:08Z"
+    },
+    {
+     "text": "📊 TOKENIZED STOCKS CAN NOW BE LEVERAGED UP TO 4.2X ON BASE ​ Onchain equities just gained another DeFi primitive. ​ Pendle has launched: ​ PENDLELOOP ​ for Coinbase-issued stock tokens on Base. ​ The system lets eligible users build leveraged long exposure in: ​ ONE CLICK. ​ Th…",
+     "score": 0.6045,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22310",
+     "ts": "2026-10-24T12:12:02Z"
+    },
+    {
+     "text": "📈 TOKENIZED APPLE, NVIDIA + TESLA CAN NOW BACK AAVE LOANS ON BASE ​ Stocks are becoming usable inside Ethereum DeFi. ​ Aave V4’s Equities Hub on Base allows eligible investors to borrow: ​ USDC ​ against Coinbase-issued tokenized U.S. stocks. ​ At launch, the market supports: ​…",
+     "score": 0.5249,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22309",
+     "ts": "2026-10-24T09:01:02Z"
+    },
+    {
+     "text": "🚨 🚨 🚨 🚨 🚨 🚨 134,013,854 $USDC (134,070,809 USD) transferred from #Aave to Unknown Whale 1 Details",
+     "score": -0.4117,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104162",
+     "ts": "2026-10-23T23:33:48Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 80,634 -1.3 -1.2 0.0 2 ETH 2,372 -1.4 -2.5 0.0 3 USDT 1.00 0.0 0.0 0.0 4 BNB 735.10 -1.2 1.9 0.0 5 XRP 1.28 -3.2 -1.8 0.0 6 USDC 1.00 0.0 -0.0 0.0 7 SOL 101.79 -2.7 -3.0 0.0 8 TRX 0.33 -0.0 -1.7 0.0 9 STETH2,371.82 -1.4 -2.7 0.0 10 ZEC1,162.60…",
+     "score": 0.2386,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569217",
+     "ts": "2026-10-24T08:00:08Z"
+    }
+   ]
+  },
+  {
+   "symbol": "UNI",
+   "mentions": 22,
+   "mentionsPrev": 5,
+   "baseline7d": 9.77,
+   "spike": 2.25,
+   "composite": -0.0002,
+   "scores": {
+    "vader": -0.1968,
+    "finbert": -0.1842,
+    "cryptobert": 0.233
+   },
+   "bullish": 0.3224,
+   "bearish": 0.4265,
+   "neutral": 0.2511,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 21,
+     "composite": 0.0021
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.122
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #UNI Liquidated Long: $57.5K at $6.544",
+     "score": -0.3066,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397337",
+     "ts": "2026-10-24T15:21:53Z"
+    },
+    {
+     "text": "🔴 #UNI Liquidated Long: $62.5K at $6.530",
+     "score": -0.2986,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397338",
+     "ts": "2026-10-24T15:22:03Z"
+    },
+    {
+     "text": "🔴 #UNI Liquidated Long: $93.4K at $6.501",
+     "score": -0.2744,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397348",
+     "ts": "2026-10-24T15:22:39Z"
+    },
+    {
+     "text": "🔴 #UNI Liquidated Long: $99.7K at $6.552",
+     "score": -0.25,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397334",
+     "ts": "2026-10-24T15:21:48Z"
+    },
+    {
+     "text": "LATEST: 📊 Grayscale says HYPE, LIT, and CAKE top its ranking of crypto assets by tokenholder yield, with AERO and UNI rounding out the top five. When ranked by adjusted earnings yield, CAKE, LIT and HYPE keep the top three, followed by RAY and AAVE.",
+     "score": 0.5532,
+     "source": "telegram_public",
+     "community": "CoinMarketCapAnnouncements",
+     "url": "https://t.me/CoinMarketCapAnnouncements/19334",
+     "ts": "2026-10-24T06:40:09Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XRP",
+   "mentions": 19,
+   "mentionsPrev": 17,
+   "baseline7d": 28.46,
+   "spike": 0.67,
+   "composite": -0.0193,
+   "scores": {
+    "vader": -0.1244,
+    "finbert": -0.1957,
+    "cryptobert": 0.1488
+   },
+   "bullish": 0.457,
+   "bearish": 0.3584,
+   "neutral": 0.1846,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 18,
+     "composite": -0.0231
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": 0.339
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #XRP Liquidated Long: $395K at $1.255",
+     "score": -0.6768,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397362",
+     "ts": "2026-10-24T15:25:33Z"
+    },
+    {
+     "text": "JUST IN: Crypto is dumping $SOL falls under $100 $XRP falls under $1.30 $ETH falls under $2,350 Bitcoin $BTC falls under $80,000 Over $200,000,000 in leveraged crypto long positions have been liquidated in the past 60 minutes. @WatcherGuru",
+     "score": -0.4362,
+     "source": "telegram_public",
+     "community": "WatcherGuru",
+     "url": "https://t.me/WatcherGuru/15620",
+     "ts": "2026-10-24T14:23:43Z"
+    },
+    {
+     "text": "🔴 #XRP Liquidated Long: $75.5K at $1.257",
+     "score": -0.3768,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397335",
+     "ts": "2026-10-24T15:21:51Z"
+    },
+    {
+     "text": "🔴 #XRP Liquidated Long: $62.3K at $1.26 - hyper lens",
+     "score": -0.388,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/83578",
+     "ts": "2026-10-24T15:28:05Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 79,538 -2.5 -2.0 0.0 2 ETH 2,298 -4.4 -4.3 0.0 3 USDT 1.00 0.0 0.0 0.0 4 BNB 720.06 -3.5 0.9 0.0 5 XRP 1.26 -3.4 -2.0 0.0 6 USDC 1.00 0.0 0.0 0.0 7 SOL 99.46 -4.9 -3.6 0.0 8 TRX 0.33 -0.2 -1.7 0.0 9 STETH2,290.50 -4.8 -4.6 0.0 10 ZEC1,139.64 -…",
+     "score": 0.2589,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569218",
+     "ts": "2026-10-24T16:00:08Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AAVE",
+   "mentions": 13,
+   "mentionsPrev": 6,
+   "baseline7d": 9.15,
+   "spike": 1.42,
+   "composite": 0.0877,
+   "scores": {
+    "vader": 0.2542,
+    "finbert": 0.0372,
+    "cryptobert": 0.0046
+   },
+   "bullish": 0.3844,
+   "bearish": 0.2956,
+   "neutral": 0.32,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 13,
+     "composite": 0.0877
+    }
+   },
+   "samples": [
+    {
+     "text": "LATEST: 📊 Grayscale says HYPE, LIT, and CAKE top its ranking of crypto assets by tokenholder yield, with AERO and UNI rounding out the top five. When ranked by adjusted earnings yield, CAKE, LIT and HYPE keep the top three, followed by RAY and AAVE.",
+     "score": 0.5532,
+     "source": "telegram_public",
+     "community": "CoinMarketCapAnnouncements",
+     "url": "https://t.me/CoinMarketCapAnnouncements/19334",
+     "ts": "2026-10-24T06:40:09Z"
+    },
+    {
+     "text": "📊 TOKENIZED STOCKS CAN NOW BE LEVERAGED UP TO 4.2X ON BASE ​ Onchain equities just gained another DeFi primitive. ​ Pendle has launched: ​ PENDLELOOP ​ for Coinbase-issued stock tokens on Base. ​ The system lets eligible users build leveraged long exposure in: ​ ONE CLICK. ​ Th…",
+     "score": 0.6045,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22310",
+     "ts": "2026-10-24T12:12:02Z"
+    },
+    {
+     "text": "📈 TOKENIZED APPLE, NVIDIA + TESLA CAN NOW BACK AAVE LOANS ON BASE ​ Stocks are becoming usable inside Ethereum DeFi. ​ Aave V4’s Equities Hub on Base allows eligible investors to borrow: ​ USDC ​ against Coinbase-issued tokenized U.S. stocks. ​ At launch, the market supports: ​…",
+     "score": 0.5249,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22309",
+     "ts": "2026-10-24T09:01:02Z"
+    },
+    {
+     "text": "🚨 🚨 🚨 🚨 🚨 🚨 134,013,854 $USDC (134,070,809 USD) transferred from #Aave to Unknown Whale 1 Details",
+     "score": -0.4117,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104162",
+     "ts": "2026-10-23T23:33:48Z"
+    },
+    {
+     "text": "🚨 🚨 🚨 🚨 🚨 🚨 134,013,854 $USDC (134,068,129 USD) transferred from Unknown Whale 1 to #Aave Details",
+     "score": -0.3551,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104163",
+     "ts": "2026-10-24T00:11:38Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZEC",
+   "mentions": 12,
+   "mentionsPrev": 6,
+   "baseline7d": 31.62,
+   "spike": 0.38,
+   "composite": -0.0633,
+   "scores": {
+    "vader": -0.0917,
+    "finbert": -0.3612,
+    "cryptobert": 0.1212
+   },
+   "bullish": 0.3748,
+   "bearish": 0.5596,
+   "neutral": 0.0656,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 12,
+     "composite": -0.0633
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #ZEC Liquidated Long: $76.7K at $1149.09",
+     "score": -0.3663,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397386",
+     "ts": "2026-10-24T17:37:31Z"
+    },
+    {
+     "text": "🟢 #ZEC Liquidated Short: $92.8K at $1159.64",
+     "score": -0.2767,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397384",
+     "ts": "2026-10-24T16:50:42Z"
+    },
+    {
+     "text": "🟢 #ZEC Liquidated Short: $62.4K at $1140.13",
+     "score": -0.2719,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397367",
+     "ts": "2026-10-24T15:45:45Z"
+    },
+    {
+     "text": "🔴 #ZEC Liquidated Long: $89.8K at $1,122 - hyper lens",
+     "score": -0.3459,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/83561",
+     "ts": "2026-10-24T15:21:15Z"
+    },
+    {
+     "text": "Что почитать на сайте РБК Крипто. Подборка материалов за неделю ▫️ Уход MEXC и «скидка на крипту» на Мосбирже. Новости крипторынка за неделю ▫️ План Б. Где держать крипту после ухода крупных бирж из России ▫️ Конец эпохи «нарративов». Как оценивать криптовалюты в 2026 году ▫️ Ст…",
+     "score": 0.2538,
+     "source": "telegram_public",
+     "community": "RBCCrypto",
+     "url": "https://t.me/RBCCrypto/23639",
+     "ts": "2026-10-24T09:40:24Z"
+    }
+   ]
+  },
+  {
+   "symbol": "HTX",
+   "mentions": 11,
+   "mentionsPrev": 9,
+   "baseline7d": 12.92,
+   "spike": 0.85,
+   "composite": 0.2028,
+   "scores": {
+    "vader": 0.0664,
+    "finbert": 0.0052,
+    "cryptobert": 0.4036
+   },
+   "bullish": 0.8125,
+   "bearish": 0.0,
+   "neutral": 0.1875,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 11,
+     "composite": 0.2028
+    }
+   },
+   "samples": [
+    {
+     "text": "比特币跌破8万美元，山寨币大幅回落，Q跌超34%，PHA、CT均跌超22% BlockBeats 消息，10 月 24 日，据 HTX 行情数据，伴随比特币回落跌破 8 万美元，山寨币大幅回落，其中： Q 现报价 0.080162 美元，24 小时下跌 34.35%； PHA 现报价 0.0499 美元，24 小时下跌 24.38%； CT 现报价 0.1619 美元，24 小时下跌 22.22%； SOPH 现报价 0.001458 美元，24 小时下跌 17.95%； FARTCOIN 现报价 0.122 美元，24 小时下跌 16.78%； 「4…",
+     "score": 0.2262,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202182",
+     "ts": "2026-10-24T15:38:02Z"
+    },
+    {
+     "text": "⚡️ 比特币跌破80,000美元 BlockBeats 消息，10 月 24 日，据 HTX 行情数据，比特币跌破 80,000 美元，24 小时跌幅 1.72%。 原文链接 https://m.theblockbeats.info/flash/373537",
+     "score": 0.2436,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202173",
+     "ts": "2026-10-24T14:28:02Z"
+    },
+    {
+     "text": "以太坊跌破2300美元 BlockBeats 消息，10 月 24 日，据 HTX 行情信息，以太坊跌破 2300 美元，24 小时跌幅 4.31%。 原文链接 https://m.theblockbeats.info/flash/373543",
+     "score": 0.2139,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202179",
+     "ts": "2026-10-24T15:17:02Z"
+    },
+    {
+     "text": "当前主流CEX、DEX资金费率显示市场处于中性偏看空 BlockBeats 消息，10 月 24 日，据 HTX 行情数据，比特币现报 80,669.49 美元，24 小时下跌 1.31%；以太坊现报 2,367.01 美元，24 小时下跌 1.52%。 据 CoinGlass 数据，BTC 持仓加权和成交额加权资金费率分别为 0.0081% 和 0.0074%；ETH 两项加权费率分别为 0.0078% 和 0.0082%，均处于中性区间。其中部分交易平台处于看跌区间，ETH 成交额加权费率略高于 BTC，短线合约情绪相对稳健。 BlockBeats…",
+     "score": 0.2414,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202169",
+     "ts": "2026-10-24T13:39:02Z"
+    },
+    {
+     "text": "⚡️ SOL跌破100美元，24小时跌幅3.84% BlockBeats 消息，10 月 24 日，据 HTX 行情数据显示，SOL 跌破 100 美元，24 小时跌幅 3.84%。 原文链接 https://m.theblockbeats.info/flash/373535",
+     "score": 0.1916,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202171",
+     "ts": "2026-10-24T14:19:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "BNB",
+   "mentions": 11,
+   "mentionsPrev": 15,
+   "baseline7d": 21.15,
+   "spike": 0.52,
+   "composite": 0.0628,
+   "scores": {
+    "vader": 0.0685,
+    "finbert": -0.1923,
+    "cryptobert": 0.2008
+   },
+   "bullish": 0.6018,
+   "bearish": 0.3217,
+   "neutral": 0.0765,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 11,
+     "composite": 0.0628
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #BNB Liquidated Long: $203K at $718.04",
+     "score": -0.388,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397333",
+     "ts": "2026-10-24T15:21:47Z"
+    },
+    {
+     "text": "🔴 #BNB Liquidated Long: $107K at $719.00",
+     "score": -0.394,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397325",
+     "ts": "2026-10-24T15:21:02Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 79,538 -2.5 -2.0 0.0 2 ETH 2,298 -4.4 -4.3 0.0 3 USDT 1.00 0.0 0.0 0.0 4 BNB 720.06 -3.5 0.9 0.0 5 XRP 1.26 -3.4 -2.0 0.0 6 USDC 1.00 0.0 0.0 0.0 7 SOL 99.46 -4.9 -3.6 0.0 8 TRX 0.33 -0.2 -1.7 0.0 9 STETH2,290.50 -4.8 -4.6 0.0 10 ZEC1,139.64 -…",
+     "score": 0.2589,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569218",
+     "ts": "2026-10-24T16:00:08Z"
+    },
+    {
+     "text": "⚡️ 🍂 Все Важное за Неделю 🌍 Обзор рынка — Дорогая нефть и обновления альткоинов 💰 Компания Strategy покупают 267 BTC на баланс. 💰 Компания Strive покупает 1223 BTC на баланс. 💰 Топ-10 компаний по запасам BTC. 🔹 Компания Bitmine покупает 12,535 ETH. 🪙 Крупный держатель SOL…",
+     "score": 0.3681,
+     "source": "telegram_public",
+     "community": "bitsmedia",
+     "url": "https://t.me/bitsmedia/28846",
+     "ts": "2026-10-24T10:50:38Z"
+    },
+    {
+     "text": "📊 Piyasa Genel Bakışı: BTC: 80715 $ ETH: 2367,18 $ BNB: 731,61 $ SOL: 101,5 $ 📈 Piyasa Değeri: Toplam: 2,72 Trilyon $ DeFi: 114,42 Milyar $ 24 Saatlik Hacim: 60,68 Milyar $ ⚡ Piyasa Duyarlılığı: FGI: Nötr (51) Açık Pozisyon: 54,19 Milyar $ 24 Saatlik Likidasyon: 494,2 Milyon $…",
+     "score": 0.2833,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10022",
+     "ts": "2026-10-24T13:00:41Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ENA",
+   "mentions": 10,
+   "mentionsPrev": 4,
+   "baseline7d": 6.46,
+   "spike": 1.55,
+   "composite": 0.1351,
+   "scores": {
+    "vader": -0.0434,
+    "finbert": -0.1321,
+    "cryptobert": 0.4025
+   },
+   "bullish": 0.6415,
+   "bearish": 0.049,
+   "neutral": 0.3095,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 9,
+     "composite": 0.1483
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.122
+    }
+   },
+   "samples": [
+    {
+     "text": "2024: $ENA = $10 2025: $ENA = $1.5 Aug 22, 2026: $ENA = $1 Today: Dumping $ENA This is what Arthur Hayes ( @CryptoHayes ) has done with $ENA.",
+     "score": 0.1316,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10762",
+     "ts": "2026-10-24T13:08:28Z"
+    },
+    {
+     "text": "PA日报 | 月之暗面发布Kimi K3.1 Pro；阿根廷法院撤销对总统米莱及其妹妹的LIBRA刑事调查 Arthur Hayes：已清仓ETH、ENA、UNI等代币，计划暂时观望；美国消费者信心因通胀问题降至五个月来最低水平；阿根廷总统米莱回应LIBRA案裁决，称遭政治与媒体“政变式”损害；曾以0.31美元均价购入10万枚ETH的鲸鱼6小时前卖出1000枚ETH 🔗 https://www.panewslab.com/zh/articles/01a16d25-7cc0-773a-ab78-0531202acc5e",
+     "score": 0.2578,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182901",
+     "ts": "2026-10-24T09:13:37Z"
+    },
+    {
+     "text": "Arthur Hayes减仓价值约2608万美元代币 PANews 10月24日消息，据链上分析师余烬监测，Arthur Hayes 减仓价值约 2608 万美元的多种代币，包括 8000 枚 ETH，价值约 1900 万美元；1400 万枚 ENA，价值约 276 万美元；32.3 万枚 UNI，价值约 224 万美元；189 万枚 ETHFI，价值约 123 万美元；54.7 万枚 AERO，价值约 40 万美元；12 万枚 PENDLE，价值约 24 万美元；300 万枚 ZAMA，价值约 21 万美元。 🔗 https://www.panew…",
+     "score": 0.2403,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182900",
+     "ts": "2026-10-24T08:59:26Z"
+    },
+    {
+     "text": "Arthur Hayes: Maelstrom Has Closed Its Directional Positions, Taking Profits on ETH, ENA and UNI Arthur Hayes said Maelstrom has closed all positions in its directional trading book, taking profits on ETH, ENA, UNI and other altcoins. He believes the market may need to fall befo…",
+     "score": 0.1785,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26537",
+     "ts": "2026-10-24T06:53:15Z"
+    },
+    {
+     "text": "Arthur Hayes：已清仓ETH、ENA、UNI等代币，计划暂时观望 PANews 10月24日消息，据 Lookonchain 监测，Arthur Hayes 正在抛售价值 2228 万美元的代币，包括 6400 枚 ETH，价值 1520 万美元；1400 万枚 ENA，价值 276 万美元；32.3 万枚 UNI，价值 224 万美元；189 万枚 ETHFI，价值 123 万美元；546,609 枚 AERO，价值 39.8 万美元；12 万枚 PENDLE，价值 24.4 万美元；300 万枚 ZAMA，价值 21.4 万美元。对此，A…",
+     "score": 0.2484,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182893",
+     "ts": "2026-10-24T06:28:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "DOGE",
+   "mentions": 7,
+   "mentionsPrev": 4,
+   "baseline7d": 12.54,
+   "spike": 0.56,
+   "composite": -0.0959,
+   "scores": {
+    "vader": -0.2805,
+    "finbert": -0.3401,
+    "cryptobert": 0.1627
+   },
+   "bullish": 0.3335,
+   "bearish": 0.4096,
+   "neutral": 0.2569,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 7,
+     "composite": -0.0959
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #DOGE Liquidated Long: $142K at $0.0748",
+     "score": -0.5748,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397312",
+     "ts": "2026-10-24T15:19:12Z"
+    },
+    {
+     "text": "🔴 #DOGE Liquidated Long: $83.9K at $0.0748",
+     "score": -0.3346,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397345",
+     "ts": "2026-10-24T15:22:16Z"
+    },
+    {
+     "text": "Weekly Project Updates: Dogecoin Labs Launches for Payments, OpenSea App Goes Public, Starknet Votes for Independent L1 Transition, etc Dogecoin Labs has been officially established with backing from the Dogecoin Foundation. Jordan Jefferson, founder of DogeOS, serves as CEO. Re…",
+     "score": 0.3083,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26538",
+     "ts": "2026-10-24T11:32:58Z"
+    },
+    {
+     "text": "⬛️ Спотовые ETF в США потеряли $112 млн за день #Новости #Трейдинг #ETF #Bitcoin #Ethereum Данные за 23 октября. Первым идет результат за сутки, в скобках — за 30 дней. 🤑 Bitcoin-ETF 📉 Чистый отток — $137,94 млн по 12 фондам (за 30 дней приток $99,19 млн). 🤑 Ethereum-ETF 📈 Ч…",
+     "score": 0.3768,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24470",
+     "ts": "2026-10-24T09:33:03Z"
+    },
+    {
+     "text": "🔴 #DOGE Liquidated Long: $115K at $0.07493100 - hyper lens",
+     "score": -0.0886,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/83520",
+     "ts": "2026-10-24T15:17:20Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AERO",
+   "mentions": 6,
+   "mentionsPrev": 3,
+   "baseline7d": 4.46,
+   "spike": 1.34,
+   "composite": 0.1226,
+   "scores": {
+    "vader": -0.1381,
+    "finbert": -0.0712,
+    "cryptobert": 0.4041
+   },
+   "bullish": 0.4258,
+   "bearish": 0.2534,
+   "neutral": 0.3208,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 6,
+     "composite": 0.1226
+    }
+   },
+   "samples": [
+    {
+     "text": "LATEST: 📊 Grayscale says HYPE, LIT, and CAKE top its ranking of crypto assets by tokenholder yield, with AERO and UNI rounding out the top five. When ranked by adjusted earnings yield, CAKE, LIT and HYPE keep the top three, followed by RAY and AAVE.",
+     "score": 0.5532,
+     "source": "telegram_public",
+     "community": "CoinMarketCapAnnouncements",
+     "url": "https://t.me/CoinMarketCapAnnouncements/19334",
+     "ts": "2026-10-24T06:40:09Z"
+    },
+    {
+     "text": "🔴 #AERO Liquidated Long: $89.1K at $0.6853 - hyper lens",
+     "score": -0.1588,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/83586",
+     "ts": "2026-10-24T16:26:08Z"
+    },
+    {
+     "text": "Arthur Hayes减仓价值约2608万美元代币 PANews 10月24日消息，据链上分析师余烬监测，Arthur Hayes 减仓价值约 2608 万美元的多种代币，包括 8000 枚 ETH，价值约 1900 万美元；1400 万枚 ENA，价值约 276 万美元；32.3 万枚 UNI，价值约 224 万美元；189 万枚 ETHFI，价值约 123 万美元；54.7 万枚 AERO，价值约 40 万美元；12 万枚 PENDLE，价值约 24 万美元；300 万枚 ZAMA，价值约 21 万美元。 🔗 https://www.panew…",
+     "score": 0.2403,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182900",
+     "ts": "2026-10-24T08:59:26Z"
+    },
+    {
+     "text": "Arthur Hayes：已清仓ETH、ENA、UNI等代币，计划暂时观望 PANews 10月24日消息，据 Lookonchain 监测，Arthur Hayes 正在抛售价值 2228 万美元的代币，包括 6400 枚 ETH，价值 1520 万美元；1400 万枚 ENA，价值 276 万美元；32.3 万枚 UNI，价值 224 万美元；189 万枚 ETHFI，价值 123 万美元；546,609 枚 AERO，价值 39.8 万美元；12 万枚 PENDLE，价值 24.4 万美元；300 万枚 ZAMA，价值 21.4 万美元。对此，A…",
+     "score": 0.2484,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182893",
+     "ts": "2026-10-24T06:28:03Z"
+    },
+    {
+     "text": "[아서 헤이즈, ETH·ENA 등 보유 알트코인 전액 매도] 비트멕스(BitMEX) 공동 설립자 겸 플롭랩스(Flop Labs) CEO 아서 헤이즈가 2,228만 달러 상당의 알트코인을 매도한 것으로 나타났다. 온체인 기록 상 아서 헤이즈는 오늘 바이낸스, 플로우데스크, 팔콘엑스, 윈터뮤트 등 중앙화 거래소 및 장외거래(OTC) 데스크에 수 차례에 설쳐 알트코인을 입금했다. 통상 거래소 입금은 매도 목적으로 추정된다. 입금된 물량은 각각 6,400 ETH(약 1,520만 달러), 1,400만 E…",
+     "score": 0.0645,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/235273",
+     "ts": "2026-10-24T06:27:29Z"
+    }
+   ]
+  },
+  {
+   "symbol": "WLD",
+   "mentions": 6,
+   "mentionsPrev": 1,
+   "baseline7d": 1.08,
+   "spike": 5.57,
+   "composite": -0.006,
+   "scores": {
+    "vader": -0.195,
+    "finbert": -0.2014,
+    "cryptobert": 0.2286
+   },
+   "bullish": 0.4601,
+   "bearish": 0.2864,
+   "neutral": 0.2535,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 6,
+     "composite": -0.006
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #WLD Liquidated Long: $74.3K at $0.460",
+     "score": -0.4547,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397346",
+     "ts": "2026-10-24T15:22:18Z"
+    },
+    {
+     "text": "比特币跌破8万美元，山寨币大幅回落，Q跌超34%，PHA、CT均跌超22% BlockBeats 消息，10 月 24 日，据 HTX 行情数据，伴随比特币回落跌破 8 万美元，山寨币大幅回落，其中： Q 现报价 0.080162 美元，24 小时下跌 34.35%； PHA 现报价 0.0499 美元，24 小时下跌 24.38%； CT 现报价 0.1619 美元，24 小时下跌 22.22%； SOPH 现报价 0.001458 美元，24 小时下跌 17.95%； FARTCOIN 现报价 0.122 美元，24 小时下跌 16.78%； 「4…",
+     "score": 0.2262,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202182",
+     "ts": "2026-10-24T15:38:02Z"
+    },
+    {
+     "text": "🔍 链上侦探 | 某投资Aave与Worldcoin的机构向多家CEX转入累计3318万美元ETH、WLD和AAVE BlockBeats 消息，10 月 24 日，据 EmberCN 监测，某同时投资 Aave 与 Worldcoin 的机构在约 1 小时前向多家中心化交易平台转入价值约 3318 万美元的代币，包括 6000 枚 ETH（约 1440 万美元）、1900 万枚 WLD（约 967 万美元）及 6.2 万枚 AAVE（约 911 万美元）。 原文链接 https://m.theblockbeats.info/flash/373470",
+     "score": 0.2744,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202126",
+     "ts": "2026-10-24T00:50:03Z"
+    },
+    {
+     "text": "某机构1小时前把价值3318万美元的ETH、WLD和AAVE转进多家CEX PANews 10月24日消息，据链上分析师余烬监测，一个同时有投资 Aave 与 Worldcoin 的机构，在 1 小时前把价值 3318 万美元的代币转进了多家 CEX。包括 6000 枚 ETH（约合 1440 万美元）、1900 万枚 WLD（约合 967 万美元）、6.2 万枚 AAVE（约合 911 万美元）。 🔗 https://www.panewslab.com/zh/articles/01a16b64-be31-70ea-85c4-2631bdda9035",
+     "score": 0.2657,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182873",
+     "ts": "2026-10-24T00:52:14Z"
+    },
+    {
+     "text": "After over a year of inactivity, an institution moved 156,690 $AAVE ($22.86M) and 19.74M $WLD ($10.04M) to sell. So far, it has deposited 62,000 $AAVE ($9.12M) and 19M $WLD ($9.67M) into exchanges. https://arkm.com/explorer/entity/0e9dc52d-ae98-4c6f-8407-91e56713936a",
+     "score": 0.0353,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10754",
+     "ts": "2026-10-24T03:42:19Z"
+    }
+   ]
+  },
+  {
+   "symbol": "PENDLE",
+   "mentions": 6,
+   "mentionsPrev": 1,
+   "baseline7d": 2.08,
+   "spike": 2.89,
+   "composite": 0.214,
+   "scores": {
+    "vader": 0.0717,
+    "finbert": 0.02,
+    "cryptobert": 0.4166
+   },
+   "bullish": 0.6262,
+   "bearish": 0.0,
+   "neutral": 0.3738,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 6,
+     "composite": 0.214
+    }
+   },
+   "samples": [
+    {
+     "text": "📊 TOKENIZED STOCKS CAN NOW BE LEVERAGED UP TO 4.2X ON BASE ​ Onchain equities just gained another DeFi primitive. ​ Pendle has launched: ​ PENDLELOOP ​ for Coinbase-issued stock tokens on Base. ​ The system lets eligible users build leveraged long exposure in: ​ ONE CLICK. ​ Th…",
+     "score": 0.6045,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22310",
+     "ts": "2026-10-24T12:12:02Z"
+    },
+    {
+     "text": "Arthur Hayes减仓价值约2608万美元代币 PANews 10月24日消息，据链上分析师余烬监测，Arthur Hayes 减仓价值约 2608 万美元的多种代币，包括 8000 枚 ETH，价值约 1900 万美元；1400 万枚 ENA，价值约 276 万美元；32.3 万枚 UNI，价值约 224 万美元；189 万枚 ETHFI，价值约 123 万美元；54.7 万枚 AERO，价值约 40 万美元；12 万枚 PENDLE，价值约 24 万美元；300 万枚 ZAMA，价值约 21 万美元。 🔗 https://www.panew…",
+     "score": 0.2403,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182900",
+     "ts": "2026-10-24T08:59:26Z"
+    },
+    {
+     "text": "Arthur Hayes：已清仓ETH、ENA、UNI等代币，计划暂时观望 PANews 10月24日消息，据 Lookonchain 监测，Arthur Hayes 正在抛售价值 2228 万美元的代币，包括 6400 枚 ETH，价值 1520 万美元；1400 万枚 ENA，价值 276 万美元；32.3 万枚 UNI，价值 224 万美元；189 万枚 ETHFI，价值 123 万美元；546,609 枚 AERO，价值 39.8 万美元；12 万枚 PENDLE，价值 24.4 万美元；300 万枚 ZAMA，价值 21.4 万美元。对此，A…",
+     "score": 0.2484,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182893",
+     "ts": "2026-10-24T06:28:03Z"
+    },
+    {
+     "text": "Arthur Hayes is back after 9 days, moving $6.66M in tokens, likely to sell: · 14M $ENA ($2.74M) to Binance · 323K $UNI ($2.24M) to Wintermute · 3M $ZAMA ($213.7K) to Wintermute · 1.89M $ETHFI ($1.22M) to FalconX · 120K $PENDLE ($242.4K) to his CEX / MM deposit wallet Wintermute…",
+     "score": 0.1857,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8112",
+     "ts": "2026-10-24T06:17:03Z"
+    },
+    {
+     "text": "[아서 헤이즈, ETH·ENA 등 보유 알트코인 전액 매도] 비트멕스(BitMEX) 공동 설립자 겸 플롭랩스(Flop Labs) CEO 아서 헤이즈가 2,228만 달러 상당의 알트코인을 매도한 것으로 나타났다. 온체인 기록 상 아서 헤이즈는 오늘 바이낸스, 플로우데스크, 팔콘엑스, 윈터뮤트 등 중앙화 거래소 및 장외거래(OTC) 데스크에 수 차례에 설쳐 알트코인을 입금했다. 통상 거래소 입금은 매도 목적으로 추정된다. 입금된 물량은 각각 6,400 ETH(약 1,520만 달러), 1,400만 E…",
+     "score": 0.0645,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/235273",
+     "ts": "2026-10-24T06:27:29Z"
+    }
+   ]
+  },
+  {
+   "symbol": "TRX",
+   "mentions": 6,
+   "mentionsPrev": 6,
+   "baseline7d": 8.69,
+   "spike": 0.69,
+   "composite": 0.2274,
+   "scores": {
+    "vader": 0.2652,
+    "finbert": 0.0238,
+    "cryptobert": 0.3154
+   },
+   "bullish": 0.8443,
+   "bearish": 0.0,
+   "neutral": 0.1557,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 6,
+     "composite": 0.2274
+    }
+   },
+   "samples": [
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 79,538 -2.5 -2.0 0.0 2 ETH 2,298 -4.4 -4.3 0.0 3 USDT 1.00 0.0 0.0 0.0 4 BNB 720.06 -3.5 0.9 0.0 5 XRP 1.26 -3.4 -2.0 0.0 6 USDC 1.00 0.0 0.0 0.0 7 SOL 99.46 -4.9 -3.6 0.0 8 TRX 0.33 -0.2 -1.7 0.0 9 STETH2,290.50 -4.8 -4.6 0.0 10 ZEC1,139.64 -…",
+     "score": 0.2589,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569218",
+     "ts": "2026-10-24T16:00:08Z"
+    },
+    {
+     "text": "⬛️ Спотовые ETF в США потеряли $112 млн за день #Новости #Трейдинг #ETF #Bitcoin #Ethereum Данные за 23 октября. Первым идет результат за сутки, в скобках — за 30 дней. 🤑 Bitcoin-ETF 📉 Чистый отток — $137,94 млн по 12 фондам (за 30 дней приток $99,19 млн). 🤑 Ethereum-ETF 📈 Ч…",
+     "score": 0.3768,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24470",
+     "ts": "2026-10-24T09:33:03Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 80,634 -1.3 -1.2 0.0 2 ETH 2,372 -1.4 -2.5 0.0 3 USDT 1.00 0.0 0.0 0.0 4 BNB 735.10 -1.2 1.9 0.0 5 XRP 1.28 -3.2 -1.8 0.0 6 USDC 1.00 0.0 -0.0 0.0 7 SOL 101.79 -2.7 -3.0 0.0 8 TRX 0.33 -0.0 -1.7 0.0 9 STETH2,371.82 -1.4 -2.7 0.0 10 ZEC1,162.60…",
+     "score": 0.2386,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569217",
+     "ts": "2026-10-24T08:00:08Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 81,086 -0.3 -0.5 0.0 2 ETH 2,385 -0.3 -1.4 0.0 3 USDT 1.00 0.0 0.0 0.0 4 BNB 739.12 1.1 2.8 0.0 5 XRP 1.29 -1.3 -0.8 0.0 6 USDC 1.00 0.0 -0.0 0.0 7 SOL 102.82 -1.0 -1.4 0.0 8 TRX 0.33 0.4 -1.6 0.0 9 STETH2,384.64 -0.1 -1.3 0.0 10 ZEC1,181.29 -…",
+     "score": 0.2548,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569213",
+     "ts": "2026-10-24T00:00:07Z"
+    },
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ETHFI",
+   "mentions": 5,
+   "mentionsPrev": 2,
+   "baseline7d": 0.62,
+   "spike": null,
+   "composite": 0.142,
+   "scores": {
+    "vader": -0.0837,
+    "finbert": 0.0118,
+    "cryptobert": 0.3648
+   },
+   "bullish": 0.5573,
+   "bearish": 0.0,
+   "neutral": 0.4427,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 5,
+     "composite": 0.142
+    }
+   },
+   "samples": [
+    {
+     "text": "Arthur Hayes减仓价值约2608万美元代币 PANews 10月24日消息，据链上分析师余烬监测，Arthur Hayes 减仓价值约 2608 万美元的多种代币，包括 8000 枚 ETH，价值约 1900 万美元；1400 万枚 ENA，价值约 276 万美元；32.3 万枚 UNI，价值约 224 万美元；189 万枚 ETHFI，价值约 123 万美元；54.7 万枚 AERO，价值约 40 万美元；12 万枚 PENDLE，价值约 24 万美元；300 万枚 ZAMA，价值约 21 万美元。 🔗 https://www.panew…",
+     "score": 0.2403,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182900",
+     "ts": "2026-10-24T08:59:26Z"
+    },
+    {
+     "text": "Arthur Hayes：已清仓ETH、ENA、UNI等代币，计划暂时观望 PANews 10月24日消息，据 Lookonchain 监测，Arthur Hayes 正在抛售价值 2228 万美元的代币，包括 6400 枚 ETH，价值 1520 万美元；1400 万枚 ENA，价值 276 万美元；32.3 万枚 UNI，价值 224 万美元；189 万枚 ETHFI，价值 123 万美元；546,609 枚 AERO，价值 39.8 万美元；12 万枚 PENDLE，价值 24.4 万美元；300 万枚 ZAMA，价值 21.4 万美元。对此，A…",
+     "score": 0.2484,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182893",
+     "ts": "2026-10-24T06:28:03Z"
+    },
+    {
+     "text": "Arthur Hayes is back after 9 days, moving $6.66M in tokens, likely to sell: · 14M $ENA ($2.74M) to Binance · 323K $UNI ($2.24M) to Wintermute · 3M $ZAMA ($213.7K) to Wintermute · 1.89M $ETHFI ($1.22M) to FalconX · 120K $PENDLE ($242.4K) to his CEX / MM deposit wallet Wintermute…",
+     "score": 0.1857,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8112",
+     "ts": "2026-10-24T06:17:03Z"
+    },
+    {
+     "text": "[아서 헤이즈, ETH·ENA 등 보유 알트코인 전액 매도] 비트멕스(BitMEX) 공동 설립자 겸 플롭랩스(Flop Labs) CEO 아서 헤이즈가 2,228만 달러 상당의 알트코인을 매도한 것으로 나타났다. 온체인 기록 상 아서 헤이즈는 오늘 바이낸스, 플로우데스크, 팔콘엑스, 윈터뮤트 등 중앙화 거래소 및 장외거래(OTC) 데스크에 수 차례에 설쳐 알트코인을 입금했다. 통상 거래소 입금은 매도 목적으로 추정된다. 입금된 물량은 각각 6,400 ETH(약 1,520만 달러), 1,400만 E…",
+     "score": 0.0645,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/235273",
+     "ts": "2026-10-24T06:27:29Z"
+    },
+    {
+     "text": "Arthur Hayes ( @CryptoHayes ) is dumping $22.28M worth of tokens! Including: 6,400 $ETH ($15.2M), 14M $ENA ($2.76M), 323,000 $UNI ($2.24M), 1.89M $ETHFI ($1.23M), 546,609 $AERO ($398K), 120,000 $PENDLE ($244K), 3M $ZAMA ($214K). https://arkm.com/explorer/entity/arthur-hayes http…",
+     "score": 0.0093,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10757",
+     "ts": "2026-10-24T06:15:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZAMA",
+   "mentions": 5,
+   "mentionsPrev": 0,
+   "baseline7d": 0.38,
+   "spike": null,
+   "composite": 0.142,
+   "scores": {
+    "vader": -0.0837,
+    "finbert": 0.0118,
+    "cryptobert": 0.3648
+   },
+   "bullish": 0.5573,
+   "bearish": 0.0,
+   "neutral": 0.4427,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 5,
+     "composite": 0.142
+    }
+   },
+   "samples": [
+    {
+     "text": "Arthur Hayes减仓价值约2608万美元代币 PANews 10月24日消息，据链上分析师余烬监测，Arthur Hayes 减仓价值约 2608 万美元的多种代币，包括 8000 枚 ETH，价值约 1900 万美元；1400 万枚 ENA，价值约 276 万美元；32.3 万枚 UNI，价值约 224 万美元；189 万枚 ETHFI，价值约 123 万美元；54.7 万枚 AERO，价值约 40 万美元；12 万枚 PENDLE，价值约 24 万美元；300 万枚 ZAMA，价值约 21 万美元。 🔗 https://www.panew…",
+     "score": 0.2403,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182900",
+     "ts": "2026-10-24T08:59:26Z"
+    },
+    {
+     "text": "Arthur Hayes：已清仓ETH、ENA、UNI等代币，计划暂时观望 PANews 10月24日消息，据 Lookonchain 监测，Arthur Hayes 正在抛售价值 2228 万美元的代币，包括 6400 枚 ETH，价值 1520 万美元；1400 万枚 ENA，价值 276 万美元；32.3 万枚 UNI，价值 224 万美元；189 万枚 ETHFI，价值 123 万美元；546,609 枚 AERO，价值 39.8 万美元；12 万枚 PENDLE，价值 24.4 万美元；300 万枚 ZAMA，价值 21.4 万美元。对此，A…",
+     "score": 0.2484,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182893",
+     "ts": "2026-10-24T06:28:03Z"
+    },
+    {
+     "text": "Arthur Hayes is back after 9 days, moving $6.66M in tokens, likely to sell: · 14M $ENA ($2.74M) to Binance · 323K $UNI ($2.24M) to Wintermute · 3M $ZAMA ($213.7K) to Wintermute · 1.89M $ETHFI ($1.22M) to FalconX · 120K $PENDLE ($242.4K) to his CEX / MM deposit wallet Wintermute…",
+     "score": 0.1857,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8112",
+     "ts": "2026-10-24T06:17:03Z"
+    },
+    {
+     "text": "[아서 헤이즈, ETH·ENA 등 보유 알트코인 전액 매도] 비트멕스(BitMEX) 공동 설립자 겸 플롭랩스(Flop Labs) CEO 아서 헤이즈가 2,228만 달러 상당의 알트코인을 매도한 것으로 나타났다. 온체인 기록 상 아서 헤이즈는 오늘 바이낸스, 플로우데스크, 팔콘엑스, 윈터뮤트 등 중앙화 거래소 및 장외거래(OTC) 데스크에 수 차례에 설쳐 알트코인을 입금했다. 통상 거래소 입금은 매도 목적으로 추정된다. 입금된 물량은 각각 6,400 ETH(약 1,520만 달러), 1,400만 E…",
+     "score": 0.0645,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/235273",
+     "ts": "2026-10-24T06:27:29Z"
+    },
+    {
+     "text": "Arthur Hayes ( @CryptoHayes ) is dumping $22.28M worth of tokens! Including: 6,400 $ETH ($15.2M), 14M $ENA ($2.76M), 323,000 $UNI ($2.24M), 1.89M $ETHFI ($1.23M), 546,609 $AERO ($398K), 120,000 $PENDLE ($244K), 3M $ZAMA ($214K). https://arkm.com/explorer/entity/arthur-hayes http…",
+     "score": 0.0093,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10757",
+     "ts": "2026-10-24T06:15:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AXIS",
+   "mentions": 5,
+   "mentionsPrev": 0,
+   "baseline7d": 3.77,
+   "spike": 1.33,
+   "composite": 0.202,
+   "scores": {
+    "vader": 0.0662,
+    "finbert": 0.0145,
+    "cryptobert": 0.3967
+   },
+   "bullish": 0.7796,
+   "bearish": 0.0,
+   "neutral": 0.2204,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 5,
+     "composite": 0.202
+    }
+   },
+   "samples": [
+    {
+     "text": "[BITHUMB] $AXIS listed on Bithumb",
+     "score": 0.3444,
+     "source": "telegram_public",
+     "community": "coin_listing",
+     "url": "https://t.me/coin_listing/12335",
+     "ts": "2026-10-24T00:32:10Z"
+    },
+    {
+     "text": "$AXIS Found in Bithumb Notifer: @CexAlerts",
+     "score": 0.2296,
+     "source": "telegram_public",
+     "community": "CexAlerts",
+     "url": "https://t.me/CexAlerts/40692",
+     "ts": "2026-10-24T01:26:18Z"
+    },
+    {
+     "text": "BITHUMB $AXIS coini listeleyecek.",
+     "score": 0.2551,
+     "source": "telegram_public",
+     "community": "coinotag",
+     "url": "https://t.me/coinotag/29603",
+     "ts": "2026-10-24T00:32:07Z"
+    },
+    {
+     "text": "#Bithumb News 총 2억 1천만원 상당, 액시스로보틱스(AXIS) 원화마켓 추가 기념 에어드랍 이벤트 (*거래 수수료 무료) 총 2억 1천만원 상당, 액시스로보틱스(AXIS) 원화마켓 추가 기념 에어드랍 이벤트 (*거래 수수료 무료) $AXIS Notifer: @CexAlerts",
+     "score": 0.0768,
+     "source": "telegram_public",
+     "community": "CexAlerts",
+     "url": "https://t.me/CexAlerts/40693",
+     "ts": "2026-10-24T02:56:08Z"
+    },
+    {
+     "text": "#Bithumb News 액시스로보틱스(AXIS) 원화 마켓 추가 액시스로보틱스(AXIS) 원화 마켓 추가 $AXIS Notifer: @CexAlerts",
+     "score": 0.1148,
+     "source": "telegram_public",
+     "community": "CexAlerts",
+     "url": "https://t.me/CexAlerts/40691",
+     "ts": "2026-10-24T00:32:19Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LINK",
+   "mentions": 4,
+   "mentionsPrev": 6,
+   "baseline7d": 3.15,
+   "spike": 1.27,
+   "composite": 0.4523,
+   "scores": {
+    "vader": 0.7863,
+    "finbert": 0.0599,
+    "cryptobert": 0.4475
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 4,
+     "composite": 0.4523
+    }
+   },
+   "samples": [
+    {
+     "text": "📈 TOKENIZED APPLE, NVIDIA + TESLA CAN NOW BACK AAVE LOANS ON BASE ​ Stocks are becoming usable inside Ethereum DeFi. ​ Aave V4’s Equities Hub on Base allows eligible investors to borrow: ​ USDC ​ against Coinbase-issued tokenized U.S. stocks. ​ At launch, the market supports: ​…",
+     "score": 0.5249,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22309",
+     "ts": "2026-10-24T09:01:02Z"
+    },
+    {
+     "text": "👀 Gate Event Contracts Offers Two Markets with Separate Price Benchmarks: Contract Index (INDEX) and Time-Weighted Average Price (TWAP) 🔹 INDEX Markets: Powered by the Gate Futures Index Price. Weighted from multiple price sources to reflect overall market conditions. 🔹 TWAP…",
+     "score": 0.4217,
+     "source": "telegram_public",
+     "community": "GateOfficialNews",
+     "url": "https://t.me/GateOfficialNews/24508",
+     "ts": "2026-10-24T06:04:19Z"
+    },
+    {
+     "text": "在固定时间窗口内判断价格方向，会形成怎样的交易机会？ Gate 研究院聚焦时间切片市场与事件合约，解析如何将短期价格走势转化为可独立定价、交易和结算的结果。 核心亮点： 🔹 5min、15min、1h 和 4h 正成为短周期方向市场的主要产品形态 🔹 Gate 事件合约目前已覆盖 BTC、ETH 的四种时间周期，并采用 Chainlink 时间加权平均价格进行结果判定 🔹 秒级市场能提高事件密度并加快市场反馈，但数据延迟、交易成本及价格处理等因素也将更直接地影响交易公平性与实际收益 🔹 时间切片市场的长期发展方向或将延伸至股票、指数、外汇、商品…",
+     "score": 0.4639,
+     "source": "telegram_public",
+     "community": "GateZhNews",
+     "url": "https://t.me/GateZhNews/7178",
+     "ts": "2026-10-24T05:05:07Z"
+    },
+    {
+     "text": "👀 Gate 事件合约提供合约指数 (INDEX) 和时间加权 (TWAP) 两类价格基准市场 🔹 INDEX 市场：采用 Gate 合约指数价格，多源价格加权，贴合综合市场行情 🔹 TWAP 市场：Chainlink 提供 60 秒窗口时间加权均价，缓冲短时插针、脉冲波动 ⚠️ 重点提醒： 二者是相互独立的市场，拥有单独订单簿、报价与结算逻辑；同币种、同周期，涨跌判定结果也可能不一样 当前 BTC、ETH 5 分钟 / 15 分钟周期同步支持两种基准，下单前请看清价格标签 🎁 专场交易赛已开启，100,000 USDT 奖池等你来瓜分 👉…",
+     "score": 0.3912,
+     "source": "telegram_public",
+     "community": "GateZhNews",
+     "url": "https://t.me/GateZhNews/7179",
+     "ts": "2026-10-24T06:06:01Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AVAX",
+   "mentions": 3,
+   "mentionsPrev": 2,
+   "baseline7d": 4.69,
+   "spike": 0.64,
+   "composite": -0.0296,
+   "scores": {
+    "vader": -0.0923,
+    "finbert": -0.2757,
+    "cryptobert": 0.149
+   },
+   "bullish": 0.2666,
+   "bearish": 0.4846,
+   "neutral": 0.2488,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": -0.0296
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #AVAX Liquidated Long: $97.8K at $8.692",
+     "score": -0.297,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/397329",
+     "ts": "2026-10-24T15:21:40Z"
+    },
+    {
+     "text": "⬛️ Спотовые ETF в США потеряли $112 млн за день #Новости #Трейдинг #ETF #Bitcoin #Ethereum Данные за 23 октября. Первым идет результат за сутки, в скобках — за 30 дней. 🤑 Bitcoin-ETF 📉 Чистый отток — $137,94 млн по 12 фондам (за 30 дней приток $99,19 млн). 🤑 Ethereum-ETF 📈 Ч…",
+     "score": 0.3768,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24470",
+     "ts": "2026-10-24T09:33:03Z"
+    },
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SUI",
+   "mentions": 3,
+   "mentionsPrev": 2,
+   "baseline7d": 5.0,
+   "spike": 0.6,
+   "composite": -0.0777,
+   "scores": {
+    "vader": -0.2674,
+    "finbert": -0.377,
+    "cryptobert": 0.215
+   },
+   "bullish": 0.1577,
+   "bearish": 0.5285,
+   "neutral": 0.3138,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": -0.0777
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #SUI Liquidated Long: $97.2K at $0.9127 - hyper lens",
+     "score": -0.3078,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/83556",
+     "ts": "2026-10-24T15:21:05Z"
+    },
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. IRYS 2. UHI 3. DACITY 4. VVV 5. PEARL 6. PENGU 7. ZEC 8. LINK 9. PEPE 10. TAO 11. SUI 12. PHA 13. BEAM 14. BTC 15. INIT @atamertuysaler",
+     "score": 0.4276,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10019",
+     "ts": "2026-10-23T20:13:05Z"
+    },
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LIBRA",
+   "mentions": 3,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.1132,
+   "scores": {
+    "vader": -0.3987,
+    "finbert": -0.179,
+    "cryptobert": 0.6168
+   },
+   "bullish": 0.6273,
+   "bearish": 0.3727,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.1132
+    }
+   },
+   "samples": [
+    {
+     "text": "阿根廷总统米莱回应LIBRA案裁决，称遭政治与媒体“政变式”损害 PANews 10月24日消息，阿根廷总统 Javier Milei 回应其与妹妹 Karina Milei 在 $LIBRA 加密货币案中被司法裁定“免于起诉”一事，质问谁来补偿其在“一年八个月零九天”中因谎言、诽谤和侮辱遭受的名誉损失。他称司法“重新摆正了位置”，揭露了一场“巨大的政治与媒体操作”，其唯一目的是以“政变式”政治目的损害总统职务，并点名批评多名记者。此前消息，阿根廷法院撤销对总统米莱及其妹妹的LIBRA刑事调查。 🔗 https://www.panewslab.com…",
+     "score": 0.3117,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182892",
+     "ts": "2026-10-24T06:19:37Z"
+    },
+    {
+     "text": "JUST IN: 🇦🇷 Argentina drops criminal investigation into President Javier Milei over $LIBRA crypto memecoin scandal. @WatcherGuru",
+     "score": -0.2197,
+     "source": "telegram_public",
+     "community": "WatcherGuru",
+     "url": "https://t.me/WatcherGuru/15618",
+     "ts": "2026-10-23T20:56:12Z"
+    },
+    {
+     "text": "¡ÚLTIMA HORA! ⚖️ La Justicia argentina cerró una causa contra el presidente Javier Milei y Karina Milei por el caso $LIBRA. El juez consideró que las pruebas no bastaban para acreditar una estafa.",
+     "score": 0.3099,
+     "source": "telegram_public",
+     "community": "criptonoticias",
+     "url": "https://t.me/criptonoticias/43425",
+     "ts": "2026-10-23T20:07:46Z"
+    }
+   ]
+  },
+  {
+   "symbol": "WLFI",
+   "mentions": 3,
+   "mentionsPrev": 9,
+   "baseline7d": 4.54,
+   "spike": 0.66,
+   "composite": 0.0904,
+   "scores": {
+    "vader": -0.1136,
+    "finbert": -0.0339,
+    "cryptobert": 0.2954
+   },
+   "bullish": 0.7306,
+   "bearish": 0.2694,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.1775
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.1459
+    }
+   },
+   "samples": [
+    {
+     "text": "Circle 股东、孙宇晨先后起诉，特朗普家族加密生意 WLFI 争议不断 Circle 股东起诉特朗普及其 WLFI，称两笔阿联酋关联交易违反外国馈赠条款、损害 Circle；WLFI 的 USD1 获 OCC 信托牌照初步批准，孙宇晨此前也起诉 WLFI，案件与监管审查并行。 🔗 https://www.panewslab.com/zh/articles/01a16839-8ac0-75ae-8421-bee233f74346",
+     "score": 0.2367,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182874",
+     "ts": "2026-10-24T00:55:01Z"
+    },
+    {
+     "text": "스마트머니 최근 선물 거래 표본 · PONS, 10 최근 선물 거래 표본 10행을 조회했습니다. PONS Long · Add · PONS Long · Add · WLFI Long · Add · WLFI Long · Add 코인이지 인사이트 최근 선물 거래 행입니다. 거래 방향·행동을 현재 보유 포지션이나 지속적인 매수로 해석하지 않습니다. 핵심 한 줄: 최근 거래 표본 · 기간 미지정 · 조회 10행 중 4행 표시 · 시장 전체 아님 Powered by Nansen 👉 더 알아보기 📢 공지방…",
+     "score": 0.1129,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/57782",
+     "ts": "2026-10-24T03:30:10Z"
+    },
+    {
+     "text": "Circle shareholder sues Trump over UAE crypto deals, citing up to $82 million in potential annual revenue. A Circle shareholder sued President Donald Trump, alleging UAE-linked cryptocurrency payments enriched his family and diverted business from USDC. The complaint, filed Oct.…",
+     "score": -0.1459,
+     "source": "rss",
+     "community": "CryptoSlate",
+     "url": "https://cryptoslate.com/circle-shareholder-sues-trump-over-uae-crypto-deals-citing-up-to-82-million-in-potential-annual-revenue/",
+     "ts": "2026-10-24T15:45:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SOSO",
+   "mentions": 3,
+   "mentionsPrev": 0,
+   "baseline7d": 3.0,
+   "spike": 1.0,
+   "composite": -0.1077,
+   "scores": {
+    "vader": -0.2393,
+    "finbert": -0.5315,
+    "cryptobert": 0.2155
+   },
+   "bullish": 0.4093,
+   "bearish": 0.5907,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": -0.0041
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.3239
+    }
+   },
+   "samples": [
+    {
+     "text": "美国 ZEC、NEAR 现货 ETF 单日合计净流入 2151.23 万美元 PANews 10月24日消息，根据 SoSoValue 数据，昨日（美东时间 10 月 23 日）美国 ZEC 现货 ETF 单日总净流入 2051.96 万美元，NEAR 现货 ETF 单日总净流入 99.27 万美元。ZEC 现货 ETF 中，仅 Zcash ETF（ZCSH）实现净流入，单日净流入 2051.96 万美元，历史累计净流入达 2.04 亿美元。截至发稿前，ZEC 现货 ETF 总资产净值为 7.07 亿美元，ZEC 净资产比率为 3.38%。NEAR 现…",
+     "score": 0.2388,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182875",
+     "ts": "2026-10-24T00:57:55Z"
+    },
+    {
+     "text": "Crypto longs lose $404 million in four hours as bitcoin briefly slips below $80,000. Spot bitcoin ETFs lost $773 million on Thursday and Friday after three days of net inflows, per SoSoValue data.",
+     "score": -0.3239,
+     "source": "rss",
+     "community": "The Block",
+     "url": "https://www.theblock.co/news/markets/2026-10-24-crypto-longs-lose-404-million-in-four-hours-as-bitcoin-briefly-slips-below-80000-431608",
+     "ts": "2026-10-24T17:44:36Z"
+    },
+    {
+     "text": "US spot Bitcoin ETFs lost about $635M on Oct. 22, per SoSoValue, reversing nearly 60% of the prior three sessions’ inflows. Bitcoin fell as low as $80,841, below Glassnode’s estimated $81,500 cost basis for the funds’ holdings. https://cryptoslate.com/bitcoin-etf-outflows-holdin…",
+     "score": -0.3768,
+     "source": "telegram_public",
+     "community": "cryptoslatenews",
+     "url": "https://t.me/cryptoslatenews/31826",
+     "ts": "2026-10-23T18:16:00Z"
+    }
+   ]
+  },
+  {
+   "symbol": "PEPE",
+   "mentions": 3,
+   "mentionsPrev": 4,
+   "baseline7d": 2.77,
+   "spike": 1.08,
+   "composite": 0.399,
+   "scores": {
+    "vader": 0.5557,
+    "finbert": 0.0163,
+    "cryptobert": 0.5072
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.399
+    }
+   },
+   "samples": [
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. IRYS 2. UHI 3. DACITY 4. VVV 5. PEARL 6. PENGU 7. ZEC 8. LINK 9. PEPE 10. TAO 11. SUI 12. PHA 13. BEAM 14. BTC 15. INIT @atamertuysaler",
+     "score": 0.4276,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10019",
+     "ts": "2026-10-23T20:13:05Z"
+    },
+    {
+     "text": "⭐ Anonymous Pepe Entered cherrytrend ! zPEPE | 46.88% | 5.0K MC | SOLANA 📊 DexS ✈️ Cherry 🍒 Web 🔗 Twitter 📈 VolumeBot",
+     "score": 0.3642,
+     "source": "telegram_public",
+     "community": "cherrytrending",
+     "url": "https://t.me/cherrytrending/795891",
+     "ts": "2026-10-24T17:44:19Z"
+    },
+    {
+     "text": "⭐ Anonymous Pepe Entered cherrytrend ! zPEPE | 362.36% | 14.7K MC | SOLANA 📊 DexS ✈️ Cherry 🍒 Web 🔗 Twitter 📈 VolumeBot",
+     "score": 0.3455,
+     "source": "telegram_public",
+     "community": "cherrytrending",
+     "url": "https://t.me/cherrytrending/795894",
+     "ts": "2026-10-24T17:47:55Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SAND",
+   "mentions": 2,
+   "mentionsPrev": 0,
+   "baseline7d": 0.15,
+   "spike": null,
+   "composite": -0.0466,
+   "scores": {
+    "vader": -0.3134,
+    "finbert": -0.0729,
+    "cryptobert": 0.1458
+   },
+   "bullish": 0.4935,
+   "bearish": 0.5065,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": -0.0466
+    }
+   },
+   "samples": [
+    {
+     "text": "🚬 If you're having a bad day, remember the person who in 2021 paid $450,000 for virtual land to become Snoop Dogg's neighbor in the metaverse The Sandbox . Now, the value of such a plot is estimated at a maximum of $1,000 — a drop of almost 99.8%. The neighborhood with the rapp…",
+     "score": -0.2007,
+     "source": "telegram_public",
+     "community": "crypto_nft_web3_news",
+     "url": "https://t.me/crypto_nft_web3_news/10838",
+     "ts": "2026-10-24T12:43:00Z"
+    },
+    {
+     "text": "🚬 Если у вас плохой день, вспомните человека, который в 2021 году заплатил $450 000 за виртуальную землю , чтобы стать соседом Снуп Дога в метавселенной The Sandbox . Сейчас стоимость такого участка оценивают максимум в $1000 — падение почти на 99.8%. Соседство с рэпером было в…",
+     "score": 0.1115,
+     "source": "telegram_public",
+     "community": "DeCenter",
+     "url": "https://t.me/DeCenter/26654",
+     "ts": "2026-10-24T12:42:57Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZRO",
+   "mentions": 2,
+   "mentionsPrev": 1,
+   "baseline7d": 2.0,
+   "spike": 1.0,
+   "composite": 0.1519,
+   "scores": {
+    "vader": 0.0981,
+    "finbert": 0.2062,
+    "cryptobert": 0.1576
+   },
+   "bullish": 0.5514,
+   "bearish": 0.0,
+   "neutral": 0.4486,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.1519
+    }
+   },
+   "samples": [
+    {
+     "text": "Что почитать на сайте РБК Крипто. Подборка материалов за неделю ▫️ Уход MEXC и «скидка на крипту» на Мосбирже. Новости крипторынка за неделю ▫️ План Б. Где держать крипту после ухода крупных бирж из России ▫️ Конец эпохи «нарративов». Как оценивать криптовалюты в 2026 году ▫️ Ст…",
+     "score": 0.2538,
+     "source": "telegram_public",
+     "community": "RBCCrypto",
+     "url": "https://t.me/RBCCrypto/23639",
+     "ts": "2026-10-24T09:40:24Z"
+    },
+    {
+     "text": "[이니시아 \"MoveVM 캐싱 버그 악용 공격 발생…약 $270만 유출\" (종합)] 레이어1 블록체인 이니시아(INIT)가 공식 X를 통해 \"한국시간 기준 23일 23시 59분 경 이니시아 MoveVM의 스크립트 캐싱 버그를 이용한 공격이 발생했다. 공격자는 보안 검사를 우회해 MoveVM 상태를 위조한 뒤 실제 담보 없이 WETH, iUSD, USDC 토큰을 자신에게 할당했으며, 해당 토큰들의 총 공급량에는 변동이 없었다. 네이티브 INIT 토큰은 발행되지 않았고 INIT 총 공급량도 영향을…",
+     "score": 0.0268,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/235279",
+     "ts": "2026-10-24T09:03:22Z"
+    }
+   ]
+  },
+  {
+   "symbol": "STRK",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 4.0,
+   "spike": 0.5,
+   "composite": 0.4028,
+   "scores": {
+    "vader": 0.3445,
+    "finbert": 0.0409,
+    "cryptobert": 0.6427
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.4028
+    }
+   },
+   "samples": [
+    {
+     "text": "🕶️ STARKNET FOUNDATION JUST LAUNCHED A WALLET WITH SHIELDED BALANCES ​ Starknet now has a Foundation-built privacy wallet. ​ It’s called: ​ BRAMBLE. ​ The self-custody wallet lets users: ​ STORE SWAP SHIELD ​ assets directly from a Chrome extension. ​ The privacy layer comes fr…",
+     "score": 0.5338,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22312",
+     "ts": "2026-10-24T18:02:02Z"
+    },
+    {
+     "text": "Weekly Project Updates: Dogecoin Labs Launches for Payments, OpenSea App Goes Public, Starknet Votes for Independent L1 Transition, etc Dogecoin Labs has been officially established with backing from the Dogecoin Foundation. Jordan Jefferson, founder of DogeOS, serves as CEO. Re…",
+     "score": 0.3083,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26538",
+     "ts": "2026-10-24T11:32:58Z"
+    }
+   ]
+  },
+  {
+   "symbol": "PUMP",
+   "mentions": 2,
+   "mentionsPrev": 3,
+   "baseline7d": 3.85,
+   "spike": 0.52,
+   "composite": 0.2179,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0371,
+    "cryptobert": 0.4637
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.2179
+    }
+   },
+   "samples": [
+    {
+     "text": "Pump.fun过去24小时协议收入超越Hyperliquid BlockBeats 消息，10 月 24 日，据 Defillama 数据，Pump.fun 过去 24 小时收入达 198 万美元，超越 Hyperliquid 过去 24 小时的 196 万美元收入，仅次于 Tether（1728 万美元）和 Circle（688 万美元）。 原文链接 https://m.theblockbeats.info/flash/373529",
+     "score": 0.2023,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202165",
+     "ts": "2026-10-24T12:49:02Z"
+    },
+    {
+     "text": "Pump.fun 和 Kimchi 的一场合作，为什么能搞的和诈骗一样 pump.fun签约Kimchi引爆争议，3小时新币市值破4000万，一场合作如何演变成疑似诈骗？链上数据揭示真相，散户损失惨重。 🔗 https://www.panewslab.com/zh/articles/01a1697d-dc7d-72fc-8fa6-37af5314e707",
+     "score": 0.2505,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182882",
+     "ts": "2026-10-24T02:33:01Z"
+    }
+   ]
+  },
+  {
+   "symbol": "HBAR",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 3.0,
+   "spike": 0.67,
+   "composite": 0.2219,
+   "scores": {
+    "vader": 0.4609,
+    "finbert": 0.0861,
+    "cryptobert": 0.1379
+   },
+   "bullish": 0.5173,
+   "bearish": 0.0,
+   "neutral": 0.4827,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.2219
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Спотовые ETF в США потеряли $112 млн за день #Новости #Трейдинг #ETF #Bitcoin #Ethereum Данные за 23 октября. Первым идет результат за сутки, в скобках — за 30 дней. 🤑 Bitcoin-ETF 📉 Чистый отток — $137,94 млн по 12 фондам (за 30 дней приток $99,19 млн). 🤑 Ethereum-ETF 📈 Ч…",
+     "score": 0.3768,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24470",
+     "ts": "2026-10-24T09:33:03Z"
+    },
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LTC",
+   "mentions": 2,
+   "mentionsPrev": 3,
+   "baseline7d": 2.23,
+   "spike": 0.9,
+   "composite": 0.2219,
+   "scores": {
+    "vader": 0.4609,
+    "finbert": 0.0861,
+    "cryptobert": 0.1379
+   },
+   "bullish": 0.5173,
+   "bearish": 0.0,
+   "neutral": 0.4827,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.2219
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Спотовые ETF в США потеряли $112 млн за день #Новости #Трейдинг #ETF #Bitcoin #Ethereum Данные за 23 октября. Первым идет результат за сутки, в скобках — за 30 дней. 🤑 Bitcoin-ETF 📉 Чистый отток — $137,94 млн по 12 фондам (за 30 дней приток $99,19 млн). 🤑 Ethereum-ETF 📈 Ч…",
+     "score": 0.3768,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24470",
+     "ts": "2026-10-24T09:33:03Z"
+    },
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "THAT",
+   "mentions": 2,
+   "mentionsPrev": 0,
+   "baseline7d": 0.08,
+   "spike": null,
+   "composite": 0.4051,
+   "scores": {
+    "vader": 0.4701,
+    "finbert": 0.1104,
+    "cryptobert": 0.5256
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.4051
+    }
+   },
+   "samples": [
+    {
+     "text": "OKXICE’s proposed stock-token pools would price trades from their own inventory, not NYSE quotes. In a simple hypothetical pool at a $100 reference price, $1,000 buys about 9.09 tokens, roughly $909 worth at that price. https://cryptoslate.com/nyses-owner-is-backing-24-7-stock-t…",
+     "score": 0.2509,
+     "source": "telegram_public",
+     "community": "cryptoslatenews",
+     "url": "https://t.me/cryptoslatenews/31843",
+     "ts": "2026-10-24T17:06:03Z"
+    },
+    {
+     "text": "I'm proud of the engineering team at Aptos Labs and their strong commitment to making security a foundational part of our infrastructure. From day one, we've invested heavily in strengthening MoveVM, improving how code is executed and verified, and building safeguards that prote…",
+     "score": 0.7376,
+     "source": "telegram_public",
+     "community": "aptos_official",
+     "url": "https://t.me/aptos_official/1428",
+     "ts": "2026-10-23T22:23:46Z"
+    }
+   ]
+  },
+  {
+   "symbol": "APT",
+   "mentions": 2,
+   "mentionsPrev": 3,
+   "baseline7d": 2.38,
+   "spike": 0.84,
+   "composite": 0.7382,
+   "scores": {
+    "vader": 0.9296,
+    "finbert": 0.51,
+    "cryptobert": 0.7375
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.7382
+    }
+   },
+   "samples": [
+    {
+     "text": "In February, a set of $APT tokenomics updates was proposed. Here's where each piece stands. Approved through onchain governance and live: • Gas fees set 10x higher, with every gas fee burned • Staking rewards halved from 5.19% to 2.6% • Supply hard-capped at 2.1B APT Separately,…",
+     "score": 0.7387,
+     "source": "telegram_public",
+     "community": "aptos_official",
+     "url": "https://t.me/aptos_official/1429",
+     "ts": "2026-10-24T07:17:09Z"
+    },
+    {
+     "text": "I'm proud of the engineering team at Aptos Labs and their strong commitment to making security a foundational part of our infrastructure. From day one, we've invested heavily in strengthening MoveVM, improving how code is executed and verified, and building safeguards that prote…",
+     "score": 0.7376,
+     "source": "telegram_public",
+     "community": "aptos_official",
+     "url": "https://t.me/aptos_official/1428",
+     "ts": "2026-10-23T22:23:46Z"
+    }
+   ]
+  },
+  {
+   "symbol": "TAO",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 2.46,
+   "spike": 0.81,
+   "composite": 0.1802,
+   "scores": {
+    "vader": 0.1959,
+    "finbert": 0.0453,
+    "cryptobert": 0.2446
+   },
+   "bullish": 0.3344,
+   "bearish": 0.0,
+   "neutral": 0.6656,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.1802
+    }
+   },
+   "samples": [
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. IRYS 2. UHI 3. DACITY 4. VVV 5. PEARL 6. PENGU 7. ZEC 8. LINK 9. PEPE 10. TAO 11. SUI 12. PHA 13. BEAM 14. BTC 15. INIT @atamertuysaler",
+     "score": 0.4276,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10019",
+     "ts": "2026-10-23T20:13:05Z"
+    },
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "JST",
+   "mentions": 2,
+   "mentionsPrev": 0,
+   "baseline7d": 0.77,
+   "spike": null,
+   "composite": 0.6177,
+   "scores": {
+    "vader": 0.8684,
+    "finbert": 0.7608,
+    "cryptobert": 0.3712
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.6368
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": 0.5565
+    }
+   },
+   "samples": [
+    {
+     "text": "JST Buyback & Burn Upgrade: GasFree Revenue and $20.34M Surplus Injected as JUST’s Ecosystem Trio Solidifies JST Token Value #promoted https://cryptoslate.com/jst-buyback-burn-upgrade-gasfree-revenue-and-20-34m-surplus-injected-as-justs-ecosystem-trio-solidifies-jst-token-value/",
+     "score": 0.6368,
+     "source": "telegram_public",
+     "community": "cryptoslatenews",
+     "url": "https://t.me/cryptoslatenews/31835",
+     "ts": "2026-10-24T06:48:14Z"
+    },
+    {
+     "text": "JST Buyback & Burn Upgrade: GasFree Revenue and $20.34M Surplus Injected as JUST’s Ecosystem Trio Solidifies JST Token Value. Summary: The upgraded JST Buyback and Burn program features the following highlights: $50M Treasury Reserve Cushion: Establishes a safety buffer for sust…",
+     "score": 0.5565,
+     "source": "rss",
+     "community": "CryptoSlate",
+     "url": "https://cryptoslate.com/jst-buyback-burn-upgrade-gasfree-revenue-and-20-34m-surplus-injected-as-justs-ecosystem-trio-solidifies-jst-token-value/",
+     "ts": "2026-10-24T06:38:41Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ARB",
+   "mentions": 2,
+   "mentionsPrev": 9,
+   "baseline7d": 9.77,
+   "spike": 0.2,
+   "composite": -0.0285,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0275,
+    "cryptobert": -0.0786
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": -0.0285
+    }
+   },
+   "samples": [
+    {
+     "text": "https://x.com/arbitrum/status/2113779104126222456?s=20",
+     "score": -0.0285,
+     "source": "telegram_public",
+     "community": "arbitrum",
+     "url": "https://t.me/arbitrum/978",
+     "ts": "2026-10-23T23:46:54Z"
+    },
+    {
+     "text": "https://x.com/arbitrum/status/2113702972391625169?s=20",
+     "score": -0.0285,
+     "source": "telegram_public",
+     "community": "arbitrum",
+     "url": "https://t.me/arbitrum/979",
+     "ts": "2026-10-23T23:47:05Z"
+    }
+   ]
+  },
+  {
+   "symbol": "PENGU",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 0.92,
+   "spike": null,
+   "composite": 0.3038,
+   "scores": {
+    "vader": 0.3819,
+    "finbert": 0.1429,
+    "cryptobert": 0.3411
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.3038
+    }
+   },
+   "samples": [
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. IRYS 2. UHI 3. DACITY 4. VVV 5. PEARL 6. PENGU 7. ZEC 8. LINK 9. PEPE 10. TAO 11. SUI 12. PHA 13. BEAM 14. BTC 15. INIT @atamertuysaler",
+     "score": 0.4276,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10019",
+     "ts": "2026-10-23T20:13:05Z"
+    },
+    {
+     "text": "📊 Nansen × CoinEasy 온체인 다이제스트 (2/2) 수집: 10/24 11:05 KST · 정규 관측 Base·Solana 스마트머니 밈코인 순유입 표본 (24h, 4종) • ANSEM (Solana) +$16.8K · 시총 $66.9M · SM 43지갑 · 7일 +$28K · 전일 표본 대비 신규 9cRCn9rGT8V2imeM2BaKs13yhMEais3ruM3rPvTGpump 유동성 $1.4M • KIMCHI (Solana) +$3.5K · 시총 $8.1M · SM 52지갑 ·…",
+     "score": 0.1849,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/57775",
+     "ts": "2026-10-24T02:05:21Z"
+    }
+   ]
+  },
+  {
+   "symbol": "FARTCOIN",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.08,
+   "spike": null,
+   "composite": 0.2262,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0255,
+    "cryptobert": 0.4886
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2262
+    }
+   },
+   "samples": [
+    {
+     "text": "比特币跌破8万美元，山寨币大幅回落，Q跌超34%，PHA、CT均跌超22% BlockBeats 消息，10 月 24 日，据 HTX 行情数据，伴随比特币回落跌破 8 万美元，山寨币大幅回落，其中： Q 现报价 0.080162 美元，24 小时下跌 34.35%； PHA 现报价 0.0499 美元，24 小时下跌 24.38%； CT 现报价 0.1619 美元，24 小时下跌 22.22%； SOPH 现报价 0.001458 美元，24 小时下跌 17.95%； FARTCOIN 现报价 0.122 美元，24 小时下跌 16.78%； 「4…",
+     "score": 0.2262,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202182",
+     "ts": "2026-10-24T15:38:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "CFX",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.2559,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0596,
+    "cryptobert": 0.5356
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2559
+    }
+   },
+   "samples": [
+    {
+     "text": "Gold House旗下支付结算基础设施财汇通将于10月26日上线 BlockBeats 消息，10 月 24 日，据 Web3 社交产品 Gold House 官方消息，旗下支付结算产品财汇通（Caihuitong）将于 2026 年 10 月 26 日中午 12:00（UTC+8）正式上线，为个人及企业用户提供连接数字资产与传统金融的支付结算服务入口。 财汇通首期将接入由复星财富控股自主孵化的 Web3 品牌 FinChain 星链相关产品，以及 CFX（Conflux）生态的 BitUnion 产品，围绕数字资产与法币结算、账户收付款等需求提供服…",
+     "score": 0.2559,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202175",
+     "ts": "2026-10-24T14:44:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "MARSCOIN",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.08,
+   "spike": null,
+   "composite": 0.2047,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0742,
+    "cryptobert": 0.4137
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2047
+    }
+   },
+   "samples": [
+    {
+     "text": "Bonk Guy持仓总价值距峰值回撤近1870万美元 BlockBeats 消息，10 月 24 日，知名交易员 Bonk Guy 目前持仓代币总价值约 890 万美元，距此前 9 月 6 日的 2760 万美元峰值回撤约 1870 万美元。 目前其前三大现货持仓为 PONS（250 万美元）、USELESS（248 万美元）与 MARSCOIN（168 万美元）。 原文链接 https://m.theblockbeats.info/flash/373530",
+     "score": 0.2047,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202166",
+     "ts": "2026-10-24T12:57:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "WOULD",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.2509,
+   "scores": {
+    "vader": 0.2263,
+    "finbert": -0.0015,
+    "cryptobert": 0.4075
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2509
+    }
+   },
+   "samples": [
+    {
+     "text": "OKXICE’s proposed stock-token pools would price trades from their own inventory, not NYSE quotes. In a simple hypothetical pool at a $100 reference price, $1,000 buys about 9.09 tokens, roughly $909 worth at that price. https://cryptoslate.com/nyses-owner-is-backing-24-7-stock-t…",
+     "score": 0.2509,
+     "source": "telegram_public",
+     "community": "cryptoslatenews",
+     "url": "https://t.me/cryptoslatenews/31843",
+     "ts": "2026-10-24T17:06:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "OKB",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.46,
+   "spike": null,
+   "composite": 0.5134,
+   "scores": {
+    "vader": 0.9712,
+    "finbert": 0.0608,
+    "cryptobert": 0.4596
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.5134
+    }
+   },
+   "samples": [
+    {
+     "text": "🚀 We are launching Flash Earn Lite with CT (Concrete) to share 1,000,000 CT in rewards | Oct 28 - Nov 3, 2026 Pre-subscription opens: Oct 24, 2026, 07:00 UTC Campaign period: Oct 28 - Nov 3, 2026, 07:00 UTC Total Rewards: 1,000,000 CT in airdrop rewards Subscription Pools • BTC…",
+     "score": 0.5134,
+     "source": "telegram_public",
+     "community": "OKXAnnouncements",
+     "url": "https://t.me/OKXAnnouncements/7321",
+     "ts": "2026-10-24T07:00:52Z"
+    }
+   ]
+  },
+  {
+   "symbol": "RLUSD",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 2.23,
+   "spike": 0.45,
+   "composite": 0.2699,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0228,
+    "cryptobert": 0.5871
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2699
+    }
+   },
+   "samples": [
+    {
+     "text": "富兰克林邓普顿向XRP Ledger增发1.5亿美元代币化基金份额 BlockBeats 消息，10 月 24 日，富兰克林邓普顿周四向 XRP Ledger 发行约 1.5 亿美元的代币化货币市场基金份额，使该网络上的相关基金份额增至近 1.93 亿份，按交易记录中的每份 1.039 美元计算，总价值约 2 亿美元。新增份额通过两笔各 7500 万美元的认购交易完成，均转入同一个钱包，使该钱包持有该基金在 XRP Ledger 上的全部份额。 链上记录显示，该钱包与富兰克林邓普顿的发行账户拥有相同的 8 个授权签名地址，其中任意两个地址即可共同批准交…",
+     "score": 0.2699,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/202158",
+     "ts": "2026-10-24T05:23:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "DOT",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 1.85,
+   "spike": 0.54,
+   "composite": 0.3768,
+   "scores": {
+    "vader": 0.891,
+    "finbert": 0.1072,
+    "cryptobert": 0.1837
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.3768
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Спотовые ETF в США потеряли $112 млн за день #Новости #Трейдинг #ETF #Bitcoin #Ethereum Данные за 23 октября. Первым идет результат за сутки, в скобках — за 30 дней. 🤑 Bitcoin-ETF 📉 Чистый отток — $137,94 млн по 12 фондам (за 30 дней приток $99,19 млн). 🤑 Ethereum-ETF 📈 Ч…",
+     "score": 0.3768,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24470",
+     "ts": "2026-10-24T09:33:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AI",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.54,
+   "spike": null,
+   "composite": 0.3388,
+   "scores": {
+    "vader": 0.4927,
+    "finbert": 0.0613,
+    "cryptobert": 0.3903
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.3388
+    }
+   },
+   "samples": [
+    {
+     "text": "Salem( @Salem1299534 ) sold all 20.06M $AI for 460.9 $ETH ($1.1M) in a single transaction 5 hours ago. He made a total profit of ~$2.9M on $AI. https://debank.com/profile/0xb8f305f27ccc406373de0082cc06cb1d065504ea/history?token=0x2e8c31162b855a2ffa90f6f8634643ad6f111e18_AI_hood",
+     "score": 0.3388,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10756",
+     "ts": "2026-10-24T04:42:37Z"
+    }
+   ]
+  },
+  {
+   "symbol": "NMR",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.467,
+   "scores": {
+    "vader": 0.875,
+    "finbert": 0.6034,
+    "cryptobert": 0.1192
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.467
+    }
+   },
+   "samples": [
+    {
+     "text": "📣 W, NMR, QNT, POD, CT 🚀 Limited-time APY Boost on Flexible Products 💰 Earn up to 15% APY with subsidies ➡️ More details HERE ✈️ Telegram | 💬 X ✈️ Announcement",
+     "score": 0.467,
+     "source": "telegram_public",
+     "community": "HTXGlobalAnnouncementChannel",
+     "url": "https://t.me/HTXGlobalAnnouncementChannel/15695",
+     "ts": "2026-10-24T08:56:15Z"
+    }
+   ]
+  },
+  {
+   "symbol": "QNT",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 1.0,
+   "spike": 1.0,
+   "composite": 0.467,
+   "scores": {
+    "vader": 0.875,
+    "finbert": 0.6034,
+    "cryptobert": 0.1192
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.467
+    }
+   },
+   "samples": [
+    {
+     "text": "📣 W, NMR, QNT, POD, CT 🚀 Limited-time APY Boost on Flexible Products 💰 Earn up to 15% APY with subsidies ➡️ More details HERE ✈️ Telegram | 💬 X ✈️ Announcement",
+     "score": 0.467,
+     "source": "telegram_public",
+     "community": "HTXGlobalAnnouncementChannel",
+     "url": "https://t.me/HTXGlobalAnnouncementChannel/15695",
+     "ts": "2026-10-24T08:56:15Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SEI",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.23,
+   "spike": null,
+   "composite": -0.085,
+   "scores": {
+    "vader": -0.9001,
+    "finbert": 0.1711,
+    "cryptobert": 0.3161
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": -0.085
+    }
+   },
+   "samples": [
+    {
+     "text": "AWS-Kapazitäten ausgebucht Amazon-CEO Andy Jassy gibt bekannt, dass die Cloud-Kapazitäten von AWS bis 2027 weitgehend ausgebucht sind. Der weltweit größte Cloud-Anbieter hat in diesem Jahr mit einem Plus von fast 30 % seit Jahresbeginn seinen höchsten Stand erreicht. Die Nachfra…",
+     "score": -0.085,
+     "source": "telegram_public",
+     "community": "KryptoKompassDe",
+     "url": "https://t.me/KryptoKompassDe/17868",
+     "ts": "2026-10-24T09:33:11Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ADA",
+   "mentions": 1,
+   "mentionsPrev": 4,
+   "baseline7d": 6.23,
+   "spike": 0.16,
+   "composite": 0.0559,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0635,
+    "cryptobert": 0.0888
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0559
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "BCH",
+   "mentions": 1,
+   "mentionsPrev": 2,
+   "baseline7d": 2.08,
+   "spike": 0.48,
+   "composite": 0.0559,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0635,
+    "cryptobert": 0.0888
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0559
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SHIB",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 1.46,
+   "spike": 0.68,
+   "composite": 0.0559,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0635,
+    "cryptobert": 0.0888
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0559
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XLM",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 1.46,
+   "spike": 0.68,
+   "composite": 0.0559,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0635,
+    "cryptobert": 0.0888
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0559
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок снижается: NEAR подешевел на 6,64% за сутки #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 25 крупнейших криптовалют по капитализации за сутки, без стейблкоинов: 👇 BTC — -1,14% , $80 780,13 👇 ETH — -0,99% , $2379,29 👇 BNB — -0,78% , $737,79 👇 XR…",
+     "score": 0.0559,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24469",
+     "ts": "2026-10-24T08:11:44Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LDO",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 1.77,
+   "spike": 0.57,
+   "composite": 0.2801,
+   "scores": {
+    "vader": 0.0,
+    "finbert": -0.0258,
+    "cryptobert": 0.6369
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2801
+    }
+   },
+   "samples": [
+    {
+     "text": "At Lido’s 2.2% rate, €10,000 of ETH earns €220 a year if ETH’s euro price holds, €7 above average new euro household deposits up to one year. About 1.38M ETH was queued to stake on Oct. 23, with a roughly 24-day wait. https://cryptoslate.com/ethereum-staking-yield-is-losing-to-c…",
+     "score": 0.2801,
+     "source": "telegram_public",
+     "community": "cryptoslatenews",
+     "url": "https://t.me/cryptoslatenews/31836",
+     "ts": "2026-10-24T07:05:38Z"
+    }
+   ]
+  },
+  {
+   "symbol": "NEAR",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.77,
+   "spike": null,
+   "composite": 0.4298,
+   "scores": {
+    "vader": 0.9681,
+    "finbert": 0.0328,
+    "cryptobert": 0.2916
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.4298
+    }
+   },
+   "samples": [
+    {
+     "text": "🔋 Weekend Power Station is Live for a Limited Time 🎉 Sign Up for a Chance to Win 15 $NEAR 🗓 Complete Weekend Futures Check-Ins to Share 320 $NEAR 🏁 Trade to Win Up to 35 $NEAR 💫 Three Weekend Rewards are Live. The More You Participate, The More You can Win! 👉 Join Now : ht…",
+     "score": 0.4298,
+     "source": "telegram_public",
+     "community": "GateOfficialNews",
+     "url": "https://t.me/GateOfficialNews/24507",
+     "ts": "2026-10-24T00:02:25Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ETC",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 1.0,
+   "spike": 1.0,
+   "composite": 0.1087,
+   "scores": {
+    "vader": 0.0,
+    "finbert": -0.0054,
+    "cryptobert": 0.2446
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.1087
+    }
+   },
+   "samples": [
+    {
+     "text": "[빗썸 시세알림] *전일 23:59 기준 대비 비트코인(BTC): 108,609,000원 ▼0.57% 이더리움(ETH): 3,179,000원 ▼1.24% 솔라나(SOL): 137,600원 ▼1.71% 리플(XRP): 1,733원 ▼1.37% 도지코인(DOGE): 105원 ▼0.94% 트론(TRX): 443원 ▲0.45% 이더리움클래식(ETC): 10,290원 ▼2.37% 비트코인에스브이(BSV): 23,050원 ▼2.33% 테더(USDT): 1,343원 ▲0.52% 유에스디코인(USDC): 1,…",
+     "score": 0.1087,
+     "source": "telegram_public",
+     "community": "BithumbExchange",
+     "url": "https://t.me/BithumbExchange/13417",
+     "ts": "2026-10-23T23:00:48Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ICP",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 1.38,
+   "spike": 0.72,
+   "composite": 0.2365,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.1137,
+    "cryptobert": 0.4624
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2365
+    }
+   },
+   "samples": [
+    {
+     "text": "NEAR 与 ICP Dfinity 公链之争事件解析 在区块链世界里，平时井水不犯河水的两条公链突然撕破脸，往往不是因为路线差得太远，恰恰是因为底层技术路径与商业叙事撞车了。 这两天（10 月 21 日—23 日），DFINITY（ICP）创始人 Dom 🔗 https://www.panewslab.com/zh/articles/01a16740-eb0b-7526-bb96-1ee932c88fe7",
+     "score": 0.2365,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/182867",
+     "ts": "2026-10-23T23:57:01Z"
+    }
+   ]
+  },
+  {
+   "symbol": "GT",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 3.31,
+   "spike": 0.3,
+   "composite": 0.4481,
+   "scores": {
+    "vader": 0.7717,
+    "finbert": 0.0518,
+    "cryptobert": 0.4525
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.4481
+    }
+   },
+   "samples": [
+    {
+     "text": "🎁 Gate ETF 交易夺宝第六期惊喜开启！ 每日开盲盒，进阶交易最高赢 900 USDT！ 🎲 每日开盒：交易 ETF 抽惊喜，赢 USDT、BTC5L等多重好礼 💎 VIP5+ 专属：解锁专属奖池，单次最高赢 88 USDT 🏆 进阶夺宝：累计交易瓜分 30,000 USDT 奖池，单人最高 900 USDT 🔥 每日有惊喜，交易赢更多！ 立即参与 👉 https://gate.onelink.me/7pdk/686393540dcb1e0c #ETF #TreasureHunt #USDT #Bitcoin #Rewards",
+     "score": 0.4481,
+     "source": "telegram_public",
+     "community": "GateZhNews",
+     "url": "https://t.me/GateZhNews/7177",
+     "ts": "2026-10-24T04:05:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XTZ",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 0.54,
+   "spike": null,
+   "composite": 0.5118,
+   "scores": {
+    "vader": 0.9448,
+    "finbert": 0.0786,
+    "cryptobert": 0.4639
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.5118
+    }
+   },
+   "samples": [
+    {
+     "text": "🔥 Hot out of the Oven: The Baking Sheet – Issue #330 This Week in the Tezos Ecosystem: ➡️ Five Doors Into Tezos – Our latest Tezos Spotlight article takes us through five community-built applications worth exploring: TezCity, Aleatory, TezTowers, The Wall Today, and Teztree. Fr…",
+     "score": 0.5118,
+     "source": "telegram_public",
+     "community": "TezosAnnouncements",
+     "url": "https://t.me/TezosAnnouncements/4905",
+     "ts": "2026-10-23T20:05:23Z"
+    }
+   ]
+  },
+  {
+   "symbol": "KAIA",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 0.15,
+   "spike": null,
+   "composite": 0.1055,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0284,
+    "cryptobert": 0.2186
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.1055
+    }
+   },
+   "samples": [
+    {
+     "text": "🦑 Squid | Kaia 체인 라이브 Squid에서 Kaia 체인이 라이브되었습니다. Squid에서 이제 Kaia에서 2만 개 토큰을 스왑할 수 있습니다. 자세한 내용은 아래를 확인해 주세요. 감사합니다. 👉 squid.inc 👉 지금 스왑하기 🔗 참고자료 📱 공지방 | 💬 소통방 | 📱 X",
+     "score": 0.1055,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/57772",
+     "ts": "2026-10-24T00:00:33Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDD",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.31,
+   "spike": null,
+   "composite": 0.5565,
+   "scores": {
+    "vader": 0.9337,
+    "finbert": 0.1955,
+    "cryptobert": 0.5055
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "rss": {
+     "mentions": 1,
+     "composite": 0.5565
+    }
+   },
+   "samples": [
+    {
+     "text": "JST Buyback & Burn Upgrade: GasFree Revenue and $20.34M Surplus Injected as JUST’s Ecosystem Trio Solidifies JST Token Value. Summary: The upgraded JST Buyback and Burn program features the following highlights: $50M Treasury Reserve Cushion: Establishes a safety buffer for sust…",
+     "score": 0.5565,
+     "source": "rss",
+     "community": "CryptoSlate",
+     "url": "https://cryptoslate.com/jst-buyback-burn-upgrade-gasfree-revenue-and-20-34m-surplus-injected-as-justs-ecosystem-trio-solidifies-jst-token-value/",
+     "ts": "2026-10-24T06:38:41Z"
+    }
+   ]
+  }
+ ]
+}
