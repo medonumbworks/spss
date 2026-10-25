@@ -148,7 +148,7 @@ def render(cfg: dict, manifest: dict, combinations: dict, backtests: dict, theor
               "izbor ne sadrži nikakvo predviđanje — to je kombinatorika, ne prognoza. Sami brojevi i dalje dolaze "
               "isključivo iz ezoteričnih metoda; bira se samo koja će se četiri njihova listića igrati zajedno.", ""]
         for game_key, p in pf.items():
-            if p.get("status") != "ran":
+            if p.get("status") != "ran" or "selection" not in p:
                 continue
             label = combinations["games"][game_key]["label"]
             L += [f"### {label}", "",

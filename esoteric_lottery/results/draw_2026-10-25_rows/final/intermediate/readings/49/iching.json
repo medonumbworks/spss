@@ -1,0 +1,890 @@
+{
+  "components": [
+    {
+      "detail": "12 hexagrams cast",
+      "name": "yarrow_stalk_cast",
+      "status": "ran"
+    },
+    {
+      "detail": "",
+      "name": "king_wen_lookup",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "loto": {
+      "main": 6
+    },
+    "sve_ili_nista": {
+      "main": 11
+    }
+  },
+  "digit_sequence": [
+    7,
+    8,
+    7,
+    7,
+    9,
+    7
+  ],
+  "error": null,
+  "intermediate": {
+    "casts": [
+      {
+        "line_values": [
+          7,
+          8,
+          7,
+          7,
+          9,
+          7
+        ],
+        "moving_lines": [
+          5
+        ],
+        "primary": {
+          "king_wen": 13,
+          "lines_bottom_to_top": [
+            1,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "lower": "Li",
+          "lower_char": "離",
+          "upper": "Qian",
+          "upper_char": "乾"
+        },
+        "relating": {
+          "king_wen": 30,
+          "lines_bottom_to_top": [
+            1,
+            0,
+            1,
+            1,
+            0,
+            1
+          ],
+          "lower": "Li",
+          "lower_char": "離",
+          "upper": "Li",
+          "upper_char": "離"
+        }
+      },
+      {
+        "line_values": [
+          8,
+          9,
+          8,
+          9,
+          7,
+          8
+        ],
+        "moving_lines": [
+          2,
+          4
+        ],
+        "primary": {
+          "king_wen": 47,
+          "lines_bottom_to_top": [
+            0,
+            1,
+            0,
+            1,
+            1,
+            0
+          ],
+          "lower": "Kan",
+          "lower_char": "坎",
+          "upper": "Dui",
+          "upper_char": "兌"
+        },
+        "relating": {
+          "king_wen": 8,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "lower": "Kun",
+          "lower_char": "坤",
+          "upper": "Kan",
+          "upper_char": "坎"
+        }
+      },
+      {
+        "line_values": [
+          8,
+          9,
+          8,
+          7,
+          8,
+          8
+        ],
+        "moving_lines": [
+          2
+        ],
+        "primary": {
+          "king_wen": 40,
+          "lines_bottom_to_top": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "lower": "Kan",
+          "lower_char": "坎",
+          "upper": "Zhen",
+          "upper_char": "震"
+        },
+        "relating": {
+          "king_wen": 16,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "lower": "Kun",
+          "lower_char": "坤",
+          "upper": "Zhen",
+          "upper_char": "震"
+        }
+      },
+      {
+        "line_values": [
+          8,
+          8,
+          7,
+          8,
+          7,
+          8
+        ],
+        "moving_lines": [],
+        "primary": {
+          "king_wen": 39,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "lower": "Gen",
+          "lower_char": "艮",
+          "upper": "Kan",
+          "upper_char": "坎"
+        },
+        "relating": null
+      },
+      {
+        "line_values": [
+          7,
+          8,
+          9,
+          8,
+          9,
+          8
+        ],
+        "moving_lines": [
+          3,
+          5
+        ],
+        "primary": {
+          "king_wen": 63,
+          "lines_bottom_to_top": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "lower": "Li",
+          "lower_char": "離",
+          "upper": "Kan",
+          "upper_char": "坎"
+        },
+        "relating": {
+          "king_wen": 24,
+          "lines_bottom_to_top": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "lower": "Zhen",
+          "lower_char": "震",
+          "upper": "Kun",
+          "upper_char": "坤"
+        }
+      },
+      {
+        "line_values": [
+          8,
+          8,
+          7,
+          8,
+          9,
+          8
+        ],
+        "moving_lines": [
+          5
+        ],
+        "primary": {
+          "king_wen": 39,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "lower": "Gen",
+          "lower_char": "艮",
+          "upper": "Kan",
+          "upper_char": "坎"
+        },
+        "relating": {
+          "king_wen": 15,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "lower": "Gen",
+          "lower_char": "艮",
+          "upper": "Kun",
+          "upper_char": "坤"
+        }
+      },
+      {
+        "line_values": [
+          8,
+          8,
+          7,
+          9,
+          8,
+          8
+        ],
+        "moving_lines": [
+          4
+        ],
+        "primary": {
+          "king_wen": 62,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          "lower": "Gen",
+          "lower_char": "艮",
+          "upper": "Zhen",
+          "upper_char": "震"
+        },
+        "relating": {
+          "king_wen": 15,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "lower": "Gen",
+          "lower_char": "艮",
+          "upper": "Kun",
+          "upper_char": "坤"
+        }
+      },
+      {
+        "line_values": [
+          9,
+          7,
+          8,
+          7,
+          7,
+          9
+        ],
+        "moving_lines": [
+          1,
+          6
+        ],
+        "primary": {
+          "king_wen": 10,
+          "lines_bottom_to_top": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          "lower": "Dui",
+          "lower_char": "兌",
+          "upper": "Qian",
+          "upper_char": "乾"
+        },
+        "relating": {
+          "king_wen": 47,
+          "lines_bottom_to_top": [
+            0,
+            1,
+            0,
+            1,
+            1,
+            0
+          ],
+          "lower": "Kan",
+          "lower_char": "坎",
+          "upper": "Dui",
+          "upper_char": "兌"
+        }
+      },
+      {
+        "line_values": [
+          7,
+          8,
+          8,
+          9,
+          8,
+          8
+        ],
+        "moving_lines": [
+          4
+        ],
+        "primary": {
+          "king_wen": 51,
+          "lines_bottom_to_top": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "lower": "Zhen",
+          "lower_char": "震",
+          "upper": "Zhen",
+          "upper_char": "震"
+        },
+        "relating": {
+          "king_wen": 24,
+          "lines_bottom_to_top": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "lower": "Zhen",
+          "lower_char": "震",
+          "upper": "Kun",
+          "upper_char": "坤"
+        }
+      },
+      {
+        "line_values": [
+          8,
+          7,
+          9,
+          9,
+          7,
+          8
+        ],
+        "moving_lines": [
+          3,
+          4
+        ],
+        "primary": {
+          "king_wen": 28,
+          "lines_bottom_to_top": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "lower": "Xun",
+          "lower_char": "巽",
+          "upper": "Dui",
+          "upper_char": "兌"
+        },
+        "relating": {
+          "king_wen": 29,
+          "lines_bottom_to_top": [
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "lower": "Kan",
+          "lower_char": "坎",
+          "upper": "Kan",
+          "upper_char": "坎"
+        }
+      },
+      {
+        "line_values": [
+          7,
+          7,
+          7,
+          8,
+          7,
+          8
+        ],
+        "moving_lines": [],
+        "primary": {
+          "king_wen": 5,
+          "lines_bottom_to_top": [
+            1,
+            1,
+            1,
+            0,
+            1,
+            0
+          ],
+          "lower": "Qian",
+          "lower_char": "乾",
+          "upper": "Kan",
+          "upper_char": "坎"
+        },
+        "relating": null
+      },
+      {
+        "line_values": [
+          8,
+          8,
+          8,
+          8,
+          7,
+          6
+        ],
+        "moving_lines": [
+          6
+        ],
+        "primary": {
+          "king_wen": 8,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "lower": "Kun",
+          "lower_char": "坤",
+          "upper": "Kan",
+          "upper_char": "坎"
+        },
+        "relating": {
+          "king_wen": 20,
+          "lines_bottom_to_top": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "lower": "Kun",
+          "lower_char": "坤",
+          "upper": "Xun",
+          "upper_char": "巽"
+        }
+      }
+    ],
+    "first_cast_yarrow_steps": [
+      [
+        {
+          "bundle": 49,
+          "left": 38,
+          "removed": 5,
+          "right": 11
+        },
+        {
+          "bundle": 44,
+          "left": 19,
+          "removed": 8,
+          "right": 25
+        },
+        {
+          "bundle": 36,
+          "left": 32,
+          "removed": 8,
+          "right": 4
+        }
+      ],
+      [
+        {
+          "bundle": 49,
+          "left": 19,
+          "removed": 5,
+          "right": 30
+        },
+        {
+          "bundle": 44,
+          "left": 4,
+          "removed": 8,
+          "right": 40
+        },
+        {
+          "bundle": 36,
+          "left": 14,
+          "removed": 4,
+          "right": 22
+        }
+      ],
+      [
+        {
+          "bundle": 49,
+          "left": 12,
+          "removed": 9,
+          "right": 37
+        },
+        {
+          "bundle": 40,
+          "left": 30,
+          "removed": 4,
+          "right": 10
+        },
+        {
+          "bundle": 36,
+          "left": 15,
+          "removed": 8,
+          "right": 21
+        }
+      ],
+      [
+        {
+          "bundle": 49,
+          "left": 19,
+          "removed": 5,
+          "right": 30
+        },
+        {
+          "bundle": 44,
+          "left": 31,
+          "removed": 8,
+          "right": 13
+        },
+        {
+          "bundle": 36,
+          "left": 15,
+          "removed": 8,
+          "right": 21
+        }
+      ],
+      [
+        {
+          "bundle": 49,
+          "left": 6,
+          "removed": 5,
+          "right": 43
+        },
+        {
+          "bundle": 44,
+          "left": 34,
+          "removed": 4,
+          "right": 10
+        },
+        {
+          "bundle": 40,
+          "left": 10,
+          "removed": 4,
+          "right": 30
+        }
+      ],
+      [
+        {
+          "bundle": 49,
+          "left": 3,
+          "removed": 5,
+          "right": 46
+        },
+        {
+          "bundle": 44,
+          "left": 28,
+          "removed": 8,
+          "right": 16
+        },
+        {
+          "bundle": 36,
+          "left": 23,
+          "removed": 8,
+          "right": 13
+        }
+      ]
+    ]
+  },
+  "key": "iching",
+  "kind": "traditional procedure, pseudo-random simulation (experimental)",
+  "label": "I Ching (simulirano bacanje stabljika stolisnika)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        3
+      ],
+      "main": [
+        8,
+        13,
+        30,
+        39,
+        47
+      ]
+    },
+    "joker": {
+      "digits": [
+        7,
+        8,
+        7,
+        7,
+        9,
+        7
+      ]
+    },
+    "loto": {
+      "main": [
+        2,
+        8,
+        13,
+        30,
+        39,
+        40
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        2,
+        3,
+        7,
+        8,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        3,
+        6,
+        4,
+        11,
+        8,
+        12,
+        5,
+        2,
+        10,
+        9,
+        7
+      ],
+      "main": [
+        13,
+        30,
+        47,
+        8,
+        39,
+        40,
+        24,
+        15,
+        16,
+        12,
+        10,
+        1,
+        28,
+        29,
+        5,
+        20,
+        49,
+        11,
+        7,
+        34,
+        45,
+        6,
+        48,
+        14,
+        43,
+        27,
+        22,
+        9,
+        50,
+        37,
+        17,
+        33,
+        2,
+        19,
+        35,
+        32,
+        18,
+        31,
+        46,
+        21,
+        4,
+        42,
+        23,
+        41,
+        26,
+        38,
+        36,
+        3,
+        25,
+        44
+      ]
+    },
+    "joker": {
+      "digits": [
+        7,
+        8,
+        7,
+        7,
+        9,
+        7
+      ]
+    },
+    "loto": {
+      "main": [
+        13,
+        30,
+        2,
+        8,
+        39,
+        40,
+        24,
+        15,
+        16,
+        18,
+        17,
+        10,
+        6,
+        28,
+        29,
+        5,
+        20,
+        33,
+        12,
+        26,
+        3,
+        21,
+        34,
+        11,
+        7,
+        38,
+        9,
+        41,
+        45,
+        27,
+        44,
+        14,
+        25,
+        23,
+        22,
+        37,
+        35,
+        1,
+        32,
+        42,
+        43,
+        31,
+        36,
+        4,
+        19
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        13,
+        8,
+        3,
+        18,
+        17,
+        2,
+        15,
+        16,
+        19,
+        7,
+        10,
+        6,
+        5,
+        20,
+        4,
+        1,
+        12,
+        22,
+        21,
+        14,
+        11,
+        9
+      ]
+    }
+  },
+  "sequence": [
+    13,
+    30,
+    47,
+    8,
+    40,
+    16,
+    39,
+    63,
+    24,
+    39,
+    15,
+    62,
+    15,
+    10,
+    47,
+    51,
+    24,
+    28,
+    29,
+    5,
+    8,
+    20
+  ],
+  "sources": [
+    "Xici zhuan (Great Commentary) I.9 – yarrow-stalk procedure (大衍之數)",
+    "R. Wilhelm / C. F. Baynes, The I Ching or Book of Changes, Princeton 1950 – consulting the oracle, King Wen key",
+    "numpy PCG64 generator seeded with SHA-256 (reproducible stand-in for manual stalk division)"
+  ],
+  "status": "ran"
+}

@@ -1,5 +1,5 @@
 {
-  "backtest_code_sha256": "8311ee3e6bbe3ab3d0574303ad8118804e7de8afe1f9bff3096c9be45ad059fc",
+  "backtest_code_sha256": "4ff04e9b26e16347ee412da22e3e022dbe06c230e36cd8c8639ff722f75c1479",
   "backtests": {
     "eurojackpot": {
       "failed_methods": [],
@@ -26,7 +26,7 @@
       "status": "ran"
     }
   },
-  "code_sha256": "0b8119092a6638b129f75c384e1a77b657ce6c3ac3c3960c574cdc1cbc8b56ec",
+  "code_sha256": "eadf9e8709eb7500734fe64437689b84d1b1f0d9d3e880cffd40ea4d4bf6025e",
   "command_line": {
     "backtest_from": null,
     "config": "/home/user/spss/esoteric_lottery/config.yaml",
@@ -36,9 +36,9 @@
     "results": "/home/user/spss/esoteric_lottery/results",
     "skip_backtest": false
   },
-  "config_sha256": "56c1a7c5ad032d0fc2de47738f61faa0d9fda9556c8c6391da52624b7eca688a",
-  "generated_at": "2026-10-25T12:25:09+00:00",
-  "git_commit_at_run": "e0667c1bfe6aeafc7d405b99acf598d16deab830",
+  "config_sha256": "5c630c47013fe10a1a90f778ffeff6f037dd0728c85cffb7a51383822dbaff72",
+  "generated_at": "2026-10-25T13:27:19+00:00",
+  "git_commit_at_run": "c3f24f36f473ce552b7902880f74bd04ffedecf2",
   "history_files_sha256": {
     "data/Sve_ili_Nista_sva_kola.xlsx": "06e9c0a99fa848beca39c48b8019eb9c640e86ef5e46865a13ed8b58a1e631b4",
     "data/sve_ili_nista_sva_kola.csv": "f94ad7a0e1378ed943ebb1e146eca47e97fc1864b1e27bfc98172dd6f0ec6f74"
@@ -105,6 +105,33 @@
       "error": null,
       "kind": "traditional ciphers + experimental text selection and mapping",
       "status": "partial"
+    },
+    "hermetic": {
+      "components": [
+        {
+          "detail": "Mars hour 13 (night)",
+          "name": "planetary_hour",
+          "status": "ran"
+        },
+        {
+          "detail": "Saturn",
+          "name": "natal_planetary_hour",
+          "status": "ran"
+        },
+        {
+          "detail": "Mars 5x5, constant 65",
+          "name": "planetary_kamea",
+          "status": "ran"
+        },
+        {
+          "detail": "7 names",
+          "name": "divine_name_gematria",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional correspondences + experimental mapping",
+      "status": "ran"
     },
     "iching": {
       "components": [
@@ -323,6 +350,7 @@
       "statuses": {
         "chaldean": "partial",
         "gematria": "partial",
+        "hermetic": "ran",
         "iching": "ran",
         "lenormand": "ran",
         "meihua": "ran",

@@ -1,5 +1,6 @@
 import itertools
 from fractions import Fraction
+from math import comb
 
 import numpy as np
 import pytest
@@ -197,10 +198,17 @@ def test_candidate_systems_take_the_top_of_each_ranking(cfg, subject, event, gam
         assert set(outs[src].picks["loto"]["main"]) <= set(c["ticket"])
 
 
-def test_selection_refuses_an_unreasonable_search():
-    cands = [{"ticket": list(range(1 + i, 8 + i)), "sources": []} for i in range(40)]
-    with pytest.raises(ValueError, match="exceeds max_subsets"):
-        select_portfolio(cands, 5, LOTO, LOTO_PAYING, (0, 2), 10, "k", [6], max_subsets=1000)
+def test_selection_falls_back_to_packing_instead_of_sampling_silently():
+    """Too many subsets to score exactly: the greedy packing takes over, and the output
+    says so rather than quietly scoring a sample."""
+    cands = [{"ticket": list(range(1 + i, 8 + i)), "sources": [{"source": "s", "reading": 1}]}
+             for i in range(40)]
+    got = select_portfolio(cands, 5, LOTO, LOTO_PAYING, (0, 2), 10, "k", [6], max_subsets=1000)
+    assert got["selection"]["exhaustive_search_skipped"] is True
+    assert got["selection"]["subsets_total"] == comb(40, 5)
+    assert len(got["tickets"]) == 5
+    assert "infeasible" in got["selection"]["objective"]
+    assert got["p_at_least_one_paying"] > 0
 
 
 # ---------------------------------------------------- many systems: packing and counting

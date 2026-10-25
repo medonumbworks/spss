@@ -1,0 +1,424 @@
+{
+  "components": [
+    {
+      "detail": "Mars hour 14 (night)",
+      "name": "planetary_hour",
+      "status": "ran"
+    },
+    {
+      "detail": "Saturn",
+      "name": "natal_planetary_hour",
+      "status": "ran"
+    },
+    {
+      "detail": "Mars 5x5, constant 65",
+      "name": "planetary_kamea",
+      "status": "ran"
+    },
+    {
+      "detail": "7 names",
+      "name": "divine_name_gematria",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "loto": {
+      "main": 6
+    },
+    "sve_ili_nista": {
+      "main": 11
+    }
+  },
+  "digit_sequence": [
+    65,
+    5,
+    14,
+    15,
+    3,
+    32
+  ],
+  "error": null,
+  "intermediate": {
+    "birth_kamea": {
+      "cell": {
+        "column": 1,
+        "row": 2
+      },
+      "lines": {
+        "column": [
+          4,
+          3,
+          8
+        ],
+        "row": [
+          3,
+          5,
+          7
+        ]
+      },
+      "magic_constant": 15,
+      "numbers": [
+        3,
+        5,
+        7,
+        4,
+        3,
+        8
+      ],
+      "order": 3,
+      "planet": "Saturn",
+      "seed_value": 3
+    },
+    "birth_planetary_hour": {
+      "day_of_sunrise": "1991-05-31",
+      "day_ruler": "Venus",
+      "hour_index": 11,
+      "hour_length_minutes": 76.1988916621,
+      "hour_ruler": "Saturn",
+      "part": "day",
+      "sunrise_utc": "1991-05-31T03:19:39.677086+00:00",
+      "sunset_utc": "1991-05-31T18:34:02.879082+00:00"
+    },
+    "birth_sephira": {
+      "name": "Binah",
+      "number": 3
+    },
+    "divine_names": {
+      "Binah": {
+        "gematria": 86,
+        "name": "אלהים"
+      },
+      "Chesed": {
+        "gematria": 31,
+        "name": "אל"
+      },
+      "Chokmah": {
+        "gematria": 15,
+        "name": "יה"
+      },
+      "Kether": {
+        "gematria": 21,
+        "name": "אהיה"
+      },
+      "Malkuth": {
+        "gematria": 65,
+        "name": "אדני"
+      },
+      "Tiphareth": {
+        "gematria": 26,
+        "name": "יהוה"
+      },
+      "Yesod": {
+        "gematria": 314,
+        "name": "שדי"
+      }
+    },
+    "draw_kamea": {
+      "cell": {
+        "column": 2,
+        "row": 3
+      },
+      "lines": {
+        "column": [
+          24,
+          12,
+          5,
+          18,
+          6
+        ],
+        "row": [
+          17,
+          5,
+          13,
+          21,
+          9
+        ]
+      },
+      "magic_constant": 65,
+      "numbers": [
+        17,
+        5,
+        13,
+        21,
+        9,
+        24,
+        12,
+        5,
+        18,
+        6
+      ],
+      "order": 5,
+      "planet": "Mars",
+      "seed_value": 5
+    },
+    "draw_planetary_hour": {
+      "day_of_sunrise": "2026-10-25",
+      "day_ruler": "Sol",
+      "hour_index": 14,
+      "hour_length_minutes": 67.8306325525,
+      "hour_ruler": "Mars",
+      "part": "night",
+      "sunrise_utc": "2026-10-25T05:26:07.043737+00:00",
+      "sunset_utc": "2026-10-25T15:53:32.376460+00:00"
+    },
+    "draw_sephira": {
+      "name": "Geburah",
+      "number": 5
+    },
+    "paths_of_wisdom": 32
+  },
+  "key": "hermetic",
+  "kind": "traditional correspondences + experimental mapping",
+  "label": "Hermetika i kabala (planetarni kamee, sefirot, božanska imena)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        5,
+        9
+      ],
+      "main": [
+        5,
+        13,
+        15,
+        17,
+        21
+      ]
+    },
+    "joker": {
+      "digits": [
+        5,
+        5,
+        4,
+        5,
+        3,
+        2
+      ]
+    },
+    "loto": {
+      "main": [
+        3,
+        5,
+        9,
+        13,
+        17,
+        21
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        9,
+        12,
+        13,
+        17,
+        18,
+        21
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        5,
+        9,
+        1,
+        12,
+        3,
+        6,
+        2,
+        7,
+        8,
+        4,
+        10,
+        11
+      ],
+      "main": [
+        17,
+        5,
+        13,
+        21,
+        15,
+        9,
+        3,
+        24,
+        12,
+        18,
+        6,
+        14,
+        7,
+        4,
+        8,
+        32,
+        31,
+        36,
+        26,
+        46,
+        28,
+        29,
+        35,
+        47,
+        20,
+        42,
+        2,
+        41,
+        11,
+        48,
+        1,
+        23,
+        27,
+        43,
+        37,
+        22,
+        45,
+        30,
+        44,
+        19,
+        34,
+        39,
+        16,
+        10,
+        25,
+        50,
+        40,
+        49,
+        38,
+        33
+      ]
+    },
+    "joker": {
+      "digits": [
+        5,
+        5,
+        4,
+        5,
+        3,
+        2
+      ]
+    },
+    "loto": {
+      "main": [
+        17,
+        5,
+        13,
+        21,
+        9,
+        3,
+        24,
+        12,
+        20,
+        18,
+        6,
+        15,
+        7,
+        4,
+        8,
+        32,
+        14,
+        31,
+        41,
+        26,
+        44,
+        19,
+        30,
+        25,
+        43,
+        45,
+        42,
+        39,
+        40,
+        1,
+        27,
+        36,
+        16,
+        38,
+        10,
+        33,
+        35,
+        22,
+        11,
+        34,
+        2,
+        29,
+        37,
+        28,
+        23
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        17,
+        5,
+        21,
+        13,
+        9,
+        3,
+        2,
+        12,
+        6,
+        18,
+        4,
+        15,
+        7,
+        8,
+        10,
+        14,
+        20,
+        19,
+        1,
+        22,
+        16,
+        11
+      ]
+    }
+  },
+  "sequence": [
+    17,
+    5,
+    13,
+    21,
+    9,
+    24,
+    12,
+    5,
+    18,
+    6,
+    65,
+    5,
+    3,
+    5,
+    7,
+    4,
+    3,
+    8,
+    15,
+    3,
+    32,
+    14,
+    21,
+    15,
+    31,
+    86,
+    26,
+    314,
+    65
+  ],
+  "sources": [
+    "H. C. Agrippa, De occulta philosophia libri tres (1533), II.22 – the seven planetary kameas; II.34 – the planetary hours",
+    "Ptolemy, Tetrabiblos – the Chaldean order of the planets and the rulers of the days",
+    "Sefer Yetzirah 1:1 – the thirty-two paths of wisdom (ten sephirot and twenty-two letters)",
+    "Standard sephirotic planetary attributions (Kircher tree, as used by the Golden Dawn)",
+    "Divine names valued with mispar hechrachi, the same cipher as methods/gematria.py"
+  ],
+  "status": "ran"
+}

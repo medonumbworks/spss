@@ -1,0 +1,307 @@
+{
+  "components": [
+    {
+      "detail": "",
+      "name": "draw_date_numbers",
+      "status": "ran"
+    },
+    {
+      "detail": "",
+      "name": "birth_date_numbers",
+      "status": "ran"
+    },
+    {
+      "detail": "no name in config.yaml (subject.name is null)",
+      "name": "name_number",
+      "status": "skipped"
+    },
+    {
+      "detail": "experimental",
+      "name": "place_name_numbers",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "loto": {
+      "main": 6
+    },
+    "sve_ili_nista": {
+      "main": 10
+    }
+  },
+  "digit_sequence": [
+    4,
+    2,
+    7,
+    9,
+    1,
+    31
+  ],
+  "error": null,
+  "intermediate": {
+    "birth": {
+      "date_compound": 29,
+      "date_reduced": 2,
+      "day_compound": 31,
+      "day_reduced": 4,
+      "weekday_planet": "Venus",
+      "weekday_planet_number": 6
+    },
+    "draw": {
+      "date_compound": 18,
+      "date_reduced": 9,
+      "day_compound": 25,
+      "day_reduced": 7,
+      "weekday_planet": "Sun",
+      "weekday_planet_number": 1
+    },
+    "places": {
+      "birth_place": {
+        "compound": 15,
+        "reduced": 6,
+        "text": "Zadar"
+      },
+      "draw_place": {
+        "compound": 20,
+        "reduced": 2,
+        "text": "Zagreb"
+      }
+    }
+  },
+  "key": "chaldean",
+  "kind": "traditional (Cheiro) + experimental mapping",
+  "label": "Kaldejska numerologija (Cheiro)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        7
+      ],
+      "main": [
+        1,
+        7,
+        9,
+        18,
+        25
+      ]
+    },
+    "joker": {
+      "digits": [
+        4,
+        2,
+        7,
+        9,
+        1,
+        1
+      ]
+    },
+    "loto": {
+      "main": [
+        1,
+        6,
+        7,
+        9,
+        18,
+        25
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        15,
+        18,
+        20,
+        22
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        7,
+        6,
+        9,
+        2,
+        4,
+        5,
+        3,
+        8,
+        12,
+        10,
+        11
+      ],
+      "main": [
+        25,
+        7,
+        18,
+        9,
+        1,
+        6,
+        2,
+        31,
+        4,
+        29,
+        15,
+        20,
+        12,
+        32,
+        13,
+        24,
+        35,
+        28,
+        41,
+        14,
+        37,
+        36,
+        3,
+        30,
+        22,
+        43,
+        27,
+        42,
+        39,
+        17,
+        47,
+        45,
+        26,
+        5,
+        49,
+        44,
+        40,
+        16,
+        10,
+        19,
+        34,
+        38,
+        8,
+        23,
+        50,
+        46,
+        33,
+        21,
+        48,
+        11
+      ]
+    },
+    "joker": {
+      "digits": [
+        4,
+        2,
+        7,
+        9,
+        1,
+        1
+      ]
+    },
+    "loto": {
+      "main": [
+        25,
+        7,
+        18,
+        9,
+        1,
+        6,
+        2,
+        31,
+        4,
+        29,
+        15,
+        20,
+        3,
+        40,
+        24,
+        14,
+        11,
+        23,
+        35,
+        22,
+        19,
+        42,
+        10,
+        13,
+        28,
+        12,
+        8,
+        16,
+        39,
+        33,
+        43,
+        21,
+        27,
+        17,
+        44,
+        36,
+        37,
+        5,
+        32,
+        45,
+        34,
+        26,
+        38,
+        30,
+        41
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        3,
+        7,
+        9,
+        18,
+        1,
+        6,
+        2,
+        4,
+        15,
+        20,
+        22,
+        17,
+        10,
+        12,
+        21,
+        14,
+        11,
+        16,
+        13,
+        8,
+        19,
+        5
+      ]
+    }
+  },
+  "sequence": [
+    25,
+    7,
+    18,
+    9,
+    1,
+    31,
+    4,
+    29,
+    2,
+    6,
+    15,
+    6,
+    20,
+    2
+  ],
+  "sources": [
+    "Cheiro (W. J. Warner), Cheiro's Book of Numbers, London 1926 – letter table 1-8, compound numbers, planets",
+    "Place-name values and the lottery mapping are experimental"
+  ],
+  "status": "partial"
+}

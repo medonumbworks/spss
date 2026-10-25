@@ -1,0 +1,456 @@
+{
+  "components": [
+    {
+      "detail": "experimental",
+      "name": "day_of_month_cards",
+      "status": "ran"
+    },
+    {
+      "detail": "4 x 9",
+      "name": "seeded_grand_tableau",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "loto": {
+      "main": 6
+    },
+    "sve_ili_nista": {
+      "main": 11
+    }
+  },
+  "digit_sequence": [
+    24,
+    16,
+    33,
+    3,
+    9,
+    14
+  ],
+  "error": null,
+  "intermediate": {
+    "birth_day_card": {
+      "name": "Sun",
+      "number": 31
+    },
+    "draw_day_card": {
+      "name": "Ring",
+      "number": 25
+    },
+    "grand_tableau_rows": [
+      [
+        {
+          "name": "Heart",
+          "number": 24
+        },
+        {
+          "name": "Stars",
+          "number": 16
+        },
+        {
+          "name": "Key",
+          "number": 33
+        },
+        {
+          "name": "Ship",
+          "number": 3
+        },
+        {
+          "name": "Bouquet",
+          "number": 9
+        },
+        {
+          "name": "Fox",
+          "number": 14
+        },
+        {
+          "name": "Mountain",
+          "number": 21
+        },
+        {
+          "name": "Moon",
+          "number": 32
+        },
+        {
+          "name": "Cross",
+          "number": 36
+        }
+      ],
+      [
+        {
+          "name": "Snake",
+          "number": 7
+        },
+        {
+          "name": "Mice",
+          "number": 23
+        },
+        {
+          "name": "Tower",
+          "number": 19
+        },
+        {
+          "name": "Bear",
+          "number": 15
+        },
+        {
+          "name": "Coffin",
+          "number": 8
+        },
+        {
+          "name": "Book",
+          "number": 26
+        },
+        {
+          "name": "Garden",
+          "number": 20
+        },
+        {
+          "name": "Scythe",
+          "number": 10
+        },
+        {
+          "name": "Tree",
+          "number": 5
+        }
+      ],
+      [
+        {
+          "name": "Birds",
+          "number": 12
+        },
+        {
+          "name": "House",
+          "number": 4
+        },
+        {
+          "name": "Dog",
+          "number": 18
+        },
+        {
+          "name": "Lady",
+          "number": 29
+        },
+        {
+          "name": "Ring",
+          "number": 25
+        },
+        {
+          "name": "Whip",
+          "number": 11
+        },
+        {
+          "name": "Stork",
+          "number": 17
+        },
+        {
+          "name": "Anchor",
+          "number": 35
+        },
+        {
+          "name": "Gentleman",
+          "number": 28
+        }
+      ],
+      [
+        {
+          "name": "Clouds",
+          "number": 6
+        },
+        {
+          "name": "Crossroads",
+          "number": 22
+        },
+        {
+          "name": "Fish",
+          "number": 34
+        },
+        {
+          "name": "Sun",
+          "number": 31
+        },
+        {
+          "name": "Rider",
+          "number": 1
+        },
+        {
+          "name": "Lily",
+          "number": 30
+        },
+        {
+          "name": "Letter",
+          "number": 27
+        },
+        {
+          "name": "Clover",
+          "number": 2
+        },
+        {
+          "name": "Child",
+          "number": 13
+        }
+      ]
+    ]
+  },
+  "key": "lenormand",
+  "kind": "traditional numbering + experimental seeded tableau",
+  "label": "Lenormand (36 karata, Grand Tableau)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        7
+      ],
+      "main": [
+        16,
+        24,
+        25,
+        31,
+        33
+      ]
+    },
+    "joker": {
+      "digits": [
+        4,
+        6,
+        3,
+        3,
+        9,
+        4
+      ]
+    },
+    "loto": {
+      "main": [
+        3,
+        16,
+        24,
+        25,
+        31,
+        33
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        9,
+        10,
+        11,
+        14,
+        16,
+        21
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        7,
+        1,
+        12,
+        9,
+        4,
+        3,
+        8,
+        2,
+        11,
+        5,
+        10,
+        6
+      ],
+      "main": [
+        31,
+        25,
+        24,
+        16,
+        33,
+        3,
+        9,
+        14,
+        21,
+        32,
+        36,
+        7,
+        23,
+        19,
+        15,
+        8,
+        26,
+        20,
+        10,
+        5,
+        12,
+        4,
+        18,
+        29,
+        11,
+        17,
+        35,
+        28,
+        6,
+        22,
+        34,
+        1,
+        30,
+        27,
+        2,
+        13,
+        47,
+        48,
+        44,
+        40,
+        45,
+        38,
+        49,
+        50,
+        46,
+        39,
+        37,
+        42,
+        41,
+        43
+      ]
+    },
+    "joker": {
+      "digits": [
+        4,
+        6,
+        3,
+        3,
+        9,
+        4
+      ]
+    },
+    "loto": {
+      "main": [
+        31,
+        25,
+        24,
+        16,
+        33,
+        3,
+        9,
+        14,
+        21,
+        32,
+        36,
+        7,
+        23,
+        19,
+        15,
+        8,
+        26,
+        20,
+        10,
+        5,
+        12,
+        4,
+        18,
+        29,
+        11,
+        17,
+        35,
+        28,
+        6,
+        22,
+        34,
+        1,
+        30,
+        27,
+        2,
+        13,
+        38,
+        44,
+        42,
+        41,
+        37,
+        39,
+        45,
+        43,
+        40
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        9,
+        3,
+        2,
+        16,
+        11,
+        14,
+        10,
+        7,
+        21,
+        1,
+        4,
+        8,
+        12,
+        5,
+        19,
+        6,
+        15,
+        13,
+        20,
+        18,
+        17,
+        22
+      ]
+    }
+  },
+  "sequence": [
+    31,
+    25,
+    24,
+    16,
+    33,
+    3,
+    9,
+    14,
+    21,
+    32,
+    36,
+    7,
+    23,
+    19,
+    15,
+    8,
+    26,
+    20,
+    10,
+    5,
+    12,
+    4,
+    18,
+    29,
+    25,
+    11,
+    17,
+    35,
+    28,
+    6,
+    22,
+    34,
+    31,
+    1,
+    30,
+    27,
+    2,
+    13
+  ],
+  "sources": [
+    "J. K. Hechtel, Das Spiel der Hoffnung, c. 1799 – the 36 cards and their numbers",
+    "M. Katz & T. Goodwin, Learning Lenormand, 2013 – modern card list and Grand Tableau",
+    "Seeded tableau (numpy PCG64 + SHA-256) and day-of-month cards – experimental"
+  ],
+  "status": "ran"
+}

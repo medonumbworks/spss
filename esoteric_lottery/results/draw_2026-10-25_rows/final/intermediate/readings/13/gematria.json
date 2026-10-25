@@ -1,0 +1,337 @@
+{
+  "components": [
+    {
+      "detail": "ordinal, reverse ordinal, Agrippa",
+      "name": "latin_ciphers",
+      "status": "ran"
+    },
+    {
+      "detail": "no name in config.yaml (subject.name is null)",
+      "name": "name_cipher",
+      "status": "skipped"
+    },
+    {
+      "detail": "no Hebrew text supplied (gematria.extra_texts)",
+      "name": "hebrew_mispar_hechrachi",
+      "status": "skipped"
+    },
+    {
+      "detail": "no Greek text supplied (gematria.extra_texts)",
+      "name": "greek_isopsephy",
+      "status": "skipped"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "loto": {
+      "main": 6
+    },
+    "sve_ili_nista": {
+      "main": 11
+    }
+  },
+  "digit_sequence": [
+    61,
+    155,
+    93,
+    96,
+    120,
+    334
+  ],
+  "error": null,
+  "intermediate": {
+    "greek": [],
+    "hebrew": [],
+    "texts": [
+      {
+        "agrippa": 93,
+        "label": "draw_weekday",
+        "normalized": "NEDJELJA",
+        "ordinal": 61,
+        "reverse_ordinal": 155,
+        "text": "nedjelja"
+      },
+      {
+        "agrippa": 334,
+        "label": "draw_month",
+        "normalized": "LISTOPAD",
+        "ordinal": 96,
+        "reverse_ordinal": 120,
+        "text": "listopad"
+      },
+      {
+        "agrippa": 595,
+        "label": "draw_place",
+        "normalized": "ZAGREB",
+        "ordinal": 59,
+        "reverse_ordinal": 103,
+        "text": "Zagreb"
+      },
+      {
+        "agrippa": 176,
+        "label": "birth_weekday",
+        "normalized": "PETAK",
+        "ordinal": 53,
+        "reverse_ordinal": 82,
+        "text": "petak"
+      },
+      {
+        "agrippa": 351,
+        "label": "birth_month",
+        "normalized": "SVIBANJ",
+        "ordinal": 77,
+        "reverse_ordinal": 112,
+        "text": "svibanj"
+      },
+      {
+        "agrippa": 586,
+        "label": "birth_place",
+        "normalized": "ZADAR",
+        "ordinal": 50,
+        "reverse_ordinal": 85,
+        "text": "Zadar"
+      }
+    ]
+  },
+  "key": "gematria",
+  "kind": "traditional ciphers + experimental text selection and mapping",
+  "label": "Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        11
+      ],
+      "main": [
+        3,
+        5,
+        11,
+        43,
+        46
+      ]
+    },
+    "joker": {
+      "digits": [
+        1,
+        5,
+        3,
+        6,
+        0,
+        4
+      ]
+    },
+    "loto": {
+      "main": [
+        3,
+        6,
+        16,
+        19,
+        20,
+        30
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        1,
+        4,
+        5,
+        8,
+        9,
+        10,
+        11,
+        15,
+        16,
+        17,
+        22
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        1,
+        11,
+        12,
+        9,
+        10,
+        7,
+        5,
+        8,
+        4,
+        3,
+        2,
+        6
+      ],
+      "main": [
+        11,
+        5,
+        43,
+        46,
+        3,
+        20,
+        34,
+        9,
+        45,
+        32,
+        26,
+        27,
+        12,
+        1,
+        50,
+        35,
+        36,
+        13,
+        16,
+        19,
+        38,
+        22,
+        17,
+        15,
+        4,
+        14,
+        49,
+        6,
+        31,
+        30,
+        25,
+        18,
+        24,
+        48,
+        47,
+        23,
+        39,
+        33,
+        41,
+        28,
+        44,
+        10,
+        29,
+        40,
+        2,
+        42,
+        21,
+        37,
+        8,
+        7
+      ]
+    },
+    "joker": {
+      "digits": [
+        1,
+        5,
+        3,
+        6,
+        0,
+        4
+      ]
+    },
+    "loto": {
+      "main": [
+        16,
+        20,
+        3,
+        6,
+        30,
+        19,
+        14,
+        13,
+        10,
+        8,
+        37,
+        41,
+        32,
+        22,
+        36,
+        5,
+        40,
+        1,
+        44,
+        2,
+        11,
+        43,
+        12,
+        24,
+        28,
+        7,
+        35,
+        38,
+        34,
+        18,
+        31,
+        26,
+        9,
+        15,
+        33,
+        29,
+        23,
+        25,
+        42,
+        17,
+        21,
+        4,
+        45,
+        27,
+        39
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        17,
+        1,
+        5,
+        15,
+        8,
+        10,
+        4,
+        9,
+        16,
+        22,
+        11,
+        2,
+        21,
+        6,
+        19,
+        14,
+        13,
+        12,
+        7,
+        3,
+        18,
+        20
+      ]
+    }
+  },
+  "sequence": [
+    61,
+    155,
+    93,
+    96,
+    120,
+    334,
+    59,
+    103,
+    595,
+    53,
+    82,
+    176,
+    77,
+    112,
+    351,
+    50,
+    85,
+    586
+  ],
+  "sources": [
+    "Hebrew mispar hechrachi – standard letter values (e.g. G. Scholem, Kabbalah, 1974, 'Gematria')",
+    "Greek isopsephy – Milesian numerals",
+    "H. C. Agrippa, De occulta philosophia libri tres (1533), II.20 – Latin letter numbers",
+    "English ordinal / reverse ordinal – modern simple ciphers"
+  ],
+  "status": "partial"
+}

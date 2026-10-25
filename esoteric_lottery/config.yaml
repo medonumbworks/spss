@@ -60,6 +60,7 @@ methods:
   tarot:
     spread_size: 22
   lenormand: {}
+  hermetic: {}
 
 history:
   sve_ili_nista:

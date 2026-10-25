@@ -221,8 +221,19 @@ def select_portfolio(candidates: list[dict], m: int, pool: Pool, paying: Iterabl
     neutral = (sum(sizes) / len(sizes)) ** 2 / pool.size   # expected overlap of two random tickets
     n_subsets = comb(len(tickets), m)
     if n_subsets > max_subsets:
-        raise ValueError(f"{n_subsets} subsets of {len(tickets)} candidates exceeds max_subsets={max_subsets}; "
-                         "narrow the candidate pool (e.g. fewer readings) rather than sampling silently")
+        # Too many subsets to score exactly. Fall back to the greedy packing, which
+        # optimises coverage rather than the joint distribution, and say so in the output
+        # instead of silently sampling.
+        packed = select_portfolio_greedy(candidates, m, pool, key, overlap_range[1],
+                                         min_hits_to_win=min(paying))
+        chosen = [tuple(t) for t in packed["tickets"]]
+        ev = evaluate_auto(chosen, pool, paying, top_hits)
+        ev["selection"] = {**packed["selection"], "candidates": len(tickets),
+                           "subsets_total": n_subsets, "exhaustive_search_skipped": True,
+                           "sources": packed["sources"],
+                           "objective": packed["selection"]["objective"] +
+                                        " (exhaustive scoring was infeasible at this candidate count)"}
+        return ev
     ov = {(i, j): len(set(tickets[i]) & set(tickets[j]))
           for i, j in itertools.combinations(range(len(tickets)), 2)}
     lo, hi = overlap_range
@@ -349,11 +360,16 @@ def evaluate_set_enumerated(tickets: Sequence[Ticket], pool: Pool, paying: Itera
 
 
 def evaluate_auto(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int],
-                  top_hits: Iterable[int] | None = None, dp_limit: int = 6) -> dict:
-    """Whichever exact method is feasible: the DP for few tickets, enumeration for many."""
+                  top_hits: Iterable[int] | None = None, dp_limit: int = 6,
+                  enum_limit: int = 40) -> dict:
+    """Whichever exact route is feasible at this size: the joint DP for a few tickets,
+    per-ticket enumeration up to a few dozen, k-subset coverage beyond that. All three
+    are exact; they differ only in what they can afford to compute."""
     if len(tickets) <= dp_limit:
         return evaluate_set(tickets, pool, paying, top_hits)
-    return evaluate_set_enumerated(tickets, pool, paying, top_hits)
+    if len(tickets) <= enum_limit:
+        return evaluate_set_enumerated(tickets, pool, paying, top_hits)
+    return evaluate_coverage(tickets, pool, paying, top_hits)
 
 
 def covered_subsets(tickets: Sequence[Ticket], k: int) -> set[tuple[int, ...]]:
@@ -366,7 +382,8 @@ def covered_subsets(tickets: Sequence[Ticket], k: int) -> set[tuple[int, ...]]:
 
 def select_portfolio_greedy(candidates: list[dict], m: int, pool: Pool, key: str,
                             max_overlap: int, fixed: Sequence[Ticket] = (),
-                            min_hits_to_win: int = 3) -> dict:
+                            min_hits_to_win: int = 3,
+                            weights: dict[int, float] | None = None) -> dict:
     """Pick m tickets when exhaustive search is hopeless: a packing, built greedily.
 
     A system of s numbers wins when at least ``min_hits_to_win`` of the drawn numbers lie
@@ -392,7 +409,10 @@ def select_portfolio_greedy(candidates: list[dict], m: int, pool: Pool, key: str
             if any(len(set(t) & set(o)) > max_overlap for o in list(fixed) + chosen):
                 continue
             new = len(covered_subsets([t], min_hits_to_win) - covered)
-            rank = (-new, order[t])
+            # Under the overlap cap every feasible ticket adds the same number of new
+            # subsets, so the esoteric weight — not the hash — decides which one.
+            esoteric = sum(weights.get(n, 0.0) for n in t) if weights else 0.0
+            rank = (-new, -esoteric, order[t])
             if best_rank is None or rank < best_rank:
                 best, best_rank = t, rank
         if best is None:          # nothing left within the overlap limit
@@ -515,3 +535,76 @@ def borda_weights(readings: list[dict], game_key: str, pool: Pool,
         for i, p in enumerate(ens["points"][game_key][pool.name], start=1):
             out[i] += float(p)
     return out
+
+
+def evaluate_coverage(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int],
+                      top_hits: Iterable[int] | None = None, chunk: int = 600_000) -> dict:
+    """Exact P(some ticket reaches each tier), by k-subset coverage.
+
+    A ticket reaches tier k exactly when it contains k of the drawn numbers, that is when
+    one of the k-subsets of the draw lies inside it. So the question "does anything reach
+    tier k" depends only on which k-subsets the tickets cover between them, never on the
+    tickets one at a time. That makes this the scalable exact route: the per-ticket
+    enumeration costs O(draws x tickets), this costs O(draws x C(pick, k)) whatever the
+    number of tickets, which is what a few hundred rows need.
+    """
+    import numpy as np
+
+    paying = sorted(set(paying))
+    top = sorted(set(top_hits) if top_hits is not None else {0, pool.pick})
+    ks = [k for k in paying if k > 0]
+    binom = {}
+
+    def rank(cols: list, k: int):
+        idx = np.zeros(cols[0].shape, dtype=np.int64)
+        for j in range(k):
+            r = j + 1
+            if r not in binom:
+                binom[r] = np.array([comb(i, r) for i in range(pool.size + 1)], dtype=np.int64)
+            idx += binom[r][cols[j]]
+        return idx
+
+    covered = {}
+    for k in ks:
+        flags = np.zeros(comb(pool.size, k), dtype=bool)
+        for t in tickets:
+            for c in itertools.combinations(sorted(x - 1 for x in t), k):
+                flags[sum(comb(c[j], j + 1) for j in range(k))] = True
+        covered[k] = flags
+    hit = {k: 0 for k in ks}
+    total = comb(pool.size, pool.pick)
+    seen = 0
+    it = itertools.combinations(range(pool.size), pool.pick)
+    while True:
+        block = list(itertools.islice(it, chunk))
+        if not block:
+            break
+        d = np.array(block, dtype=np.int64)
+        seen += len(d)
+        for k in ks:
+            any_k = np.zeros(len(d), dtype=bool)
+            for pos in itertools.combinations(range(pool.pick), k):
+                any_k |= covered[k][rank([d[:, p] for p in pos], k)]
+            hit[k] += int(any_k.sum())
+    assert seen == total
+    p_tier = {k: Fraction(hit[k], total) for k in ks}
+    lowest = min(ks)
+    overlaps = [len(set(a) & set(b)) for a, b in itertools.combinations(tickets, 2)]
+    n_top = max(top) if top else pool.pick
+    return {
+        "tickets": [list(t) for t in tickets],
+        "n_tickets": len(tickets),
+        "method": "exact k-subset coverage over all draws",
+        "draws_enumerated": total,
+        "pairwise_overlaps_max": max(overlaps) if overlaps else None,
+        "p_at_least_one_paying": float(p_tier[lowest]),
+        "p_nothing_at_all": float(1 - p_tier[lowest]),
+        "p_at_least_one_at_tier": {str(k): float(v) for k, v in p_tier.items()},
+        "p_at_least_one_jackpot_tier": float(p_tier.get(n_top, Fraction(0))),
+        "one_in_at_least_one_paying": round(1 / float(p_tier[lowest])) if p_tier[lowest] else None,
+        "subsets_covered": {str(k): int(covered[k].sum()) for k in ks},
+        "subsets_coverable": {str(k): len(tickets) * comb(pool.pick, k) for k in ks},
+        "subsets_in_pool": {str(k): comb(pool.size, k) for k in ks},
+        "expected_total_hits": float(len(tickets) * pool.pick * pool.pick / pool.size),
+        "ticket_sizes": sorted({len(t) for t in tickets}),
+    }

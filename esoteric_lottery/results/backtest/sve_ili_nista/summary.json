@@ -161,10 +161,10 @@
     "pools": {
       "main": {
         "alpha": 0.05,
-        "family_size": 13,
+        "family_size": 14,
         "family_tests": {
           "chaldean": {
-            "p_bh": 0.550054635,
+            "p_bh": 0.6092951317,
             "p_exact_two_sided": 0.2140807446,
             "p_holm": 1.0,
             "significant_bh": false,
@@ -172,15 +172,15 @@
             "significant_uncorrected": false
           },
           "control_hot_frequency": {
-            "p_bh": 0.3307612483,
+            "p_bh": 0.3562044213,
             "p_exact_two_sided": 0.0508863459,
-            "p_holm": 0.6106361508,
+            "p_holm": 0.6615224967,
             "significant_bh": false,
             "significant_holm": false,
             "significant_uncorrected": false
           },
           "control_logistic": {
-            "p_bh": 0.7727316186,
+            "p_bh": 0.7565204657,
             "p_exact_two_sided": 0.5944089373,
             "p_holm": 1.0,
             "significant_bh": false,
@@ -188,24 +188,32 @@
             "significant_uncorrected": false
           },
           "ensemble_equal": {
-            "p_bh": 0.7017725961,
-            "p_exact_two_sided": 0.4318600591,
+            "p_bh": 0.6092951317,
+            "p_exact_two_sided": 0.3481686467,
             "p_holm": 1.0,
             "significant_bh": false,
             "significant_holm": false,
             "significant_uncorrected": false
           },
           "ensemble_train_weighted": {
-            "p_bh": 0.550054635,
-            "p_exact_two_sided": 0.1789971061,
+            "p_bh": 0.6092951317,
+            "p_exact_two_sided": 0.2755880935,
             "p_holm": 1.0,
             "significant_bh": false,
             "significant_holm": false,
             "significant_uncorrected": false
           },
           "gematria": {
-            "p_bh": 0.550054635,
+            "p_bh": 0.6092951317,
             "p_exact_two_sided": 0.25387137,
+            "p_holm": 1.0,
+            "significant_bh": false,
+            "significant_holm": false,
+            "significant_uncorrected": false
+          },
+          "hermetic": {
+            "p_bh": 0.7565204657,
+            "p_exact_two_sided": 0.4936024702,
             "p_holm": 1.0,
             "significant_bh": false,
             "significant_holm": false,
@@ -220,7 +228,7 @@
             "significant_uncorrected": false
           },
           "lenormand": {
-            "p_bh": 0.8765428922,
+            "p_bh": 0.8653051628,
             "p_exact_two_sided": 0.7416901396,
             "p_holm": 1.0,
             "significant_bh": false,
@@ -236,7 +244,7 @@
             "significant_uncorrected": false
           },
           "pythagorean": {
-            "p_bh": 0.6465989152,
+            "p_bh": 0.6092951317,
             "p_exact_two_sided": 0.3481686467,
             "p_holm": 1.0,
             "significant_bh": false,
@@ -244,15 +252,15 @@
             "significant_uncorrected": false
           },
           "tarot": {
-            "p_bh": 0.0742313439,
+            "p_bh": 0.0799414473,
             "p_exact_two_sided": 0.0057101034,
-            "p_holm": 0.0742313439,
+            "p_holm": 0.0799414473,
             "significant_bh": false,
             "significant_holm": false,
             "significant_uncorrected": true
           },
           "vedic_astrology": {
-            "p_bh": 0.7727316186,
+            "p_bh": 0.7565204657,
             "p_exact_two_sided": 0.5944089373,
             "p_holm": 1.0,
             "significant_bh": false,
@@ -260,7 +268,7 @@
             "significant_uncorrected": false
           },
           "western_astrology": {
-            "p_bh": 0.550054635,
+            "p_bh": 0.6092951317,
             "p_exact_two_sided": 0.2140807446,
             "p_holm": 1.0,
             "significant_bh": false,
@@ -268,7 +276,7 @@
             "significant_uncorrected": false
           }
         },
-        "minimum_detectable_effect": 0.2726015044,
+        "minimum_detectable_effect": 0.2742971508,
         "random_ticket_null": {
           "mean": 5.5010251852,
           "quantiles": {
@@ -790,10 +798,10 @@
           "ensemble_equal": {
             "evaluation": {
               "auc": {
-                "auc": 0.5067646159,
+                "auc": 0.5049586777,
                 "ci95": [
-                  0.4900826446,
-                  0.5232958372
+                  0.4891613101,
+                  0.521916131
                 ]
               },
               "chi2_gof": {
@@ -816,29 +824,29 @@
                 ],
                 "observed": [
                   14.0,
-                  36.0,
-                  83.0,
-                  78.0,
-                  40.0,
-                  19.0
+                  37.0,
+                  85.0,
+                  70.0,
+                  44.0,
+                  20.0
                 ],
-                "p_value": 0.2877428635,
-                "statistic": 6.1945846452
+                "p_value": 0.1097831659,
+                "statistic": 8.9820276366
               },
               "ci95_bootstrap": [
-                5.4037037037,
-                5.7148148148
+                5.4185185185,
+                5.7259259259
               ],
               "ci95_t": [
-                5.4038479572,
-                5.7146705613
+                5.4153697965,
+                5.7253709443
               ],
-              "difference": 0.0592592593,
+              "difference": 0.0703703704,
               "exact_test": {
-                "p_lower": 0.7986261625,
-                "p_two_sided": 0.4318600591,
-                "p_upper": 0.2159300296,
-                "total_hits": 1501
+                "p_lower": 0.8386340299,
+                "p_two_sided": 0.3481686467,
+                "p_upper": 0.1740843233,
+                "total_hits": 1504
               },
               "expected_distribution": {
                 "0": 0.0003827442,
@@ -856,36 +864,36 @@
               },
               "expected_mean_hits": 5.5,
               "extreme_rate": {
-                "binomial_p_two_sided": 0.0390345753,
+                "binomial_p_two_sided": 0.0290503283,
                 "ci95_wilson": [
-                  0.0883672914,
-                  0.1666761162
+                  0.0915302554,
+                  0.1708166483
                 ],
-                "count": 33,
+                "count": 34,
                 "definition": "hits <= 3 or hits >= 8",
                 "expected_rate": 0.0861089375,
-                "rate": 0.1222222222
+                "rate": 0.1259259259
               },
               "hit_distribution": {
                 "0": 0,
                 "1": 0,
                 "10": 0,
                 "11": 0,
-                "2": 3,
-                "3": 11,
-                "4": 36,
-                "5": 83,
-                "6": 78,
-                "7": 40,
-                "8": 16,
-                "9": 3
+                "2": 1,
+                "3": 13,
+                "4": 37,
+                "5": 85,
+                "6": 70,
+                "7": 44,
+                "8": 18,
+                "9": 2
               },
               "max_hits": 9,
-              "mc_p_two_sided": 0.4304569543,
-              "mean_hits": 5.5592592593,
+              "mc_p_two_sided": 0.3460653935,
+              "mean_hits": 5.5703703704,
               "min_hits": 2,
               "n_draws": 270,
-              "sd_hits": 1.2970539278,
+              "sd_hits": 1.2936260139,
               "top_tier_events": 0,
               "top_tier_expected": 0.0003827442,
               "zero_hit_events": 0,
@@ -911,30 +919,30 @@
                   15.7148810941
                 ],
                 "observed": [
-                  16.0,
-                  57.0,
-                  118.0,
-                  107.0,
-                  52.0,
-                  15.0
+                  13.0,
+                  60.0,
+                  115.0,
+                  108.0,
+                  51.0,
+                  18.0
                 ],
-                "p_value": 0.9621380669,
-                "statistic": 1.0052888131
+                "p_value": 0.8776671369,
+                "statistic": 1.7877302067
               },
               "ci95_bootstrap": [
-                5.3369863014,
-                5.5835616438
+                5.3671232877,
+                5.6164383562
               ],
               "ci95_t": [
-                5.3366956903,
-                5.5838522549
+                5.3648996428,
+                5.615922275
               ],
-              "difference": -0.0397260274,
+              "difference": -0.0095890411,
               "exact_test": {
-                "p_lower": 0.2707345568,
-                "p_two_sided": 0.5414691136,
-                "p_upper": 0.7435107901,
-                "total_hits": 1993
+                "p_lower": 0.4479505911,
+                "p_two_sided": 0.8959011822,
+                "p_upper": 0.5692458693,
+                "total_hits": 2004
               },
               "expected_distribution": {
                 "0": 0.0005174134,
@@ -967,20 +975,20 @@
                 "1": 0,
                 "10": 0,
                 "11": 0,
-                "2": 2,
-                "3": 14,
-                "4": 57,
-                "5": 118,
-                "6": 107,
-                "7": 52,
-                "8": 12,
-                "9": 3
+                "2": 3,
+                "3": 10,
+                "4": 60,
+                "5": 115,
+                "6": 108,
+                "7": 51,
+                "8": 14,
+                "9": 4
               },
               "max_hits": 9,
-              "mean_hits": 5.4602739726,
+              "mean_hits": 5.4904109589,
               "min_hits": 2,
               "n_draws": 365,
-              "sd_hits": 1.2005881944,
+              "sd_hits": 1.2193680114,
               "top_tier_events": 0,
               "top_tier_expected": 0.0005174134,
               "zero_hit_events": 0,
@@ -990,10 +998,10 @@
           "ensemble_train_weighted": {
             "evaluation": {
               "auc": {
-                "auc": 0.4962350781,
+                "auc": 0.497979798,
                 "ci95": [
-                  0.4793373125,
-                  0.5125811142
+                  0.4819375574,
+                  0.5139692378
                 ]
               },
               "chi2_gof": {
@@ -1015,30 +1023,30 @@
                   11.6247065628
                 ],
                 "observed": [
-                  14.0,
-                  53.0,
-                  73.0,
-                  76.0,
+                  16.0,
                   45.0,
-                  9.0
+                  82.0,
+                  73.0,
+                  42.0,
+                  12.0
                 ],
-                "p_value": 0.3325067696,
-                "statistic": 5.7384462633
+                "p_value": 0.7227743587,
+                "statistic": 2.8521035622
               },
               "ci95_bootstrap": [
-                5.2480555556,
-                5.5518518519
+                5.2665740741,
+                5.5703703704
               ],
               "ci95_t": [
-                5.2476672811,
-                5.5523327189
+                5.2656773413,
+                5.5713596957
               ],
-              "difference": -0.1,
+              "difference": -0.0814814815,
               "exact_test": {
-                "p_lower": 0.0894985531,
-                "p_two_sided": 0.1789971061,
-                "p_upper": 0.9184262044,
-                "total_hits": 1458
+                "p_lower": 0.1377940468,
+                "p_two_sided": 0.2755880935,
+                "p_upper": 0.873064315,
+                "total_hits": 1463
               },
               "expected_distribution": {
                 "0": 0.0003827442,
@@ -1056,36 +1064,36 @@
               },
               "expected_mean_hits": 5.5,
               "extreme_rate": {
-                "binomial_p_two_sided": 1.0,
+                "binomial_p_two_sided": 0.2792667291,
                 "ci95_wilson": [
-                  0.0574326932,
-                  0.1245757545
+                  0.0727280344,
+                  0.1457978933
                 ],
-                "count": 23,
+                "count": 28,
                 "definition": "hits <= 3 or hits >= 8",
                 "expected_rate": 0.0861089375,
-                "rate": 0.0851851852
+                "rate": 0.1037037037
               },
               "hit_distribution": {
                 "0": 0,
                 "1": 0,
                 "10": 0,
                 "11": 0,
-                "2": 5,
-                "3": 9,
-                "4": 53,
-                "5": 73,
-                "6": 76,
-                "7": 45,
-                "8": 8,
+                "2": 4,
+                "3": 12,
+                "4": 45,
+                "5": 82,
+                "6": 73,
+                "7": 42,
+                "8": 11,
                 "9": 1
               },
               "max_hits": 9,
-              "mc_p_two_sided": 0.1786821318,
-              "mean_hits": 5.4,
+              "mc_p_two_sided": 0.2745725427,
+              "mean_hits": 5.4185185185,
               "min_hits": 2,
               "n_draws": 270,
-              "sd_hits": 1.2713602469,
+              "sd_hits": 1.2756038113,
               "top_tier_events": 0,
               "top_tier_expected": 0.0003827442,
               "zero_hit_events": 0,
@@ -1287,6 +1295,206 @@
               "min_hits": 3,
               "n_draws": 365,
               "sd_hits": 1.2501512779,
+              "top_tier_events": 0,
+              "top_tier_expected": 0.0005174134,
+              "zero_hit_events": 0,
+              "zero_hit_expected": 0.0005174134
+            }
+          },
+          "hermetic": {
+            "evaluation": {
+              "auc": {
+                "auc": 0.4966023875,
+                "ci95": [
+                  0.4804951025,
+                  0.5114478114
+                ]
+              },
+              "chi2_gof": {
+                "bins": [
+                  "0-3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8-11"
+                ],
+                "df": 5,
+                "expected": [
+                  11.6247065628,
+                  41.6808423774,
+                  81.6944510598,
+                  81.6944510598,
+                  41.6808423774,
+                  11.6247065628
+                ],
+                "observed": [
+                  15.0,
+                  46.0,
+                  78.0,
+                  77.0,
+                  45.0,
+                  9.0
+                ],
+                "p_value": 0.7428472691,
+                "statistic": 2.7213754307
+              },
+              "ci95_bootstrap": [
+                5.3,
+                5.5962962963
+              ],
+              "ci95_t": [
+                5.3000839911,
+                5.5962123052
+              ],
+              "difference": -0.0518518519,
+              "exact_test": {
+                "p_lower": 0.2468012351,
+                "p_two_sided": 0.4936024702,
+                "p_upper": 0.7689220311,
+                "total_hits": 1471
+              },
+              "expected_distribution": {
+                "0": 0.0003827442,
+                "1": 0.0463120471,
+                "10": 0.0463120471,
+                "11": 0.0003827442,
+                "2": 1.1578011772,
+                "3": 10.4202105944,
+                "4": 41.6808423774,
+                "5": 81.6944510598,
+                "6": 81.6944510598,
+                "7": 41.6808423774,
+                "8": 10.4202105944,
+                "9": 1.1578011772
+              },
+              "expected_mean_hits": 5.5,
+              "extreme_rate": {
+                "binomial_p_two_sided": 0.8283038302,
+                "ci95_wilson": [
+                  0.0604601056,
+                  0.128851838
+                ],
+                "count": 24,
+                "definition": "hits <= 3 or hits >= 8",
+                "expected_rate": 0.0861089375,
+                "rate": 0.0888888889
+              },
+              "hit_distribution": {
+                "0": 0,
+                "1": 0,
+                "10": 0,
+                "11": 0,
+                "2": 0,
+                "3": 15,
+                "4": 46,
+                "5": 78,
+                "6": 77,
+                "7": 45,
+                "8": 6,
+                "9": 3
+              },
+              "max_hits": 9,
+              "mc_p_two_sided": 0.4887511249,
+              "mean_hits": 5.4481481481,
+              "min_hits": 3,
+              "n_draws": 270,
+              "sd_hits": 1.2357350718,
+              "top_tier_events": 0,
+              "top_tier_expected": 0.0003827442,
+              "zero_hit_events": 0,
+              "zero_hit_expected": 0.0003827442
+            },
+            "training": {
+              "chi2_gof": {
+                "bins": [
+                  "0-3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8-11"
+                ],
+                "df": 5,
+                "expected": [
+                  15.7148810941,
+                  56.3463239547,
+                  110.4387949512,
+                  110.4387949512,
+                  56.3463239547,
+                  15.7148810941
+                ],
+                "observed": [
+                  20.0,
+                  61.0,
+                  106.0,
+                  111.0,
+                  53.0,
+                  14.0
+                ],
+                "p_value": 0.8323127468,
+                "statistic": 2.1199384351
+              },
+              "ci95_bootstrap": [
+                5.301369863,
+                5.5506849315
+              ],
+              "ci95_t": [
+                5.2993827946,
+                5.5499322739
+              ],
+              "difference": -0.0753424658,
+              "exact_test": {
+                "p_lower": 0.1194812872,
+                "p_two_sided": 0.2389625744,
+                "p_upper": 0.8889947084,
+                "total_hits": 1980
+              },
+              "expected_distribution": {
+                "0": 0.0005174134,
+                "1": 0.0626070266,
+                "10": 0.0626070266,
+                "11": 0.0005174134,
+                "2": 1.5651756654,
+                "3": 14.0865809887,
+                "4": 56.3463239547,
+                "5": 110.4387949512,
+                "6": 110.4387949512,
+                "7": 56.3463239547,
+                "8": 14.0865809887,
+                "9": 1.5651756654
+              },
+              "expected_mean_hits": 5.5,
+              "extreme_rate": {
+                "binomial_p_two_sided": 0.6402629566,
+                "ci95_wilson": [
+                  0.0674256505,
+                  0.1273503355
+                ],
+                "count": 34,
+                "definition": "hits <= 3 or hits >= 8",
+                "expected_rate": 0.0861089375,
+                "rate": 0.0931506849
+              },
+              "hit_distribution": {
+                "0": 0,
+                "1": 0,
+                "10": 0,
+                "11": 0,
+                "2": 3,
+                "3": 17,
+                "4": 61,
+                "5": 106,
+                "6": 111,
+                "7": 53,
+                "8": 14,
+                "9": 0
+              },
+              "max_hits": 8,
+              "mean_hits": 5.4246575342,
+              "min_hits": 2,
+              "n_draws": 365,
+              "sd_hits": 1.2170696231,
               "top_tier_events": 0,
               "top_tier_expected": 0.0005174134,
               "zero_hit_events": 0,
@@ -2715,6 +2923,7 @@
     "gematria",
     "tarot",
     "lenormand",
+    "hermetic",
     "ensemble_equal",
     "ensemble_train_weighted",
     "control_hot_frequency",
@@ -2723,6 +2932,7 @@
   "train_mean_hits": {
     "chaldean": 5.5205479452,
     "gematria": 5.5315068493,
+    "hermetic": 5.4246575342,
     "iching": 5.5945205479,
     "lenormand": 5.4164383562,
     "meihua": 5.4821917808,
@@ -2733,39 +2943,43 @@
   },
   "train_weights": {
     "chaldean": {
-      "weight": 0.9976850041,
+      "weight": 1.0540678384,
       "z_train": 0.3270858744
     },
     "gematria": {
-      "weight": 1.0886138832,
+      "weight": 1.1501354416,
       "z_train": 0.5015316741
     },
+    "hermetic": {
+      "weight": 0.4913770306,
+      "z_train": -1.1993148729
+    },
     "iching": {
-      "weight": 1.7975720518,
+      "weight": 1.8991594335,
       "z_train": 1.5045950224
     },
     "lenormand": {
-      "weight": 0.4356416713,
+      "weight": 0.4602613781,
       "z_train": -1.3301492227
     },
     "meihua": {
-      "weight": 0.735210939,
+      "weight": 0.7767604024,
       "z_train": -0.2834744245
     },
     "pythagorean": {
-      "weight": 0.3427348363,
+      "weight": 0.3621040374,
       "z_train": -1.8098751718
     },
     "tarot": {
-      "weight": 2.0488348056,
+      "weight": 2.1646219659,
       "z_train": 1.7662637219
     },
     "vedic_astrology": {
-      "weight": 0.4650929256,
+      "weight": 0.4913770306,
       "z_train": -1.1993148729
     },
     "western_astrology": {
-      "weight": 1.0886138832,
+      "weight": 1.1501354416,
       "z_train": 0.5015316741
     }
   },

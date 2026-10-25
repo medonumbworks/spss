@@ -7,7 +7,7 @@
 * Rođenje: 1991-05-31T18:20:00+02:00 (Zadar) = 1991-05-31T16:20:00+00:00 UTC
 * Izvlačenje: 2026-10-23T19:00:00+02:00 (Zagreb) = 2026-10-23T17:00:00+00:00 UTC
 * Ime: nije zadano (izračuni koji traže ime su preskočeni)
-* Seed: 20261023; konfiguracija SHA-256 `56c1a7c5ad032d0f…`, kod SHA-256 `0b8119092a6638b1…`
+* Seed: 20261023; konfiguracija SHA-256 `5c630c47013fe10a…`, kod SHA-256 `eadf9e8709eb7500…`
 
 ## Što se stvarno izvršilo
 
@@ -42,6 +42,10 @@
 |  |  | seeded_spread | izvršeno | 22 cards from a 78-card deck |
 | Lenormand (36 karata, Grand Tableau) | izvršeno | day_of_month_cards | izvršeno | experimental |
 |  |  | seeded_grand_tableau | izvršeno | 4 x 9 |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | izvršeno | planetary_hour | izvršeno | Mars hour 13 (night) |
+|  |  | natal_planetary_hour | izvršeno | Saturn |
+|  |  | planetary_kamea | izvršeno | Mars 5x5, constant 65 |
+|  |  | divine_name_gematria | izvršeno | 7 names |
 
 * Backtest sve_ili_nista: **izvršen**
 * Backtest eurojackpot: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
@@ -62,21 +66,21 @@ Isplativi broj pogodaka: 0, 1, 2, 3, 8, 9, 10, 11 (razredi su simetrični: 11 il
 
 | # | Listić | Izvor (metoda#očitanje) |
 |---|---|---|
-| 1 | **01 02 03 04 05 06 07 09 12 13 20** | vedic_astrology#1 |
-| 2 | **01 02 03 07 09 10 11 13 16 18 22** | tarot#1 |
-| 3 | **01 02 04 06 08 09 10 15 18 19 22** | meihua#1 |
-| 4 | **01 02 05 06 07 09 10 11 14 15 16** | ensemble_train_weighted_sve_ili_nista#1 |
+| 1 | **01 02 03 07 09 10 11 13 16 18 22** | tarot#1 |
+| 2 | **01 02 04 05 06 07 09 14 15 16 20** | chaldean#1 |
+| 3 | **01 04 05 08 09 10 13 14 15 18 19** | western_astrology#1 |
+| 4 | **02 03 04 05 06 09 12 13 17 18 21** | hermetic#1 |
 
-Preklapanja parova: [6, 5, 6, 6, 7, 6] (neutralno bi bilo 5.5). Izabrano egzaktnim izračunom zajedničke razdiobe: od 11 različitih listića koje su metode dale, 238 kombinacija po četiri prošlo je filtar preklapanja [3, 8], a najboljih 200 ocijenjeno je egzaktno.
+Preklapanja parova: [5, 5, 5, 6, 5, 5] (neutralno bi bilo 5.5). Izabrano egzaktnim izračunom zajedničke razdiobe: od 12 različitih listića koje su metode dale, 386 kombinacija po četiri prošlo je filtar preklapanja [3, 8], a najboljih 200 ocijenjeno je egzaktno.
 
 | Skup listića | Preklapanja | P(barem jedan dobitan) | E[zbroj pogodaka] | E[najbolji listić] | P(barem jedan 11 ili 0) |
 |---|---|---|---|---|---|
-| **izabrani skup** | [6, 5, 6, 6, 7, 6] | **0.3112** (1 u 3) | 22.000 | 6.653 | 1.134e-05 |
+| **izabrani skup** | [5, 5, 5, 6, 5, 5] | **0.3146** (1 u 3) | 22.000 | 6.747 | 1.134e-05 |
 | isti listić 4 puta | [11, 11, 11, 11, 11, 11] | **0.0861** (1 u 12) | 22.000 | 5.500 | 2.835e-06 |
-| variant_all | [6, 5, 6, 6, 7, 6] | **0.3112** (1 u 3) | 22.000 | 6.653 | 1.134e-05 |
+| variant_all | [5, 5, 5, 6, 5, 5] | **0.3146** (1 u 3) | 22.000 | 6.747 | 1.134e-05 |
 | jedan jedini listić | – | 0.0861 (1 u 12) | 5.500 | 5.500 | 2.835e-06 |
 
-**Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0861 (isti listić četiri puta) na 0.3112. **Što se nije promijenilo:** očekivani zbroj pogodaka je 22.0 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
+**Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0861 (isti listić četiri puta) na 0.3146. **Što se nije promijenilo:** očekivani zbroj pogodaka je 22.0 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
 
 ### Loto 6/45
 
@@ -86,21 +90,21 @@ Isplativi broj pogodaka: 3, 4, 5, 6 (razredi su simetrični: 11 ili 0 je glavni 
 |---|---|---|
 | 1 | **01 02 09 10 11 12 28** | tarot#1 |
 | 2 | **01 04 06 07 13 25 26** | vedic_astrology#1 |
-| 3 | **02 05 06 07 16 23 31** | chaldean#1 |
+| 3 | **03 05 09 13 17 21 24** | hermetic#1 |
 | 4 | **06 08 14 19 30 37 41** | gematria#1 |
 | 5 | **07 09 16 17 29 38 39** | western_astrology#1 |
 
-Preklapanja parova: [1, 1, 0, 1, 2, 1, 1, 1, 2, 0] (neutralno bi bilo 1.0888888888888888). Izabrano egzaktnim izračunom zajedničke razdiobe: od 10 različitih listića koje su metode dale, 13 kombinacija po četiri prošlo je filtar preklapanja [0, 2], a najboljih 13 ocijenjeno je egzaktno.
+Preklapanja parova: [1, 1, 0, 1, 1, 1, 1, 0, 2, 0] (neutralno bi bilo 1.0888888888888888). Izabrano egzaktnim izračunom zajedničke razdiobe: od 11 različitih listića koje su metode dale, 47 kombinacija po četiri prošlo je filtar preklapanja [0, 2], a najboljih 47 ocijenjeno je egzaktno.
 
 | Skup listića | Preklapanja | P(barem jedan dobitan) | E[zbroj pogodaka] | E[najbolji listić] | P(barem jedan 11 ili 0) |
 |---|---|---|---|---|---|
-| **izabrani skup** | [1, 1, 0, 1, 2, 1, 1, 1, 2, 0] | **0.1850** (1 u 5) | 4.667 | 1.939 | 4.297e-06 |
+| **izabrani skup** | [1, 1, 0, 1, 1, 1, 1, 0, 2, 0] | **0.1876** (1 u 5) | 4.667 | 1.961 | 4.297e-06 |
 | isti listić 4 puta | [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] | **0.0394** (1 u 25) | 4.667 | 0.933 | 8.594e-07 |
-| variant_all | [1, 1, 0, 1, 2, 1, 1, 1, 2, 0] | **0.1850** (1 u 5) | 4.667 | 1.939 | 4.297e-06 |
-| variant_methods_only | [1, 1, 0, 1, 2, 1, 1, 1, 2, 0] | **0.1850** (1 u 5) | 4.667 | 1.939 | 4.297e-06 |
+| variant_all | [1, 1, 0, 1, 1, 1, 1, 0, 2, 0] | **0.1876** (1 u 5) | 4.667 | 1.961 | 4.297e-06 |
+| variant_methods_only | [1, 1, 0, 1, 1, 1, 1, 0, 2, 0] | **0.1876** (1 u 5) | 4.667 | 1.961 | 4.297e-06 |
 | jedan jedini listić | – | 0.0394 (1 u 25) | 0.933 | 0.933 | 8.594e-07 |
 
-**Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0394 (isti listić četiri puta) na 0.1850. **Što se nije promijenilo:** očekivani zbroj pogodaka je 4.7 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
+**Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0394 (isti listić četiri puta) na 0.1876. **Što se nije promijenilo:** očekivani zbroj pogodaka je 4.7 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
 
 ## Konačne kombinacije
 
@@ -119,8 +123,9 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 | Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 01 02 04 08 09 10 11 15 16 21 22 | 11/11 |
 | Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 01 02 03 07 09 10 11 13 16 18 22 | 11/11 |
 | Lenormand (36 karata, Grand Tableau) | 01 04 06 07 08 09 10 11 13 16 19 | 11/11 |
-| **Ensemble (Borda, jednake težine) – primarni** | **01 02 04 05 06 07 09 10 11 13 15** | – |
-| **Ensemble (težine iz razdoblja treniranja)** | **01 02 05 06 07 09 10 11 14 15 16** | – |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | 02 03 04 05 06 09 12 13 17 18 21 | 11/11 |
+| **Ensemble (Borda, jednake težine) – primarni** | **01 02 03 04 05 06 07 09 10 13 15** | – |
+| **Ensemble (težine iz razdoblja treniranja)** | **01 02 05 06 07 09 10 11 13 14 15** | – |
 
 ### Eurojackpot 5/50 + 2/12
 
@@ -135,7 +140,8 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 | Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 03 20 26 32 46 | 05 10 | 5/5, 2/2 |
 | Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 01 02 09 10 11 | 02 11 | 5/5, 2/2 |
 | Lenormand (36 karata, Grand Tableau) | 01 09 16 23 31 | 07 11 | 5/5, 2/2 |
-| **Ensemble (Borda, jednake težine) – primarni** | **01 02 07 09 23** | **02 11** | – |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | 05 13 15 17 21 | 05 09 | 5/5, 2/2 |
+| **Ensemble (Borda, jednake težine) – primarni** | **01 05 07 09 23** | **02 05** | – |
 
 ### Loto 6/45
 
@@ -150,6 +156,7 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 | Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 06 08 19 30 37 41 | 6/11 |
 | Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 01 02 09 10 11 12 | 6/11 |
 | Lenormand (36 karata, Grand Tableau) | 01 09 16 23 26 31 | 6/11 |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | 03 05 09 13 17 21 | 6/11 |
 | **Ensemble (Borda, jednake težine) – primarni** | **01 02 05 07 09 13** | – |
 
 ### Joker (6 znamenki)
@@ -165,7 +172,8 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 | Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 326604 | 6/6 |
 | Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 979024 | 6/6 |
 | Lenormand (36 karata, Grand Tableau) | 691639 | 6/6 |
-| **Ensemble (Borda, jednake težine) – primarni** | **670764** | – |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | 553532 | 6/6 |
+| **Ensemble (Borda, jednake težine) – primarni** | **673734** | – |
 
 ## Teorijske vjerojatnosti (matematika, ne procjena)
 
@@ -187,32 +195,33 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 
 ### Evaluacijsko razdoblje (bazen `main`)
 
-Nulta hipoteza: listić je fiksiran prije izvlačenja, a izvlačenje je uniformno slučajno → pogoci su hipergeometrijski, očekivano 5.500 po kolu (SD 1.200). Obitelj testova: 13 strategija, α = 0.05, Holm (primarno) i Benjamini-Hochberg.
+Nulta hipoteza: listić je fiksiran prije izvlačenja, a izvlačenje je uniformno slučajno → pogoci su hipergeometrijski, očekivano 5.500 po kolu (SD 1.200). Obitelj testova: 14 strategija, α = 0.05, Holm (primarno) i Benjamini-Hochberg.
 
 | Strategija | Prosjek pogodaka | 95% CI (t) | 95% CI (bootstrap) | Razlika | p (egzaktni) | p (MC) | p Holm | p BH | AUC [95% CI] |
 |---|---|---|---|---|---|---|---|---|---|
 | Meihua Yishu (梅花易數, vremensko bacanje) | 5.493 | [5.346, 5.639] | [5.344, 5.637] | -0.007 | 0.9394 | 0.9359 | 1.0000 | 0.9394 | 0.502 [0.486, 0.519] |
 | I Ching (simulirano bacanje stabljika stolisnika) | 5.489 | [5.348, 5.630] | [5.348, 5.630] | -0.011 | 0.8991 | 0.8976 | 1.0000 | 0.9394 | 0.502 [0.487, 0.515] |
-| Zapadna (tropska) astrologija | 5.593 | [5.444, 5.741] | [5.448, 5.741] | +0.093 | 0.2141 | 0.2146 | 1.0000 | 0.5501 | 0.511 [0.495, 0.526] |
-| Vedska astrologija (Jyotish, Panchanga, Vimshottari) | 5.541 | [5.403, 5.678] | [5.404, 5.674] | +0.041 | 0.5944 | 0.5866 | 1.0000 | 0.7727 | 0.505 [0.489, 0.521] |
-| Pitagorejska numerologija | 5.570 | [5.417, 5.724] | [5.419, 5.722] | +0.070 | 0.3482 | 0.3461 | 1.0000 | 0.6466 | 0.516 [0.499, 0.531] |
-| Kaldejska numerologija (Cheiro) | 5.593 | [5.447, 5.738] | [5.444, 5.741] | +0.093 | 0.2141 | 0.2146 | 1.0000 | 0.5501 | 0.514 [0.500, 0.530] |
-| Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 5.415 | [5.269, 5.561] | [5.270, 5.556] | -0.085 | 0.2539 | 0.2535 | 1.0000 | 0.5501 | 0.494 [0.480, 0.510] |
-| Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 5.296 | [5.158, 5.435] | [5.159, 5.433] | -0.204 | 0.0057 | 0.0063 | 0.0742 | 0.0742 | 0.481 [0.467, 0.496] |
-| Lenormand (36 karata, Grand Tableau) | 5.526 | [5.379, 5.673] | [5.378, 5.674] | +0.026 | 0.7417 | 0.7350 | 1.0000 | 0.8765 | 0.500 [0.486, 0.515] |
-| Ensemble (Borda, jednake težine) – primarni | 5.559 | [5.404, 5.715] | [5.404, 5.715] | +0.059 | 0.4319 | 0.4305 | 1.0000 | 0.7018 | 0.507 [0.490, 0.523] |
-| Ensemble (težine iz razdoblja treniranja) | 5.400 | [5.248, 5.552] | [5.248, 5.552] | -0.100 | 0.1790 | 0.1787 | 1.0000 | 0.5501 | 0.496 [0.479, 0.513] |
-| Kontrola: najčešći u zadnjih 30 kola | 5.356 | [5.214, 5.497] | [5.211, 5.493] | -0.144 | 0.0509 | 0.0577 | 0.6106 | 0.3308 | 0.485 [0.470, 0.500] |
-| Kontrola: logistička regresija (sklearn) | 5.541 | [5.402, 5.679] | [5.404, 5.681] | +0.041 | 0.5944 | 0.5866 | 1.0000 | 0.7727 | 0.499 [0.484, 0.515] |
+| Zapadna (tropska) astrologija | 5.593 | [5.444, 5.741] | [5.448, 5.741] | +0.093 | 0.2141 | 0.2146 | 1.0000 | 0.6093 | 0.511 [0.495, 0.526] |
+| Vedska astrologija (Jyotish, Panchanga, Vimshottari) | 5.541 | [5.403, 5.678] | [5.404, 5.674] | +0.041 | 0.5944 | 0.5866 | 1.0000 | 0.7565 | 0.505 [0.489, 0.521] |
+| Pitagorejska numerologija | 5.570 | [5.417, 5.724] | [5.419, 5.722] | +0.070 | 0.3482 | 0.3461 | 1.0000 | 0.6093 | 0.516 [0.499, 0.531] |
+| Kaldejska numerologija (Cheiro) | 5.593 | [5.447, 5.738] | [5.444, 5.741] | +0.093 | 0.2141 | 0.2146 | 1.0000 | 0.6093 | 0.514 [0.500, 0.530] |
+| Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 5.415 | [5.269, 5.561] | [5.270, 5.556] | -0.085 | 0.2539 | 0.2535 | 1.0000 | 0.6093 | 0.494 [0.480, 0.510] |
+| Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 5.296 | [5.158, 5.435] | [5.159, 5.433] | -0.204 | 0.0057 | 0.0063 | 0.0799 | 0.0799 | 0.481 [0.467, 0.496] |
+| Lenormand (36 karata, Grand Tableau) | 5.526 | [5.379, 5.673] | [5.378, 5.674] | +0.026 | 0.7417 | 0.7350 | 1.0000 | 0.8653 | 0.500 [0.486, 0.515] |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | 5.448 | [5.300, 5.596] | [5.300, 5.596] | -0.052 | 0.4936 | 0.4888 | 1.0000 | 0.7565 | 0.497 [0.480, 0.511] |
+| Ensemble (Borda, jednake težine) – primarni | 5.570 | [5.415, 5.725] | [5.419, 5.726] | +0.070 | 0.3482 | 0.3461 | 1.0000 | 0.6093 | 0.505 [0.489, 0.522] |
+| Ensemble (težine iz razdoblja treniranja) | 5.419 | [5.266, 5.571] | [5.267, 5.570] | -0.081 | 0.2756 | 0.2746 | 1.0000 | 0.6093 | 0.498 [0.482, 0.514] |
+| Kontrola: najčešći u zadnjih 30 kola | 5.356 | [5.214, 5.497] | [5.211, 5.493] | -0.144 | 0.0509 | 0.0577 | 0.6615 | 0.3562 | 0.485 [0.470, 0.500] |
+| Kontrola: logistička regresija (sklearn) | 5.541 | [5.402, 5.679] | [5.404, 5.681] | +0.041 | 0.5944 | 0.5866 | 1.0000 | 0.7565 | 0.499 [0.484, 0.515] |
 
 Uniformna slučajna osnovica (10.000 nasumičnih strategija na istim kolima): prosjek 5.501, 95% raspon [5.355, 5.648]. *p (MC)* je udio tih strategija koje od 5.5 odstupaju barem koliko i promatrana.
-Najmanji učinak koji ovaj test s 80% snage može otkriti (Bonferroni, 13 testova): ±0.273 pogodaka po kolu.
+Najmanji učinak koji ovaj test s 80% snage može otkriti (Bonferroni, 14 testova): ±0.274 pogodaka po kolu.
 
 **Višestruko testiranje.** Bez korekcije p < α: Tarot (Rider-Waite-Smith, Greerine rođendanske karte). Nakon Holmove korekcije nijedna strategija nije značajna. Ni BH (FDR) ne ostavlja nijednu.
 
 #### Distribucija broja pogodaka (evaluacija)
 
-χ² (usporedba cijele distribucije s H0) i stopa ekstrema su *sekundarne, eksploratorne* mjere bez korekcije: na 26 takvih testova slučajno se očekuje oko 1.3 p-vrijednosti < 0.05.
+χ² (usporedba cijele distribucije s H0) i stopa ekstrema su *sekundarne, eksploratorne* mjere bez korekcije: na 28 takvih testova slučajno se očekuje oko 1.4 p-vrijednosti < 0.05.
 
 | Strategija | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | χ² p | ekstremi (≤3 ili ≥8) |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -226,8 +235,9 @@ Najmanji učinak koji ovaj test s 80% snage može otkriti (Bonferroni, 13 testov
 | Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 0 | 0 | 1 | 10 | 55 | 75 | 81 | 37 | 9 | 2 | 0 | 0 | 0.3687 | 22 (0.081, CI [0.054, 0.120], p=0.9135) |
 | Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 0 | 0 | 1 | 12 | 49 | 102 | 66 | 31 | 8 | 1 | 0 | 0 | 0.0249 | 22 (0.081, CI [0.054, 0.120], p=0.9135) |
 | Lenormand (36 karata, Grand Tableau) | 0 | 0 | 2 | 10 | 41 | 79 | 79 | 49 | 8 | 2 | 0 | 0 | 0.8872 | 22 (0.081, CI [0.054, 0.120], p=0.9135) |
-| Ensemble (Borda, jednake težine) – primarni | 0 | 0 | 3 | 11 | 36 | 83 | 78 | 40 | 16 | 3 | 0 | 0 | 0.2877 | 33 (0.122, CI [0.088, 0.167], p=0.0390) |
-| Ensemble (težine iz razdoblja treniranja) | 0 | 0 | 5 | 9 | 53 | 73 | 76 | 45 | 8 | 1 | 0 | 0 | 0.3325 | 23 (0.085, CI [0.057, 0.125], p=1.0000) |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | 0 | 0 | 0 | 15 | 46 | 78 | 77 | 45 | 6 | 3 | 0 | 0 | 0.7428 | 24 (0.089, CI [0.060, 0.129], p=0.8283) |
+| Ensemble (Borda, jednake težine) – primarni | 0 | 0 | 1 | 13 | 37 | 85 | 70 | 44 | 18 | 2 | 0 | 0 | 0.1098 | 34 (0.126, CI [0.092, 0.171], p=0.0291) |
+| Ensemble (težine iz razdoblja treniranja) | 0 | 0 | 4 | 12 | 45 | 82 | 73 | 42 | 11 | 1 | 0 | 0 | 0.7228 | 28 (0.104, CI [0.073, 0.146], p=0.2793) |
 | Kontrola: najčešći u zadnjih 30 kola | 0 | 0 | 3 | 10 | 49 | 87 | 75 | 39 | 7 | 0 | 0 | 0 | 0.4997 | 20 (0.074, CI [0.048, 0.112], p=0.5867) |
 | Kontrola: logistička regresija (sklearn) | 0 | 0 | 1 | 6 | 42 | 87 | 74 | 53 | 5 | 2 | 0 | 0 | 0.1661 | 14 (0.052, CI [0.031, 0.085], p=0.0497) |
 
@@ -244,7 +254,8 @@ Najmanji učinak koji ovaj test s 80% snage može otkriti (Bonferroni, 13 testov
 | Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 365 | 5.532 | [5.403, 5.660] | 0.6314 |
 | Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 365 | 5.611 | [5.480, 5.742] | 0.0811 |
 | Lenormand (36 karata, Grand Tableau) | 365 | 5.416 | [5.290, 5.543] | 0.1907 |
-| Ensemble (Borda, jednake težine) – primarni | 365 | 5.460 | [5.337, 5.584] | 0.5415 |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | 365 | 5.425 | [5.299, 5.550] | 0.2390 |
+| Ensemble (Borda, jednake težine) – primarni | 365 | 5.490 | [5.365, 5.616] | 0.8959 |
 | Ensemble (težine iz razdoblja treniranja) | – | – | – | – (nema van-uzoračkih predviđanja) |
 | Kontrola: najčešći u zadnjih 30 kola | 365 | 5.477 | [5.349, 5.605] | 0.7272 |
 | Kontrola: logistička regresija (sklearn) | – | – | – | – (nema van-uzoračkih predviđanja) |
@@ -253,15 +264,16 @@ Najmanji učinak koji ovaj test s 80% snage može otkriti (Bonferroni, 13 testov
 
 | Metoda | z (treniranje) | težina |
 |---|---|---|
-| Kaldejska numerologija (Cheiro) | +0.327 | 0.998 |
-| Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | +0.502 | 1.089 |
-| I Ching (simulirano bacanje stabljika stolisnika) | +1.505 | 1.798 |
-| Lenormand (36 karata, Grand Tableau) | -1.330 | 0.436 |
-| Meihua Yishu (梅花易數, vremensko bacanje) | -0.283 | 0.735 |
-| Pitagorejska numerologija | -1.810 | 0.343 |
-| Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | +1.766 | 2.049 |
-| Vedska astrologija (Jyotish, Panchanga, Vimshottari) | -1.199 | 0.465 |
-| Zapadna (tropska) astrologija | +0.502 | 1.089 |
+| Kaldejska numerologija (Cheiro) | +0.327 | 1.054 |
+| Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | +0.502 | 1.150 |
+| Hermetika i kabala (planetarni kamee, sefirot, božanska imena) | -1.199 | 0.491 |
+| I Ching (simulirano bacanje stabljika stolisnika) | +1.505 | 1.899 |
+| Lenormand (36 karata, Grand Tableau) | -1.330 | 0.460 |
+| Meihua Yishu (梅花易數, vremensko bacanje) | -0.283 | 0.777 |
+| Pitagorejska numerologija | -1.810 | 0.362 |
+| Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | +1.766 | 2.165 |
+| Vedska astrologija (Jyotish, Panchanga, Vimshottari) | -1.199 | 0.491 |
+| Zapadna (tropska) astrologija | +0.502 | 1.150 |
 
 #### Logistička kontrola: vremenska unakrsna validacija unutar treniranja
 

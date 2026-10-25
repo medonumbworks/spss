@@ -1,6 +1,7 @@
 """Esoteric number-generation methods. Each module documents its algorithm and sources."""
 from .chaldean import ChaldeanMethod
 from .gematria import GematriaMethod
+from .hermetic import HermeticMethod
 from .iching import IChingMethod
 from .lenormand import LenormandMethod
 from .meihua import MeihuaMethod
@@ -11,7 +12,7 @@ from .western_astrology import WesternAstrologyMethod
 
 REGISTRY = {cls.key: cls for cls in (
     MeihuaMethod, IChingMethod, WesternAstrologyMethod, VedicAstrologyMethod, PythagoreanMethod,
-    ChaldeanMethod, GematriaMethod, TarotMethod, LenormandMethod,
+    ChaldeanMethod, GematriaMethod, TarotMethod, LenormandMethod, HermeticMethod,
 )}
 
 
