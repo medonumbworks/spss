@@ -419,7 +419,7 @@ def select_portfolio_greedy(candidates: list[dict], m: int, pool: Pool, key: str
 
 
 def assign_companion_digits(sources: Sequence[Sequence[dict]], digits: dict[tuple[str, int], list[int]],
-                            key: str) -> list[dict]:
+                            key: str, taken: Iterable[Sequence[int]] = ()) -> list[dict]:
     """Give every selected ticket its own distinct companion number (the Joker).
 
     Several systems can come from the same method (different windows of one ranking), and
@@ -429,7 +429,7 @@ def assign_companion_digits(sources: Sequence[Sequence[dict]], digits: dict[tupl
     then any unused one in SHA-256 order.
     """
     available = {k: tuple(v) for k, v in digits.items()}
-    used: set[tuple[int, ...]] = set()
+    used: set[tuple[int, ...]] = {tuple(t) for t in taken}   # already carried by other tickets
     order = sorted(available)
     tb = tiebreak_values(key, len(order))
     fallback = [order[i] for i in sorted(range(len(order)), key=lambda i: float(tb[i]))]
@@ -444,4 +444,74 @@ def assign_companion_digits(sources: Sequence[Sequence[dict]], digits: dict[tupl
         used.add(available[pick])
         out.append({"digits": list(available[pick]), "from": {"source": pick[0], "reading": pick[1]},
                     "own_source": pick == (name, reading)})
+    return out
+
+
+def select_max_weight_system(weights: dict[int, float], size: int, existing: Sequence[Ticket],
+                             max_overlap: int, pool: Pool) -> dict:
+    """The ``size`` numbers with the highest total weight that share at most
+    ``max_overlap`` numbers with every ticket already played.
+
+    When every number of the pool is already in play, a system disjoint in NUMBERS is
+    impossible. The useful notion is disjoint in COVERAGE: with an overlap of at most 2,
+    no triple — and so no combination — of the new system is one that is already being
+    played, which is what makes the new tickets add coverage instead of repeating it.
+
+    ``weights`` carries the esoteric part (the methods' collective Borda preference over
+    the pool); the constraint carries the combinatorial part. Branch and bound over the
+    numbers in decreasing weight, pruning on the best score the remaining numbers could
+    still reach, so the answer is provably optimal rather than greedy.
+    """
+    order = sorted(range(1, pool.size + 1), key=lambda n: (-weights.get(n, 0.0), n))
+    member = [[i for i, t in enumerate(existing) if n in set(t)] for n in order]
+    best: dict = {"score": float("-inf"), "numbers": None}
+    nodes = 0
+
+    def dfs(i: int, chosen: list[int], score: float, counts: list[int]) -> None:
+        nonlocal nodes
+        nodes += 1
+        if len(chosen) == size:
+            if score > best["score"]:
+                best.update(score=score, numbers=sorted(chosen))
+            return
+        if i >= len(order):
+            return
+        optimistic = sum(weights.get(order[j], 0.0) for j in range(i, min(i + size - len(chosen), len(order))))
+        if score + optimistic <= best["score"]:
+            return
+        if all(counts[j] < max_overlap for j in member[i]):
+            for j in member[i]:
+                counts[j] += 1
+            dfs(i + 1, chosen + [order[i]], score + weights.get(order[i], 0.0), counts)
+            for j in member[i]:
+                counts[j] -= 1
+        dfs(i + 1, chosen, score, counts)
+
+    dfs(0, [], 0.0, [0] * len(existing))
+    if best["numbers"] is None:
+        raise ValueError(f"no system of {size} shares at most {max_overlap} numbers with all "
+                         f"{len(existing)} tickets already played")
+    numbers = tuple(best["numbers"])
+    overlaps = [len(set(numbers) & set(t)) for t in existing]
+    return {
+        "ticket": list(numbers), "weight": best["score"], "nodes_explored": nodes,
+        "max_overlap_with_played": max(overlaps) if overlaps else 0,
+        "overlaps_with_played": overlaps,
+        "numbers_unused_by_played": sorted(set(range(1, pool.size + 1)) - {n for t in existing for n in t}),
+        "combinations": comb(size, pool.pick),
+        "objective": f"maximum total weight over {size} numbers, overlap <= {max_overlap} with every "
+                     "ticket already played (branch and bound, provably optimal)",
+    }
+
+
+def borda_weights(readings: list[dict], game_key: str, pool: Pool,
+                  source: str = "ensemble_equal") -> dict[int, float]:
+    """The methods' collective preference over the whole pool, summed across readings."""
+    out = {n: 0.0 for n in range(1, pool.size + 1)}
+    for r in readings:
+        ens = r.get("ensembles", {}).get(source)
+        if not ens or game_key not in ens["points"]:
+            continue
+        for i, p in enumerate(ens["points"][game_key][pool.name], start=1):
+            out[i] += float(p)
     return out

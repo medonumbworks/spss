@@ -21,8 +21,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import importlib.metadata
+import itertools
 import json
 import math
+from math import comb
 import platform
 import subprocess
 import sys
@@ -211,6 +213,15 @@ def fixed_tickets(results_dir: str | None, game_key: str, pool: Pool) -> list[di
     for vname, v in block.get("variants", {}).items():
         for t, src in zip(v.get("tickets", []), v.get("selection", {}).get("sources", [])):
             seen.setdefault(tuple(t), {"ticket": list(t), "sources": src, "variant": vname})
+    # Tickets added by an earlier --portfolio-add run are played too, as is a final system.
+    for t, src in zip((block.get("extension") or {}).get("tickets", []),
+                      (block.get("extension") or {}).get("sources", [])):
+        seen.setdefault(tuple(t), {"ticket": list(t), "sources": src, "variant": "extension"})
+    fs = block.get("final_system")
+    if fs:
+        seen.setdefault(tuple(fs["ticket"]), {"ticket": list(fs["ticket"]),
+                                              "sources": [{"source": "final_system", "reading": 1}],
+                                              "variant": "final_system"})
     return [seen[t] for t in sorted(seen)]
 
 
@@ -296,6 +307,12 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--portfolio-fixed-from", metavar="DIR",
                     help="results directory whose tickets are treated as already played, so the new "
                          "ones are chosen to complement them")
+    ap.add_argument("--final-system", type=int, metavar="S",
+                    help="one further full system of S numbers, the methods' highest-ranked that still "
+                         "shares at most --final-system-overlap numbers with everything already played")
+    ap.add_argument("--final-system-overlap", type=int, default=2)
+    ap.add_argument("--final-system-companions", type=int, default=1,
+                    help="how many companion numbers (Jokers) to pair with that system")
     args = ap.parse_args(argv)
     if args.readings < 1:
         ap.error("--readings must be at least 1")
@@ -477,6 +494,44 @@ def main(argv: list[str] | None = None) -> int:
                       f"P(at least one paying) {packing['evaluation_added_only']['p_at_least_one_paying']:.4f} "
                       f"alone, {packing['evaluation_with_fixed']['p_at_least_one_paying']:.4f} "
                       f"with the {len(fixed)} already committed")
+            final_system = None
+            if size and args.final_system:
+                committed = fixed_tickets(args.portfolio_fixed_from, game_key, pool)
+                played = [tuple(c["ticket"]) for c in committed]
+                final_system = portfolio.select_max_weight_system(
+                    portfolio.borda_weights(readings, game_key, pool), int(args.final_system),
+                    played, int(args.final_system_overlap), pool)
+                t = tuple(final_system["ticket"])
+                final_system["evaluation_alone"] = portfolio.evaluate_auto([t], pool, paying, top)
+                final_system["evaluation_played_before"] = portfolio.evaluate_auto(played, pool, paying, top)
+                final_system["evaluation_with_played"] = portfolio.evaluate_auto(played + [t], pool, paying, top)
+                old3 = portfolio.covered_subsets(played, min(paying))
+                new3 = portfolio.covered_subsets([t], min(paying))
+                old6 = {c for p in played for c in itertools.combinations(sorted(p), pool.pick)}
+                new6 = set(itertools.combinations(sorted(t), pool.pick))
+                final_system["novelty"] = {
+                    "subset_size": min(paying),
+                    "subsets_already_covered": len(old3), "subsets_added": len(new3 - old3),
+                    "subsets_repeated": len(old3 & new3), "subsets_covered_total": len(old3 | new3),
+                    "subsets_in_pool": comb(pool.size, min(paying)),
+                    "combinations_already_played": len(old6), "combinations_added": len(new6 - old6),
+                    "combinations_repeated": len(old6 & new6)}
+                jg = (cfg.get("portfolio") or {}).get("companion_game", "joker")
+                if jg in games:
+                    n_c = int(args.final_system_companions)
+                    prev = json.loads((Path(args.portfolio_fixed_from) / "final" / "combinations.json")
+                                      .read_text(encoding="utf-8"))
+                    pblock = (prev.get("portfolio") or {}).get(game_key) or {}
+                    taken = [c["companion"] for c in (pblock.get("extension") or {}).get("full_set", [])]
+                    taken += [c["digits"] for c in
+                              (pblock.get("final_system") or {}).get("companion_numbers", [])]
+                    dpool = companion_pool(cfg, subject, event, games, jg, readings, len(taken) + n_c)
+                    final_system["companion_numbers"] = portfolio.assign_companion_digits(
+                        [[{"source": "ensemble_equal", "reading": i + 1}] for i in range(n_c)],
+                        dpool, f"companion|{event.local.isoformat()}|{game_key}|final", taken)
+                print(f"      portfolio {game_key}: final system of {args.final_system} -> "
+                      f"P(at least one paying) {final_system['evaluation_played_before']['p_at_least_one_paying']:.4f}"
+                      f" -> {final_system['evaluation_with_played']['p_at_least_one_paying']:.4f}")
             if not variants:
                 portfolios[game_key] = {"status": "not_run", "reason": "; ".join(notes.values())}
                 continue
@@ -485,7 +540,8 @@ def main(argv: list[str] | None = None) -> int:
             chosen = dict(variants[best_name])
             chosen.update({"status": "ran", "paying_hits": list(paying), "system_size": size,
                            "tickets_in_set": m, "best_variant": best_name, "variants": variants,
-                           "variants_not_run": notes, "extension": extension})
+                           "variants_not_run": notes, "extension": extension,
+                           "final_system": final_system})
             chosen["single_ticket"] = portfolio.single_ticket_reference(pool, paying, size, top)
             naive = [tuple(t["picks"][pool.name]) for t in combinations["tickets"][game_key]][:m]
             alternatives = {"same_ticket_m_times": [tuple(chosen["tickets"][0])] * m}

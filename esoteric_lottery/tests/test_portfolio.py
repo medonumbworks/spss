@@ -5,8 +5,9 @@ import numpy as np
 import pytest
 from scipy.stats import hypergeom
 
-from evaluation.portfolio import (assign_companion_digits, candidate_tickets, evaluate_auto, evaluate_set,
-                                  evaluate_set_enumerated, hits_against, joint_hit_distribution,
+from evaluation.portfolio import (assign_companion_digits, borda_weights, candidate_tickets,
+                                  covered_subsets, evaluate_auto, evaluate_set, evaluate_set_enumerated,
+                                  hits_against, joint_hit_distribution, select_max_weight_system,
                                   select_portfolio, select_portfolio_greedy, single_ticket_reference)
 from methods.common import Pool, seeded_rng
 
@@ -262,3 +263,56 @@ def test_companion_numbers_are_distinct_and_prefer_their_own_source():
     assert len({tuple(g["digits"]) for g in got}) == 3
     with pytest.raises(ValueError, match="not enough distinct"):
         assign_companion_digits(sources * 2, {("a", 1): [1, 2, 3, 4, 5, 6]}, "k")
+
+
+# ------------------------------------- one more system when every number is already out
+
+def test_max_weight_system_is_optimal_under_the_overlap_limit():
+    """Brute force agrees with the branch and bound on a small pool."""
+    small = Pool("main", 12, 6)
+    played = [(1, 2, 3, 4), (5, 6, 7, 8), (1, 5, 9, 10)]
+    w = {n: float(13 - n) for n in range(1, 13)}          # 1 is worth most
+    got = select_max_weight_system(w, 4, played, 2, small)
+    feasible = [c for c in itertools.combinations(range(1, 13), 4)
+                if all(len(set(c) & set(p)) <= 2 for p in played)]
+    best = max(feasible, key=lambda c: (sum(w[n] for n in c), [-n for n in c]))
+    assert tuple(got["ticket"]) == best
+    assert got["weight"] == pytest.approx(sum(w[n] for n in best))
+    assert got["max_overlap_with_played"] <= 2
+
+
+def test_max_weight_system_adds_only_new_coverage():
+    """Overlap <= 2 means no triple and no 6-combination of the new system repeats one
+    already in play — which is what 'disjoint' can still mean once every number is out."""
+    played = [tuple(range(1 + 7 * i, 8 + 7 * i)) for i in range(6)] + [(1, 8, 15, 22, 29, 36, 43)]
+    assert set().union(*map(set, played)) >= set(range(1, 43))
+    w = {n: float(46 - n) for n in range(1, 46)}
+    got = select_max_weight_system(w, 10, played, 2, LOTO)
+    t = tuple(got["ticket"])
+    assert len(t) == 10 and got["max_overlap_with_played"] <= 2
+    assert not (covered_subsets([t], 3) & covered_subsets(played, 3))
+    old6 = {c for p in played for c in itertools.combinations(sorted(p), 6)}
+    assert not (set(itertools.combinations(sorted(t), 6)) & old6)
+    assert got["combinations"] == 210
+
+
+def test_max_weight_system_reports_an_impossible_request():
+    played = [tuple(range(1, 8))]
+    w = {n: 1.0 for n in range(1, 46)}
+    with pytest.raises(ValueError, match="no system of"):
+        select_max_weight_system(w, 6, played, 0, Pool("main", 7, 6))
+
+
+def test_borda_weights_sum_over_readings():
+    readings = [{"reading": k, "outputs": {}, "ensembles": {"ensemble_equal": {
+        "picks": {}, "points": {"loto": {"main": [float(k)] * 45}}}}} for k in (1, 2, 3)]
+    w = borda_weights(readings, "loto", LOTO)
+    assert set(w) == set(range(1, 46)) and all(v == 6.0 for v in w.values())
+
+
+def test_companion_numbers_avoid_the_ones_already_in_play():
+    digits = {("a", 1): [1, 1, 1, 1, 1, 1], ("a", 2): [2, 2, 2, 2, 2, 2]}
+    sources = [[{"source": "a", "reading": 1}]]
+    assert assign_companion_digits(sources, digits, "k")[0]["digits"] == [1, 1, 1, 1, 1, 1]
+    got = assign_companion_digits(sources, digits, "k", taken=[[1, 1, 1, 1, 1, 1]])
+    assert got[0]["digits"] == [2, 2, 2, 2, 2, 2]
