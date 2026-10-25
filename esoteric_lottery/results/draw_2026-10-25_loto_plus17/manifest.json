@@ -1,0 +1,582 @@
+{
+  "backtest_code_sha256": "503ebf46cd03676738427d60646f4bc85dff642e7eb830e865a723d6f86db2ed",
+  "backtests": {
+    "eurojackpot": {
+      "failed_methods": [],
+      "reason": "no historical draw file supplied",
+      "reused_from": null,
+      "status": "not_run"
+    },
+    "joker": {
+      "failed_methods": [],
+      "reason": "no historical draw file supplied",
+      "reused_from": null,
+      "status": "not_run"
+    },
+    "loto": {
+      "failed_methods": [],
+      "reason": "no historical draw file supplied",
+      "reused_from": null,
+      "status": "not_run"
+    },
+    "sve_ili_nista": {
+      "failed_methods": [],
+      "reason": null,
+      "reused_from": {
+        "backtest_code_sha256": "503ebf46cd03676738427d60646f4bc85dff642e7eb830e865a723d6f86db2ed",
+        "code_sha256": "e8b661731d34fd76db7fc8185a8d890dfea5c089789d31f156affd85990e2d91",
+        "config_sha256": "56c1a7c5ad032d0fc2de47738f61faa0d9fda9556c8c6391da52624b7eca688a",
+        "generated_at": "2026-10-25T07:54:06+00:00",
+        "summary": "results/backtest/sve_ili_nista/summary.json"
+      },
+      "status": "reused"
+    }
+  },
+  "code_sha256": "e8b661731d34fd76db7fc8185a8d890dfea5c089789d31f156affd85990e2d91",
+  "command_line": {
+    "backtest_from": "results",
+    "config": "/home/user/spss/esoteric_lottery/config.yaml",
+    "draw_date": "2026-10-25",
+    "draw_time": null,
+    "readings": 5,
+    "results": "results/draw_2026-10-25_loto_plus17",
+    "skip_backtest": false
+  },
+  "config_sha256": "56c1a7c5ad032d0fc2de47738f61faa0d9fda9556c8c6391da52624b7eca688a",
+  "generated_at": "2026-10-25T07:57:00+00:00",
+  "git_commit_at_run": "3d2b20f95a06cb455f1a19bb0c6c448f272f08b8",
+  "history_files_sha256": {
+    "data/Sve_ili_Nista_sva_kola.xlsx": "06e9c0a99fa848beca39c48b8019eb9c640e86ef5e46865a13ed8b58a1e631b4",
+    "data/sve_ili_nista_sva_kola.csv": "f94ad7a0e1378ed943ebb1e146eca47e97fc1864b1e27bfc98172dd6f0ec6f74"
+  },
+  "inputs": {
+    "birth_local": "1991-05-31T18:20:00+02:00",
+    "birth_place": "Zadar",
+    "birth_utc": "1991-05-31T16:20:00+00:00",
+    "draw_local": "2026-10-25T19:00:00+01:00",
+    "draw_place": "Zagreb",
+    "draw_utc": "2026-10-25T18:00:00+00:00"
+  },
+  "methods": {
+    "chaldean": {
+      "components": [
+        {
+          "detail": "",
+          "name": "draw_date_numbers",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "birth_date_numbers",
+          "status": "ran"
+        },
+        {
+          "detail": "no name in config.yaml (subject.name is null)",
+          "name": "name_number",
+          "status": "skipped"
+        },
+        {
+          "detail": "experimental",
+          "name": "place_name_numbers",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional (Cheiro) + experimental mapping",
+      "status": "partial"
+    },
+    "gematria": {
+      "components": [
+        {
+          "detail": "ordinal, reverse ordinal, Agrippa",
+          "name": "latin_ciphers",
+          "status": "ran"
+        },
+        {
+          "detail": "no name in config.yaml (subject.name is null)",
+          "name": "name_cipher",
+          "status": "skipped"
+        },
+        {
+          "detail": "no Hebrew text supplied (gematria.extra_texts)",
+          "name": "hebrew_mispar_hechrachi",
+          "status": "skipped"
+        },
+        {
+          "detail": "no Greek text supplied (gematria.extra_texts)",
+          "name": "greek_isopsephy",
+          "status": "skipped"
+        }
+      ],
+      "error": null,
+      "kind": "traditional ciphers + experimental text selection and mapping",
+      "status": "partial"
+    },
+    "iching": {
+      "components": [
+        {
+          "detail": "12 hexagrams cast",
+          "name": "yarrow_stalk_cast",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "king_wen_lookup",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional procedure, pseudo-random simulation (experimental)",
+      "status": "ran"
+    },
+    "lenormand": {
+      "components": [
+        {
+          "detail": "experimental",
+          "name": "day_of_month_cards",
+          "status": "ran"
+        },
+        {
+          "detail": "4 x 9",
+          "name": "seeded_grand_tableau",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional numbering + experimental seeded tableau",
+      "status": "ran"
+    },
+    "meihua": {
+      "components": [
+        {
+          "detail": "computed from Swiss Ephemeris new moons",
+          "name": "chinese_lunar_calendar",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "draw_time_cast",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "birth_time_cast",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional casting + experimental mapping",
+      "status": "ran"
+    },
+    "pythagorean": {
+      "components": [
+        {
+          "detail": "life path, birthday, attitude, pinnacles, challenges",
+          "name": "date_numbers",
+          "status": "ran"
+        },
+        {
+          "detail": "personal year/month/day, universal day",
+          "name": "personal_cycles",
+          "status": "ran"
+        },
+        {
+          "detail": "no name in config.yaml (subject.name is null)",
+          "name": "name_numbers",
+          "status": "skipped"
+        },
+        {
+          "detail": "experimental",
+          "name": "place_name_numbers",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional (modern numerology) + experimental mapping",
+      "status": "partial"
+    },
+    "tarot": {
+      "components": [
+        {
+          "detail": "",
+          "name": "greer_birth_cards",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "greer_year_cards",
+          "status": "ran"
+        },
+        {
+          "detail": "22 cards from a 78-card deck",
+          "name": "seeded_spread",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional numbering and birth cards + experimental seeded spread",
+      "status": "ran"
+    },
+    "vedic_astrology": {
+      "components": [
+        {
+          "detail": "",
+          "name": "sidereal_positions_lahiri",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "panchanga",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "whole_sign_lagna",
+          "status": "ran"
+        },
+        {
+          "detail": "maha/antar/pratyantar",
+          "name": "vimshottari_dasha",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "traditional quantities + experimental mapping",
+      "status": "ran"
+    },
+    "western_astrology": {
+      "components": [
+        {
+          "detail": "Placidus (P), Moshier ephemeris",
+          "name": "natal_chart",
+          "status": "ran"
+        },
+        {
+          "detail": "",
+          "name": "transit_chart",
+          "status": "ran"
+        },
+        {
+          "detail": "34 aspects within orb",
+          "name": "transit_to_natal_aspects",
+          "status": "ran"
+        }
+      ],
+      "error": null,
+      "kind": "standard astronomy + experimental mapping",
+      "status": "ran"
+    }
+  },
+  "packages": {
+    "PyYAML": "6.0.3",
+    "numpy": "2.5.4",
+    "openpyxl": "3.1.5",
+    "pandas": "3.1.0",
+    "pyswisseph": "2.10.3.2",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1"
+  },
+  "python": "3.13.17",
+  "readings": [
+    {
+      "not_ran": {
+        "chaldean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_number",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "gematria": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_cipher",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Hebrew text supplied (gematria.extra_texts)",
+              "name": "hebrew_mispar_hechrachi",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Greek text supplied (gematria.extra_texts)",
+              "name": "greek_isopsephy",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "pythagorean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_numbers",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        }
+      },
+      "reading": 1,
+      "seed": 20261023,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    },
+    {
+      "not_ran": {
+        "chaldean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_number",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "gematria": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_cipher",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Hebrew text supplied (gematria.extra_texts)",
+              "name": "hebrew_mispar_hechrachi",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Greek text supplied (gematria.extra_texts)",
+              "name": "greek_isopsephy",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "pythagorean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_numbers",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        }
+      },
+      "reading": 2,
+      "seed": 20261024,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    },
+    {
+      "not_ran": {
+        "chaldean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_number",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "gematria": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_cipher",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Hebrew text supplied (gematria.extra_texts)",
+              "name": "hebrew_mispar_hechrachi",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Greek text supplied (gematria.extra_texts)",
+              "name": "greek_isopsephy",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "pythagorean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_numbers",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        }
+      },
+      "reading": 3,
+      "seed": 20261025,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    },
+    {
+      "not_ran": {
+        "chaldean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_number",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "gematria": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_cipher",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Hebrew text supplied (gematria.extra_texts)",
+              "name": "hebrew_mispar_hechrachi",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Greek text supplied (gematria.extra_texts)",
+              "name": "greek_isopsephy",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "pythagorean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_numbers",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        }
+      },
+      "reading": 4,
+      "seed": 20261026,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    },
+    {
+      "not_ran": {
+        "chaldean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_number",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "gematria": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_cipher",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Hebrew text supplied (gematria.extra_texts)",
+              "name": "hebrew_mispar_hechrachi",
+              "status": "skipped"
+            },
+            {
+              "detail": "no Greek text supplied (gematria.extra_texts)",
+              "name": "greek_isopsephy",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        },
+        "pythagorean": {
+          "components": [
+            {
+              "detail": "no name in config.yaml (subject.name is null)",
+              "name": "name_numbers",
+              "status": "skipped"
+            }
+          ],
+          "error": null,
+          "status": "partial"
+        }
+      },
+      "reading": 5,
+      "seed": 20261027,
+      "statuses": {
+        "chaldean": "partial",
+        "gematria": "partial",
+        "iching": "ran",
+        "lenormand": "ran",
+        "meihua": "ran",
+        "pythagorean": "partial",
+        "tarot": "ran",
+        "vedic_astrology": "ran",
+        "western_astrology": "ran"
+      }
+    }
+  ]
+}

@@ -7,7 +7,7 @@
 * Rođenje: 1991-05-31T18:20:00+02:00 (Zadar) = 1991-05-31T16:20:00+00:00 UTC
 * Izvlačenje: 2026-10-23T19:00:00+02:00 (Zagreb) = 2026-10-23T17:00:00+00:00 UTC
 * Ime: nije zadano (izračuni koji traže ime su preskočeni)
-* Seed: 20261023; konfiguracija SHA-256 `00ab03cbbecb429d…`, kod SHA-256 `d2dcc366c3fc70dd…`
+* Seed: 20261023; konfiguracija SHA-256 `56c1a7c5ad032d0f…`, kod SHA-256 `e8b661731d34fd76…`
 
 ## Što se stvarno izvršilo
 

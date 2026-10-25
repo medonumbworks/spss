@@ -40,8 +40,8 @@ from evaluation.data import crosscheck_xlsx, load_draws, membership_matrix, spli
 from evaluation.quality import data_quality  # noqa: E402
 from evaluation.stats import hit_pmf  # noqa: E402
 from methods import build_methods  # noqa: E402
-from methods.common import (Component, Event, Game, MethodOutput, Place, Subject, games_from_config,  # noqa: E402
-                            local_datetime, to_jsonable, write_json)
+from methods.common import (Component, Event, Game, MethodOutput, Place, Pool, Subject,  # noqa: E402
+                            games_from_config, local_datetime, to_jsonable, write_json)
 from methods.ensemble import aggregate, equal_weights  # noqa: E402
 
 PACKAGES = ["pyswisseph", "numpy", "scipy", "pandas", "scikit-learn", "PyYAML", "openpyxl"]
@@ -194,6 +194,26 @@ def reuse_backtest(from_dir: Path, game_key: str, config_sha: str, data_hashes: 
     return summary
 
 
+def fixed_tickets(results_dir: str | None, game_key: str, pool: Pool) -> list[tuple[int, ...]]:
+    """Every distinct ticket a previous run proposed for this game: the ones already in
+    the player's hands, which new tickets must be packed against rather than repeat."""
+    if not results_dir:
+        return []
+    path = Path(results_dir) / "final" / "combinations.json"
+    if not path.exists():
+        raise SystemExit(f"--portfolio-fixed-from: {path} does not exist")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    block = (data.get("portfolio") or {}).get(game_key)
+    if not block or block.get("status") != "ran":
+        raise SystemExit(f"--portfolio-fixed-from: {path} holds no portfolio for {game_key}")
+    out: list[tuple[int, ...]] = []
+    for v in block.get("variants", {}).values():
+        for t in v.get("tickets", []):
+            if tuple(t) not in out:
+                out.append(tuple(t))
+    return sorted(out)
+
+
 def game_block(game_key: str, game: Game, outputs: dict[str, MethodOutput], ensembles: dict) -> dict:
     g = {"label": game.label, "methods": {}, "ensembles": {}}
     for k, o in outputs.items():
@@ -239,6 +259,12 @@ def main(argv: list[str] | None = None) -> int:
                          "writes results/out_of_sample/ and exits")
     ap.add_argument("--score-from", help="results directory holding the predictions to score")
     ap.add_argument("--score-game", default="sve_ili_nista")
+    ap.add_argument("--portfolio-add", type=int, metavar="N",
+                    help="select N further tickets for the game(s) with a system size, packed against "
+                         "the ones already committed (see --portfolio-fixed-from)")
+    ap.add_argument("--portfolio-fixed-from", metavar="DIR",
+                    help="results directory whose tickets are treated as already played, so the new "
+                         "ones are chosen to complement them")
     args = ap.parse_args(argv)
     if args.readings < 1:
         ap.error("--readings must be at least 1")
@@ -368,7 +394,7 @@ def main(argv: list[str] | None = None) -> int:
             groups = {"all": ("method", "ensemble")}
             if size:
                 groups |= {"ensemble_only": ("ensemble",), "methods_only": ("method",)}
-            variants, notes = {}, {}
+            variants, notes, extension = {}, {}, None
             for name, kinds in groups.items():
                 cands = portfolio.candidate_tickets(readings, game_key, pool, size, kinds)
                 if len(cands) < m:
@@ -382,6 +408,42 @@ def main(argv: list[str] | None = None) -> int:
                     f"portfolio|{event.local.isoformat()}|{game_key}{suffix}", top)
                 v["candidates"] = cands
                 variants[name] = v
+            if size and args.portfolio_add:
+                fixed = fixed_tickets(args.portfolio_fixed_from, game_key, pool)
+                cands = portfolio.candidate_tickets(readings, game_key, pool, size, ("method", "ensemble"),
+                                                    int((pcfg.get("system_slices") or {}).get(game_key, 1)))
+                packing = portfolio.select_portfolio_greedy(
+                    cands, int(args.portfolio_add), pool,
+                    f"portfolio|{event.local.isoformat()}|{game_key}|add",
+                    int((pcfg.get("max_overlap_for_packing") or {}).get(game_key, 2)),
+                    fixed, min(paying))
+                added = [tuple(t) for t in packing["tickets"]]
+                digit_pool = {}
+                for r in readings:
+                    jg = (cfg.get("portfolio") or {}).get("companion_game", "joker")
+                    if jg not in games:
+                        break
+                    dpool = games[jg].pools[0]
+                    for k, o in r["outputs"].items():
+                        digit_pool[(k, r["reading"])] = o.picks[jg][dpool.name]
+                    for k, ens in r["ensembles"].items():
+                        if jg in ens["picks"]:
+                            digit_pool[(k, r["reading"])] = ens["picks"][jg][dpool.name]
+                if digit_pool:
+                    packing["companion_numbers"] = portfolio.assign_companion_digits(
+                        packing["sources"], digit_pool,
+                        f"companion|{event.local.isoformat()}|{game_key}")
+                packing.update({
+                    "evaluation_added_only": portfolio.evaluate_auto(added, pool, paying, top),
+                    "evaluation_with_fixed": portfolio.evaluate_auto(list(fixed) + added, pool, paying, top),
+                    "evaluation_fixed_only": (portfolio.evaluate_auto(list(fixed), pool, paying, top)
+                                              if fixed else None),
+                })
+                extension = packing     # a different size, so never compared as a variant
+                print(f"      portfolio {game_key}: added {len(added)} systems, "
+                      f"P(at least one paying) {packing['evaluation_added_only']['p_at_least_one_paying']:.4f} "
+                      f"alone, {packing['evaluation_with_fixed']['p_at_least_one_paying']:.4f} "
+                      f"with the {len(fixed)} already committed")
             if not variants:
                 portfolios[game_key] = {"status": "not_run", "reason": "; ".join(notes.values())}
                 continue
@@ -390,7 +452,7 @@ def main(argv: list[str] | None = None) -> int:
             chosen = dict(variants[best_name])
             chosen.update({"status": "ran", "paying_hits": list(paying), "system_size": size,
                            "tickets_in_set": m, "best_variant": best_name, "variants": variants,
-                           "variants_not_run": notes})
+                           "variants_not_run": notes, "extension": extension})
             chosen["single_ticket"] = portfolio.single_ticket_reference(pool, paying, size, top)
             naive = [tuple(t["picks"][pool.name]) for t in combinations["tickets"][game_key]][:m]
             alternatives = {"same_ticket_m_times": [tuple(chosen["tickets"][0])] * m}

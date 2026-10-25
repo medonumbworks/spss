@@ -108,6 +108,20 @@ portfolio:
     loto: 7
   tickets_per_game:
     loto: 5
+  # Windows of each method's ranking to offer as candidate systems: its top 7, its next
+  # 7, and so on. One method's windows are disjoint, which is what a many-system packing
+  # needs; 6 windows of 7 use 42 of the 45 numbers.
+  system_slices:
+    loto: 6
+  # Packing a large set: a pair of systems sharing 3 numbers would cover the same triple
+  # twice, and a triple inside a system is exactly what wins the lowest tier, so the
+  # limit is 2. Greedy packing is used when exhaustive search is impossible.
+  greedy_above_tickets: 6
+  # The companion number played alongside each system; every selected ticket gets a
+  # distinct one, since repeating a Joker cannot raise the chance that one of them wins.
+  companion_game: joker
+  max_overlap_for_packing:
+    loto: 2
   # Which pairwise overlaps a candidate set may have, per game.
   # Sve ili Ništa: a pair overlapping in 0 numbers is complementary (hits(A) + hits(Ā)
   # = 11), so both land in a paying tier at the same time — no decorrelation at all;

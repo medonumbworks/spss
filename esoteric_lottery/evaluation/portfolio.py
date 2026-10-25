@@ -160,12 +160,15 @@ def single_ticket_reference(pool: Pool, paying: Iterable[int], ticket_size: int 
 # --------------------------------------------------------------------- the selection
 
 def candidate_tickets(readings: list[dict], game_key: str, pool: Pool, system_size: int | None = None,
-                      kinds: tuple[str, ...] = ("method", "ensemble")) -> list[dict]:
+                      kinds: tuple[str, ...] = ("method", "ensemble"), slices: int = 1) -> list[dict]:
     """Every distinct ticket the methods and ensembles produced, across all readings.
 
     With ``system_size`` the ticket is the method's top ``system_size`` numbers from its
     full ranking of the pool — a full system, which is exactly what the ranking already
-    expresses. ``kinds`` restricts the sources (methods only, or ensembles only)."""
+    expresses, and ``slices`` takes that many consecutive windows of it (the top s, the
+    next s, ...), which a ranking of the whole pool supports naturally and which a
+    many-ticket packing needs. ``kinds`` restricts the sources (methods only, or
+    ensembles only)."""
     seen: dict[Ticket, dict] = {}
 
     def take(block: dict, key: str, reading: int) -> None:
@@ -173,9 +176,19 @@ def candidate_tickets(readings: list[dict], game_key: str, pool: Pool, system_si
         if game_key not in source:
             return
         numbers = source[game_key][pool.name]
-        t: Ticket = tuple(sorted(numbers[:system_size] if system_size else numbers))
-        seen.setdefault(t, {"ticket": list(t), "sources": []})["sources"].append(
-            {"reading": reading, "source": key})
+        if not system_size:
+            windows = [(0, tuple(sorted(numbers)))]
+        else:
+            # Consecutive windows of the method's own ranking: its top s, its next s, and
+            # so on. Each is that method's ordering, and windows of one method are
+            # disjoint by construction.
+            windows = [(w, tuple(sorted(numbers[w * system_size:(w + 1) * system_size])))
+                       for w in range(slices)
+                       if len(numbers[w * system_size:(w + 1) * system_size]) == system_size]
+        for w, t in windows:
+            entry = seen.setdefault(t, {"ticket": list(t), "sources": []})
+            entry["sources"].append({"reading": reading, "source": key,
+                                     **({"rank_window": w + 1} if system_size else {})})
 
     for r in readings:
         if "method" in kinds:
@@ -265,3 +278,170 @@ def compare_structures(chosen: Sequence[Ticket], alternatives: dict[str, Sequenc
 def hits_against(tickets: Sequence[Ticket], drawn: Sequence[int]) -> list[int]:
     d = set(drawn)
     return [len(set(t) & d) for t in tickets]
+
+
+# ------------------------------------------------- many tickets: covering and counting
+
+def evaluate_set_enumerated(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int],
+                            top_hits: Iterable[int] | None = None, chunk: int = 400_000) -> dict:
+    """Exact figures by enumerating every possible draw.
+
+    ``joint_hit_distribution`` tracks a hit count per ticket, so its state space grows
+    like (pick+1)^tickets and it stops being usable past a handful of tickets. Counting
+    straight over all C(size, pick) equally likely draws does not: for Loto that is
+    8 145 060 draws, which numpy handles in one pass. The result is exact — a count, not
+    a sample — and ``tests`` check it against the DP where both are feasible.
+    """
+    import numpy as np
+
+    paying = set(paying)
+    top = set(top_hits) if top_hits is not None else {0, pool.pick}
+    masks = np.zeros((len(tickets), pool.size + 1), dtype=np.int8)
+    for i, t in enumerate(tickets):
+        masks[i, list(t)] = 1
+    total = comb(pool.size, pool.pick)
+    winners_hist = np.zeros(len(tickets) + 1, dtype=np.int64)
+    max_hist = np.zeros(pool.pick + 1, dtype=np.int64)
+    per_ticket_hits = np.zeros((len(tickets), pool.pick + 1), dtype=np.int64)
+    top_any = 0
+    seen = 0
+    it = itertools.combinations(range(1, pool.size + 1), pool.pick)
+    while True:
+        block = list(itertools.islice(it, chunk))
+        if not block:
+            break
+        draws = np.array(block, dtype=np.int16)
+        seen += len(draws)
+        hits = np.stack([masks[i][draws].sum(axis=1) for i in range(len(tickets))], axis=1)
+        for i in range(len(tickets)):
+            per_ticket_hits[i] += np.bincount(hits[:, i], minlength=pool.pick + 1)
+        is_win = np.isin(hits, list(paying))
+        winners_hist += np.bincount(is_win.sum(axis=1), minlength=len(tickets) + 1)
+        max_hist += np.bincount(hits.max(axis=1), minlength=pool.pick + 1)
+        top_any += int(np.isin(hits, list(top)).any(axis=1).sum())
+    assert seen == total, f"enumerated {seen} of {total} draws"
+    overlaps = [len(set(a) & set(b)) for a, b in itertools.combinations(tickets, 2)]
+    p_any = Fraction(int(total - winners_hist[0]), total)
+    e_sum = sum(Fraction(int(c) * h, total) for i in range(len(tickets))
+                for h, c in enumerate(per_ticket_hits[i]))
+    e_max = sum(Fraction(int(c) * h, total) for h, c in enumerate(max_hist))
+    return {
+        "tickets": [list(t) for t in tickets],
+        "n_tickets": len(tickets),
+        "method": "exact enumeration of all draws",
+        "draws_enumerated": total,
+        "pairwise_overlaps": overlaps,
+        "min_overlap": min(overlaps) if overlaps else None,
+        "max_overlap": max(overlaps) if overlaps else None,
+        "p_at_least_one_paying": float(p_any),
+        "p_nothing_at_all": float(Fraction(int(winners_hist[0]), total)),
+        "p_at_least_one_jackpot_tier": float(Fraction(top_any, total)),
+        "one_in_at_least_one_paying": round(1 / float(p_any)) if p_any else None,
+        "expected_total_hits": float(e_sum),
+        "expected_best_ticket_hits": float(e_max),
+        "top_tier_hits": sorted(top),
+        "ticket_sizes": sorted({len(t) for t in tickets}),
+        "distribution_of_winning_tickets": {str(k): float(Fraction(int(c), total))
+                                            for k, c in enumerate(winners_hist) if c},
+        "distribution_of_best_ticket_hits": {str(k): float(Fraction(int(c), total))
+                                             for k, c in enumerate(max_hist) if c},
+    }
+
+
+def evaluate_auto(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int],
+                  top_hits: Iterable[int] | None = None, dp_limit: int = 6) -> dict:
+    """Whichever exact method is feasible: the DP for few tickets, enumeration for many."""
+    if len(tickets) <= dp_limit:
+        return evaluate_set(tickets, pool, paying, top_hits)
+    return evaluate_set_enumerated(tickets, pool, paying, top_hits)
+
+
+def covered_subsets(tickets: Sequence[Ticket], k: int) -> set[tuple[int, ...]]:
+    """Every k-subset of numbers contained in at least one ticket."""
+    out: set[tuple[int, ...]] = set()
+    for t in tickets:
+        out.update(itertools.combinations(sorted(t), k))
+    return out
+
+
+def select_portfolio_greedy(candidates: list[dict], m: int, pool: Pool, key: str,
+                            max_overlap: int, fixed: Sequence[Ticket] = (),
+                            min_hits_to_win: int = 3) -> dict:
+    """Pick m tickets when exhaustive search is hopeless: a packing, built greedily.
+
+    A system of s numbers wins when at least ``min_hits_to_win`` of the drawn numbers lie
+    inside it, i.e. when one of the k-subsets of the drawn numbers is contained in it. So
+    the set wins more often the more DISTINCT k-subsets it covers, and a pair of tickets
+    sharing k or more numbers wastes coverage. Greedy: repeatedly add the candidate that
+    covers the most new k-subsets, never exceeding ``max_overlap`` with anything already
+    chosen (including ``fixed``, the tickets already committed elsewhere).
+
+    Like every other objective here this counts subsets of the tickets themselves and
+    never looks at a draw, so it stays invariant under relabelling the numbers.
+    """
+    chosen: list[Ticket] = []
+    covered = covered_subsets(fixed, min_hits_to_win)
+    pool_of = {tuple(c["ticket"]): c for c in candidates}
+    remaining = [tuple(c["ticket"]) for c in candidates if tuple(c["ticket"]) not in set(fixed)]
+    tb = tiebreak_values(key, len(remaining))
+    order = {t: float(tb[i]) for i, t in enumerate(remaining)}
+    blocked = 0
+    while len(chosen) < m and remaining:
+        best, best_rank = None, None
+        for t in remaining:
+            if any(len(set(t) & set(o)) > max_overlap for o in list(fixed) + chosen):
+                continue
+            new = len(covered_subsets([t], min_hits_to_win) - covered)
+            rank = (-new, order[t])
+            if best_rank is None or rank < best_rank:
+                best, best_rank = t, rank
+        if best is None:          # nothing left within the overlap limit
+            blocked = len(remaining)
+            break
+        chosen.append(best)
+        covered |= covered_subsets([best], min_hits_to_win)
+        remaining.remove(best)
+    return {
+        "tickets": [list(t) for t in chosen],
+        "sources": [pool_of[t]["sources"] for t in chosen],
+        "selection": {
+            "strategy": "greedy packing", "candidates": len(candidates), "requested": m,
+            "selected": len(chosen), "max_overlap": max_overlap,
+            "fixed_tickets": [list(t) for t in fixed],
+            "subset_size": min_hits_to_win,
+            "distinct_subsets_covered": len(covered),
+            "subsets_in_pool": comb(pool.size, min_hits_to_win),
+            "candidates_blocked_by_overlap": blocked,
+            "objective": f"maximise distinct {min_hits_to_win}-subsets covered, "
+                         f"pairwise overlap <= {max_overlap}",
+        },
+    }
+
+
+def assign_companion_digits(sources: Sequence[Sequence[dict]], digits: dict[tuple[str, int], list[int]],
+                            key: str) -> list[dict]:
+    """Give every selected ticket its own distinct companion number (the Joker).
+
+    Several systems can come from the same method (different windows of one ranking), and
+    they would otherwise carry the same Joker. Playing one Joker twice cannot raise the
+    chance that some Joker wins — it only doubles a win that already happened — so each
+    ticket gets a distinct one: its own method's, then the same method's other readings,
+    then any unused one in SHA-256 order.
+    """
+    available = {k: tuple(v) for k, v in digits.items()}
+    used: set[tuple[int, ...]] = set()
+    order = sorted(available)
+    tb = tiebreak_values(key, len(order))
+    fallback = [order[i] for i in sorted(range(len(order)), key=lambda i: float(tb[i]))]
+    out = []
+    for src in sources:
+        first = src[0]
+        name, reading = first["source"], first["reading"]
+        preferred = [(name, reading)] + [k for k in order if k[0] == name] + fallback
+        pick = next((k for k in preferred if k in available and available[k] not in used), None)
+        if pick is None:
+            raise ValueError("not enough distinct companion numbers for the selected tickets")
+        used.add(available[pick])
+        out.append({"digits": list(available[pick]), "from": {"source": pick[0], "reading": pick[1]},
+                    "own_source": pick == (name, reading)})
+    return out

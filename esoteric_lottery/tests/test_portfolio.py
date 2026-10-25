@@ -5,8 +5,9 @@ import numpy as np
 import pytest
 from scipy.stats import hypergeom
 
-from evaluation.portfolio import (candidate_tickets, evaluate_set, hits_against, joint_hit_distribution,
-                                  select_portfolio, single_ticket_reference)
+from evaluation.portfolio import (assign_companion_digits, candidate_tickets, evaluate_auto, evaluate_set,
+                                  evaluate_set_enumerated, hits_against, joint_hit_distribution,
+                                  select_portfolio, select_portfolio_greedy, single_ticket_reference)
 from methods.common import Pool, seeded_rng
 
 POOL = Pool("main", 22, 11)
@@ -199,3 +200,65 @@ def test_selection_refuses_an_unreasonable_search():
     cands = [{"ticket": list(range(1 + i, 8 + i)), "sources": []} for i in range(40)]
     with pytest.raises(ValueError, match="exceeds max_subsets"):
         select_portfolio(cands, 5, LOTO, LOTO_PAYING, (0, 2), 10, "k", [6], max_subsets=1000)
+
+
+# ---------------------------------------------------- many systems: packing and counting
+
+def test_enumeration_matches_the_dp():
+    """Two exact routes to the same number, where both are feasible."""
+    systems = [tuple(range(1, 8)), tuple(range(8, 15)), (2, 9, 16, 23, 30, 37, 44)]
+    dp = evaluate_set(systems, LOTO, LOTO_PAYING, top_hits=[6])
+    enum = evaluate_set_enumerated(systems, LOTO, LOTO_PAYING, top_hits=[6])
+    assert enum["draws_enumerated"] == 8_145_060
+    for k in ("p_at_least_one_paying", "p_at_least_one_jackpot_tier", "expected_total_hits",
+              "expected_best_ticket_hits", "p_nothing_at_all"):
+        assert enum[k] == pytest.approx(dp[k], rel=1e-12)
+
+
+def test_packing_covers_the_theoretical_maximum_of_triples():
+    """With pairwise overlap <= 2 no triple is covered twice, so m systems of 7 cover
+    exactly 35m distinct triples — the most m systems can cover."""
+    cands = [{"ticket": list(range(1 + 7 * i, 8 + 7 * i)), "sources": [{"source": "s", "reading": 1}]}
+             for i in range(6)]
+    packed = select_portfolio_greedy(cands, 6, LOTO, "k", max_overlap=2)
+    assert packed["selection"]["selected"] == 6
+    assert packed["selection"]["distinct_subsets_covered"] == 6 * 35
+    assert max(len(set(a) & set(b)) for a, b in
+               itertools.combinations([tuple(t) for t in packed["tickets"]], 2)) <= 2
+
+
+def test_packing_respects_fixed_tickets_and_the_overlap_limit():
+    fixed = [tuple(range(1, 8))]
+    cands = [{"ticket": list(range(1, 8)), "sources": [{"source": "a", "reading": 1}]},
+             {"ticket": [1, 2, 3, 20, 21, 22, 23], "sources": [{"source": "b", "reading": 1}]},
+             {"ticket": [1, 2, 30, 31, 32, 33, 34], "sources": [{"source": "c", "reading": 1}]},
+             {"ticket": list(range(8, 15)), "sources": [{"source": "d", "reading": 1}]}]
+    packed = select_portfolio_greedy(cands, 3, LOTO, "k", max_overlap=2, fixed=fixed)
+    got = [tuple(t) for t in packed["tickets"]]
+    assert tuple(range(1, 8)) not in got          # already played
+    assert (1, 2, 3, 20, 21, 22, 23) not in got   # shares 3 numbers with the fixed system
+    assert set(got) == {(1, 2, 30, 31, 32, 33, 34), tuple(range(8, 15))}
+    assert packed["selection"]["selected"] == 2   # the fourth candidate was blocked
+
+
+def test_more_systems_never_lower_the_win_probability():
+    base = [tuple(range(1 + 7 * i, 8 + 7 * i)) for i in range(3)]
+    more = base + [tuple(range(22, 29)), tuple(range(29, 36))]
+    a = evaluate_auto(base, LOTO, LOTO_PAYING, [6])
+    b = evaluate_auto(more, LOTO, LOTO_PAYING, [6])
+    assert b["p_at_least_one_paying"] > a["p_at_least_one_paying"]
+    assert b["expected_total_hits"] == pytest.approx(5 * 6 * 7 / 45)
+
+
+def test_companion_numbers_are_distinct_and_prefer_their_own_source():
+    digits = {("a", 1): [1, 1, 1, 1, 1, 1], ("a", 2): [2, 2, 2, 2, 2, 2],
+              ("b", 1): [3, 3, 3, 3, 3, 3], ("c", 1): [4, 4, 4, 4, 4, 4]}
+    sources = [[{"source": "a", "reading": 1}], [{"source": "a", "reading": 1}],
+               [{"source": "b", "reading": 1}]]
+    got = assign_companion_digits(sources, digits, "k")
+    assert [g["digits"] for g in got][0] == [1, 1, 1, 1, 1, 1]      # its own
+    assert got[1]["digits"] == [2, 2, 2, 2, 2, 2]                   # same method, other reading
+    assert got[2]["digits"] == [3, 3, 3, 3, 3, 3]                   # its own
+    assert len({tuple(g["digits"]) for g in got}) == 3
+    with pytest.raises(ValueError, match="not enough distinct"):
+        assign_companion_digits(sources * 2, {("a", 1): [1, 2, 3, 4, 5, 6]}, "k")

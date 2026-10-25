@@ -7,7 +7,7 @@
 * Rođenje: 1991-05-31T18:20:00+02:00 (Zadar) = 1991-05-31T16:20:00+00:00 UTC
 * Izvlačenje: 2026-10-25T19:00:00+01:00 (Zagreb) = 2026-10-25T18:00:00+00:00 UTC
 * Ime: nije zadano (izračuni koji traže ime su preskočeni)
-* Seed: 20261023; konfiguracija SHA-256 `00ab03cbbecb429d…`, kod SHA-256 `d2dcc366c3fc70dd…`
+* Seed: 20261023; konfiguracija SHA-256 `56c1a7c5ad032d0f…`, kod SHA-256 `e8b661731d34fd76…`
 * Očitanja: 5 (seedovi 20261023, 20261024, 20261025, 20261026, 20261027). Očitanje k koristi seed 20261023 + (k − 1): njime se ponovno bacaju simulirani dijelovi orakula (I Ching, miješanje tarota, Lenormandov Grand Tableau) i ponovno izvlači SHA-256 tie-break svake metode, a tie-break ensemblea dodatno se soli rednim brojem očitanja. Sirovi brojevi Meihue, zapadne i vedske astrologije, pitagorejske i kaldejske numerologije te gematrije ne ovise o seedu; kod njih se mijenja samo popuna brojeva koje metoda nije sama odredila. Očitanje 1 je standardno pokretanje.
 
 ## Što se stvarno izvršilo
@@ -236,7 +236,7 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 
 ## Backtest: sve_ili_nista
 
-Ponovno korišten iz `results/backtest/sve_ili_nista/summary.json`, bez ponovnog izračuna. Backtest ne ovisi o datumu ciljanog izvlačenja, nego o konfiguraciji, povijesnim podacima i kodu koji ga računa; sve troje je provjereno nepromijenjeno (SHA-256 konfiguracije `00ab03cbbecb429d…`, koda `2e35b4ebaec34266…`, i povijesnih datoteka). Pokretanje koje ga je izračunalo navedeno je u `manifest.json` (`backtests.*.reused_from`).
+Ponovno korišten iz `results/backtest/sve_ili_nista/summary.json`, bez ponovnog izračuna. Backtest ne ovisi o datumu ciljanog izvlačenja, nego o konfiguraciji, povijesnim podacima i kodu koji ga računa; sve troje je provjereno nepromijenjeno (SHA-256 konfiguracije `56c1a7c5ad032d0f…`, koda `503ebf46cd036767…`, i povijesnih datoteka). Pokretanje koje ga je izračunalo navedeno je u `manifest.json` (`backtests.*.reused_from`).
 
 ### Podaci
 

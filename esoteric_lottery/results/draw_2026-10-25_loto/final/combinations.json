@@ -1081,6 +1081,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "ensemble_equal"
             }
@@ -1098,22 +1099,27 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "vedic_astrology"
             },
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "vedic_astrology"
             },
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "vedic_astrology"
             },
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "vedic_astrology"
             },
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "vedic_astrology"
             }
@@ -1131,22 +1137,27 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "pythagorean"
             },
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "pythagorean"
             },
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "pythagorean"
             },
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "pythagorean"
             },
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "pythagorean"
             }
@@ -1164,6 +1175,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "tarot"
             }
@@ -1181,22 +1193,27 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "chaldean"
             },
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "chaldean"
             },
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "chaldean"
             },
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "chaldean"
             },
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "chaldean"
             }
@@ -1214,6 +1231,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "ensemble_equal"
             }
@@ -1231,6 +1249,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "ensemble_equal"
             }
@@ -1248,6 +1267,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "ensemble_equal"
             }
@@ -1265,6 +1285,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "ensemble_equal"
             }
@@ -1282,6 +1303,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "tarot"
             }
@@ -1299,6 +1321,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "tarot"
             }
@@ -1316,6 +1339,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "tarot"
             }
@@ -1333,6 +1357,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "tarot"
             }
@@ -1350,22 +1375,27 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "meihua"
             },
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "meihua"
             },
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "meihua"
             },
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "meihua"
             },
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "meihua"
             }
@@ -1383,6 +1413,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "iching"
             }
@@ -1400,6 +1431,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "iching"
             }
@@ -1417,22 +1449,27 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "gematria"
             },
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "gematria"
             },
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "gematria"
             },
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "gematria"
             },
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "gematria"
             }
@@ -1450,6 +1487,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "lenormand"
             }
@@ -1467,6 +1505,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "iching"
             }
@@ -1484,6 +1523,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "iching"
             }
@@ -1501,6 +1541,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "lenormand"
             }
@@ -1518,6 +1559,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "lenormand"
             }
@@ -1535,6 +1577,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "lenormand"
             }
@@ -1552,22 +1595,27 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "western_astrology"
             },
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "western_astrology"
             },
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "western_astrology"
             },
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "western_astrology"
             },
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "western_astrology"
             }
@@ -1585,6 +1633,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "lenormand"
             }
@@ -1602,6 +1651,7 @@
         {
           "sources": [
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "iching"
             }
@@ -2095,6 +2145,7 @@
       },
       "expected_best_ticket_hits": 1.9699862248,
       "expected_total_hits": 4.6666666667,
+      "extension": null,
       "max_overlap": 1,
       "min_overlap": 0,
       "n_tickets": 5,
@@ -2133,62 +2184,75 @@
         "sources": [
           [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "pythagorean"
             },
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "pythagorean"
             },
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "pythagorean"
             },
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "pythagorean"
             },
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "pythagorean"
             }
           ],
           [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "meihua"
             },
             {
+              "rank_window": 1,
               "reading": 2,
               "source": "meihua"
             },
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "meihua"
             },
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "meihua"
             },
             {
+              "rank_window": 1,
               "reading": 5,
               "source": "meihua"
             }
           ],
           [
             {
+              "rank_window": 1,
               "reading": 4,
               "source": "iching"
             }
           ],
           [
             {
+              "rank_window": 1,
               "reading": 1,
               "source": "iching"
             }
           ],
           [
             {
+              "rank_window": 1,
               "reading": 3,
               "source": "lenormand"
             }
@@ -2276,6 +2340,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "ensemble_equal"
                 }
@@ -2293,22 +2358,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "vedic_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "vedic_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "vedic_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "vedic_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "vedic_astrology"
                 }
@@ -2326,22 +2396,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "pythagorean"
                 }
@@ -2359,6 +2434,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "tarot"
                 }
@@ -2376,22 +2452,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "chaldean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "chaldean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "chaldean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "chaldean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "chaldean"
                 }
@@ -2409,6 +2490,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "ensemble_equal"
                 }
@@ -2426,6 +2508,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "ensemble_equal"
                 }
@@ -2443,6 +2526,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "ensemble_equal"
                 }
@@ -2460,6 +2544,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "ensemble_equal"
                 }
@@ -2477,6 +2562,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "tarot"
                 }
@@ -2494,6 +2580,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "tarot"
                 }
@@ -2511,6 +2598,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "tarot"
                 }
@@ -2528,6 +2616,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "tarot"
                 }
@@ -2545,22 +2634,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "meihua"
                 }
@@ -2578,6 +2672,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "iching"
                 }
@@ -2595,6 +2690,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "iching"
                 }
@@ -2612,22 +2708,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "gematria"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "gematria"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "gematria"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "gematria"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "gematria"
                 }
@@ -2645,6 +2746,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "lenormand"
                 }
@@ -2662,6 +2764,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "iching"
                 }
@@ -2679,6 +2782,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "iching"
                 }
@@ -2696,6 +2800,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "lenormand"
                 }
@@ -2713,6 +2818,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "lenormand"
                 }
@@ -2730,6 +2836,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "lenormand"
                 }
@@ -2747,22 +2854,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "western_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "western_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "western_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "western_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "western_astrology"
                 }
@@ -2780,6 +2892,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "lenormand"
                 }
@@ -2797,6 +2910,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "iching"
                 }
@@ -2862,62 +2976,75 @@
             "sources": [
               [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "pythagorean"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "meihua"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "iching"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "iching"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "lenormand"
                 }
@@ -2986,6 +3113,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "ensemble_equal"
                 }
@@ -3003,6 +3131,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "ensemble_equal"
                 }
@@ -3020,6 +3149,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "ensemble_equal"
                 }
@@ -3037,6 +3167,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "ensemble_equal"
                 }
@@ -3054,6 +3185,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "ensemble_equal"
                 }
@@ -3120,30 +3252,35 @@
             "sources": [
               [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "ensemble_equal"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "ensemble_equal"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "ensemble_equal"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "ensemble_equal"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "ensemble_equal"
                 }
@@ -3212,22 +3349,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "vedic_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "vedic_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "vedic_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "vedic_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "vedic_astrology"
                 }
@@ -3245,22 +3387,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "pythagorean"
                 }
@@ -3278,6 +3425,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "tarot"
                 }
@@ -3295,22 +3443,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "chaldean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "chaldean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "chaldean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "chaldean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "chaldean"
                 }
@@ -3328,6 +3481,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "tarot"
                 }
@@ -3345,6 +3499,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "tarot"
                 }
@@ -3362,6 +3517,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "tarot"
                 }
@@ -3379,6 +3535,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "tarot"
                 }
@@ -3396,22 +3553,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "meihua"
                 }
@@ -3429,6 +3591,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "iching"
                 }
@@ -3446,6 +3609,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "iching"
                 }
@@ -3463,22 +3627,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "gematria"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "gematria"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "gematria"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "gematria"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "gematria"
                 }
@@ -3496,6 +3665,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "lenormand"
                 }
@@ -3513,6 +3683,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "iching"
                 }
@@ -3530,6 +3701,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "iching"
                 }
@@ -3547,6 +3719,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "lenormand"
                 }
@@ -3564,6 +3737,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "lenormand"
                 }
@@ -3581,6 +3755,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "lenormand"
                 }
@@ -3598,22 +3773,27 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "western_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "western_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "western_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "western_astrology"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "western_astrology"
                 }
@@ -3631,6 +3811,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "lenormand"
                 }
@@ -3648,6 +3829,7 @@
             {
               "sources": [
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "iching"
                 }
@@ -3713,62 +3895,75 @@
             "sources": [
               [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "pythagorean"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "pythagorean"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 2,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "meihua"
                 },
                 {
+                  "rank_window": 1,
                   "reading": 5,
                   "source": "meihua"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 4,
                   "source": "iching"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 1,
                   "source": "iching"
                 }
               ],
               [
                 {
+                  "rank_window": 1,
                   "reading": 3,
                   "source": "lenormand"
                 }
@@ -5131,6 +5326,7 @@
       },
       "expected_best_ticket_hits": 6.653690221,
       "expected_total_hits": 22.0,
+      "extension": null,
       "max_overlap": 6,
       "min_overlap": 6,
       "n_tickets": 4,
