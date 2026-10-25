@@ -1,5 +1,5 @@
 {
-  "backtest_code_sha256": "503ebf46cd03676738427d60646f4bc85dff642e7eb830e865a723d6f86db2ed",
+  "backtest_code_sha256": "5fb1903242c5b035f6672249c44fbfbc0122450a43e767f5659514634d8bcc27",
   "backtests": {
     "eurojackpot": {
       "failed_methods": [],
@@ -26,7 +26,7 @@
       "status": "ran"
     }
   },
-  "code_sha256": "e8b661731d34fd76db7fc8185a8d890dfea5c089789d31f156affd85990e2d91",
+  "code_sha256": "ef27d2d022ad502daad2aadc10138cfe0ffad1367c3eddf56e1c497801040a9d",
   "command_line": {
     "backtest_from": null,
     "config": "/home/user/spss/esoteric_lottery/config.yaml",
@@ -37,8 +37,8 @@
     "skip_backtest": false
   },
   "config_sha256": "56c1a7c5ad032d0fc2de47738f61faa0d9fda9556c8c6391da52624b7eca688a",
-  "generated_at": "2026-10-25T07:54:06+00:00",
-  "git_commit_at_run": "3d2b20f95a06cb455f1a19bb0c6c448f272f08b8",
+  "generated_at": "2026-10-25T08:12:02+00:00",
+  "git_commit_at_run": "0a26861e6988fda13b2ced9e46745aeba1cfc257",
   "history_files_sha256": {
     "data/Sve_ili_Nista_sva_kola.xlsx": "06e9c0a99fa848beca39c48b8019eb9c640e86ef5e46865a13ed8b58a1e631b4",
     "data/sve_ili_nista_sva_kola.csv": "f94ad7a0e1378ed943ebb1e146eca47e97fc1864b1e27bfc98172dd6f0ec6f74"

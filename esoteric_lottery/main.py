@@ -194,9 +194,10 @@ def reuse_backtest(from_dir: Path, game_key: str, config_sha: str, data_hashes: 
     return summary
 
 
-def fixed_tickets(results_dir: str | None, game_key: str, pool: Pool) -> list[tuple[int, ...]]:
-    """Every distinct ticket a previous run proposed for this game: the ones already in
-    the player's hands, which new tickets must be packed against rather than repeat."""
+def fixed_tickets(results_dir: str | None, game_key: str, pool: Pool) -> list[dict]:
+    """Every distinct ticket a previous run proposed for this game, with where it came
+    from: the ones already in the player's hands, which new tickets must be packed
+    against rather than repeat — and whose companion numbers they must not reuse."""
     if not results_dir:
         return []
     path = Path(results_dir) / "final" / "combinations.json"
@@ -206,12 +207,42 @@ def fixed_tickets(results_dir: str | None, game_key: str, pool: Pool) -> list[tu
     block = (data.get("portfolio") or {}).get(game_key)
     if not block or block.get("status") != "ran":
         raise SystemExit(f"--portfolio-fixed-from: {path} holds no portfolio for {game_key}")
-    out: list[tuple[int, ...]] = []
-    for v in block.get("variants", {}).values():
-        for t in v.get("tickets", []):
-            if tuple(t) not in out:
-                out.append(tuple(t))
-    return sorted(out)
+    seen: dict[tuple[int, ...], dict] = {}
+    for vname, v in block.get("variants", {}).items():
+        for t, src in zip(v.get("tickets", []), v.get("selection", {}).get("sources", [])):
+            seen.setdefault(tuple(t), {"ticket": list(t), "sources": src, "variant": vname})
+    return [seen[t] for t in sorted(seen)]
+
+
+def companion_pool(cfg: dict, subject: Subject, event: Event, games: dict, digit_game: str,
+                   readings: list[dict], needed: int, max_extra: int = 60) -> dict[tuple[str, int], list[int]]:
+    """Companion numbers (Jokers) to pair with the selected tickets, one each.
+
+    The readings already computed may not hold ``needed`` distinct values: the methods
+    that do not depend on the seed repeat theirs across readings. Further readings are
+    computed for the companion number alone — the same methods on the same moment, only
+    re-seeded — until there are enough distinct values or ``max_extra`` is reached.
+    """
+    pool = games[digit_game].pools[0]
+    out: dict[tuple[str, int], list[int]] = {}
+    for r in readings:
+        for k, o in r["outputs"].items():
+            if o.status != "failed":
+                out[(k, r["reading"])] = o.picks[digit_game][pool.name]
+        for k, ens in r.get("ensembles", {}).items():
+            if digit_game in ens["picks"]:
+                out[(k, r["reading"])] = ens["picks"][digit_game][pool.name]
+    seed, extra = int(cfg["seed"]), 0
+    while len({tuple(v) for v in out.values()}) < needed and extra < max_extra:
+        extra += 1
+        k_reading = len(readings) + extra
+        for m in build_methods(cfg, seed=seed + k_reading - 1):
+            try:
+                o = m.run(subject, event, [games[digit_game]])
+            except Exception:
+                continue
+            out[(m.key, k_reading)] = o.picks[digit_game][pool.name]
+    return out
 
 
 def game_block(game_key: str, game: Game, outputs: dict[str, MethodOutput], ensembles: dict) -> dict:
@@ -409,7 +440,8 @@ def main(argv: list[str] | None = None) -> int:
                 v["candidates"] = cands
                 variants[name] = v
             if size and args.portfolio_add:
-                fixed = fixed_tickets(args.portfolio_fixed_from, game_key, pool)
+                committed = fixed_tickets(args.portfolio_fixed_from, game_key, pool)
+                fixed = [tuple(c["ticket"]) for c in committed]
                 cands = portfolio.candidate_tickets(readings, game_key, pool, size, ("method", "ensemble"),
                                                     int((pcfg.get("system_slices") or {}).get(game_key, 1)))
                 packing = portfolio.select_portfolio_greedy(
@@ -418,21 +450,22 @@ def main(argv: list[str] | None = None) -> int:
                     int((pcfg.get("max_overlap_for_packing") or {}).get(game_key, 2)),
                     fixed, min(paying))
                 added = [tuple(t) for t in packing["tickets"]]
-                digit_pool = {}
-                for r in readings:
-                    jg = (cfg.get("portfolio") or {}).get("companion_game", "joker")
-                    if jg not in games:
-                        break
-                    dpool = games[jg].pools[0]
-                    for k, o in r["outputs"].items():
-                        digit_pool[(k, r["reading"])] = o.picks[jg][dpool.name]
-                    for k, ens in r["ensembles"].items():
-                        if jg in ens["picks"]:
-                            digit_pool[(k, r["reading"])] = ens["picks"][jg][dpool.name]
+                jg = (cfg.get("portfolio") or {}).get("companion_game", "joker")
+                digit_pool = (companion_pool(cfg, subject, event, games, jg, readings,
+                                             len(committed) + len(added)) if jg in games else {})
                 if digit_pool:
-                    packing["companion_numbers"] = portfolio.assign_companion_digits(
-                        packing["sources"], digit_pool,
-                        f"companion|{event.local.isoformat()}|{game_key}")
+                    # Assigned across the WHOLE final set, the committed tickets first, so
+                    # no companion number is played twice across old and new together.
+                    all_sources = [c["sources"] for c in committed] + packing["sources"]
+                    assigned = portfolio.assign_companion_digits(
+                        all_sources, digit_pool, f"companion|{event.local.isoformat()}|{game_key}")
+                    packing["companion_numbers"] = assigned[len(committed):]
+                    packing["companion_numbers_committed"] = assigned[: len(committed)]
+                    packing["full_set"] = [
+                        {"ticket": t, "companion": a["digits"], "group": g}
+                        for t, a, g in zip([c["ticket"] for c in committed] + packing["tickets"],
+                                           assigned,
+                                           ["committed"] * len(committed) + ["added"] * len(added))]
                 packing.update({
                     "evaluation_added_only": portfolio.evaluate_auto(added, pool, paying, top),
                     "evaluation_with_fixed": portfolio.evaluate_auto(list(fixed) + added, pool, paying, top),
