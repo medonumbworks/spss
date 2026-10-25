@@ -1,0 +1,47 @@
+{
+ "bonus": 31,
+ "draw": "2026-10-25",
+ "drawn": [
+  6,
+  9,
+  12,
+  24,
+  30,
+  32
+ ],
+ "game": "loto",
+ "joker_drawn": "041249",
+ "kolo": 86,
+ "note": "A full system of 10 with m=3 pays 35 lowest-tier wins at once. The same 210 combinations spread as single rows would have paid ~4.7 on average but would have won something far more often. Expectation is identical either way.",
+ "played": {
+  "combinations": 210,
+  "jokers": [
+   "570737",
+   "143828"
+  ],
+  "system_10": [
+   3,
+   5,
+   9,
+   10,
+   11,
+   18,
+   19,
+   23,
+   30,
+   32
+  ]
+ },
+ "result": {
+  "joker": "no prize; one digit coincided by position",
+  "m": 3,
+  "numbers_hit": [
+   9,
+   30,
+   32
+  ],
+  "winning_combinations": {
+   "3_hits": 35
+  }
+ }
+}
