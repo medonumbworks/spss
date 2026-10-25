@@ -7,7 +7,7 @@
 * Rođenje: 1991-05-31T18:20:00+02:00 (Zadar) = 1991-05-31T16:20:00+00:00 UTC
 * Izvlačenje: 2026-10-24T19:00:00+02:00 (Zagreb) = 2026-10-24T17:00:00+00:00 UTC
 * Ime: nije zadano (izračuni koji traže ime su preskočeni)
-* Seed: 20261023; konfiguracija SHA-256 `3243e4fb03b84ca7…`, kod SHA-256 `e794599749a6fff4…`
+* Seed: 20261023; konfiguracija SHA-256 `00ab03cbbecb429d…`, kod SHA-256 `d2dcc366c3fc70dd…`
 * Očitanja: 4 (seedovi 20261023, 20261024, 20261025, 20261026). Očitanje k koristi seed 20261023 + (k − 1): njime se ponovno bacaju simulirani dijelovi orakula (I Ching, miješanje tarota, Lenormandov Grand Tableau) i ponovno izvlači SHA-256 tie-break svake metode, a tie-break ensemblea dodatno se soli rednim brojem očitanja. Sirovi brojevi Meihue, zapadne i vedske astrologije, pitagorejske i kaldejske numerologije te gematrije ne ovise o seedu; kod njih se mijenja samo popuna brojeva koje metoda nije sama odredila. Očitanje 1 je standardno pokretanje.
 
 ## Što se stvarno izvršilo
@@ -46,6 +46,7 @@
 
 * Backtest sve_ili_nista: **ponovno korišten** – iz `results/backtest/sve_ili_nista/summary.json`; backtest ne ovisi o datumu ciljanog izvlačenja, a konfiguracija, povijesni podaci i kod koji ga računa provjereno su nepromijenjeni (SHA-256)
 * Backtest eurojackpot: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
+* Backtest loto: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
 * Backtest joker: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
 
 ## Listići po očitanjima
@@ -77,6 +78,19 @@ Za ovu igru nema ensemblea «Ensemble (težine iz razdoblja treniranja)» (stupa
 Pokrivenost (`main`): različitih listića 4 od 4; pokriveni brojevi 7/50; ni na jednom listiću: 3, 5, 6, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50. Zajednički brojevi po parovima očitanja: 1–2: 4, 1–3: 4, 1–4: 3, 2–3: 4, 2–4: 4, 3–4: 3. (Pokrivenost je opis odnosa među listićima, ne mjera kvalitete: očekivani broj pogodaka svakog pojedinog listića je isti.)
 
 Pokrivenost (`euro`): različitih listića 4 od 4; pokriveni brojevi 5/12; ni na jednom listiću: 1, 3, 4, 6, 9, 10, 12. Zajednički brojevi po parovima očitanja: 1–2: 1, 1–3: 1, 1–4: 1, 2–3: 0, 2–4: 1, 3–4: 0. (Pokrivenost je opis odnosa među listićima, ne mjera kvalitete: očekivani broj pogodaka svakog pojedinog listića je isti.)
+
+### Loto 6/45
+
+| Očitanje | Seed | Ensemble (jednake težine) | Ensemble (težine iz razdoblja treniranja) |
+|---|---|---|---|
+| 1 | 20261023 | **01 02 05 06 07 08** | – |
+| 2 | 20261024 | **01 02 07 08 14 15** | – |
+| 3 | 20261025 | **01 02 04 06 07 08** | – |
+| 4 | 20261026 | **01 02 06 07 08 31** | – |
+
+Za ovu igru nema ensemblea «Ensemble (težine iz razdoblja treniranja)» (stupac je prazan) jer backtest nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Nijedan listić za ovu igru nije ni na čemu testiran.
+
+Pokrivenost (`main`): različitih listića 4 od 4; pokriveni brojevi 10/45; ni na jednom listiću: 3, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45. Zajednički brojevi po parovima očitanja: 1–2: 4, 1–3: 5, 1–4: 5, 2–3: 4, 2–4: 4, 3–4: 5. (Pokrivenost je opis odnosa među listićima, ne mjera kvalitete: očekivani broj pogodaka svakog pojedinog listića je isti.)
 
 ### Joker (6 znamenki)
 
@@ -113,11 +127,36 @@ Preklapanja parova: [5, 5, 6, 6, 5, 5] (neutralno bi bilo 5.5). Izabrano egzaktn
 | Skup listića | Preklapanja | P(barem jedan dobitan) | E[zbroj pogodaka] | E[najbolji listić] | P(barem jedan 11 ili 0) |
 |---|---|---|---|---|---|
 | **izabrani skup** | [5, 5, 6, 6, 5, 5] | **0.3147** (1 u 3) | 22.000 | 6.728 | 1.134e-05 |
-| 4 ensemble listića po očitanjima | [9, 9, 9, 8, 9, 8] | **0.2375** (1 u 4) | 22.000 | 6.268 | 1.134e-05 |
 | isti listić 4 puta | [11, 11, 11, 11, 11, 11] | **0.0861** (1 u 12) | 22.000 | 5.500 | 2.835e-06 |
+| 4 ensemble listića po očitanjima | [9, 9, 9, 8, 9, 8] | **0.2375** (1 u 4) | 22.000 | 6.268 | 1.134e-05 |
+| variant_all | [5, 5, 6, 6, 5, 5] | **0.3147** (1 u 3) | 22.000 | 6.728 | 1.134e-05 |
 | jedan jedini listić | – | 0.0861 (1 u 12) | 5.500 | 5.500 | 2.835e-06 |
 
 **Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0861 (isti listić četiri puta) na 0.3147. **Što se nije promijenilo:** očekivani zbroj pogodaka je 22.0 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
+
+### Loto 6/45
+
+Isplativi broj pogodaka: 3, 4, 5, 6 (razredi su simetrični: 11 ili 0 je glavni zgoditak, zatim 10/1, 9/2, 8/3; 4–7 ne donosi ništa). Iznosi dobitaka nigdje se ne računaju jer službena tablica nije provjerena.
+
+| # | Listić | Izvor (metoda#očitanje) |
+|---|---|---|
+| 1 | **01 02 10 11 13 25 41** | tarot#2 |
+| 2 | **01 05 07 08 09 26 31** | meihua#1, meihua#2, meihua#3, meihua#4 |
+| 3 | **01 18 22 23 31 44 45** | iching#1 |
+| 4 | **03 14 17 24 28 31 36** | lenormand#2 |
+| 5 | **06 14 19 30 33 38 39** | gematria#1, gematria#2, gematria#3, gematria#4 |
+
+Preklapanja parova: [1, 1, 0, 0, 2, 1, 0, 1, 0, 1] (neutralno bi bilo 1.0888888888888888). Izabrano egzaktnim izračunom zajedničke razdiobe: od 18 različitih listića koje su metode dale, 548 kombinacija po četiri prošlo je filtar preklapanja [0, 2], a najboljih 200 ocijenjeno je egzaktno.
+
+| Skup listića | Preklapanja | P(barem jedan dobitan) | E[zbroj pogodaka] | E[najbolji listić] | P(barem jedan 11 ili 0) |
+|---|---|---|---|---|---|
+| **izabrani skup** | [1, 1, 0, 0, 2, 1, 0, 1, 0, 1] | **0.1884** (1 u 5) | 4.667 | 1.976 | 4.297e-06 |
+| isti listić 4 puta | [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] | **0.0394** (1 u 25) | 4.667 | 0.933 | 8.594e-07 |
+| variant_all | [2, 1, 1, 0, 1, 1, 0, 1, 0, 1] | **0.1876** (1 u 5) | 4.667 | 1.960 | 4.297e-06 |
+| variant_methods_only | [1, 1, 0, 0, 2, 1, 0, 1, 0, 1] | **0.1884** (1 u 5) | 4.667 | 1.976 | 4.297e-06 |
+| jedan jedini listić | – | 0.0394 (1 u 25) | 0.933 | 0.933 | 8.594e-07 |
+
+**Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0394 (isti listić četiri puta) na 0.1884. **Što se nije promijenilo:** očekivani zbroj pogodaka je 4.7 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
 
 ## Konačne kombinacije (očitanje 1)
 
@@ -154,6 +193,21 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 | Lenormand (36 karata, Grand Tableau) | 06 21 24 28 31 | 07 12 | 5/5, 2/2 |
 | **Ensemble (Borda, jednake težine) – primarni** | **01 04 07 08 09** | **02 07** | – |
 
+### Loto 6/45
+
+| Metoda | Brojevi (11/22) | Iz metode |
+|---|---|---|
+| Meihua Yishu (梅花易數, vremensko bacanje) | 01 05 07 08 09 26 | 6/11 |
+| I Ching (simulirano bacanje stabljika stolisnika) | 01 18 22 23 31 44 | 6/11 |
+| Zapadna (tropska) astrologija | 02 16 29 36 38 39 | 6/11 |
+| Vedska astrologija (Jyotish, Panchanga, Vimshottari) | 01 02 04 07 14 27 | 6/11 |
+| Pitagorejska numerologija | 01 02 06 08 09 11 | 6/11 |
+| Kaldejska numerologija (Cheiro) | 02 06 08 17 24 31 | 6/11 |
+| Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 06 19 30 33 38 39 | 6/11 |
+| Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 01 02 10 11 13 17 | 6/11 |
+| Lenormand (36 karata, Grand Tableau) | 05 06 21 24 28 31 | 6/11 |
+| **Ensemble (Borda, jednake težine) – primarni** | **01 02 05 06 07 08** | – |
+
 ### Joker (6 znamenki)
 
 | Metoda | Joker | Iz metode |
@@ -177,7 +231,7 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 
 ## Backtest: sve_ili_nista
 
-Ponovno korišten iz `results/backtest/sve_ili_nista/summary.json`, bez ponovnog izračuna. Backtest ne ovisi o datumu ciljanog izvlačenja, nego o konfiguraciji, povijesnim podacima i kodu koji ga računa; sve troje je provjereno nepromijenjeno (SHA-256 konfiguracije `3243e4fb03b84ca7…`, koda `ee8f3a41e03cfbe4…`, i povijesnih datoteka). Pokretanje koje ga je izračunalo navedeno je u `manifest.json` (`backtests.*.reused_from`).
+Ponovno korišten iz `results/backtest/sve_ili_nista/summary.json`, bez ponovnog izračuna. Backtest ne ovisi o datumu ciljanog izvlačenja, nego o konfiguraciji, povijesnim podacima i kodu koji ga računa; sve troje je provjereno nepromijenjeno (SHA-256 konfiguracije `00ab03cbbecb429d…`, koda `2e35b4ebaec34266…`, i povijesnih datoteka). Pokretanje koje ga je izračunalo navedeno je u `manifest.json` (`backtests.*.reused_from`).
 
 ### Podaci
 
@@ -287,6 +341,10 @@ Najmanji učinak koji ovaj test s 80% snage može otkriti (Bonferroni, 13 testov
 
 Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesnih izvlačenja nema evaluacije; kombinacije za ovu igru nisu testirane ni na čemu.
 
+## Backtest: loto
+
+Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesnih izvlačenja nema evaluacije; kombinacije za ovu igru nisu testirane ni na čemu.
+
 ## Backtest: joker
 
 Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesnih izvlačenja nema evaluacije; kombinacije za ovu igru nisu testirane ni na čemu.
@@ -295,6 +353,7 @@ Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesn
 
 * sve_ili_nista/main: nijedna metoda, ensemble ni statistička kontrola ne odstupa od uniformne slučajne osnovice nakon korekcije za višestruko testiranje. Opaženo je kompatibilno s time da su sve kombinacije jednako (ne)vjerojatne.
 * eurojackpot: backtest nije bio moguć (nije priložena datoteka s povijesnim izvlačenjima); o uspješnosti se ne može reći ništa.
+* loto: backtest nije bio moguć (nije priložena datoteka s povijesnim izvlačenjima); o uspješnosti se ne može reći ništa.
 * joker: backtest nije bio moguć (nije priložena datoteka s povijesnim izvlačenjima); o uspješnosti se ne može reći ništa.
 
 Detalji, izvori i ograničenja: `README.md`. Svi međurezultati su u direktoriju s rezultatima ovog pokretanja (`results/draw_2026-10-24`): `final/combinations.json`, `final/intermediate/*.json`; backtest ovog pokretanja je ponovno korišten iz `results/backtest/sve_ili_nista/summary.json`.

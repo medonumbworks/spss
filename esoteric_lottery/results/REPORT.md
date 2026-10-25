@@ -7,7 +7,7 @@
 * Rođenje: 1991-05-31T18:20:00+02:00 (Zadar) = 1991-05-31T16:20:00+00:00 UTC
 * Izvlačenje: 2026-10-23T19:00:00+02:00 (Zagreb) = 2026-10-23T17:00:00+00:00 UTC
 * Ime: nije zadano (izračuni koji traže ime su preskočeni)
-* Seed: 20261023; konfiguracija SHA-256 `3243e4fb03b84ca7…`, kod SHA-256 `e794599749a6fff4…`
+* Seed: 20261023; konfiguracija SHA-256 `00ab03cbbecb429d…`, kod SHA-256 `d2dcc366c3fc70dd…`
 
 ## Što se stvarno izvršilo
 
@@ -45,6 +45,7 @@
 
 * Backtest sve_ili_nista: **izvršen**
 * Backtest eurojackpot: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
+* Backtest loto: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
 * Backtest joker: **nije pokrenut** – nije priložena datoteka s povijesnim izvlačenjima
 
 ## Izbor skupa listića (jedino što se stvarno može optimizirati)
@@ -72,9 +73,34 @@ Preklapanja parova: [6, 5, 6, 6, 7, 6] (neutralno bi bilo 5.5). Izabrano egzaktn
 |---|---|---|---|---|---|
 | **izabrani skup** | [6, 5, 6, 6, 7, 6] | **0.3112** (1 u 3) | 22.000 | 6.653 | 1.134e-05 |
 | isti listić 4 puta | [11, 11, 11, 11, 11, 11] | **0.0861** (1 u 12) | 22.000 | 5.500 | 2.835e-06 |
+| variant_all | [6, 5, 6, 6, 7, 6] | **0.3112** (1 u 3) | 22.000 | 6.653 | 1.134e-05 |
 | jedan jedini listić | – | 0.0861 (1 u 12) | 5.500 | 5.500 | 2.835e-06 |
 
 **Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0861 (isti listić četiri puta) na 0.3112. **Što se nije promijenilo:** očekivani zbroj pogodaka je 22.0 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
+
+### Loto 6/45
+
+Isplativi broj pogodaka: 3, 4, 5, 6 (razredi su simetrični: 11 ili 0 je glavni zgoditak, zatim 10/1, 9/2, 8/3; 4–7 ne donosi ništa). Iznosi dobitaka nigdje se ne računaju jer službena tablica nije provjerena.
+
+| # | Listić | Izvor (metoda#očitanje) |
+|---|---|---|
+| 1 | **01 02 09 10 11 12 28** | tarot#1 |
+| 2 | **01 04 06 07 13 25 26** | vedic_astrology#1 |
+| 3 | **02 05 06 07 16 23 31** | chaldean#1 |
+| 4 | **06 08 14 19 30 37 41** | gematria#1 |
+| 5 | **07 09 16 17 29 38 39** | western_astrology#1 |
+
+Preklapanja parova: [1, 1, 0, 1, 2, 1, 1, 1, 2, 0] (neutralno bi bilo 1.0888888888888888). Izabrano egzaktnim izračunom zajedničke razdiobe: od 10 različitih listića koje su metode dale, 13 kombinacija po četiri prošlo je filtar preklapanja [0, 2], a najboljih 13 ocijenjeno je egzaktno.
+
+| Skup listića | Preklapanja | P(barem jedan dobitan) | E[zbroj pogodaka] | E[najbolji listić] | P(barem jedan 11 ili 0) |
+|---|---|---|---|---|---|
+| **izabrani skup** | [1, 1, 0, 1, 2, 1, 1, 1, 2, 0] | **0.1850** (1 u 5) | 4.667 | 1.939 | 4.297e-06 |
+| isti listić 4 puta | [7, 7, 7, 7, 7, 7, 7, 7, 7, 7] | **0.0394** (1 u 25) | 4.667 | 0.933 | 8.594e-07 |
+| variant_all | [1, 1, 0, 1, 2, 1, 1, 1, 2, 0] | **0.1850** (1 u 5) | 4.667 | 1.939 | 4.297e-06 |
+| variant_methods_only | [1, 1, 0, 1, 2, 1, 1, 1, 2, 0] | **0.1850** (1 u 5) | 4.667 | 1.939 | 4.297e-06 |
+| jedan jedini listić | – | 0.0394 (1 u 25) | 0.933 | 0.933 | 8.594e-07 |
+
+**Što se promijenilo:** vjerojatnost da barem jedan od četiri listića nešto osvoji raste s 0.0394 (isti listić četiri puta) na 0.1850. **Što se nije promijenilo:** očekivani zbroj pogodaka je 4.7 u svakom slučaju, a vjerojatnost glavnog zgoditka po listiću ostaje 1 prema 705.432. Ovo je preraspodjela ishoda, ne prednost.
 
 ## Konačne kombinacije
 
@@ -110,6 +136,21 @@ Stupac *iz metode* kaže koliko je brojeva metoda sama odredila; ostatak popunja
 | Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 01 02 09 10 11 | 02 11 | 5/5, 2/2 |
 | Lenormand (36 karata, Grand Tableau) | 01 09 16 23 31 | 07 11 | 5/5, 2/2 |
 | **Ensemble (Borda, jednake težine) – primarni** | **01 02 07 09 23** | **02 11** | – |
+
+### Loto 6/45
+
+| Metoda | Brojevi (11/22) | Iz metode |
+|---|---|---|
+| Meihua Yishu (梅花易數, vremensko bacanje) | 04 06 08 23 30 45 | 6/11 |
+| I Ching (simulirano bacanje stabljika stolisnika) | 01 05 07 14 15 28 | 6/11 |
+| Zapadna (tropska) astrologija | 07 16 17 29 38 39 | 6/11 |
+| Vedska astrologija (Jyotish, Panchanga, Vimshottari) | 04 06 07 13 25 26 | 6/11 |
+| Pitagorejska numerologija | 01 02 06 07 09 11 | 6/11 |
+| Kaldejska numerologija (Cheiro) | 02 05 06 07 16 23 | 6/11 |
+| Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna) | 06 08 19 30 37 41 | 6/11 |
+| Tarot (Rider-Waite-Smith, Greerine rođendanske karte) | 01 02 09 10 11 12 | 6/11 |
+| Lenormand (36 karata, Grand Tableau) | 01 09 16 23 26 31 | 6/11 |
+| **Ensemble (Borda, jednake težine) – primarni** | **01 02 05 07 09 13** | – |
 
 ### Joker (6 znamenki)
 
@@ -242,6 +283,10 @@ Najmanji učinak koji ovaj test s 80% snage može otkriti (Bonferroni, 13 testov
 
 Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesnih izvlačenja nema evaluacije; kombinacije za ovu igru nisu testirane ni na čemu.
 
+## Backtest: loto
+
+Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesnih izvlačenja nema evaluacije; kombinacije za ovu igru nisu testirane ni na čemu.
+
 ## Backtest: joker
 
 Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesnih izvlačenja nema evaluacije; kombinacije za ovu igru nisu testirane ni na čemu.
@@ -250,6 +295,7 @@ Nije pokrenut: nije priložena datoteka s povijesnim izvlačenjima. Bez povijesn
 
 * sve_ili_nista/main: nijedna metoda, ensemble ni statistička kontrola ne odstupa od uniformne slučajne osnovice nakon korekcije za višestruko testiranje. Opaženo je kompatibilno s time da su sve kombinacije jednako (ne)vjerojatne.
 * eurojackpot: backtest nije bio moguć (nije priložena datoteka s povijesnim izvlačenjima); o uspješnosti se ne može reći ništa.
+* loto: backtest nije bio moguć (nije priložena datoteka s povijesnim izvlačenjima); o uspješnosti se ne može reći ništa.
 * joker: backtest nije bio moguć (nije priložena datoteka s povijesnim izvlačenjima); o uspješnosti se ne može reći ništa.
 
 Detalji, izvori i ograničenja: `README.md`. Svi međurezultati su u direktoriju s rezultatima ovog pokretanja (`/home/user/spss/esoteric_lottery/results`): `final/combinations.json`, `final/intermediate/*.json`, `backtest/*/summary.json`, `backtest/*/predictions/*.json`.

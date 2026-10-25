@@ -134,3 +134,68 @@ def test_candidate_tickets_dedupes_across_readings(cfg, subject, event, games):
     assert len(cands) == len({tuple(c["ticket"]) for c in cands})
     assert all(len(c["ticket"]) == 11 for c in cands)
     assert any(len(c["sources"]) > 1 for c in cands)   # the seed-independent methods repeat
+
+
+# --------------------------------------------------------- full systems (Loto 6/45)
+
+LOTO = Pool("main", 45, 6)
+LOTO_PAYING = [3, 4, 5, 6]
+
+
+def test_system_of_seven_is_hypergeometric():
+    """A full system of 7 is played as all C(7,6)=7 combinations; it wins something
+    exactly when at least 3 of the 6 drawn numbers lie inside those 7."""
+    ref = single_ticket_reference(LOTO, LOTO_PAYING, 7, top_hits=[6])
+    pmf = hypergeom(45, 7, 6).pmf(np.arange(7))
+    assert [ref["hit_pmf"][str(k)] for k in range(7)] == pytest.approx(pmf.tolist())
+    assert ref["p_jackpot_tier"] == pytest.approx(7 / 8_145_060)      # 7 of the C(45,6) tickets
+    assert ref["expected_hits"] == pytest.approx(6 * 7 / 45)
+    six = single_ticket_reference(LOTO, LOTO_PAYING, 6, top_hits=[6])
+    assert six["p_jackpot_tier"] == pytest.approx(1 / 8_145_060)
+    assert ref["p_paying"] > six["p_paying"]
+
+
+def test_disjoint_systems_beat_repeating_one():
+    """Loto pays only at the high end, so there is no complement trap: overlap is just
+    wasted redundancy and near-disjoint systems maximise P(at least one wins)."""
+    disjoint = [tuple(range(1 + 7 * i, 8 + 7 * i)) for i in range(5)]
+    same = [tuple(range(1, 8))] * 5
+    overlapping = [tuple(sorted({1, 2, 3, 4, 5} | {6 + i, 20 + i})) for i in range(5)]
+    d = evaluate_set(disjoint, LOTO, LOTO_PAYING, top_hits=[6])
+    s = evaluate_set(same, LOTO, LOTO_PAYING, top_hits=[6])
+    o = evaluate_set(overlapping, LOTO, LOTO_PAYING, top_hits=[6])
+    assert s["p_at_least_one_paying"] < o["p_at_least_one_paying"] < d["p_at_least_one_paying"]
+    # Five disjoint systems give five separate shots at 6 of 6.
+    assert d["p_at_least_one_jackpot_tier"] == pytest.approx(5 * 7 / 8_145_060)
+    assert s["p_at_least_one_jackpot_tier"] == pytest.approx(7 / 8_145_060)
+    # Expected total hits is invariant here too.
+    for ev in (d, s, o):
+        assert ev["expected_total_hits"] == pytest.approx(5 * 6 * 7 / 45)
+
+
+def test_system_objective_is_also_relabelling_invariant():
+    systems = [tuple(range(1, 8)), tuple(range(8, 15)), (2, 9, 16, 23, 30, 37, 44)]
+    base = evaluate_set(systems, LOTO, LOTO_PAYING, top_hits=[6])
+    rng = seeded_rng("loto-relabel")
+    perm = {i + 1: int(v) + 1 for i, v in enumerate(rng.permutation(45))}
+    other = evaluate_set([tuple(sorted(perm[n] for n in s)) for s in systems], LOTO, LOTO_PAYING, top_hits=[6])
+    assert other["p_at_least_one_paying"] == base["p_at_least_one_paying"]
+
+
+def test_candidate_systems_take_the_top_of_each_ranking(cfg, subject, event, games):
+    from methods import build_methods
+    outs = {m.key: m.run(subject, event, games.values()) for m in build_methods(cfg)}
+    readings = [{"reading": 1, "outputs": outs, "ensembles": {}}]
+    cands = candidate_tickets(readings, "loto", LOTO, system_size=7, kinds=("method",))
+    assert all(len(c["ticket"]) == 7 for c in cands)
+    for c in cands:
+        src = c["sources"][0]["source"]
+        assert sorted(outs[src].ranking["loto"]["main"][:7]) == c["ticket"]
+        # The system contains the six numbers that method would have played on its own.
+        assert set(outs[src].picks["loto"]["main"]) <= set(c["ticket"])
+
+
+def test_selection_refuses_an_unreasonable_search():
+    cands = [{"ticket": list(range(1 + i, 8 + i)), "sources": []} for i in range(40)]
+    with pytest.raises(ValueError, match="exceeds max_subsets"):
+        select_portfolio(cands, 5, LOTO, LOTO_PAYING, (0, 2), 10, "k", [6], max_subsets=1000)

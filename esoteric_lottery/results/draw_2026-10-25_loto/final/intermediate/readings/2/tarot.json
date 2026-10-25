@@ -1,0 +1,484 @@
+{
+  "components": [
+    {
+      "detail": "",
+      "name": "greer_birth_cards",
+      "status": "ran"
+    },
+    {
+      "detail": "",
+      "name": "greer_year_cards",
+      "status": "ran"
+    },
+    {
+      "detail": "22 cards from a 78-card deck",
+      "name": "seeded_spread",
+      "status": "ran"
+    }
+  ],
+  "derived": {
+    "eurojackpot": {
+      "euro": 2,
+      "main": 5
+    },
+    "joker": {
+      "digits": 6
+    },
+    "loto": {
+      "main": 6
+    },
+    "sve_ili_nista": {
+      "main": 11
+    }
+  },
+  "digit_sequence": [
+    5,
+    7,
+    20,
+    7,
+    3,
+    7
+  ],
+  "error": null,
+  "intermediate": {
+    "birth_cards": {
+      "chain": [
+        11,
+        2
+      ],
+      "names": [
+        "Justice",
+        "The High Priestess"
+      ],
+      "total": 2027
+    },
+    "spread": [
+      {
+        "arcana": "minor",
+        "index": 41,
+        "name": "Five of Cups",
+        "reversed": false,
+        "suit": "Cups",
+        "value": 5
+      },
+      {
+        "arcana": "minor",
+        "index": 71,
+        "name": "Seven of Pentacles",
+        "reversed": false,
+        "suit": "Pentacles",
+        "value": 7
+      },
+      {
+        "arcana": "major",
+        "index": 20,
+        "name": "Judgement",
+        "reversed": true,
+        "value": 20
+      },
+      {
+        "arcana": "minor",
+        "index": 43,
+        "name": "Seven of Cups",
+        "reversed": false,
+        "suit": "Cups",
+        "value": 7
+      },
+      {
+        "arcana": "minor",
+        "index": 53,
+        "name": "Three of Swords",
+        "reversed": false,
+        "suit": "Swords",
+        "value": 3
+      },
+      {
+        "arcana": "minor",
+        "index": 57,
+        "name": "Seven of Swords",
+        "reversed": true,
+        "suit": "Swords",
+        "value": 7
+      },
+      {
+        "arcana": "minor",
+        "index": 28,
+        "name": "Six of Wands",
+        "reversed": false,
+        "suit": "Wands",
+        "value": 6
+      },
+      {
+        "arcana": "minor",
+        "index": 63,
+        "name": "Queen of Swords",
+        "reversed": true,
+        "suit": "Swords",
+        "value": 13
+      },
+      {
+        "arcana": "minor",
+        "index": 37,
+        "name": "Ace of Cups",
+        "reversed": true,
+        "suit": "Cups",
+        "value": 1
+      },
+      {
+        "arcana": "major",
+        "index": 13,
+        "name": "Death",
+        "reversed": true,
+        "value": 13
+      },
+      {
+        "arcana": "minor",
+        "index": 76,
+        "name": "Knight of Pentacles",
+        "reversed": true,
+        "suit": "Pentacles",
+        "value": 12
+      },
+      {
+        "arcana": "minor",
+        "index": 73,
+        "name": "Nine of Pentacles",
+        "reversed": false,
+        "suit": "Pentacles",
+        "value": 9
+      },
+      {
+        "arcana": "major",
+        "index": 10,
+        "name": "Wheel of Fortune",
+        "reversed": false,
+        "value": 10
+      },
+      {
+        "arcana": "minor",
+        "index": 45,
+        "name": "Nine of Cups",
+        "reversed": true,
+        "suit": "Cups",
+        "value": 9
+      },
+      {
+        "arcana": "minor",
+        "index": 31,
+        "name": "Nine of Wands",
+        "reversed": true,
+        "suit": "Wands",
+        "value": 9
+      },
+      {
+        "arcana": "minor",
+        "index": 47,
+        "name": "Page of Cups",
+        "reversed": true,
+        "suit": "Cups",
+        "value": 11
+      },
+      {
+        "arcana": "minor",
+        "index": 36,
+        "name": "King of Wands",
+        "reversed": false,
+        "suit": "Wands",
+        "value": 14
+      },
+      {
+        "arcana": "minor",
+        "index": 60,
+        "name": "Ten of Swords",
+        "reversed": false,
+        "suit": "Swords",
+        "value": 10
+      },
+      {
+        "arcana": "minor",
+        "index": 68,
+        "name": "Four of Pentacles",
+        "reversed": true,
+        "suit": "Pentacles",
+        "value": 4
+      },
+      {
+        "arcana": "minor",
+        "index": 69,
+        "name": "Five of Pentacles",
+        "reversed": false,
+        "suit": "Pentacles",
+        "value": 5
+      },
+      {
+        "arcana": "major",
+        "index": 15,
+        "name": "The Devil",
+        "reversed": true,
+        "value": 15
+      },
+      {
+        "arcana": "minor",
+        "index": 24,
+        "name": "Two of Wands",
+        "reversed": false,
+        "suit": "Wands",
+        "value": 2
+      }
+    ],
+    "year_cards": {
+      "chain": [
+        10,
+        1
+      ],
+      "names": [
+        "Wheel of Fortune",
+        "The Magician"
+      ],
+      "total": 2062,
+      "year": 2026
+    }
+  },
+  "key": "tarot",
+  "kind": "traditional numbering and birth cards + experimental seeded spread",
+  "label": "Tarot (Rider-Waite-Smith, Greerine rođendanske karte)",
+  "picks": {
+    "eurojackpot": {
+      "euro": [
+        2,
+        11
+      ],
+      "main": [
+        1,
+        2,
+        10,
+        11,
+        41
+      ]
+    },
+    "joker": {
+      "digits": [
+        5,
+        7,
+        0,
+        7,
+        3,
+        7
+      ]
+    },
+    "loto": {
+      "main": [
+        1,
+        2,
+        10,
+        11,
+        26,
+        41
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        1,
+        2,
+        5,
+        9,
+        10,
+        11,
+        13,
+        15,
+        19,
+        20,
+        21
+      ]
+    }
+  },
+  "ranking": {
+    "eurojackpot": {
+      "euro": [
+        11,
+        2,
+        1,
+        10,
+        5,
+        9,
+        8,
+        7,
+        4,
+        12,
+        3,
+        6
+      ],
+      "main": [
+        11,
+        2,
+        10,
+        1,
+        41,
+        21,
+        13,
+        20,
+        43,
+        3,
+        7,
+        28,
+        37,
+        26,
+        23,
+        45,
+        31,
+        47,
+        36,
+        18,
+        19,
+        15,
+        24,
+        50,
+        5,
+        8,
+        12,
+        48,
+        40,
+        39,
+        35,
+        14,
+        32,
+        46,
+        49,
+        44,
+        9,
+        17,
+        4,
+        34,
+        27,
+        33,
+        30,
+        42,
+        38,
+        16,
+        6,
+        29,
+        22,
+        25
+      ]
+    },
+    "joker": {
+      "digits": [
+        5,
+        7,
+        0,
+        7,
+        3,
+        7
+      ]
+    },
+    "loto": {
+      "main": [
+        11,
+        2,
+        10,
+        1,
+        41,
+        26,
+        28,
+        20,
+        43,
+        31,
+        8,
+        12,
+        15,
+        18,
+        24,
+        37,
+        13,
+        45,
+        36,
+        23,
+        9,
+        44,
+        35,
+        7,
+        22,
+        29,
+        32,
+        27,
+        6,
+        40,
+        38,
+        16,
+        21,
+        14,
+        30,
+        34,
+        42,
+        3,
+        33,
+        19,
+        17,
+        25,
+        4,
+        5,
+        39
+      ]
+    },
+    "sve_ili_nista": {
+      "main": [
+        11,
+        2,
+        10,
+        1,
+        19,
+        13,
+        5,
+        9,
+        20,
+        21,
+        15,
+        3,
+        6,
+        7,
+        14,
+        16,
+        8,
+        22,
+        4,
+        17,
+        18,
+        12
+      ]
+    }
+  },
+  "sequence": [
+    11,
+    2,
+    10,
+    1,
+    41,
+    71,
+    20,
+    43,
+    53,
+    57,
+    28,
+    63,
+    37,
+    13,
+    76,
+    73,
+    10,
+    45,
+    31,
+    47,
+    36,
+    60,
+    68,
+    69,
+    15,
+    24
+  ],
+  "sources": [
+    "A. E. Waite, The Pictorial Key to the Tarot, 1910 – Rider-Waite-Smith numbering (Strength 8, Justice 11)",
+    "M. K. Greer, Tarot for Your Self, 1984; Who Are You in the Tarot?, 2002 – birth and year cards",
+    "Seeded shuffle (numpy PCG64 + SHA-256) – experimental stand-in for a physical shuffle"
+  ],
+  "status": "ran"
+}

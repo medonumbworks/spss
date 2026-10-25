@@ -86,9 +86,16 @@ def joint_hit_distribution(tickets: Sequence[Ticket], pool: Pool) -> dict[tuple[
     return out
 
 
-def evaluate_set(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int]) -> dict:
-    """Exact figures for a set of tickets. No simulation, no approximation."""
+def evaluate_set(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int],
+                 top_hits: Iterable[int] | None = None) -> dict:
+    """Exact figures for a set of tickets. No simulation, no approximation.
+
+    ``tickets`` need not hold ``pool.pick`` numbers: a full system of s numbers is a
+    ticket of size s, and its hit count is how many of the drawn numbers it contains.
+    ``top_hits`` names the hit counts that are the top prize tier (both ends for a game
+    like Sve ili Ništa, only the high end for Loto)."""
     paying = set(paying)
+    top = set(top_hits) if top_hits is not None else {0, pool.pick}
     joint = joint_hit_distribution(tickets, pool)
     p_any = Fraction(0)
     p_all_lose = Fraction(0)
@@ -108,7 +115,7 @@ def evaluate_set(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int]) -
         max_dist[m] = max_dist.get(m, Fraction(0)) + p
         e_sum += p * sum(hits)
         e_max += p * m
-        if any(h in (0, pool.pick) for h in hits):
+        if any(h in top for h in hits):
             p_any_top += p
     overlaps = [len(set(a) & set(b)) for a, b in itertools.combinations(tickets, 2)]
     return {
@@ -120,6 +127,8 @@ def evaluate_set(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int]) -
         "p_at_least_one_paying": float(p_any),
         "p_nothing_at_all": float(p_all_lose),
         "p_at_least_one_jackpot_tier": float(p_any_top),
+        "top_tier_hits": sorted(top),
+        "ticket_sizes": sorted({len(t) for t in tickets}),
         "one_in_at_least_one_paying": round(1 / float(p_any)) if p_any else None,
         "expected_total_hits": float(e_sum),
         "expected_best_ticket_hits": float(e_max),
@@ -128,41 +137,63 @@ def evaluate_set(tickets: Sequence[Ticket], pool: Pool, paying: Iterable[int]) -
     }
 
 
-def single_ticket_reference(pool: Pool, paying: Iterable[int]) -> dict:
-    """The same figures for one ticket, and for m identical tickets (the worst case)."""
+def single_ticket_reference(pool: Pool, paying: Iterable[int], ticket_size: int | None = None,
+                            top_hits: Iterable[int] | None = None) -> dict:
+    """The same figures for one ticket of ``ticket_size`` numbers (default ``pool.pick``).
+
+    Hits are hypergeometric: of the ``pool.pick`` drawn numbers, how many fall inside the
+    ticket's ``ticket_size`` numbers."""
     paying = set(paying)
+    size = ticket_size or pool.pick
+    top = set(top_hits) if top_hits is not None else {0, pool.pick}
     total = comb(pool.size, pool.pick)
-    pmf = {h: Fraction(comb(pool.pick, h) * comb(pool.size - pool.pick, pool.pick - h), total)
-           for h in range(pool.pick + 1)}
+    pmf = {h: Fraction(comb(size, h) * comb(pool.size - size, pool.pick - h), total)
+           for h in range(min(size, pool.pick) + 1)}
+    assert sum(pmf.values()) == 1
     p = sum(v for h, v in pmf.items() if h in paying)
-    return {"p_paying": float(p), "one_in": round(1 / float(p)),
-            "p_jackpot_tier": float(pmf[0] + pmf[pool.pick]),
+    return {"ticket_size": size, "p_paying": float(p), "one_in": round(1 / float(p)) if p else None,
+            "p_jackpot_tier": float(sum(v for h, v in pmf.items() if h in top)),
+            "expected_hits": float(sum(h * v for h, v in pmf.items())),
             "hit_pmf": {str(h): float(v) for h, v in pmf.items()}}
 
 
 # --------------------------------------------------------------------- the selection
 
-def candidate_tickets(readings: list[dict], game_key: str, pool: Pool) -> list[dict]:
-    """Every distinct ticket the methods and ensembles produced, across all readings."""
+def candidate_tickets(readings: list[dict], game_key: str, pool: Pool, system_size: int | None = None,
+                      kinds: tuple[str, ...] = ("method", "ensemble")) -> list[dict]:
+    """Every distinct ticket the methods and ensembles produced, across all readings.
+
+    With ``system_size`` the ticket is the method's top ``system_size`` numbers from its
+    full ranking of the pool — a full system, which is exactly what the ranking already
+    expresses. ``kinds`` restricts the sources (methods only, or ensembles only)."""
     seen: dict[Ticket, dict] = {}
+
+    def take(block: dict, key: str, reading: int) -> None:
+        source = block["ranking"] if system_size else block["picks"]
+        if game_key not in source:
+            return
+        numbers = source[game_key][pool.name]
+        t: Ticket = tuple(sorted(numbers[:system_size] if system_size else numbers))
+        seen.setdefault(t, {"ticket": list(t), "sources": []})["sources"].append(
+            {"reading": reading, "source": key})
+
     for r in readings:
-        for key, out in r["outputs"].items():
-            if out.status == "failed":
-                continue
-            t: Ticket = tuple(sorted(out.picks[game_key][pool.name]))
-            seen.setdefault(t, {"ticket": list(t), "sources": []})["sources"].append(
-                {"reading": r["reading"], "source": key})
-        for key, ens in r.get("ensembles", {}).items():
-            if game_key not in ens["picks"]:
-                continue
-            t = tuple(sorted(ens["picks"][game_key][pool.name]))
-            seen.setdefault(t, {"ticket": list(t), "sources": []})["sources"].append(
-                {"reading": r["reading"], "source": key})
+        if "method" in kinds:
+            for key, out in r["outputs"].items():
+                if out.status == "failed":
+                    continue
+                take({"picks": out.picks, "ranking": out.ranking}, key, r["reading"])
+        if "ensemble" in kinds:
+            for key, ens in r.get("ensembles", {}).items():
+                if game_key not in ens["picks"]:
+                    continue
+                take(ens, key, r["reading"])
     return [seen[t] for t in sorted(seen)]
 
 
 def select_portfolio(candidates: list[dict], m: int, pool: Pool, paying: Iterable[int],
-                     overlap_range: tuple[int, int], max_exact: int, key: str) -> dict:
+                     overlap_range: tuple[int, int], max_exact: int, key: str,
+                     top_hits: Iterable[int] | None = None, max_subsets: int = 1_000_000) -> dict:
     """The m candidate tickets whose joint structure maximises P(at least one wins).
 
     Two stages, both deterministic: subsets whose pairwise overlaps all lie inside
@@ -173,7 +204,12 @@ def select_portfolio(candidates: list[dict], m: int, pool: Pool, paying: Iterabl
     tickets = [tuple(c["ticket"]) for c in candidates]
     if len(tickets) < m:
         raise ValueError(f"need at least {m} distinct candidate tickets, got {len(tickets)}")
-    neutral = pool.pick * pool.pick / pool.size
+    sizes = {len(t) for t in tickets}
+    neutral = (sum(sizes) / len(sizes)) ** 2 / pool.size   # expected overlap of two random tickets
+    n_subsets = comb(len(tickets), m)
+    if n_subsets > max_subsets:
+        raise ValueError(f"{n_subsets} subsets of {len(tickets)} candidates exceeds max_subsets={max_subsets}; "
+                         "narrow the candidate pool (e.g. fewer readings) rather than sampling silently")
     ov = {(i, j): len(set(tickets[i]) & set(tickets[j]))
           for i, j in itertools.combinations(range(len(tickets)), 2)}
     lo, hi = overlap_range
@@ -199,7 +235,7 @@ def select_portfolio(candidates: list[dict], m: int, pool: Pool, paying: Iterabl
 
     best = None
     for proxy, subset, tiebreak in shortlist:
-        ev = evaluate_set([tickets[i] for i in subset], pool, paying)
+        ev = evaluate_set([tickets[i] for i in subset], pool, paying, top_hits)
         rank = (-ev["p_at_least_one_paying"], -ev["expected_best_ticket_hits"], tiebreak)
         if best is None or rank < best[0]:
             best = (rank, subset, ev)
@@ -208,7 +244,7 @@ def select_portfolio(candidates: list[dict], m: int, pool: Pool, paying: Iterabl
         "candidates": len(tickets), "subsets_considered": len(scored),
         "subsets_rejected_by_overlap_filter": skipped_by_filter,
         "overlap_filter": [lo, hi], "overlap_filter_relaxed": relaxed,
-        "exactly_evaluated": len(shortlist), "neutral_overlap": neutral,
+        "exactly_evaluated": len(shortlist), "neutral_overlap": neutral, "subsets_total": n_subsets,
         "objective": "P(at least one ticket in a paying tier), exact; "
                      "tie-break: expected hits of the best ticket, then SHA-256",
         "sources": [candidates[i]["sources"] for i in subset],
@@ -217,12 +253,12 @@ def select_portfolio(candidates: list[dict], m: int, pool: Pool, paying: Iterabl
 
 
 def compare_structures(chosen: Sequence[Ticket], alternatives: dict[str, Sequence[Ticket]],
-                       pool: Pool, paying: Iterable[int]) -> dict:
+                       pool: Pool, paying: Iterable[int], top_hits: Iterable[int] | None = None) -> dict:
     """The chosen set against named alternatives, exactly."""
-    out = {"chosen": evaluate_set(chosen, pool, paying)}
+    out = {"chosen": evaluate_set(chosen, pool, paying, top_hits)}
     for name, tickets in alternatives.items():
         if tickets and len(tickets) == len(chosen):
-            out[name] = evaluate_set(tickets, pool, paying)
+            out[name] = evaluate_set(tickets, pool, paying, top_hits)
     return out
 
 

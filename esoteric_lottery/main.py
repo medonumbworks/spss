@@ -355,29 +355,55 @@ def main(argv: list[str] | None = None) -> int:
     pcfg = cfg.get("portfolio") or {}
     portfolios: dict = {}
     if pcfg.get("enabled"):
-        m = int(pcfg["tickets"])
         for game_key, paying in (pcfg.get("paying_hits") or {}).items():
             pool = games[game_key].pools[0]
-            cands = portfolio.candidate_tickets(readings, game_key, pool)
-            if len(cands) < m:
-                portfolios[game_key] = {"status": "not_run",
-                                        "reason": f"only {len(cands)} distinct candidate tickets, need {m}"}
+            m = int((pcfg.get("tickets_per_game") or {}).get(game_key, pcfg["tickets"]))
+            size = (pcfg.get("system_size") or {}).get(game_key)
+            top = (pcfg.get("top_hits") or {}).get(game_key)
+            ranges = pcfg.get("overlap_range")
+            orange = tuple(ranges.get(game_key, ranges.get("default", [0, 99])) if isinstance(ranges, dict)
+                           else ranges)
+            # Every ticket set the user may want compared: all sources together, and —
+            # for a system game — the ensembles on their own against the methods alone.
+            groups = {"all": ("method", "ensemble")}
+            if size:
+                groups |= {"ensemble_only": ("ensemble",), "methods_only": ("method",)}
+            variants, notes = {}, {}
+            for name, kinds in groups.items():
+                cands = portfolio.candidate_tickets(readings, game_key, pool, size, kinds)
+                if len(cands) < m:
+                    notes[name] = f"only {len(cands)} distinct candidates, need {m}"
+                    continue
+                # "all" keeps the original tie-break key, so adding variants never
+                # silently changes a set that was already published.
+                suffix = "" if name == "all" else f"|{name}"
+                v = portfolio.select_portfolio(
+                    cands, m, pool, paying, orange, int(pcfg["exact_evaluations"]),
+                    f"portfolio|{event.local.isoformat()}|{game_key}{suffix}", top)
+                v["candidates"] = cands
+                variants[name] = v
+            if not variants:
+                portfolios[game_key] = {"status": "not_run", "reason": "; ".join(notes.values())}
                 continue
-            chosen = portfolio.select_portfolio(
-                cands, m, pool, paying, tuple(pcfg["overlap_range"]), int(pcfg["exact_evaluations"]),
-                f"portfolio|{event.local.isoformat()}|{game_key}")
-            chosen["status"] = "ran"
-            chosen["paying_hits"] = list(paying)
-            chosen["single_ticket"] = portfolio.single_ticket_reference(pool, paying)
+            best_name = max(variants, key=lambda n: (variants[n]["p_at_least_one_paying"],
+                                                     variants[n]["expected_best_ticket_hits"]))
+            chosen = dict(variants[best_name])
+            chosen.update({"status": "ran", "paying_hits": list(paying), "system_size": size,
+                           "tickets_in_set": m, "best_variant": best_name, "variants": variants,
+                           "variants_not_run": notes})
+            chosen["single_ticket"] = portfolio.single_ticket_reference(pool, paying, size, top)
+            naive = [tuple(t["picks"][pool.name]) for t in combinations["tickets"][game_key]][:m]
+            alternatives = {"same_ticket_m_times": [tuple(chosen["tickets"][0])] * m}
+            if not size and len(naive) == m:
+                alternatives["readings_ensembles"] = naive
+            for name, v in variants.items():
+                alternatives[f"variant_{name}"] = [tuple(t) for t in v["tickets"]]
             chosen["comparison"] = portfolio.compare_structures(
-                [tuple(t) for t in chosen["tickets"]],
-                {"readings_ensembles": [tuple(t["picks"][pool.name]) for t in combinations["tickets"][game_key]],
-                 "same_ticket_m_times": [tuple(combinations["tickets"][game_key][0]["picks"][pool.name])] * m},
-                pool, paying)
-            chosen["candidates"] = cands
+                [tuple(t) for t in chosen["tickets"]], alternatives, pool, paying, top)
             portfolios[game_key] = chosen
-            print(f"      portfolio {game_key}: P(at least one paying) "
-                  f"{chosen['p_at_least_one_paying']:.4f} from {len(cands)} candidates")
+            print(f"      portfolio {game_key}: best '{best_name}', P(at least one paying) "
+                  f"{chosen['p_at_least_one_paying']:.4f}"
+                  + (f", systems of {size}" if size else ""))
     combinations["portfolio"] = portfolios
     write_json(out / "final" / "combinations.json", combinations)
 

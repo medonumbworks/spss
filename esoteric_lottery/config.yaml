@@ -35,6 +35,10 @@ games:
     pools:
       - {name: main, size: 50, pick: 5}
       - {name: euro, size: 12, pick: 2}
+  loto:
+    label: "Loto 6/45"
+    pools:
+      - {name: main, size: 45, pick: 6}
   joker:
     label: "Joker (6 znamenki)"
     pools:
@@ -91,10 +95,29 @@ portfolio:
   # figure is computed anywhere in this project.
   paying_hits:
     sve_ili_nista: [0, 1, 2, 3, 8, 9, 10, 11]
-  # A pair overlapping in 0 numbers is complementary: hits(A) + hits(Ā) = 11, so both
-  # land in a paying tier at the same time — no decorrelation. A pair overlapping in
-  # nearly all numbers is the same ticket twice. Both extremes are excluded.
-  overlap_range: [3, 8]
+    # Loto 6/45 pays only at the high end: 6, 5+bonus, 5, 4 and 3 hits. Here a "hit" is
+    # how many of the 6 drawn numbers lie inside the played system, so a full system of
+    # 7 numbers wins something exactly when at least 3 of the 6 are among those 7.
+    loto: [3, 4, 5, 6]
+  top_hits:
+    sve_ili_nista: [0, 11]   # both ends are the jackpot tier
+    loto: [6]
+  # A full system of s numbers is played as all C(s, 6) combinations. The system is the
+  # method's own top s numbers, taken from the ranking it already produces.
+  system_size:
+    loto: 7
+  tickets_per_game:
+    loto: 5
+  # Which pairwise overlaps a candidate set may have, per game.
+  # Sve ili Ništa: a pair overlapping in 0 numbers is complementary (hits(A) + hits(Ā)
+  # = 11), so both land in a paying tier at the same time — no decorrelation at all;
+  # a pair overlapping in nearly all numbers is the same ticket twice. Both are excluded.
+  # Loto pays only at the high end, so there is no complement trap and overlap is simply
+  # wasted redundancy: keep the systems nearly disjoint (neutral overlap is 7^2/45 ~ 1.1).
+  overlap_range:
+    sve_ili_nista: [3, 8]
+    loto: [0, 2]
+    default: [0, 99]
   exact_evaluations: 200   # subsets scored by exact joint distribution, best proxy first
 
 evaluation:

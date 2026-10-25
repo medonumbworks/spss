@@ -117,6 +117,75 @@
       }
     },
     "joker": {},
+    "loto": {
+      "main": {
+        "distinct_tickets": 4,
+        "numbers_covered": 10,
+        "numbers_never_played": [
+          3,
+          9,
+          10,
+          11,
+          12,
+          13,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45
+        ],
+        "pairwise_common": [
+          [
+            6,
+            4,
+            5,
+            5
+          ],
+          [
+            4,
+            6,
+            4,
+            4
+          ],
+          [
+            5,
+            4,
+            6,
+            5
+          ],
+          [
+            5,
+            4,
+            5,
+            6
+          ]
+        ]
+      }
+    },
     "sve_ili_nista": {
       "main": {
         "distinct_tickets": 4,
@@ -548,6 +617,178 @@
         }
       }
     },
+    "loto": {
+      "ensembles": {
+        "ensemble_equal": {
+          "picks": {
+            "main": [
+              1,
+              2,
+              5,
+              6,
+              7,
+              8
+            ]
+          }
+        }
+      },
+      "label": "Loto 6/45",
+      "methods": {
+        "chaldean": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "Kaldejska numerologija (Cheiro)",
+          "picks": {
+            "main": [
+              2,
+              6,
+              8,
+              17,
+              24,
+              31
+            ]
+          },
+          "status": "partial"
+        },
+        "gematria": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna)",
+          "picks": {
+            "main": [
+              6,
+              19,
+              30,
+              33,
+              38,
+              39
+            ]
+          },
+          "status": "partial"
+        },
+        "iching": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "I Ching (simulirano bacanje stabljika stolisnika)",
+          "picks": {
+            "main": [
+              1,
+              18,
+              22,
+              23,
+              31,
+              44
+            ]
+          },
+          "status": "ran"
+        },
+        "lenormand": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "Lenormand (36 karata, Grand Tableau)",
+          "picks": {
+            "main": [
+              5,
+              6,
+              21,
+              24,
+              28,
+              31
+            ]
+          },
+          "status": "ran"
+        },
+        "meihua": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "Meihua Yishu (梅花易數, vremensko bacanje)",
+          "picks": {
+            "main": [
+              1,
+              5,
+              7,
+              8,
+              9,
+              26
+            ]
+          },
+          "status": "ran"
+        },
+        "pythagorean": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "Pitagorejska numerologija",
+          "picks": {
+            "main": [
+              1,
+              2,
+              6,
+              8,
+              9,
+              11
+            ]
+          },
+          "status": "partial"
+        },
+        "tarot": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "Tarot (Rider-Waite-Smith, Greerine rođendanske karte)",
+          "picks": {
+            "main": [
+              1,
+              2,
+              10,
+              11,
+              13,
+              17
+            ]
+          },
+          "status": "ran"
+        },
+        "vedic_astrology": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "Vedska astrologija (Jyotish, Panchanga, Vimshottari)",
+          "picks": {
+            "main": [
+              1,
+              2,
+              4,
+              7,
+              14,
+              27
+            ]
+          },
+          "status": "ran"
+        },
+        "western_astrology": {
+          "derived_from_method": {
+            "main": 6
+          },
+          "label": "Zapadna (tropska) astrologija",
+          "picks": {
+            "main": [
+              2,
+              16,
+              29,
+              36,
+              38,
+              39
+            ]
+          },
+          "status": "ran"
+        }
+      }
+    },
     "sve_ili_nista": {
       "ensembles": {
         "ensemble_equal": {
@@ -790,7 +1031,2096 @@
   },
   "n_readings": 4,
   "portfolio": {
+    "loto": {
+      "best_variant": "methods_only",
+      "candidates": [
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "vedic_astrology"
+            },
+            {
+              "reading": 2,
+              "source": "vedic_astrology"
+            },
+            {
+              "reading": 3,
+              "source": "vedic_astrology"
+            },
+            {
+              "reading": 4,
+              "source": "vedic_astrology"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            14,
+            27
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "pythagorean"
+            },
+            {
+              "reading": 2,
+              "source": "pythagorean"
+            },
+            {
+              "reading": 3,
+              "source": "pythagorean"
+            },
+            {
+              "reading": 4,
+              "source": "pythagorean"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            6,
+            8,
+            9,
+            11,
+            31
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 3,
+              "source": "tarot"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            8,
+            10,
+            11,
+            27,
+            37
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "tarot"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            10,
+            11,
+            13,
+            17,
+            30
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 2,
+              "source": "tarot"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            10,
+            11,
+            13,
+            25,
+            41
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 4,
+              "source": "tarot"
+            }
+          ],
+          "ticket": [
+            1,
+            2,
+            10,
+            11,
+            22,
+            36,
+            38
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 3,
+              "source": "iching"
+            }
+          ],
+          "ticket": [
+            1,
+            4,
+            7,
+            14,
+            16,
+            19,
+            31
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "meihua"
+            },
+            {
+              "reading": 2,
+              "source": "meihua"
+            },
+            {
+              "reading": 3,
+              "source": "meihua"
+            },
+            {
+              "reading": 4,
+              "source": "meihua"
+            }
+          ],
+          "ticket": [
+            1,
+            5,
+            7,
+            8,
+            9,
+            26,
+            31
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "iching"
+            }
+          ],
+          "ticket": [
+            1,
+            18,
+            22,
+            23,
+            31,
+            44,
+            45
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "chaldean"
+            },
+            {
+              "reading": 2,
+              "source": "chaldean"
+            },
+            {
+              "reading": 3,
+              "source": "chaldean"
+            },
+            {
+              "reading": 4,
+              "source": "chaldean"
+            }
+          ],
+          "ticket": [
+            2,
+            4,
+            6,
+            8,
+            17,
+            24,
+            31
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 4,
+              "source": "iching"
+            }
+          ],
+          "ticket": [
+            2,
+            7,
+            9,
+            10,
+            11,
+            17,
+            29
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 2,
+              "source": "iching"
+            }
+          ],
+          "ticket": [
+            2,
+            7,
+            11,
+            13,
+            18,
+            36,
+            40
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "western_astrology"
+            },
+            {
+              "reading": 2,
+              "source": "western_astrology"
+            },
+            {
+              "reading": 3,
+              "source": "western_astrology"
+            },
+            {
+              "reading": 4,
+              "source": "western_astrology"
+            }
+          ],
+          "ticket": [
+            2,
+            16,
+            17,
+            29,
+            36,
+            38,
+            39
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 2,
+              "source": "lenormand"
+            }
+          ],
+          "ticket": [
+            3,
+            14,
+            17,
+            24,
+            28,
+            31,
+            36
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "lenormand"
+            }
+          ],
+          "ticket": [
+            5,
+            6,
+            21,
+            24,
+            28,
+            31,
+            33
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 4,
+              "source": "lenormand"
+            }
+          ],
+          "ticket": [
+            5,
+            14,
+            19,
+            24,
+            28,
+            31,
+            34
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 1,
+              "source": "gematria"
+            },
+            {
+              "reading": 2,
+              "source": "gematria"
+            },
+            {
+              "reading": 3,
+              "source": "gematria"
+            },
+            {
+              "reading": 4,
+              "source": "gematria"
+            }
+          ],
+          "ticket": [
+            6,
+            14,
+            19,
+            30,
+            33,
+            38,
+            39
+          ]
+        },
+        {
+          "sources": [
+            {
+              "reading": 3,
+              "source": "lenormand"
+            }
+          ],
+          "ticket": [
+            6,
+            16,
+            20,
+            23,
+            24,
+            26,
+            31
+          ]
+        }
+      ],
+      "comparison": {
+        "chosen": {
+          "distribution_of_best_ticket_hits": {
+            "0": 0.0006144829,
+            "1": 0.2267552357,
+            "2": 0.5842461566,
+            "3": 0.1727979904,
+            "4": 0.0150919699,
+            "5": 0.0004898675,
+            "6": 4.2971e-06
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.8116158751,
+            "1": 0.1800109514,
+            "2": 0.0082810931,
+            "3": 9.20804e-05
+          },
+          "expected_best_ticket_hits": 1.9764845195,
+          "expected_total_hits": 4.6666666667,
+          "max_overlap": 2,
+          "min_overlap": 0,
+          "n_tickets": 5,
+          "one_in_at_least_one_paying": 5,
+          "p_at_least_one_jackpot_tier": 4.2971e-06,
+          "p_at_least_one_paying": 0.1883841249,
+          "p_nothing_at_all": 0.8116158751,
+          "pairwise_overlaps": [
+            1,
+            1,
+            0,
+            0,
+            2,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "ticket_sizes": [
+            7
+          ],
+          "tickets": [
+            [
+              1,
+              2,
+              10,
+              11,
+              13,
+              25,
+              41
+            ],
+            [
+              1,
+              5,
+              7,
+              8,
+              9,
+              26,
+              31
+            ],
+            [
+              1,
+              18,
+              22,
+              23,
+              31,
+              44,
+              45
+            ],
+            [
+              3,
+              14,
+              17,
+              24,
+              28,
+              31,
+              36
+            ],
+            [
+              6,
+              14,
+              19,
+              30,
+              33,
+              38,
+              39
+            ]
+          ],
+          "top_tier_hits": [
+            6
+          ]
+        },
+        "same_ticket_m_times": {
+          "distribution_of_best_ticket_hits": {
+            "0": 0.338939308,
+            "1": 0.4313773011,
+            "2": 0.1903135152,
+            "3": 0.0362501934,
+            "4": 0.0030208494,
+            "5": 9.79735e-05,
+            "6": 8.594e-07
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.9606301243,
+            "5": 0.0393698757
+          },
+          "expected_best_ticket_hits": 0.9333333333,
+          "expected_total_hits": 4.6666666667,
+          "max_overlap": 7,
+          "min_overlap": 7,
+          "n_tickets": 5,
+          "one_in_at_least_one_paying": 25,
+          "p_at_least_one_jackpot_tier": 8.594e-07,
+          "p_at_least_one_paying": 0.0393698757,
+          "p_nothing_at_all": 0.9606301243,
+          "pairwise_overlaps": [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "ticket_sizes": [
+            7
+          ],
+          "tickets": [
+            [
+              1,
+              2,
+              10,
+              11,
+              13,
+              25,
+              41
+            ],
+            [
+              1,
+              2,
+              10,
+              11,
+              13,
+              25,
+              41
+            ],
+            [
+              1,
+              2,
+              10,
+              11,
+              13,
+              25,
+              41
+            ],
+            [
+              1,
+              2,
+              10,
+              11,
+              13,
+              25,
+              41
+            ],
+            [
+              1,
+              2,
+              10,
+              11,
+              13,
+              25,
+              41
+            ]
+          ],
+          "top_tier_hits": [
+            6
+          ]
+        },
+        "variant_all": {
+          "distribution_of_best_ticket_hits": {
+            "0": 0.0015194486,
+            "1": 0.2402899426,
+            "2": 0.5706259991,
+            "3": 0.1719784753,
+            "4": 0.0150919699,
+            "5": 0.0004898675,
+            "6": 4.2971e-06
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.8124353903,
+            "1": 0.1784081394,
+            "2": 0.0090287855,
+            "3": 0.0001270709,
+            "4": 6.139e-07
+          },
+          "expected_best_ticket_hits": 1.960320366,
+          "expected_total_hits": 4.6666666667,
+          "max_overlap": 2,
+          "min_overlap": 0,
+          "n_tickets": 5,
+          "one_in_at_least_one_paying": 5,
+          "p_at_least_one_jackpot_tier": 4.2971e-06,
+          "p_at_least_one_paying": 0.1875646097,
+          "p_nothing_at_all": 0.8124353903,
+          "pairwise_overlaps": [
+            2,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "ticket_sizes": [
+            7
+          ],
+          "tickets": [
+            [
+              1,
+              5,
+              7,
+              8,
+              9,
+              26,
+              31
+            ],
+            [
+              1,
+              18,
+              22,
+              23,
+              31,
+              44,
+              45
+            ],
+            [
+              2,
+              7,
+              11,
+              13,
+              18,
+              36,
+              40
+            ],
+            [
+              3,
+              14,
+              17,
+              24,
+              28,
+              31,
+              36
+            ],
+            [
+              6,
+              14,
+              19,
+              30,
+              33,
+              38,
+              39
+            ]
+          ],
+          "top_tier_hits": [
+            6
+          ]
+        },
+        "variant_methods_only": {
+          "distribution_of_best_ticket_hits": {
+            "0": 0.0006144829,
+            "1": 0.2267552357,
+            "2": 0.5842461566,
+            "3": 0.1727979904,
+            "4": 0.0150919699,
+            "5": 0.0004898675,
+            "6": 4.2971e-06
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.8116158751,
+            "1": 0.1800109514,
+            "2": 0.0082810931,
+            "3": 9.20804e-05
+          },
+          "expected_best_ticket_hits": 1.9764845195,
+          "expected_total_hits": 4.6666666667,
+          "max_overlap": 2,
+          "min_overlap": 0,
+          "n_tickets": 5,
+          "one_in_at_least_one_paying": 5,
+          "p_at_least_one_jackpot_tier": 4.2971e-06,
+          "p_at_least_one_paying": 0.1883841249,
+          "p_nothing_at_all": 0.8116158751,
+          "pairwise_overlaps": [
+            1,
+            1,
+            0,
+            0,
+            2,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "ticket_sizes": [
+            7
+          ],
+          "tickets": [
+            [
+              1,
+              2,
+              10,
+              11,
+              13,
+              25,
+              41
+            ],
+            [
+              1,
+              5,
+              7,
+              8,
+              9,
+              26,
+              31
+            ],
+            [
+              1,
+              18,
+              22,
+              23,
+              31,
+              44,
+              45
+            ],
+            [
+              3,
+              14,
+              17,
+              24,
+              28,
+              31,
+              36
+            ],
+            [
+              6,
+              14,
+              19,
+              30,
+              33,
+              38,
+              39
+            ]
+          ],
+          "top_tier_hits": [
+            6
+          ]
+        }
+      },
+      "distribution_of_best_ticket_hits": {
+        "0": 0.0006144829,
+        "1": 0.2267552357,
+        "2": 0.5842461566,
+        "3": 0.1727979904,
+        "4": 0.0150919699,
+        "5": 0.0004898675,
+        "6": 4.2971e-06
+      },
+      "distribution_of_winning_tickets": {
+        "0": 0.8116158751,
+        "1": 0.1800109514,
+        "2": 0.0082810931,
+        "3": 9.20804e-05
+      },
+      "expected_best_ticket_hits": 1.9764845195,
+      "expected_total_hits": 4.6666666667,
+      "max_overlap": 2,
+      "min_overlap": 0,
+      "n_tickets": 5,
+      "one_in_at_least_one_paying": 5,
+      "p_at_least_one_jackpot_tier": 4.2971e-06,
+      "p_at_least_one_paying": 0.1883841249,
+      "p_nothing_at_all": 0.8116158751,
+      "pairwise_overlaps": [
+        1,
+        1,
+        0,
+        0,
+        2,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "paying_hits": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "selection": {
+        "candidates": 18,
+        "exactly_evaluated": 200,
+        "neutral_overlap": 1.0888888889,
+        "objective": "P(at least one ticket in a paying tier), exact; tie-break: expected hits of the best ticket, then SHA-256",
+        "overlap_filter": [
+          0,
+          2
+        ],
+        "overlap_filter_relaxed": false,
+        "sources": [
+          [
+            {
+              "reading": 2,
+              "source": "tarot"
+            }
+          ],
+          [
+            {
+              "reading": 1,
+              "source": "meihua"
+            },
+            {
+              "reading": 2,
+              "source": "meihua"
+            },
+            {
+              "reading": 3,
+              "source": "meihua"
+            },
+            {
+              "reading": 4,
+              "source": "meihua"
+            }
+          ],
+          [
+            {
+              "reading": 1,
+              "source": "iching"
+            }
+          ],
+          [
+            {
+              "reading": 2,
+              "source": "lenormand"
+            }
+          ],
+          [
+            {
+              "reading": 1,
+              "source": "gematria"
+            },
+            {
+              "reading": 2,
+              "source": "gematria"
+            },
+            {
+              "reading": 3,
+              "source": "gematria"
+            },
+            {
+              "reading": 4,
+              "source": "gematria"
+            }
+          ]
+        ],
+        "subsets_considered": 548,
+        "subsets_rejected_by_overlap_filter": 8020,
+        "subsets_total": 8568
+      },
+      "single_ticket": {
+        "expected_hits": 0.9333333333,
+        "hit_pmf": {
+          "0": 0.338939308,
+          "1": 0.4313773011,
+          "2": 0.1903135152,
+          "3": 0.0362501934,
+          "4": 0.0030208494,
+          "5": 9.79735e-05,
+          "6": 8.594e-07
+        },
+        "one_in": 25,
+        "p_jackpot_tier": 8.594e-07,
+        "p_paying": 0.0393698757,
+        "ticket_size": 7
+      },
+      "status": "ran",
+      "system_size": 7,
+      "ticket_sizes": [
+        7
+      ],
+      "tickets": [
+        [
+          1,
+          2,
+          10,
+          11,
+          13,
+          25,
+          41
+        ],
+        [
+          1,
+          5,
+          7,
+          8,
+          9,
+          26,
+          31
+        ],
+        [
+          1,
+          18,
+          22,
+          23,
+          31,
+          44,
+          45
+        ],
+        [
+          3,
+          14,
+          17,
+          24,
+          28,
+          31,
+          36
+        ],
+        [
+          6,
+          14,
+          19,
+          30,
+          33,
+          38,
+          39
+        ]
+      ],
+      "tickets_in_set": 5,
+      "top_tier_hits": [
+        6
+      ],
+      "variants": {
+        "all": {
+          "candidates": [
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 2,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 3,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 4,
+                  "source": "vedic_astrology"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                5,
+                7,
+                14,
+                27
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "ensemble_equal"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                6,
+                7,
+                8,
+                16
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "ensemble_equal"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                7,
+                8,
+                14,
+                15
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "ensemble_equal"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                5,
+                6,
+                7,
+                8,
+                36
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "ensemble_equal"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                6,
+                7,
+                8,
+                11,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 2,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 3,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 4,
+                  "source": "pythagorean"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                6,
+                8,
+                9,
+                11,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                8,
+                10,
+                11,
+                27,
+                37
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                10,
+                11,
+                13,
+                17,
+                30
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                10,
+                11,
+                13,
+                25,
+                41
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                10,
+                11,
+                22,
+                36,
+                38
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                1,
+                4,
+                7,
+                14,
+                16,
+                19,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 2,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 3,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 4,
+                  "source": "meihua"
+                }
+              ],
+              "ticket": [
+                1,
+                5,
+                7,
+                8,
+                9,
+                26,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                1,
+                18,
+                22,
+                23,
+                31,
+                44,
+                45
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "chaldean"
+                },
+                {
+                  "reading": 2,
+                  "source": "chaldean"
+                },
+                {
+                  "reading": 3,
+                  "source": "chaldean"
+                },
+                {
+                  "reading": 4,
+                  "source": "chaldean"
+                }
+              ],
+              "ticket": [
+                2,
+                4,
+                6,
+                8,
+                17,
+                24,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                2,
+                7,
+                9,
+                10,
+                11,
+                17,
+                29
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                2,
+                7,
+                11,
+                13,
+                18,
+                36,
+                40
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 2,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 3,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 4,
+                  "source": "western_astrology"
+                }
+              ],
+              "ticket": [
+                2,
+                16,
+                17,
+                29,
+                36,
+                38,
+                39
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                3,
+                14,
+                17,
+                24,
+                28,
+                31,
+                36
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                5,
+                6,
+                21,
+                24,
+                28,
+                31,
+                33
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                5,
+                14,
+                19,
+                24,
+                28,
+                31,
+                34
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 2,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 3,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 4,
+                  "source": "gematria"
+                }
+              ],
+              "ticket": [
+                6,
+                14,
+                19,
+                30,
+                33,
+                38,
+                39
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                6,
+                16,
+                20,
+                23,
+                24,
+                26,
+                31
+              ]
+            }
+          ],
+          "distribution_of_best_ticket_hits": {
+            "0": 0.0015194486,
+            "1": 0.2402899426,
+            "2": 0.5706259991,
+            "3": 0.1719784753,
+            "4": 0.0150919699,
+            "5": 0.0004898675,
+            "6": 4.2971e-06
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.8124353903,
+            "1": 0.1784081394,
+            "2": 0.0090287855,
+            "3": 0.0001270709,
+            "4": 6.139e-07
+          },
+          "expected_best_ticket_hits": 1.960320366,
+          "expected_total_hits": 4.6666666667,
+          "max_overlap": 2,
+          "min_overlap": 0,
+          "n_tickets": 5,
+          "one_in_at_least_one_paying": 5,
+          "p_at_least_one_jackpot_tier": 4.2971e-06,
+          "p_at_least_one_paying": 0.1875646097,
+          "p_nothing_at_all": 0.8124353903,
+          "pairwise_overlaps": [
+            2,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "selection": {
+            "candidates": 22,
+            "exactly_evaluated": 200,
+            "neutral_overlap": 1.0888888889,
+            "objective": "P(at least one ticket in a paying tier), exact; tie-break: expected hits of the best ticket, then SHA-256",
+            "overlap_filter": [
+              0,
+              2
+            ],
+            "overlap_filter_relaxed": false,
+            "sources": [
+              [
+                {
+                  "reading": 1,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 2,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 3,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 4,
+                  "source": "meihua"
+                }
+              ],
+              [
+                {
+                  "reading": 1,
+                  "source": "iching"
+                }
+              ],
+              [
+                {
+                  "reading": 2,
+                  "source": "iching"
+                }
+              ],
+              [
+                {
+                  "reading": 2,
+                  "source": "lenormand"
+                }
+              ],
+              [
+                {
+                  "reading": 1,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 2,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 3,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 4,
+                  "source": "gematria"
+                }
+              ]
+            ],
+            "subsets_considered": 827,
+            "subsets_rejected_by_overlap_filter": 25507,
+            "subsets_total": 26334
+          },
+          "ticket_sizes": [
+            7
+          ],
+          "tickets": [
+            [
+              1,
+              5,
+              7,
+              8,
+              9,
+              26,
+              31
+            ],
+            [
+              1,
+              18,
+              22,
+              23,
+              31,
+              44,
+              45
+            ],
+            [
+              2,
+              7,
+              11,
+              13,
+              18,
+              36,
+              40
+            ],
+            [
+              3,
+              14,
+              17,
+              24,
+              28,
+              31,
+              36
+            ],
+            [
+              6,
+              14,
+              19,
+              30,
+              33,
+              38,
+              39
+            ]
+          ],
+          "top_tier_hits": [
+            6
+          ]
+        },
+        "methods_only": {
+          "candidates": [
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 2,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 3,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 4,
+                  "source": "vedic_astrology"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                5,
+                7,
+                14,
+                27
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 2,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 3,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 4,
+                  "source": "pythagorean"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                6,
+                8,
+                9,
+                11,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                8,
+                10,
+                11,
+                27,
+                37
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                10,
+                11,
+                13,
+                17,
+                30
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                10,
+                11,
+                13,
+                25,
+                41
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                10,
+                11,
+                22,
+                36,
+                38
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                1,
+                4,
+                7,
+                14,
+                16,
+                19,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 2,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 3,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 4,
+                  "source": "meihua"
+                }
+              ],
+              "ticket": [
+                1,
+                5,
+                7,
+                8,
+                9,
+                26,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                1,
+                18,
+                22,
+                23,
+                31,
+                44,
+                45
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "chaldean"
+                },
+                {
+                  "reading": 2,
+                  "source": "chaldean"
+                },
+                {
+                  "reading": 3,
+                  "source": "chaldean"
+                },
+                {
+                  "reading": 4,
+                  "source": "chaldean"
+                }
+              ],
+              "ticket": [
+                2,
+                4,
+                6,
+                8,
+                17,
+                24,
+                31
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                2,
+                7,
+                9,
+                10,
+                11,
+                17,
+                29
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                2,
+                7,
+                11,
+                13,
+                18,
+                36,
+                40
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 2,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 3,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 4,
+                  "source": "western_astrology"
+                }
+              ],
+              "ticket": [
+                2,
+                16,
+                17,
+                29,
+                36,
+                38,
+                39
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                3,
+                14,
+                17,
+                24,
+                28,
+                31,
+                36
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                5,
+                6,
+                21,
+                24,
+                28,
+                31,
+                33
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                5,
+                14,
+                19,
+                24,
+                28,
+                31,
+                34
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 2,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 3,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 4,
+                  "source": "gematria"
+                }
+              ],
+              "ticket": [
+                6,
+                14,
+                19,
+                30,
+                33,
+                38,
+                39
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                6,
+                16,
+                20,
+                23,
+                24,
+                26,
+                31
+              ]
+            }
+          ],
+          "distribution_of_best_ticket_hits": {
+            "0": 0.0006144829,
+            "1": 0.2267552357,
+            "2": 0.5842461566,
+            "3": 0.1727979904,
+            "4": 0.0150919699,
+            "5": 0.0004898675,
+            "6": 4.2971e-06
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.8116158751,
+            "1": 0.1800109514,
+            "2": 0.0082810931,
+            "3": 9.20804e-05
+          },
+          "expected_best_ticket_hits": 1.9764845195,
+          "expected_total_hits": 4.6666666667,
+          "max_overlap": 2,
+          "min_overlap": 0,
+          "n_tickets": 5,
+          "one_in_at_least_one_paying": 5,
+          "p_at_least_one_jackpot_tier": 4.2971e-06,
+          "p_at_least_one_paying": 0.1883841249,
+          "p_nothing_at_all": 0.8116158751,
+          "pairwise_overlaps": [
+            1,
+            1,
+            0,
+            0,
+            2,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "selection": {
+            "candidates": 18,
+            "exactly_evaluated": 200,
+            "neutral_overlap": 1.0888888889,
+            "objective": "P(at least one ticket in a paying tier), exact; tie-break: expected hits of the best ticket, then SHA-256",
+            "overlap_filter": [
+              0,
+              2
+            ],
+            "overlap_filter_relaxed": false,
+            "sources": [
+              [
+                {
+                  "reading": 2,
+                  "source": "tarot"
+                }
+              ],
+              [
+                {
+                  "reading": 1,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 2,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 3,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 4,
+                  "source": "meihua"
+                }
+              ],
+              [
+                {
+                  "reading": 1,
+                  "source": "iching"
+                }
+              ],
+              [
+                {
+                  "reading": 2,
+                  "source": "lenormand"
+                }
+              ],
+              [
+                {
+                  "reading": 1,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 2,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 3,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 4,
+                  "source": "gematria"
+                }
+              ]
+            ],
+            "subsets_considered": 548,
+            "subsets_rejected_by_overlap_filter": 8020,
+            "subsets_total": 8568
+          },
+          "ticket_sizes": [
+            7
+          ],
+          "tickets": [
+            [
+              1,
+              2,
+              10,
+              11,
+              13,
+              25,
+              41
+            ],
+            [
+              1,
+              5,
+              7,
+              8,
+              9,
+              26,
+              31
+            ],
+            [
+              1,
+              18,
+              22,
+              23,
+              31,
+              44,
+              45
+            ],
+            [
+              3,
+              14,
+              17,
+              24,
+              28,
+              31,
+              36
+            ],
+            [
+              6,
+              14,
+              19,
+              30,
+              33,
+              38,
+              39
+            ]
+          ],
+          "top_tier_hits": [
+            6
+          ]
+        }
+      },
+      "variants_not_run": {
+        "ensemble_only": "only 4 distinct candidates, need 5"
+      }
+    },
     "sve_ili_nista": {
+      "best_variant": "all",
       "candidates": [
         {
           "sources": [
@@ -1514,6 +3844,9 @@
             5,
             5
           ],
+          "ticket_sizes": [
+            11
+          ],
           "tickets": [
             [
               1,
@@ -1567,6 +3900,10 @@
               20,
               22
             ]
+          ],
+          "top_tier_hits": [
+            0,
+            11
           ]
         },
         "readings_ensembles": {
@@ -1605,6 +3942,9 @@
             8,
             9,
             8
+          ],
+          "ticket_sizes": [
+            11
           ],
           "tickets": [
             [
@@ -1659,6 +3999,10 @@
               12,
               14
             ]
+          ],
+          "top_tier_hits": [
+            0,
+            11
           ]
         },
         "same_ticket_m_times": {
@@ -1697,59 +4041,162 @@
             11,
             11
           ],
+          "ticket_sizes": [
+            11
+          ],
           "tickets": [
             [
               1,
               2,
+              3,
               4,
               5,
-              6,
               7,
-              8,
               9,
-              10,
               11,
-              18
+              12,
+              14,
+              20
             ],
             [
               1,
               2,
+              3,
               4,
               5,
-              6,
               7,
-              8,
               9,
-              10,
               11,
-              18
+              12,
+              14,
+              20
             ],
             [
               1,
               2,
+              3,
               4,
               5,
-              6,
               7,
-              8,
               9,
-              10,
               11,
-              18
+              12,
+              14,
+              20
             ],
             [
               1,
               2,
+              3,
               4,
               5,
-              6,
               7,
-              8,
               9,
-              10,
               11,
-              18
+              12,
+              14,
+              20
             ]
+          ],
+          "top_tier_hits": [
+            0,
+            11
+          ]
+        },
+        "variant_all": {
+          "distribution_of_best_ticket_hits": {
+            "10": 0.0006861044,
+            "11": 5.6703e-06,
+            "4": 0.0005897096,
+            "5": 0.0542022477,
+            "6": 0.3458930131,
+            "7": 0.4333117863,
+            "8": 0.1481588587,
+            "9": 0.01715261
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.6852992209,
+            "1": 0.2858503725,
+            "2": 0.0279658422,
+            "3": 0.0008845644
+          },
+          "expected_best_ticket_hits": 6.7284784359,
+          "expected_total_hits": 22.0,
+          "max_overlap": 6,
+          "min_overlap": 5,
+          "n_tickets": 4,
+          "one_in_at_least_one_paying": 3,
+          "p_at_least_one_jackpot_tier": 1.13406e-05,
+          "p_at_least_one_paying": 0.3147007791,
+          "p_nothing_at_all": 0.6852992209,
+          "pairwise_overlaps": [
+            5,
+            5,
+            6,
+            6,
+            5,
+            5
+          ],
+          "ticket_sizes": [
+            11
+          ],
+          "tickets": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5,
+              7,
+              9,
+              11,
+              12,
+              14,
+              20
+            ],
+            [
+              1,
+              3,
+              4,
+              8,
+              9,
+              10,
+              12,
+              15,
+              16,
+              18,
+              22
+            ],
+            [
+              1,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              13,
+              18,
+              19
+            ],
+            [
+              2,
+              4,
+              6,
+              7,
+              8,
+              9,
+              11,
+              15,
+              17,
+              20,
+              22
+            ]
+          ],
+          "top_tier_hits": [
+            0,
+            11
           ]
         }
       },
@@ -1857,9 +4304,11 @@
           ]
         ],
         "subsets_considered": 16870,
-        "subsets_rejected_by_overlap_filter": 10535
+        "subsets_rejected_by_overlap_filter": 10535,
+        "subsets_total": 27405
       },
       "single_ticket": {
+        "expected_hits": 5.5,
         "hit_pmf": {
           "0": 1.4176e-06,
           "1": 0.0001715261,
@@ -1876,9 +4325,14 @@
         },
         "one_in": 12,
         "p_jackpot_tier": 2.8351e-06,
-        "p_paying": 0.0861089375
+        "p_paying": 0.0861089375,
+        "ticket_size": 11
       },
       "status": "ran",
+      "system_size": null,
+      "ticket_sizes": [
+        11
+      ],
       "tickets": [
         [
           1,
@@ -1932,7 +4386,863 @@
           20,
           22
         ]
-      ]
+      ],
+      "tickets_in_set": 4,
+      "top_tier_hits": [
+        0,
+        11
+      ],
+      "variants": {
+        "all": {
+          "candidates": [
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 2,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 3,
+                  "source": "pythagorean"
+                },
+                {
+                  "reading": 4,
+                  "source": "pythagorean"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "ensemble_equal"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                15
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 2,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 3,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 4,
+                  "source": "vedic_astrology"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                7,
+                9,
+                11,
+                12,
+                14,
+                20
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "ensemble_equal"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                4,
+                7,
+                8,
+                9,
+                10,
+                11,
+                14,
+                18
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "ensemble_train_weighted_sve_ili_nista"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                4,
+                7,
+                8,
+                9,
+                10,
+                11,
+                15,
+                16
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                4,
+                7,
+                8,
+                9,
+                15,
+                16,
+                20,
+                21
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "ensemble_train_weighted_sve_ili_nista"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                4,
+                8,
+                9,
+                10,
+                11,
+                14,
+                18,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                4,
+                10,
+                11,
+                12,
+                13,
+                14,
+                18,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                6,
+                7,
+                8,
+                10,
+                11,
+                13,
+                15,
+                22
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                3,
+                7,
+                9,
+                13,
+                16,
+                17,
+                18,
+                19,
+                22
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "ensemble_equal"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                18
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                5,
+                6,
+                7,
+                9,
+                11,
+                13,
+                14,
+                21
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                5,
+                6,
+                7,
+                9,
+                11,
+                13,
+                16,
+                20
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "ensemble_equal"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                5,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                14
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "ensemble_train_weighted_sve_ili_nista"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                7,
+                8,
+                9,
+                10,
+                11,
+                17,
+                18,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                7,
+                8,
+                10,
+                11,
+                12,
+                13,
+                18,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "ensemble_train_weighted_sve_ili_nista"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                4,
+                8,
+                9,
+                10,
+                11,
+                12,
+                14,
+                15,
+                18
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                6,
+                8,
+                9,
+                10,
+                11,
+                12,
+                14,
+                17,
+                21
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "tarot"
+                }
+              ],
+              "ticket": [
+                1,
+                2,
+                8,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                22
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 2,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 3,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 4,
+                  "source": "gematria"
+                }
+              ],
+              "ticket": [
+                1,
+                3,
+                4,
+                8,
+                9,
+                10,
+                12,
+                15,
+                16,
+                18,
+                22
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "meihua"
+                }
+              ],
+              "ticket": [
+                1,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                13,
+                18,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 2,
+                  "source": "meihua"
+                },
+                {
+                  "reading": 3,
+                  "source": "meihua"
+                }
+              ],
+              "ticket": [
+                1,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                16,
+                18,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 2,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 3,
+                  "source": "western_astrology"
+                },
+                {
+                  "reading": 4,
+                  "source": "western_astrology"
+                }
+              ],
+              "ticket": [
+                1,
+                4,
+                5,
+                8,
+                9,
+                10,
+                13,
+                14,
+                15,
+                18,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                2,
+                3,
+                4,
+                6,
+                7,
+                9,
+                11,
+                12,
+                14,
+                17,
+                18
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "iching"
+                }
+              ],
+              "ticket": [
+                2,
+                3,
+                7,
+                8,
+                11,
+                13,
+                14,
+                16,
+                17,
+                18,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "lenormand"
+                }
+              ],
+              "ticket": [
+                2,
+                4,
+                5,
+                6,
+                8,
+                9,
+                10,
+                11,
+                12,
+                14,
+                19
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 1,
+                  "source": "chaldean"
+                }
+              ],
+              "ticket": [
+                2,
+                4,
+                6,
+                7,
+                8,
+                9,
+                11,
+                15,
+                17,
+                20,
+                21
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 3,
+                  "source": "chaldean"
+                }
+              ],
+              "ticket": [
+                2,
+                4,
+                6,
+                7,
+                8,
+                9,
+                11,
+                15,
+                17,
+                20,
+                22
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 2,
+                  "source": "chaldean"
+                }
+              ],
+              "ticket": [
+                2,
+                4,
+                6,
+                7,
+                8,
+                9,
+                13,
+                15,
+                17,
+                19,
+                20
+              ]
+            },
+            {
+              "sources": [
+                {
+                  "reading": 4,
+                  "source": "chaldean"
+                }
+              ],
+              "ticket": [
+                2,
+                4,
+                6,
+                7,
+                8,
+                9,
+                14,
+                15,
+                17,
+                18,
+                20
+              ]
+            }
+          ],
+          "distribution_of_best_ticket_hits": {
+            "10": 0.0006861044,
+            "11": 5.6703e-06,
+            "4": 0.0005897096,
+            "5": 0.0542022477,
+            "6": 0.3458930131,
+            "7": 0.4333117863,
+            "8": 0.1481588587,
+            "9": 0.01715261
+          },
+          "distribution_of_winning_tickets": {
+            "0": 0.6852992209,
+            "1": 0.2858503725,
+            "2": 0.0279658422,
+            "3": 0.0008845644
+          },
+          "expected_best_ticket_hits": 6.7284784359,
+          "expected_total_hits": 22.0,
+          "max_overlap": 6,
+          "min_overlap": 5,
+          "n_tickets": 4,
+          "one_in_at_least_one_paying": 3,
+          "p_at_least_one_jackpot_tier": 1.13406e-05,
+          "p_at_least_one_paying": 0.3147007791,
+          "p_nothing_at_all": 0.6852992209,
+          "pairwise_overlaps": [
+            5,
+            5,
+            6,
+            6,
+            5,
+            5
+          ],
+          "selection": {
+            "candidates": 30,
+            "exactly_evaluated": 200,
+            "neutral_overlap": 5.5,
+            "objective": "P(at least one ticket in a paying tier), exact; tie-break: expected hits of the best ticket, then SHA-256",
+            "overlap_filter": [
+              3,
+              8
+            ],
+            "overlap_filter_relaxed": false,
+            "sources": [
+              [
+                {
+                  "reading": 1,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 2,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 3,
+                  "source": "vedic_astrology"
+                },
+                {
+                  "reading": 4,
+                  "source": "vedic_astrology"
+                }
+              ],
+              [
+                {
+                  "reading": 1,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 2,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 3,
+                  "source": "gematria"
+                },
+                {
+                  "reading": 4,
+                  "source": "gematria"
+                }
+              ],
+              [
+                {
+                  "reading": 4,
+                  "source": "meihua"
+                }
+              ],
+              [
+                {
+                  "reading": 3,
+                  "source": "chaldean"
+                }
+              ]
+            ],
+            "subsets_considered": 16870,
+            "subsets_rejected_by_overlap_filter": 10535,
+            "subsets_total": 27405
+          },
+          "ticket_sizes": [
+            11
+          ],
+          "tickets": [
+            [
+              1,
+              2,
+              3,
+              4,
+              5,
+              7,
+              9,
+              11,
+              12,
+              14,
+              20
+            ],
+            [
+              1,
+              3,
+              4,
+              8,
+              9,
+              10,
+              12,
+              15,
+              16,
+              18,
+              22
+            ],
+            [
+              1,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              13,
+              18,
+              19
+            ],
+            [
+              2,
+              4,
+              6,
+              7,
+              8,
+              9,
+              11,
+              15,
+              17,
+              20,
+              22
+            ]
+          ],
+          "top_tier_hits": [
+            0,
+            11
+          ]
+        }
+      },
+      "variants_not_run": {}
     }
   },
   "readings": [
@@ -2315,6 +5625,178 @@
                   0,
                   4,
                   3
+                ]
+              },
+              "status": "ran"
+            }
+          }
+        },
+        "loto": {
+          "ensembles": {
+            "ensemble_equal": {
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  5,
+                  6,
+                  7,
+                  8
+                ]
+              }
+            }
+          },
+          "label": "Loto 6/45",
+          "methods": {
+            "chaldean": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Kaldejska numerologija (Cheiro)",
+              "picks": {
+                "main": [
+                  2,
+                  6,
+                  8,
+                  17,
+                  24,
+                  31
+                ]
+              },
+              "status": "partial"
+            },
+            "gematria": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna)",
+              "picks": {
+                "main": [
+                  6,
+                  19,
+                  30,
+                  33,
+                  38,
+                  39
+                ]
+              },
+              "status": "partial"
+            },
+            "iching": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "I Ching (simulirano bacanje stabljika stolisnika)",
+              "picks": {
+                "main": [
+                  1,
+                  18,
+                  22,
+                  23,
+                  31,
+                  44
+                ]
+              },
+              "status": "ran"
+            },
+            "lenormand": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Lenormand (36 karata, Grand Tableau)",
+              "picks": {
+                "main": [
+                  5,
+                  6,
+                  21,
+                  24,
+                  28,
+                  31
+                ]
+              },
+              "status": "ran"
+            },
+            "meihua": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Meihua Yishu (梅花易數, vremensko bacanje)",
+              "picks": {
+                "main": [
+                  1,
+                  5,
+                  7,
+                  8,
+                  9,
+                  26
+                ]
+              },
+              "status": "ran"
+            },
+            "pythagorean": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Pitagorejska numerologija",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  6,
+                  8,
+                  9,
+                  11
+                ]
+              },
+              "status": "partial"
+            },
+            "tarot": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Tarot (Rider-Waite-Smith, Greerine rođendanske karte)",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  10,
+                  11,
+                  13,
+                  17
+                ]
+              },
+              "status": "ran"
+            },
+            "vedic_astrology": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Vedska astrologija (Jyotish, Panchanga, Vimshottari)",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  4,
+                  7,
+                  14,
+                  27
+                ]
+              },
+              "status": "ran"
+            },
+            "western_astrology": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Zapadna (tropska) astrologija",
+              "picks": {
+                "main": [
+                  2,
+                  16,
+                  29,
+                  36,
+                  38,
+                  39
                 ]
               },
               "status": "ran"
@@ -2949,6 +6431,178 @@
             }
           }
         },
+        "loto": {
+          "ensembles": {
+            "ensemble_equal": {
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  7,
+                  8,
+                  14,
+                  15
+                ]
+              }
+            }
+          },
+          "label": "Loto 6/45",
+          "methods": {
+            "chaldean": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Kaldejska numerologija (Cheiro)",
+              "picks": {
+                "main": [
+                  2,
+                  6,
+                  8,
+                  17,
+                  24,
+                  31
+                ]
+              },
+              "status": "partial"
+            },
+            "gematria": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna)",
+              "picks": {
+                "main": [
+                  6,
+                  19,
+                  30,
+                  33,
+                  38,
+                  39
+                ]
+              },
+              "status": "partial"
+            },
+            "iching": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "I Ching (simulirano bacanje stabljika stolisnika)",
+              "picks": {
+                "main": [
+                  2,
+                  7,
+                  11,
+                  13,
+                  18,
+                  36
+                ]
+              },
+              "status": "ran"
+            },
+            "lenormand": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Lenormand (36 karata, Grand Tableau)",
+              "picks": {
+                "main": [
+                  3,
+                  14,
+                  17,
+                  24,
+                  31,
+                  36
+                ]
+              },
+              "status": "ran"
+            },
+            "meihua": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Meihua Yishu (梅花易數, vremensko bacanje)",
+              "picks": {
+                "main": [
+                  1,
+                  5,
+                  7,
+                  8,
+                  9,
+                  26
+                ]
+              },
+              "status": "ran"
+            },
+            "pythagorean": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Pitagorejska numerologija",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  6,
+                  8,
+                  9,
+                  11
+                ]
+              },
+              "status": "partial"
+            },
+            "tarot": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Tarot (Rider-Waite-Smith, Greerine rođendanske karte)",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  10,
+                  11,
+                  13,
+                  25
+                ]
+              },
+              "status": "ran"
+            },
+            "vedic_astrology": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Vedska astrologija (Jyotish, Panchanga, Vimshottari)",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  4,
+                  7,
+                  14,
+                  27
+                ]
+              },
+              "status": "ran"
+            },
+            "western_astrology": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Zapadna (tropska) astrologija",
+              "picks": {
+                "main": [
+                  2,
+                  16,
+                  29,
+                  36,
+                  38,
+                  39
+                ]
+              },
+              "status": "ran"
+            }
+          }
+        },
         "sve_ili_nista": {
           "ensembles": {
             "ensemble_equal": {
@@ -3571,6 +7225,178 @@
                   0,
                   4,
                   3
+                ]
+              },
+              "status": "ran"
+            }
+          }
+        },
+        "loto": {
+          "ensembles": {
+            "ensemble_equal": {
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  4,
+                  6,
+                  7,
+                  8
+                ]
+              }
+            }
+          },
+          "label": "Loto 6/45",
+          "methods": {
+            "chaldean": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Kaldejska numerologija (Cheiro)",
+              "picks": {
+                "main": [
+                  2,
+                  6,
+                  8,
+                  17,
+                  24,
+                  31
+                ]
+              },
+              "status": "partial"
+            },
+            "gematria": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna)",
+              "picks": {
+                "main": [
+                  6,
+                  19,
+                  30,
+                  33,
+                  38,
+                  39
+                ]
+              },
+              "status": "partial"
+            },
+            "iching": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "I Ching (simulirano bacanje stabljika stolisnika)",
+              "picks": {
+                "main": [
+                  1,
+                  4,
+                  7,
+                  16,
+                  19,
+                  31
+                ]
+              },
+              "status": "ran"
+            },
+            "lenormand": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Lenormand (36 karata, Grand Tableau)",
+              "picks": {
+                "main": [
+                  6,
+                  16,
+                  23,
+                  24,
+                  26,
+                  31
+                ]
+              },
+              "status": "ran"
+            },
+            "meihua": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Meihua Yishu (梅花易數, vremensko bacanje)",
+              "picks": {
+                "main": [
+                  1,
+                  5,
+                  7,
+                  8,
+                  9,
+                  26
+                ]
+              },
+              "status": "ran"
+            },
+            "pythagorean": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Pitagorejska numerologija",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  6,
+                  8,
+                  9,
+                  11
+                ]
+              },
+              "status": "partial"
+            },
+            "tarot": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Tarot (Rider-Waite-Smith, Greerine rođendanske karte)",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  8,
+                  10,
+                  11,
+                  27
+                ]
+              },
+              "status": "ran"
+            },
+            "vedic_astrology": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Vedska astrologija (Jyotish, Panchanga, Vimshottari)",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  4,
+                  7,
+                  14,
+                  27
+                ]
+              },
+              "status": "ran"
+            },
+            "western_astrology": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Zapadna (tropska) astrologija",
+              "picks": {
+                "main": [
+                  2,
+                  16,
+                  29,
+                  36,
+                  38,
+                  39
                 ]
               },
               "status": "ran"
@@ -4205,6 +8031,178 @@
             }
           }
         },
+        "loto": {
+          "ensembles": {
+            "ensemble_equal": {
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  6,
+                  7,
+                  8,
+                  31
+                ]
+              }
+            }
+          },
+          "label": "Loto 6/45",
+          "methods": {
+            "chaldean": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Kaldejska numerologija (Cheiro)",
+              "picks": {
+                "main": [
+                  2,
+                  6,
+                  8,
+                  17,
+                  24,
+                  31
+                ]
+              },
+              "status": "partial"
+            },
+            "gematria": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Gematrija (hebrejska, grčka, latinska/Agrippa, engleska ordinalna)",
+              "picks": {
+                "main": [
+                  6,
+                  19,
+                  30,
+                  33,
+                  38,
+                  39
+                ]
+              },
+              "status": "partial"
+            },
+            "iching": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "I Ching (simulirano bacanje stabljika stolisnika)",
+              "picks": {
+                "main": [
+                  7,
+                  9,
+                  10,
+                  11,
+                  17,
+                  29
+                ]
+              },
+              "status": "ran"
+            },
+            "lenormand": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Lenormand (36 karata, Grand Tableau)",
+              "picks": {
+                "main": [
+                  5,
+                  14,
+                  24,
+                  28,
+                  31,
+                  34
+                ]
+              },
+              "status": "ran"
+            },
+            "meihua": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Meihua Yishu (梅花易數, vremensko bacanje)",
+              "picks": {
+                "main": [
+                  1,
+                  5,
+                  7,
+                  8,
+                  9,
+                  26
+                ]
+              },
+              "status": "ran"
+            },
+            "pythagorean": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Pitagorejska numerologija",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  6,
+                  8,
+                  9,
+                  11
+                ]
+              },
+              "status": "partial"
+            },
+            "tarot": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Tarot (Rider-Waite-Smith, Greerine rođendanske karte)",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  10,
+                  11,
+                  22,
+                  38
+                ]
+              },
+              "status": "ran"
+            },
+            "vedic_astrology": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Vedska astrologija (Jyotish, Panchanga, Vimshottari)",
+              "picks": {
+                "main": [
+                  1,
+                  2,
+                  4,
+                  7,
+                  14,
+                  27
+                ]
+              },
+              "status": "ran"
+            },
+            "western_astrology": {
+              "derived_from_method": {
+                "main": 6
+              },
+              "label": "Zapadna (tropska) astrologija",
+              "picks": {
+                "main": [
+                  2,
+                  16,
+                  29,
+                  36,
+                  38,
+                  39
+                ]
+              },
+              "status": "ran"
+            }
+          }
+        },
         "sve_ili_nista": {
           "ensembles": {
             "ensemble_equal": {
@@ -4579,6 +8577,68 @@
             8,
             8,
             1
+          ]
+        },
+        "reading": 4,
+        "seed": 20261026,
+        "strategy": "ensemble_equal"
+      }
+    ],
+    "loto": [
+      {
+        "picks": {
+          "main": [
+            1,
+            2,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        "reading": 1,
+        "seed": 20261023,
+        "strategy": "ensemble_equal"
+      },
+      {
+        "picks": {
+          "main": [
+            1,
+            2,
+            7,
+            8,
+            14,
+            15
+          ]
+        },
+        "reading": 2,
+        "seed": 20261024,
+        "strategy": "ensemble_equal"
+      },
+      {
+        "picks": {
+          "main": [
+            1,
+            2,
+            4,
+            6,
+            7,
+            8
+          ]
+        },
+        "reading": 3,
+        "seed": 20261025,
+        "strategy": "ensemble_equal"
+      },
+      {
+        "picks": {
+          "main": [
+            1,
+            2,
+            6,
+            7,
+            8,
+            31
           ]
         },
         "reading": 4,
