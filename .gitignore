@@ -26,3 +26,10 @@ __pycache__/
 
 # Claude Code local state (agent worktrees, settings)
 .claude/
+
+# loto: keš i privremeno
+loto/out/all_draws_masks.npy
+loto/out/_fallback/
+loto/out/_dryrun.log
+loto/ezoterija/__pycache__/
+loto/__pycache__/

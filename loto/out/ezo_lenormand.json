@@ -1,0 +1,981 @@
+{
+ "metoda": "Lenormand",
+ "slug": "lenormand",
+ "postupak": "# Lenormand — Grand Tableau za Loto 6/45, četvrtak 29.10.2026. u 20:00 CET (sat Jupitera), Zagreb\n\n## 1. Metoda\n\nPetit Lenormand, 36 karata: 1 Jahač, 2 Djetelina, 3 Brod, 4 Kuća, 5 Stablo, 6 Oblaci, 7 Zmija, 8 Lijes, 9 Buket, 10 Kosa, 11 Bič, 12 Ptice, 13 Dijete, 14 Lisica, 15 Medvjed, 16 Zvijezde, 17 Roda, 18 Pas, 19 Toranj, 20 Vrt, 21 Planina, 22 Raskrižje, 23 Miševi, 24 Srce, 25 Prsten, 26 Knjiga, 27 Pismo, 28 Gospodin, 29 Gospođa, 30 Ljiljan, 31 Sunce, 32 Mjesec, 33 Ključ, 34 Ribe, 35 Sidro, 36 Križ.\n\nVelika slika 4×9: položaj p (1–36, red po red) je kuća karte p (kuća 1 = Jahač … kuća 36 = Križ). Značajne kuće (prioritet): 34 Ribe = novac, 2 Djetelina = sreća, 31 Sunce = uspjeh, 16 Zvijezde = nada, 33 Ključ = rješenje, 25 Prsten = ugovor, 35 Sidro = stabilnost.\n\n## 2. Pravila izvedbe\n\n- **(a) susjedni zbrojevi** (referentno pravilo iz korisnikove skripte, deck LEN): d[i]+d[i+1], i = 0…34; zbroj > 45 → −45; duplikat se preskače; prvih 6.\n- **(b) kuće**: karta c u značajnoj kući h daje broj c i zbroj c+h (> 45 → −45). (b1) samo brojevi karata, (b2) samo zbrojevi, (b3) naizmjence karta/zbroj redom Ribe → Djetelina → Sunce → Zvijezde → Ključ → Prsten → Sidro, dok nema 6 različitih.\n- **(c) kvadrat 3×3** oko Riba (34) i oko Djeteline (2): središte, pa susjedi redoslijedom čitanja (gore-lijevo → dolje-desno), brojevi karata; na rubu/kutu (< 6 karata) dopuna zbrojevima središte+susjed.\n- **Miješanje**: čitanje i → random.Random(20261029 + i).shuffle([1..36]), i = 0…99. Nikad SystemRandom; isti datum → iste slike.\n\n## 3. Rangiranje\n\nOcjena čitanja = Σ težina·centralnost za Djetelina (1.0), Ribe (1.0), Sunce (0.8), Zvijezde (0.7), Ključ (0.7); centralnost = 1 − d/d_max, d = euklidska udaljenost od središta (red 2.5, stupac 5.0), d_max = 4.272. Bonus +0.15 ključna karta u značajnoj kući, +0.1 po paru ključnih karata koje se dodiruju.\nKandidat = ocjena čitanja × težina izvedbe: susjedni zbrojevi 1.00, naizmjence karta/zbroj (Ribe→Djetelina→Sunce…) 0.92, karte u značajnim kućama 0.88, karta+kuća 0.84, kvadrat 3×3 oko Riba 0.80, kvadrat 3×3 oko Djeteline 0.76. Nerješeno → manji i, pa redoslijed izvedbi. Raznolikost: kandidat koji s već prihvaćenim dijeli 5+ brojeva se preskače.\n\n## 4. Prvih 10 velikih slika (i = 0 … 9) — potpuni izvod\n\n### Velika slika #0 (seed 20261029) — ocjena 2.507\n\nRedoslijed špila: 20 1 36 16 11 7 19 12 18 27 13 4 2 31 32 28 21 17 8 25 5 26 9 3 14 33 34 22 24 6 10 30 23 15 29 35\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 20 Vrt (kuća 1) | 1 Jahač (kuća 2) | 36 Križ (kuća 3) | **16 Zvijezde** (kuća 4) | 11 Bič (kuća 5) | 7 Zmija (kuća 6) | 19 Toranj (kuća 7) | 12 Ptice (kuća 8) | 18 Pas (kuća 9) |\n| red 2 | 27 Pismo (kuća 10) | 13 Dijete (kuća 11) | 4 Kuća (kuća 12) | **2 Djetelina** (kuća 13) | **31 Sunce** (kuća 14) | 32 Mjesec (kuća 15) | 28 Gospodin (kuća 16) | 21 Planina (kuća 17) | 17 Roda (kuća 18) |\n| red 3 | 8 Lijes (kuća 19) | 25 Prsten (kuća 20) | 5 Stablo (kuća 21) | 26 Knjiga (kuća 22) | 9 Buket (kuća 23) | 3 Brod (kuća 24) | 14 Lisica (kuća 25) | **33 Ključ** (kuća 26) | **34 Ribe** (kuća 27) |\n| red 4 | 22 Raskrižje (kuća 28) | 24 Srce (kuća 29) | 6 Oblaci (kuća 30) | 10 Kosa (kuća 31) | 30 Ljiljan (kuća 32) | 23 Miševi (kuća 33) | 15 Medvjed (kuća 34) | 29 Gospođa (kuća 35) | 35 Sidro (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 13 (red 2, st. 4), centralnost 0.74 × 1.0 = 0.74\n- 34 Ribe: položaj 27 (red 3, st. 9), centralnost 0.06 × 1.0 = 0.06\n- 31 Sunce: položaj 14 (red 2, st. 5), centralnost 0.88 × 0.8 = 0.71\n- 16 Zvijezde: položaj 4 (red 1, st. 4), centralnost 0.58 × 0.7 = 0.40\n- 33 Ključ: položaj 26 (red 3, st. 8), centralnost 0.29 × 0.7 = 0.20\n- Djetelina i Zvijezde se dodiruju +0.10\n- Djetelina i Sunce se dodiruju +0.10\n- Zvijezde i Sunce se dodiruju +0.10\n- Ključ i Ribe se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 07 · 18 · 21 · 26 · 27 · 37 (redom izvedeno [21, 37, 7, 27, 18, 26]; ocjena 2.507 × 1.00 = 2.507)\n- 20 Vrt + 1 Jahač = 21\n- 1 Jahač + 36 Križ = 37\n- 36 Križ + 16 Zvijezde = 52 − 45 = 7\n- 16 Zvijezde + 11 Bič = 27\n- 11 Bič + 7 Zmija = 18\n- 7 Zmija + 19 Toranj = 26\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 01 · 03 · 04 · 10 · 15 · 41 (redom izvedeno [15, 4, 1, 3, 10, 41]; ocjena 2.507 × 0.92 = 2.307)\n- kuća 34 Ribe (novac): karta 15 Medvjed → broj 15; 15+34 = 49 − 45 = 4\n- kuća 2 Djetelina (sreća): karta 1 Jahač → broj 1; 1+2 = 3\n- kuća 31 Sunce (uspjeh): karta 10 Kosa → broj 10; 10+31 = 41\n- kuća 16 Zvijezde (nada): karta 28 Gospodin → broj 28; 28+16 = 44\n- kuća 33 Ključ (rješenje): karta 23 Miševi → broj 23; 23+33 = 56 − 45 = 11\n- kuća 25 Prsten (ugovor): karta 14 Lisica → broj 14; 14+25 = 39\n- kuća 35 Sidro (stabilnost): karta 29 Gospođa → broj 29; 29+35 = 64 − 45 = 19\n\n**(b1) karte u značajnim kućama** → 01 · 10 · 14 · 15 · 23 · 28 (redom izvedeno [15, 1, 10, 28, 23, 14]; ocjena 2.507 × 0.88 = 2.206)\n\n**(b2) karta+kuća** → 03 · 04 · 11 · 39 · 41 · 44 (redom izvedeno [4, 3, 41, 44, 11, 39]; ocjena 2.507 × 0.84 = 2.106)\n\n**(c34) kvadrat 3×3 oko Riba** → 17 · 21 · 29 · 33 · 34 · 35 (redom izvedeno [34, 21, 17, 33, 29, 35]; ocjena 2.507 × 0.80 = 2.006)\n- 34 Ribe je na položaju 27 (red 3, stupac 9, kuća 27 Pismo); kvadrat: 21 Planina, 17 Roda, 33 Ključ, 29 Gospođa, 35 Sidro\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 04 · 11 · 16 · 31 · 36 (redom izvedeno [2, 36, 16, 11, 4, 31]; ocjena 2.507 × 0.76 = 1.905)\n- 2 Djetelina je na položaju 13 (red 2, stupac 4, kuća 13 Dijete); kvadrat: 36 Križ, 16 Zvijezde, 11 Bič, 4 Kuća, 31 Sunce, 5 Stablo, 26 Knjiga, 9 Buket\n\n### Velika slika #1 (seed 20261030) — ocjena 2.514\n\nRedoslijed špila: 13 36 2 30 31 34 16 12 7 25 8 18 23 29 28 1 32 6 20 5 14 10 11 4 33 21 9 19 17 26 24 3 27 22 15 35\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 13 Dijete (kuća 1) | 36 Križ (kuća 2) | **2 Djetelina** (kuća 3) | 30 Ljiljan (kuća 4) | **31 Sunce** (kuća 5) | **34 Ribe** (kuća 6) | **16 Zvijezde** (kuća 7) | 12 Ptice (kuća 8) | 7 Zmija (kuća 9) |\n| red 2 | 25 Prsten (kuća 10) | 8 Lijes (kuća 11) | 18 Pas (kuća 12) | 23 Miševi (kuća 13) | 29 Gospođa (kuća 14) | 28 Gospodin (kuća 15) | 1 Jahač (kuća 16) | 32 Mjesec (kuća 17) | 6 Oblaci (kuća 18) |\n| red 3 | 20 Vrt (kuća 19) | 5 Stablo (kuća 20) | 14 Lisica (kuća 21) | 10 Kosa (kuća 22) | 11 Bič (kuća 23) | 4 Kuća (kuća 24) | **33 Ključ** (kuća 25) | 21 Planina (kuća 26) | 9 Buket (kuća 27) |\n| red 4 | 19 Toranj (kuća 28) | 17 Roda (kuća 29) | 26 Knjiga (kuća 30) | 24 Srce (kuća 31) | 3 Brod (kuća 32) | 27 Pismo (kuća 33) | 22 Raskrižje (kuća 34) | 15 Medvjed (kuća 35) | 35 Sidro (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 3 (red 1, st. 3), centralnost 0.41 × 1.0 = 0.41\n- 34 Ribe: položaj 6 (red 1, st. 6), centralnost 0.58 × 1.0 = 0.58\n- 31 Sunce: položaj 5 (red 1, st. 5), centralnost 0.65 × 0.8 = 0.52\n- 16 Zvijezde: položaj 7 (red 1, st. 7), centralnost 0.41 × 0.7 = 0.29\n- 33 Ključ: položaj 25 (red 3, st. 7), centralnost 0.52 × 0.7 = 0.36; u značajnoj kući 25 Prsten +0.15\n- Zvijezde i Ribe se dodiruju +0.10\n- Sunce i Ribe se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 04 · 05 · 16 · 20 · 32 · 38 (redom izvedeno [4, 38, 32, 16, 20, 5]; ocjena 2.514 × 1.00 = 2.514)\n- 13 Dijete + 36 Križ = 49 − 45 = 4\n- 36 Križ + 2 Djetelina = 38\n- 2 Djetelina + 30 Ljiljan = 32\n- 30 Ljiljan + 31 Sunce = 61 − 45 = 16\n- 31 Sunce + 34 Ribe = 65 − 45 = 20\n- 34 Ribe + 16 Zvijezde = 50 − 45 = 5\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 10 · 11 · 22 · 24 · 36 · 38 (redom izvedeno [22, 11, 36, 38, 24, 10]; ocjena 2.514 × 0.92 = 2.313)\n- kuća 34 Ribe (novac): karta 22 Raskrižje → broj 22; 22+34 = 56 − 45 = 11\n- kuća 2 Djetelina (sreća): karta 36 Križ → broj 36; 36+2 = 38\n- kuća 31 Sunce (uspjeh): karta 24 Srce → broj 24; 24+31 = 55 − 45 = 10\n- kuća 16 Zvijezde (nada): karta 1 Jahač → broj 1; 1+16 = 17\n- kuća 33 Ključ (rješenje): karta 27 Pismo → broj 27; 27+33 = 60 − 45 = 15\n- kuća 25 Prsten (ugovor): karta 33 Ključ → broj 33; 33+25 = 58 − 45 = 13\n- kuća 35 Sidro (stabilnost): karta 15 Medvjed → broj 15; 15+35 = 50 − 45 = 5\n\n**(b1) karte u značajnim kućama** → 01 · 22 · 24 · 27 · 33 · 36 (redom izvedeno [22, 36, 24, 1, 27, 33]; ocjena 2.514 × 0.88 = 2.213)\n\n**(b2) karta+kuća** → 10 · 11 · 13 · 15 · 17 · 38 (redom izvedeno [11, 38, 10, 17, 15, 13]; ocjena 2.514 × 0.84 = 2.112)\n\n**(c34) kvadrat 3×3 oko Riba** → 01 · 16 · 28 · 29 · 31 · 34 (redom izvedeno [34, 31, 16, 29, 28, 1]; ocjena 2.514 × 0.80 = 2.012)\n- 34 Ribe je na položaju 6 (red 1, stupac 6, kuća 6 Oblaci); kvadrat: 31 Sunce, 16 Zvijezde, 29 Gospođa, 28 Gospodin, 1 Jahač\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 08 · 18 · 23 · 30 · 36 (redom izvedeno [2, 36, 30, 8, 18, 23]; ocjena 2.514 × 0.76 = 1.911)\n- 2 Djetelina je na položaju 3 (red 1, stupac 3, kuća 3 Brod); kvadrat: 36 Križ, 30 Ljiljan, 8 Lijes, 18 Pas, 23 Miševi\n\n### Velika slika #2 (seed 20261031) — ocjena 2.406\n\nRedoslijed špila: 18 12 23 33 14 27 15 1 22 34 10 17 11 31 13 26 29 36 32 28 9 2 24 19 4 6 21 30 35 8 7 3 5 25 16 20\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 18 Pas (kuća 1) | 12 Ptice (kuća 2) | 23 Miševi (kuća 3) | **33 Ključ** (kuća 4) | 14 Lisica (kuća 5) | 27 Pismo (kuća 6) | 15 Medvjed (kuća 7) | 1 Jahač (kuća 8) | 22 Raskrižje (kuća 9) |\n| red 2 | **34 Ribe** (kuća 10) | 10 Kosa (kuća 11) | 17 Roda (kuća 12) | 11 Bič (kuća 13) | **31 Sunce** (kuća 14) | 13 Dijete (kuća 15) | 26 Knjiga (kuća 16) | 29 Gospođa (kuća 17) | 36 Križ (kuća 18) |\n| red 3 | 32 Mjesec (kuća 19) | 28 Gospodin (kuća 20) | 9 Buket (kuća 21) | **2 Djetelina** (kuća 22) | 24 Srce (kuća 23) | 19 Toranj (kuća 24) | 4 Kuća (kuća 25) | 6 Oblaci (kuća 26) | 21 Planina (kuća 27) |\n| red 4 | 30 Ljiljan (kuća 28) | 35 Sidro (kuća 29) | 8 Lijes (kuća 30) | 7 Zmija (kuća 31) | 3 Brod (kuća 32) | 5 Stablo (kuća 33) | 25 Prsten (kuća 34) | **16 Zvijezde** (kuća 35) | 20 Vrt (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 22 (red 3, st. 4), centralnost 0.74 × 1.0 = 0.74\n- 34 Ribe: položaj 10 (red 2, st. 1), centralnost 0.06 × 1.0 = 0.06\n- 31 Sunce: položaj 14 (red 2, st. 5), centralnost 0.88 × 0.8 = 0.71\n- 16 Zvijezde: položaj 35 (red 4, st. 8), centralnost 0.21 × 0.7 = 0.15; u značajnoj kući 35 Sidro +0.15\n- 33 Ključ: položaj 4 (red 1, st. 4), centralnost 0.58 × 0.7 = 0.40\n- Djetelina i Sunce se dodiruju +0.10\n- Sunce i Ključ se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 02 · 11 · 30 · 35 · 41 · 42 (redom izvedeno [30, 35, 11, 2, 41, 42]; ocjena 2.406 × 1.00 = 2.406)\n- 18 Pas + 12 Ptice = 30\n- 12 Ptice + 23 Miševi = 35\n- 23 Miševi + 33 Ključ = 56 − 45 = 11\n- 33 Ključ + 14 Lisica = 47 − 45 = 2\n- 14 Lisica + 27 Pismo = 41\n- 27 Pismo + 15 Medvjed = 42\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 07 · 12 · 14 · 25 · 26 · 38 (redom izvedeno [25, 14, 12, 7, 38, 26]; ocjena 2.406 × 0.92 = 2.213)\n- kuća 34 Ribe (novac): karta 25 Prsten → broj 25; 25+34 = 59 − 45 = 14\n- kuća 2 Djetelina (sreća): karta 12 Ptice → broj 12; 12+2 = 14\n- kuća 31 Sunce (uspjeh): karta 7 Zmija → broj 7; 7+31 = 38\n- kuća 16 Zvijezde (nada): karta 26 Knjiga → broj 26; 26+16 = 42\n- kuća 33 Ključ (rješenje): karta 5 Stablo → broj 5; 5+33 = 38\n- kuća 25 Prsten (ugovor): karta 4 Kuća → broj 4; 4+25 = 29\n- kuća 35 Sidro (stabilnost): karta 16 Zvijezde → broj 16; 16+35 = 51 − 45 = 6\n\n**(b1) karte u značajnim kućama** → 04 · 05 · 07 · 12 · 25 · 26 (redom izvedeno [25, 12, 7, 26, 5, 4]; ocjena 2.406 × 0.88 = 2.117)\n\n**(b2) karta+kuća** → 06 · 14 · 29 · 38 · 42 (redom izvedeno [14, 38, 42, 29, 6]; ocjena 2.406 × 0.84 = 2.021)\n\n**(c34) kvadrat 3×3 oko Riba** → 10 · 12 · 18 · 28 · 32 · 34 (redom izvedeno [34, 18, 12, 10, 32, 28]; ocjena 2.406 × 0.80 = 1.925)\n- 34 Ribe je na položaju 10 (red 2, stupac 1, kuća 10 Kosa); kvadrat: 18 Pas, 12 Ptice, 10 Kosa, 32 Mjesec, 28 Gospodin\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 09 · 11 · 17 · 24 · 31 (redom izvedeno [2, 17, 11, 31, 9, 24]; ocjena 2.406 × 0.76 = 1.829)\n- 2 Djetelina je na položaju 22 (red 3, stupac 4, kuća 22 Raskrižje); kvadrat: 17 Roda, 11 Bič, 31 Sunce, 9 Buket, 24 Srce, 8 Lijes, 7 Zmija, 3 Brod\n\n### Velika slika #3 (seed 20261032) — ocjena 1.911\n\nRedoslijed špila: 11 17 35 32 36 26 18 25 4 3 27 29 7 5 22 20 33 15 16 19 28 9 34 23 1 12 24 13 31 2 21 30 10 8 6 14\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 11 Bič (kuća 1) | 17 Roda (kuća 2) | 35 Sidro (kuća 3) | 32 Mjesec (kuća 4) | 36 Križ (kuća 5) | 26 Knjiga (kuća 6) | 18 Pas (kuća 7) | 25 Prsten (kuća 8) | 4 Kuća (kuća 9) |\n| red 2 | 3 Brod (kuća 10) | 27 Pismo (kuća 11) | 29 Gospođa (kuća 12) | 7 Zmija (kuća 13) | 5 Stablo (kuća 14) | 22 Raskrižje (kuća 15) | 20 Vrt (kuća 16) | **33 Ključ** (kuća 17) | 15 Medvjed (kuća 18) |\n| red 3 | **16 Zvijezde** (kuća 19) | 19 Toranj (kuća 20) | 28 Gospodin (kuća 21) | 9 Buket (kuća 22) | **34 Ribe** (kuća 23) | 23 Miševi (kuća 24) | 1 Jahač (kuća 25) | 12 Ptice (kuća 26) | 24 Srce (kuća 27) |\n| red 4 | 13 Dijete (kuća 28) | **31 Sunce** (kuća 29) | **2 Djetelina** (kuća 30) | 21 Planina (kuća 31) | 30 Ljiljan (kuća 32) | 10 Kosa (kuća 33) | 8 Lijes (kuća 34) | 6 Oblaci (kuća 35) | 14 Lisica (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 30 (red 4, st. 3), centralnost 0.41 × 1.0 = 0.41\n- 34 Ribe: položaj 23 (red 3, st. 5), centralnost 0.88 × 1.0 = 0.88\n- 31 Sunce: položaj 29 (red 4, st. 2), centralnost 0.21 × 0.8 = 0.17\n- 16 Zvijezde: položaj 19 (red 3, st. 1), centralnost 0.06 × 0.7 = 0.04\n- 33 Ključ: položaj 17 (red 2, st. 8), centralnost 0.29 × 0.7 = 0.20\n- Djetelina i Sunce se dodiruju +0.10\n- Zvijezde i Sunce se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 07 · 17 · 22 · 23 · 28 · 44 (redom izvedeno [28, 7, 22, 23, 17, 44]; ocjena 1.911 × 1.00 = 1.911)\n- 11 Bič + 17 Roda = 28\n- 17 Roda + 35 Sidro = 52 − 45 = 7\n- 35 Sidro + 32 Mjesec = 67 − 45 = 22\n- 32 Mjesec + 36 Križ = 68 − 45 = 23\n- 36 Križ + 26 Knjiga = 62 − 45 = 17\n- 26 Knjiga + 18 Pas = 44\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 07 · 08 · 17 · 19 · 21 · 42 (redom izvedeno [8, 42, 17, 19, 21, 7]; ocjena 1.911 × 0.92 = 1.758)\n- kuća 34 Ribe (novac): karta 8 Lijes → broj 8; 8+34 = 42\n- kuća 2 Djetelina (sreća): karta 17 Roda → broj 17; 17+2 = 19\n- kuća 31 Sunce (uspjeh): karta 21 Planina → broj 21; 21+31 = 52 − 45 = 7\n- kuća 16 Zvijezde (nada): karta 20 Vrt → broj 20; 20+16 = 36\n- kuća 33 Ključ (rješenje): karta 10 Kosa → broj 10; 10+33 = 43\n- kuća 25 Prsten (ugovor): karta 1 Jahač → broj 1; 1+25 = 26\n- kuća 35 Sidro (stabilnost): karta 6 Oblaci → broj 6; 6+35 = 41\n\n**(b1) karte u značajnim kućama** → 01 · 08 · 10 · 17 · 20 · 21 (redom izvedeno [8, 17, 21, 20, 10, 1]; ocjena 1.911 × 0.88 = 1.681)\n\n**(b2) karta+kuća** → 07 · 19 · 26 · 36 · 42 · 43 (redom izvedeno [42, 19, 7, 36, 43, 26]; ocjena 1.911 × 0.84 = 1.605)\n\n**(c34) kvadrat 3×3 oko Riba** → 05 · 07 · 09 · 22 · 23 · 34 (redom izvedeno [34, 7, 5, 22, 9, 23]; ocjena 1.911 × 0.80 = 1.529)\n- 34 Ribe je na položaju 23 (red 3, stupac 5, kuća 23 Miševi); kvadrat: 7 Zmija, 5 Stablo, 22 Raskrižje, 9 Buket, 23 Miševi, 21 Planina, 30 Ljiljan, 10 Kosa\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 09 · 19 · 21 · 28 · 31 (redom izvedeno [2, 19, 28, 9, 31, 21]; ocjena 1.911 × 0.76 = 1.452)\n- 2 Djetelina je na položaju 30 (red 4, stupac 3, kuća 30 Ljiljan); kvadrat: 19 Toranj, 28 Gospodin, 9 Buket, 31 Sunce, 21 Planina\n\n### Velika slika #4 (seed 20261033) — ocjena 1.612\n\nRedoslijed špila: 12 7 17 25 8 4 27 2 19 33 31 30 13 32 1 16 23 15 24 9 5 11 3 20 35 26 36 28 14 34 22 6 29 10 18 21\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 12 Ptice (kuća 1) | 7 Zmija (kuća 2) | 17 Roda (kuća 3) | 25 Prsten (kuća 4) | 8 Lijes (kuća 5) | 4 Kuća (kuća 6) | 27 Pismo (kuća 7) | **2 Djetelina** (kuća 8) | 19 Toranj (kuća 9) |\n| red 2 | **33 Ključ** (kuća 10) | **31 Sunce** (kuća 11) | 30 Ljiljan (kuća 12) | 13 Dijete (kuća 13) | 32 Mjesec (kuća 14) | 1 Jahač (kuća 15) | **16 Zvijezde** (kuća 16) | 23 Miševi (kuća 17) | 15 Medvjed (kuća 18) |\n| red 3 | 24 Srce (kuća 19) | 9 Buket (kuća 20) | 5 Stablo (kuća 21) | 11 Bič (kuća 22) | 3 Brod (kuća 23) | 20 Vrt (kuća 24) | 35 Sidro (kuća 25) | 26 Knjiga (kuća 26) | 36 Križ (kuća 27) |\n| red 4 | 28 Gospodin (kuća 28) | 14 Lisica (kuća 29) | **34 Ribe** (kuća 30) | 22 Raskrižje (kuća 31) | 6 Oblaci (kuća 32) | 29 Gospođa (kuća 33) | 10 Kosa (kuća 34) | 18 Pas (kuća 35) | 21 Planina (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 8 (red 1, st. 8), centralnost 0.21 × 1.0 = 0.21\n- 34 Ribe: položaj 30 (red 4, st. 3), centralnost 0.41 × 1.0 = 0.41\n- 31 Sunce: položaj 11 (red 2, st. 2), centralnost 0.29 × 0.8 = 0.23\n- 16 Zvijezde: položaj 16 (red 2, st. 7), centralnost 0.52 × 0.7 = 0.36; u značajnoj kući 16 Zvijezde +0.15\n- 33 Ključ: položaj 10 (red 2, st. 1), centralnost 0.06 × 0.7 = 0.04\n- Djetelina i Zvijezde se dodiruju +0.10\n- Sunce i Ključ se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 12 · 19 · 24 · 31 · 33 · 42 (redom izvedeno [19, 24, 42, 33, 12, 31]; ocjena 1.612 × 1.00 = 1.612)\n- 12 Ptice + 7 Zmija = 19\n- 7 Zmija + 17 Roda = 24\n- 17 Roda + 25 Prsten = 42\n- 25 Prsten + 8 Lijes = 33\n- 8 Lijes + 4 Kuća = 12\n- 4 Kuća + 27 Pismo = 31\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 07 · 08 · 09 · 10 · 22 · 44 (redom izvedeno [10, 44, 7, 9, 22, 8]; ocjena 1.612 × 0.92 = 1.483)\n- kuća 34 Ribe (novac): karta 10 Kosa → broj 10; 10+34 = 44\n- kuća 2 Djetelina (sreća): karta 7 Zmija → broj 7; 7+2 = 9\n- kuća 31 Sunce (uspjeh): karta 22 Raskrižje → broj 22; 22+31 = 53 − 45 = 8\n- kuća 16 Zvijezde (nada): karta 16 Zvijezde → broj 16; 16+16 = 32\n- kuća 33 Ključ (rješenje): karta 29 Gospođa → broj 29; 29+33 = 62 − 45 = 17\n- kuća 25 Prsten (ugovor): karta 35 Sidro → broj 35; 35+25 = 60 − 45 = 15\n- kuća 35 Sidro (stabilnost): karta 18 Pas → broj 18; 18+35 = 53 − 45 = 8\n\n**(b1) karte u značajnim kućama** → 07 · 10 · 16 · 22 · 29 · 35 (redom izvedeno [10, 7, 22, 16, 29, 35]; ocjena 1.612 × 0.88 = 1.418)\n\n**(b2) karta+kuća** → 08 · 09 · 15 · 17 · 32 · 44 (redom izvedeno [44, 9, 8, 32, 17, 15]; ocjena 1.612 × 0.84 = 1.354)\n\n**(c34) kvadrat 3×3 oko Riba** → 05 · 09 · 11 · 14 · 22 · 34 (redom izvedeno [34, 9, 5, 11, 14, 22]; ocjena 1.612 × 0.80 = 1.289)\n- 34 Ribe je na položaju 30 (red 4, stupac 3, kuća 30 Ljiljan); kvadrat: 9 Buket, 5 Stablo, 11 Bič, 14 Lisica, 22 Raskrižje\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 15 · 16 · 19 · 23 · 27 (redom izvedeno [2, 27, 19, 16, 23, 15]; ocjena 1.612 × 0.76 = 1.225)\n- 2 Djetelina je na položaju 8 (red 1, stupac 8, kuća 8 Lijes); kvadrat: 27 Pismo, 19 Toranj, 16 Zvijezde, 23 Miševi, 15 Medvjed\n\n### Velika slika #5 (seed 20261034) — ocjena 2.071\n\nRedoslijed špila: 22 21 2 33 4 31 36 28 32 10 16 26 3 29 5 23 9 25 12 34 20 35 30 7 14 1 17 18 27 11 8 13 15 24 19 6\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 22 Raskrižje (kuća 1) | 21 Planina (kuća 2) | **2 Djetelina** (kuća 3) | **33 Ključ** (kuća 4) | 4 Kuća (kuća 5) | **31 Sunce** (kuća 6) | 36 Križ (kuća 7) | 28 Gospodin (kuća 8) | 32 Mjesec (kuća 9) |\n| red 2 | 10 Kosa (kuća 10) | **16 Zvijezde** (kuća 11) | 26 Knjiga (kuća 12) | 3 Brod (kuća 13) | 29 Gospođa (kuća 14) | 5 Stablo (kuća 15) | 23 Miševi (kuća 16) | 9 Buket (kuća 17) | 25 Prsten (kuća 18) |\n| red 3 | 12 Ptice (kuća 19) | **34 Ribe** (kuća 20) | 20 Vrt (kuća 21) | 35 Sidro (kuća 22) | 30 Ljiljan (kuća 23) | 7 Zmija (kuća 24) | 14 Lisica (kuća 25) | 1 Jahač (kuća 26) | 17 Roda (kuća 27) |\n| red 4 | 18 Pas (kuća 28) | 27 Pismo (kuća 29) | 11 Bič (kuća 30) | 8 Lijes (kuća 31) | 13 Dijete (kuća 32) | 15 Medvjed (kuća 33) | 24 Srce (kuća 34) | 19 Toranj (kuća 35) | 6 Oblaci (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 3 (red 1, st. 3), centralnost 0.41 × 1.0 = 0.41\n- 34 Ribe: položaj 20 (red 3, st. 2), centralnost 0.29 × 1.0 = 0.29\n- 31 Sunce: položaj 6 (red 1, st. 6), centralnost 0.58 × 0.8 = 0.46\n- 16 Zvijezde: položaj 11 (red 2, st. 2), centralnost 0.29 × 0.7 = 0.20\n- 33 Ključ: položaj 4 (red 1, st. 4), centralnost 0.58 × 0.7 = 0.40\n- Djetelina i Zvijezde se dodiruju +0.10\n- Djetelina i Ključ se dodiruju +0.10\n- Zvijezde i Ribe se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 19 · 22 · 23 · 35 · 37 · 43 (redom izvedeno [43, 23, 35, 37, 22, 19]; ocjena 2.071 × 1.00 = 2.071)\n- 22 Raskrižje + 21 Planina = 43\n- 21 Planina + 2 Djetelina = 23\n- 2 Djetelina + 33 Ključ = 35\n- 33 Ključ + 4 Kuća = 37\n- 4 Kuća + 31 Sunce = 35 (već uzet, preskočeno)\n- 31 Sunce + 36 Križ = 67 − 45 = 22\n- 36 Križ + 28 Gospodin = 64 − 45 = 19\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 08 · 13 · 21 · 23 · 24 · 39 (redom izvedeno [24, 13, 21, 23, 8, 39]; ocjena 2.071 × 0.92 = 1.906)\n- kuća 34 Ribe (novac): karta 24 Srce → broj 24; 24+34 = 58 − 45 = 13\n- kuća 2 Djetelina (sreća): karta 21 Planina → broj 21; 21+2 = 23\n- kuća 31 Sunce (uspjeh): karta 8 Lijes → broj 8; 8+31 = 39\n- kuća 16 Zvijezde (nada): karta 23 Miševi → broj 23; 23+16 = 39\n- kuća 33 Ključ (rješenje): karta 15 Medvjed → broj 15; 15+33 = 48 − 45 = 3\n- kuća 25 Prsten (ugovor): karta 14 Lisica → broj 14; 14+25 = 39\n- kuća 35 Sidro (stabilnost): karta 19 Toranj → broj 19; 19+35 = 54 − 45 = 9\n\n**(b1) karte u značajnim kućama** → 08 · 14 · 15 · 21 · 23 · 24 (redom izvedeno [24, 21, 8, 23, 15, 14]; ocjena 2.071 × 0.88 = 1.823)\n\n**(b2) karta+kuća** → 03 · 09 · 13 · 23 · 39 (redom izvedeno [13, 23, 39, 3, 9]; ocjena 2.071 × 0.84 = 1.740)\n\n**(c34) kvadrat 3×3 oko Riba** → 10 · 12 · 16 · 20 · 26 · 34 (redom izvedeno [34, 10, 16, 26, 12, 20]; ocjena 2.071 × 0.80 = 1.657)\n- 34 Ribe je na položaju 20 (red 3, stupac 2, kuća 20 Vrt); kvadrat: 10 Kosa, 16 Zvijezde, 26 Knjiga, 12 Ptice, 20 Vrt, 18 Pas, 27 Pismo, 11 Bič\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 03 · 16 · 21 · 26 · 33 (redom izvedeno [2, 21, 33, 16, 26, 3]; ocjena 2.071 × 0.76 = 1.574)\n- 2 Djetelina je na položaju 3 (red 1, stupac 3, kuća 3 Brod); kvadrat: 21 Planina, 33 Ključ, 16 Zvijezde, 26 Knjiga, 3 Brod\n\n### Velika slika #6 (seed 20261035) — ocjena 2.791\n\nRedoslijed špila: 35 20 16 11 15 9 8 10 17 14 1 29 36 34 31 6 19 21 3 26 33 4 28 7 18 30 22 27 5 23 25 12 32 2 13 24\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 35 Sidro (kuća 1) | 20 Vrt (kuća 2) | **16 Zvijezde** (kuća 3) | 11 Bič (kuća 4) | 15 Medvjed (kuća 5) | 9 Buket (kuća 6) | 8 Lijes (kuća 7) | 10 Kosa (kuća 8) | 17 Roda (kuća 9) |\n| red 2 | 14 Lisica (kuća 10) | 1 Jahač (kuća 11) | 29 Gospođa (kuća 12) | 36 Križ (kuća 13) | **34 Ribe** (kuća 14) | **31 Sunce** (kuća 15) | 6 Oblaci (kuća 16) | 19 Toranj (kuća 17) | 21 Planina (kuća 18) |\n| red 3 | 3 Brod (kuća 19) | 26 Knjiga (kuća 20) | **33 Ključ** (kuća 21) | 4 Kuća (kuća 22) | 28 Gospodin (kuća 23) | 7 Zmija (kuća 24) | 18 Pas (kuća 25) | 30 Ljiljan (kuća 26) | 22 Raskrižje (kuća 27) |\n| red 4 | 27 Pismo (kuća 28) | 5 Stablo (kuća 29) | 23 Miševi (kuća 30) | 25 Prsten (kuća 31) | 12 Ptice (kuća 32) | 32 Mjesec (kuća 33) | **2 Djetelina** (kuća 34) | 13 Dijete (kuća 35) | 24 Srce (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 34 (red 4, st. 7), centralnost 0.41 × 1.0 = 0.41; u značajnoj kući 34 Ribe +0.15\n- 34 Ribe: položaj 14 (red 2, st. 5), centralnost 0.88 × 1.0 = 0.88\n- 31 Sunce: položaj 15 (red 2, st. 6), centralnost 0.74 × 0.8 = 0.59\n- 16 Zvijezde: položaj 3 (red 1, st. 3), centralnost 0.41 × 0.7 = 0.29\n- 33 Ključ: položaj 21 (red 3, st. 3), centralnost 0.52 × 0.7 = 0.36\n- Sunce i Ribe se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 10 · 17 · 24 · 26 · 27 · 36 (redom izvedeno [10, 36, 27, 26, 24, 17]; ocjena 2.791 × 1.00 = 2.791)\n- 35 Sidro + 20 Vrt = 55 − 45 = 10\n- 20 Vrt + 16 Zvijezde = 36\n- 16 Zvijezde + 11 Bič = 27\n- 11 Bič + 15 Medvjed = 26\n- 15 Medvjed + 9 Buket = 24\n- 9 Buket + 8 Lijes = 17\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 02 · 11 · 20 · 22 · 25 · 36 (redom izvedeno [2, 36, 20, 22, 25, 11]; ocjena 2.791 × 0.92 = 2.568)\n- kuća 34 Ribe (novac): karta 2 Djetelina → broj 2; 2+34 = 36\n- kuća 2 Djetelina (sreća): karta 20 Vrt → broj 20; 20+2 = 22\n- kuća 31 Sunce (uspjeh): karta 25 Prsten → broj 25; 25+31 = 56 − 45 = 11\n- kuća 16 Zvijezde (nada): karta 6 Oblaci → broj 6; 6+16 = 22\n- kuća 33 Ključ (rješenje): karta 32 Mjesec → broj 32; 32+33 = 65 − 45 = 20\n- kuća 25 Prsten (ugovor): karta 18 Pas → broj 18; 18+25 = 43\n- kuća 35 Sidro (stabilnost): karta 13 Dijete → broj 13; 13+35 = 48 − 45 = 3\n\n**(b1) karte u značajnim kućama** → 02 · 06 · 18 · 20 · 25 · 32 (redom izvedeno [2, 20, 25, 6, 32, 18]; ocjena 2.791 × 0.88 = 2.456)\n\n**(b2) karta+kuća** → 03 · 11 · 20 · 22 · 36 · 43 (redom izvedeno [36, 22, 11, 20, 43, 3]; ocjena 2.791 × 0.84 = 2.344)\n\n**(c34) kvadrat 3×3 oko Riba** → 09 · 11 · 15 · 31 · 34 · 36 (redom izvedeno [34, 11, 15, 9, 36, 31]; ocjena 2.791 × 0.80 = 2.233)\n- 34 Ribe je na položaju 14 (red 2, stupac 5, kuća 14 Lisica); kvadrat: 11 Bič, 15 Medvjed, 9 Buket, 36 Križ, 31 Sunce, 4 Kuća, 28 Gospodin, 7 Zmija\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 07 · 13 · 18 · 30 · 32 (redom izvedeno [2, 7, 18, 30, 32, 13]; ocjena 2.791 × 0.76 = 2.121)\n- 2 Djetelina je na položaju 34 (red 4, stupac 7, kuća 34 Ribe); kvadrat: 7 Zmija, 18 Pas, 30 Ljiljan, 32 Mjesec, 13 Dijete\n\n### Velika slika #7 (seed 20261036) — ocjena 2.342\n\nRedoslijed špila: 6 12 28 22 9 35 19 13 29 8 17 27 34 24 36 3 30 20 10 16 32 31 14 25 4 5 2 15 18 21 33 23 7 1 26 11\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 6 Oblaci (kuća 1) | 12 Ptice (kuća 2) | 28 Gospodin (kuća 3) | 22 Raskrižje (kuća 4) | 9 Buket (kuća 5) | 35 Sidro (kuća 6) | 19 Toranj (kuća 7) | 13 Dijete (kuća 8) | 29 Gospođa (kuća 9) |\n| red 2 | 8 Lijes (kuća 10) | 17 Roda (kuća 11) | 27 Pismo (kuća 12) | **34 Ribe** (kuća 13) | 24 Srce (kuća 14) | 36 Križ (kuća 15) | 3 Brod (kuća 16) | 30 Ljiljan (kuća 17) | 20 Vrt (kuća 18) |\n| red 3 | 10 Kosa (kuća 19) | **16 Zvijezde** (kuća 20) | 32 Mjesec (kuća 21) | **31 Sunce** (kuća 22) | 14 Lisica (kuća 23) | 25 Prsten (kuća 24) | 4 Kuća (kuća 25) | 5 Stablo (kuća 26) | **2 Djetelina** (kuća 27) |\n| red 4 | 15 Medvjed (kuća 28) | 18 Pas (kuća 29) | 21 Planina (kuća 30) | **33 Ključ** (kuća 31) | 23 Miševi (kuća 32) | 7 Zmija (kuća 33) | 1 Jahač (kuća 34) | 26 Knjiga (kuća 35) | 11 Bič (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 27 (red 3, st. 9), centralnost 0.06 × 1.0 = 0.06\n- 34 Ribe: položaj 13 (red 2, st. 4), centralnost 0.74 × 1.0 = 0.74\n- 31 Sunce: položaj 22 (red 3, st. 4), centralnost 0.74 × 0.8 = 0.59\n- 16 Zvijezde: položaj 20 (red 3, st. 2), centralnost 0.29 × 0.7 = 0.20\n- 33 Ključ: položaj 31 (red 4, st. 4), centralnost 0.58 × 0.7 = 0.40; u značajnoj kući 31 Sunce +0.15\n- Sunce i Ključ se dodiruju +0.10\n- Sunce i Ribe se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 05 · 09 · 18 · 31 · 40 · 44 (redom izvedeno [18, 40, 5, 31, 44, 9]; ocjena 2.342 × 1.00 = 2.342)\n- 6 Oblaci + 12 Ptice = 18\n- 12 Ptice + 28 Gospodin = 40\n- 28 Gospodin + 22 Raskrižje = 50 − 45 = 5\n- 22 Raskrižje + 9 Buket = 31\n- 9 Buket + 35 Sidro = 44\n- 35 Sidro + 19 Toranj = 54 − 45 = 9\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 01 · 12 · 14 · 19 · 33 · 35 (redom izvedeno [1, 35, 12, 14, 33, 19]; ocjena 2.342 × 0.92 = 2.154)\n- kuća 34 Ribe (novac): karta 1 Jahač → broj 1; 1+34 = 35\n- kuća 2 Djetelina (sreća): karta 12 Ptice → broj 12; 12+2 = 14\n- kuća 31 Sunce (uspjeh): karta 33 Ključ → broj 33; 33+31 = 64 − 45 = 19\n- kuća 16 Zvijezde (nada): karta 3 Brod → broj 3; 3+16 = 19\n- kuća 33 Ključ (rješenje): karta 7 Zmija → broj 7; 7+33 = 40\n- kuća 25 Prsten (ugovor): karta 4 Kuća → broj 4; 4+25 = 29\n- kuća 35 Sidro (stabilnost): karta 26 Knjiga → broj 26; 26+35 = 61 − 45 = 16\n\n**(b1) karte u značajnim kućama** → 01 · 03 · 04 · 07 · 12 · 33 (redom izvedeno [1, 12, 33, 3, 7, 4]; ocjena 2.342 × 0.88 = 2.061)\n\n**(b2) karta+kuća** → 14 · 16 · 19 · 29 · 35 · 40 (redom izvedeno [35, 14, 19, 40, 29, 16]; ocjena 2.342 × 0.84 = 1.967)\n\n**(c34) kvadrat 3×3 oko Riba** → 09 · 22 · 24 · 27 · 28 · 34 (redom izvedeno [34, 28, 22, 9, 27, 24]; ocjena 2.342 × 0.80 = 1.873)\n- 34 Ribe je na položaju 13 (red 2, stupac 4, kuća 13 Dijete); kvadrat: 28 Gospodin, 22 Raskrižje, 9 Buket, 27 Pismo, 24 Srce, 32 Mjesec, 31 Sunce, 14 Lisica\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 05 · 11 · 20 · 26 · 30 (redom izvedeno [2, 30, 20, 5, 26, 11]; ocjena 2.342 × 0.76 = 1.780)\n- 2 Djetelina je na položaju 27 (red 3, stupac 9, kuća 27 Pismo); kvadrat: 30 Ljiljan, 20 Vrt, 5 Stablo, 26 Knjiga, 11 Bič\n\n### Velika slika #8 (seed 20261037) — ocjena 1.990\n\nRedoslijed špila: 35 18 20 21 25 31 14 27 6 1 30 17 23 28 26 15 11 36 13 19 33 22 9 34 10 2 16 3 8 12 5 29 4 24 7 32\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 35 Sidro (kuća 1) | 18 Pas (kuća 2) | 20 Vrt (kuća 3) | 21 Planina (kuća 4) | 25 Prsten (kuća 5) | **31 Sunce** (kuća 6) | 14 Lisica (kuća 7) | 27 Pismo (kuća 8) | 6 Oblaci (kuća 9) |\n| red 2 | 1 Jahač (kuća 10) | 30 Ljiljan (kuća 11) | 17 Roda (kuća 12) | 23 Miševi (kuća 13) | 28 Gospodin (kuća 14) | 26 Knjiga (kuća 15) | 15 Medvjed (kuća 16) | 11 Bič (kuća 17) | 36 Križ (kuća 18) |\n| red 3 | 13 Dijete (kuća 19) | 19 Toranj (kuća 20) | **33 Ključ** (kuća 21) | 22 Raskrižje (kuća 22) | 9 Buket (kuća 23) | **34 Ribe** (kuća 24) | 10 Kosa (kuća 25) | **2 Djetelina** (kuća 26) | **16 Zvijezde** (kuća 27) |\n| red 4 | 3 Brod (kuća 28) | 8 Lijes (kuća 29) | 12 Ptice (kuća 30) | 5 Stablo (kuća 31) | 29 Gospođa (kuća 32) | 4 Kuća (kuća 33) | 24 Srce (kuća 34) | 7 Zmija (kuća 35) | 32 Mjesec (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 26 (red 3, st. 8), centralnost 0.29 × 1.0 = 0.29\n- 34 Ribe: položaj 24 (red 3, st. 6), centralnost 0.74 × 1.0 = 0.74\n- 31 Sunce: položaj 6 (red 1, st. 6), centralnost 0.58 × 0.8 = 0.46\n- 16 Zvijezde: položaj 27 (red 3, st. 9), centralnost 0.06 × 0.7 = 0.04\n- 33 Ključ: položaj 21 (red 3, st. 3), centralnost 0.52 × 0.7 = 0.36\n- Djetelina i Zvijezde se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 01 · 08 · 11 · 38 · 41 · 45 (redom izvedeno [8, 38, 41, 1, 11, 45]; ocjena 1.990 × 1.00 = 1.990)\n- 35 Sidro + 18 Pas = 53 − 45 = 8\n- 18 Pas + 20 Vrt = 38\n- 20 Vrt + 21 Planina = 41\n- 21 Planina + 25 Prsten = 46 − 45 = 1\n- 25 Prsten + 31 Sunce = 56 − 45 = 11\n- 31 Sunce + 14 Lisica = 45\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 05 · 13 · 18 · 20 · 24 · 36 (redom izvedeno [24, 13, 18, 20, 5, 36]; ocjena 1.990 × 0.92 = 1.831)\n- kuća 34 Ribe (novac): karta 24 Srce → broj 24; 24+34 = 58 − 45 = 13\n- kuća 2 Djetelina (sreća): karta 18 Pas → broj 18; 18+2 = 20\n- kuća 31 Sunce (uspjeh): karta 5 Stablo → broj 5; 5+31 = 36\n- kuća 16 Zvijezde (nada): karta 15 Medvjed → broj 15; 15+16 = 31\n- kuća 33 Ključ (rješenje): karta 4 Kuća → broj 4; 4+33 = 37\n- kuća 25 Prsten (ugovor): karta 10 Kosa → broj 10; 10+25 = 35\n- kuća 35 Sidro (stabilnost): karta 7 Zmija → broj 7; 7+35 = 42\n\n**(b1) karte u značajnim kućama** → 04 · 05 · 10 · 15 · 18 · 24 (redom izvedeno [24, 18, 5, 15, 4, 10]; ocjena 1.990 × 0.88 = 1.752)\n\n**(b2) karta+kuća** → 13 · 20 · 31 · 35 · 36 · 37 (redom izvedeno [13, 20, 36, 31, 37, 35]; ocjena 1.990 × 0.84 = 1.672)\n\n**(c34) kvadrat 3×3 oko Riba** → 09 · 10 · 15 · 26 · 28 · 34 (redom izvedeno [34, 28, 26, 15, 9, 10]; ocjena 1.990 × 0.80 = 1.592)\n- 34 Ribe je na položaju 24 (red 3, stupac 6, kuća 24 Srce); kvadrat: 28 Gospodin, 26 Knjiga, 15 Medvjed, 9 Buket, 10 Kosa, 29 Gospođa, 4 Kuća, 24 Srce\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 10 · 11 · 15 · 16 · 36 (redom izvedeno [2, 15, 11, 36, 10, 16]; ocjena 1.990 × 0.76 = 1.513)\n- 2 Djetelina je na položaju 26 (red 3, stupac 8, kuća 26 Knjiga); kvadrat: 15 Medvjed, 11 Bič, 36 Križ, 10 Kosa, 16 Zvijezde, 24 Srce, 7 Zmija, 32 Mjesec\n\n### Velika slika #9 (seed 20261038) — ocjena 2.085\n\nRedoslijed špila: 9 2 29 25 21 19 5 8 18 6 31 20 13 24 34 32 22 36 7 30 23 27 3 4 33 10 16 14 1 35 26 15 28 12 11 17\n\n| red \\ kuća | k1 | k2 | k3 | k4 | k5 | k6 | k7 | k8 | k9 |\n|---|---|---|---|---|---|---|---|---|---|\n| red 1 | 9 Buket (kuća 1) | **2 Djetelina** (kuća 2) | 29 Gospođa (kuća 3) | 25 Prsten (kuća 4) | 21 Planina (kuća 5) | 19 Toranj (kuća 6) | 5 Stablo (kuća 7) | 8 Lijes (kuća 8) | 18 Pas (kuća 9) |\n| red 2 | 6 Oblaci (kuća 10) | **31 Sunce** (kuća 11) | 20 Vrt (kuća 12) | 13 Dijete (kuća 13) | 24 Srce (kuća 14) | **34 Ribe** (kuća 15) | 32 Mjesec (kuća 16) | 22 Raskrižje (kuća 17) | 36 Križ (kuća 18) |\n| red 3 | 7 Zmija (kuća 19) | 30 Ljiljan (kuća 20) | 23 Miševi (kuća 21) | 27 Pismo (kuća 22) | 3 Brod (kuća 23) | 4 Kuća (kuća 24) | **33 Ključ** (kuća 25) | 10 Kosa (kuća 26) | **16 Zvijezde** (kuća 27) |\n| red 4 | 14 Lisica (kuća 28) | 1 Jahač (kuća 29) | 35 Sidro (kuća 30) | 26 Knjiga (kuća 31) | 15 Medvjed (kuća 32) | 28 Gospodin (kuća 33) | 12 Ptice (kuća 34) | 11 Bič (kuća 35) | 17 Roda (kuća 36) |\n\nOcjena čitanja:\n- 2 Djetelina: položaj 2 (red 1, st. 2), centralnost 0.21 × 1.0 = 0.21; u značajnoj kući 2 Djetelina +0.15\n- 34 Ribe: položaj 15 (red 2, st. 6), centralnost 0.74 × 1.0 = 0.74\n- 31 Sunce: položaj 11 (red 2, st. 2), centralnost 0.29 × 0.8 = 0.23\n- 16 Zvijezde: položaj 27 (red 3, st. 9), centralnost 0.06 × 0.7 = 0.04\n- 33 Ključ: položaj 25 (red 3, st. 7), centralnost 0.52 × 0.7 = 0.36; u značajnoj kući 25 Prsten +0.15\n- Djetelina i Sunce se dodiruju +0.10\n- Ključ i Ribe se dodiruju +0.10\n\n**(a) susjedni zbrojevi** → 01 · 09 · 11 · 24 · 31 · 40 (redom izvedeno [11, 31, 9, 1, 40, 24]; ocjena 2.085 × 1.00 = 2.085)\n- 9 Buket + 2 Djetelina = 11\n- 2 Djetelina + 29 Gospođa = 31\n- 29 Gospođa + 25 Prsten = 54 − 45 = 9\n- 25 Prsten + 21 Planina = 46 − 45 = 1\n- 21 Planina + 19 Toranj = 40\n- 19 Toranj + 5 Stablo = 24\n\n**(b3) naizmjence karta/zbroj (Ribe→Djetelina→Sunce…)** → 01 · 02 · 04 · 12 · 26 · 32 (redom izvedeno [12, 1, 2, 4, 26, 32]; ocjena 2.085 × 0.92 = 1.919)\n- kuća 34 Ribe (novac): karta 12 Ptice → broj 12; 12+34 = 46 − 45 = 1\n- kuća 2 Djetelina (sreća): karta 2 Djetelina → broj 2; 2+2 = 4\n- kuća 31 Sunce (uspjeh): karta 26 Knjiga → broj 26; 26+31 = 57 − 45 = 12\n- kuća 16 Zvijezde (nada): karta 32 Mjesec → broj 32; 32+16 = 48 − 45 = 3\n- kuća 33 Ključ (rješenje): karta 28 Gospodin → broj 28; 28+33 = 61 − 45 = 16\n- kuća 25 Prsten (ugovor): karta 33 Ključ → broj 33; 33+25 = 58 − 45 = 13\n- kuća 35 Sidro (stabilnost): karta 11 Bič → broj 11; 11+35 = 46 − 45 = 1\n\n**(b1) karte u značajnim kućama** → 02 · 12 · 26 · 28 · 32 · 33 (redom izvedeno [12, 2, 26, 32, 28, 33]; ocjena 2.085 × 0.88 = 1.835)\n\n**(b2) karta+kuća** → 01 · 03 · 04 · 12 · 13 · 16 (redom izvedeno [1, 4, 12, 3, 16, 13]; ocjena 2.085 × 0.84 = 1.752)\n\n**(c34) kvadrat 3×3 oko Riba** → 05 · 19 · 21 · 24 · 32 · 34 (redom izvedeno [34, 21, 19, 5, 24, 32]; ocjena 2.085 × 0.80 = 1.668)\n- 34 Ribe je na položaju 15 (red 2, stupac 6, kuća 15 Medvjed); kvadrat: 21 Planina, 19 Toranj, 5 Stablo, 24 Srce, 32 Mjesec, 3 Brod, 4 Kuća, 33 Ključ\n\n**(c2) kvadrat 3×3 oko Djeteline** → 02 · 06 · 09 · 20 · 29 · 31 (redom izvedeno [2, 9, 29, 6, 31, 20]; ocjena 2.085 × 0.76 = 1.585)\n- 2 Djetelina je na položaju 2 (red 1, stupac 2, kuća 2 Djetelina); kvadrat: 9 Buket, 29 Gospođa, 6 Oblaci, 31 Sunce, 20 Vrt\n\n## 5. Sva čitanja — ocjene i položaji ključnih karata (položaj 1–36 = kuća)\n\n| i | seed | ocjena | Djetelina | Ribe | Sunce | Zvijezde | Ključ | (a) susjedni zbrojevi |\n|---|---|---|---|---|---|---|---|---|\n| 53 | 20261082 | 3.111 | 17 | 13 | 33 | 31 | 23 | 21 22 26 33 36 40 |\n| 85 | 20261114 | 3.098 | 6 | 14 | 34 | 35 | 33 | 02 09 14 37 44 45 |\n| 82 | 20261111 | 3.001 | 23 | 10 | 15 | 22 | 31 | 18 21 31 39 40 41 |\n| 72 | 20261101 | 2.969 | 31 | 25 | 14 | 22 | 8 | 06 10 33 36 37 44 |\n| 48 | 20261077 | 2.886 | 32 | 7 | 16 | 34 | 23 | 04 12 13 21 26 29 |\n| 6 | 20261035 | 2.791 | 34 | 14 | 15 | 3 | 21 | 10 17 24 26 27 36 |\n| 64 | 20261093 | 2.737 | 25 | 33 | 35 | 20 | 14 | 04 22 28 29 32 37 |\n| 30 | 20261059 | 2.717 | 3 | 13 | 11 | 15 | 22 | 19 20 22 24 29 36 |\n| 15 | 20261044 | 2.713 | 35 | 13 | 15 | 14 | 17 | 01 03 07 08 35 40 |\n| 63 | 20261092 | 2.692 | 30 | 23 | 8 | 14 | 6 | 08 09 10 11 31 43 |\n| 83 | 20261112 | 2.593 | 13 | 26 | 31 | 32 | 35 | 02 04 13 20 21 39 |\n| 1 | 20261030 | 2.514 | 3 | 6 | 5 | 7 | 25 | 04 05 16 20 32 38 |\n| 0 | 20261029 | 2.507 | 13 | 27 | 14 | 4 | 26 | 07 18 21 26 27 37 |\n| 98 | 20261127 | 2.506 | 23 | 3 | 12 | 18 | 31 | 01 10 31 33 36 38 |\n| 76 | 20261105 | 2.486 | 12 | 3 | 15 | 8 | 16 | 06 09 14 17 29 40 |\n| 21 | 20261050 | 2.437 | 33 | 24 | 11 | 34 | 9 | 06 07 10 11 36 41 |\n| 80 | 20261109 | 2.432 | 10 | 4 | 16 | 24 | 13 | 06 17 21 25 26 33 |\n| 29 | 20261058 | 2.429 | 3 | 33 | 5 | 29 | 24 | 11 12 13 28 37 38 |\n| 2 | 20261031 | 2.406 | 22 | 10 | 14 | 35 | 4 | 02 11 30 35 41 42 |\n| 51 | 20261080 | 2.404 | 15 | 3 | 29 | 21 | 22 | 07 17 21 43 44 45 |\n| 37 | 20261066 | 2.399 | 34 | 18 | 14 | 32 | 13 | 08 10 26 37 39 45 |\n| 75 | 20261104 | 2.396 | 32 | 2 | 16 | 17 | 13 | 14 17 18 26 27 43 |\n| 35 | 20261064 | 2.392 | 33 | 13 | 30 | 27 | 32 | 05 27 32 33 35 44 |\n| 50 | 20261079 | 2.382 | 34 | 4 | 2 | 35 | 15 | 01 03 21 30 35 45 |\n| 47 | 20261076 | 2.346 | 23 | 5 | 16 | 1 | 8 | 10 19 22 31 34 45 |\n| 7 | 20261036 | 2.342 | 27 | 13 | 22 | 20 | 31 | 05 09 18 31 40 44 |\n| 81 | 20261110 | 2.341 | 7 | 2 | 34 | 12 | 22 | 03 33 37 38 39 41 |\n| 95 | 20261124 | 2.317 | 19 | 23 | 2 | 31 | 11 | 02 03 28 34 35 38 |\n| 23 | 20261052 | 2.287 | 11 | 33 | 22 | 7 | 3 | 11 20 33 37 39 45 |\n| 70 | 20261099 | 2.278 | 26 | 3 | 23 | 14 | 8 | 25 31 38 39 40 41 |\n| 59 | 20261088 | 2.241 | 29 | 25 | 12 | 34 | 6 | 03 14 17 36 41 45 |\n| 11 | 20261040 | 2.231 | 12 | 35 | 34 | 8 | 13 | 02 05 10 12 24 27 |\n| 13 | 20261042 | 2.231 | 17 | 27 | 4 | 25 | 16 | 19 24 25 26 40 43 |\n| 22 | 20261051 | 2.219 | 34 | 26 | 12 | 25 | 27 | 10 31 35 39 40 43 |\n| 39 | 20261068 | 2.201 | 5 | 32 | 4 | 11 | 10 | 12 15 29 30 33 35 |\n| 71 | 20261100 | 2.181 | 20 | 32 | 30 | 35 | 16 | 10 15 16 31 36 38 |\n| 43 | 20261072 | 2.176 | 26 | 34 | 21 | 4 | 6 | 14 19 33 34 42 43 |\n| 33 | 20261062 | 2.175 | 30 | 35 | 24 | 29 | 32 | 01 04 16 31 35 42 |\n| 46 | 20261075 | 2.158 | 21 | 28 | 32 | 22 | 6 | 06 08 14 22 26 41 |\n| 17 | 20261046 | 2.106 | 11 | 35 | 20 | 4 | 14 | 01 08 30 33 42 44 |\n| 9 | 20261038 | 2.085 | 2 | 15 | 11 | 27 | 25 | 01 09 11 24 31 40 |\n| 5 | 20261034 | 2.071 | 3 | 20 | 6 | 11 | 4 | 19 22 23 35 37 43 |\n| 93 | 20261122 | 2.062 | 2 | 23 | 21 | 35 | 36 | 06 30 31 39 40 43 |\n| 16 | 20261045 | 2.060 | 4 | 21 | 25 | 35 | 1 | 06 17 26 37 38 42 |\n| 10 | 20261039 | 2.057 | 33 | 3 | 4 | 26 | 8 | 03 04 18 20 38 43 |\n| 92 | 20261121 | 2.033 | 14 | 36 | 7 | 13 | 11 | 19 20 27 39 40 44 |\n| 65 | 20261094 | 2.032 | 25 | 36 | 33 | 12 | 30 | 03 21 29 33 37 41 |\n| 28 | 20261057 | 2.017 | 30 | 24 | 28 | 20 | 12 | 06 13 15 26 29 33 |\n| 40 | 20261069 | 1.991 | 16 | 3 | 5 | 18 | 8 | 01 07 10 18 22 43 |\n| 8 | 20261037 | 1.990 | 26 | 24 | 6 | 27 | 21 | 01 08 11 38 41 45 |\n| 19 | 20261048 | 1.969 | 9 | 5 | 12 | 11 | 4 | 15 19 22 24 26 44 |\n| 58 | 20261087 | 1.937 | 33 | 8 | 1 | 5 | 34 | 11 24 31 34 36 38 |\n| 74 | 20261103 | 1.935 | 27 | 33 | 30 | 15 | 17 | 02 19 24 29 38 41 |\n| 3 | 20261032 | 1.911 | 30 | 23 | 29 | 19 | 17 | 07 17 22 23 28 44 |\n| 89 | 20261118 | 1.862 | 32 | 14 | 20 | 28 | 1 | 04 08 09 11 13 14 |\n| 12 | 20261041 | 1.809 | 13 | 26 | 20 | 17 | 29 | 02 05 12 17 35 37 |\n| 54 | 20261083 | 1.803 | 21 | 6 | 19 | 25 | 8 | 08 12 32 34 36 37 |\n| 42 | 20261071 | 1.791 | 26 | 3 | 8 | 12 | 5 | 08 09 25 32 43 45 |\n| 97 | 20261126 | 1.783 | 12 | 5 | 36 | 9 | 15 | 10 11 16 18 25 41 |\n| 57 | 20261086 | 1.773 | 5 | 11 | 19 | 34 | 29 | 08 12 27 30 32 35 |\n| 36 | 20261065 | 1.748 | 11 | 33 | 3 | 9 | 35 | 11 13 17 27 41 43 |\n| 73 | 20261102 | 1.747 | 31 | 10 | 8 | 7 | 2 | 03 07 19 36 40 45 |\n| 44 | 20261073 | 1.730 | 21 | 11 | 19 | 10 | 34 | 10 11 21 31 34 39 |\n| 79 | 20261108 | 1.727 | 7 | 17 | 29 | 3 | 12 | 25 26 28 29 33 35 |\n| 52 | 20261081 | 1.721 | 30 | 32 | 36 | 14 | 18 | 12 25 27 30 35 42 |\n| 60 | 20261089 | 1.691 | 5 | 10 | 14 | 19 | 27 | 05 18 28 31 43 44 |\n| 41 | 20261070 | 1.690 | 3 | 31 | 19 | 27 | 12 | 14 19 32 35 37 39 |\n| 45 | 20261074 | 1.680 | 6 | 30 | 19 | 17 | 34 | 17 24 31 34 40 43 |\n| 61 | 20261090 | 1.676 | 30 | 4 | 34 | 17 | 28 | 24 26 33 35 40 45 |\n| 86 | 20261115 | 1.655 | 35 | 19 | 34 | 16 | 10 | 01 23 29 35 39 42 |\n| 55 | 20261084 | 1.641 | 34 | 36 | 30 | 5 | 7 | 07 13 30 39 41 43 |\n| 94 | 20261123 | 1.634 | 20 | 1 | 13 | 4 | 29 | 01 03 09 35 36 42 |\n| 14 | 20261043 | 1.625 | 8 | 35 | 15 | 32 | 1 | 04 07 24 26 27 34 |\n| 84 | 20261113 | 1.620 | 35 | 10 | 14 | 17 | 3 | 06 07 18 30 36 41 |\n| 4 | 20261033 | 1.612 | 8 | 30 | 11 | 16 | 10 | 12 19 24 31 33 42 |\n| 91 | 20261120 | 1.595 | 13 | 35 | 9 | 7 | 11 | 04 21 31 35 37 44 |\n| 99 | 20261128 | 1.595 | 26 | 19 | 3 | 20 | 13 | 08 11 14 19 31 42 |\n| 31 | 20261060 | 1.587 | 8 | 13 | 3 | 26 | 1 | 02 10 20 32 34 35 |\n| 78 | 20261107 | 1.585 | 8 | 28 | 16 | 4 | 26 | 16 21 25 30 31 39 |\n| 90 | 20261119 | 1.572 | 33 | 35 | 36 | 18 | 27 | 24 28 32 35 36 42 |\n| 25 | 20261054 | 1.551 | 9 | 19 | 2 | 33 | 14 | 20 29 31 36 42 43 |\n| 88 | 20261117 | 1.538 | 35 | 27 | 12 | 20 | 17 | 05 10 14 33 35 44 |\n| 96 | 20261125 | 1.526 | 21 | 3 | 1 | 33 | 27 | 15 16 36 38 39 43 |\n| 56 | 20261085 | 1.513 | 36 | 25 | 19 | 35 | 2 | 02 05 17 25 34 41 |\n| 87 | 20261116 | 1.508 | 1 | 11 | 21 | 6 | 17 | 05 23 26 27 29 38 |\n| 32 | 20261061 | 1.478 | 1 | 30 | 19 | 23 | 2 | 10 12 31 34 35 43 |\n| 20 | 20261049 | 1.458 | 7 | 27 | 11 | 18 | 15 | 11 21 32 33 34 38 |\n| 67 | 20261096 | 1.393 | 5 | 30 | 1 | 27 | 7 | 03 14 23 28 31 40 |\n| 18 | 20261047 | 1.253 | 34 | 27 | 20 | 1 | 26 | 06 07 24 25 27 31 |\n| 77 | 20261106 | 1.246 | 9 | 27 | 11 | 33 | 6 | 02 10 12 15 29 32 |\n| 69 | 20261098 | 1.238 | 35 | 9 | 3 | 18 | 26 | 12 14 18 21 32 39 |\n| 27 | 20261056 | 1.198 | 28 | 17 | 11 | 19 | 34 | 01 02 16 31 36 40 |\n| 38 | 20261067 | 1.150 | 29 | 11 | 10 | 35 | 17 | 04 05 11 12 39 41 |\n| 62 | 20261091 | 1.107 | 10 | 32 | 28 | 21 | 27 | 02 10 12 17 24 41 |\n| 49 | 20261078 | 1.052 | 10 | 27 | 35 | 28 | 13 | 13 15 18 19 21 32 |\n| 34 | 20261063 | 1.043 | 10 | 1 | 17 | 13 | 19 | 10 11 23 31 32 34 |\n| 66 | 20261095 | 0.910 | 26 | 1 | 3 | 29 | 19 | 25 26 35 38 41 42 |\n| 68 | 20261097 | 0.868 | 28 | 36 | 12 | 5 | 1 | 03 11 31 34 35 36 |\n| 26 | 20261055 | 0.740 | 18 | 11 | 19 | 29 | 36 | 23 27 29 36 37 39 |\n| 24 | 20261053 | 0.490 | 19 | 20 | 27 | 9 | 1 | 06 12 21 24 28 40 |\n\n## 6. Ključni brojevi\n\nSedam značajnih karata (34 Ribe, 2 Djetelina, 31 Sunce, 16 Zvijezde, 33 Ključ, 25 Prsten, 35 Sidro) + najčešći brojevi među prvih 30 rangiranih kandidata: 34, 2, 31, 16, 33, 25, 35, 22, 26, 4, 20, 21\n",
+ "kljucni_brojevi": [
+  34,
+  2,
+  31,
+  16,
+  33,
+  25,
+  35,
+  22,
+  26,
+  4,
+  20,
+  21
+ ],
+ "kandidati": [
+  {
+   "brojevi": [
+    21,
+    22,
+    26,
+    33,
+    36,
+    40
+   ],
+   "rang": 1,
+   "obrazlozenje": "Velika slika #53 (seed 20261082, ocjena 3.11×1.00): susjedni zbrojevi 23+17=40, 17+19=36, 19+3=22, 3+30=33, 30+36=21, 36+35=26"
+  },
+  {
+   "brojevi": [
+    2,
+    9,
+    14,
+    37,
+    44,
+    45
+   ],
+   "rang": 2,
+   "obrazlozenje": "Velika slika #85 (seed 20261114, ocjena 3.10×1.00): susjedni zbrojevi 21+23=44, 23+22=45, 22+25=2, 25+12=37, 12+2=14, 2+7=9"
+  },
+  {
+   "brojevi": [
+    18,
+    21,
+    31,
+    39,
+    40,
+    41
+   ],
+   "rang": 3,
+   "obrazlozenje": "Velika slika #82 (seed 20261111, ocjena 3.00×1.00): susjedni zbrojevi 13+8=21, 8+32=40, 32+7=39, 7+24=31, 24+17=41, 17+1=18"
+  },
+  {
+   "brojevi": [
+    6,
+    10,
+    33,
+    36,
+    37,
+    44
+   ],
+   "rang": 4,
+   "obrazlozenje": "Velika slika #72 (seed 20261101, ocjena 2.97×1.00): susjedni zbrojevi 24+20=44, 20+13=33, 13+23=36, 23+28=6, 28+27=10, 27+10=37"
+  },
+  {
+   "brojevi": [
+    4,
+    12,
+    13,
+    21,
+    26,
+    29
+   ],
+   "rang": 5,
+   "obrazlozenje": "Velika slika #48 (seed 20261077, ocjena 2.89×1.00): susjedni zbrojevi 8+4=12, 4+9=13, 9+20=29, 20+6=26, 6+15=21, 15+34=4"
+  },
+  {
+   "brojevi": [
+    2,
+    15,
+    16,
+    17,
+    19,
+    26
+   ],
+   "rang": 6,
+   "obrazlozenje": "Velika slika #53 (seed 20261082, ocjena 3.11×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←26 (26+34=15), Djetelina←17 (17+2=19), Sunce←16 (16+31=2)"
+  },
+  {
+   "brojevi": [
+    20,
+    21,
+    23,
+    25,
+    31,
+    35
+   ],
+   "rang": 7,
+   "obrazlozenje": "Velika slika #85 (seed 20261114, ocjena 3.10×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←31 (31+34=20), Djetelina←23 (23+2=25), Sunce←35 (35+31=21)"
+  },
+  {
+   "brojevi": [
+    10,
+    17,
+    24,
+    26,
+    27,
+    36
+   ],
+   "rang": 8,
+   "obrazlozenje": "Velika slika #6 (seed 20261035, ocjena 2.79×1.00): susjedni zbrojevi 35+20=10, 20+16=36, 16+11=27, 11+15=26, 15+9=24, 9+8=17"
+  },
+  {
+   "brojevi": [
+    8,
+    10,
+    12,
+    19,
+    23,
+    33
+   ],
+   "rang": 9,
+   "obrazlozenje": "Velika slika #82 (seed 20261111, ocjena 3.00×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←23 (23+34=12), Djetelina←8 (8+2=10), Sunce←33 (33+31=19)"
+  },
+  {
+   "brojevi": [
+    6,
+    11,
+    16,
+    17,
+    26,
+    31
+   ],
+   "rang": 10,
+   "obrazlozenje": "Velika slika #53 (seed 20261082, ocjena 3.11×0.88): karte u značajnim kućama: Ribe←26, Djetelina←17, Sunce←16, Zvijezde←6, Ključ←31, Prsten←11"
+  },
+  {
+   "brojevi": [
+    4,
+    22,
+    28,
+    29,
+    32,
+    37
+   ],
+   "rang": 11,
+   "obrazlozenje": "Velika slika #64 (seed 20261093, ocjena 2.74×1.00): susjedni zbrojevi 9+19=28, 19+3=22, 25+24=4, 24+5=29, 5+27=32, 27+10=37"
+  },
+  {
+   "brojevi": [
+    2,
+    15,
+    20,
+    22,
+    26,
+    33
+   ],
+   "rang": 12,
+   "obrazlozenje": "Velika slika #72 (seed 20261101, ocjena 2.97×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←26 (26+34=15), Djetelina←20 (20+2=22), Sunce←2 (2+31=33)"
+  },
+  {
+   "brojevi": [
+    23,
+    24,
+    27,
+    31,
+    33,
+    35
+   ],
+   "rang": 13,
+   "obrazlozenje": "Velika slika #85 (seed 20261114, ocjena 3.10×0.88): karte u značajnim kućama: Ribe←31, Djetelina←23, Sunce←35, Zvijezde←27, Ključ←33, Prsten←24"
+  },
+  {
+   "brojevi": [
+    19,
+    20,
+    22,
+    24,
+    29,
+    36
+   ],
+   "rang": 14,
+   "obrazlozenje": "Velika slika #30 (seed 20261059, ocjena 2.72×1.00): susjedni zbrojevi 7+22=29, 22+2=24, 2+18=20, 18+4=22, 4+15=19, 15+21=36"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    7,
+    8,
+    35,
+    40
+   ],
+   "rang": 15,
+   "obrazlozenje": "Velika slika #15 (seed 20261044, ocjena 2.71×1.00): susjedni zbrojevi 5+30=35, 30+22=7, 22+18=40, 18+35=8, 35+11=1, 23+25=3"
+  },
+  {
+   "brojevi": [
+    8,
+    9,
+    10,
+    11,
+    31,
+    43
+   ],
+   "rang": 16,
+   "obrazlozenje": "Velika slika #63 (seed 20261092, ocjena 2.69×1.00): susjedni zbrojevi 12+19=31, 19+35=9, 35+8=43, 23+33=11, 33+22=10, 22+31=8"
+  },
+  {
+   "brojevi": [
+    3,
+    4,
+    5,
+    6,
+    16,
+    17
+   ],
+   "rang": 17,
+   "obrazlozenje": "Velika slika #48 (seed 20261077, ocjena 2.89×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←16 (16+34=5), Djetelina←4 (4+2=6), Sunce←17 (17+31=3)"
+  },
+  {
+   "brojevi": [
+    8,
+    11,
+    23,
+    25,
+    27,
+    33
+   ],
+   "rang": 18,
+   "obrazlozenje": "Velika slika #82 (seed 20261111, ocjena 3.00×0.88): karte u značajnim kućama: Ribe←23, Djetelina←8, Sunce←33, Zvijezde←27, Ključ←11, Prsten←25"
+  },
+  {
+   "brojevi": [
+    2,
+    15,
+    18,
+    19,
+    22,
+    36
+   ],
+   "rang": 19,
+   "obrazlozenje": "Velika slika #53 (seed 20261082, ocjena 3.11×0.84): karta+kuća: Ribe:26+34=15, Djetelina:17+2=19, Sunce:16+31=2, Zvijezde:6+16=22, Prsten:11+25=36, Sidro:28+35=18"
+  },
+  {
+   "brojevi": [
+    2,
+    4,
+    20,
+    22,
+    26,
+    34
+   ],
+   "rang": 20,
+   "obrazlozenje": "Velika slika #72 (seed 20261101, ocjena 2.97×0.88): karte u značajnim kućama: Ribe←26, Djetelina←20, Sunce←2, Zvijezde←22, Ključ←4, Prsten←34"
+  },
+  {
+   "brojevi": [
+    4,
+    6,
+    20,
+    21,
+    25,
+    43
+   ],
+   "rang": 21,
+   "obrazlozenje": "Velika slika #85 (seed 20261114, ocjena 3.10×0.84): karta+kuća: Ribe:31+34=20, Djetelina:23+2=25, Sunce:35+31=21, Zvijezde:27+16=43, Prsten:24+25=4, Sidro:16+35=6"
+  },
+  {
+   "brojevi": [
+    2,
+    4,
+    13,
+    20,
+    21,
+    39
+   ],
+   "rang": 22,
+   "obrazlozenje": "Velika slika #83 (seed 20261112, ocjena 2.59×1.00): susjedni zbrojevi 21+28=4, 28+11=39, 11+10=21, 10+3=13, 3+17=20, 17+30=2"
+  },
+  {
+   "brojevi": [
+    2,
+    11,
+    20,
+    22,
+    25,
+    36
+   ],
+   "rang": 23,
+   "obrazlozenje": "Velika slika #6 (seed 20261035, ocjena 2.79×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←2 (2+34=36), Djetelina←20 (20+2=22), Sunce←25 (25+31=11)"
+  },
+  {
+   "brojevi": [
+    4,
+    16,
+    17,
+    22,
+    28,
+    31
+   ],
+   "rang": 24,
+   "obrazlozenje": "Velika slika #48 (seed 20261077, ocjena 2.89×0.88): karte u značajnim kućama: Ribe←16, Djetelina←4, Sunce←17, Zvijezde←31, Ključ←28, Prsten←22"
+  },
+  {
+   "brojevi": [
+    5,
+    10,
+    12,
+    19,
+    43,
+    44
+   ],
+   "rang": 25,
+   "obrazlozenje": "Velika slika #82 (seed 20261111, ocjena 3.00×0.84): karta+kuća: Ribe:23+34=12, Djetelina:8+2=10, Sunce:33+31=19, Zvijezde:27+16=43, Ključ:11+33=44, Prsten:25+25=5"
+  },
+  {
+   "brojevi": [
+    12,
+    19,
+    21,
+    26,
+    29,
+    32
+   ],
+   "rang": 26,
+   "obrazlozenje": "Velika slika #64 (seed 20261093, ocjena 2.74×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←32 (32+34=21), Djetelina←19, Sunce←26 (26+31=12), Zvijezde←29"
+  },
+  {
+   "brojevi": [
+    4,
+    5,
+    16,
+    20,
+    32,
+    38
+   ],
+   "rang": 27,
+   "obrazlozenje": "Velika slika #1 (seed 20261030, ocjena 2.51×1.00): susjedni zbrojevi 13+36=4, 36+2=38, 2+30=32, 30+31=16, 31+34=20, 34+16=5"
+  },
+  {
+   "brojevi": [
+    7,
+    18,
+    21,
+    26,
+    27,
+    37
+   ],
+   "rang": 28,
+   "obrazlozenje": "Velika slika #0 (seed 20261029, ocjena 2.51×1.00): susjedni zbrojevi 20+1=21, 1+36=37, 36+16=7, 16+11=27, 11+7=18, 7+19=26"
+  },
+  {
+   "brojevi": [
+    1,
+    10,
+    31,
+    33,
+    36,
+    38
+   ],
+   "rang": 29,
+   "obrazlozenje": "Velika slika #98 (seed 20261127, ocjena 2.51×1.00): susjedni zbrojevi 27+4=31, 4+34=38, 34+21=10, 21+12=33, 12+24=36, 24+22=1"
+  },
+  {
+   "brojevi": [
+    10,
+    12,
+    22,
+    24,
+    43,
+    44
+   ],
+   "rang": 30,
+   "obrazlozenje": "Velika slika #30 (seed 20261059, ocjena 2.72×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←10 (10+34=44), Djetelina←22 (22+2=24), Sunce←12 (12+31=43)"
+  },
+  {
+   "brojevi": [
+    3,
+    15,
+    17,
+    26,
+    30,
+    32
+   ],
+   "rang": 31,
+   "obrazlozenje": "Velika slika #15 (seed 20261044, ocjena 2.71×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←26 (26+34=15), Djetelina←30 (30+2=32), Sunce←17 (17+31=3)"
+  },
+  {
+   "brojevi": [
+    14,
+    15,
+    22,
+    33,
+    37,
+    38
+   ],
+   "rang": 32,
+   "obrazlozenje": "Velika slika #72 (seed 20261101, ocjena 2.97×0.84): karta+kuća: Ribe:26+34=15, Djetelina:20+2=22, Sunce:2+31=33, Zvijezde:22+16=38, Ključ:4+33=37, Prsten:34+25=14"
+  },
+  {
+   "brojevi": [
+    3,
+    8,
+    19,
+    27,
+    30,
+    34
+   ],
+   "rang": 33,
+   "obrazlozenje": "Velika slika #53 (seed 20261082, ocjena 3.11×0.80): kvadrat 3×3 oko Riba (položaj 13): 34 Ribe, 19 Toranj, 3 Brod, 30 Ljiljan, 8 Lijes, 27 Pismo"
+  },
+  {
+   "brojevi": [
+    6,
+    9,
+    14,
+    17,
+    29,
+    40
+   ],
+   "rang": 34,
+   "obrazlozenje": "Velika slika #76 (seed 20261105, ocjena 2.49×1.00): susjedni zbrojevi 23+17=40, 17+34=6, 34+25=14, 25+4=29, 4+5=9, 5+12=17"
+  },
+  {
+   "brojevi": [
+    2,
+    3,
+    4,
+    12,
+    25,
+    34
+   ],
+   "rang": 35,
+   "obrazlozenje": "Velika slika #85 (seed 20261114, ocjena 3.10×0.80): kvadrat 3×3 oko Riba (položaj 14): 34 Ribe, 25 Prsten, 12 Ptice, 2 Djetelina, 3 Brod, 4 Kuća"
+  },
+  {
+   "brojevi": [
+    14,
+    19,
+    21,
+    22,
+    25,
+    36
+   ],
+   "rang": 36,
+   "obrazlozenje": "Velika slika #63 (seed 20261092, ocjena 2.69×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←25 (25+34=14), Djetelina←19 (19+2=21), Sunce←36 (36+31=22)"
+  },
+  {
+   "brojevi": [
+    2,
+    6,
+    18,
+    20,
+    25,
+    32
+   ],
+   "rang": 37,
+   "obrazlozenje": "Velika slika #6 (seed 20261035, ocjena 2.79×0.88): karte u značajnim kućama: Ribe←2, Djetelina←20, Sunce←25, Zvijezde←6, Ključ←32, Prsten←18"
+  },
+  {
+   "brojevi": [
+    6,
+    7,
+    10,
+    11,
+    36,
+    41
+   ],
+   "rang": 38,
+   "obrazlozenje": "Velika slika #21 (seed 20261050, ocjena 2.44×1.00): susjedni zbrojevi 9+32=41, 32+23=10, 23+28=6, 28+8=36, 8+3=11, 3+4=7"
+  },
+  {
+   "brojevi": [
+    6,
+    17,
+    21,
+    25,
+    26,
+    33
+   ],
+   "rang": 39,
+   "obrazlozenje": "Velika slika #80 (seed 20261109, ocjena 2.43×1.00): susjedni zbrojevi 20+5=25, 5+28=33, 28+34=17, 34+17=6, 8+18=26, 18+3=21"
+  },
+  {
+   "brojevi": [
+    11,
+    12,
+    13,
+    28,
+    37,
+    38
+   ],
+   "rang": 40,
+   "obrazlozenje": "Velika slika #29 (seed 20261058, ocjena 2.43×1.00): susjedni zbrojevi 20+36=11, 36+2=38, 2+26=28, 26+31=12, 31+6=37, 6+7=13"
+  },
+  {
+   "brojevi": [
+    2,
+    19,
+    26,
+    29,
+    32,
+    34
+   ],
+   "rang": 41,
+   "obrazlozenje": "Velika slika #64 (seed 20261093, ocjena 2.74×0.88): karte u značajnim kućama: Ribe←32, Djetelina←19, Sunce←26, Zvijezde←29, Ključ←34, Prsten←2"
+  },
+  {
+   "brojevi": [
+    2,
+    11,
+    30,
+    35,
+    41,
+    42
+   ],
+   "rang": 42,
+   "obrazlozenje": "Velika slika #2 (seed 20261031, ocjena 2.41×1.00): susjedni zbrojevi 18+12=30, 12+23=35, 23+33=11, 33+14=2, 14+27=41, 27+15=42"
+  },
+  {
+   "brojevi": [
+    7,
+    17,
+    21,
+    43,
+    44,
+    45
+   ],
+   "rang": 43,
+   "obrazlozenje": "Velika slika #51 (seed 20261080, ocjena 2.40×1.00): susjedni zbrojevi 8+9=17, 9+34=43, 34+18=7, 18+27=45, 27+17=44, 17+4=21"
+  },
+  {
+   "brojevi": [
+    5,
+    8,
+    9,
+    13,
+    34,
+    36
+   ],
+   "rang": 44,
+   "obrazlozenje": "Velika slika #82 (seed 20261111, ocjena 3.00×0.80): kvadrat 3×3 oko Riba (položaj 10): 34 Ribe, 13 Dijete, 8 Lijes, 36 Križ, 5 Stablo, 9 Buket"
+  },
+  {
+   "brojevi": [
+    8,
+    10,
+    26,
+    37,
+    39,
+    45
+   ],
+   "rang": 45,
+   "obrazlozenje": "Velika slika #37 (seed 20261066, ocjena 2.40×1.00): susjedni zbrojevi 7+3=10, 3+36=39, 36+35=26, 35+10=45, 10+27=37, 27+26=8"
+  },
+  {
+   "brojevi": [
+    14,
+    17,
+    18,
+    26,
+    27,
+    43
+   ],
+   "rang": 46,
+   "obrazlozenje": "Velika slika #75 (seed 20261104, ocjena 2.40×1.00): susjedni zbrojevi 25+34=14, 34+9=43, 9+17=26, 17+10=27, 10+7=17, 7+11=18"
+  },
+  {
+   "brojevi": [
+    5,
+    27,
+    32,
+    33,
+    35,
+    44
+   ],
+   "rang": 47,
+   "obrazlozenje": "Velika slika #35 (seed 20261064, ocjena 2.39×1.00): susjedni zbrojevi 14+21=35, 21+23=44, 23+9=32, 9+18=27, 18+15=33, 15+35=5"
+  },
+  {
+   "brojevi": [
+    6,
+    10,
+    12,
+    22,
+    29,
+    32
+   ],
+   "rang": 48,
+   "obrazlozenje": "Velika slika #30 (seed 20261059, ocjena 2.72×0.88): karte u značajnim kućama: Ribe←10, Djetelina←22, Sunce←12, Zvijezde←6, Ključ←32, Prsten←29"
+  },
+  {
+   "brojevi": [
+    10,
+    13,
+    17,
+    21,
+    26,
+    30
+   ],
+   "rang": 49,
+   "obrazlozenje": "Velika slika #15 (seed 20261044, ocjena 2.71×0.88): karte u značajnim kućama: Ribe←26, Djetelina←30, Sunce←17, Zvijezde←10, Ključ←13, Prsten←21"
+  },
+  {
+   "brojevi": [
+    17,
+    25,
+    28,
+    30,
+    31,
+    36
+   ],
+   "rang": 50,
+   "obrazlozenje": "Velika slika #83 (seed 20261112, ocjena 2.59×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←36 (36+34=25), Djetelina←28 (28+2=30), Sunce←31 (31+31=17)"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    21,
+    30,
+    35,
+    45
+   ],
+   "rang": 51,
+   "obrazlozenje": "Velika slika #50 (seed 20261079, ocjena 2.38×1.00): susjedni zbrojevi 15+31=1, 31+14=45, 14+34=3, 34+32=21, 32+3=35, 3+27=30"
+  },
+  {
+   "brojevi": [
+    5,
+    7,
+    15,
+    19,
+    22,
+    34
+   ],
+   "rang": 52,
+   "obrazlozenje": "Velika slika #72 (seed 20261101, ocjena 2.97×0.80): kvadrat 3×3 oko Riba (položaj 25): 34 Ribe, 7 Zmija, 22 Raskrižje, 19 Toranj, 15 Medvjed, 5 Stablo"
+  },
+  {
+   "brojevi": [
+    3,
+    9,
+    19,
+    25,
+    28,
+    36
+   ],
+   "rang": 53,
+   "obrazlozenje": "Velika slika #63 (seed 20261092, ocjena 2.69×0.88): karte u značajnim kućama: Ribe←25, Djetelina←19, Sunce←36, Zvijezde←9, Ključ←3, Prsten←28"
+  },
+  {
+   "brojevi": [
+    2,
+    6,
+    10,
+    15,
+    24,
+    35
+   ],
+   "rang": 54,
+   "obrazlozenje": "Velika slika #53 (seed 20261082, ocjena 3.11×0.76): kvadrat 3×3 oko Djeteline (položaj 17): 2 Djetelina, 35 Sidro, 15 Medvjed, 10 Kosa, 6 Oblaci, 24 Srce"
+  },
+  {
+   "brojevi": [
+    2,
+    4,
+    7,
+    12,
+    27,
+    34
+   ],
+   "rang": 55,
+   "obrazlozenje": "Velika slika #85 (seed 20261114, ocjena 3.10×0.76): kvadrat 3×3 oko Djeteline (položaj 6): 2 Djetelina, 12 Ptice, 7 Zmija, 34 Ribe, 4 Kuća, 27 Pismo"
+  },
+  {
+   "brojevi": [
+    10,
+    19,
+    22,
+    31,
+    34,
+    45
+   ],
+   "rang": 56,
+   "obrazlozenje": "Velika slika #47 (seed 20261076, ocjena 2.35×1.00): susjedni zbrojevi 16+6=22, 6+4=10, 4+30=34, 30+34=19, 34+11=45, 11+20=31"
+  },
+  {
+   "brojevi": [
+    3,
+    11,
+    20,
+    22,
+    36,
+    43
+   ],
+   "rang": 57,
+   "obrazlozenje": "Velika slika #6 (seed 20261035, ocjena 2.79×0.84): karta+kuća: Ribe:2+34=36, Djetelina:20+2=22, Sunce:25+31=11, Ključ:32+33=20, Prsten:18+25=43, Sidro:13+35=3"
+  },
+  {
+   "brojevi": [
+    5,
+    9,
+    18,
+    31,
+    40,
+    44
+   ],
+   "rang": 58,
+   "obrazlozenje": "Velika slika #7 (seed 20261036, ocjena 2.34×1.00): susjedni zbrojevi 6+12=18, 12+28=40, 28+22=5, 22+9=31, 9+35=44, 35+19=9"
+  },
+  {
+   "brojevi": [
+    3,
+    33,
+    37,
+    38,
+    39,
+    41
+   ],
+   "rang": 59,
+   "obrazlozenje": "Velika slika #81 (seed 20261110, ocjena 2.34×1.00): susjedni zbrojevi 14+34=3, 34+7=41, 7+32=39, 32+1=33, 1+36=37, 36+2=38"
+  },
+  {
+   "brojevi": [
+    2,
+    3,
+    28,
+    34,
+    35,
+    38
+   ],
+   "rang": 60,
+   "obrazlozenje": "Velika slika #95 (seed 20261124, ocjena 2.32×1.00): susjedni zbrojevi 7+31=38, 31+4=35, 4+24=28, 24+23=2, 23+11=34, 27+21=3"
+  },
+  {
+   "brojevi": [
+    10,
+    11,
+    22,
+    24,
+    36,
+    38
+   ],
+   "rang": 61,
+   "obrazlozenje": "Velika slika #1 (seed 20261030, ocjena 2.51×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←22 (22+34=11), Djetelina←36 (36+2=38), Sunce←24 (24+31=10)"
+  },
+  {
+   "brojevi": [
+    5,
+    11,
+    15,
+    18,
+    31,
+    34
+   ],
+   "rang": 62,
+   "obrazlozenje": "Velika slika #48 (seed 20261077, ocjena 2.89×0.80): kvadrat 3×3 oko Riba (položaj 7): 34 Ribe, 15 Medvjed, 5 Stablo, 11 Bič, 31 Sunce, 18 Pas"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    4,
+    10,
+    15,
+    41
+   ],
+   "rang": 63,
+   "obrazlozenje": "Velika slika #0 (seed 20261029, ocjena 2.51×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←15 (15+34=4), Djetelina←1 (1+2=3), Sunce←10 (10+31=41)"
+  },
+  {
+   "brojevi": [
+    4,
+    6,
+    9,
+    19,
+    20,
+    33
+   ],
+   "rang": 64,
+   "obrazlozenje": "Velika slika #98 (seed 20261127, ocjena 2.51×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←20 (20+34=9), Djetelina←4 (4+2=6), Sunce←33 (33+31=19)"
+  },
+  {
+   "brojevi": [
+    11,
+    20,
+    33,
+    37,
+    39,
+    45
+   ],
+   "rang": 65,
+   "obrazlozenje": "Velika slika #23 (seed 20261052, ocjena 2.29×1.00): susjedni zbrojevi 5+32=37, 32+33=20, 33+23=11, 23+22=45, 22+17=39, 17+16=33"
+  },
+  {
+   "brojevi": [
+    7,
+    14,
+    17,
+    19,
+    41,
+    45
+   ],
+   "rang": 66,
+   "obrazlozenje": "Velika slika #76 (seed 20261105, ocjena 2.49×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←7 (7+34=41), Djetelina←17 (17+2=19), Sunce←14 (14+31=45)"
+  },
+  {
+   "brojevi": [
+    9,
+    20,
+    22,
+    24,
+    43,
+    44
+   ],
+   "rang": 67,
+   "obrazlozenje": "Velika slika #30 (seed 20261059, ocjena 2.72×0.84): karta+kuća: Ribe:10+34=44, Djetelina:22+2=24, Sunce:12+31=43, Zvijezde:6+16=22, Ključ:32+33=20, Prsten:29+25=9"
+  },
+  {
+   "brojevi": [
+    1,
+    12,
+    25,
+    28,
+    31,
+    36
+   ],
+   "rang": 68,
+   "obrazlozenje": "Velika slika #83 (seed 20261112, ocjena 2.59×0.88): karte u značajnim kućama: Ribe←36, Djetelina←28, Sunce←31, Zvijezde←1, Ključ←25, Prsten←12"
+  },
+  {
+   "brojevi": [
+    2,
+    3,
+    16,
+    28,
+    31,
+    35
+   ],
+   "rang": 69,
+   "obrazlozenje": "Velika slika #82 (seed 20261111, ocjena 3.00×0.76): kvadrat 3×3 oko Djeteline (položaj 23): 2 Djetelina, 28 Gospodin, 35 Sidro, 31 Sunce, 16 Zvijezde, 3 Brod"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    15,
+    26,
+    32,
+    37
+   ],
+   "rang": 70,
+   "obrazlozenje": "Velika slika #15 (seed 20261044, ocjena 2.71×0.84): karta+kuća: Ribe:26+34=15, Djetelina:30+2=32, Sunce:17+31=3, Zvijezde:10+16=26, Ključ:13+33=1, Sidro:2+35=37"
+  },
+  {
+   "brojevi": [
+    25,
+    31,
+    38,
+    39,
+    40,
+    41
+   ],
+   "rang": 71,
+   "obrazlozenje": "Velika slika #70 (seed 20261099, ocjena 2.28×1.00): susjedni zbrojevi 24+7=31, 7+34=41, 34+4=38, 4+36=40, 36+3=39, 3+22=25"
+  },
+  {
+   "brojevi": [
+    2,
+    3,
+    16,
+    18,
+    21,
+    32
+   ],
+   "rang": 72,
+   "obrazlozenje": "Velika slika #72 (seed 20261101, ocjena 2.97×0.76): kvadrat 3×3 oko Djeteline (položaj 31): 2 Djetelina, 32 Mjesec, 16 Zvijezde, 18 Pas, 21 Planina, 3 Brod"
+  },
+  {
+   "brojevi": [
+    1,
+    5,
+    13,
+    16,
+    32,
+    34
+   ],
+   "rang": 73,
+   "obrazlozenje": "Velika slika #21 (seed 20261050, ocjena 2.44×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←16 (16+34=5), Djetelina←32 (32+2=34), Sunce←1, Zvijezde←13"
+  },
+  {
+   "brojevi": [
+    3,
+    14,
+    17,
+    36,
+    41,
+    45
+   ],
+   "rang": 74,
+   "obrazlozenje": "Velika slika #59 (seed 20261088, ocjena 2.24×1.00): susjedni zbrojevi 3+14=17, 14+22=36, 22+19=41, 19+26=45, 26+33=14, 33+15=3"
+  },
+  {
+   "brojevi": [
+    5,
+    7,
+    14,
+    21,
+    32,
+    45
+   ],
+   "rang": 75,
+   "obrazlozenje": "Velika slika #80 (seed 20261109, ocjena 2.43×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←32 (32+34=21), Djetelina←5 (5+2=7), Sunce←14 (14+31=45)"
+  },
+  {
+   "brojevi": [
+    9,
+    18,
+    23,
+    29,
+    36,
+    38
+   ],
+   "rang": 76,
+   "obrazlozenje": "Velika slika #29 (seed 20261058, ocjena 2.43×0.92): naizmjence karta/zbroj (Ribe→Djetelina→Sunce…): Ribe←29 (29+34=18), Djetelina←36 (36+2=38), Sunce←23 (23+31=9)"
+  },
+  {
+   "brojevi": [
+    9,
+    11,
+    15,
+    31,
+    34,
+    36
+   ],
+   "rang": 77,
+   "obrazlozenje": "Velika slika #6 (seed 20261035, ocjena 2.79×0.80): kvadrat 3×3 oko Riba (položaj 14): 34 Ribe, 11 Bič, 15 Medvjed, 9 Buket, 36 Križ, 31 Sunce"
+  },
+  {
+   "brojevi": [
+    2,
+    5,
+    10,
+    12,
+    24,
+    27
+   ],
+   "rang": 78,
+   "obrazlozenje": "Velika slika #11 (seed 20261040, ocjena 2.23×1.00): susjedni zbrojevi 15+32=2, 32+18=5, 18+6=24, 6+21=27, 21+36=12, 36+19=10"
+  },
+  {
+   "brojevi": [
+    19,
+    24,
+    25,
+    26,
+    40,
+    43
+   ],
+   "rang": 79,
+   "obrazlozenje": "Velika slika #13 (seed 20261042, ocjena 2.23×1.00): susjedni zbrojevi 10+15=25, 15+9=24, 9+31=40, 31+12=43, 12+7=19, 7+19=26"
+  },
+  {
+   "brojevi": [
+    10,
+    31,
+    35,
+    39,
+    40,
+    43
+   ],
+   "rang": 80,
+   "obrazlozenje": "Velika slika #22 (seed 20261051, ocjena 2.22×1.00): susjedni zbrojevi 9+30=39, 30+13=43, 13+18=31, 18+17=35, 26+29=10, 29+11=40"
+  }
+ ]
+}
