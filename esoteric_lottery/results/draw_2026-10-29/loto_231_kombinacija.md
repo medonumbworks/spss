@@ -97,10 +97,13 @@ izvlačenjima: zbroj 137,7 (882 izvlačenja: 137,7), neparnih 3,09 (3,07), ≤31
 
 ## Blok 2 — 50 kombinacija: statistika iz 882 izvlačenja (2018–2026)
 
-**Prvo ono što podaci stvarno kažu:** χ² = 28,3 pri 44 stupnja slobode — *ispod* očekivanih 44,
-kritična vrijednost je 60,5. Izvlačenja su savršeno uniformna. Uzastopni parovi: 52,8 % stvarno
-vs 52,9 % teorijski. **Vrući i hladni brojevi nemaju prediktivnu moć** i ovaj blok ne diže
-vjerojatnost ni za koliko. Biraju *koje* od jednako vjerojatnih kombinacija igraš.
+**Prvo ono što podaci stvarno kažu:** Pearsonova statistika frekvencija je X = 28,3. Pošto se
+izvlači 6 **različitih** brojeva, referentna razdioba nije χ²₄₄ (Genest, Lockhart & Stephens 2002);
+simulacijom 40.000 nizova od po 882 izvlačenja dobiva se E[X] = 39,0 (analitički 45(1−6/45) = 39)
+i 95. percentil **53,7**. Dakle 28,3 ≪ 53,7, p = 0,91 na gornjoj strani. Uzastopni parovi: 52,8 %
+stvarno vs 52,9 % teorijski. **Vrući i hladni brojevi nemaju prediktivnu moć** i ovaj blok ne diže
+vjerojatnost ni za koliko. Biraju *koje* od jednako vjerojatnih kombinacija igraš. Isto nalazi
+Haigh (1997) na prvih 96 kola UK lota: brojevi su slučajni, ali **izbori igrača nisu**.
 
 Težina broja = 0,40 × vrući (zadnjih 60 kola) + 0,35 × ukupna frekvencija + 0,25 × kašnjenje,
 Bordinim bodovima; gornjih 20 % (Pareto 9: 03, 04, 06, 08, 13, 15, 23, 34, 35) dobiva množitelj 1,6.
@@ -160,9 +163,15 @@ vrijeme izvlačenja), 60 čitanja po metodi, Bordini bodovi vlastitog poretka sv
 ## Blok 4 — 31 kombinacija: moja prosudba
 
 Ovdje ne gađam vjerojatnost — nju sam već maksimizirao pravilom o presjeku. Gađam **iznos
-ako pogodiš**, jedino što je u pari-mutuel igri stvarno pomično. Cook & Clotfelter (1993),
-Farrell et al. (2000) i Baker & McHale (2009) nalaze da su brojevi iznad 31 sustavno
-podigrani (rođendanski efekt), pa se dobitak na njima dijeli s manje ljudi.
+ako pogodiš**, jedino što je u pari-mutuel igri stvarno pomično. Farrell et al. (2000),
+Baker & McHale (2009) i Ziemba et al. (1986) nalaze da su brojevi iznad 31 sustavno
+podigrani (rođendanski efekt), pa se dobitak na njima dijeli s manje ljudi. Moffitt & Ziemba
+mjere razliku: popularna kombinacija dijeli jackpot s udjelom ~17 %, nepopularna ~36 %.
+
+**Ali — vidi dodatak o literaturi.** Taj efekt je stvaran u smjeru, a premali da preokrene
+predznak: Papachristou & Karamanis (1998) na grčkom 6/49 nalaze da nepopularni brojevi postoje,
+ali **nisu dovoljno nepopularni** za pozitivno očekivanje, a Chernoffov vlastiti sustav
+(1981, državni rez 40 % — Loto 6/45 reže 50 %) „proved disappointing”.
 
 Svaka od 31 kombinacije: **barem 4 broja iznad 31**, najviše jedan broj ≤12, **bez broja 7**
 (najigraniji broj), zbroj ≥165, najviše 3 broja iz istog desetljeća, bez aritmetičkog niza.
@@ -202,5 +211,8 @@ Sve vjerojatnosti su egzaktne — nabrajanje svih 8.145.060 izvlačenja, bez sim
 
 **Što ovo ne radi:** ne diže šansu za šesticu iznad 231 : 8.145.060. Ta se ne može dići ničim
 osim brojem kombinacija. Pravilo o presjeku diže samo P(*barem jedna* kombinacija u 1.–3.
-razredu) na maksimum mogućeg za 231 kombinaciju, a blok 4 diže iznos ako pogodiš.
+razredu) na maksimum mogućeg za 231 kombinaciju, a blok 4 diže iznos ako pogodiš — i to
+premalo da očekivanje postane pozitivno.
+
+Popis literature i provjera citata: `literatura.md` u istoj mapi.
 
