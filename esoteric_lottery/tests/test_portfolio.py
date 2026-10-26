@@ -324,3 +324,53 @@ def test_companion_numbers_avoid_the_ones_already_in_play():
     assert assign_companion_digits(sources, digits, "k")[0]["digits"] == [1, 1, 1, 1, 1, 1]
     got = assign_companion_digits(sources, digits, "k", taken=[[1, 1, 1, 1, 1, 1]])
     assert got[0]["digits"] == [2, 2, 2, 2, 2, 2]
+
+
+# ------------------------------------------- three 20-number systems over a pool of 45
+
+def test_three_twenty_number_systems_cannot_be_disjoint():
+    """3 x 20 = 60 number slots over 45 numbers, so 15 numbers must repeat."""
+    assert 3 * 20 > LOTO.size
+    # The total of the pairwise overlaps equals sum_n C(multiplicity_n, 2), which is
+    # convex, so it is smallest when the multiplicities are as equal as possible:
+    # 15 numbers twice, 30 once. Brute force over every multiplicity profile agrees.
+    totals = []
+    for twice in range(0, 31):
+        thrice = 0
+        while 3 * thrice + 2 * twice <= 60:
+            once = 60 - 2 * twice - 3 * thrice
+            if once >= 0 and once + twice + thrice <= LOTO.size:
+                totals.append((twice * 1 + thrice * 3, twice, thrice))
+            thrice += 1
+    assert min(t[0] for t in totals) == 15
+    # 15 spread over three pairs with none above 5 leaves only 5 + 5 + 5.
+    patterns = [p for p in itertools.product(range(6), repeat=3) if sum(p) == 15]
+    assert patterns == [(5, 5, 5)]
+
+
+def test_delivered_three_systems_for_2026_10_29():
+    """The record in data/ must keep the structure its figures were computed from."""
+    import json
+    import pathlib
+    rec = json.loads((pathlib.Path(__file__).resolve().parents[1]
+                      / "data/predlozeno_2026-10-29.json").read_text(encoding="utf-8"))
+    three = rec["proposals"]["three_reduced_30"]
+    entries = [tuple(e) for e in three["entries"]]
+    assert all(len(set(e)) == 20 and all(1 <= n <= 45 for n in e) for e in entries)
+    assert [len(set(x) & set(y)) for x, y in itertools.combinations(entries, 2)] == [5, 5, 5]
+    assert len(set().union(*map(set, entries))) == 45
+    mult = {n: sum(1 for e in entries if n in e) for n in range(1, 46)}
+    assert sorted(mult.values()) == [1] * 30 + [2] * 15
+    # no two of the 3 x 323 combinations can coincide: that would need 6 shared numbers
+    assert max(len(set(x) & set(y)) for x, y in itertools.combinations(entries, 2)) < LOTO.pick
+    joint = joint_hit_distribution(entries, LOTO)
+    p = three["exact_probabilities"]
+    for k in (3, 4, 5, 6):
+        got = float(sum(q for h, q in joint.items() if max(h) >= k))
+        assert got == pytest.approx(p[f"at_least_one_entry_holds_{k}_of_6"], abs=5e-11)
+    assert float(sum(q for h, q in joint.items() if max(h) <= 2)) == pytest.approx(
+        p["no_entry_holds_3_of_6"], abs=5e-11)
+    # the one invariant: 3 x 6 x 20/45 hits on average, whatever the structure
+    assert sum(q * sum(h) for h, q in joint.items()) == Fraction(8)
+    assert three["p_six_of_six_played"] == pytest.approx(3 * 323 / comb(45, 6), abs=5e-11)
+    assert len(set(three["jokers"])) == 3

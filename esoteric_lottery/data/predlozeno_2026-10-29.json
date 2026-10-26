@@ -1,0 +1,170 @@
+{
+  "caveat": "P(listić drži k od 6 izvučenih) je nužan, ne dovoljan uvjet za dobitak: skraćeni sistem igra 323 od C(20,6)=38760 kombinacija, a službeni HL dizajn tih 323 kombinacija nije bio dostupan za provjeru (lutrija.hr nedostupan iz kontejnera). Očekivani broj dobitnih kombinacija po razredu je točan i ne zavisi od dizajna.",
+  "draw_date": "2026-10-29",
+  "entry_form": "skraćeni sistem 30 (20 brojeva, 323 kombinacije, 80,75 EUR)",
+  "game": "loto",
+  "proposals": {
+    "pair_2026-10-29": {
+      "combinations": 1247,
+      "cost_eur": 311.75,
+      "full_12": [
+        1,
+        8,
+        9,
+        10,
+        14,
+        16,
+        23,
+        28,
+        30,
+        34,
+        35,
+        45
+      ],
+      "jokers": [
+        "439431",
+        "162431"
+      ],
+      "note": "prvi predlog: skraćeni sistem 30 + disjunktni puni sistem 12",
+      "reduced_30": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        11,
+        15,
+        17,
+        19,
+        20,
+        26,
+        29,
+        31,
+        32,
+        36,
+        37,
+        39,
+        40,
+        41
+      ]
+    },
+    "three_reduced_30": {
+      "combinations": 969,
+      "cost_eur": 242.25,
+      "entries": [
+        [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          11,
+          15,
+          17,
+          19,
+          20,
+          26,
+          29,
+          31,
+          32,
+          36,
+          37,
+          39,
+          40,
+          41
+        ],
+        [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          9,
+          10,
+          18,
+          21,
+          22,
+          23,
+          24,
+          27,
+          34,
+          35,
+          41,
+          42,
+          44,
+          45
+        ],
+        [
+          1,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14,
+          16,
+          19,
+          25,
+          28,
+          30,
+          31,
+          32,
+          33,
+          36,
+          38,
+          43,
+          45
+        ]
+      ],
+      "exact_probabilities": {
+        "at_least_one_entry_holds_3_of_6": 0.9888122371,
+        "at_least_one_entry_holds_4_of_6": 0.6305674851,
+        "at_least_one_entry_holds_5_of_6": 0.1566084228,
+        "at_least_one_entry_holds_6_of_6": 0.0142761379,
+        "no_entry_holds_3_of_6": 0.0111877629
+      },
+      "expected_winning_combinations": {
+        "3": 21.7449374222,
+        "4": 1.3223272757,
+        "5": 0.027838469,
+        "6": 0.0001189678
+      },
+      "jokers": [
+        "439431",
+        "162431",
+        "039434"
+      ],
+      "note": "tri skraćena sistema 30; tri disjunktna su nemoguća (3x20=60 > 45), ovo je jedina struktura koja pokriva svih 45 brojeva s minimalnim presjekom 5",
+      "numbers_on_two_entries": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        19,
+        31,
+        32,
+        36,
+        41,
+        45
+      ],
+      "p_six_of_six_played": 0.0001189678,
+      "pairwise_overlaps": [
+        5,
+        5,
+        5
+      ],
+      "union_size": 45
+    }
+  },
+  "unit_price_eur": 0.25,
+  "unit_price_source": "izvedeno iz 'Puni sistem 12 = 231,00 EUR' / C(12,6)=924 kombinacija"
+}
