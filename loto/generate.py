@@ -161,9 +161,9 @@ class Builder:
         plan = [
             ("Pareto: ≥3 od 9 najčešćih ukupno + jedan od 12 najčešćih parova", "PARETO",
              lambda c: envelope(c) and sum(x in pareto9 for x in c) >= 3),
+            ("vruće-hladni mix: 3 vruća + 3 hladna/kasneća", [(hot12, 3), (coldlate, 3)], envelope),
             ("vrući (zadnjih 60 kola): 4 od 12 najčešćih", [(hot12, 4), (ALL, 2)], envelope),
             ("hladni + kašnjenje: 4 iz 12 najrjeđih / 12 najkašnjenijih", [(coldlate, 4), (ALL, 2)], envelope),
-            ("vruće-hladni mix: 3 vruća + 3 hladna/kasneća", [(hot12, 3), (coldlate, 3)], envelope),
             ("Borda težine (0,40 vrući + 0,35 ukupno + 0,25 kašnjenje), modalni profil", [(ALL, 6)],
              lambda c: envelope(c) and 116 <= sum(c) <= 159 and consec(c) <= 1 and len(C.profile(c)["decades"]) >= 3),
         ]
@@ -175,7 +175,7 @@ class Builder:
                     pools_j = [(pair, 2), (pareto9, 2), (ALL, 2)]
                 else:
                     pools_j = pools
-                c = self.construct(pools_j, w, cap, cap_max=9, final_ok=fin,
+                c = self.construct(pools_j, w, cap, cap_max=10, final_ok=fin,
                                    tries=1500 if pools == "PARETO" else 600, damp=0.6)
                 if c is None:
                     break
@@ -277,7 +277,7 @@ class Builder:
             pack.add(c); blocks.append(c); freq.update(c)
             pairs.update(itertools.combinations(c, 2))
 
-        W_UNC, W_OVER, W_FREQ, W_SUM, W_ODD = 100, 10, 20, 5, 3
+        W_UNC, W_OVER, W_FREQ, W_SUM, W_ODD = 100, 15, 15, 5, 3
 
         def soft(c):
             return W_SUM * (0 if lo <= sum(c) <= hi else 1) + W_ODD * (0 if 2 <= sum(x % 2 for x in c) <= 4 else 1)
@@ -321,44 +321,114 @@ class Builder:
         cur = objective()
         self.log.append(f"blok1 pohlepni start: cilj={cur:.0f} nepokrivenih="
                         f"{sum(1 for p in itertools.combinations(range(1, 46), 2) if pairs[p] == 0)}")
-        T = 10.0
+
+        def uncovered():
+            return [p for p in itertools.combinations(range(1, 46), 2) if pairs[p] == 0]
+
+        def build_with(fixed, exclude_idx):
+            """Novi blok koji sadrži `fixed`, pohlepno dopunjen (nepokriveni parovi, niska frekvencija, šum),
+            uz pakiranje bez bloka exclude_idx."""
+            V = blocks[exclude_idx]
+            pack.remove(V)
+            result = None
+            fo = Counter(V)
+            for attempt in range(40):
+                chosen = list(fixed)
+                bands = Counter((x - 1) // 9 for x in chosen)
+                if max(bands.values()) > 3 or not all(self.triple_free(x, chosen[:k]) for k, x in enumerate(chosen)):
+                    break
+                noise = 2 + 0.5 * attempt
+                okb = True
+                while len(chosen) < 6:
+                    best, best_s = None, -1e9
+                    for x in range(1, 46):
+                        bx = (x - 1) // 9
+                        if x in chosen or bands[bx] >= 3 or not self.triple_free(x, chosen):
+                            continue
+                        if bx in bands and len(bands) + (6 - len(chosen)) - 1 < 4:
+                            continue
+                        unc = sum(1 for a in chosen if pairs[tuple(sorted((a, x)))] - (a in V and x in V) == 0)
+                        over = sum(1 for a in chosen if pairs[tuple(sorted((a, x)))] - (a in V and x in V) >= 2)
+                        fx = freq[x] - fo[x]
+                        sc = 10 * unc - 4 * over - 3 * max(0, fx - 13) + rng.random() * noise
+                        if sc > best_s:
+                            best, best_s = x, sc
+                    if best is None:
+                        okb = False
+                        break
+                    chosen.append(best); bands[(best - 1) // 9] += 1
+                if not okb:
+                    continue
+                c = tuple(sorted(chosen))
+                if len(bands) >= 4 and c not in FORBIDDEN and pack.fits(c) and c not in blocks:
+                    result = c
+                    break
+            pack.add(V)
+            return result
+
+        def removal_cost(i):
+            c = blocks[i]
+            d = 0
+            for p in itertools.combinations(c, 2):
+                if pairs[p] == 1: d += W_UNC
+                elif pairs[p] > 2: d -= W_OVER
+            for x in c:
+                d += W_FREQ * (max(0, abs(freq[x] - 1 - 13.5) - 0.5) - max(0, abs(freq[x] - 13.5) - 0.5))
+            return d
+
+        T = 6.0
         it = 0
         best_cur, best_state, last_improve = cur, (list(blocks), Counter(pairs), Counter(freq)), 0
+
+        def restore_best():
+            nonlocal cur
+            bl, pr, fq = best_state
+            for i, c in enumerate(blocks):
+                if c != bl[i]:
+                    pack.remove(c)
+            for i, c in enumerate(bl):
+                if blocks[i] != c:
+                    pack.add(c)
+            blocks[:] = list(bl); pairs.clear(); pairs.update(pr); freq.clear(); freq.update(fq)
+            cur = best_cur
+
         for it in range(iters):
             if cur == 0:
                 break
             if cur < best_cur:
                 best_cur, best_state, last_improve = cur, (list(blocks), Counter(pairs), Counter(freq)), it
             if it % 10_000 == 0:
-                T = max(4.0, T * 0.9)
-            if it - last_improve > 80_000:
-                # ILS udarac: vrati najbolje stanje pa nasumično zamijeni 3 kombinacije
-                bl, pr, fq = best_state
-                for i, c in enumerate(blocks):
-                    if c != bl[i]:
-                        pack.remove(c)
-                for i, c in enumerate(bl):
-                    if blocks[i] != c:
-                        pack.add(c)
-                blocks[:] = list(bl); pairs.clear(); pairs.update(pr); freq.clear(); freq.update(fq)
-                cur = best_cur
-                for _ in range(3):
+                T = max(2.0, T * 0.9)
+            if it - last_improve > 60_000:
+                restore_best()
+                # udarac: 2 prisilna "ruin & recreate" poteza
+                for _ in range(2):
+                    unc = uncovered()
+                    fixed = list(rng.choice(unc)) if unc else [rng.randrange(1, 46)]
                     i = rng.randrange(100)
-                    old = blocks[i]
-                    pack.remove(old)
-                    opts = []
-                    for _ in range(200):
-                        c = tuple(sorted(rng.sample(range(1, 46), 6)))
-                        if hard_ok(c):
-                            opts.append(c)
-                            break
-                    pack.add(old)
-                    if opts:
-                        d = delta(old, opts[0]); apply(i, opts[0]); cur += d
+                    new = build_with(fixed, i)
+                    if new is not None:
+                        d = delta(blocks[i], new); apply(i, new); cur += d
                 last_improve = it
-                T = 10.0
+                T = 6.0
             r = rng.random()
-            if 0.35 <= r < 0.6:
+            if r < 0.40:
+                # ruin & recreate: nepokriveni par ugradi u novi blok umjesto najjeftinije žrtve
+                unc = uncovered()
+                if unc:
+                    fixed = list(rng.choice(unc))
+                else:
+                    i0 = problem_block(); fixed = [rng.choice(blocks[i0])]
+                costs = sorted(range(100), key=lambda i: removal_cost(i) + rng.random() * 30)
+                i = rng.choice(costs[:6])
+                new = build_with(fixed, i)
+                if new is None:
+                    continue
+                d = delta(blocks[i], new)
+                if d <= 0 or rng.random() < math.exp(-d / T):
+                    apply(i, new); cur += d
+                continue
+            if 0.40 <= r < 0.65:
                 # zamjena brojeva između dvije kombinacije (frekvencije ostaju iste)
                 i = problem_block() if rng.random() < 0.5 else rng.randrange(100)
                 j = rng.randrange(100)
@@ -383,9 +453,9 @@ class Builder:
                 else:
                     apply(i, A)
                 continue
-            if r < 0.35 or (r < 0.6 and False):
+            if r < 0.85:
                 # ciljani potez: nepokriveni par (x, y) → ubaci y u kombinaciju koja sadrži x
-                unc = [p for p in itertools.combinations(range(1, 46), 2) if pairs[p] == 0]
+                unc = uncovered()
                 if unc:
                     x, y = rng.choice(unc)
                     if rng.random() < 0.5:
@@ -412,10 +482,8 @@ class Builder:
                         apply(i, new); cur += d
                     continue
                 i = problem_block()
-            elif r < 0.7:
-                i = problem_block()
             else:
-                i = rng.randrange(100)
+                i = problem_block() if rng.random() < 0.5 else rng.randrange(100)
             old = blocks[i]
             pos = rng.randrange(6)
             pack.remove(old)
@@ -434,15 +502,7 @@ class Builder:
             if d <= 0 or rng.random() < math.exp(-d / T):
                 apply(i, new); cur += d
         if cur > best_cur:
-            bl, pr, fq = best_state
-            for i, c in enumerate(blocks):
-                if c != bl[i]:
-                    pack.remove(c)
-            for i, c in enumerate(bl):
-                if blocks[i] != c:
-                    pack.add(c)
-            blocks[:] = list(bl); pairs.clear(); pairs.update(pr); freq.clear(); freq.update(fq)
-            cur = best_cur
+            restore_best()
         unc = [p for p in itertools.combinations(range(1, 46), 2) if pairs[p] == 0]
         chk = objective()
         self.log.append(f"blok1: cilj={cur:.0f} (provjera {chk:.0f}) nepokrivenih parova={len(unc)} "
