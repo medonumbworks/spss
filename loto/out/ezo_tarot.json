@@ -1,0 +1,989 @@
+{
+ "metoda": "Tarot",
+ "slug": "tarot",
+ "postupak": "# Tarot (Rider–Waite–Smith) za Loto 6/45, četvrtak 29.10.2026. u 20:00 CET (dan i 3. noćni planetarni sat Jupitera), Zagreb\n\n## 1. Špil i mapiranja\n\nReferentni popis (a), 1–78: 1=I Mag, 2=II Visoka svećenica, 3=III Carica, 4=IV Car, 5=V Jerofant, 6=VI Ljubavnici, 7=VII Kola, 8=VIII Snaga, 9=IX Pustinjak, 10=X Kolo sreće, 11=XI Pravda, 12=XII Obješeni, 13=XIII Smrt, 14=XIV Umjerenost, 15=XV Đavao, 16=XVI Kula, 17=XVII Zvijezda, 18=XVIII Mjesec, 19=XIX Sunce, 20=XX Sud, 21=XXI Svijet, 22=0 Luda, 23=As štapova, 24=2 štapova, 25=3 štapova, 26=4 štapova, 27=5 štapova, 28=6 štapova, 29=7 štapova, 30=8 štapova, 31=9 štapova, 32=10 štapova, 33=Paž štapova, 34=Vitez štapova, 35=Kraljica štapova, 36=Kralj štapova, 37=As pehara, 38=2 pehara, 39=3 pehara, 40=4 pehara, 41=5 pehara, 42=6 pehara, 43=7 pehara, 44=8 pehara, 45=9 pehara, 46=10 pehara, 47=Paž pehara, 48=Vitez pehara, 49=Kraljica pehara, 50=Kralj pehara, 51=As mačeva, 52=2 mačeva, 53=3 mačeva, 54=4 mačeva, 55=5 mačeva, 56=6 mačeva, 57=7 mačeva, 58=8 mačeva, 59=9 mačeva, 60=10 mačeva, 61=Paž mačeva, 62=Vitez mačeva, 63=Kraljica mačeva, 64=Kralj mačeva, 65=As novčića, 66=2 novčića, 67=3 novčića, 68=4 novčića, 69=5 novčića, 70=6 novčića, 71=7 novčića, 72=8 novčića, 73=9 novčića, 74=10 novčića, 75=Paž novčića, 76=Vitez novčića, 77=Kraljica novčića, 78=Kralj novčića.\n\nMapiranje (b) — broj karte: velika arkana = broj (Luda 0 → 22); mala arkana = rang (As 1 … 10, Paž 11, Vitez 12, Kraljica 13, Kralj 14) + ofset boje (štapovi 0, pehari 10, mačevi 20, novčići 30). Primjeri: As novčića a=65 → b=31; 10 novčića a=74 → b=40; 9 novčića a=73 → b=39; 7 štapova a=29 → b=7; 5 pehara a=41 → b=15; 4 mačeva a=54 → b=24; Kralj novčića a=78 → b=44. Broj 45 postoji samo po (a) (9 pehara).\n\n## 2. Astrološke korespondencije trenutka (Zlatna zora)\n\nIzvor položaja: ephem (body.compute(d, epoch=d) → ephem.Ecliptic, 2026-10-29 19:00 UTC).\n\n| tijelo | duljina | znak | stupanj | dekada | velika arkana (znak) | velika arkana (planet) | mala arkana (dekada) |\n|---|---|---|---|---|---|---|---|\n| Sunce | 216.37° | Škorpion | 6.37° | 1. | XIII Smrt | XIX Sunce | 5 pehara |\n| Mjesec | 85.69° | Blizanci | 25.69° | 3. | VI Ljubavnici | II Visoka svećenica | 10 mačeva |\n| Merkur | 228.80° | Škorpion | 18.80° | 2. | XIII Smrt | I Mag | 6 pehara |\n| Venera | 207.41° | Vaga | 27.41° | 3. | XI Pravda | III Carica | 4 mačeva |\n| Mars | 137.50° | Lav | 17.50° | 2. | VIII Snaga | XVI Kula | 6 štapova |\n| Jupiter | 144.05° | Lav | 24.05° | 3. | VIII Snaga | X Kolo sreće | 7 štapova |\n| Saturn | 9.42° | Ovan | 9.42° | 1. | IV Car | XXI Svijet | 2 štapova |\n| Ascendent | ~95° | Rak | ~5° | 1. | VII Kola | — | 2 pehara |\n| MC | ~337° | Ribe | ~7° | 1. | XVIII Mjesec | — | 8 pehara |\n\nDan: četvrtak = Jupiter; 20:00 CET = 3. noćni planetarni sat (zalazak 16:47:32, izlazak 06:32:51 → noćni sat 68,78 min; redoslijed Mjesec, Saturn, **Jupiter**) → Jupiter vlada i danom i satom → X Kolo sreće je signifikator Keltskog križa i najjača ključna karta. Mjesec 82,6 % opadajući.\n\nKljučne karte i težine:\n\n| karta | a | b | težina | razlog |\n|---|---|---|---|---|\n| X Kolo sreće | 10 | 10 | 1.00 | Jupiter vlada danom (četvrtak) i 3. noćnim planetarnim satom → X Kolo sreće |\n| XIX Sunce | 19 | 19 | 0.80 | XIX Sunce — karta uspjeha i sreće (Sunce kao planet) |\n| As novčića | 65 | 31 | 0.80 | As novčića — korijen bogatstva, novi dobitak |\n| 10 novčića | 74 | 40 | 0.80 | 10 novčića — Bogatstvo (3. dekada Djevice) |\n| XVII Zvijezda | 17 | 17 | 0.70 | XVII Zvijezda — nada (Vodenjak; Pluton 3° Vodenjaka) |\n| 9 novčića | 73 | 39 | 0.70 | 9 novčića — Dobitak (2. dekada Djevice) |\n| VII Kola | 7 | 7 | 0.60 | Ascendent ~5° Raka → VII Kola (Rak) |\n| XIII Smrt | 13 | 13 | 0.60 | Sunce 6°22' Škorpiona → XIII Smrt (Škorpion) |\n| VI Ljubavnici | 6 | 6 | 0.50 | Mjesec ~25° Blizanaca → VI Ljubavnici (Blizanci) |\n| VIII Snaga | 8 | 8 | 0.50 | Jupiter 24° i Mars 17° Lava → VIII Snaga (RWS Lav) |\n| XI Pravda | 11 | 11 | 0.40 | Lav = XI Lust (Thoth) / Venera 27° Vage → XI Pravda (RWS Vaga) |\n| 7 štapova | 29 | 7 | 0.40 | Jupiter 24° Lava = 3. dekada Lava → 7 štapova (Hrabrost) |\n| XXI Svijet | 21 | 21 | 0.30 | XXI Svijet — dovršenje, cjelina |\n| 6 štapova | 28 | 6 | 0.30 | Mars 17° Lava = 2. dekada Lava → 6 štapova (Pobjeda; vladar dekade Jupiter) |\n| 5 pehara | 41 | 15 | 0.30 | Sunce 6° Škorpiona = 1. dekada → 5 pehara |\n| Vitez pehara | 48 | 22 | 0.30 | Sunce, Merkur i Venera u 20° Vage–20° Škorpiona → Princ (RWS Vitez) pehara |\n| 4 mačeva | 54 | 24 | 0.30 | Venera 27° Vage = 3. dekada → 4 mačeva (Primirje; vladar dekade Jupiter) |\n| I Mag | 1 | 1 | 0.20 | Merkur kao planet → I Mag |\n| II Visoka svećenica | 2 | 2 | 0.20 | Mjesec kao planet → II Visoka svećenica |\n| III Carica | 3 | 3 | 0.20 | Venera kao planet → III Carica |\n| XVIII Mjesec | 18 | 18 | 0.20 | MC ~7° Riba → XVIII Mjesec (Ribe) |\n| Vitez štapova | 34 | 12 | 0.20 | Mars 17° Lava u 20° Raka–20° Lava → Princ (RWS Vitez) štapova |\n| 6 pehara | 42 | 16 | 0.20 | Merkur 19° Škorpiona = 2. dekada → 6 pehara |\n| Kraljica pehara | 49 | 23 | 0.20 | Mjesec 25° Blizanaca u 20° Blizanaca–20° Raka → Kraljica pehara |\n| Kralj novčića | 78 | 44 | 0.20 | Jupiter 24° Lava u 20° Lava–20° Djevice → Vitez (RWS Kralj) novčića |\n\n## 3. Pravila izvedbe\n\n- **(a) referentno pravilo** (korisnikova skripta, deck RW): špil [1..78] se promiješa; s vrha se uzimaju prve karte s rednim brojem ≤ 45 dok ih nema 6; karte > 45 se okreću, ali ne daju broj.\n- **(b) broj karte**: isti promiješani špil; svaka karta s vrha daje vrijednost b; duplikat se preskače; prvih 6.\n- **(c) Keltski križ** (Waite 1910): signifikator X Kolo sreće izdvojen (broj 10 zadan); 77 karata se miješa; položaji 1–10 = prvih 10 karata; brojevi po (b) redom 10 što će doći (ishod) → 3 što ga kruni (najbolji ishod) → 6 što je pred njim (budućnost) → 1 što ga pokriva (srž) → 2 što ga križa → 9 nade i strahovi → 4 što je ispod (temelj) → 5 što je iza (prošlost) → 7 pitatelj → 8 kuća (okolina) dok nema 6; dopuna (a) ≤ 45 istih karata, pa vrijednosti s vrha ostatka.\n- **(d) Kolo sreće**: nov promiješani špil od 78; položaji 1–6 = prvih 6 karata; brojevi po (b) redom 6 okret (ishod) → 3 vrh (vrhunac) → 1 osovina (što je stalno) → 2 uspon (što dolazi) → 5 dno (temelj, skriveno) → 4 silazak (što odlazi); dopuna kao kod (c), pa karte 7, 8, … s vrha.\n- **Miješanje**: čitanje i → rng = random.Random(20261029 + i), i = 0…99; iz istog rng-a redom rng.shuffle(d1=[1..78]), rng.shuffle(d2=[1..78] bez 10), rng.shuffle(d3=[1..78]). Nikad SystemRandom; isti datum → iste karte. Bez obrnutih karata.\n\n## 4. Rangiranje\n\nOcjena izvedbe = Σ težina(karta) × množitelj po svim okrenutim kartama: (a)/(b) karta koja daje broj 1,0, preskočena 0,5; Keltski križ po položaju 10: 1.5, 3: 1.3, 6: 1.2, 1: 1.0, 2: 0.9, 9: 0.9, 4: 0.8, 7: 0.8, 8: 0.8, 5: 0.6; Kolo sreće 6: 1.5, 3: 1.3, 1: 1.2, 2: 1.0, 5: 0.8, 4: 0.6; dopunske karte 0,5.\nKandidat = težina izvedbe × (1 + ocjena): referentno pravilo (redni broj ≤ 45) 1.00, broj karte (mapiranje b) 0.95, Keltski križ 0.90, Kolo sreće 0.85. Nerješeno → manji i, pa redoslijed izvedbi. Raznolikost: kandidat koji s već prihvaćenim dijeli 5+ brojeva se preskače.\n\n## 5. Prvih 10 čitanja (i = 0 … 9) — potpuni izvod\n\n### Čitanje #0 (seed 20261029)\n\nŠpil d1 (prvih 14 karata): 7 novčića (a=71, b=37) | 2 mačeva (a=52, b=22) | Vitez pehara (a=48, b=22) | IV Car (a=4, b=4) | 8 pehara (a=44, b=18) | 3 pehara (a=39, b=13) | Kralj štapova (a=36, b=14) | 3 mačeva (a=53, b=23) | 4 mačeva (a=54, b=24) | 0 Luda (a=22, b=22) | V Jerofant (a=5, b=5) | As štapova (a=23, b=1) | As mačeva (a=51, b=21) | 7 pehara (a=43, b=17) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 04 · 05 · 22 · 36 · 39 · 44 (redom izvedeno [4, 44, 39, 36, 22, 5]; ocjena 1.00 × (1 + 0.30) = 1.300)\n- 7 novčića (a=71, b=37) → redni broj > 45, preskočeno\n- 2 mačeva (a=52, b=22) → redni broj > 45, preskočeno\n- Vitez pehara (a=48, b=22) → redni broj > 45, preskočeno\n- IV Car (a=4, b=4) → 4\n- 8 pehara (a=44, b=18) → 44\n- 3 pehara (a=39, b=13) → 39\n- Kralj štapova (a=36, b=14) → 36\n- 3 mačeva (a=53, b=23) → redni broj > 45, preskočeno\n- 4 mačeva (a=54, b=24) → redni broj > 45, preskočeno\n- 0 Luda (a=22, b=22) → 22\n- V Jerofant (a=5, b=5) → 5\n- ključne karte: Vitez pehara +0.30×0.5, 4 mačeva +0.30×0.5\n\n**(b) broj karte (mapiranje b)** → 04 · 13 · 14 · 18 · 22 · 37 (redom izvedeno [37, 22, 4, 18, 13, 14]; ocjena 0.95 × (1 + 0.15) = 1.093)\n- 7 novčića (a=71, b=37) → 37\n- 2 mačeva (a=52, b=22) → 22\n- Vitez pehara (a=48, b=22) → 22 (već uzet, preskočeno)\n- IV Car (a=4, b=4) → 4\n- 8 pehara (a=44, b=18) → 18\n- 3 pehara (a=39, b=13) → 13\n- Kralj štapova (a=36, b=14) → 14\n- ključne karte: Vitez pehara +0.30×0.5\n\n**(c) Keltski križ** → 03 · 10 · 21 · 25 · 31 · 41 (redom izvedeno [10, 21, 31, 41, 3, 25]; ocjena 0.90 × (1 + 1.49) = 2.241)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | 3 štapova | 25 | 3 | 1.0 |  |\n| 2 | što ga križa | Paž mačeva | 61 | 31 | 0.9 |  |\n| 3 | što ga kruni (najbolji ishod) | **As novčića** | 65 | 31 | 1.3 | +0.80 |\n| 4 | što je ispod (temelj) | 7 novčića | 71 | 37 | 0.8 |  |\n| 5 | što je iza (prošlost) | 9 mačeva | 59 | 29 | 0.6 |  |\n| 6 | što je pred njim (budućnost) | Paž novčića | 75 | 41 | 1.2 |  |\n| 7 | pitatelj | 9 štapova | 31 | 9 | 0.8 |  |\n| 8 | kuća (okolina) | Kralj pehara | 50 | 24 | 0.8 |  |\n| 9 | nade i strahovi | 5 mačeva | 55 | 25 | 0.9 |  |\n| 10 | što će doći (ishod) | **XXI Svijet** | 21 | 21 | 1.5 | +0.30 |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): XXI Svijet (a=21, b=21) → 21\n- položaj 3 što ga kruni (najbolji ishod): As novčića (a=65, b=31) → 31\n- položaj 6 što je pred njim (budućnost): Paž novčića (a=75, b=41) → 41\n- položaj 1 što ga pokriva (srž): 3 štapova (a=25, b=3) → 3\n- položaj 2 što ga križa: Paž mačeva (a=61, b=31) → 31 (već uzet)\n- položaj 9 nade i strahovi: 5 mačeva (a=55, b=25) → 25\n- ključne karte: As novčića +0.80×1.3, XXI Svijet +0.30×1.5\n\n**(d) Kolo sreće** → 01 · 05 · 14 · 17 · 18 · 23 (redom izvedeno [17, 1, 23, 5, 18, 14]; ocjena 0.85 × (1 + 1.05) = 1.742)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | 3 mačeva | 53 | 23 | 1.2 |  |\n| 2 | uspon (što dolazi) | V Jerofant | 5 | 5 | 1.0 |  |\n| 3 | vrh (vrhunac) | As štapova | 23 | 1 | 1.3 |  |\n| 4 | silazak (što odlazi) | 4 pehara | 40 | 14 | 0.6 |  |\n| 5 | dno (temelj, skriveno) | 8 pehara | 44 | 18 | 0.8 |  |\n| 6 | okret (ishod) | **XVII Zvijezda** | 17 | 17 | 1.5 | +0.70 |\n\n- položaj 6 okret (ishod): XVII Zvijezda (a=17, b=17) → 17\n- položaj 3 vrh (vrhunac): As štapova (a=23, b=1) → 1\n- položaj 1 osovina (što je stalno): 3 mačeva (a=53, b=23) → 23\n- položaj 2 uspon (što dolazi): V Jerofant (a=5, b=5) → 5\n- položaj 5 dno (temelj, skriveno): 8 pehara (a=44, b=18) → 18\n- položaj 4 silazak (što odlazi): 4 pehara (a=40, b=14) → 14\n- ključne karte: XVII Zvijezda +0.70×1.5\n\n### Čitanje #1 (seed 20261030)\n\nŠpil d1 (prvih 14 karata): Paž pehara (a=47, b=21) | 10 pehara (a=46, b=20) | Paž štapova (a=33, b=11) | XV Đavao (a=15, b=15) | IX Pustinjak (a=9, b=9) | 6 pehara (a=42, b=16) | XIV Umjerenost (a=14, b=14) | As mačeva (a=51, b=21) | 6 štapova (a=28, b=6) | Kraljica mačeva (a=63, b=33) | Paž mačeva (a=61, b=31) | 6 mačeva (a=56, b=26) | 5 pehara (a=41, b=15) | 8 mačeva (a=58, b=28) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 09 · 14 · 15 · 28 · 33 · 42 (redom izvedeno [33, 15, 9, 42, 14, 28]; ocjena 1.00 × (1 + 0.50) = 1.500)\n- Paž pehara (a=47, b=21) → redni broj > 45, preskočeno\n- 10 pehara (a=46, b=20) → redni broj > 45, preskočeno\n- Paž štapova (a=33, b=11) → 33\n- XV Đavao (a=15, b=15) → 15\n- IX Pustinjak (a=9, b=9) → 9\n- 6 pehara (a=42, b=16) → 42\n- XIV Umjerenost (a=14, b=14) → 14\n- As mačeva (a=51, b=21) → redni broj > 45, preskočeno\n- 6 štapova (a=28, b=6) → 28\n- ključne karte: 6 pehara +0.20×1.0, 6 štapova +0.30×1.0\n\n**(b) broj karte (mapiranje b)** → 09 · 11 · 15 · 16 · 20 · 21 (redom izvedeno [21, 20, 11, 15, 9, 16]; ocjena 0.95 × (1 + 0.20) = 1.140)\n- Paž pehara (a=47, b=21) → 21\n- 10 pehara (a=46, b=20) → 20\n- Paž štapova (a=33, b=11) → 11\n- XV Đavao (a=15, b=15) → 15\n- IX Pustinjak (a=9, b=9) → 9\n- 6 pehara (a=42, b=16) → 16\n- ključne karte: 6 pehara +0.20×1.0\n\n**(c) Keltski križ** → 10 · 11 · 12 · 16 · 24 · 27 (redom izvedeno [10, 12, 16, 11, 24, 27]; ocjena 0.90 × (1 + 0.98) = 1.782)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | **4 mačeva** | 54 | 24 | 1.0 | +0.30 |\n| 2 | što ga križa | 7 mačeva | 57 | 27 | 0.9 |  |\n| 3 | što ga kruni (najbolji ishod) | XVI Kula | 16 | 16 | 1.3 |  |\n| 4 | što je ispod (temelj) | Paž štapova | 33 | 11 | 0.8 |  |\n| 5 | što je iza (prošlost) | **VII Kola** | 7 | 7 | 0.6 | +0.60 |\n| 6 | što je pred njim (budućnost) | As pehara | 37 | 11 | 1.2 |  |\n| 7 | pitatelj | **II Visoka svećenica** | 2 | 2 | 0.8 | +0.20 |\n| 8 | kuća (okolina) | **XVIII Mjesec** | 18 | 18 | 0.8 | +0.20 |\n| 9 | nade i strahovi | 2 mačeva | 52 | 22 | 0.9 |  |\n| 10 | što će doći (ishod) | 2 pehara | 38 | 12 | 1.5 |  |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): 2 pehara (a=38, b=12) → 12\n- položaj 3 što ga kruni (najbolji ishod): XVI Kula (a=16, b=16) → 16\n- položaj 6 što je pred njim (budućnost): As pehara (a=37, b=11) → 11\n- položaj 1 što ga pokriva (srž): 4 mačeva (a=54, b=24) → 24\n- položaj 2 što ga križa: 7 mačeva (a=57, b=27) → 27\n- ključne karte: 4 mačeva +0.30×1.0, VII Kola +0.60×0.6, II Visoka svećenica +0.20×0.8, XVIII Mjesec +0.20×0.8\n\n**(d) Kolo sreće** → 07 · 10 · 22 · 29 · 32 · 39 (redom izvedeno [10, 29, 7, 32, 22, 39]; ocjena 0.85 × (1 + 2.40) = 2.890)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | **7 štapova** | 29 | 7 | 1.2 | +0.40 |\n| 2 | uspon (što dolazi) | Vitez mačeva | 62 | 32 | 1.0 |  |\n| 3 | vrh (vrhunac) | 9 mačeva | 59 | 29 | 1.3 |  |\n| 4 | silazak (što odlazi) | **9 novčića** | 73 | 39 | 0.6 | +0.70 |\n| 5 | dno (temelj, skriveno) | 2 mačeva | 52 | 22 | 0.8 |  |\n| 6 | okret (ishod) | **X Kolo sreće** | 10 | 10 | 1.5 | +1.00 |\n\n- položaj 6 okret (ishod): X Kolo sreće (a=10, b=10) → 10\n- položaj 3 vrh (vrhunac): 9 mačeva (a=59, b=29) → 29\n- položaj 1 osovina (što je stalno): 7 štapova (a=29, b=7) → 7\n- položaj 2 uspon (što dolazi): Vitez mačeva (a=62, b=32) → 32\n- položaj 5 dno (temelj, skriveno): 2 mačeva (a=52, b=22) → 22\n- položaj 4 silazak (što odlazi): 9 novčića (a=73, b=39) → 39\n- ključne karte: 7 štapova +0.40×1.2, 9 novčića +0.70×0.6, X Kolo sreće +1.00×1.5\n\n### Čitanje #2 (seed 20261031)\n\nŠpil d1 (prvih 14 karata): Vitez štapova (a=34, b=12) | 5 novčića (a=69, b=35) | Vitez mačeva (a=62, b=32) | Paž pehara (a=47, b=21) | Paž štapova (a=33, b=11) | Kralj štapova (a=36, b=14) | 4 novčića (a=68, b=34) | XIX Sunce (a=19, b=19) | As mačeva (a=51, b=21) | Vitez pehara (a=48, b=22) | I Mag (a=1, b=1) | II Visoka svećenica (a=2, b=2) | 3 pehara (a=39, b=13) | 10 mačeva (a=60, b=30) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 01 · 02 · 19 · 33 · 34 · 36 (redom izvedeno [34, 33, 36, 19, 1, 2]; ocjena 1.00 × (1 + 1.55) = 2.550)\n- Vitez štapova (a=34, b=12) → 34\n- 5 novčića (a=69, b=35) → redni broj > 45, preskočeno\n- Vitez mačeva (a=62, b=32) → redni broj > 45, preskočeno\n- Paž pehara (a=47, b=21) → redni broj > 45, preskočeno\n- Paž štapova (a=33, b=11) → 33\n- Kralj štapova (a=36, b=14) → 36\n- 4 novčića (a=68, b=34) → redni broj > 45, preskočeno\n- XIX Sunce (a=19, b=19) → 19\n- As mačeva (a=51, b=21) → redni broj > 45, preskočeno\n- Vitez pehara (a=48, b=22) → redni broj > 45, preskočeno\n- I Mag (a=1, b=1) → 1\n- II Visoka svećenica (a=2, b=2) → 2\n- ključne karte: Vitez štapova +0.20×1.0, XIX Sunce +0.80×1.0, Vitez pehara +0.30×0.5, I Mag +0.20×1.0, II Visoka svećenica +0.20×1.0\n\n**(b) broj karte (mapiranje b)** → 11 · 12 · 14 · 21 · 32 · 35 (redom izvedeno [12, 35, 32, 21, 11, 14]; ocjena 0.95 × (1 + 0.20) = 1.140)\n- Vitez štapova (a=34, b=12) → 12\n- 5 novčića (a=69, b=35) → 35\n- Vitez mačeva (a=62, b=32) → 32\n- Paž pehara (a=47, b=21) → 21\n- Paž štapova (a=33, b=11) → 11\n- Kralj štapova (a=36, b=14) → 14\n- ključne karte: Vitez štapova +0.20×1.0\n\n**(c) Keltski križ** → 06 · 10 · 12 · 15 · 24 · 44 (redom izvedeno [10, 15, 6, 12, 44, 24]; ocjena 0.90 × (1 + 2.10) = 2.790)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | **Kralj novčića** | 78 | 44 | 1.0 | +0.20 |\n| 2 | što ga križa | Kralj pehara | 50 | 24 | 0.9 |  |\n| 3 | što ga kruni (najbolji ishod) | **VI Ljubavnici** | 6 | 6 | 1.3 | +0.50 |\n| 4 | što je ispod (temelj) | **10 novčića** | 74 | 40 | 0.8 | +0.80 |\n| 5 | što je iza (prošlost) | 4 novčića | 68 | 34 | 0.6 |  |\n| 6 | što je pred njim (budućnost) | XII Obješeni | 12 | 12 | 1.2 |  |\n| 7 | pitatelj | 7 novčića | 71 | 37 | 0.8 |  |\n| 8 | kuća (okolina) | **6 pehara** | 42 | 16 | 0.8 | +0.20 |\n| 9 | nade i strahovi | XV Đavao | 15 | 15 | 0.9 |  |\n| 10 | što će doći (ishod) | **5 pehara** | 41 | 15 | 1.5 | +0.30 |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): 5 pehara (a=41, b=15) → 15\n- položaj 3 što ga kruni (najbolji ishod): VI Ljubavnici (a=6, b=6) → 6\n- položaj 6 što je pred njim (budućnost): XII Obješeni (a=12, b=12) → 12\n- položaj 1 što ga pokriva (srž): Kralj novčića (a=78, b=44) → 44\n- položaj 2 što ga križa: Kralj pehara (a=50, b=24) → 24\n- ključne karte: Kralj novčića +0.20×1.0, VI Ljubavnici +0.50×1.3, 10 novčića +0.80×0.8, 6 pehara +0.20×0.8, 5 pehara +0.30×1.5\n\n**(d) Kolo sreće** → 04 · 14 · 25 · 30 · 37 · 40 (redom izvedeno [14, 4, 25, 37, 30, 40]; ocjena 0.85 × (1 + 0.00) = 0.850)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | 5 mačeva | 55 | 25 | 1.2 |  |\n| 2 | uspon (što dolazi) | 7 novčića | 71 | 37 | 1.0 |  |\n| 3 | vrh (vrhunac) | IV Car | 4 | 4 | 1.3 |  |\n| 4 | silazak (što odlazi) | 4 štapova | 26 | 4 | 0.6 |  |\n| 5 | dno (temelj, skriveno) | 10 mačeva | 60 | 30 | 0.8 |  |\n| 6 | okret (ishod) | 4 pehara | 40 | 14 | 1.5 |  |\n\n- položaj 6 okret (ishod): 4 pehara (a=40, b=14) → 14\n- položaj 3 vrh (vrhunac): IV Car (a=4, b=4) → 4\n- položaj 1 osovina (što je stalno): 5 mačeva (a=55, b=25) → 25\n- položaj 2 uspon (što dolazi): 7 novčića (a=71, b=37) → 37\n- položaj 5 dno (temelj, skriveno): 10 mačeva (a=60, b=30) → 30\n- položaj 4 silazak (što odlazi): 4 štapova (a=26, b=4) → 4 (već uzet)\n- dopuna (a) položaj 6: 4 pehara (a=40, b=14) → 40\n- ključne karte: nema\n\n### Čitanje #3 (seed 20261032)\n\nŠpil d1 (prvih 14 karata): 2 štapova (a=24, b=2) | 3 pehara (a=39, b=13) | XII Obješeni (a=12, b=12) | 0 Luda (a=22, b=22) | 7 mačeva (a=57, b=27) | 9 pehara (a=45, b=19) | 5 novčića (a=69, b=35) | As štapova (a=23, b=1) | 8 mačeva (a=58, b=28) | Vitez novčića (a=76, b=42) | IV Car (a=4, b=4) | XIX Sunce (a=19, b=19) | V Jerofant (a=5, b=5) | 6 novčića (a=70, b=36) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 12 · 22 · 23 · 24 · 39 · 45 (redom izvedeno [24, 39, 12, 22, 45, 23]; ocjena 1.00 × (1 + 0.00) = 1.000)\n- 2 štapova (a=24, b=2) → 24\n- 3 pehara (a=39, b=13) → 39\n- XII Obješeni (a=12, b=12) → 12\n- 0 Luda (a=22, b=22) → 22\n- 7 mačeva (a=57, b=27) → redni broj > 45, preskočeno\n- 9 pehara (a=45, b=19) → 45\n- 5 novčića (a=69, b=35) → redni broj > 45, preskočeno\n- As štapova (a=23, b=1) → 23\n- ključne karte: nema\n\n**(b) broj karte (mapiranje b)** → 02 · 12 · 13 · 19 · 22 · 27 (redom izvedeno [2, 13, 12, 22, 27, 19]; ocjena 0.95 × (1 + 0.00) = 0.950)\n- 2 štapova (a=24, b=2) → 2\n- 3 pehara (a=39, b=13) → 13\n- XII Obješeni (a=12, b=12) → 12\n- 0 Luda (a=22, b=22) → 22\n- 7 mačeva (a=57, b=27) → 27\n- 9 pehara (a=45, b=19) → 19\n- ključne karte: nema\n\n**(c) Keltski križ** → 04 · 07 · 10 · 20 · 24 · 27 (redom izvedeno [10, 24, 27, 20, 4, 7]; ocjena 0.90 × (1 + 1.30) = 2.070)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | IV Car | 4 | 4 | 1.0 |  |\n| 2 | što ga križa | **7 štapova** | 29 | 7 | 0.9 | +0.40 |\n| 3 | što ga kruni (najbolji ishod) | 7 mačeva | 57 | 27 | 1.3 |  |\n| 4 | što je ispod (temelj) | **VII Kola** | 7 | 7 | 0.8 | +0.60 |\n| 5 | što je iza (prošlost) | **VI Ljubavnici** | 6 | 6 | 0.6 | +0.50 |\n| 6 | što je pred njim (budućnost) | XX Sud | 20 | 20 | 1.2 |  |\n| 7 | pitatelj | **XVIII Mjesec** | 18 | 18 | 0.8 | +0.20 |\n| 8 | kuća (okolina) | XII Obješeni | 12 | 12 | 0.8 |  |\n| 9 | nade i strahovi | Kraljica mačeva | 63 | 33 | 0.9 |  |\n| 10 | što će doći (ishod) | Kralj pehara | 50 | 24 | 1.5 |  |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): Kralj pehara (a=50, b=24) → 24\n- položaj 3 što ga kruni (najbolji ishod): 7 mačeva (a=57, b=27) → 27\n- položaj 6 što je pred njim (budućnost): XX Sud (a=20, b=20) → 20\n- položaj 1 što ga pokriva (srž): IV Car (a=4, b=4) → 4\n- položaj 2 što ga križa: 7 štapova (a=29, b=7) → 7\n- ključne karte: 7 štapova +0.40×0.9, VII Kola +0.60×0.8, VI Ljubavnici +0.50×0.6, XVIII Mjesec +0.20×0.8\n\n**(d) Kolo sreće** → 06 · 08 · 10 · 14 · 28 · 30 (redom izvedeno [6, 8, 14, 10, 28, 30]; ocjena 0.85 × (1 + 2.15) = 2.678)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | **VIII Snaga** | 8 | 8 | 1.2 | +0.50 |\n| 2 | uspon (što dolazi) | XIV Umjerenost | 14 | 14 | 1.0 |  |\n| 3 | vrh (vrhunac) | 8 štapova | 30 | 8 | 1.3 |  |\n| 4 | silazak (što odlazi) | 8 mačeva | 58 | 28 | 0.6 |  |\n| 5 | dno (temelj, skriveno) | **X Kolo sreće** | 10 | 10 | 0.8 | +1.00 |\n| 6 | okret (ishod) | **VI Ljubavnici** | 6 | 6 | 1.5 | +0.50 |\n\n- položaj 6 okret (ishod): VI Ljubavnici (a=6, b=6) → 6\n- položaj 3 vrh (vrhunac): 8 štapova (a=30, b=8) → 8\n- položaj 1 osovina (što je stalno): VIII Snaga (a=8, b=8) → 8 (već uzet)\n- položaj 2 uspon (što dolazi): XIV Umjerenost (a=14, b=14) → 14\n- položaj 5 dno (temelj, skriveno): X Kolo sreće (a=10, b=10) → 10\n- položaj 4 silazak (što odlazi): 8 mačeva (a=58, b=28) → 28\n- dopuna (a) položaj 3: 8 štapova (a=30, b=8) → 30\n- ključne karte: VIII Snaga +0.50×1.2, X Kolo sreće +1.00×0.8, VI Ljubavnici +0.50×1.5\n\n### Čitanje #4 (seed 20261033)\n\nŠpil d1 (prvih 14 karata): V Jerofant (a=5, b=5) | X Kolo sreće (a=10, b=10) | 7 štapova (a=29, b=7) | 6 štapova (a=28, b=6) | 10 pehara (a=46, b=20) | 3 pehara (a=39, b=13) | 5 štapova (a=27, b=5) | 3 novčića (a=67, b=33) | XVIII Mjesec (a=18, b=18) | 4 štapova (a=26, b=4) | Vitez štapova (a=34, b=12) | XIX Sunce (a=19, b=19) | 10 štapova (a=32, b=10) | Kraljica novčića (a=77, b=43) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 05 · 10 · 27 · 28 · 29 · 39 (redom izvedeno [5, 10, 29, 28, 39, 27]; ocjena 1.00 × (1 + 1.70) = 2.700)\n- V Jerofant (a=5, b=5) → 5\n- X Kolo sreće (a=10, b=10) → 10\n- 7 štapova (a=29, b=7) → 29\n- 6 štapova (a=28, b=6) → 28\n- 10 pehara (a=46, b=20) → redni broj > 45, preskočeno\n- 3 pehara (a=39, b=13) → 39\n- 5 štapova (a=27, b=5) → 27\n- ključne karte: X Kolo sreće +1.00×1.0, 7 štapova +0.40×1.0, 6 štapova +0.30×1.0\n\n**(b) broj karte (mapiranje b)** → 05 · 06 · 07 · 10 · 13 · 20 (redom izvedeno [5, 10, 7, 6, 20, 13]; ocjena 0.95 × (1 + 1.70) = 2.565)\n- V Jerofant (a=5, b=5) → 5\n- X Kolo sreće (a=10, b=10) → 10\n- 7 štapova (a=29, b=7) → 7\n- 6 štapova (a=28, b=6) → 6\n- 10 pehara (a=46, b=20) → 20\n- 3 pehara (a=39, b=13) → 13\n- ključne karte: X Kolo sreće +1.00×1.0, 7 štapova +0.40×1.0, 6 štapova +0.30×1.0\n\n**(c) Keltski križ** → 10 · 12 · 14 · 18 · 31 · 41 (redom izvedeno [10, 41, 31, 14, 18, 12]; ocjena 0.90 × (1 + 1.04) = 1.836)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | 8 pehara | 44 | 18 | 1.0 |  |\n| 2 | što ga križa | XII Obješeni | 12 | 12 | 0.9 |  |\n| 3 | što ga kruni (najbolji ishod) | **As novčića** | 65 | 31 | 1.3 | +0.80 |\n| 4 | što je ispod (temelj) | Vitez novčića | 76 | 42 | 0.8 |  |\n| 5 | što je iza (prošlost) | 4 novčića | 68 | 34 | 0.6 |  |\n| 6 | što je pred njim (budućnost) | XIV Umjerenost | 14 | 14 | 1.2 |  |\n| 7 | pitatelj | IX Pustinjak | 9 | 9 | 0.8 |  |\n| 8 | kuća (okolina) | 9 štapova | 31 | 9 | 0.8 |  |\n| 9 | nade i strahovi | 6 novčića | 70 | 36 | 0.9 |  |\n| 10 | što će doći (ishod) | Paž novčića | 75 | 41 | 1.5 |  |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): Paž novčića (a=75, b=41) → 41\n- položaj 3 što ga kruni (najbolji ishod): As novčića (a=65, b=31) → 31\n- položaj 6 što je pred njim (budućnost): XIV Umjerenost (a=14, b=14) → 14\n- položaj 1 što ga pokriva (srž): 8 pehara (a=44, b=18) → 18\n- položaj 2 što ga križa: XII Obješeni (a=12, b=12) → 12\n- ključne karte: As novčića +0.80×1.3\n\n**(d) Kolo sreće** → 13 · 16 · 19 · 24 · 26 · 32 (redom izvedeno [16, 24, 13, 26, 32, 19]; ocjena 0.85 × (1 + 1.20) = 1.870)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | **XIII Smrt** | 13 | 13 | 1.2 | +0.60 |\n| 2 | uspon (što dolazi) | 6 mačeva | 56 | 26 | 1.0 |  |\n| 3 | vrh (vrhunac) | Kralj pehara | 50 | 24 | 1.3 |  |\n| 4 | silazak (što odlazi) | **XIX Sunce** | 19 | 19 | 0.6 | +0.80 |\n| 5 | dno (temelj, skriveno) | 2 novčića | 66 | 32 | 0.8 |  |\n| 6 | okret (ishod) | XVI Kula | 16 | 16 | 1.5 |  |\n\n- položaj 6 okret (ishod): XVI Kula (a=16, b=16) → 16\n- položaj 3 vrh (vrhunac): Kralj pehara (a=50, b=24) → 24\n- položaj 1 osovina (što je stalno): XIII Smrt (a=13, b=13) → 13\n- položaj 2 uspon (što dolazi): 6 mačeva (a=56, b=26) → 26\n- položaj 5 dno (temelj, skriveno): 2 novčića (a=66, b=32) → 32\n- položaj 4 silazak (što odlazi): XIX Sunce (a=19, b=19) → 19\n- ključne karte: XIII Smrt +0.60×1.2, XIX Sunce +0.80×0.6\n\n### Čitanje #5 (seed 20261034)\n\nŠpil d1 (prvih 14 karata): 10 pehara (a=46, b=20) | 3 pehara (a=39, b=13) | II Visoka svećenica (a=2, b=2) | VI Ljubavnici (a=6, b=6) | XIII Smrt (a=13, b=13) | XIX Sunce (a=19, b=19) | I Mag (a=1, b=1) | V Jerofant (a=5, b=5) | XV Đavao (a=15, b=15) | 6 pehara (a=42, b=16) | 10 novčića (a=74, b=40) | VIII Snaga (a=8, b=8) | 3 mačeva (a=53, b=23) | 8 mačeva (a=58, b=28) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 01 · 02 · 06 · 13 · 19 · 39 (redom izvedeno [39, 2, 6, 13, 19, 1]; ocjena 1.00 × (1 + 2.30) = 3.300)\n- 10 pehara (a=46, b=20) → redni broj > 45, preskočeno\n- 3 pehara (a=39, b=13) → 39\n- II Visoka svećenica (a=2, b=2) → 2\n- VI Ljubavnici (a=6, b=6) → 6\n- XIII Smrt (a=13, b=13) → 13\n- XIX Sunce (a=19, b=19) → 19\n- I Mag (a=1, b=1) → 1\n- ključne karte: II Visoka svećenica +0.20×1.0, VI Ljubavnici +0.50×1.0, XIII Smrt +0.60×1.0, XIX Sunce +0.80×1.0, I Mag +0.20×1.0\n\n**(b) broj karte (mapiranje b)** → 01 · 02 · 06 · 13 · 19 · 20 (redom izvedeno [20, 13, 2, 6, 19, 1]; ocjena 0.95 × (1 + 2.00) = 2.850)\n- 10 pehara (a=46, b=20) → 20\n- 3 pehara (a=39, b=13) → 13\n- II Visoka svećenica (a=2, b=2) → 2\n- VI Ljubavnici (a=6, b=6) → 6\n- XIII Smrt (a=13, b=13) → 13 (već uzet, preskočeno)\n- XIX Sunce (a=19, b=19) → 19\n- I Mag (a=1, b=1) → 1\n- ključne karte: II Visoka svećenica +0.20×1.0, VI Ljubavnici +0.50×1.0, XIII Smrt +0.60×0.5, XIX Sunce +0.80×1.0, I Mag +0.20×1.0\n\n**(c) Keltski križ** → 04 · 10 · 12 · 24 · 34 · 41 (redom izvedeno [10, 12, 4, 34, 41, 24]; ocjena 0.90 × (1 + 0.16) = 1.044)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | Paž novčića | 75 | 41 | 1.0 |  |\n| 2 | što ga križa | Kralj pehara | 50 | 24 | 0.9 |  |\n| 3 | što ga kruni (najbolji ishod) | IV Car | 4 | 4 | 1.3 |  |\n| 4 | što je ispod (temelj) | 8 štapova | 30 | 8 | 0.8 |  |\n| 5 | što je iza (prošlost) | 9 mačeva | 59 | 29 | 0.6 |  |\n| 6 | što je pred njim (budućnost) | Kralj mačeva | 64 | 34 | 1.2 |  |\n| 7 | pitatelj | **III Carica** | 3 | 3 | 0.8 | +0.20 |\n| 8 | kuća (okolina) | 10 mačeva | 60 | 30 | 0.8 |  |\n| 9 | nade i strahovi | As mačeva | 51 | 21 | 0.9 |  |\n| 10 | što će doći (ishod) | 2 pehara | 38 | 12 | 1.5 |  |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): 2 pehara (a=38, b=12) → 12\n- položaj 3 što ga kruni (najbolji ishod): IV Car (a=4, b=4) → 4\n- položaj 6 što je pred njim (budućnost): Kralj mačeva (a=64, b=34) → 34\n- položaj 1 što ga pokriva (srž): Paž novčića (a=75, b=41) → 41\n- položaj 2 što ga križa: Kralj pehara (a=50, b=24) → 24\n- ključne karte: III Carica +0.20×0.8\n\n**(d) Kolo sreće** → 11 · 14 · 17 · 19 · 29 · 33 (redom izvedeno [11, 14, 33, 17, 19, 29]; ocjena 0.85 × (1 + 1.34) = 1.989)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | 3 novčića | 67 | 33 | 1.2 |  |\n| 2 | uspon (što dolazi) | **XVII Zvijezda** | 17 | 17 | 1.0 | +0.70 |\n| 3 | vrh (vrhunac) | XIV Umjerenost | 14 | 14 | 1.3 |  |\n| 4 | silazak (što odlazi) | 9 mačeva | 59 | 29 | 0.6 |  |\n| 5 | dno (temelj, skriveno) | **XIX Sunce** | 19 | 19 | 0.8 | +0.80 |\n| 6 | okret (ishod) | As pehara | 37 | 11 | 1.5 |  |\n\n- položaj 6 okret (ishod): As pehara (a=37, b=11) → 11\n- položaj 3 vrh (vrhunac): XIV Umjerenost (a=14, b=14) → 14\n- položaj 1 osovina (što je stalno): 3 novčića (a=67, b=33) → 33\n- položaj 2 uspon (što dolazi): XVII Zvijezda (a=17, b=17) → 17\n- položaj 5 dno (temelj, skriveno): XIX Sunce (a=19, b=19) → 19\n- položaj 4 silazak (što odlazi): 9 mačeva (a=59, b=29) → 29\n- ključne karte: XVII Zvijezda +0.70×1.0, XIX Sunce +0.80×0.8\n\n### Čitanje #6 (seed 20261035)\n\nŠpil d1 (prvih 14 karata): XXI Svijet (a=21, b=21) | XVII Zvijezda (a=17, b=17) | 4 pehara (a=40, b=14) | VI Ljubavnici (a=6, b=6) | Vitez štapova (a=34, b=12) | Paž mačeva (a=61, b=31) | 0 Luda (a=22, b=22) | 2 mačeva (a=52, b=22) | 5 mačeva (a=55, b=25) | 7 pehara (a=43, b=17) | 5 novčića (a=69, b=35) | 7 mačeva (a=57, b=27) | II Visoka svećenica (a=2, b=2) | IV Car (a=4, b=4) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 06 · 17 · 21 · 22 · 34 · 40 (redom izvedeno [21, 17, 40, 6, 34, 22]; ocjena 1.00 × (1 + 1.70) = 2.700)\n- XXI Svijet (a=21, b=21) → 21\n- XVII Zvijezda (a=17, b=17) → 17\n- 4 pehara (a=40, b=14) → 40\n- VI Ljubavnici (a=6, b=6) → 6\n- Vitez štapova (a=34, b=12) → 34\n- Paž mačeva (a=61, b=31) → redni broj > 45, preskočeno\n- 0 Luda (a=22, b=22) → 22\n- ključne karte: XXI Svijet +0.30×1.0, XVII Zvijezda +0.70×1.0, VI Ljubavnici +0.50×1.0, Vitez štapova +0.20×1.0\n\n**(b) broj karte (mapiranje b)** → 06 · 12 · 14 · 17 · 21 · 31 (redom izvedeno [21, 17, 14, 6, 12, 31]; ocjena 0.95 × (1 + 1.70) = 2.565)\n- XXI Svijet (a=21, b=21) → 21\n- XVII Zvijezda (a=17, b=17) → 17\n- 4 pehara (a=40, b=14) → 14\n- VI Ljubavnici (a=6, b=6) → 6\n- Vitez štapova (a=34, b=12) → 12\n- Paž mačeva (a=61, b=31) → 31\n- ključne karte: XXI Svijet +0.30×1.0, XVII Zvijezda +0.70×1.0, VI Ljubavnici +0.50×1.0, Vitez štapova +0.20×1.0\n\n**(c) Keltski križ** → 10 · 15 · 20 · 28 · 32 · 43 (redom izvedeno [10, 28, 32, 15, 43, 20]; ocjena 0.90 × (1 + 0.36) = 1.224)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | Kraljica novčića | 77 | 43 | 1.0 |  |\n| 2 | što ga križa | 10 pehara | 46 | 20 | 0.9 |  |\n| 3 | što ga kruni (najbolji ishod) | Vitez mačeva | 62 | 32 | 1.3 |  |\n| 4 | što je ispod (temelj) | 5 novčića | 69 | 35 | 0.8 |  |\n| 5 | što je iza (prošlost) | 3 pehara | 39 | 13 | 0.6 |  |\n| 6 | što je pred njim (budućnost) | **5 pehara** | 41 | 15 | 1.2 | +0.30 |\n| 7 | pitatelj | 7 pehara | 43 | 17 | 0.8 |  |\n| 8 | kuća (okolina) | IV Car | 4 | 4 | 0.8 |  |\n| 9 | nade i strahovi | XV Đavao | 15 | 15 | 0.9 |  |\n| 10 | što će doći (ishod) | 8 mačeva | 58 | 28 | 1.5 |  |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): 8 mačeva (a=58, b=28) → 28\n- položaj 3 što ga kruni (najbolji ishod): Vitez mačeva (a=62, b=32) → 32\n- položaj 6 što je pred njim (budućnost): 5 pehara (a=41, b=15) → 15\n- položaj 1 što ga pokriva (srž): Kraljica novčića (a=77, b=43) → 43\n- položaj 2 što ga križa: 10 pehara (a=46, b=20) → 20\n- ključne karte: 5 pehara +0.30×1.2\n\n**(d) Kolo sreće** → 01 · 04 · 09 · 19 · 20 · 35 (redom izvedeno [20, 9, 35, 1, 4, 19]; ocjena 0.85 × (1 + 0.20) = 1.020)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | 5 novčića | 69 | 35 | 1.2 |  |\n| 2 | uspon (što dolazi) | **I Mag** | 1 | 1 | 1.0 | +0.20 |\n| 3 | vrh (vrhunac) | 9 štapova | 31 | 9 | 1.3 |  |\n| 4 | silazak (što odlazi) | 9 pehara | 45 | 19 | 0.6 |  |\n| 5 | dno (temelj, skriveno) | 4 štapova | 26 | 4 | 0.8 |  |\n| 6 | okret (ishod) | 10 pehara | 46 | 20 | 1.5 |  |\n\n- položaj 6 okret (ishod): 10 pehara (a=46, b=20) → 20\n- položaj 3 vrh (vrhunac): 9 štapova (a=31, b=9) → 9\n- položaj 1 osovina (što je stalno): 5 novčića (a=69, b=35) → 35\n- položaj 2 uspon (što dolazi): I Mag (a=1, b=1) → 1\n- položaj 5 dno (temelj, skriveno): 4 štapova (a=26, b=4) → 4\n- položaj 4 silazak (što odlazi): 9 pehara (a=45, b=19) → 19\n- ključne karte: I Mag +0.20×1.0\n\n### Čitanje #7 (seed 20261036)\n\nŠpil d1 (prvih 14 karata): Paž novčića (a=75, b=41) | 6 mačeva (a=56, b=26) | XIX Sunce (a=19, b=19) | Vitez štapova (a=34, b=12) | 8 štapova (a=30, b=8) | 3 štapova (a=25, b=3) | Paž pehara (a=47, b=21) | 9 mačeva (a=59, b=29) | XXI Svijet (a=21, b=21) | Kraljica mačeva (a=63, b=33) | As novčića (a=65, b=31) | 9 novčića (a=73, b=39) | 2 novčića (a=66, b=32) | 7 mačeva (a=57, b=27) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 19 · 21 · 25 · 30 · 34 · 35 (redom izvedeno [19, 34, 30, 25, 21, 35]; ocjena 1.00 × (1 + 2.05) = 3.050)\n- Paž novčića (a=75, b=41) → redni broj > 45, preskočeno\n- 6 mačeva (a=56, b=26) → redni broj > 45, preskočeno\n- XIX Sunce (a=19, b=19) → 19\n- Vitez štapova (a=34, b=12) → 34\n- 8 štapova (a=30, b=8) → 30\n- 3 štapova (a=25, b=3) → 25\n- Paž pehara (a=47, b=21) → redni broj > 45, preskočeno\n- 9 mačeva (a=59, b=29) → redni broj > 45, preskočeno\n- XXI Svijet (a=21, b=21) → 21\n- Kraljica mačeva (a=63, b=33) → redni broj > 45, preskočeno\n- As novčića (a=65, b=31) → redni broj > 45, preskočeno\n- 9 novčića (a=73, b=39) → redni broj > 45, preskočeno\n- 2 novčića (a=66, b=32) → redni broj > 45, preskočeno\n- 7 mačeva (a=57, b=27) → redni broj > 45, preskočeno\n- Kraljica štapova (a=35, b=13) → 35\n- ključne karte: XIX Sunce +0.80×1.0, Vitez štapova +0.20×1.0, XXI Svijet +0.30×1.0, As novčića +0.80×0.5, 9 novčića +0.70×0.5\n\n**(b) broj karte (mapiranje b)** → 03 · 08 · 12 · 19 · 26 · 41 (redom izvedeno [41, 26, 19, 12, 8, 3]; ocjena 0.95 × (1 + 1.00) = 1.900)\n- Paž novčića (a=75, b=41) → 41\n- 6 mačeva (a=56, b=26) → 26\n- XIX Sunce (a=19, b=19) → 19\n- Vitez štapova (a=34, b=12) → 12\n- 8 štapova (a=30, b=8) → 8\n- 3 štapova (a=25, b=3) → 3\n- ključne karte: XIX Sunce +0.80×1.0, Vitez štapova +0.20×1.0\n\n**(c) Keltski križ** → 10 · 13 · 22 · 28 · 31 · 39 (redom izvedeno [10, 13, 31, 39, 28, 22]; ocjena 0.90 × (1 + 2.76) = 3.384)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | 8 mačeva | 58 | 28 | 1.0 |  |\n| 2 | što ga križa | 0 Luda | 22 | 22 | 0.9 |  |\n| 3 | što ga kruni (najbolji ishod) | **As novčića** | 65 | 31 | 1.3 | +0.80 |\n| 4 | što je ispod (temelj) | **7 štapova** | 29 | 7 | 0.8 | +0.40 |\n| 5 | što je iza (prošlost) | 3 štapova | 25 | 3 | 0.6 |  |\n| 6 | što je pred njim (budućnost) | **9 novčića** | 73 | 39 | 1.2 | +0.70 |\n| 7 | pitatelj | **Vitez štapova** | 34 | 12 | 0.8 | +0.20 |\n| 8 | kuća (okolina) | **VIII Snaga** | 8 | 8 | 0.8 | +0.50 |\n| 9 | nade i strahovi | XII Obješeni | 12 | 12 | 0.9 |  |\n| 10 | što će doći (ishod) | 3 pehara | 39 | 13 | 1.5 |  |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): 3 pehara (a=39, b=13) → 13\n- položaj 3 što ga kruni (najbolji ishod): As novčića (a=65, b=31) → 31\n- položaj 6 što je pred njim (budućnost): 9 novčića (a=73, b=39) → 39\n- položaj 1 što ga pokriva (srž): 8 mačeva (a=58, b=28) → 28\n- položaj 2 što ga križa: 0 Luda (a=22, b=22) → 22\n- ključne karte: As novčića +0.80×1.3, 7 štapova +0.40×0.8, 9 novčića +0.70×1.2, Vitez štapova +0.20×0.8, VIII Snaga +0.50×0.8\n\n**(d) Kolo sreće** → 16 · 21 · 22 · 32 · 33 · 42 (redom izvedeno [16, 33, 22, 21, 32, 42]; ocjena 0.85 × (1 + 0.96) = 1.666)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | **Vitez pehara** | 48 | 22 | 1.2 | +0.30 |\n| 2 | uspon (što dolazi) | **XXI Svijet** | 21 | 21 | 1.0 | +0.30 |\n| 3 | vrh (vrhunac) | 3 novčića | 67 | 33 | 1.3 |  |\n| 4 | silazak (što odlazi) | 2 mačeva | 52 | 22 | 0.6 |  |\n| 5 | dno (temelj, skriveno) | Vitez mačeva | 62 | 32 | 0.8 |  |\n| 6 | okret (ishod) | **6 pehara** | 42 | 16 | 1.5 | +0.20 |\n\n- položaj 6 okret (ishod): 6 pehara (a=42, b=16) → 16\n- položaj 3 vrh (vrhunac): 3 novčića (a=67, b=33) → 33\n- položaj 1 osovina (što je stalno): Vitez pehara (a=48, b=22) → 22\n- položaj 2 uspon (što dolazi): XXI Svijet (a=21, b=21) → 21\n- položaj 5 dno (temelj, skriveno): Vitez mačeva (a=62, b=32) → 32\n- položaj 4 silazak (što odlazi): 2 mačeva (a=52, b=22) → 22 (već uzet)\n- dopuna (a) položaj 6: 6 pehara (a=42, b=16) → 42\n- ključne karte: Vitez pehara +0.30×1.2, XXI Svijet +0.30×1.0, 6 pehara +0.20×1.5\n\n### Čitanje #8 (seed 20261037)\n\nŠpil d1 (prvih 14 karata): Paž novčića (a=75, b=41) | 10 mačeva (a=60, b=30) | III Carica (a=3, b=3) | I Mag (a=1, b=1) | XII Obješeni (a=12, b=12) | 5 štapova (a=27, b=5) | XVI Kula (a=16, b=16) | 6 novčića (a=70, b=36) | Paž pehara (a=47, b=21) | 3 pehara (a=39, b=13) | 10 štapova (a=32, b=10) | 4 štapova (a=26, b=4) | 5 mačeva (a=55, b=25) | 7 pehara (a=43, b=17) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 01 · 03 · 12 · 16 · 27 · 39 (redom izvedeno [3, 1, 12, 27, 16, 39]; ocjena 1.00 × (1 + 0.40) = 1.400)\n- Paž novčića (a=75, b=41) → redni broj > 45, preskočeno\n- 10 mačeva (a=60, b=30) → redni broj > 45, preskočeno\n- III Carica (a=3, b=3) → 3\n- I Mag (a=1, b=1) → 1\n- XII Obješeni (a=12, b=12) → 12\n- 5 štapova (a=27, b=5) → 27\n- XVI Kula (a=16, b=16) → 16\n- 6 novčića (a=70, b=36) → redni broj > 45, preskočeno\n- Paž pehara (a=47, b=21) → redni broj > 45, preskočeno\n- 3 pehara (a=39, b=13) → 39\n- ključne karte: III Carica +0.20×1.0, I Mag +0.20×1.0\n\n**(b) broj karte (mapiranje b)** → 01 · 03 · 05 · 12 · 30 · 41 (redom izvedeno [41, 30, 3, 1, 12, 5]; ocjena 0.95 × (1 + 0.40) = 1.330)\n- Paž novčića (a=75, b=41) → 41\n- 10 mačeva (a=60, b=30) → 30\n- III Carica (a=3, b=3) → 3\n- I Mag (a=1, b=1) → 1\n- XII Obješeni (a=12, b=12) → 12\n- 5 štapova (a=27, b=5) → 5\n- ključne karte: III Carica +0.20×1.0, I Mag +0.20×1.0\n\n**(c) Keltski križ** → 10 · 22 · 31 · 32 · 43 · 44 (redom izvedeno [10, 32, 31, 43, 44, 22]; ocjena 0.90 × (1 + 2.21) = 2.889)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | **Kralj novčića** | 78 | 44 | 1.0 | +0.20 |\n| 2 | što ga križa | **Vitez pehara** | 48 | 22 | 0.9 | +0.30 |\n| 3 | što ga kruni (najbolji ishod) | **As novčića** | 65 | 31 | 1.3 | +0.80 |\n| 4 | što je ispod (temelj) | **II Visoka svećenica** | 2 | 2 | 0.8 | +0.20 |\n| 5 | što je iza (prošlost) | Kraljica mačeva | 63 | 33 | 0.6 |  |\n| 6 | što je pred njim (budućnost) | Kraljica novčića | 77 | 43 | 1.2 |  |\n| 7 | pitatelj | 2 mačeva | 52 | 22 | 0.8 |  |\n| 8 | kuća (okolina) | 5 štapova | 27 | 5 | 0.8 |  |\n| 9 | nade i strahovi | **VII Kola** | 7 | 7 | 0.9 | +0.60 |\n| 10 | što će doći (ishod) | Vitez mačeva | 62 | 32 | 1.5 |  |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): Vitez mačeva (a=62, b=32) → 32\n- položaj 3 što ga kruni (najbolji ishod): As novčića (a=65, b=31) → 31\n- položaj 6 što je pred njim (budućnost): Kraljica novčića (a=77, b=43) → 43\n- položaj 1 što ga pokriva (srž): Kralj novčića (a=78, b=44) → 44\n- položaj 2 što ga križa: Vitez pehara (a=48, b=22) → 22\n- ključne karte: Kralj novčića +0.20×1.0, Vitez pehara +0.30×0.9, As novčića +0.80×1.3, II Visoka svećenica +0.20×0.8, VII Kola +0.60×0.9\n\n**(d) Kolo sreće** → 07 · 13 · 15 · 18 · 40 · 43 (redom izvedeno [15, 43, 40, 18, 7, 13]; ocjena 0.85 × (1 + 1.64) = 2.244)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | **10 novčića** | 74 | 40 | 1.2 | +0.80 |\n| 2 | uspon (što dolazi) | **XVIII Mjesec** | 18 | 18 | 1.0 | +0.20 |\n| 3 | vrh (vrhunac) | Kraljica novčića | 77 | 43 | 1.3 |  |\n| 4 | silazak (što odlazi) | 3 pehara | 39 | 13 | 0.6 |  |\n| 5 | dno (temelj, skriveno) | **VII Kola** | 7 | 7 | 0.8 | +0.60 |\n| 6 | okret (ishod) | XV Đavao | 15 | 15 | 1.5 |  |\n\n- položaj 6 okret (ishod): XV Đavao (a=15, b=15) → 15\n- položaj 3 vrh (vrhunac): Kraljica novčića (a=77, b=43) → 43\n- položaj 1 osovina (što je stalno): 10 novčića (a=74, b=40) → 40\n- položaj 2 uspon (što dolazi): XVIII Mjesec (a=18, b=18) → 18\n- položaj 5 dno (temelj, skriveno): VII Kola (a=7, b=7) → 7\n- položaj 4 silazak (što odlazi): 3 pehara (a=39, b=13) → 13\n- ključne karte: 10 novčića +0.80×1.2, XVIII Mjesec +0.20×1.0, VII Kola +0.60×0.8\n\n### Čitanje #9 (seed 20261038)\n\nŠpil d1 (prvih 14 karata): 6 štapova (a=28, b=6) | 3 pehara (a=39, b=13) | XIV Umjerenost (a=14, b=14) | 4 štapova (a=26, b=4) | 5 štapova (a=27, b=5) | Kralj mačeva (a=64, b=34) | VII Kola (a=7, b=7) | V Jerofant (a=5, b=5) | II Visoka svećenica (a=2, b=2) | VI Ljubavnici (a=6, b=6) | Vitez novčića (a=76, b=42) | X Kolo sreće (a=10, b=10) | Vitez mačeva (a=62, b=32) | Kralj štapova (a=36, b=14) …\n\n**(a) referentno pravilo (redni broj ≤ 45)** → 07 · 14 · 26 · 27 · 28 · 39 (redom izvedeno [28, 39, 14, 26, 27, 7]; ocjena 1.00 × (1 + 0.90) = 1.900)\n- 6 štapova (a=28, b=6) → 28\n- 3 pehara (a=39, b=13) → 39\n- XIV Umjerenost (a=14, b=14) → 14\n- 4 štapova (a=26, b=4) → 26\n- 5 štapova (a=27, b=5) → 27\n- Kralj mačeva (a=64, b=34) → redni broj > 45, preskočeno\n- VII Kola (a=7, b=7) → 7\n- ključne karte: 6 štapova +0.30×1.0, VII Kola +0.60×1.0\n\n**(b) broj karte (mapiranje b)** → 04 · 05 · 06 · 13 · 14 · 34 (redom izvedeno [6, 13, 14, 4, 5, 34]; ocjena 0.95 × (1 + 0.30) = 1.235)\n- 6 štapova (a=28, b=6) → 6\n- 3 pehara (a=39, b=13) → 13\n- XIV Umjerenost (a=14, b=14) → 14\n- 4 štapova (a=26, b=4) → 4\n- 5 štapova (a=27, b=5) → 5\n- Kralj mačeva (a=64, b=34) → 34\n- ključne karte: 6 štapova +0.30×1.0\n\n**(c) Keltski križ** → 01 · 10 · 22 · 23 · 24 · 36 (redom izvedeno [10, 22, 1, 36, 23, 24]; ocjena 0.90 × (1 + 1.01) = 1.809)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | što ga pokriva (srž) | 3 mačeva | 53 | 23 | 1.0 |  |\n| 2 | što ga križa | Kralj pehara | 50 | 24 | 0.9 |  |\n| 3 | što ga kruni (najbolji ishod) | **I Mag** | 1 | 1 | 1.3 | +0.20 |\n| 4 | što je ispod (temelj) | 8 mačeva | 58 | 28 | 0.8 |  |\n| 5 | što je iza (prošlost) | **Vitez štapova** | 34 | 12 | 0.6 | +0.20 |\n| 6 | što je pred njim (budućnost) | 6 novčića | 70 | 36 | 1.2 |  |\n| 7 | pitatelj | 6 mačeva | 56 | 26 | 0.8 |  |\n| 8 | kuća (okolina) | Paž novčića | 75 | 41 | 0.8 |  |\n| 9 | nade i strahovi | **III Carica** | 3 | 3 | 0.9 | +0.20 |\n| 10 | što će doći (ishod) | **Vitez pehara** | 48 | 22 | 1.5 | +0.30 |\n\n- signifikator: X Kolo sreće (a=10, b=10) → 10 (zadan)\n- položaj 10 što će doći (ishod): Vitez pehara (a=48, b=22) → 22\n- položaj 3 što ga kruni (najbolji ishod): I Mag (a=1, b=1) → 1\n- položaj 6 što je pred njim (budućnost): 6 novčića (a=70, b=36) → 36\n- položaj 1 što ga pokriva (srž): 3 mačeva (a=53, b=23) → 23\n- položaj 2 što ga križa: Kralj pehara (a=50, b=24) → 24\n- ključne karte: I Mag +0.20×1.3, Vitez štapova +0.20×0.6, III Carica +0.20×0.9, Vitez pehara +0.30×1.5\n\n**(d) Kolo sreće** → 15 · 18 · 22 · 23 · 24 · 33 (redom izvedeno [24, 22, 15, 33, 23, 18]; ocjena 0.85 × (1 + 0.64) = 1.394)\n\n| položaj | značenje | karta | a | b | množitelj | ključna |\n|---|---|---|---|---|---|---|\n| 1 | osovina (što je stalno) | **5 pehara** | 41 | 15 | 1.2 | +0.30 |\n| 2 | uspon (što dolazi) | Kraljica mačeva | 63 | 33 | 1.0 |  |\n| 3 | vrh (vrhunac) | 2 mačeva | 52 | 22 | 1.3 |  |\n| 4 | silazak (što odlazi) | **XVIII Mjesec** | 18 | 18 | 0.6 | +0.20 |\n| 5 | dno (temelj, skriveno) | **Kraljica pehara** | 49 | 23 | 0.8 | +0.20 |\n| 6 | okret (ishod) | Kralj pehara | 50 | 24 | 1.5 |  |\n\n- položaj 6 okret (ishod): Kralj pehara (a=50, b=24) → 24\n- položaj 3 vrh (vrhunac): 2 mačeva (a=52, b=22) → 22\n- položaj 1 osovina (što je stalno): 5 pehara (a=41, b=15) → 15\n- položaj 2 uspon (što dolazi): Kraljica mačeva (a=63, b=33) → 33\n- položaj 5 dno (temelj, skriveno): Kraljica pehara (a=49, b=23) → 23\n- položaj 4 silazak (što odlazi): XVIII Mjesec (a=18, b=18) → 18\n- ključne karte: 5 pehara +0.30×1.2, XVIII Mjesec +0.20×0.6, Kraljica pehara +0.20×0.8\n\n## 6. Sva čitanja — ocjene izvedbi (a / b / c / d) i brojevi po (a)\n\n| i | seed | (a) | (b) | (c) | (d) | brojevi (a) | brojevi (c) |\n|---|---|---|---|---|---|---|---|\n| 50 | 20261079 | 3.90 | 1.43 | 1.68 | 3.57 | 05 07 08 10 14 29 | 02 03 06 10 19 38 |\n| 86 | 20261115 | 3.85 | 1.90 | 2.09 | 1.10 | 10 16 17 19 42 43 | 02 10 12 23 31 41 |\n| 68 | 20261097 | 3.80 | 1.33 | 1.25 | 1.28 | 07 10 17 26 27 41 | 06 10 22 24 29 36 |\n| 46 | 20261075 | 2.20 | 1.14 | 3.75 | 1.95 | 02 10 20 22 33 40 | 10 17 24 30 31 40 |\n| 17 | 20261046 | 3.70 | 2.19 | 1.04 | 1.92 | 07 08 09 19 28 38 | 08 09 10 14 24 37 |\n| 40 | 20261069 | 3.60 | 2.47 | 2.85 | 0.85 | 06 08 10 13 22 27 | 10 14 24 33 39 41 |\n| 91 | 20261120 | 3.60 | 1.52 | 2.18 | 2.70 | 03 07 10 19 30 33 | 07 08 10 18 23 27 |\n| 97 | 20261126 | 3.45 | 2.94 | 2.23 | 1.18 | 04 06 10 21 36 43 | 03 10 18 22 23 31 |\n| 66 | 20261095 | 3.20 | 3.42 | 1.22 | 1.48 | 02 07 10 14 31 44 | 01 10 11 23 25 38 |\n| 34 | 20261063 | 3.40 | 3.13 | 1.33 | 1.96 | 02 06 10 13 31 43 | 01 10 11 17 27 30 |\n| 7 | 20261036 | 3.05 | 1.90 | 3.38 | 1.67 | 19 21 25 30 34 35 | 10 13 22 28 31 39 |\n| 85 | 20261114 | 1.75 | 1.43 | 3.31 | 0.85 | 01 25 29 32 33 40 | 10 19 22 26 32 41 |\n| 5 | 20261034 | 3.30 | 2.85 | 1.04 | 1.99 | 01 02 06 13 19 39 | 04 10 12 24 34 41 |\n| 54 | 20261083 | 3.25 | 2.09 | 2.80 | 1.10 | 04 10 13 18 21 45 | 01 04 10 20 29 31 |\n| 37 | 20261066 | 3.15 | 1.52 | 1.47 | 1.84 | 01 02 19 37 41 44 | 05 06 10 11 30 33 |\n| 75 | 20261104 | 2.55 | 3.13 | 2.32 | 2.07 | 05 06 20 23 37 41 | 04 10 13 21 29 37 |\n| 92 | 20261121 | 2.15 | 2.00 | 2.64 | 3.10 | 03 04 07 18 32 37 | 05 10 13 15 31 33 |\n| 29 | 20261058 | 3.10 | 2.94 | 1.47 | 0.85 | 04 07 11 12 17 36 | 01 10 11 15 31 41 |\n| 15 | 20261044 | 2.00 | 1.24 | 3.10 | 0.99 | 13 18 33 34 44 45 | 07 09 10 19 38 40 |\n| 74 | 20261103 | 3.05 | 2.28 | 1.64 | 1.68 | 10 28 29 38 39 44 | 03 10 11 14 23 30 |\n| 80 | 20261109 | 2.60 | 1.33 | 3.02 | 0.85 | 01 04 19 29 34 43 | 10 16 21 22 26 40 |\n| 18 | 20261047 | 3.00 | 2.00 | 1.33 | 1.68 | 03 11 16 28 29 31 | 08 09 10 18 29 41 |\n| 65 | 20261094 | 3.00 | 2.85 | 1.30 | 0.95 | 01 25 29 39 41 42 | 01 10 16 22 28 34 |\n| 36 | 20261065 | 2.85 | 2.85 | 3.00 | 1.19 | 01 04 10 23 28 37 | 04 07 08 10 24 25 |\n| 79 | 20261108 | 2.30 | 2.19 | 3.00 | 1.48 | 08 15 19 33 35 36 | 05 10 11 13 21 24 |\n| 20 | 20261049 | 1.30 | 1.24 | 2.97 | 1.98 | 05 09 12 14 28 44 | 10 11 13 17 21 24 |\n| 94 | 20261123 | 2.20 | 2.23 | 2.95 | 1.94 | 06 20 25 28 29 36 | 01 04 08 10 23 31 |\n| 14 | 20261043 | 2.95 | 2.00 | 1.44 | 2.30 | 06 17 18 25 26 38 | 10 14 20 23 24 38 |\n| 77 | 20261106 | 2.90 | 1.80 | 2.92 | 1.29 | 03 10 21 26 29 30 | 01 10 11 26 31 42 |\n| 30 | 20261059 | 2.90 | 2.19 | 0.90 | 2.76 | 08 11 16 19 27 39 | 03 10 14 23 25 43 |\n| 41 | 20261070 | 2.90 | 2.56 | 2.48 | 0.99 | 13 17 30 33 34 45 | 01 06 10 14 27 44 |\n| 62 | 20261091 | 2.90 | 2.66 | 2.31 | 1.58 | 08 14 19 31 33 34 | 02 07 08 10 13 24 |\n| 81 | 20261110 | 2.90 | 2.56 | 1.40 | 2.40 | 13 19 21 27 34 45 | 04 09 10 14 18 33 |\n| 1 | 20261030 | 1.50 | 1.14 | 1.78 | 2.89 | 09 14 15 28 33 42 | 10 11 12 16 24 27 |\n| 8 | 20261037 | 1.40 | 1.33 | 2.89 | 2.24 | 01 03 12 16 27 39 | 10 22 31 32 43 44 |\n| 27 | 20261056 | 1.95 | 1.52 | 2.82 | 1.65 | 02 03 09 18 20 36 | 10 13 17 31 36 39 |\n| 78 | 20261107 | 2.80 | 1.52 | 1.93 | 0.85 | 06 08 13 18 26 35 | 10 13 19 20 30 35 |\n| 2 | 20261031 | 2.55 | 1.14 | 2.79 | 0.85 | 01 02 19 33 34 36 | 06 10 12 15 24 44 |\n| 96 | 20261125 | 2.55 | 2.75 | 1.43 | 2.51 | 01 13 23 25 31 34 | 04 05 10 21 23 33 |\n| 72 | 20261101 | 1.35 | 0.95 | 2.73 | 1.65 | 03 09 14 35 38 39 | 02 07 10 11 15 18 |\n| 59 | 20261088 | 1.70 | 1.24 | 1.93 | 2.70 | 05 11 21 24 33 40 | 05 09 10 19 32 33 |\n| 4 | 20261033 | 2.70 | 2.56 | 1.84 | 1.87 | 05 10 27 28 29 39 | 10 12 14 18 31 41 |\n| 6 | 20261035 | 2.70 | 2.56 | 1.22 | 1.02 | 06 17 21 22 34 40 | 10 15 20 28 32 43 |\n| 19 | 20261048 | 2.70 | 2.38 | 2.09 | 2.33 | 04 09 16 21 23 36 | 09 10 15 19 26 33 |\n| 3 | 20261032 | 1.00 | 0.95 | 2.07 | 2.68 | 12 22 23 24 39 45 | 04 07 10 20 24 27 |\n| 24 | 20261053 | 1.80 | 1.52 | 1.43 | 2.67 | 02 11 16 27 33 34 | 10 12 22 23 42 43 |\n| 25 | 20261054 | 2.40 | 2.66 | 1.62 | 1.36 | 01 14 19 37 43 45 | 03 07 10 32 36 42 |\n| 33 | 20261062 | 2.65 | 1.52 | 2.29 | 0.85 | 02 03 04 18 19 33 | 01 08 10 12 34 40 |\n| 43 | 20261072 | 1.80 | 1.52 | 2.65 | 1.24 | 04 09 11 16 22 28 | 10 12 15 19 38 41 |\n| 12 | 20261041 | 1.40 | 1.71 | 2.01 | 2.63 | 04 09 27 31 32 38 | 10 16 17 41 42 43 |\n| 42 | 20261071 | 1.70 | 1.33 | 2.62 | 1.58 | 04 28 34 38 40 42 | 02 10 11 21 28 44 |\n| 90 | 20261119 | 2.00 | 1.90 | 2.60 | 2.03 | 05 19 26 30 38 42 | 03 05 07 10 25 30 |\n| 67 | 20261096 | 2.60 | 1.90 | 1.67 | 0.85 | 05 13 19 26 34 35 | 02 10 16 29 33 36 |\n| 76 | 20261105 | 2.60 | 1.09 | 2.42 | 1.94 | 06 14 19 21 33 38 | 04 08 10 14 33 39 |\n| 55 | 20261084 | 2.45 | 1.43 | 2.59 | 1.17 | 01 06 23 29 38 39 | 07 10 13 14 20 40 |\n| 71 | 20261100 | 1.00 | 0.95 | 2.59 | 2.35 | 05 27 31 37 40 45 | 09 10 11 12 19 34 |\n| 70 | 20261099 | 2.50 | 0.95 | 2.57 | 0.85 | 06 10 14 15 32 43 | 03 10 18 20 24 25 |\n| 63 | 20261092 | 2.10 | 1.90 | 2.12 | 2.52 | 01 04 19 20 31 32 | 06 09 10 12 23 44 |\n| 13 | 20261042 | 2.50 | 2.38 | 2.03 | 1.87 | 06 17 21 32 33 44 | 02 10 13 22 27 40 |\n| 57 | 20261086 | 2.50 | 1.90 | 1.78 | 1.65 | 04 05 06 14 18 19 | 03 10 15 19 29 32 |\n| 82 | 20261111 | 2.50 | 1.71 | 1.75 | 2.28 | 01 25 27 29 38 39 | 10 15 18 25 34 36 |\n| 69 | 20261098 | 2.40 | 1.80 | 2.49 | 1.64 | 01 08 17 36 37 40 | 07 08 10 14 22 28 |\n| 44 | 20261073 | 2.00 | 1.90 | 2.48 | 1.56 | 04 10 22 23 31 37 | 10 19 21 22 25 31 |\n| 10 | 20261039 | 1.50 | 1.43 | 1.48 | 2.48 | 06 25 27 32 33 44 | 05 10 17 22 32 38 |\n| 87 | 20261116 | 2.45 | 2.19 | 1.60 | 1.54 | 05 10 18 20 22 24 | 07 10 11 14 36 38 |\n| 38 | 20261067 | 1.90 | 1.14 | 2.44 | 0.95 | 09 17 24 33 34 44 | 02 09 10 15 17 29 |\n| 52 | 20261081 | 2.35 | 2.38 | 1.91 | 1.74 | 11 14 23 26 29 37 | 04 10 12 13 18 43 |\n| 28 | 20261057 | 2.35 | 2.00 | 1.74 | 1.82 | 01 24 33 39 40 41 | 04 10 11 16 23 43 |\n| 60 | 20261089 | 2.35 | 2.09 | 2.02 | 1.00 | 17 21 31 34 40 45 | 06 10 18 20 27 37 |\n| 53 | 20261082 | 1.50 | 1.52 | 2.30 | 1.33 | 01 16 20 25 26 27 | 04 09 10 11 23 31 |\n| 61 | 20261090 | 2.30 | 1.33 | 1.49 | 1.63 | 07 27 29 35 39 41 | 05 08 10 14 20 25 |\n| 73 | 20261102 | 2.30 | 1.80 | 2.28 | 1.07 | 17 18 20 29 31 36 | 06 08 10 16 24 25 |\n| 31 | 20261060 | 2.25 | 1.61 | 2.29 | 1.07 | 02 16 28 29 31 42 | 06 08 10 14 25 28 |\n| 83 | 20261112 | 1.90 | 0.95 | 2.29 | 1.14 | 03 12 29 31 37 39 | 01 04 10 18 22 33 |\n| 0 | 20261029 | 1.30 | 1.09 | 2.24 | 1.74 | 04 05 22 36 39 44 | 03 10 21 25 31 41 |\n| 64 | 20261093 | 2.20 | 2.09 | 2.22 | 1.55 | 02 18 19 23 26 38 | 04 06 10 20 25 28 |\n| 11 | 20261040 | 2.20 | 1.24 | 2.00 | 0.85 | 03 22 26 29 35 39 | 07 10 14 22 25 36 |\n| 26 | 20261055 | 1.55 | 1.14 | 2.16 | 1.96 | 22 26 32 42 43 44 | 05 10 12 17 24 32 |\n| 21 | 20261050 | 2.15 | 2.09 | 1.60 | 2.08 | 06 20 21 26 33 38 | 02 10 13 17 27 30 |\n| 49 | 20261078 | 2.15 | 1.33 | 1.44 | 0.85 | 03 04 29 32 36 42 | 10 12 15 22 28 33 |\n| 32 | 20261061 | 1.50 | 1.33 | 1.33 | 2.11 | 01 15 20 23 34 40 | 10 12 14 16 22 42 |\n| 45 | 20261074 | 2.10 | 1.52 | 2.09 | 1.74 | 06 13 24 30 35 45 | 01 05 06 10 13 32 |\n| 48 | 20261077 | 2.10 | 2.00 | 1.26 | 1.73 | 17 29 32 33 36 40 | 05 10 12 13 15 32 |\n| 51 | 20261080 | 2.10 | 1.52 | 1.84 | 1.78 | 03 13 34 36 37 43 | 07 09 10 13 16 38 |\n| 58 | 20261087 | 1.90 | 1.24 | 2.08 | 1.00 | 12 13 16 22 37 41 | 10 14 16 17 34 39 |\n| 98 | 20261127 | 1.80 | 1.71 | 2.08 | 1.84 | 01 07 20 24 36 45 | 01 06 08 10 21 30 |\n| 23 | 20261052 | 2.05 | 0.95 | 1.78 | 1.26 | 06 11 23 27 33 43 | 03 05 07 10 12 34 |\n| 22 | 20261051 | 1.60 | 1.52 | 1.75 | 2.01 | 07 14 23 31 38 39 | 03 05 08 10 13 14 |\n| 95 | 20261124 | 1.70 | 2.00 | 1.28 | 1.87 | 04 12 26 28 31 45 | 02 10 14 20 26 32 |\n| 16 | 20261045 | 1.10 | 1.14 | 1.12 | 1.99 | 12 27 33 37 43 45 | 01 10 12 14 19 22 |\n| 39 | 20261068 | 1.50 | 1.43 | 1.98 | 1.84 | 01 12 27 31 40 41 | 07 10 14 21 29 34 |\n| 93 | 20261122 | 1.60 | 1.52 | 1.93 | 1.50 | 01 11 20 23 35 40 | 10 16 17 19 33 44 |\n| 9 | 20261038 | 1.90 | 1.24 | 1.81 | 1.39 | 07 14 26 27 28 39 | 01 10 22 23 24 36 |\n| 35 | 20261064 | 1.90 | 1.24 | 1.83 | 1.38 | 16 23 28 30 34 36 | 02 10 15 19 33 42 |\n| 56 | 20261085 | 1.90 | 1.14 | 1.57 | 1.43 | 13 18 22 26 32 44 | 10 11 17 29 30 44 |\n| 88 | 20261117 | 1.90 | 1.43 | 1.58 | 0.85 | 01 14 15 21 29 32 | 08 10 11 14 18 30 |\n| 89 | 20261118 | 1.90 | 1.43 | 1.37 | 1.50 | 02 08 33 39 40 42 | 10 14 16 27 28 41 |\n| 99 | 20261128 | 1.85 | 1.90 | 1.56 | 1.34 | 05 14 21 29 31 32 | 01 10 12 22 32 42 |\n| 47 | 20261076 | 1.80 | 0.95 | 1.71 | 1.16 | 05 15 19 25 26 43 | 08 10 12 20 22 37 |\n| 84 | 20261113 | 1.50 | 0.95 | 1.37 | 1.41 | 08 25 27 30 35 36 | 02 04 08 10 18 20 |\n\n## 7. Ključni brojevi\n\nFiksni (astrološke i sretne karte): 10 = X Kolo sreće (Jupiterov dan i sat), 19 = XIX Sunce, 17 = XVII Zvijezda, 31 = As novčića (b), 40 = 10 novčića (b), 39 = 9 novčića (b), 13 = XIII Smrt — Sunce u Škorpionu, 7 = VII Kola — Asc Rak; 7 štapova (b), 6 = VI Ljubavnici — Mjesec u Blizancima; 6 štapova (b), 8 = VIII Snaga — Lav, 11 = XI Pravda / Lust, 15 = 5 pehara (b) — 1. dekada Škorpiona, 24 = 4 mačeva (b) — 3. dekada Vage, 29 = 7 štapova (a) — 3. dekada Lava, 28 = 6 štapova (a) — 2. dekada Lava, 41 = 5 pehara (a).\nS dodatkom najčešćih među prvih 30 rangiranih kandidata: 10, 19, 17, 31, 40, 39, 13, 7, 6, 8, 11, 15, 24, 29, 28, 41, 21, 2, 4, 1\n",
+ "kljucni_brojevi": [
+  10,
+  19,
+  17,
+  31,
+  40,
+  39,
+  13,
+  7,
+  6,
+  8,
+  11,
+  15,
+  24,
+  29,
+  28,
+  41,
+  21,
+  2,
+  4,
+  1
+ ],
+ "kandidati": [
+  {
+   "brojevi": [
+    5,
+    7,
+    8,
+    10,
+    14,
+    29
+   ],
+   "rang": 1,
+   "obrazlozenje": "Čitanje #50 (seed 20261079), referentno pravilo (redni broj ≤ 45): XIV Umjerenost=14, V Jerofant=5, VIII Snaga=8, 7 štapova=29, X Kolo sreće=10, VII Kola=7; ključne: VIII Snaga +0.50×1.0, 10 novčića +0.80×0.5, 7 štapova +0.40×1.0, X Kolo sreće +1.00×1.0, VII Kola +0.60×1.0; ocjena 1.00×(1+2.90)=3.90"
+  },
+  {
+   "brojevi": [
+    10,
+    16,
+    17,
+    19,
+    42,
+    43
+   ],
+   "rang": 2,
+   "obrazlozenje": "Čitanje #86 (seed 20261115), referentno pravilo (redni broj ≤ 45): XVII Zvijezda=17, 7 pehara=43, XVI Kula=16, 6 pehara=42, XIX Sunce=19, X Kolo sreće=10; ključne: Vitez pehara +0.30×0.5, XVII Zvijezda +0.70×1.0, 6 pehara +0.20×1.0, XIX Sunce +0.80×1.0, X Kolo sreće +1.00×1.0; ocjena 1.00×(1+2.85)=3.85"
+  },
+  {
+   "brojevi": [
+    7,
+    10,
+    17,
+    26,
+    27,
+    41
+   ],
+   "rang": 3,
+   "obrazlozenje": "Čitanje #68 (seed 20261097), referentno pravilo (redni broj ≤ 45): 4 štapova=26, X Kolo sreće=10, 5 štapova=27, 5 pehara=41, XVII Zvijezda=17, VII Kola=7; ključne: Kraljica pehara +0.20×0.5, Kralj novčića +0.20×0.5, X Kolo sreće +1.00×1.0, 5 pehara +0.30×1.0, XVII Zvijezda +0.70×1.0, VII Kola +0.60×1.0; ocjena 1.00×(1+2.80)=3.80"
+  },
+  {
+   "brojevi": [
+    10,
+    17,
+    24,
+    30,
+    31,
+    40
+   ],
+   "rang": 4,
+   "obrazlozenje": "Čitanje #46 (seed 20261075), Keltski križ: S X Kolo sreće=10, p10 As novčića=31, p3 10 novčića=40, p6 10 mačeva=30, p1 Kralj pehara=24, p2 XVII Zvijezda=17; ključne: XVII Zvijezda +0.70×0.9, 10 novčića +0.80×1.3, Vitez štapova +0.20×0.6, 6 pehara +0.20×0.9, As novčića +0.80×1.5; ocjena 0.90×(1+3.17)=3.75"
+  },
+  {
+   "brojevi": [
+    7,
+    8,
+    9,
+    19,
+    28,
+    38
+   ],
+   "rang": 5,
+   "obrazlozenje": "Čitanje #17 (seed 20261046), referentno pravilo (redni broj ≤ 45): 2 pehara=38, 6 štapova=28, VIII Snaga=8, IX Pustinjak=9, VII Kola=7, XIX Sunce=19; ključne: 6 štapova +0.30×1.0, 4 mačeva +0.30×0.5, 9 novčića +0.70×0.5, VIII Snaga +0.50×1.0, VII Kola +0.60×1.0, XIX Sunce +0.80×1.0; ocjena 1.00×(1+2.70)=3.70"
+  },
+  {
+   "brojevi": [
+    6,
+    8,
+    10,
+    13,
+    22,
+    27
+   ],
+   "rang": 6,
+   "obrazlozenje": "Čitanje #40 (seed 20261069), referentno pravilo (redni broj ≤ 45): XIII Smrt=13, 0 Luda=22, X Kolo sreće=10, 5 štapova=27, VI Ljubavnici=6, VIII Snaga=8; ključne: XIII Smrt +0.60×1.0, X Kolo sreće +1.00×1.0, VI Ljubavnici +0.50×1.0, VIII Snaga +0.50×1.0; ocjena 1.00×(1+2.60)=3.60"
+  },
+  {
+   "brojevi": [
+    3,
+    7,
+    10,
+    19,
+    30,
+    33
+   ],
+   "rang": 7,
+   "obrazlozenje": "Čitanje #91 (seed 20261120), referentno pravilo (redni broj ≤ 45): 8 štapova=30, VII Kola=7, Paž štapova=33, XIX Sunce=19, III Carica=3, X Kolo sreće=10; ključne: VII Kola +0.60×1.0, XIX Sunce +0.80×1.0, III Carica +0.20×1.0, X Kolo sreće +1.00×1.0; ocjena 1.00×(1+2.60)=3.60"
+  },
+  {
+   "brojevi": [
+    6,
+    10,
+    11,
+    19,
+    31,
+    42
+   ],
+   "rang": 8,
+   "obrazlozenje": "Čitanje #50 (seed 20261079), Kolo sreće: p6 Vitez novčića=42, p3 X Kolo sreće=10, p1 As novčića=31, p2 6 štapova=6, p5 XIX Sunce=19, p4 As pehara=11; ključne: As novčića +0.80×1.2, 6 štapova +0.30×1.0, X Kolo sreće +1.00×1.3, XIX Sunce +0.80×0.8; ocjena 0.85×(1+3.20)=3.57"
+  },
+  {
+   "brojevi": [
+    4,
+    6,
+    10,
+    21,
+    36,
+    43
+   ],
+   "rang": 9,
+   "obrazlozenje": "Čitanje #97 (seed 20261126), referentno pravilo (redni broj ≤ 45): VI Ljubavnici=6, XXI Svijet=21, IV Car=4, Kralj štapova=36, X Kolo sreće=10, 7 pehara=43; ključne: VI Ljubavnici +0.50×1.0, Vitez pehara +0.30×0.5, Kraljica pehara +0.20×0.5, XXI Svijet +0.30×1.0, As novčića +0.80×0.5, X Kolo sreće +1.00×1.0; ocjena 1.00×(1+2.45)=3.45"
+  },
+  {
+   "brojevi": [
+    2,
+    7,
+    9,
+    10,
+    24,
+    40
+   ],
+   "rang": 10,
+   "obrazlozenje": "Čitanje #66 (seed 20261095), broj karte (mapiranje b): II Visoka svećenica=2, 9 štapova=9, Kralj pehara=24, X Kolo sreće=10, 10 novčića=40, VII Kola=7; ključne: II Visoka svećenica +0.20×1.0, X Kolo sreće +1.00×1.0, 10 novčića +0.80×1.0, VII Kola +0.60×1.0; ocjena 0.95×(1+2.60)=3.42"
+  },
+  {
+   "brojevi": [
+    2,
+    6,
+    10,
+    13,
+    31,
+    43
+   ],
+   "rang": 11,
+   "obrazlozenje": "Čitanje #34 (seed 20261063), referentno pravilo (redni broj ≤ 45): 9 štapova=31, VI Ljubavnici=6, 7 pehara=43, XIII Smrt=13, X Kolo sreće=10, II Visoka svećenica=2; ključne: Kralj novčića +0.20×0.5, VI Ljubavnici +0.50×1.0, XIII Smrt +0.60×1.0, X Kolo sreće +1.00×1.0, II Visoka svećenica +0.20×1.0; ocjena 1.00×(1+2.40)=3.40"
+  },
+  {
+   "brojevi": [
+    10,
+    13,
+    22,
+    28,
+    31,
+    39
+   ],
+   "rang": 12,
+   "obrazlozenje": "Čitanje #7 (seed 20261036), Keltski križ: S X Kolo sreće=10, p10 3 pehara=13, p3 As novčića=31, p6 9 novčića=39, p1 8 mačeva=28, p2 0 Luda=22; ključne: As novčića +0.80×1.3, 7 štapova +0.40×0.8, 9 novčića +0.70×1.2, Vitez štapova +0.20×0.8, VIII Snaga +0.50×0.8; ocjena 0.90×(1+2.76)=3.38"
+  },
+  {
+   "brojevi": [
+    10,
+    19,
+    22,
+    26,
+    32,
+    41
+   ],
+   "rang": 13,
+   "obrazlozenje": "Čitanje #85 (seed 20261114), Keltski križ: S X Kolo sreće=10, p10 6 mačeva=26, p3 XIX Sunce=19, p6 Vitez pehara=22, p1 Paž novčića=41, p2 Vitez mačeva=32; ključne: XIX Sunce +0.80×1.3, 9 novčića +0.70×0.8, Vitez pehara +0.30×1.2, 10 novčića +0.80×0.9; ocjena 0.90×(1+2.68)=3.31"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    6,
+    13,
+    19,
+    39
+   ],
+   "rang": 14,
+   "obrazlozenje": "Čitanje #5 (seed 20261034), referentno pravilo (redni broj ≤ 45): 3 pehara=39, II Visoka svećenica=2, VI Ljubavnici=6, XIII Smrt=13, XIX Sunce=19, I Mag=1; ključne: II Visoka svećenica +0.20×1.0, VI Ljubavnici +0.50×1.0, XIII Smrt +0.60×1.0, XIX Sunce +0.80×1.0, I Mag +0.20×1.0; ocjena 1.00×(1+2.30)=3.30"
+  },
+  {
+   "brojevi": [
+    4,
+    10,
+    13,
+    18,
+    21,
+    45
+   ],
+   "rang": 15,
+   "obrazlozenje": "Čitanje #54 (seed 20261083), referentno pravilo (redni broj ≤ 45): XIII Smrt=13, XXI Svijet=21, 9 pehara=45, IV Car=4, X Kolo sreće=10, XVIII Mjesec=18; ključne: XIII Smrt +0.60×1.0, XXI Svijet +0.30×1.0, 4 mačeva +0.30×0.5, X Kolo sreće +1.00×1.0, XVIII Mjesec +0.20×1.0; ocjena 1.00×(1+2.25)=3.25"
+  },
+  {
+   "brojevi": [
+    2,
+    7,
+    10,
+    14,
+    31,
+    44
+   ],
+   "rang": 16,
+   "obrazlozenje": "Čitanje #66 (seed 20261095), referentno pravilo (redni broj ≤ 45): II Visoka svećenica=2, 9 štapova=31, X Kolo sreće=10, VII Kola=7, XIV Umjerenost=14, 8 pehara=44; ključne: II Visoka svećenica +0.20×1.0, X Kolo sreće +1.00×1.0, 10 novčića +0.80×0.5, VII Kola +0.60×1.0; ocjena 1.00×(1+2.20)=3.20"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    19,
+    37,
+    41,
+    44
+   ],
+   "rang": 17,
+   "obrazlozenje": "Čitanje #37 (seed 20261066), referentno pravilo (redni broj ≤ 45): 8 pehara=44, I Mag=1, As pehara=37, II Visoka svećenica=2, 5 pehara=41, XIX Sunce=19; ključne: Kralj novčića +0.20×0.5, I Mag +0.20×1.0, II Visoka svećenica +0.20×1.0, 10 novčića +0.80×0.5, 5 pehara +0.30×1.0, Vitez pehara +0.30×0.5, XIX Sunce +0.80×1.0; ocjena 1.00×(1+2.15)=3.15"
+  },
+  {
+   "brojevi": [
+    6,
+    9,
+    10,
+    13,
+    17,
+    44
+   ],
+   "rang": 18,
+   "obrazlozenje": "Čitanje #34 (seed 20261063), broj karte (mapiranje b): 9 štapova=9, Kralj novčića=44, VI Ljubavnici=6, 7 pehara=17, XIII Smrt=13, X Kolo sreće=10; ključne: Kralj novčića +0.20×1.0, VI Ljubavnici +0.50×1.0, XIII Smrt +0.60×1.0, X Kolo sreće +1.00×1.0; ocjena 0.95×(1+2.30)=3.13"
+  },
+  {
+   "brojevi": [
+    6,
+    15,
+    21,
+    31,
+    39,
+    40
+   ],
+   "rang": 19,
+   "obrazlozenje": "Čitanje #75 (seed 20261104), broj karte (mapiranje b): 9 novčića=39, VI Ljubavnici=6, Paž mačeva=31, 5 pehara=15, Paž pehara=21, 10 novčića=40; ključne: 9 novčića +0.70×1.0, VI Ljubavnici +0.50×1.0, 5 pehara +0.30×1.0, 10 novčića +0.80×1.0; ocjena 0.95×(1+2.30)=3.13"
+  },
+  {
+   "brojevi": [
+    12,
+    13,
+    17,
+    30,
+    38,
+    39
+   ],
+   "rang": 20,
+   "obrazlozenje": "Čitanje #92 (seed 20261121), Kolo sreće: p6 XIII Smrt=13, p3 XVII Zvijezda=17, p1 9 novčića=39, p2 10 mačeva=30, p5 2 pehara=12, p5a 2 pehara=38; ključne: 9 novčića +0.70×1.2, XVII Zvijezda +0.70×1.3, XIII Smrt +0.60×1.5; ocjena 0.85×(1+2.65)=3.10"
+  },
+  {
+   "brojevi": [
+    4,
+    7,
+    11,
+    12,
+    17,
+    36
+   ],
+   "rang": 21,
+   "obrazlozenje": "Čitanje #29 (seed 20261058), referentno pravilo (redni broj ≤ 45): VII Kola=7, Kralj štapova=36, XVII Zvijezda=17, XI Pravda=11, IV Car=4, XII Obješeni=12; ključne: VII Kola +0.60×1.0, As novčića +0.80×0.5, XVII Zvijezda +0.70×1.0, XI Pravda +0.40×1.0; ocjena 1.00×(1+2.10)=3.10"
+  },
+  {
+   "brojevi": [
+    7,
+    9,
+    10,
+    19,
+    38,
+    40
+   ],
+   "rang": 22,
+   "obrazlozenje": "Čitanje #15 (seed 20261044), Keltski križ: S X Kolo sreće=10, p10 10 novčića=40, p3 8 novčića=38, p6 9 pehara=19, p1 9 štapova=9, p9 7 štapova=7; ključne: XIX Sunce +0.80×0.9, 6 pehara +0.20×0.8, 7 štapova +0.40×0.9, 10 novčića +0.80×1.5; ocjena 0.90×(1+2.44)=3.10"
+  },
+  {
+   "brojevi": [
+    19,
+    21,
+    25,
+    30,
+    34,
+    35
+   ],
+   "rang": 23,
+   "obrazlozenje": "Čitanje #7 (seed 20261036), referentno pravilo (redni broj ≤ 45): XIX Sunce=19, Vitez štapova=34, 8 štapova=30, 3 štapova=25, XXI Svijet=21, Kraljica štapova=35; ključne: XIX Sunce +0.80×1.0, Vitez štapova +0.20×1.0, XXI Svijet +0.30×1.0, As novčića +0.80×0.5, 9 novčića +0.70×0.5; ocjena 1.00×(1+2.05)=3.05"
+  },
+  {
+   "brojevi": [
+    10,
+    28,
+    29,
+    38,
+    39,
+    44
+   ],
+   "rang": 24,
+   "obrazlozenje": "Čitanje #74 (seed 20261103), referentno pravilo (redni broj ≤ 45): 7 štapova=29, 6 štapova=28, 3 pehara=39, 2 pehara=38, X Kolo sreće=10, 8 pehara=44; ključne: 7 štapova +0.40×1.0, 9 novčića +0.70×0.5, 6 štapova +0.30×1.0, X Kolo sreće +1.00×1.0; ocjena 1.00×(1+2.05)=3.05"
+  },
+  {
+   "brojevi": [
+    10,
+    16,
+    21,
+    22,
+    26,
+    40
+   ],
+   "rang": 25,
+   "obrazlozenje": "Čitanje #80 (seed 20261109), Keltski križ: S X Kolo sreće=10, p10 Vitez pehara=22, p3 6 pehara=16, p6 6 mačeva=26, p1 As mačeva=21, p2 10 novčića=40; ključne: 10 novčića +0.80×0.9, 6 pehara +0.20×1.3, 4 mačeva +0.30×0.6, 9 novčića +0.70×0.8, Kraljica pehara +0.20×0.9, Vitez pehara +0.30×1.5; ocjena 0.90×(1+2.35)=3.02"
+  },
+  {
+   "brojevi": [
+    3,
+    11,
+    16,
+    28,
+    29,
+    31
+   ],
+   "rang": 26,
+   "obrazlozenje": "Čitanje #18 (seed 20261047), referentno pravilo (redni broj ≤ 45): XI Pravda=11, 7 štapova=29, XVI Kula=16, III Carica=3, 6 štapova=28, 9 štapova=31; ključne: XI Pravda +0.40×1.0, Vitez pehara +0.30×0.5, 7 štapova +0.40×1.0, III Carica +0.20×1.0, Kralj novčića +0.20×0.5, Kraljica pehara +0.20×0.5, 6 štapova +0.30×1.0, 9 novčića +0.70×0.5; ocjena 1.00×(1+2.00)=3.00"
+  },
+  {
+   "brojevi": [
+    1,
+    25,
+    29,
+    39,
+    41,
+    42
+   ],
+   "rang": 27,
+   "obrazlozenje": "Čitanje #65 (seed 20261094), referentno pravilo (redni broj ≤ 45): I Mag=1, 6 pehara=42, 3 pehara=39, 5 pehara=41, 7 štapova=29, 3 štapova=25; ključne: 4 mačeva +0.30×0.5, I Mag +0.20×1.0, 9 novčića +0.70×0.5, As novčića +0.80×0.5, 6 pehara +0.20×1.0, 5 pehara +0.30×1.0, 7 štapova +0.40×1.0; ocjena 1.00×(1+2.00)=3.00"
+  },
+  {
+   "brojevi": [
+    4,
+    7,
+    8,
+    10,
+    24,
+    25
+   ],
+   "rang": 28,
+   "obrazlozenje": "Čitanje #36 (seed 20261065), Keltski križ: S X Kolo sreće=10, p10 4 štapova=4, p3 4 mačeva=24, p6 VII Kola=7, p1 VIII Snaga=8, p2 5 mačeva=25; ključne: VIII Snaga +0.50×1.0, 4 mačeva +0.30×1.3, 7 štapova +0.40×0.6, VII Kola +0.60×1.2, XIII Smrt +0.60×0.8; ocjena 0.90×(1+2.33)=3.00"
+  },
+  {
+   "brojevi": [
+    5,
+    10,
+    11,
+    13,
+    21,
+    24
+   ],
+   "rang": 29,
+   "obrazlozenje": "Čitanje #79 (seed 20261108), Keltski križ: S X Kolo sreće=10, p10 XIII Smrt=13, p3 4 mačeva=24, p6 XXI Svijet=21, p1 5 štapova=5, p2 XI Pravda=11; ključne: XI Pravda +0.40×0.9, 4 mačeva +0.30×1.3, XXI Svijet +0.30×1.2, Kralj novčića +0.20×0.8, Vitez štapova +0.20×0.8, XIII Smrt +0.60×1.5; ocjena 0.90×(1+2.33)=3.00"
+  },
+  {
+   "brojevi": [
+    1,
+    4,
+    8,
+    10,
+    23,
+    31
+   ],
+   "rang": 30,
+   "obrazlozenje": "Čitanje #94 (seed 20261123), Keltski križ: S X Kolo sreće=10, p10 4 štapova=4, p3 Kraljica pehara=23, p6 I Mag=1, p1 VIII Snaga=8, p2 As novčića=31; ključne: VIII Snaga +0.50×1.0, As novčića +0.80×0.9, Kraljica pehara +0.20×1.3, XI Pravda +0.40×0.8, I Mag +0.20×1.2, 4 mačeva +0.30×0.8; ocjena 0.90×(1+2.28)=2.95"
+  },
+  {
+   "brojevi": [
+    6,
+    17,
+    18,
+    25,
+    26,
+    38
+   ],
+   "rang": 31,
+   "obrazlozenje": "Čitanje #14 (seed 20261043), referentno pravilo (redni broj ≤ 45): 4 štapova=26, 3 štapova=25, VI Ljubavnici=6, XVII Zvijezda=17, XVIII Mjesec=18, 2 pehara=38; ključne: As novčića +0.80×0.5, 4 mačeva +0.30×0.5, VI Ljubavnici +0.50×1.0, XVII Zvijezda +0.70×1.0, XVIII Mjesec +0.20×1.0; ocjena 1.00×(1+1.95)=2.95"
+  },
+  {
+   "brojevi": [
+    7,
+    14,
+    17,
+    25,
+    31,
+    34
+   ],
+   "rang": 32,
+   "obrazlozenje": "Čitanje #29 (seed 20261058), broj karte (mapiranje b): VII Kola=7, 4 novčića=34, As novčića=31, Kralj štapova=14, XVII Zvijezda=17, 5 mačeva=25; ključne: VII Kola +0.60×1.0, As novčića +0.80×1.0, XVII Zvijezda +0.70×1.0; ocjena 0.95×(1+2.10)=2.94"
+  },
+  {
+   "brojevi": [
+    6,
+    21,
+    22,
+    23,
+    28,
+    31
+   ],
+   "rang": 33,
+   "obrazlozenje": "Čitanje #97 (seed 20261126), broj karte (mapiranje b): VI Ljubavnici=6, Vitez pehara=22, Kraljica pehara=23, XXI Svijet=21, 8 mačeva=28, As novčića=31; ključne: VI Ljubavnici +0.50×1.0, Vitez pehara +0.30×1.0, Kraljica pehara +0.20×1.0, XXI Svijet +0.30×1.0, As novčića +0.80×1.0; ocjena 0.95×(1+2.10)=2.94"
+  },
+  {
+   "brojevi": [
+    1,
+    10,
+    11,
+    26,
+    31,
+    42
+   ],
+   "rang": 34,
+   "obrazlozenje": "Čitanje #77 (seed 20261106), Keltski križ: S X Kolo sreće=10, p10 6 mačeva=26, p3 Vitez novčića=42, p6 XI Pravda=11, p1 As novčića=31, p2 I Mag=1; ključne: As novčića +0.80×1.0, I Mag +0.20×0.9, XI Pravda +0.40×1.2, XXI Svijet +0.30×0.8, XIII Smrt +0.60×0.9; ocjena 0.90×(1+2.24)=2.92"
+  },
+  {
+   "brojevi": [
+    8,
+    11,
+    16,
+    19,
+    27,
+    39
+   ],
+   "rang": 35,
+   "obrazlozenje": "Čitanje #30 (seed 20261059), referentno pravilo (redni broj ≤ 45): XIX Sunce=19, 3 pehara=39, VIII Snaga=8, 5 štapova=27, XVI Kula=16, XI Pravda=11; ključne: XIX Sunce +0.80×1.0, VIII Snaga +0.50×1.0, Kraljica pehara +0.20×0.5, Kralj novčića +0.20×0.5, XI Pravda +0.40×1.0; ocjena 1.00×(1+1.90)=2.90"
+  },
+  {
+   "brojevi": [
+    13,
+    17,
+    30,
+    33,
+    34,
+    45
+   ],
+   "rang": 36,
+   "obrazlozenje": "Čitanje #41 (seed 20261070), referentno pravilo (redni broj ≤ 45): Vitez štapova=34, 9 pehara=45, Paž štapova=33, XVII Zvijezda=17, XIII Smrt=13, 8 štapova=30; ključne: Vitez štapova +0.20×1.0, 10 novčića +0.80×0.5, XVII Zvijezda +0.70×1.0, XIII Smrt +0.60×1.0; ocjena 1.00×(1+1.90)=2.90"
+  },
+  {
+   "brojevi": [
+    8,
+    14,
+    19,
+    31,
+    33,
+    34
+   ],
+   "rang": 37,
+   "obrazlozenje": "Čitanje #62 (seed 20261091), referentno pravilo (redni broj ≤ 45): Vitez štapova=34, XIX Sunce=19, XIV Umjerenost=14, 9 štapova=31, Paž štapova=33, VIII Snaga=8; ključne: Vitez štapova +0.20×1.0, 10 novčića +0.80×0.5, XIX Sunce +0.80×1.0, VIII Snaga +0.50×1.0; ocjena 1.00×(1+1.90)=2.90"
+  },
+  {
+   "brojevi": [
+    3,
+    10,
+    21,
+    26,
+    29,
+    30
+   ],
+   "rang": 38,
+   "obrazlozenje": "Čitanje #77 (seed 20261106), referentno pravilo (redni broj ≤ 45): 7 štapova=29, XXI Svijet=21, 8 štapova=30, III Carica=3, X Kolo sreće=10, 4 štapova=26; ključne: 7 štapova +0.40×1.0, XXI Svijet +0.30×1.0, III Carica +0.20×1.0, X Kolo sreće +1.00×1.0; ocjena 1.00×(1+1.90)=2.90"
+  },
+  {
+   "brojevi": [
+    13,
+    19,
+    21,
+    27,
+    34,
+    45
+   ],
+   "rang": 39,
+   "obrazlozenje": "Čitanje #81 (seed 20261110), referentno pravilo (redni broj ≤ 45): 5 štapova=27, XXI Svijet=21, XIII Smrt=13, XIX Sunce=19, Vitez štapova=34, 9 pehara=45; ključne: XXI Svijet +0.30×1.0, XIII Smrt +0.60×1.0, XIX Sunce +0.80×1.0, Vitez štapova +0.20×1.0; ocjena 1.00×(1+1.90)=2.90"
+  },
+  {
+   "brojevi": [
+    7,
+    10,
+    22,
+    29,
+    32,
+    39
+   ],
+   "rang": 40,
+   "obrazlozenje": "Čitanje #1 (seed 20261030), Kolo sreće: p6 X Kolo sreće=10, p3 9 mačeva=29, p1 7 štapova=7, p2 Vitez mačeva=32, p5 2 mačeva=22, p4 9 novčića=39; ključne: 7 štapova +0.40×1.2, 9 novčića +0.70×0.6, X Kolo sreće +1.00×1.5; ocjena 0.85×(1+2.40)=2.89"
+  },
+  {
+   "brojevi": [
+    10,
+    22,
+    31,
+    32,
+    43,
+    44
+   ],
+   "rang": 41,
+   "obrazlozenje": "Čitanje #8 (seed 20261037), Keltski križ: S X Kolo sreće=10, p10 Vitez mačeva=32, p3 As novčića=31, p6 Kraljica novčića=43, p1 Kralj novčića=44, p2 Vitez pehara=22; ključne: Kralj novčića +0.20×1.0, Vitez pehara +0.30×0.9, As novčića +0.80×1.3, II Visoka svećenica +0.20×0.8, VII Kola +0.60×0.9; ocjena 0.90×(1+2.21)=2.89"
+  },
+  {
+   "brojevi": [
+    10,
+    14,
+    24,
+    33,
+    39,
+    41
+   ],
+   "rang": 42,
+   "obrazlozenje": "Čitanje #40 (seed 20261069), Keltski križ: S X Kolo sreće=10, p10 9 novčića=39, p3 XIV Umjerenost=14, p6 Paž novčića=41, p1 4 mačeva=24, p2 Kraljica mačeva=33; ključne: 4 mačeva +0.30×1.0, Vitez pehara +0.30×0.6, 10 novčića +0.80×0.8, 9 novčića +0.70×1.5; ocjena 0.90×(1+2.17)=2.85"
+  },
+  {
+   "brojevi": [
+    1,
+    4,
+    10,
+    23,
+    28,
+    37
+   ],
+   "rang": 43,
+   "obrazlozenje": "Čitanje #36 (seed 20261065), referentno pravilo (redni broj ≤ 45): 6 štapova=28, X Kolo sreće=10, I Mag=1, IV Car=4, As štapova=23, As pehara=37; ključne: 9 novčića +0.70×0.5, 6 štapova +0.30×1.0, X Kolo sreće +1.00×1.0, I Mag +0.20×1.0; ocjena 1.00×(1+1.85)=2.85"
+  },
+  {
+   "brojevi": [
+    6,
+    10,
+    32,
+    37,
+    39,
+    43
+   ],
+   "rang": 44,
+   "obrazlozenje": "Čitanje #36 (seed 20261065), broj karte (mapiranje b): 9 novčića=39, 6 štapova=6, X Kolo sreće=10, 7 novčića=37, Kraljica novčića=43, 2 novčića=32; ključne: 9 novčića +0.70×1.0, 6 štapova +0.30×1.0, X Kolo sreće +1.00×1.0; ocjena 0.95×(1+2.00)=2.85"
+  },
+  {
+   "brojevi": [
+    1,
+    24,
+    25,
+    31,
+    35,
+    39
+   ],
+   "rang": 45,
+   "obrazlozenje": "Čitanje #65 (seed 20261094), broj karte (mapiranje b): 4 mačeva=24, 5 mačeva=25, I Mag=1, 9 novčića=39, As novčića=31, 5 novčića=35; ključne: 4 mačeva +0.30×1.0, I Mag +0.20×1.0, 9 novčića +0.70×1.0, As novčića +0.80×1.0; ocjena 0.95×(1+2.00)=2.85"
+  },
+  {
+   "brojevi": [
+    10,
+    13,
+    17,
+    31,
+    36,
+    39
+   ],
+   "rang": 46,
+   "obrazlozenje": "Čitanje #27 (seed 20261056), Keltski križ: S X Kolo sreće=10, p10 7 pehara=17, p3 9 novčića=39, p6 Paž mačeva=31, p1 Kraljica štapova=13, p9 6 novčića=36; ključne: 9 novčića +0.70×1.3, VIII Snaga +0.50×0.8, 5 pehara +0.30×0.6, As novčića +0.80×0.8; ocjena 0.90×(1+2.13)=2.82"
+  },
+  {
+   "brojevi": [
+    6,
+    8,
+    13,
+    18,
+    26,
+    35
+   ],
+   "rang": 47,
+   "obrazlozenje": "Čitanje #78 (seed 20261107), referentno pravilo (redni broj ≤ 45): 4 štapova=26, XIII Smrt=13, VIII Snaga=8, Kraljica štapova=35, VI Ljubavnici=6, XVIII Mjesec=18; ključne: XIII Smrt +0.60×1.0, VIII Snaga +0.50×1.0, VI Ljubavnici +0.50×1.0, XVIII Mjesec +0.20×1.0; ocjena 1.00×(1+1.80)=2.80"
+  },
+  {
+   "brojevi": [
+    1,
+    4,
+    10,
+    20,
+    29,
+    31
+   ],
+   "rang": 48,
+   "obrazlozenje": "Čitanje #54 (seed 20261083), Keltski križ: S X Kolo sreće=10, p10 As novčića=31, p3 10 pehara=20, p6 9 mačeva=29, p1 4 štapova=4, p2 I Mag=1; ključne: I Mag +0.20×0.9, III Carica +0.20×0.6, 6 pehara +0.20×0.8, VIII Snaga +0.50×0.9, As novčića +0.80×1.5; ocjena 0.90×(1+2.11)=2.80"
+  },
+  {
+   "brojevi": [
+    6,
+    10,
+    12,
+    15,
+    24,
+    44
+   ],
+   "rang": 49,
+   "obrazlozenje": "Čitanje #2 (seed 20261031), Keltski križ: S X Kolo sreće=10, p10 5 pehara=15, p3 VI Ljubavnici=6, p6 XII Obješeni=12, p1 Kralj novčića=44, p2 Kralj pehara=24; ključne: Kralj novčića +0.20×1.0, VI Ljubavnici +0.50×1.3, 10 novčića +0.80×0.8, 6 pehara +0.20×0.8, 5 pehara +0.30×1.5; ocjena 0.90×(1+2.10)=2.79"
+  },
+  {
+   "brojevi": [
+    7,
+    12,
+    13,
+    17,
+    31,
+    43
+   ],
+   "rang": 50,
+   "obrazlozenje": "Čitanje #30 (seed 20261059), Kolo sreće: p6 XVII Zvijezda=17, p3 2 pehara=12, p1 VII Kola=7, p2 Kraljica štapova=13, p5 Kraljica novčića=43, p4 As novčića=31; ključne: VII Kola +0.60×1.2, As novčića +0.80×0.6, XVII Zvijezda +0.70×1.5; ocjena 0.85×(1+2.25)=2.76"
+  },
+  {
+   "brojevi": [
+    1,
+    9,
+    13,
+    24,
+    33,
+    40
+   ],
+   "rang": 51,
+   "obrazlozenje": "Čitanje #96 (seed 20261125), broj karte (mapiranje b): XIII Smrt=13, 10 novčića=40, I Mag=1, 9 štapova=9, Kraljica mačeva=33, 4 mačeva=24; ključne: XIII Smrt +0.60×1.0, 10 novčića +0.80×1.0, I Mag +0.20×1.0, 4 mačeva +0.30×1.0; ocjena 0.95×(1+1.90)=2.75"
+  },
+  {
+   "brojevi": [
+    2,
+    7,
+    10,
+    11,
+    15,
+    18
+   ],
+   "rang": 52,
+   "obrazlozenje": "Čitanje #72 (seed 20261101), Keltski križ: S X Kolo sreće=10, p10 Paž štapova=11, p3 II Visoka svećenica=2, p6 XV Đavao=15, p1 8 pehara=18, p2 VII Kola=7; ključne: VII Kola +0.60×0.9, II Visoka svećenica +0.20×1.3, 10 novčića +0.80×0.6, XIII Smrt +0.60×0.8, 5 pehara +0.30×0.9; ocjena 0.90×(1+2.03)=2.73"
+  },
+  {
+   "brojevi": [
+    6,
+    10,
+    16,
+    20,
+    31,
+    34
+   ],
+   "rang": 53,
+   "obrazlozenje": "Čitanje #59 (seed 20261088), Kolo sreće: p6 XVI Kula=16, p3 10 pehara=20, p1 X Kolo sreće=10, p2 VI Ljubavnici=6, p5 4 novčića=34, p4 As novčića=31; ključne: X Kolo sreće +1.00×1.2, VI Ljubavnici +0.50×1.0, As novčića +0.80×0.6; ocjena 0.85×(1+2.18)=2.70"
+  },
+  {
+   "brojevi": [
+    1,
+    17,
+    23,
+    27,
+    39,
+    40
+   ],
+   "rang": 54,
+   "obrazlozenje": "Čitanje #91 (seed 20261120), Kolo sreće: p6 I Mag=1, p3 7 mačeva=27, p1 XVII Zvijezda=17, p5 9 novčića=39, p4 10 novčića=40, p2a As štapova=23; ključne: XVII Zvijezda +0.70×1.2, 10 novčića +0.80×0.6, 9 novčića +0.70×0.8, I Mag +0.20×1.5; ocjena 0.85×(1+2.18)=2.70"
+  },
+  {
+   "brojevi": [
+    5,
+    10,
+    27,
+    28,
+    29,
+    39
+   ],
+   "rang": 55,
+   "obrazlozenje": "Čitanje #4 (seed 20261033), referentno pravilo (redni broj ≤ 45): V Jerofant=5, X Kolo sreće=10, 7 štapova=29, 6 štapova=28, 3 pehara=39, 5 štapova=27; ključne: X Kolo sreće +1.00×1.0, 7 štapova +0.40×1.0, 6 štapova +0.30×1.0; ocjena 1.00×(1+1.70)=2.70"
+  },
+  {
+   "brojevi": [
+    6,
+    17,
+    21,
+    22,
+    34,
+    40
+   ],
+   "rang": 56,
+   "obrazlozenje": "Čitanje #6 (seed 20261035), referentno pravilo (redni broj ≤ 45): XXI Svijet=21, XVII Zvijezda=17, 4 pehara=40, VI Ljubavnici=6, Vitez štapova=34, 0 Luda=22; ključne: XXI Svijet +0.30×1.0, XVII Zvijezda +0.70×1.0, VI Ljubavnici +0.50×1.0, Vitez štapova +0.20×1.0; ocjena 1.00×(1+1.70)=2.70"
+  },
+  {
+   "brojevi": [
+    4,
+    9,
+    16,
+    21,
+    23,
+    36
+   ],
+   "rang": 57,
+   "obrazlozenje": "Čitanje #19 (seed 20261048), referentno pravilo (redni broj ≤ 45): As štapova=23, XVI Kula=16, Kralj štapova=36, IX Pustinjak=9, XXI Svijet=21, IV Car=4; ključne: 10 novčića +0.80×0.5, 9 novčića +0.70×0.5, As novčića +0.80×0.5, XXI Svijet +0.30×1.0, Vitez pehara +0.30×0.5, Kralj novčića +0.20×0.5; ocjena 1.00×(1+1.70)=2.70"
+  },
+  {
+   "brojevi": [
+    6,
+    8,
+    10,
+    14,
+    28,
+    30
+   ],
+   "rang": 58,
+   "obrazlozenje": "Čitanje #3 (seed 20261032), Kolo sreće: p6 VI Ljubavnici=6, p3 8 štapova=8, p2 XIV Umjerenost=14, p5 X Kolo sreće=10, p4 8 mačeva=28, p3a 8 štapova=30; ključne: VIII Snaga +0.50×1.2, X Kolo sreće +1.00×0.8, VI Ljubavnici +0.50×1.5; ocjena 0.85×(1+2.15)=2.68"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    17,
+    22,
+    31,
+    39
+   ],
+   "rang": 59,
+   "obrazlozenje": "Čitanje #24 (seed 20261053), Kolo sreće: p6 9 novčića=39, p3 Vitez pehara=22, p1 3 štapova=3, p2 XVII Zvijezda=17, p5 Paž mačeva=31, p4 5 štapova=5; ključne: XVII Zvijezda +0.70×1.0, Vitez pehara +0.30×1.3, 9 novčića +0.70×1.5; ocjena 0.85×(1+2.14)=2.67"
+  },
+  {
+   "brojevi": [
+    1,
+    14,
+    17,
+    19,
+    23,
+    40
+   ],
+   "rang": 60,
+   "obrazlozenje": "Čitanje #25 (seed 20261054), broj karte (mapiranje b): 3 mačeva=23, 7 pehara=17, 10 novčića=40, I Mag=1, XIV Umjerenost=14, XIX Sunce=19; ključne: 10 novčića +0.80×1.0, I Mag +0.20×1.0, XIX Sunce +0.80×1.0; ocjena 0.95×(1+1.80)=2.66"
+  },
+  {
+   "brojevi": [
+    12,
+    14,
+    19,
+    34,
+    35,
+    40
+   ],
+   "rang": 61,
+   "obrazlozenje": "Čitanje #62 (seed 20261091), broj karte (mapiranje b): Vitez štapova=12, 4 novčića=34, 10 novčića=40, 5 novčića=35, XIX Sunce=19, XIV Umjerenost=14; ključne: Vitez štapova +0.20×1.0, 10 novčića +0.80×1.0, XIX Sunce +0.80×1.0; ocjena 0.95×(1+1.80)=2.66"
+  },
+  {
+   "brojevi": [
+    2,
+    3,
+    4,
+    18,
+    19,
+    33
+   ],
+   "rang": 62,
+   "obrazlozenje": "Čitanje #33 (seed 20261062), referentno pravilo (redni broj ≤ 45): II Visoka svećenica=2, XVIII Mjesec=18, III Carica=3, Paž štapova=33, IV Car=4, XIX Sunce=19; ključne: II Visoka svećenica +0.20×1.0, XVIII Mjesec +0.20×1.0, III Carica +0.20×1.0, 4 mačeva +0.30×0.5, Kralj novčića +0.20×0.5, XIX Sunce +0.80×1.0; ocjena 1.00×(1+1.65)=2.65"
+  },
+  {
+   "brojevi": [
+    10,
+    12,
+    15,
+    19,
+    38,
+    41
+   ],
+   "rang": 63,
+   "obrazlozenje": "Čitanje #43 (seed 20261072), Keltski križ: S X Kolo sreće=10, p10 Paž novčića=41, p3 XIX Sunce=19, p6 5 pehara=15, p1 8 novčića=38, p2 Vitez štapova=12; ključne: Vitez štapova +0.20×0.9, XIX Sunce +0.80×1.3, 6 štapova +0.30×0.8, Kralj novčića +0.20×0.6, 5 pehara +0.30×1.2; ocjena 0.90×(1+1.94)=2.65"
+  },
+  {
+   "brojevi": [
+    5,
+    10,
+    13,
+    15,
+    31,
+    33
+   ],
+   "rang": 64,
+   "obrazlozenje": "Čitanje #92 (seed 20261121), Keltski križ: S X Kolo sreće=10, p10 3 novčića=33, p3 Paž mačeva=31, p6 XIII Smrt=13, p1 5 štapova=5, p2 XV Đavao=15; ključne: VI Ljubavnici +0.50×0.6, XIII Smrt +0.60×1.2, As novčića +0.80×0.8, Vitez pehara +0.30×0.9; ocjena 0.90×(1+1.93)=2.64"
+  },
+  {
+   "brojevi": [
+    4,
+    10,
+    11,
+    24,
+    26,
+    29
+   ],
+   "rang": 65,
+   "obrazlozenje": "Čitanje #12 (seed 20261041), Kolo sreće: p6 X Kolo sreće=10, p3 6 mačeva=26, p1 4 mačeva=24, p2 9 mačeva=29, p5 IV Car=4, p4 XI Pravda=11; ključne: 4 mačeva +0.30×1.2, XI Pravda +0.40×0.6, X Kolo sreće +1.00×1.5; ocjena 0.85×(1+2.10)=2.63"
+  },
+  {
+   "brojevi": [
+    2,
+    10,
+    11,
+    21,
+    28,
+    44
+   ],
+   "rang": 66,
+   "obrazlozenje": "Čitanje #42 (seed 20261071), Keltski križ: S X Kolo sreće=10, p10 XXI Svijet=21, p3 8 mačeva=28, p6 Kralj novčića=44, p1 II Visoka svećenica=2, p2 XI Pravda=11; ključne: II Visoka svećenica +0.20×1.0, XI Pravda +0.40×0.9, XIX Sunce +0.80×0.6, Kralj novčića +0.20×1.2, Vitez štapova +0.20×0.9, XXI Svijet +0.30×1.5; ocjena 0.90×(1+1.91)=2.62"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    7,
+    10,
+    25,
+    30
+   ],
+   "rang": 67,
+   "obrazlozenje": "Čitanje #90 (seed 20261119), Keltski križ: S X Kolo sreće=10, p10 VII Kola=7, p3 5 mačeva=25, p6 10 mačeva=30, p1 V Jerofant=5, p2 3 štapova=3; ključne: XIII Smrt +0.60×0.6, XVII Zvijezda +0.70×0.9, VII Kola +0.60×1.5; ocjena 0.90×(1+1.89)=2.60"
+  },
+  {
+   "brojevi": [
+    5,
+    13,
+    19,
+    26,
+    34,
+    35
+   ],
+   "rang": 68,
+   "obrazlozenje": "Čitanje #67 (seed 20261096), referentno pravilo (redni broj ≤ 45): Kraljica štapova=35, V Jerofant=5, Vitez štapova=34, 4 štapova=26, XIX Sunce=19, XIII Smrt=13; ključne: Vitez štapova +0.20×1.0, XIX Sunce +0.80×1.0, XIII Smrt +0.60×1.0; ocjena 1.00×(1+1.60)=2.60"
+  },
+  {
+   "brojevi": [
+    6,
+    14,
+    19,
+    21,
+    33,
+    38
+   ],
+   "rang": 69,
+   "obrazlozenje": "Čitanje #76 (seed 20261105), referentno pravilo (redni broj ≤ 45): 2 pehara=38, Paž štapova=33, XXI Svijet=21, XIX Sunce=19, VI Ljubavnici=6, XIV Umjerenost=14; ključne: XXI Svijet +0.30×1.0, XIX Sunce +0.80×1.0, VI Ljubavnici +0.50×1.0; ocjena 1.00×(1+1.60)=2.60"
+  },
+  {
+   "brojevi": [
+    1,
+    4,
+    19,
+    29,
+    34,
+    43
+   ],
+   "rang": 70,
+   "obrazlozenje": "Čitanje #80 (seed 20261109), referentno pravilo (redni broj ≤ 45): Vitez štapova=34, I Mag=1, IV Car=4, XIX Sunce=19, 7 štapova=29, 7 pehara=43; ključne: Vitez štapova +0.20×1.0, I Mag +0.20×1.0, XIX Sunce +0.80×1.0, 7 štapova +0.40×1.0; ocjena 1.00×(1+1.60)=2.60"
+  },
+  {
+   "brojevi": [
+    7,
+    10,
+    13,
+    14,
+    20,
+    40
+   ],
+   "rang": 71,
+   "obrazlozenje": "Čitanje #55 (seed 20261084), Keltski križ: S X Kolo sreće=10, p10 10 pehara=20, p3 XIV Umjerenost=14, p6 7 štapova=7, p1 Kraljica štapova=13, p2 10 novčića=40; ključne: 10 novčića +0.80×0.9, 6 pehara +0.20×0.6, 7 štapova +0.40×1.2, 9 novčića +0.70×0.8; ocjena 0.90×(1+1.88)=2.59"
+  },
+  {
+   "brojevi": [
+    9,
+    10,
+    11,
+    12,
+    19,
+    34
+   ],
+   "rang": 72,
+   "obrazlozenje": "Čitanje #71 (seed 20261100), Keltski križ: S X Kolo sreće=10, p10 9 štapova=9, p3 XII Obješeni=12, p6 XIX Sunce=19, p1 XI Pravda=11, p2 Kralj mačeva=34; ključne: XI Pravda +0.40×1.0, Vitez štapova +0.20×0.6, XIX Sunce +0.80×1.2, VIII Snaga +0.50×0.8; ocjena 0.90×(1+1.88)=2.59"
+  },
+  {
+   "brojevi": [
+    3,
+    10,
+    18,
+    20,
+    24,
+    25
+   ],
+   "rang": 73,
+   "obrazlozenje": "Čitanje #70 (seed 20261099), Keltski križ: S X Kolo sreće=10, p10 XX Sud=20, p3 III Carica=3, p6 5 mačeva=25, p1 XVIII Mjesec=18, p2 4 mačeva=24; ključne: XVIII Mjesec +0.20×1.0, 4 mačeva +0.30×0.9, III Carica +0.20×1.3, 7 štapova +0.40×0.8, XIII Smrt +0.60×0.6, VI Ljubavnici +0.50×0.9; ocjena 0.90×(1+1.86)=2.57"
+  },
+  {
+   "brojevi": [
+    5,
+    6,
+    7,
+    10,
+    13,
+    20
+   ],
+   "rang": 74,
+   "obrazlozenje": "Čitanje #4 (seed 20261033), broj karte (mapiranje b): V Jerofant=5, X Kolo sreće=10, 7 štapova=7, 6 štapova=6, 10 pehara=20, 3 pehara=13; ključne: X Kolo sreće +1.00×1.0, 7 štapova +0.40×1.0, 6 štapova +0.30×1.0; ocjena 0.95×(1+1.70)=2.56"
+  },
+  {
+   "brojevi": [
+    6,
+    12,
+    14,
+    17,
+    21,
+    31
+   ],
+   "rang": 75,
+   "obrazlozenje": "Čitanje #6 (seed 20261035), broj karte (mapiranje b): XXI Svijet=21, XVII Zvijezda=17, 4 pehara=14, VI Ljubavnici=6, Vitez štapova=12, Paž mačeva=31; ključne: XXI Svijet +0.30×1.0, XVII Zvijezda +0.70×1.0, VI Ljubavnici +0.50×1.0, Vitez štapova +0.20×1.0; ocjena 0.95×(1+1.70)=2.56"
+  },
+  {
+   "brojevi": [
+    11,
+    12,
+    17,
+    19,
+    28,
+    40
+   ],
+   "rang": 76,
+   "obrazlozenje": "Čitanje #41 (seed 20261070), broj karte (mapiranje b): Vitez štapova=12, 9 pehara=19, Paž štapova=11, 10 novčića=40, XVII Zvijezda=17, 8 mačeva=28; ključne: Vitez štapova +0.20×1.0, 10 novčića +0.80×1.0, XVII Zvijezda +0.70×1.0; ocjena 0.95×(1+1.70)=2.56"
+  },
+  {
+   "brojevi": [
+    5,
+    13,
+    19,
+    21,
+    32,
+    33
+   ],
+   "rang": 77,
+   "obrazlozenje": "Čitanje #81 (seed 20261110), broj karte (mapiranje b): Vitez mačeva=32, 5 štapova=5, XXI Svijet=21, XIII Smrt=13, XIX Sunce=19, 3 novčića=33; ključne: XXI Svijet +0.30×1.0, XIII Smrt +0.60×1.0, XIX Sunce +0.80×1.0; ocjena 0.95×(1+1.70)=2.56"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    19,
+    33,
+    34,
+    36
+   ],
+   "rang": 78,
+   "obrazlozenje": "Čitanje #2 (seed 20261031), referentno pravilo (redni broj ≤ 45): Vitez štapova=34, Paž štapova=33, Kralj štapova=36, XIX Sunce=19, I Mag=1, II Visoka svećenica=2; ključne: Vitez štapova +0.20×1.0, XIX Sunce +0.80×1.0, Vitez pehara +0.30×0.5, I Mag +0.20×1.0, II Visoka svećenica +0.20×1.0; ocjena 1.00×(1+1.55)=2.55"
+  },
+  {
+   "brojevi": [
+    5,
+    6,
+    20,
+    23,
+    37,
+    41
+   ],
+   "rang": 79,
+   "obrazlozenje": "Čitanje #75 (seed 20261104), referentno pravilo (redni broj ≤ 45): VI Ljubavnici=6, 5 pehara=41, V Jerofant=5, XX Sud=20, As pehara=37, As štapova=23; ključne: 9 novčića +0.70×0.5, VI Ljubavnici +0.50×1.0, 5 pehara +0.30×1.0, 10 novčića +0.80×0.5; ocjena 1.00×(1+1.55)=2.55"
+  },
+  {
+   "brojevi": [
+    1,
+    13,
+    23,
+    25,
+    31,
+    34
+   ],
+   "rang": 80,
+   "obrazlozenje": "Čitanje #96 (seed 20261125), referentno pravilo (redni broj ≤ 45): XIII Smrt=13, I Mag=1, As štapova=23, 9 štapova=31, Vitez štapova=34, 3 štapova=25; ključne: XIII Smrt +0.60×1.0, 10 novčića +0.80×0.5, I Mag +0.20×1.0, 4 mačeva +0.30×0.5, Vitez štapova +0.20×1.0; ocjena 1.00×(1+1.55)=2.55"
+  }
+ ]
+}

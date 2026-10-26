@@ -1,0 +1,981 @@
+{
+ "metoda": "Meihua Yishu",
+ "slug": "meihua",
+ "postupak": "# Meihua Yishu (梅花易數, vremenska metoda 年月日時起卦) — četvrtak 29.10.2026. u 20:00 CET (87. kolo), Zagreb\n\n## 1. Ulaz i pravila\n\n- Godina 丙午 (Vatreni konj) → grana 午 = 7. Lunarni datum: 9. mjesec, 20. dan (lunardate: 2026-10-29 → LunarDate(2026, 9, 20), nije prijestupni).\n- Sat: sunčevo podne u Zagrebu 29.10.2026. je 11:39:48 CET → 20:00 CET = 20:20 pravog sunčevog vremena → dvosatno razdoblje 戌 (19–21 h) = grana 11. (I zonsko vrijeme 20:00 pada u 戌; grana 10 酉 je sekundarna varijanta po uputi, vidi §3.)\n- Trigrami i prijenebeski (先天) brojevi: 乾 Qian 111 = 1 (nebo, metal), 兌 Dui 110 = 2 (jezero, metal), 離 Li 101 = 3 (vatra, vatra), 震 Zhen 100 = 4 (grom, drvo), 巽 Xun 011 = 5 (vjetar, drvo), 坎 Kan 010 = 6 (voda, voda), 艮 Gen 001 = 7 (planina, zemlja), 坤 Kun 000 = 8 (zemlja, zemlja).\n- 後天 (Luoshu) brojevi trigrama: 乾 Qian = 6, 兌 Dui = 7, 離 Li = 9, 震 Zhen = 3, 巽 Xun = 4, 坎 Kan = 1, 艮 Gen = 8, 坤 Kun = 2.\n- Gornji = Z mod 8, donji = (Z + sat) mod 8, pomična = (Z + sat) mod 6 (0 → 8 / 6). 互 = linije 2-3-4 dolje, 3-4-5 gore. 變 = pomična linija preokrenuta. 體 = trigram bez pomične linije (m ≤ 3 → gornji, m ≥ 4 → donji), 用 = drugi.\n- 錯 = komplement linija (ista pomična), 綜 = naglavce (pomična 7 − m), 錯綜 = oboje. 互k/變k = 互卦/變卦 uzeti kao korijen s istom pomičnom linijom.\n- Tok: kumulativni zbroj c niza S (ciklički), korak daje ((c − 1) mod 45) + 1; zauzet broj → (x mod 45) + 1. Listić = 6 koraka; provjera: ≤ 2 zajednička broja s prihvaćenim listićima; ne prođe li, odbacuje se zadnji broj i uzima sljedeći korak (skripta). Ako se već prvih 5 preklapa u ≥ 3 broja, pravilo ne može uspjeti → preskok cijelog prozora (dopuna, dokumentirana u logu).\n- Bez slučajnosti; popular_ok filtar skripte se ne primjenjuje.\n\n## 2. Primarni izračun — sat-grana 11 戌\n\n- Z = 7 + 9 + 20 = 36; gornji = 36 mod 8 = 4 震 Zhen (grom); donji = (36 + 11) mod 8 = 47 mod 8 = 7 艮 Gen (planina); pomična = 47 mod 6 = 5 (ostatak 0 → 8 odnosno 6).\n- Temeljne linije (odozdo): 001100 = 艮 Gen dolje / 震 Zhen gore.\n\n| varijanta | opis |\n|---|---|\n| 本卦 (temeljni) | linije 001100 | 本 震 Zhen/艮 Gen = 小過 Xiao Guo (62) | 互 兌 Dui/巽 Xun = 大過 Da Guo (28) | 變 兌 Dui/艮 Gen = 咸 Xian (31) | pomična 5 | 體 艮 Gen (zemlja) 用 震 Zhen (drvo) |\n| 錯卦 (komplement) | linije 110011 | 本 巽 Xun/兌 Dui = 中孚 Zhong Fu (61) | 互 艮 Gen/震 Zhen = 頤 Yi (27) | 變 艮 Gen/兌 Dui = 損 Sun (41) | pomična 5 | 體 兌 Dui (metal) 用 巽 Xun (drvo) |\n| 綜卦 (naglavce) | linije 001100 | 本 震 Zhen/艮 Gen = 小過 Xiao Guo (62) | 互 兌 Dui/巽 Xun = 大過 Da Guo (28) | 變 震 Zhen/巽 Xun = 恆 Heng (32) | pomična 2 | 體 震 Zhen (drvo) 用 艮 Gen (zemlja) |\n| 錯綜 (oboje) | linije 110011 | 本 巽 Xun/兌 Dui = 中孚 Zhong Fu (61) | 互 艮 Gen/震 Zhen = 頤 Yi (27) | 變 巽 Xun/震 Zhen = 益 Yi (42) | pomična 2 | 體 巽 Xun (drvo) 用 兌 Dui (metal) |\n| 互卦 kao korijen | linije 011110 | 本 兌 Dui/巽 Xun = 大過 Da Guo (28) | 互 乾 Qian/乾 Qian = 乾 Qian (1) | 變 震 Zhen/巽 Xun = 恆 Heng (32) | pomična 5 | 體 巽 Xun (drvo) 用 兌 Dui (metal) |\n| 變卦 kao korijen | linije 001110 | 本 兌 Dui/艮 Gen = 咸 Xian (31) | 互 乾 Qian/巽 Xun = 姤 Gou (44) | 變 震 Zhen/艮 Gen = 小過 Xiao Guo (62) | pomična 5 | 體 艮 Gen (zemlja) 用 兌 Dui (metal) |\n\nNizovi S = [本 gornji, 本 donji, KW 本, 互 gornji, 互 donji, KW 互, 變 gornji, 變 donji, KW 變, pomična]:\n\n- S(本) = [4, 7, 62, 2, 5, 28, 2, 7, 31, 5]  (zbroj 153, ≡ 18 mod 45; svedeno: [4, 7, 17, 2, 5, 28, 2, 7, 31, 5])\n- S(錯) = [5, 2, 61, 7, 4, 27, 7, 2, 41, 5]  (zbroj 161, ≡ 26 mod 45; svedeno: [5, 2, 16, 7, 4, 27, 7, 2, 41, 5])\n- S(綜) = [4, 7, 62, 2, 5, 28, 4, 5, 32, 2]  (zbroj 151, ≡ 16 mod 45; svedeno: [4, 7, 17, 2, 5, 28, 4, 5, 32, 2])\n- S(錯綜) = [5, 2, 61, 7, 4, 27, 5, 4, 42, 2]  (zbroj 159, ≡ 24 mod 45; svedeno: [5, 2, 16, 7, 4, 27, 5, 4, 42, 2])\n- S(互k) = [2, 5, 28, 1, 1, 1, 4, 5, 32, 5]  (zbroj 84, ≡ 39 mod 45; svedeno: [2, 5, 28, 1, 1, 1, 4, 5, 32, 5])\n- S(變k) = [2, 7, 31, 1, 5, 44, 4, 7, 62, 5]  (zbroj 168, ≡ 33 mod 45; svedeno: [2, 7, 31, 1, 5, 44, 4, 7, 17, 5])\n- S(本後天) = [3, 8, 62, 7, 4, 28, 7, 8, 31, 5]  (zbroj 163, ≡ 28 mod 45; svedeno: [3, 8, 17, 7, 4, 28, 7, 8, 31, 5])\n\n體/用 (informativno): 體 艮 Gen = zemlja, 用 震 Zhen = drvo; 互 兌 Dui/巽 Xun (metal/drvo), 變 兌 Dui/艮 Gen (metal/zemlja).\n\n### Osnovni listići — cijeli log koraka (pakiranje ≤ 2 zajednička broja samo među vlastitim listićima, redoslijed 本, 錯, 綜, 錯綜, zatim 互k, 變k, 本後天)\n\n**本卦 (temeljni) 小過 Xiao Guo (62) → listić 04 · 11 · 18 · 28 · 30 · 35**\n\n```\nkorak 1: +4 → zbroj 4 → ((4−1) mod 45)+1 = 4\nkorak 2: +7 → zbroj 11 → ((11−1) mod 45)+1 = 11\nkorak 3: +62 → zbroj 73 → ((73−1) mod 45)+1 = 28\nkorak 4: +2 → zbroj 75 → ((75−1) mod 45)+1 = 30\nkorak 5: +5 → zbroj 80 → ((80−1) mod 45)+1 = 35\nkorak 6: +28 → zbroj 108 → ((108−1) mod 45)+1 = 18\nPRIHVAĆEN listić [4, 11, 28, 30, 35, 18] → sortirano [4, 11, 18, 28, 30, 35] (zadnji potrošeni korak 6)\n```\n\n**錯卦 (komplement) 中孚 Zhong Fu (61) → listić 05 · 07 · 16 · 23 · 30 · 34**\n\n```\nkorak 1: +5 → zbroj 5 → ((5−1) mod 45)+1 = 5\nkorak 2: +2 → zbroj 7 → ((7−1) mod 45)+1 = 7\nkorak 3: +61 → zbroj 68 → ((68−1) mod 45)+1 = 23\nkorak 4: +7 → zbroj 75 → ((75−1) mod 45)+1 = 30\nkorak 5: +4 → zbroj 79 → ((79−1) mod 45)+1 = 34\nkorak 6: +27 → zbroj 106 → ((106−1) mod 45)+1 = 16\nPRIHVAĆEN listić [5, 7, 23, 30, 34, 16] → sortirano [5, 7, 16, 23, 30, 34] (zadnji potrošeni korak 6)\n```\n\n**綜卦 (naglavce) 小過 Xiao Guo (62) → listić 14 · 16 · 20 · 22 · 27 · 28**\n\n```\nkorak 1: +4 → zbroj 4 → ((4−1) mod 45)+1 = 4\nkorak 2: +7 → zbroj 11 → ((11−1) mod 45)+1 = 11\nkorak 3: +62 → zbroj 73 → ((73−1) mod 45)+1 = 28\nkorak 4: +2 → zbroj 75 → ((75−1) mod 45)+1 = 30\nkorak 5: +5 → zbroj 80 → ((80−1) mod 45)+1 = 35\nkorak 6: +28 → zbroj 108 → ((108−1) mod 45)+1 = 18\nODBAČEN zadnji broj 18 (provjera nije prošla), nastavljam niz\nprvih 5 brojeva [4, 11, 28, 30, 35] preklapa se s listićem [4, 11, 18, 28, 30, 35] u 5 broja → pravilo 'odbaci zadnji' ne može uspjeti (izvorna skripta: 'nema valjanog rješenja') → PRESKOK PROZORA: odbacujem cijeli listić, nastavljam niz od koraka 7\nkorak 7: +4 → zbroj 112 → ((112−1) mod 45)+1 = 22\nkorak 8: +5 → zbroj 117 → ((117−1) mod 45)+1 = 27\nkorak 9: +32 → zbroj 149 → ((149−1) mod 45)+1 = 14\nkorak 10: +2 → zbroj 151 → ((151−1) mod 45)+1 = 16\nkorak 11: +4 → zbroj 155 → ((155−1) mod 45)+1 = 20\nkorak 12: +7 → zbroj 162 → ((162−1) mod 45)+1 = 27 zauzet → 28\nPRIHVAĆEN listić [22, 27, 14, 16, 20, 28] → sortirano [14, 16, 20, 22, 27, 28] (zadnji potrošeni korak 12)\n```\n\n**錯綜 (oboje) 中孚 Zhong Fu (61) → listić 21 · 22 · 24 · 25 · 29 · 31**\n\n```\nkorak 1: +5 → zbroj 5 → ((5−1) mod 45)+1 = 5\nkorak 2: +2 → zbroj 7 → ((7−1) mod 45)+1 = 7\nkorak 3: +61 → zbroj 68 → ((68−1) mod 45)+1 = 23\nkorak 4: +7 → zbroj 75 → ((75−1) mod 45)+1 = 30\nkorak 5: +4 → zbroj 79 → ((79−1) mod 45)+1 = 34\nkorak 6: +27 → zbroj 106 → ((106−1) mod 45)+1 = 16\nODBAČEN zadnji broj 16 (provjera nije prošla), nastavljam niz\nprvih 5 brojeva [5, 7, 23, 30, 34] preklapa se s listićem [5, 7, 16, 23, 30, 34] u 5 broja → pravilo 'odbaci zadnji' ne može uspjeti (izvorna skripta: 'nema valjanog rješenja') → PRESKOK PROZORA: odbacujem cijeli listić, nastavljam niz od koraka 7\nkorak 7: +5 → zbroj 111 → ((111−1) mod 45)+1 = 21\nkorak 8: +4 → zbroj 115 → ((115−1) mod 45)+1 = 25\nkorak 9: +42 → zbroj 157 → ((157−1) mod 45)+1 = 22\nkorak 10: +2 → zbroj 159 → ((159−1) mod 45)+1 = 24\nkorak 11: +5 → zbroj 164 → ((164−1) mod 45)+1 = 29\nkorak 12: +2 → zbroj 166 → ((166−1) mod 45)+1 = 31\nPRIHVAĆEN listić [21, 25, 22, 24, 29, 31] → sortirano [21, 22, 24, 25, 29, 31] (zadnji potrošeni korak 12)\n```\n\n**互卦 kao korijen 大過 Da Guo (28) → listić 02 · 07 · 35 · 36 · 37 · 38**\n\n```\nkorak 1: +2 → zbroj 2 → ((2−1) mod 45)+1 = 2\nkorak 2: +5 → zbroj 7 → ((7−1) mod 45)+1 = 7\nkorak 3: +28 → zbroj 35 → ((35−1) mod 45)+1 = 35\nkorak 4: +1 → zbroj 36 → ((36−1) mod 45)+1 = 36\nkorak 5: +1 → zbroj 37 → ((37−1) mod 45)+1 = 37\nkorak 6: +1 → zbroj 38 → ((38−1) mod 45)+1 = 38\nPRIHVAĆEN listić [2, 7, 35, 36, 37, 38] → sortirano [2, 7, 35, 36, 37, 38] (zadnji potrošeni korak 6)\n```\n\n**變卦 kao korijen 咸 Xian (31) → listić 01 · 02 · 09 · 40 · 41 · 45**\n\n```\nkorak 1: +2 → zbroj 2 → ((2−1) mod 45)+1 = 2\nkorak 2: +7 → zbroj 9 → ((9−1) mod 45)+1 = 9\nkorak 3: +31 → zbroj 40 → ((40−1) mod 45)+1 = 40\nkorak 4: +1 → zbroj 41 → ((41−1) mod 45)+1 = 41\nkorak 5: +5 → zbroj 46 → ((46−1) mod 45)+1 = 1\nkorak 6: +44 → zbroj 90 → ((90−1) mod 45)+1 = 45\nPRIHVAĆEN listić [2, 9, 40, 41, 1, 45] → sortirano [1, 2, 9, 40, 41, 45] (zadnji potrošeni korak 6)\n```\n\n**本卦 s 後天 brojevima trigrama 小過 Xiao Guo (62) → listić 23 · 28 · 29 · 31 · 37 · 39**\n\n```\nkorak 1: +3 → zbroj 3 → ((3−1) mod 45)+1 = 3\nkorak 2: +8 → zbroj 11 → ((11−1) mod 45)+1 = 11\nkorak 3: +62 → zbroj 73 → ((73−1) mod 45)+1 = 28\nkorak 4: +7 → zbroj 80 → ((80−1) mod 45)+1 = 35\nkorak 5: +4 → zbroj 84 → ((84−1) mod 45)+1 = 39\nkorak 6: +28 → zbroj 112 → ((112−1) mod 45)+1 = 22\nODBAČEN zadnji broj 22 (provjera nije prošla), nastavljam niz\nprvih 5 brojeva [3, 11, 28, 35, 39] preklapa se s listićem [4, 11, 18, 28, 30, 35] u 3 broja → pravilo 'odbaci zadnji' ne može uspjeti (izvorna skripta: 'nema valjanog rješenja') → PRESKOK PROZORA: odbacujem cijeli listić, nastavljam niz od koraka 7\nkorak 7: +7 → zbroj 119 → ((119−1) mod 45)+1 = 29\nkorak 8: +8 → zbroj 127 → ((127−1) mod 45)+1 = 37\nkorak 9: +31 → zbroj 158 → ((158−1) mod 45)+1 = 23\nkorak 10: +5 → zbroj 163 → ((163−1) mod 45)+1 = 28\nkorak 11: +3 → zbroj 166 → ((166−1) mod 45)+1 = 31\nkorak 12: +8 → zbroj 174 → ((174−1) mod 45)+1 = 39\nPRIHVAĆEN listić [29, 37, 23, 28, 31, 39] → sortirano [23, 28, 29, 31, 37, 39] (zadnji potrošeni korak 12)\n```\n\n### Izravni listići (prvih 6 različitih vrijednosti niza S svedenih u 1..45)\n\n- 本卦 (temeljni): 02 · 04 · 05 · 07 · 17 · 28\n- 錯卦 (komplement): 02 · 04 · 05 · 07 · 16 · 27\n- 綜卦 (naglavce): 02 · 04 · 05 · 07 · 17 · 28\n- 錯綜 (oboje): 02 · 04 · 05 · 07 · 16 · 27\n- 互卦 kao korijen: 01 · 02 · 04 · 05 · 28 · 32\n- 變卦 kao korijen: 01 · 02 · 05 · 07 · 31 · 44\n- 本卦 s 後天 brojevima trigrama: 03 · 04 · 07 · 08 · 17 · 28\n- brojevi trenutka (Z, Z+sat, KW 本/互/變, pomična): 02 · 05 · 17 · 28 · 31 · 36\n\n### Nastavak tokova (prozori po 6 koraka iza osnovnog listića)\n\n| tok | prozor | koraci | redom izvučeno | kandidat |\n|---|---:|---|---|---|\n| 本卦 (temeljni) | 1 | 7–12 | [20, 27, 13, 18, 22, 29] | `13 · 18 · 20 · 22 · 27 · 29` |\n| 本卦 (temeljni) | 2 | 13–18 | [1, 3, 8, 36, 38, 45] | `01 · 03 · 08 · 36 · 38 · 45` |\n| 本卦 (temeljni) | 3 | 19–24 | [31, 36, 40, 2, 19, 21] | `02 · 19 · 21 · 31 · 36 · 40` |\n| 本卦 (temeljni) | 4 | 25–30 | [26, 9, 11, 18, 4, 10] | `04 · 09 · 10 · 11 · 18 · 26` |\n| 本卦 (temeljni) | 5 | 31–36 | [13, 20, 37, 39, 44, 27] | `13 · 20 · 27 · 37 · 39 · 44` |\n| 本卦 (temeljni) | 6 | 37–42 | [29, 36, 22, 27, 31, 38] | `22 · 27 · 29 · 31 · 36 · 38` |\n| 錯卦 (komplement) | 1 | 7–12 | [23, 25, 21, 26, 31, 33] | `21 · 23 · 25 · 26 · 31 · 33` |\n| 錯卦 (komplement) | 2 | 13–18 | [4, 11, 15, 42, 5, 6] | `04 · 05 · 06 · 11 · 15 · 42` |\n| 錯卦 (komplement) | 3 | 19–24 | [2, 7, 12, 14, 30, 37] | `02 · 07 · 12 · 14 · 30 · 37` |\n| 錯卦 (komplement) | 4 | 25–30 | [41, 23, 30, 32, 28, 33] | `23 · 28 · 30 · 32 · 33 · 41` |\n| 錯卦 (komplement) | 5 | 31–36 | [38, 40, 11, 18, 22, 4] | `04 · 11 · 18 · 22 · 38 · 40` |\n| 錯卦 (komplement) | 6 | 37–42 | [11, 13, 9, 14, 19, 21] | `09 · 11 · 13 · 14 · 19 · 21` |\n| 綜卦 (naglavce) | 1 | 13–18 | [44, 1, 6, 34, 38, 43] | `01 · 06 · 34 · 38 · 43 · 44` |\n| 綜卦 (naglavce) | 2 | 19–24 | [30, 32, 36, 43, 15, 17] | `15 · 17 · 30 · 32 · 36 · 43` |\n| 綜卦 (naglavce) | 3 | 25–30 | [22, 5, 9, 14, 1, 3] | `01 · 03 · 05 · 09 · 14 · 22` |\n| 綜卦 (naglavce) | 4 | 31–36 | [7, 14, 31, 33, 38, 21] | `07 · 14 · 21 · 31 · 33 · 38` |\n| 綜卦 (naglavce) | 5 | 37–42 | [25, 30, 17, 19, 23, 31] | `17 · 19 · 23 · 25 · 30 · 31` |\n| 綜卦 (naglavce) | 6 | 43–48 | [2, 4, 9, 37, 41, 1] | `01 · 02 · 04 · 09 · 37 · 41` |\n| 錯綜 (oboje) | 1 | 13–18 | [2, 9, 13, 40, 45, 4] | `02 · 04 · 09 · 13 · 40 · 45` |\n| 錯綜 (oboje) | 2 | 19–24 | [1, 3, 8, 10, 26, 33] | `01 · 03 · 08 · 10 · 26 · 33` |\n| 錯綜 (oboje) | 3 | 25–30 | [37, 19, 24, 28, 25, 27] | `19 · 24 · 25 · 27 · 28 · 37` |\n| 錯綜 (oboje) | 4 | 31–36 | [32, 34, 5, 12, 16, 43] | `05 · 12 · 16 · 32 · 34 · 43` |\n| 錯綜 (oboje) | 5 | 37–42 | [3, 7, 4, 6, 11, 13] | `03 · 04 · 06 · 07 · 11 · 13` |\n| 錯綜 (oboje) | 6 | 43–48 | [29, 36, 40, 22, 27, 31] | `22 · 27 · 29 · 31 · 36 · 40` |\n| 互卦 kao korijen | 1 | 7–12 | [42, 2, 34, 39, 41, 1] | `01 · 02 · 34 · 39 · 41 · 42` |\n| 互卦 kao korijen | 2 | 13–18 | [29, 30, 31, 32, 36, 41] | `29 · 30 · 31 · 32 · 36 · 41` |\n| 互卦 kao korijen | 3 | 19–24 | [28, 33, 35, 40, 23, 24] | `23 · 24 · 28 · 33 · 35 · 40` |\n| 互卦 kao korijen | 4 | 25–30 | [25, 26, 30, 35, 22, 27] | `22 · 25 · 26 · 27 · 30 · 35` |\n| 互卦 kao korijen | 5 | 31–36 | [29, 34, 17, 18, 19, 20] | `17 · 18 · 19 · 20 · 29 · 34` |\n| 互卦 kao korijen | 6 | 37–42 | [24, 29, 16, 21, 23, 28] | `16 · 21 · 23 · 24 · 28 · 29` |\n| 變卦 kao korijen | 1 | 7–12 | [4, 11, 28, 33, 35, 42] | `04 · 11 · 28 · 33 · 35 · 42` |\n| 變卦 kao korijen | 2 | 13–18 | [28, 29, 34, 33, 37, 44] | `28 · 29 · 33 · 34 · 37 · 44` |\n| 變卦 kao korijen | 3 | 19–24 | [16, 21, 23, 30, 17, 18] | `16 · 17 · 18 · 21 · 23 · 30` |\n| 變卦 kao korijen | 4 | 25–30 | [22, 21, 25, 32, 4, 9] | `04 · 09 · 21 · 22 · 25 · 32` |\n| 變卦 kao korijen | 5 | 31–36 | [11, 18, 4, 5, 10, 9] | `04 · 05 · 09 · 10 · 11 · 18` |\n| 變卦 kao korijen | 6 | 37–42 | [13, 20, 37, 42, 44, 6] | `06 · 13 · 20 · 37 · 42 · 44` |\n| 本卦 s 後天 brojevima trigrama | 1 | 13–18 | [11, 18, 22, 5, 12, 20] | `05 · 11 · 12 · 18 · 20 · 22` |\n| 本卦 s 後天 brojevima trigrama | 2 | 19–24 | [6, 11, 14, 22, 39, 1] | `01 · 06 · 11 · 14 · 22 · 39` |\n| 本卦 s 後天 brojevima trigrama | 3 | 25–30 | [5, 33, 40, 3, 34, 39] | `03 · 05 · 33 · 34 · 39 · 40` |\n| 本卦 s 後天 brojevima trigrama | 4 | 31–36 | [42, 5, 22, 29, 33, 16] | `05 · 16 · 22 · 29 · 33 · 42` |\n| 本卦 s 後天 brojevima trigrama | 5 | 37–42 | [23, 31, 17, 22, 25, 33] | `17 · 22 · 23 · 25 · 31 · 33` |\n| 本卦 s 後天 brojevima trigrama | 6 | 43–48 | [5, 12, 16, 44, 6, 14] | `05 · 06 · 12 · 14 · 16 · 44` |\n\nNapomena: 小過 (62) i 中孚 (61) simetrični su heksagrami (naglavce daju sebe), pa je 綜 = 本 i 錯綜 = 錯 osim pomične linije (2 umjesto 5), 變卦 i zamjene 體/用; nizovi S razlikuju se tek na mjestima 7–10, a prvih 6 koraka toka je identično — zato log pokazuje preskok prozora.\n\n## 3. Sekundarna varijanta — sat-grana 10 酉 (test osjetljivosti)\n\n- Z = 7 + 9 + 20 = 36; gornji = 36 mod 8 = 4 震 Zhen (grom); donji = (36 + 10) mod 8 = 46 mod 8 = 6 坎 Kan (voda); pomična = 46 mod 6 = 4 (ostatak 0 → 8 odnosno 6).\n- Temeljne linije (odozdo): 010100 = 坎 Kan dolje / 震 Zhen gore.\n\n| varijanta | opis |\n|---|---|\n| 本卦 (temeljni) | linije 010100 | 本 震 Zhen/坎 Kan = 解 Xie (40) | 互 坎 Kan/離 Li = 既濟 Ji Ji (63) | 變 坤 Kun/坎 Kan = 師 Shi (7) | pomična 4 | 體 坎 Kan (voda) 用 震 Zhen (drvo) |\n| 錯卦 (komplement) | linije 101011 | 本 巽 Xun/離 Li = 家人 Jia Ren (37) | 互 離 Li/坎 Kan = 未濟 Wei Ji (64) | 變 乾 Qian/離 Li = 同人 Tong Ren (13) | pomična 4 | 體 離 Li (vatra) 用 巽 Xun (drvo) |\n| 綜卦 (naglavce) | linije 001010 | 本 坎 Kan/艮 Gen = 蹇 Jian (39) | 互 離 Li/坎 Kan = 未濟 Wei Ji (64) | 變 坎 Kan/坤 Kun = 比 Bi (8) | pomična 3 | 體 坎 Kan (voda) 用 艮 Gen (zemlja) |\n| 錯綜 (oboje) | linije 110101 | 本 離 Li/兌 Dui = 睽 Kui (38) | 互 坎 Kan/離 Li = 既濟 Ji Ji (63) | 變 離 Li/乾 Qian = 大有 Da You (14) | pomična 3 | 體 離 Li (vatra) 用 兌 Dui (metal) |\n| 互卦 kao korijen | linije 101010 | 本 坎 Kan/離 Li = 既濟 Ji Ji (63) | 互 離 Li/坎 Kan = 未濟 Wei Ji (64) | 變 兌 Dui/離 Li = 革 Ge (49) | pomična 4 | 體 離 Li (vatra) 用 坎 Kan (voda) |\n| 變卦 kao korijen | linije 010000 | 本 坤 Kun/坎 Kan = 師 Shi (7) | 互 坤 Kun/震 Zhen = 復 Fu (24) | 變 震 Zhen/坎 Kan = 解 Xie (40) | pomična 4 | 體 坎 Kan (voda) 用 坤 Kun (zemlja) |\n\nNizovi S = [本 gornji, 本 donji, KW 本, 互 gornji, 互 donji, KW 互, 變 gornji, 變 donji, KW 變, pomična]:\n\n- S(本) = [4, 6, 40, 6, 3, 63, 8, 6, 7, 4]  (zbroj 147, ≡ 12 mod 45; svedeno: [4, 6, 40, 6, 3, 18, 8, 6, 7, 4])\n- S(錯) = [5, 3, 37, 3, 6, 64, 1, 3, 13, 4]  (zbroj 139, ≡ 4 mod 45; svedeno: [5, 3, 37, 3, 6, 19, 1, 3, 13, 4])\n- S(綜) = [6, 7, 39, 3, 6, 64, 6, 8, 8, 3]  (zbroj 150, ≡ 15 mod 45; svedeno: [6, 7, 39, 3, 6, 19, 6, 8, 8, 3])\n- S(錯綜) = [3, 2, 38, 6, 3, 63, 3, 1, 14, 3]  (zbroj 136, ≡ 1 mod 45; svedeno: [3, 2, 38, 6, 3, 18, 3, 1, 14, 3])\n- S(互k) = [6, 3, 63, 3, 6, 64, 2, 3, 49, 4]  (zbroj 203, ≡ 23 mod 45; svedeno: [6, 3, 18, 3, 6, 19, 2, 3, 4, 4])\n- S(變k) = [8, 6, 7, 8, 4, 24, 4, 6, 40, 4]  (zbroj 111, ≡ 21 mod 45; svedeno: [8, 6, 7, 8, 4, 24, 4, 6, 40, 4])\n- S(本後天) = [3, 1, 40, 1, 9, 63, 2, 1, 7, 4]  (zbroj 131, ≡ 41 mod 45; svedeno: [3, 1, 40, 1, 9, 18, 2, 1, 7, 4])\n\n體/用 (informativno): 體 坎 Kan = voda, 用 震 Zhen = drvo; 互 坎 Kan/離 Li (voda/vatra), 變 坤 Kun/坎 Kan (zemlja/voda).\n\n### Osnovni listići — cijeli log koraka (pakiranje ≤ 2 zajednička broja samo među vlastitim listićima, redoslijed 本, 錯, 綜, 錯綜, zatim 互k, 變k, 本後天)\n\n**本卦 (temeljni) 解 Xie (40) → listić 04 · 05 · 10 · 11 · 14 · 32**\n\n```\nkorak 1: +4 → zbroj 4 → ((4−1) mod 45)+1 = 4\nkorak 2: +6 → zbroj 10 → ((10−1) mod 45)+1 = 10\nkorak 3: +40 → zbroj 50 → ((50−1) mod 45)+1 = 5\nkorak 4: +6 → zbroj 56 → ((56−1) mod 45)+1 = 11\nkorak 5: +3 → zbroj 59 → ((59−1) mod 45)+1 = 14\nkorak 6: +63 → zbroj 122 → ((122−1) mod 45)+1 = 32\nPRIHVAĆEN listić [4, 10, 5, 11, 14, 32] → sortirano [4, 5, 10, 11, 14, 32] (zadnji potrošeni korak 6)\n```\n\n**錯卦 (komplement) 家人 Jia Ren (37) → listić 03 · 05 · 08 · 09 · 28 · 45**\n\n```\nkorak 1: +5 → zbroj 5 → ((5−1) mod 45)+1 = 5\nkorak 2: +3 → zbroj 8 → ((8−1) mod 45)+1 = 8\nkorak 3: +37 → zbroj 45 → ((45−1) mod 45)+1 = 45\nkorak 4: +3 → zbroj 48 → ((48−1) mod 45)+1 = 3\nkorak 5: +6 → zbroj 54 → ((54−1) mod 45)+1 = 9\nkorak 6: +64 → zbroj 118 → ((118−1) mod 45)+1 = 28\nPRIHVAĆEN listić [5, 8, 45, 3, 9, 28] → sortirano [3, 5, 8, 9, 28, 45] (zadnji potrošeni korak 6)\n```\n\n**綜卦 (naglavce) 蹇 Jian (39) → listić 06 · 07 · 10 · 13 · 16 · 35**\n\n```\nkorak 1: +6 → zbroj 6 → ((6−1) mod 45)+1 = 6\nkorak 2: +7 → zbroj 13 → ((13−1) mod 45)+1 = 13\nkorak 3: +39 → zbroj 52 → ((52−1) mod 45)+1 = 7\nkorak 4: +3 → zbroj 55 → ((55−1) mod 45)+1 = 10\nkorak 5: +6 → zbroj 61 → ((61−1) mod 45)+1 = 16\nkorak 6: +64 → zbroj 125 → ((125−1) mod 45)+1 = 35\nPRIHVAĆEN listić [6, 13, 7, 10, 16, 35] → sortirano [6, 7, 10, 13, 16, 35] (zadnji potrošeni korak 6)\n```\n\n**錯綜 (oboje) 睽 Kui (38) → listić 03 · 04 · 05 · 07 · 25 · 43**\n\n```\nkorak 1: +3 → zbroj 3 → ((3−1) mod 45)+1 = 3\nkorak 2: +2 → zbroj 5 → ((5−1) mod 45)+1 = 5\nkorak 3: +38 → zbroj 43 → ((43−1) mod 45)+1 = 43\nkorak 4: +6 → zbroj 49 → ((49−1) mod 45)+1 = 4\nkorak 5: +3 → zbroj 52 → ((52−1) mod 45)+1 = 7\nkorak 6: +63 → zbroj 115 → ((115−1) mod 45)+1 = 25\nPRIHVAĆEN listić [3, 5, 43, 4, 7, 25] → sortirano [3, 4, 5, 7, 25, 43] (zadnji potrošeni korak 6)\n```\n\n**互卦 kao korijen 既濟 Ji Ji (63) → listić 06 · 09 · 10 · 27 · 30 · 36**\n\n```\nkorak 1: +6 → zbroj 6 → ((6−1) mod 45)+1 = 6\nkorak 2: +3 → zbroj 9 → ((9−1) mod 45)+1 = 9\nkorak 3: +63 → zbroj 72 → ((72−1) mod 45)+1 = 27\nkorak 4: +3 → zbroj 75 → ((75−1) mod 45)+1 = 30\nkorak 5: +6 → zbroj 81 → ((81−1) mod 45)+1 = 36\nkorak 6: +64 → zbroj 145 → ((145−1) mod 45)+1 = 10\nPRIHVAĆEN listić [6, 9, 27, 30, 36, 10] → sortirano [6, 9, 10, 27, 30, 36] (zadnji potrošeni korak 6)\n```\n\n**變卦 kao korijen 師 Shi (7) → listić 08 · 12 · 14 · 21 · 29 · 33**\n\n```\nkorak 1: +8 → zbroj 8 → ((8−1) mod 45)+1 = 8\nkorak 2: +6 → zbroj 14 → ((14−1) mod 45)+1 = 14\nkorak 3: +7 → zbroj 21 → ((21−1) mod 45)+1 = 21\nkorak 4: +8 → zbroj 29 → ((29−1) mod 45)+1 = 29\nkorak 5: +4 → zbroj 33 → ((33−1) mod 45)+1 = 33\nkorak 6: +24 → zbroj 57 → ((57−1) mod 45)+1 = 12\nPRIHVAĆEN listić [8, 14, 21, 29, 33, 12] → sortirano [8, 12, 14, 21, 29, 33] (zadnji potrošeni korak 6)\n```\n\n**本卦 s 後天 brojevima trigrama 解 Xie (40) → listić 29 · 30 · 37 · 41 · 44 · 45**\n\n```\nkorak 1: +3 → zbroj 3 → ((3−1) mod 45)+1 = 3\nkorak 2: +1 → zbroj 4 → ((4−1) mod 45)+1 = 4\nkorak 3: +40 → zbroj 44 → ((44−1) mod 45)+1 = 44\nkorak 4: +1 → zbroj 45 → ((45−1) mod 45)+1 = 45\nkorak 5: +9 → zbroj 54 → ((54−1) mod 45)+1 = 9\nkorak 6: +63 → zbroj 117 → ((117−1) mod 45)+1 = 27\nODBAČEN zadnji broj 27 (provjera nije prošla), nastavljam niz\nprvih 5 brojeva [3, 4, 44, 45, 9] preklapa se s listićem [3, 5, 8, 9, 28, 45] u 3 broja → pravilo 'odbaci zadnji' ne može uspjeti (izvorna skripta: 'nema valjanog rješenja') → PRESKOK PROZORA: odbacujem cijeli listić, nastavljam niz od koraka 7\nkorak 7: +2 → zbroj 119 → ((119−1) mod 45)+1 = 29\nkorak 8: +1 → zbroj 120 → ((120−1) mod 45)+1 = 30\nkorak 9: +7 → zbroj 127 → ((127−1) mod 45)+1 = 37\nkorak 10: +4 → zbroj 131 → ((131−1) mod 45)+1 = 41\nkorak 11: +3 → zbroj 134 → ((134−1) mod 45)+1 = 44\nkorak 12: +1 → zbroj 135 → ((135−1) mod 45)+1 = 45\nPRIHVAĆEN listić [29, 30, 37, 41, 44, 45] → sortirano [29, 30, 37, 41, 44, 45] (zadnji potrošeni korak 12)\n```\n\n### Izravni listići (prvih 6 različitih vrijednosti niza S svedenih u 1..45)\n\n- 本卦 (temeljni): 03 · 04 · 06 · 08 · 18 · 40\n- 錯卦 (komplement): 01 · 03 · 05 · 06 · 19 · 37\n- 綜卦 (naglavce): 03 · 06 · 07 · 08 · 19 · 39\n- 錯綜 (oboje): 01 · 02 · 03 · 06 · 18 · 38\n- 互卦 kao korijen: 02 · 03 · 04 · 06 · 18 · 19\n- 變卦 kao korijen: 04 · 06 · 07 · 08 · 24 · 40\n- 本卦 s 後天 brojevima trigrama: 01 · 02 · 03 · 09 · 18 · 40\n- brojevi trenutka (Z, Z+sat, KW 本/互/變, pomična): 01 · 04 · 07 · 18 · 36 · 40\n\n### Nastavak tokova (prozori po 6 koraka iza osnovnog listića)\n\n| tok | prozor | koraci | redom izvučeno | kandidat |\n|---|---:|---|---|---|\n| 本卦 (temeljni) | 1 | 7–12 | [40, 1, 8, 12, 16, 22] | `01 · 08 · 12 · 16 · 22 · 40` |\n| 本卦 (temeljni) | 2 | 13–18 | [17, 23, 26, 44, 7, 13] | `07 · 13 · 17 · 23 · 26 · 44` |\n| 本卦 (temeljni) | 3 | 19–24 | [20, 24, 28, 34, 29, 35] | `20 · 24 · 28 · 29 · 34 · 35` |\n| 本卦 (temeljni) | 4 | 25–30 | [38, 11, 19, 25, 32, 36] | `11 · 19 · 25 · 32 · 36 · 38` |\n| 本卦 (temeljni) | 5 | 31–36 | [40, 1, 41, 2, 5, 23] | `01 · 02 · 05 · 23 · 40 · 41` |\n| 本卦 (temeljni) | 6 | 37–42 | [31, 37, 44, 3, 7, 13] | `03 · 07 · 13 · 31 · 37 · 44` |\n| 錯卦 (komplement) | 1 | 7–12 | [29, 32, 45, 4, 9, 12] | `04 · 09 · 12 · 29 · 32 · 45` |\n| 錯卦 (komplement) | 2 | 13–18 | [4, 7, 13, 32, 33, 36] | `04 · 07 · 13 · 32 · 33 · 36` |\n| 錯卦 (komplement) | 3 | 19–24 | [4, 8, 13, 16, 9, 11] | `04 · 08 · 09 · 11 · 13 · 16` |\n| 錯卦 (komplement) | 4 | 25–30 | [17, 36, 37, 40, 8, 12] | `08 · 12 · 17 · 36 · 37 · 40` |\n| 錯卦 (komplement) | 5 | 31–36 | [17, 20, 12, 15, 21, 40] | `12 · 15 · 17 · 20 · 21 · 40` |\n| 錯卦 (komplement) | 6 | 37–42 | [41, 44, 12, 16, 21, 24] | `12 · 16 · 21 · 24 · 41 · 44` |\n| 綜卦 (naglavce) | 1 | 7–12 | [41, 4, 12, 15, 21, 28] | `04 · 12 · 15 · 21 · 28 · 41` |\n| 綜卦 (naglavce) | 2 | 13–18 | [22, 25, 31, 5, 11, 19] | `05 · 11 · 19 · 22 · 25 · 31` |\n| 綜卦 (naglavce) | 3 | 19–24 | [27, 30, 36, 43, 37, 40] | `27 · 30 · 36 · 37 · 40 · 43` |\n| 綜卦 (naglavce) | 4 | 25–30 | [1, 20, 26, 34, 42, 45] | `01 · 20 · 26 · 34 · 42 · 45` |\n| 綜卦 (naglavce) | 5 | 31–36 | [6, 13, 7, 10, 16, 35] | `06 · 07 · 10 · 13 · 16 · 35` |\n| 綜卦 (naglavce) | 6 | 37–42 | [41, 4, 12, 15, 21, 28] | `04 · 12 · 15 · 21 · 28 · 41` |\n| 錯綜 (oboje) | 1 | 7–12 | [28, 29, 43, 1, 4, 6] | `01 · 04 · 06 · 28 · 29 · 43` |\n| 錯綜 (oboje) | 2 | 13–18 | [44, 5, 8, 26, 29, 30] | `05 · 08 · 26 · 29 · 30 · 44` |\n| 錯綜 (oboje) | 3 | 19–24 | [44, 2, 5, 7, 45, 6] | `02 · 05 · 06 · 07 · 44 · 45` |\n| 錯綜 (oboje) | 4 | 25–30 | [9, 27, 30, 31, 45, 3] | `03 · 09 · 27 · 30 · 31 · 45` |\n| 錯綜 (oboje) | 5 | 31–36 | [6, 8, 1, 7, 10, 28] | `01 · 06 · 07 · 08 · 10 · 28` |\n| 錯綜 (oboje) | 6 | 37–42 | [31, 32, 1, 4, 7, 9] | `01 · 04 · 07 · 09 · 31 · 32` |\n| 互卦 kao korijen | 1 | 7–12 | [12, 15, 19, 23, 29, 32] | `12 · 15 · 19 · 23 · 29 · 32` |\n| 互卦 kao korijen | 2 | 13–18 | [5, 8, 14, 33, 35, 38] | `05 · 08 · 14 · 33 · 35 · 38` |\n| 互卦 kao korijen | 3 | 19–24 | [42, 1, 7, 10, 28, 31] | `01 · 07 · 10 · 28 · 31 · 42` |\n| 互卦 kao korijen | 4 | 25–30 | [37, 11, 13, 16, 20, 24] | `11 · 13 · 16 · 20 · 24 · 37` |\n| 互卦 kao korijen | 5 | 31–36 | [30, 33, 6, 9, 15, 34] | `06 · 09 · 15 · 30 · 33 · 34` |\n| 互卦 kao korijen | 6 | 37–42 | [36, 39, 43, 2, 8, 11] | `02 · 08 · 11 · 36 · 39 · 43` |\n| 變卦 kao korijen | 1 | 7–12 | [16, 22, 17, 21, 29, 35] | `16 · 17 · 21 · 22 · 29 · 35` |\n| 變卦 kao korijen | 2 | 13–18 | [42, 5, 9, 33, 37, 43] | `05 · 09 · 33 · 37 · 42 · 43` |\n| 變卦 kao korijen | 3 | 19–24 | [38, 42, 5, 11, 18, 26] | `05 · 11 · 18 · 26 · 38 · 42` |\n| 變卦 kao korijen | 4 | 25–30 | [30, 9, 13, 19, 14, 18] | `09 · 13 · 14 · 18 · 19 · 30` |\n| 變卦 kao korijen | 5 | 31–36 | [26, 32, 39, 2, 6, 30] | `02 · 06 · 26 · 30 · 32 · 39` |\n| 變卦 kao korijen | 6 | 37–42 | [34, 40, 35, 39, 2, 8] | `02 · 08 · 34 · 35 · 39 · 40` |\n| 本卦 s 後天 brojevima trigrama | 1 | 13–18 | [40, 41, 5, 23, 25, 26] | `05 · 23 · 25 · 26 · 40 · 41` |\n| 本卦 s 後天 brojevima trigrama | 2 | 19–24 | [33, 37, 40, 41, 36, 38] | `33 · 36 · 37 · 38 · 40 · 41` |\n| 本卦 s 後天 brojevima trigrama | 3 | 25–30 | [1, 19, 21, 22, 29, 33] | `01 · 19 · 21 · 22 · 29 · 33` |\n| 本卦 s 後天 brojevima trigrama | 4 | 31–36 | [36, 37, 32, 33, 42, 15] | `15 · 32 · 33 · 36 · 37 · 42` |\n| 本卦 s 後天 brojevima trigrama | 5 | 37–42 | [17, 18, 25, 29, 32, 33] | `17 · 18 · 25 · 29 · 32 · 33` |\n| 本卦 s 後天 brojevima trigrama | 6 | 43–48 | [28, 29, 38, 11, 13, 14] | `11 · 13 · 14 · 28 · 29 · 38` |\n\n## 4. Rang kandidata\n\n1. 本卦: tok (koraci 1–6), izravni brojevi niza S, brojevi trenutka, 後天 varijanta toka;\n2. 互卦 i 變卦 kao korijen (tok, zatim izravni);\n3. 錯 / 綜 / 錯綜 (tok, zatim izravni; duplikati izravnih zbog simetrije otpadaju);\n4. nastavak svih sedam tokova, prozor po prozor naizmjence;\n5. sekundarna varijanta sat-grana 10 (isti redoslijed).\n\n## 5. Ključni brojevi\n\nTežinski zbroj (KW 本 3; 互/變 2.5; gornji, donji, pomična 2; Z i Z+sat 1.5; sat 1; listić 本 1; KW i 變 od 錯/綜/錯綜 1; korijeni 0.75): 17, 28, 4, 31, 5, 7, 11, 16, 32, 2, 36, 18\n\nJoker iz skripte (informativno, nije kandidat za Loto): 472527",
+ "kljucni_brojevi": [
+  17,
+  28,
+  4,
+  31,
+  5,
+  7,
+  11,
+  16,
+  32,
+  2,
+  36,
+  18
+ ],
+ "kandidati": [
+  {
+   "brojevi": [
+    4,
+    11,
+    18,
+    28,
+    30,
+    35
+   ],
+   "rang": 1,
+   "obrazlozenje": "本卦 小過 Xiao Guo (62): tok niza S=[4, 7, 62, 2, 5, 28, 2, 7, 31, 5], koraci 1–6"
+  },
+  {
+   "brojevi": [
+    2,
+    4,
+    5,
+    7,
+    17,
+    28
+   ],
+   "rang": 2,
+   "obrazlozenje": "本卦 小過 Xiao Guo (62): izravni brojevi niza S (svedeno u 1..45)"
+  },
+  {
+   "brojevi": [
+    2,
+    5,
+    17,
+    28,
+    31,
+    36
+   ],
+   "rang": 3,
+   "obrazlozenje": "本卦 brojevi trenutka: Z=36, Z+sat=47→2, KW 本 62→17, 互 28, 變 31, pomična 5"
+  },
+  {
+   "brojevi": [
+    23,
+    28,
+    29,
+    31,
+    37,
+    39
+   ],
+   "rang": 4,
+   "obrazlozenje": "本卦 s 後天 (Luoshu) brojevima trigrama: tok S=[3, 8, 62, 7, 4, 28, 7, 8, 31, 5], zadnji korak 12"
+  },
+  {
+   "brojevi": [
+    2,
+    7,
+    35,
+    36,
+    37,
+    38
+   ],
+   "rang": 5,
+   "obrazlozenje": "互卦 大過 Da Guo (28) kao korijen, pomična 5: tok S=[2, 5, 28, 1, 1, 1, 4, 5, 32, 5], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    9,
+    40,
+    41,
+    45
+   ],
+   "rang": 6,
+   "obrazlozenje": "變卦 咸 Xian (31) kao korijen, pomična 5: tok S=[2, 7, 31, 1, 5, 44, 4, 7, 62, 5], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    4,
+    5,
+    28,
+    32
+   ],
+   "rang": 7,
+   "obrazlozenje": "互卦 大過 Da Guo (28) kao korijen: izravni brojevi niza S"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    5,
+    7,
+    31,
+    44
+   ],
+   "rang": 8,
+   "obrazlozenje": "變卦 咸 Xian (31) kao korijen: izravni brojevi niza S"
+  },
+  {
+   "brojevi": [
+    5,
+    7,
+    16,
+    23,
+    30,
+    34
+   ],
+   "rang": 9,
+   "obrazlozenje": "錯卦 (komplement) 中孚 Zhong Fu (61), pomična 5: tok S=[5, 2, 61, 7, 4, 27, 7, 2, 41, 5], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    14,
+    16,
+    20,
+    22,
+    27,
+    28
+   ],
+   "rang": 10,
+   "obrazlozenje": "綜卦 (naglavce) 小過 Xiao Guo (62), pomična 2: tok S=[4, 7, 62, 2, 5, 28, 4, 5, 32, 2], zadnji korak 12"
+  },
+  {
+   "brojevi": [
+    21,
+    22,
+    24,
+    25,
+    29,
+    31
+   ],
+   "rang": 11,
+   "obrazlozenje": "錯綜 (oboje) 中孚 Zhong Fu (61), pomična 2: tok S=[5, 2, 61, 7, 4, 27, 5, 4, 42, 2], zadnji korak 12"
+  },
+  {
+   "brojevi": [
+    2,
+    4,
+    5,
+    7,
+    16,
+    27
+   ],
+   "rang": 12,
+   "obrazlozenje": "錯卦 (komplement) 中孚 Zhong Fu (61): izravni brojevi niza S"
+  },
+  {
+   "brojevi": [
+    13,
+    18,
+    20,
+    22,
+    27,
+    29
+   ],
+   "rang": 13,
+   "obrazlozenje": "nastavak toka 本卦 (temeljni) 小過 Xiao Guo (62): koraci 7–12 → [20, 27, 13, 18, 22, 29]"
+  },
+  {
+   "brojevi": [
+    21,
+    23,
+    25,
+    26,
+    31,
+    33
+   ],
+   "rang": 14,
+   "obrazlozenje": "nastavak toka 錯卦 (komplement) 中孚 Zhong Fu (61): koraci 7–12 → [23, 25, 21, 26, 31, 33]"
+  },
+  {
+   "brojevi": [
+    1,
+    6,
+    34,
+    38,
+    43,
+    44
+   ],
+   "rang": 15,
+   "obrazlozenje": "nastavak toka 綜卦 (naglavce) 小過 Xiao Guo (62): koraci 13–18 → [44, 1, 6, 34, 38, 43]"
+  },
+  {
+   "brojevi": [
+    2,
+    4,
+    9,
+    13,
+    40,
+    45
+   ],
+   "rang": 16,
+   "obrazlozenje": "nastavak toka 錯綜 (oboje) 中孚 Zhong Fu (61): koraci 13–18 → [2, 9, 13, 40, 45, 4]"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    34,
+    39,
+    41,
+    42
+   ],
+   "rang": 17,
+   "obrazlozenje": "nastavak toka 互卦 kao korijen 大過 Da Guo (28): koraci 7–12 → [42, 2, 34, 39, 41, 1]"
+  },
+  {
+   "brojevi": [
+    4,
+    11,
+    28,
+    33,
+    35,
+    42
+   ],
+   "rang": 18,
+   "obrazlozenje": "nastavak toka 變卦 kao korijen 咸 Xian (31): koraci 7–12 → [4, 11, 28, 33, 35, 42]"
+  },
+  {
+   "brojevi": [
+    5,
+    11,
+    12,
+    18,
+    20,
+    22
+   ],
+   "rang": 19,
+   "obrazlozenje": "nastavak toka 本卦 s 後天 brojevima trigrama 小過 Xiao Guo (62): koraci 13–18 → [11, 18, 22, 5, 12, 20]"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    8,
+    36,
+    38,
+    45
+   ],
+   "rang": 20,
+   "obrazlozenje": "nastavak toka 本卦 (temeljni) 小過 Xiao Guo (62): koraci 13–18 → [1, 3, 8, 36, 38, 45]"
+  },
+  {
+   "brojevi": [
+    4,
+    5,
+    6,
+    11,
+    15,
+    42
+   ],
+   "rang": 21,
+   "obrazlozenje": "nastavak toka 錯卦 (komplement) 中孚 Zhong Fu (61): koraci 13–18 → [4, 11, 15, 42, 5, 6]"
+  },
+  {
+   "brojevi": [
+    15,
+    17,
+    30,
+    32,
+    36,
+    43
+   ],
+   "rang": 22,
+   "obrazlozenje": "nastavak toka 綜卦 (naglavce) 小過 Xiao Guo (62): koraci 19–24 → [30, 32, 36, 43, 15, 17]"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    8,
+    10,
+    26,
+    33
+   ],
+   "rang": 23,
+   "obrazlozenje": "nastavak toka 錯綜 (oboje) 中孚 Zhong Fu (61): koraci 19–24 → [1, 3, 8, 10, 26, 33]"
+  },
+  {
+   "brojevi": [
+    29,
+    30,
+    31,
+    32,
+    36,
+    41
+   ],
+   "rang": 24,
+   "obrazlozenje": "nastavak toka 互卦 kao korijen 大過 Da Guo (28): koraci 13–18 → [29, 30, 31, 32, 36, 41]"
+  },
+  {
+   "brojevi": [
+    28,
+    29,
+    33,
+    34,
+    37,
+    44
+   ],
+   "rang": 25,
+   "obrazlozenje": "nastavak toka 變卦 kao korijen 咸 Xian (31): koraci 13–18 → [28, 29, 34, 33, 37, 44]"
+  },
+  {
+   "brojevi": [
+    1,
+    6,
+    11,
+    14,
+    22,
+    39
+   ],
+   "rang": 26,
+   "obrazlozenje": "nastavak toka 本卦 s 後天 brojevima trigrama 小過 Xiao Guo (62): koraci 19–24 → [6, 11, 14, 22, 39, 1]"
+  },
+  {
+   "brojevi": [
+    2,
+    19,
+    21,
+    31,
+    36,
+    40
+   ],
+   "rang": 27,
+   "obrazlozenje": "nastavak toka 本卦 (temeljni) 小過 Xiao Guo (62): koraci 19–24 → [31, 36, 40, 2, 19, 21]"
+  },
+  {
+   "brojevi": [
+    2,
+    7,
+    12,
+    14,
+    30,
+    37
+   ],
+   "rang": 28,
+   "obrazlozenje": "nastavak toka 錯卦 (komplement) 中孚 Zhong Fu (61): koraci 19–24 → [2, 7, 12, 14, 30, 37]"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    5,
+    9,
+    14,
+    22
+   ],
+   "rang": 29,
+   "obrazlozenje": "nastavak toka 綜卦 (naglavce) 小過 Xiao Guo (62): koraci 25–30 → [22, 5, 9, 14, 1, 3]"
+  },
+  {
+   "brojevi": [
+    19,
+    24,
+    25,
+    27,
+    28,
+    37
+   ],
+   "rang": 30,
+   "obrazlozenje": "nastavak toka 錯綜 (oboje) 中孚 Zhong Fu (61): koraci 25–30 → [37, 19, 24, 28, 25, 27]"
+  },
+  {
+   "brojevi": [
+    23,
+    24,
+    28,
+    33,
+    35,
+    40
+   ],
+   "rang": 31,
+   "obrazlozenje": "nastavak toka 互卦 kao korijen 大過 Da Guo (28): koraci 19–24 → [28, 33, 35, 40, 23, 24]"
+  },
+  {
+   "brojevi": [
+    16,
+    17,
+    18,
+    21,
+    23,
+    30
+   ],
+   "rang": 32,
+   "obrazlozenje": "nastavak toka 變卦 kao korijen 咸 Xian (31): koraci 19–24 → [16, 21, 23, 30, 17, 18]"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    33,
+    34,
+    39,
+    40
+   ],
+   "rang": 33,
+   "obrazlozenje": "nastavak toka 本卦 s 後天 brojevima trigrama 小過 Xiao Guo (62): koraci 25–30 → [5, 33, 40, 3, 34, 39]"
+  },
+  {
+   "brojevi": [
+    4,
+    9,
+    10,
+    11,
+    18,
+    26
+   ],
+   "rang": 34,
+   "obrazlozenje": "nastavak toka 本卦 (temeljni) 小過 Xiao Guo (62): koraci 25–30 → [26, 9, 11, 18, 4, 10]"
+  },
+  {
+   "brojevi": [
+    23,
+    28,
+    30,
+    32,
+    33,
+    41
+   ],
+   "rang": 35,
+   "obrazlozenje": "nastavak toka 錯卦 (komplement) 中孚 Zhong Fu (61): koraci 25–30 → [41, 23, 30, 32, 28, 33]"
+  },
+  {
+   "brojevi": [
+    7,
+    14,
+    21,
+    31,
+    33,
+    38
+   ],
+   "rang": 36,
+   "obrazlozenje": "nastavak toka 綜卦 (naglavce) 小過 Xiao Guo (62): koraci 31–36 → [7, 14, 31, 33, 38, 21]"
+  },
+  {
+   "brojevi": [
+    5,
+    12,
+    16,
+    32,
+    34,
+    43
+   ],
+   "rang": 37,
+   "obrazlozenje": "nastavak toka 錯綜 (oboje) 中孚 Zhong Fu (61): koraci 31–36 → [32, 34, 5, 12, 16, 43]"
+  },
+  {
+   "brojevi": [
+    22,
+    25,
+    26,
+    27,
+    30,
+    35
+   ],
+   "rang": 38,
+   "obrazlozenje": "nastavak toka 互卦 kao korijen 大過 Da Guo (28): koraci 25–30 → [25, 26, 30, 35, 22, 27]"
+  },
+  {
+   "brojevi": [
+    4,
+    9,
+    21,
+    22,
+    25,
+    32
+   ],
+   "rang": 39,
+   "obrazlozenje": "nastavak toka 變卦 kao korijen 咸 Xian (31): koraci 25–30 → [22, 21, 25, 32, 4, 9]"
+  },
+  {
+   "brojevi": [
+    5,
+    16,
+    22,
+    29,
+    33,
+    42
+   ],
+   "rang": 40,
+   "obrazlozenje": "nastavak toka 本卦 s 後天 brojevima trigrama 小過 Xiao Guo (62): koraci 31–36 → [42, 5, 22, 29, 33, 16]"
+  },
+  {
+   "brojevi": [
+    13,
+    20,
+    27,
+    37,
+    39,
+    44
+   ],
+   "rang": 41,
+   "obrazlozenje": "nastavak toka 本卦 (temeljni) 小過 Xiao Guo (62): koraci 31–36 → [13, 20, 37, 39, 44, 27]"
+  },
+  {
+   "brojevi": [
+    4,
+    11,
+    18,
+    22,
+    38,
+    40
+   ],
+   "rang": 42,
+   "obrazlozenje": "nastavak toka 錯卦 (komplement) 中孚 Zhong Fu (61): koraci 31–36 → [38, 40, 11, 18, 22, 4]"
+  },
+  {
+   "brojevi": [
+    17,
+    19,
+    23,
+    25,
+    30,
+    31
+   ],
+   "rang": 43,
+   "obrazlozenje": "nastavak toka 綜卦 (naglavce) 小過 Xiao Guo (62): koraci 37–42 → [25, 30, 17, 19, 23, 31]"
+  },
+  {
+   "brojevi": [
+    3,
+    4,
+    6,
+    7,
+    11,
+    13
+   ],
+   "rang": 44,
+   "obrazlozenje": "nastavak toka 錯綜 (oboje) 中孚 Zhong Fu (61): koraci 37–42 → [3, 7, 4, 6, 11, 13]"
+  },
+  {
+   "brojevi": [
+    17,
+    18,
+    19,
+    20,
+    29,
+    34
+   ],
+   "rang": 45,
+   "obrazlozenje": "nastavak toka 互卦 kao korijen 大過 Da Guo (28): koraci 31–36 → [29, 34, 17, 18, 19, 20]"
+  },
+  {
+   "brojevi": [
+    4,
+    5,
+    9,
+    10,
+    11,
+    18
+   ],
+   "rang": 46,
+   "obrazlozenje": "nastavak toka 變卦 kao korijen 咸 Xian (31): koraci 31–36 → [11, 18, 4, 5, 10, 9]"
+  },
+  {
+   "brojevi": [
+    17,
+    22,
+    23,
+    25,
+    31,
+    33
+   ],
+   "rang": 47,
+   "obrazlozenje": "nastavak toka 本卦 s 後天 brojevima trigrama 小過 Xiao Guo (62): koraci 37–42 → [23, 31, 17, 22, 25, 33]"
+  },
+  {
+   "brojevi": [
+    22,
+    27,
+    29,
+    31,
+    36,
+    38
+   ],
+   "rang": 48,
+   "obrazlozenje": "nastavak toka 本卦 (temeljni) 小過 Xiao Guo (62): koraci 37–42 → [29, 36, 22, 27, 31, 38]"
+  },
+  {
+   "brojevi": [
+    9,
+    11,
+    13,
+    14,
+    19,
+    21
+   ],
+   "rang": 49,
+   "obrazlozenje": "nastavak toka 錯卦 (komplement) 中孚 Zhong Fu (61): koraci 37–42 → [11, 13, 9, 14, 19, 21]"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    4,
+    9,
+    37,
+    41
+   ],
+   "rang": 50,
+   "obrazlozenje": "nastavak toka 綜卦 (naglavce) 小過 Xiao Guo (62): koraci 43–48 → [2, 4, 9, 37, 41, 1]"
+  },
+  {
+   "brojevi": [
+    22,
+    27,
+    29,
+    31,
+    36,
+    40
+   ],
+   "rang": 51,
+   "obrazlozenje": "nastavak toka 錯綜 (oboje) 中孚 Zhong Fu (61): koraci 43–48 → [29, 36, 40, 22, 27, 31]"
+  },
+  {
+   "brojevi": [
+    16,
+    21,
+    23,
+    24,
+    28,
+    29
+   ],
+   "rang": 52,
+   "obrazlozenje": "nastavak toka 互卦 kao korijen 大過 Da Guo (28): koraci 37–42 → [24, 29, 16, 21, 23, 28]"
+  },
+  {
+   "brojevi": [
+    6,
+    13,
+    20,
+    37,
+    42,
+    44
+   ],
+   "rang": 53,
+   "obrazlozenje": "nastavak toka 變卦 kao korijen 咸 Xian (31): koraci 37–42 → [13, 20, 37, 42, 44, 6]"
+  },
+  {
+   "brojevi": [
+    5,
+    6,
+    12,
+    14,
+    16,
+    44
+   ],
+   "rang": 54,
+   "obrazlozenje": "nastavak toka 本卦 s 後天 brojevima trigrama 小過 Xiao Guo (62): koraci 43–48 → [5, 12, 16, 44, 6, 14]"
+  },
+  {
+   "brojevi": [
+    4,
+    5,
+    10,
+    11,
+    14,
+    32
+   ],
+   "rang": 55,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 本卦 (temeljni) 解 Xie (40), pomična 4: tok S=[4, 6, 40, 6, 3, 63, 8, 6, 7, 4], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    8,
+    9,
+    28,
+    45
+   ],
+   "rang": 56,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 錯卦 (komplement) 家人 Jia Ren (37), pomična 4: tok S=[5, 3, 37, 3, 6, 64, 1, 3, 13, 4], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    6,
+    7,
+    10,
+    13,
+    16,
+    35
+   ],
+   "rang": 57,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 綜卦 (naglavce) 蹇 Jian (39), pomična 3: tok S=[6, 7, 39, 3, 6, 64, 6, 8, 8, 3], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    3,
+    4,
+    5,
+    7,
+    25,
+    43
+   ],
+   "rang": 58,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 錯綜 (oboje) 睽 Kui (38), pomična 3: tok S=[3, 2, 38, 6, 3, 63, 3, 1, 14, 3], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    3,
+    4,
+    6,
+    8,
+    18,
+    40
+   ],
+   "rang": 59,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 本卦 解 Xie (40) izravni brojevi niza S"
+  },
+  {
+   "brojevi": [
+    1,
+    4,
+    7,
+    18,
+    36,
+    40
+   ],
+   "rang": 60,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: brojevi trenutka Z=36, Z+sat=46, KW 40, 63, 7, pomična 4"
+  },
+  {
+   "brojevi": [
+    6,
+    9,
+    10,
+    27,
+    30,
+    36
+   ],
+   "rang": 61,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 互卦 kao korijen 既濟 Ji Ji (63): tok S=[6, 3, 63, 3, 6, 64, 2, 3, 49, 4], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    8,
+    12,
+    14,
+    21,
+    29,
+    33
+   ],
+   "rang": 62,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 變卦 kao korijen 師 Shi (7): tok S=[8, 6, 7, 8, 4, 24, 4, 6, 40, 4], zadnji korak 6"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    5,
+    6,
+    19,
+    37
+   ],
+   "rang": 63,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 錯卦 (komplement) 家人 Jia Ren (37) izravni brojevi niza S"
+  },
+  {
+   "brojevi": [
+    3,
+    6,
+    7,
+    8,
+    19,
+    39
+   ],
+   "rang": 64,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 綜卦 (naglavce) 蹇 Jian (39) izravni brojevi niza S"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    3,
+    6,
+    18,
+    38
+   ],
+   "rang": 65,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: 錯綜 (oboje) 睽 Kui (38) izravni brojevi niza S"
+  },
+  {
+   "brojevi": [
+    1,
+    8,
+    12,
+    16,
+    22,
+    40
+   ],
+   "rang": 66,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 本卦 (temeljni) 解 Xie (40): koraci 7–12 → [40, 1, 8, 12, 16, 22]"
+  },
+  {
+   "brojevi": [
+    4,
+    9,
+    12,
+    29,
+    32,
+    45
+   ],
+   "rang": 67,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 錯卦 (komplement) 家人 Jia Ren (37): koraci 7–12 → [29, 32, 45, 4, 9, 12]"
+  },
+  {
+   "brojevi": [
+    4,
+    12,
+    15,
+    21,
+    28,
+    41
+   ],
+   "rang": 68,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 綜卦 (naglavce) 蹇 Jian (39): koraci 7–12 → [41, 4, 12, 15, 21, 28]"
+  },
+  {
+   "brojevi": [
+    1,
+    4,
+    6,
+    28,
+    29,
+    43
+   ],
+   "rang": 69,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 錯綜 (oboje) 睽 Kui (38): koraci 7–12 → [28, 29, 43, 1, 4, 6]"
+  },
+  {
+   "brojevi": [
+    12,
+    15,
+    19,
+    23,
+    29,
+    32
+   ],
+   "rang": 70,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 互卦 kao korijen 既濟 Ji Ji (63): koraci 7–12 → [12, 15, 19, 23, 29, 32]"
+  },
+  {
+   "brojevi": [
+    16,
+    17,
+    21,
+    22,
+    29,
+    35
+   ],
+   "rang": 71,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 變卦 kao korijen 師 Shi (7): koraci 7–12 → [16, 22, 17, 21, 29, 35]"
+  },
+  {
+   "brojevi": [
+    5,
+    23,
+    25,
+    26,
+    40,
+    41
+   ],
+   "rang": 72,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 本卦 s 後天 brojevima trigrama 解 Xie (40): koraci 13–18 → [40, 41, 5, 23, 25, 26]"
+  },
+  {
+   "brojevi": [
+    7,
+    13,
+    17,
+    23,
+    26,
+    44
+   ],
+   "rang": 73,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 本卦 (temeljni) 解 Xie (40): koraci 13–18 → [17, 23, 26, 44, 7, 13]"
+  },
+  {
+   "brojevi": [
+    4,
+    7,
+    13,
+    32,
+    33,
+    36
+   ],
+   "rang": 74,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 錯卦 (komplement) 家人 Jia Ren (37): koraci 13–18 → [4, 7, 13, 32, 33, 36]"
+  },
+  {
+   "brojevi": [
+    5,
+    11,
+    19,
+    22,
+    25,
+    31
+   ],
+   "rang": 75,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 綜卦 (naglavce) 蹇 Jian (39): koraci 13–18 → [22, 25, 31, 5, 11, 19]"
+  },
+  {
+   "brojevi": [
+    5,
+    8,
+    26,
+    29,
+    30,
+    44
+   ],
+   "rang": 76,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 錯綜 (oboje) 睽 Kui (38): koraci 13–18 → [44, 5, 8, 26, 29, 30]"
+  },
+  {
+   "brojevi": [
+    5,
+    8,
+    14,
+    33,
+    35,
+    38
+   ],
+   "rang": 77,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 互卦 kao korijen 既濟 Ji Ji (63): koraci 13–18 → [5, 8, 14, 33, 35, 38]"
+  },
+  {
+   "brojevi": [
+    5,
+    9,
+    33,
+    37,
+    42,
+    43
+   ],
+   "rang": 78,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 變卦 kao korijen 師 Shi (7): koraci 13–18 → [42, 5, 9, 33, 37, 43]"
+  },
+  {
+   "brojevi": [
+    33,
+    36,
+    37,
+    38,
+    40,
+    41
+   ],
+   "rang": 79,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 本卦 s 後天 brojevima trigrama 解 Xie (40): koraci 19–24 → [33, 37, 40, 41, 36, 38]"
+  },
+  {
+   "brojevi": [
+    20,
+    24,
+    28,
+    29,
+    34,
+    35
+   ],
+   "rang": 80,
+   "obrazlozenje": "sekundarna varijanta sat-grana 10 酉: nastavak toka 本卦 (temeljni) 解 Xie (40): koraci 19–24 → [20, 24, 28, 34, 29, 35]"
+  }
+ ]
+}

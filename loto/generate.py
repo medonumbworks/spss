@@ -513,6 +513,47 @@ class Builder:
             self.notes[c] = "pokrivenost 1–45"
         self.block1_pairs = pairs
 
+    # --------------------------------------------------- blok 3: dopuna rupa
+    def fill_block3_gaps(self):
+        """Ako neka metoda nije dobila 5 kombinacija koje stanu u pakiranje, dopuni je kombinacijom
+        izvedenom iz ključnih brojeva te metode (4 ključna + 2 slobodna), uz sva globalna pravila."""
+        for slug, name in EZO_ORDER:
+            have = [c for c in self.blocks[3] if self.notes[c].startswith(name + ":")]
+            path = EZO_DIR / f"ezo_{slug}.json"
+            if len(have) >= 5 or not path.exists():
+                continue
+            data = json.load(open(path, encoding="utf-8"))
+            key = [int(x) for x in data.get("kljucni_brojevi", []) if 1 <= int(x) <= 45]
+            cands = sorted(data["kandidati"], key=lambda k: k["rang"])
+            pool = Counter(x for k in cands[:30] for x in k["brojevi"])
+            weight = {x: 1.0 + pool.get(x, 0) for x in range(1, 46)}
+            cap = Counter()
+            while len(have) < 5:
+                c = self.construct([(key[:12], 4), (list(range(1, 46)), 2)], weight, cap, cap_max=99,
+                                   final_ok=lambda c: not is_ap(c, 4) and sum(c) >= 60, tries=2000, damp=0.0)
+                if c is None:
+                    c = self.construct([(key[:12], 3), (list(range(1, 46)), 3)], weight, cap, cap_max=99,
+                                       final_ok=lambda c: not is_ap(c, 4) and sum(c) >= 60, tries=2000, damp=0.0)
+                if c is None:
+                    self.log.append(f"blok3 {slug}: dopuna nije uspjela")
+                    break
+                pos = self.blocks[3].index(have[-1]) + 1 if have else len(self.blocks[3])
+                self.pack.add(c)
+                self.blocks[3].insert(pos, c)
+                self.notes[c] = f"{name}: dopuna — 4 ključna broja metode ({', '.join(map(str, key[:12]))}) + 2 slobodna, jer je samo {len(have)} od 80 kandidata stalo u pakiranje"
+                have.append(c)
+                self.log.append(f"blok3 {slug}: dopunjeno na {len(have)}")
+
+    @classmethod
+    def from_json(cls, path=OUT / "set231.json"):
+        b = cls()
+        d = json.load(open(path, encoding="utf-8"))
+        for k in ("3", "2", "4", "1"):
+            for c in d["blokovi"][k]:
+                b.add(int(k), tuple(c), d["napomene"][" ".join(map(str, c))])
+        b.log = d["log"]
+        return b
+
     # ------------------------------------------------------------------ out
     def dump(self, path=OUT / "set231.json"):
         allb = self.blocks[1] + self.blocks[2] + self.blocks[3] + self.blocks[4]
@@ -528,11 +569,19 @@ class Builder:
 
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == "--fill-only":
+        b = Builder.from_json()
+        b.fill_block3_gaps()
+        allb = b.dump()
+        print("\n".join(b.log[-3:]))
+        print("ukupno", len(allb), "različitih", len(set(allb)), "max presjek", C.max_pairwise_overlap(allb))
+        return
     b = Builder()
     b.build_block3()
     b.build_block2()
     b.build_block4()
     b.build_block1(iters=int(sys.argv[1]) if len(sys.argv) > 1 else 600_000)
+    b.fill_block3_gaps()
     allb = b.dump()
     print("\n".join(b.log))
     print("ukupno", len(allb), "različitih", len(set(allb)), "max presjek", C.max_pairwise_overlap(allb))

@@ -58,8 +58,8 @@ def main():
     L = []
     L.append("# Loto 6/45 — 231 kombinacija za četvrtak 29.10.2026. (20:00)\n")
     L.append(f"Ulog **{n * 0.25:.2f} €** ({n} × 0,25 €) na **{-(-n // 10)} listića** (do 10 kombinacija po listiću). "
-             "Generirano reproducibilno (`loto/generate.py`, seed 20261029), svaka tvrdnja niže provjerena "
-             "neovisnom skriptom (`loto/verify.py`) nabrajanjem svih 8.145.060 mogućih izvlačenja.\n")
+             "Generirano reproducibilno (`loto/generate.py`, seed 20261029, blok 1 sa 150.000 iteracija + dopuna bloka 3); "
+             "brojke niže su iz `loto/verify.py` (nabrajanje svih 8.145.060 mogućih izvlačenja).\n")
     L.append("## Jedno pravilo iznad sva četiri bloka\n")
     L.append("**Nijedan par od 231 kombinacije ne dijeli više od 2 broja** — i to vrijedi i prema 10 fiksnih kombinacija "
              "iz PDF-a koje igraš svako kolo. Dvije kombinacije mogu obje imati ≥5 pogodaka u istom izvlačenju samo ako "
@@ -91,9 +91,10 @@ def main():
     # ------------------------------------------------------------------ blok 1
     L.append("---\n\n## Blok 1 — 100 kombinacija: maksimalna pokrivenost raspona 1–45\n")
     L.append(f"Svaki broj se pojavljuje **{b1['freq_min_max'][0]}–{b1['freq_min_max'][1]} puta** (100×6/45 = 13,3). "
-             f"**Svaki od 990 parova brojeva pojavljuje se barem jednom** (pokriveno {b1['pairs_covered']}/990), "
-             f"nijedan par više od {b1['pairs_max']} puta, nijedna trojka dvaput — blok je istodobno 2-pokrivanje i "
-             "3-pakiranje. Svaka kombinacija pokriva barem 4 od 5 pojaseva (1–9, 10–18, 19–27, 28–36, 37–45) i nikad više "
+             f"**Pokriveno je {b1['pairs_covered']} od 990 parova brojeva** (prethodni set: 845), najčešći par "
+             f"{b1['pairs_max']}×, nijedna trojka dvaput — blok je 3-pakiranje i gotovo potpuno 2-pokrivanje "
+             "(lokalno pretraživanje uz globalno pakiranje; preostalih 11 parova nije stalo). Svaka kombinacija pokriva "
+             "barem 4 od 5 pojaseva (1–9, 10–18, 19–27, 28–36, 37–45) i nikad više "
              f"od 3 broja iz istog pojasa (uzorci pojaseva: {b1['band_patterns']}). Profil bloka: zbroj {b1['sum_mean']:.1f} "
              f"(stvarna izvlačenja {ST['sum']['mean']:.1f}), neparnih {b1['odd_mean']:.2f} ({ST['odd']['mean']:.2f}), "
              f"≤31 {b1['le31_mean']:.2f} ({ST['le31']['mean']:.2f}).\n")

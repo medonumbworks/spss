@@ -1,0 +1,981 @@
+{
+ "metoda": "Zapadna astrologija",
+ "slug": "zapadna",
+ "postupak": "# Zapadna astrologija — četvrtak 29.10.2026. u 20:00 CET (19:00 UTC), Zagreb 45,815 N 15,98 E\n\nIzvor efemerida: **ephem** (PyEphem, `compute(datum, epoch=datum)` → `Ecliptic(body).lon`); JD 2461343.29167; LST 22.6069 h = RAMC **339.103°**; ε = 23.436°; Sunce -33.9° ispod horizonta → **noćna karta**.\n\n## 1. Položaji (tropski, datum)\n\n| točka | longituda | položaj | kuća (Placidus) | dostojanstvo | težina |\n|---|---:|---|---:|---|---:|\n| Sunce | 216.374 | 6°22.4' Škorpion | 5 | peregrin | 7 |\n| Mjesec | 85.687 | 25°41.2' Blizanci | 12 | peregrin | 5 |\n| Merkur | 228.798 | 18°47.9' Škorpion | 5 | peregrin | 5 |\n| Venera | 207.411 | 27°24.7' Vaga | 5 | domicil | 10 |\n| Mars | 137.500 | 17°30.0' Lav | 3 | peregrin | 4 |\n| Jupiter | 144.049 | 24°02.9' Lav | 3 | peregrin | 10 |\n| Saturn | 9.421 | 9°25.2' Ovan | 10 | pad | 2.5 |\n| Uran | 64.747 | 4°44.8' Blizanci | 12 |  | 2 |\n| Neptun | 2.125 | 2°07.5' Ovan | 10 |  | 2 |\n| Pluton | 303.109 | 3°06.5' Vodenjak | 8 |  | 2 |\n| Rahu | 326.188 | 26°11.3' Vodenjak | 9 |  | 3 |\n| Ketu | 146.188 | 26°11.3' Lav | 3 |  | 2 |\n| Pars Fortunae | 225.699 | 15°42.0' Škorpion | 5 |  | 8 |\n| Pars Spiritus | 324.326 | 24°19.6' Vodenjak | 9 |  | 4 |\n| Asc | 95.013 | 5°00.8' Rak | - |  | 5 |\n| MC | 337.406 | 7°24.4' Ribe | - |  | 4 |\n\nSrednji čvor (Meeus 47.7) za JD 2461343.2917: Rahu 26°11.3' Vodenjak, Ketu 26°11.3' Lav. Mjesec 82.6 % osvijetljen, 3.6 dana nakon punog (2026/10/26 05:11:45), starost 19.1 dana, elongacija 229.3°.\n\n## 2. Osi i kuće\n\nMC = atan2(sin RAMC, cos RAMC·cos ε) = **7°24.4' Ribe**; Asc = atan2(cos RAMC, −(sin RAMC·cos ε + tan φ·sin ε)) = **5°00.8' Rak**.\n\n| kuća | Placidus | jednaka | vladar vrha (Placidus) |\n|---:|---|---|---|\n| 1 | 5°00.8' Rak | 5°00.8' Rak | Mjesec |\n| 2 | 23°09.7' Rak | 5°00.8' Lav | Mjesec |\n| 3 | 12°44.6' Lav | 5°00.8' Djevica | Sunce |\n| 4 | 7°24.4' Djevica | 5°00.8' Vaga | Merkur |\n| 5 | 11°37.2' Vaga | 5°00.8' Škorpion | Venera |\n| 6 | 25°21.4' Škorpion | 5°00.8' Strijelac | Mars |\n| 7 | 5°00.8' Jarac | 5°00.8' Jarac | Saturn |\n| 8 | 23°09.7' Jarac | 5°00.8' Vodenjak | Saturn |\n| 9 | 12°44.6' Vodenjak | 5°00.8' Ribe | Saturn |\n| 10 | 7°24.4' Ribe | 5°00.8' Ovan | Jupiter |\n| 11 | 11°37.2' Ovan | 5°00.8' Bik | Mars |\n| 12 | 25°21.4' Bik | 5°00.8' Blizanci | Venera |\n\nPlanetski svjedoci igre: u **5. kući** (Placidus) su Sunce, Merkur, Venera i Pars Fortunae; vladar 5. kuće Venera u 5. kući u domicilu. Vladar 2. kuće i Asc: Mjesec; 8.: Saturn; 11.: Mars.\n\n## 3. Pars Fortunae\n\nNoćna karta → PF = Asc − Mjesec + Sunce = 95.01 − 85.69 + 216.37 = **225.70° = 15°42.0' Škorpion** (5. kuća). Dnevna formula / Pars Spiritus = Asc + Mjesec − Sunce = 324.33° = 24°19.6' Vodenjak (9. kuća, konjunkcija s Rahuom).\n\n## 4. Aspekti (orb → broj; kut mod 45; kut/10)\n\n| tijela | aspekt | kut | orb | težina |\n|---|---|---:|---:|---:|\n| Mjesec – Venera | trigon | 120 | 1.72° | 5.88 |\n| Mjesec – Jupiter | sekstil | 60 | 1.64° | 5.45 |\n| Sunce – Asc | trigon | 120 | 1.36° | 4.98 |\n| Sunce – MC | trigon | 120 | 1.03° | 4.79 |\n| Mars – PF | kvadrat | 90 | 1.80° | 4.46 |\n| Merkur – PF | konjunkcija | 0 | 3.10° | 3.98 |\n| Sunce – Jupiter | kvintil | 72 | 0.32° | 3.79 |\n| Merkur – Mars | kvadrat | 90 | 1.30° | 3.67 |\n| Venera – Jupiter | sekstil | 60 | 3.36° | 3.27 |\n| Venera – Rahu | trigon | 120 | 1.22° | 3.22 |\n| Jupiter – Rahu | opozicija | 180 | 2.14° | 2.86 |\n| Venera – Ketu | sekstil | 60 | 1.22° | 2.72 |\n| Sunce – Pluton | kvadrat | 90 | 3.26° | 2.66 |\n| Jupiter – Ketu | konjunkcija | 0 | 2.14° | 2.64 |\n| Jupiter – Saturn | seskvikvadrat | 135 | 0.37° | 2.54 |\n| Mjesec – Rahu | trigon | 120 | 0.50° | 2.25 |\n| Neptun – Asc | kvadrat | 90 | 2.89° | 2.06 |\n| Mjesec – Ketu | sekstil | 60 | 0.50° | 1.92 |\n| Merkur – Jupiter | kvadrat | 90 | 5.25° | 1.87 |\n| Uran – MC | kvadrat | 90 | 2.66° | 1.86 |\n| Neptun – Pluton | sekstil | 60 | 0.98° | 1.61 |\n| Uran – Pluton | trigon | 120 | 1.64° | 1.53 |\n| Uran – Asc | polusekstil | 30 | 0.27° | 1.52 |\n| Saturn – Asc | kvadrat | 90 | 4.41° | 1.39 |\n| Sunce – Uran | kvinkunks | 150 | 1.63° | 1.34 |\n| Mars – Jupiter | konjunkcija | 0 | 6.55° | 1.27 |\n| Mars – Neptun | seskvikvadrat | 135 | 0.38° | 1.22 |\n| Venera – Pluton | kvadrat | 90 | 5.70° | 1.12 |\n| Merkur – Asc | seskvikvadrat | 135 | 1.21° | 0.98 |\n| Uran – Neptun | sekstil | 60 | 2.62° | 0.95 |\n| Mars – Uran | kvintil | 72 | 0.75° | 0.94 |\n| Neptun – PF | seskvikvadrat | 135 | 1.43° | 0.72 |\n| Mjesec – Neptun | kvadrat | 90 | 6.44° | 0.68 |\n| Pluton – Asc | kvinkunks | 150 | 1.90° | 0.64 |\n| Sunce – Saturn | kvinkunks | 150 | 3.05° | 0.57 |\n| Sunce – Ketu | kvintil | 72 | 1.81° | 0.53 |\n| Merkur – Neptun | seskvikvadrat | 135 | 1.67° | 0.29 |\n| Saturn – Neptun | konjunkcija | 0 | 7.30° | 0.20 |\n| Saturn – Uran | sekstil | 60 | 4.67° | 0.15 |\n| Saturn – Rahu | polukvadrat | 45 | 1.77° | 0.10 |\n| Saturn – Ketu | seskvikvadrat | 135 | 1.77° | 0.08 |\n| Sunce – Venera | konjunkcija | 0 | 8.96° | 0.04 |\n\n## 5. Pravila pretvorbe u brojeve\n\n- Za svaku točku s težinom W: stupanj u znaku (zaokružen) ×1.0, longituda mod 45 ×1.0, broj znaka ×0.5, znak+stupanj ×0.6, (znak×stupanj) mod 45 ×0.4, sabijanski redni stupanj ×0.3, kuća planeta ×0.3.\n- Aspekt (sporedni izvor): orb (zaokružen, ≥ 1) ×0.5, kut mod 45 ×0.3 samo kad kut nije višekratnik od 45, kut/10 ×0.3; težina aspekta = prosjek težina tijela × (1 − orb/orb_max) × (1 glavni / 0,5 sporedni), čvorovi ×0,6.\n- Vladari 5., 2., 8., 11. kuće i Asc: bonus na stupanj (3/2/2/2/2) i mod 45 (×0,6).\n- Mjesečeva faza (W 3.0): postotak mod 45, dani nakon punog, starost, elongacija mod 45, lunarni dan.\n\n## 6. Bazen s težinama (silazno)\n\n| broj | težina | glavni izvori |\n|---:|---:|---|\n| 5 | 52.3 | Jupiter znak Lav +5; Asc stupanj 5°00.8' Rak +5; Asc 95.0° mod 45 +5; vrh 5. kuće (jednake) stupanj 5°00.8' Škorpion +5 |\n| 12 | 41.3 | vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga +8; vrh 5. kuće (Placidus) 191.6° mod 45 +8; vrh 11. kuće (Placidus) stupanj 11°37.2' Ovan +6; vrh 11. kuće (Placidus) 11.6° mod 45 +6 |\n| 9 | 37.3 | Jupiter 144.0° mod 45 +10; Venera znak×stupanj 7×27 mod 45 +4; Pars Spiritus 324.3° mod 45 +4; Asc znak+stupanj 4+5 +3 |\n| 27 | 35.4 | Venera stupanj 27°24.7' Vaga +10; Venera 207.4° mod 45 +10; vrh 2. kuće (Placidus) znak+stupanj 4+23 +3.6; Merkur znak+stupanj 8+19 +3 |\n| 1 | 31.7 | Pars Fortunae 225.7° mod 45 +8; vrh 11. kuće (Placidus) znak Ovan +3; Sunce trigon Asc (orb 1.4°) — orb +2.49; Sunce trigon MC (orb 1.0°) — orb +2.4 |\n| 3 | 27.6 | Mars 137.5° mod 45 +4; Jupiter u 3. kući +3; Sunce znak×stupanj 8×6 mod 45 +2.8; Mjesec znak Blizanci +2.5 |\n| 23 | 26.4 | vrh 2. kuće (Placidus) stupanj 23°09.7' Rak +6; vrh 2. kuće (Placidus) 113.2° mod 45 +6; vrh 8. kuće (Placidus) stupanj 23°09.7' Jarac +6; vrh 8. kuće (Placidus) 293.2° mod 45 +6 |\n| 24 | 23.3 | Jupiter stupanj 24°02.9' Lav +10; Pars Fortunae znak+stupanj 8+16 +4.8; Pars Spiritus stupanj 24°19.6' Vodenjak +4; vrh 2. kuće (Placidus) sabijanski 24. stupanj +1.8 |\n| 2 | 22.1 | Mjesec trigon Venera (orb 1.7°) — orb +2.94; Mjesec sekstil Jupiter (orb 1.6°) — orb +2.73; vrh 2. kuće (Placidus) znak×stupanj 4×23 mod 45 +2.4; Mars kvadrat PF (orb 1.8°) — orb +2.23 |\n| 6 | 19.6 | Sunce stupanj 6°22.4' Škorpion +7; Mjesec sekstil Jupiter (orb 1.6°) — kut/10 +1.64; Asc sabijanski 6. stupanj +1.5; vrh 5. kuće (jednake) sabijanski 6. stupanj +1.5 |\n| 7 | 19.3 | Venera znak Vaga +5; MC stupanj 7°24.4' Ribe +4; vrh 5. kuće (Placidus) znak Vaga +4; Sunce sabijanski 7. stupanj +2.1 |\n| 8 | 17.4 | Pars Fortunae znak Škorpion +4; Sunce znak Škorpion +3.5; Merkur znak Škorpion +2.5; vrh 5. kuće (jednake) znak Škorpion +2.5 |\n| 4 | 15.7 | Merkur 228.8° mod 45 +5; vrh 2. kuće (Placidus) znak Rak +3; Asc znak Rak +2.5; 3.6 dana nakon punog Mjeseca +2.4 |\n| 35 | 14.9 | vrh 5. kuće (jednake) 215.0° mod 45 +5; vrh 2. kuće (jednake) 125.0° mod 45 +2.5; vrh 8. kuće (jednake) 305.0° mod 45 +2.5; vrh 11. kuće (jednake) 35.0° mod 45 +2.5 |\n| 26 | 14.9 | Mjesec stupanj 25°41.2' Blizanci +5; Rahu stupanj 26°11.3' Vodenjak +3; Ketu stupanj 26°11.3' Lav +2; Mjesec vladar 2. kuće — stupanj +2 |\n| 19 | 14.6 | Merkur stupanj 18°47.9' Škorpion +5; vrh 5. kuće (Placidus) znak+stupanj 7+12 +4.8; MC znak+stupanj 12+7 +2.4; starost Mjeseca 19.1 dana +2.4 |\n| 10 | 14.1 | vrh 8. kuće (Placidus) znak Jarac +3; Saturn znak+stupanj 1+9 +1.5; vrh 6. kuće (Placidus) 235.4° mod 45 +1.5; vrh 12. kuće (Placidus) 55.4° mod 45 +1.5 |\n| 11 | 11.5 | Rahu 326.2° mod 45 +3; Ketu 146.2° mod 45 +2; Pars Spiritus znak Vodenjak +2; Rahu znak Vodenjak +1.5 |\n| 30 | 11.3 | Jupiter znak×stupanj 5×24 mod 45 +4; Mjesec trigon Venera (orb 1.7°) — kut 120 mod 45 +1.77; Sunce trigon Asc (orb 1.4°) — kut 120 mod 45 +1.49; Sunce trigon MC (orb 1.0°) — kut 120 mod 45 +1.44 |\n| 13 | 10.8 | vrh 11. kuće (Placidus) znak+stupanj 1+12 +3.6; vrh 5. kuće (jednake) znak+stupanj 8+5 +3; vrh 3. kuće (Placidus) stupanj 12°44.6' Lav +1.5; vrh 9. kuće (Placidus) stupanj 12°44.6' Vodenjak +1.5 |\n| 16 | 10.7 | Pars Fortunae stupanj 15°42.0' Škorpion +8; vrh 8. kuće (jednake) znak+stupanj 11+5 +1.5; Rahu znak×stupanj 11×26 mod 45 +1.2 |\n| 33 | 9.3 | vrh 8. kuće (Placidus) znak+stupanj 10+23 +3.6; Mjesec znak×stupanj 3×26 mod 45 +2; Pluton 303.1° mod 45 +2; vrh 6. kuće (Placidus) znak+stupanj 8+25 +0.9 |\n| 29 | 9.0 | Jupiter znak+stupanj 5+24 +6; Mjesec znak+stupanj 3+26 +3 |\n| 15 | 8.3 | Mjesec sekstil Jupiter (orb 1.6°) — kut 60 mod 45 +1.64; Dsc znak+stupanj 10+5 +1.2; Venera sekstil Jupiter (orb 3.4°) — kut 60 mod 45 +0.98; Venera sekstil Ketu (orb 1.2°) — kut 60 mod 45 +0.82 |\n| 25 | 8.2 | Jupiter sabijanski 25. stupanj +3; vrh 6. kuće (Placidus) stupanj 25°21.4' Škorpion +1.5; vrh 12. kuće (Placidus) stupanj 25°21.4' Bik +1.5; Pars Spiritus sabijanski 25. stupanj +1.2 |\n| 18 | 7.8 | Mars stupanj 17°30.0' Lav +4; Mars vladar 11. kuće — stupanj +2; vrh 3. kuće (Placidus) znak+stupanj 5+13 +0.9; Jupiter opozicija Rahu (orb 2.1°) — kut/10 +0.86 |\n| 41 | 7.4 | Mjesec 85.7° mod 45 +5; Mjesec vladar 2. kuće — mod 45 +1.2; Mjesec vladar 1. kuće — mod 45 +1.2 |\n| 36 | 7.0 | Sunce 216.4° mod 45 +7 |\n| 20 | 6.7 | Uran 64.7° mod 45 +2; Asc znak×stupanj 4×5 mod 45 +2; lunarni dan 20 +1.5; vrh 3. kuće (Placidus) znak×stupanj 5×13 mod 45 +0.6 |\n| 39 | 6.4 | vrh 5. kuće (Placidus) znak×stupanj 7×12 mod 45 +3.2; MC znak×stupanj 12×7 mod 45 +1.6; Pars Spiritus znak×stupanj 11×24 mod 45 +1.6 |\n| 38 | 6.2 | Pars Fortunae znak×stupanj 8×16 mod 45 +3.2; faza 82.6 % → 83 mod 45 +3 |\n| 22 | 6.0 | MC 337.4° mod 45 +4; IC 157.4° mod 45 +2 |\n| 34 | 6.0 | Venera znak+stupanj 7+27 +6 |\n| 14 | 5.4 | Sunce znak+stupanj 8+6 +4.2; Pluton znak+stupanj 11+3 +1.2 |\n| 28 | 3.0 | Venera sabijanski 28. stupanj +3 |\n| 43 | 3.0 | vrh 3. kuće (Placidus) 132.7° mod 45 +1.5; vrh 9. kuće (Placidus) 312.7° mod 45 +1.5 |\n| 40 | 2.8 | vrh 5. kuće (jednake) znak×stupanj 8×5 mod 45 +2; Ketu znak×stupanj 5×26 mod 45 +0.8 |\n| 17 | 2.0 | Merkur znak×stupanj 8×19 mod 45 +2 |\n| 37 | 1.8 | Rahu znak+stupanj 11+26 +1.8 |\n| 45 | 1.6 | Mars znak×stupanj 5×18 mod 45 +1.6 |\n| 31 | 1.2 | Ketu znak+stupanj 5+26 +1.2 |\n| 42 | 0.8 | IC znak×stupanj 6×7 mod 45 +0.8 |\n\n## 7. Pravila generiranja i rangiranja\n\n1. Rang 1–14: KANONSKI skupovi — izravne derivacije po prioritetu metode: Jupiter, Venera, 5. kuća, Pars Fortunae, novčane kuće, svjetla, osi, Jupiterovi aspekti, stupnjevi, longitude mod 45, znak+stupanj, Mjesec/čvor, vladari, jednake kuće.\n2. Rang 15+: svi 6-člani podskupovi 28 najtežih brojeva bazena; rang po zbroju težina; prihvaćen samo skup s ≤ 3 zajednička broja sa svakim već prihvaćenim; penal 1,2 po svakom prijašnjem korištenju broja (raznolikost). Argmax je prvi po indeksu → deterministično.\n3. Nema slučajnosti: karta neba je čisti izračun.\n\n## 8. Kanonski skupovi\n\n1. `03 · 05 · 09 · 24 · 29 · 30` — JUPITER 24°02.9' Lav: stupanj, 144 mod 45, znak+stupanj, znak×stupanj, znak Lav, 3. kuća\n2. `02 · 05 · 07 · 09 · 27 · 34` — VENERA 27°24.7' Vaga (domicil, vladar 5. kuće): stupanj = 207 mod 45 = 27, znak Vaga 7, 7+27, 7×27 mod 45, 5. kuća\n3. `05 · 07 · 12 · 19 · 35 · 39` — 5. KUĆA (igra): Placidus 11°37.2' Vaga → 12 (i 191,6 mod 45 = 12), Vaga 7, 7+12, 7×12 mod 45; jednaka 5°00.8' Škorpion → 5, 35\n4. `01 · 08 · 09 · 16 · 24 · 38` — PARS FORTUNAE (noćna) 15°42.0' Škorpion → 16, 1, 8+16, 8×16 mod 45; Pars Spiritus 24°19.6' Vodenjak → 24, 9\n5. `04 · 12 · 13 · 23 · 27 · 33` — NOVČANE KUĆE: vrh 2. 23°09.7' Rak → 23 (= 113 mod 45), 4+23; vrh 8. 23°09.7' Jarac → 23, 10+23; vrh 11. 11°37.2' Ovan → 12, 1+12\n6. `06 · 14 · 26 · 29 · 36 · 41` — SVJETLA: Sunce 6°22.4' Škorpion (5. kuća) → 6, 36, 14; Mjesec 25°41.2' Blizanci → 26, 41, 29\n7. `05 · 07 · 09 · 19 · 20 · 22` — OSI: Asc 5°00.8' Rak → 5, 4+5, 4×5; MC 7°24.4' Ribe → 7, 337 mod 45 = 22, 12+7, 12×7 mod 45\n8. `01 · 02 · 03 · 05 · 15 · 27` — ASPEKTI JUPITERA: orbovi sekstil Mjesec 1.6°, kvintil Sunce 0.3°, sekstil Venera 3.4°, opozicija Rahu 2.1°, konjunkcija Ketu 2.1°; kutovi mod 45 (sekstil 15, kvintil 27, kvadrat/konjunkcija preskočeni)\n9. `06 · 18 · 19 · 24 · 26 · 27` — STUPNJEVI PLANETA po težini: Venera 27, Jupiter 24, Sunce 6, Mjesec 26, Merkur 19, Mars 18, Saturn 9\n10. `03 · 04 · 09 · 27 · 36 · 41` — LONGITUDE mod 45 po težini: Venera 207→27, Jupiter 144→9, Sunce 216→36, Mjesec 86→41, Merkur 229→4, Mars 138→3, Saturn 9→9\n11. `10 · 14 · 23 · 27 · 29 · 34` — ZNAK+STUPANJ po težini: Venera 7+27, Jupiter 5+24, Sunce 8+6, Mjesec 3+26, Merkur 8+19, Mars 5+18, Saturn 1+9\n12. `04 · 11 · 19 · 26 · 37 · 38` — MJESEC I ČVOR: faza 82.6 % → 38, 3.6 d nakon punog → 4, starost → 19; Rahu 26°11.3' Vodenjak → 26, 11, 37\n13. `03 · 09 · 18 · 26 · 27 · 41` — VLADARI: 5. kuća → Venera 27/27, 2. kuća → Mjesec 26/41, 8. kuća → Saturn 9/9, 11. kuća → Mars 18/3, 1. kuća → Mjesec 26/41\n14. `05 · 10 · 13 · 16 · 35 · 40` — JEDNAKE KUĆE: 5. 5°00.8' Škorpion → 5, 35, 13, 40; 11. 5°00.8' Bik → 20; 2. 5°00.8' Lav → 10; 8. 5°00.8' Vodenjak → 16",
+ "kljucni_brojevi": [
+  5,
+  12,
+  9,
+  27,
+  1,
+  3,
+  23,
+  24,
+  2,
+  6,
+  7,
+  8
+ ],
+ "kandidati": [
+  {
+   "brojevi": [
+    3,
+    5,
+    9,
+    24,
+    29,
+    30
+   ],
+   "rang": 1,
+   "obrazlozenje": "Kanon: JUPITER 24°02.9' Lav: stupanj, 144 mod 45, znak+stupanj, znak×stupanj, znak Lav, 3. kuća (težina 160.8)"
+  },
+  {
+   "brojevi": [
+    2,
+    5,
+    7,
+    9,
+    27,
+    34
+   ],
+   "rang": 2,
+   "obrazlozenje": "Kanon: VENERA 27°24.7' Vaga (domicil, vladar 5. kuće): stupanj = 207 mod 45 = 27, znak Vaga 7, 7+27, 7×27 mod 45, 5. kuća (težina 172.5)"
+  },
+  {
+   "brojevi": [
+    5,
+    7,
+    12,
+    19,
+    35,
+    39
+   ],
+   "rang": 3,
+   "obrazlozenje": "Kanon: 5. KUĆA (igra): Placidus 11°37.2' Vaga → 12 (i 191,6 mod 45 = 12), Vaga 7, 7+12, 7×12 mod 45; jednaka 5°00.8' Škorpion → 5, 35 (težina 148.8)"
+  },
+  {
+   "brojevi": [
+    1,
+    8,
+    9,
+    16,
+    24,
+    38
+   ],
+   "rang": 4,
+   "obrazlozenje": "Kanon: PARS FORTUNAE (noćna) 15°42.0' Škorpion → 16, 1, 8+16, 8×16 mod 45; Pars Spiritus 24°19.6' Vodenjak → 24, 9 (težina 126.7)"
+  },
+  {
+   "brojevi": [
+    4,
+    12,
+    13,
+    23,
+    27,
+    33
+   ],
+   "rang": 5,
+   "obrazlozenje": "Kanon: NOVČANE KUĆE: vrh 2. 23°09.7' Rak → 23 (= 113 mod 45), 4+23; vrh 8. 23°09.7' Jarac → 23, 10+23; vrh 11. 11°37.2' Ovan → 12, 1+12 (težina 138.9)"
+  },
+  {
+   "brojevi": [
+    6,
+    14,
+    26,
+    29,
+    36,
+    41
+   ],
+   "rang": 6,
+   "obrazlozenje": "Kanon: SVJETLA: Sunce 6°22.4' Škorpion (5. kuća) → 6, 36, 14; Mjesec 25°41.2' Blizanci → 26, 41, 29 (težina 63.3)"
+  },
+  {
+   "brojevi": [
+    5,
+    7,
+    9,
+    19,
+    20,
+    22
+   ],
+   "rang": 7,
+   "obrazlozenje": "Kanon: OSI: Asc 5°00.8' Rak → 5, 4+5, 4×5; MC 7°24.4' Ribe → 7, 337 mod 45 = 22, 12+7, 12×7 mod 45 (težina 136.3)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    3,
+    5,
+    15,
+    27
+   ],
+   "rang": 8,
+   "obrazlozenje": "Kanon: ASPEKTI JUPITERA: orbovi sekstil Mjesec 1.6°, kvintil Sunce 0.3°, sekstil Venera 3.4°, opozicija Rahu 2.1°, konjunkcija Ketu 2.1°; kutovi mod 45 (sekstil 15, kvintil 27, kvadrat/konjunkcija preskočeni) (težina 177.4)"
+  },
+  {
+   "brojevi": [
+    6,
+    18,
+    19,
+    24,
+    26,
+    27
+   ],
+   "rang": 9,
+   "obrazlozenje": "Kanon: STUPNJEVI PLANETA po težini: Venera 27, Jupiter 24, Sunce 6, Mjesec 26, Merkur 19, Mars 18, Saturn 9 (težina 115.5)"
+  },
+  {
+   "brojevi": [
+    3,
+    4,
+    9,
+    27,
+    36,
+    41
+   ],
+   "rang": 10,
+   "obrazlozenje": "Kanon: LONGITUDE mod 45 po težini: Venera 207→27, Jupiter 144→9, Sunce 216→36, Mjesec 86→41, Merkur 229→4, Mars 138→3, Saturn 9→9 (težina 130.5)"
+  },
+  {
+   "brojevi": [
+    10,
+    14,
+    23,
+    27,
+    29,
+    34
+   ],
+   "rang": 11,
+   "obrazlozenje": "Kanon: ZNAK+STUPANJ po težini: Venera 7+27, Jupiter 5+24, Sunce 8+6, Mjesec 3+26, Merkur 8+19, Mars 5+18, Saturn 1+9 (težina 96.3)"
+  },
+  {
+   "brojevi": [
+    4,
+    11,
+    19,
+    26,
+    37,
+    38
+   ],
+   "rang": 12,
+   "obrazlozenje": "Kanon: MJESEC I ČVOR: faza 82.6 % → 38, 3.6 d nakon punog → 4, starost → 19; Rahu 26°11.3' Vodenjak → 26, 11, 37 (težina 64.7)"
+  },
+  {
+   "brojevi": [
+    3,
+    9,
+    18,
+    26,
+    27,
+    41
+   ],
+   "rang": 13,
+   "obrazlozenje": "Kanon: VLADARI: 5. kuća → Venera 27/27, 2. kuća → Mjesec 26/41, 8. kuća → Saturn 9/9, 11. kuća → Mars 18/3, 1. kuća → Mjesec 26/41 (težina 130.4)"
+  },
+  {
+   "brojevi": [
+    5,
+    10,
+    13,
+    16,
+    35,
+    40
+   ],
+   "rang": 14,
+   "obrazlozenje": "Kanon: JEDNAKE KUĆE: 5. 5°00.8' Škorpion → 5, 35, 13, 40; 11. 5°00.8' Bik → 20; 2. 5°00.8' Lav → 10; 8. 5°00.8' Vodenjak → 16 (težina 105.6)"
+  },
+  {
+   "brojevi": [
+    1,
+    5,
+    9,
+    12,
+    23,
+    27
+   ],
+   "rang": 15,
+   "obrazlozenje": "Bazen (težina 224.4): 1(Pars Fortunae 225.7° mod 45) · 5(Jupiter znak Lav) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    2,
+    3,
+    5,
+    6,
+    9,
+    12
+   ],
+   "rang": 16,
+   "obrazlozenje": "Bazen (težina 200.3): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 3(Mars 137.5° mod 45) · 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga)"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    5,
+    8,
+    12,
+    24
+   ],
+   "rang": 17,
+   "obrazlozenje": "Bazen (težina 193.7): 1(Pars Fortunae 225.7° mod 45) · 3(Mars 137.5° mod 45) · 5(Jupiter znak Lav) · 8(Pars Fortunae znak Škorpion) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 24(Jupiter stupanj 24°02.9' Lav)"
+  },
+  {
+   "brojevi": [
+    5,
+    6,
+    7,
+    12,
+    24,
+    27
+   ],
+   "rang": 18,
+   "obrazlozenje": "Bazen (težina 191.2): 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 7(Venera znak Vaga) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 24(Jupiter stupanj 24°02.9' Lav) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    4,
+    5,
+    7,
+    12
+   ],
+   "rang": 19,
+   "obrazlozenje": "Bazen (težina 182.4): 1(Pars Fortunae 225.7° mod 45) · 2(Mjesec trigon Venera (orb 1.7°) — orb) · 4(Merkur 228.8° mod 45) · 5(Jupiter znak Lav) · 7(Venera znak Vaga) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga)"
+  },
+  {
+   "brojevi": [
+    2,
+    5,
+    12,
+    23,
+    24,
+    35
+   ],
+   "rang": 20,
+   "obrazlozenje": "Bazen (težina 180.3): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 5(Jupiter znak Lav) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 24(Jupiter stupanj 24°02.9' Lav) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    10,
+    12,
+    27,
+    35
+   ],
+   "rang": 21,
+   "obrazlozenje": "Bazen (težina 185.6): 3(Mars 137.5° mod 45) · 5(Jupiter znak Lav) · 10(vrh 8. kuće (Placidus) znak Jarac) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 27(Venera stupanj 27°24.7' Vaga) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    5,
+    7,
+    8,
+    9,
+    10,
+    12
+   ],
+   "rang": 22,
+   "obrazlozenje": "Bazen (težina 181.8): 5(Jupiter znak Lav) · 7(Venera znak Vaga) · 8(Pars Fortunae znak Škorpion) · 9(Jupiter 144.0° mod 45) · 10(vrh 8. kuće (Placidus) znak Jarac) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    5,
+    9,
+    11,
+    24
+   ],
+   "rang": 23,
+   "obrazlozenje": "Bazen (težina 178.2): 1(Pars Fortunae 225.7° mod 45) · 2(Mjesec trigon Venera (orb 1.7°) — orb) · 5(Jupiter znak Lav) · 9(Jupiter 144.0° mod 45) · 11(Rahu 326.2° mod 45) · 24(Jupiter stupanj 24°02.9' Lav)"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    6,
+    8,
+    23,
+    27
+   ],
+   "rang": 24,
+   "obrazlozenje": "Bazen (težina 178.7): 3(Mars 137.5° mod 45) · 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 8(Pars Fortunae znak Škorpion) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    4,
+    5,
+    9,
+    12,
+    24,
+    26
+   ],
+   "rang": 25,
+   "obrazlozenje": "Bazen (težina 184.8): 4(Merkur 228.8° mod 45) · 5(Jupiter znak Lav) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 24(Jupiter stupanj 24°02.9' Lav) · 26(Mjesec stupanj 25°41.2' Blizanci)"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    5,
+    7,
+    9,
+    35
+   ],
+   "rang": 26,
+   "obrazlozenje": "Bazen (težina 183.2): 1(Pars Fortunae 225.7° mod 45) · 3(Mars 137.5° mod 45) · 5(Jupiter znak Lav) · 7(Venera znak Vaga) · 9(Jupiter 144.0° mod 45) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    2,
+    5,
+    8,
+    12,
+    27,
+    30
+   ],
+   "rang": 27,
+   "obrazlozenje": "Bazen (težina 179.8): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 5(Jupiter znak Lav) · 8(Pars Fortunae znak Škorpion) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 27(Venera stupanj 27°24.7' Vaga) · 30(Jupiter znak×stupanj 5×24 mod 45)"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    7,
+    11,
+    12,
+    23
+   ],
+   "rang": 28,
+   "obrazlozenje": "Bazen (težina 178.5): 3(Mars 137.5° mod 45) · 5(Jupiter znak Lav) · 7(Venera znak Vaga) · 11(Rahu 326.2° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak)"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    6,
+    9,
+    24,
+    27
+   ],
+   "rang": 29,
+   "obrazlozenje": "Bazen (težina 174.9): 1(Pars Fortunae 225.7° mod 45) · 3(Mars 137.5° mod 45) · 6(Sunce stupanj 6°22.4' Škorpion) · 9(Jupiter 144.0° mod 45) · 24(Jupiter stupanj 24°02.9' Lav) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    1,
+    5,
+    6,
+    10,
+    12,
+    19
+   ],
+   "rang": 30,
+   "obrazlozenje": "Bazen (težina 173.6): 1(Pars Fortunae 225.7° mod 45) · 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 10(vrh 8. kuće (Placidus) znak Jarac) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 19(Merkur stupanj 18°47.9' Škorpion)"
+  },
+  {
+   "brojevi": [
+    2,
+    4,
+    5,
+    8,
+    9,
+    23
+   ],
+   "rang": 31,
+   "obrazlozenje": "Bazen (težina 171.3): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 4(Merkur 228.8° mod 45) · 5(Jupiter znak Lav) · 8(Pars Fortunae znak Škorpion) · 9(Jupiter 144.0° mod 45) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    3,
+    12,
+    23,
+    26
+   ],
+   "rang": 32,
+   "obrazlozenje": "Bazen (težina 164.0): 1(Pars Fortunae 225.7° mod 45) · 2(Mjesec trigon Venera (orb 1.7°) — orb) · 3(Mars 137.5° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 26(Mjesec stupanj 25°41.2' Blizanci)"
+  },
+  {
+   "brojevi": [
+    5,
+    8,
+    9,
+    24,
+    27,
+    35
+   ],
+   "rang": 33,
+   "obrazlozenje": "Bazen (težina 180.7): 5(Jupiter znak Lav) · 8(Pars Fortunae znak Škorpion) · 9(Jupiter 144.0° mod 45) · 24(Jupiter stupanj 24°02.9' Lav) · 27(Venera stupanj 27°24.7' Vaga) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    7,
+    12,
+    27,
+    30
+   ],
+   "rang": 34,
+   "obrazlozenje": "Bazen (težina 166.6): 1(Pars Fortunae 225.7° mod 45) · 3(Mars 137.5° mod 45) · 7(Venera znak Vaga) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 27(Venera stupanj 27°24.7' Vaga) · 30(Jupiter znak×stupanj 5×24 mod 45)"
+  },
+  {
+   "brojevi": [
+    5,
+    6,
+    9,
+    19,
+    23,
+    24
+   ],
+   "rang": 35,
+   "obrazlozenje": "Bazen (težina 173.5): 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 9(Jupiter 144.0° mod 45) · 19(Merkur stupanj 18°47.9' Škorpion) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 24(Jupiter stupanj 24°02.9' Lav)"
+  },
+  {
+   "brojevi": [
+    1,
+    5,
+    12,
+    13,
+    16,
+    25
+   ],
+   "rang": 36,
+   "obrazlozenje": "Bazen (težina 155.0): 1(Pars Fortunae 225.7° mod 45) · 5(Jupiter znak Lav) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 13(vrh 11. kuće (Placidus) znak+stupanj 1+12) · 16(Pars Fortunae stupanj 15°42.0' Škorpion) · 25(Jupiter sabijanski 25. stupanj)"
+  },
+  {
+   "brojevi": [
+    2,
+    9,
+    10,
+    12,
+    24,
+    27
+   ],
+   "rang": 37,
+   "obrazlozenje": "Bazen (težina 173.5): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 9(Jupiter 144.0° mod 45) · 10(vrh 8. kuće (Placidus) znak Jarac) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 24(Jupiter stupanj 24°02.9' Lav) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    4,
+    5,
+    23,
+    33
+   ],
+   "rang": 38,
+   "obrazlozenje": "Bazen (težina 163.0): 1(Pars Fortunae 225.7° mod 45) · 3(Mars 137.5° mod 45) · 4(Merkur 228.8° mod 45) · 5(Jupiter znak Lav) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 33(vrh 8. kuće (Placidus) znak+stupanj 10+23)"
+  },
+  {
+   "brojevi": [
+    5,
+    9,
+    11,
+    12,
+    30,
+    35
+   ],
+   "rang": 39,
+   "obrazlozenje": "Bazen (težina 168.6): 5(Jupiter znak Lav) · 9(Jupiter 144.0° mod 45) · 11(Rahu 326.2° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 30(Jupiter znak×stupanj 5×24 mod 45) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    5,
+    6,
+    8,
+    9,
+    26
+   ],
+   "rang": 40,
+   "obrazlozenje": "Bazen (težina 173.3): 1(Pars Fortunae 225.7° mod 45) · 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 8(Pars Fortunae znak Škorpion) · 9(Jupiter 144.0° mod 45) · 26(Mjesec stupanj 25°41.2' Blizanci)"
+  },
+  {
+   "brojevi": [
+    3,
+    12,
+    19,
+    23,
+    24,
+    27
+   ],
+   "rang": 41,
+   "obrazlozenje": "Bazen (težina 168.6): 3(Mars 137.5° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 19(Merkur stupanj 18°47.9' Škorpion) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 24(Jupiter stupanj 24°02.9' Lav) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    6,
+    12,
+    13,
+    27
+   ],
+   "rang": 42,
+   "obrazlozenje": "Bazen (težina 160.8): 1(Pars Fortunae 225.7° mod 45) · 2(Mjesec trigon Venera (orb 1.7°) — orb) · 6(Sunce stupanj 6°22.4' Škorpion) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 13(vrh 11. kuće (Placidus) znak+stupanj 1+12) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    9,
+    16,
+    25,
+    27
+   ],
+   "rang": 43,
+   "obrazlozenje": "Bazen (težina 171.6): 3(Mars 137.5° mod 45) · 5(Jupiter znak Lav) · 9(Jupiter 144.0° mod 45) · 16(Pars Fortunae stupanj 15°42.0' Škorpion) · 25(Jupiter sabijanski 25. stupanj) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    4,
+    5,
+    6,
+    12,
+    15,
+    23
+   ],
+   "rang": 44,
+   "obrazlozenje": "Bazen (težina 163.6): 4(Merkur 228.8° mod 45) · 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 15(Mjesec sekstil Jupiter (orb 1.6°) — kut 60 mod 45) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak)"
+  },
+  {
+   "brojevi": [
+    1,
+    5,
+    7,
+    8,
+    27,
+    33
+   ],
+   "rang": 45,
+   "obrazlozenje": "Bazen (težina 165.5): 1(Pars Fortunae 225.7° mod 45) · 5(Jupiter znak Lav) · 7(Venera znak Vaga) · 8(Pars Fortunae znak Škorpion) · 27(Venera stupanj 27°24.7' Vaga) · 33(vrh 8. kuće (Placidus) znak+stupanj 10+23)"
+  },
+  {
+   "brojevi": [
+    2,
+    7,
+    9,
+    12,
+    23,
+    30
+   ],
+   "rang": 46,
+   "obrazlozenje": "Bazen (težina 157.7): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 7(Venera znak Vaga) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 30(Jupiter znak×stupanj 5×24 mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    5,
+    11,
+    12,
+    15,
+    26
+   ],
+   "rang": 47,
+   "obrazlozenje": "Bazen (težina 160.0): 1(Pars Fortunae 225.7° mod 45) · 5(Jupiter znak Lav) · 11(Rahu 326.2° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 15(Mjesec sekstil Jupiter (orb 1.6°) — kut 60 mod 45) · 26(Mjesec stupanj 25°41.2' Blizanci)"
+  },
+  {
+   "brojevi": [
+    3,
+    5,
+    9,
+    10,
+    13,
+    23
+   ],
+   "rang": 48,
+   "obrazlozenje": "Bazen (težina 168.6): 3(Mars 137.5° mod 45) · 5(Jupiter znak Lav) · 9(Jupiter 144.0° mod 45) · 10(vrh 8. kuće (Placidus) znak Jarac) · 13(vrh 11. kuće (Placidus) znak+stupanj 1+12) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    8,
+    9,
+    12,
+    35
+   ],
+   "rang": 49,
+   "obrazlozenje": "Bazen (težina 164.8): 1(Pars Fortunae 225.7° mod 45) · 2(Mjesec trigon Venera (orb 1.7°) — orb) · 8(Pars Fortunae znak Škorpion) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    4,
+    5,
+    19,
+    24,
+    27
+   ],
+   "rang": 50,
+   "obrazlozenje": "Bazen (težina 173.0): 1(Pars Fortunae 225.7° mod 45) · 4(Merkur 228.8° mod 45) · 5(Jupiter znak Lav) · 19(Merkur stupanj 18°47.9' Škorpion) · 24(Jupiter stupanj 24°02.9' Lav) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    5,
+    11,
+    12,
+    16,
+    27,
+    33
+   ],
+   "rang": 51,
+   "obrazlozenje": "Bazen (težina 160.5): 5(Jupiter znak Lav) · 11(Rahu 326.2° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 16(Pars Fortunae stupanj 15°42.0' Škorpion) · 27(Venera stupanj 27°24.7' Vaga) · 33(vrh 8. kuće (Placidus) znak+stupanj 10+23)"
+  },
+  {
+   "brojevi": [
+    3,
+    8,
+    9,
+    12,
+    23,
+    25
+   ],
+   "rang": 52,
+   "obrazlozenje": "Bazen (težina 158.3): 3(Mars 137.5° mod 45) · 8(Pars Fortunae znak Škorpion) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 25(Jupiter sabijanski 25. stupanj)"
+  },
+  {
+   "brojevi": [
+    1,
+    5,
+    7,
+    10,
+    23,
+    24
+   ],
+   "rang": 53,
+   "obrazlozenje": "Bazen (težina 167.1): 1(Pars Fortunae 225.7° mod 45) · 5(Jupiter znak Lav) · 7(Venera znak Vaga) · 10(vrh 8. kuće (Placidus) znak Jarac) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 24(Jupiter stupanj 24°02.9' Lav)"
+  },
+  {
+   "brojevi": [
+    5,
+    6,
+    9,
+    18,
+    27,
+    29
+   ],
+   "rang": 54,
+   "obrazlozenje": "Bazen (težina 161.4): 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 9(Jupiter 144.0° mod 45) · 18(Mars stupanj 17°30.0' Lav) · 27(Venera stupanj 27°24.7' Vaga) · 29(Jupiter znak+stupanj 5+24)"
+  },
+  {
+   "brojevi": [
+    1,
+    12,
+    24,
+    26,
+    27,
+    35
+   ],
+   "rang": 55,
+   "obrazlozenje": "Bazen (težina 161.5): 1(Pars Fortunae 225.7° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 24(Jupiter stupanj 24°02.9' Lav) · 26(Mjesec stupanj 25°41.2' Blizanci) · 27(Venera stupanj 27°24.7' Vaga) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    5,
+    6,
+    23,
+    30
+   ],
+   "rang": 56,
+   "obrazlozenje": "Bazen (težina 163.3): 1(Pars Fortunae 225.7° mod 45) · 2(Mjesec trigon Venera (orb 1.7°) — orb) · 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 30(Jupiter znak×stupanj 5×24 mod 45)"
+  },
+  {
+   "brojevi": [
+    3,
+    9,
+    12,
+    13,
+    15,
+    27
+   ],
+   "rang": 57,
+   "obrazlozenje": "Bazen (težina 160.8): 3(Mars 137.5° mod 45) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 13(vrh 11. kuće (Placidus) znak+stupanj 1+12) · 15(Mjesec sekstil Jupiter (orb 1.6°) — kut 60 mod 45) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    5,
+    9,
+    12,
+    16,
+    19,
+    36
+   ],
+   "rang": 58,
+   "obrazlozenje": "Bazen (težina 163.3): 5(Jupiter znak Lav) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 16(Pars Fortunae stupanj 15°42.0' Škorpion) · 19(Merkur stupanj 18°47.9' Škorpion) · 36(Sunce 216.4° mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    7,
+    23,
+    25,
+    27
+   ],
+   "rang": 59,
+   "obrazlozenje": "Bazen (težina 143.1): 1(Pars Fortunae 225.7° mod 45) · 2(Mjesec trigon Venera (orb 1.7°) — orb) · 7(Venera znak Vaga) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 25(Jupiter sabijanski 25. stupanj) · 27(Venera stupanj 27°24.7' Vaga)"
+  },
+  {
+   "brojevi": [
+    3,
+    4,
+    9,
+    10,
+    12,
+    33
+   ],
+   "rang": 60,
+   "obrazlozenje": "Bazen (težina 145.4): 3(Mars 137.5° mod 45) · 4(Merkur 228.8° mod 45) · 9(Jupiter 144.0° mod 45) · 10(vrh 8. kuće (Placidus) znak Jarac) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 33(vrh 8. kuće (Placidus) znak+stupanj 10+23)"
+  },
+  {
+   "brojevi": [
+    5,
+    8,
+    11,
+    18,
+    23,
+    29
+   ],
+   "rang": 61,
+   "obrazlozenje": "Bazen (težina 124.4): 5(Jupiter znak Lav) · 8(Pars Fortunae znak Škorpion) · 11(Rahu 326.2° mod 45) · 18(Mars stupanj 17°30.0' Lav) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 29(Jupiter znak+stupanj 5+24)"
+  },
+  {
+   "brojevi": [
+    2,
+    5,
+    6,
+    26,
+    27,
+    35
+   ],
+   "rang": 62,
+   "obrazlozenje": "Bazen (težina 159.2): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 5(Jupiter znak Lav) · 6(Sunce stupanj 6°22.4' Škorpion) · 26(Mjesec stupanj 25°41.2' Blizanci) · 27(Venera stupanj 27°24.7' Vaga) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    12,
+    19,
+    24,
+    30,
+    41
+   ],
+   "rang": 63,
+   "obrazlozenje": "Bazen (težina 129.5): 1(Pars Fortunae 225.7° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 19(Merkur stupanj 18°47.9' Škorpion) · 24(Jupiter stupanj 24°02.9' Lav) · 30(Jupiter znak×stupanj 5×24 mod 45) · 41(Mjesec 85.7° mod 45)"
+  },
+  {
+   "brojevi": [
+    3,
+    4,
+    7,
+    9,
+    15,
+    23
+   ],
+   "rang": 64,
+   "obrazlozenje": "Bazen (težina 134.8): 3(Mars 137.5° mod 45) · 4(Merkur 228.8° mod 45) · 7(Venera znak Vaga) · 9(Jupiter 144.0° mod 45) · 15(Mjesec sekstil Jupiter (orb 1.6°) — kut 60 mod 45) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak)"
+  },
+  {
+   "brojevi": [
+    10,
+    13,
+    16,
+    25,
+    33,
+    36
+   ],
+   "rang": 65,
+   "obrazlozenje": "Bazen (težina 60.1): 10(vrh 8. kuće (Placidus) znak Jarac) · 13(vrh 11. kuće (Placidus) znak+stupanj 1+12) · 16(Pars Fortunae stupanj 15°42.0' Škorpion) · 25(Jupiter sabijanski 25. stupanj) · 33(vrh 8. kuće (Placidus) znak+stupanj 10+23) · 36(Sunce 216.4° mod 45)"
+  },
+  {
+   "brojevi": [
+    5,
+    11,
+    24,
+    26,
+    27,
+    29
+   ],
+   "rang": 66,
+   "obrazlozenje": "Bazen (težina 146.4): 5(Jupiter znak Lav) · 11(Rahu 326.2° mod 45) · 24(Jupiter stupanj 24°02.9' Lav) · 26(Mjesec stupanj 25°41.2' Blizanci) · 27(Venera stupanj 27°24.7' Vaga) · 29(Jupiter znak+stupanj 5+24)"
+  },
+  {
+   "brojevi": [
+    6,
+    8,
+    12,
+    18,
+    30,
+    35
+   ],
+   "rang": 67,
+   "obrazlozenje": "Bazen (težina 112.2): 6(Sunce stupanj 6°22.4' Škorpion) · 8(Pars Fortunae znak Škorpion) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 18(Mars stupanj 17°30.0' Lav) · 30(Jupiter znak×stupanj 5×24 mod 45) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    2,
+    7,
+    9,
+    19,
+    41
+   ],
+   "rang": 68,
+   "obrazlozenje": "Bazen (težina 132.5): 1(Pars Fortunae 225.7° mod 45) · 2(Mjesec trigon Venera (orb 1.7°) — orb) · 7(Venera znak Vaga) · 9(Jupiter 144.0° mod 45) · 19(Merkur stupanj 18°47.9' Škorpion) · 41(Mjesec 85.7° mod 45)"
+  },
+  {
+   "brojevi": [
+    3,
+    4,
+    13,
+    16,
+    23,
+    25
+   ],
+   "rang": 69,
+   "obrazlozenje": "Bazen (težina 99.4): 3(Mars 137.5° mod 45) · 4(Merkur 228.8° mod 45) · 13(vrh 11. kuće (Placidus) znak+stupanj 1+12) · 16(Pars Fortunae stupanj 15°42.0' Škorpion) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 25(Jupiter sabijanski 25. stupanj)"
+  },
+  {
+   "brojevi": [
+    5,
+    10,
+    11,
+    15,
+    33,
+    36
+   ],
+   "rang": 70,
+   "obrazlozenje": "Bazen (težina 102.6): 5(Jupiter znak Lav) · 10(vrh 8. kuće (Placidus) znak Jarac) · 11(Rahu 326.2° mod 45) · 15(Mjesec sekstil Jupiter (orb 1.6°) — kut 60 mod 45) · 33(vrh 8. kuće (Placidus) znak+stupanj 10+23) · 36(Sunce 216.4° mod 45)"
+  },
+  {
+   "brojevi": [
+    8,
+    18,
+    26,
+    27,
+    29,
+    35
+   ],
+   "rang": 71,
+   "obrazlozenje": "Bazen (težina 99.4): 8(Pars Fortunae znak Škorpion) · 18(Mars stupanj 17°30.0' Lav) · 26(Mjesec stupanj 25°41.2' Blizanci) · 27(Venera stupanj 27°24.7' Vaga) · 29(Jupiter znak+stupanj 5+24) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    2,
+    4,
+    6,
+    12,
+    24,
+    30
+   ],
+   "rang": 72,
+   "obrazlozenje": "Bazen (težina 133.2): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 4(Merkur 228.8° mod 45) · 6(Sunce stupanj 6°22.4' Škorpion) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 24(Jupiter stupanj 24°02.9' Lav) · 30(Jupiter znak×stupanj 5×24 mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    3,
+    13,
+    19,
+    23,
+    41
+   ],
+   "rang": 73,
+   "obrazlozenje": "Bazen (težina 118.5): 1(Pars Fortunae 225.7° mod 45) · 3(Mars 137.5° mod 45) · 13(vrh 11. kuće (Placidus) znak+stupanj 1+12) · 19(Merkur stupanj 18°47.9' Škorpion) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 41(Mjesec 85.7° mod 45)"
+  },
+  {
+   "brojevi": [
+    7,
+    9,
+    15,
+    16,
+    25,
+    36
+   ],
+   "rang": 74,
+   "obrazlozenje": "Bazen (težina 90.9): 7(Venera znak Vaga) · 9(Jupiter 144.0° mod 45) · 15(Mjesec sekstil Jupiter (orb 1.6°) — kut 60 mod 45) · 16(Pars Fortunae stupanj 15°42.0' Škorpion) · 25(Jupiter sabijanski 25. stupanj) · 36(Sunce 216.4° mod 45)"
+  },
+  {
+   "brojevi": [
+    8,
+    10,
+    11,
+    27,
+    29,
+    33
+   ],
+   "rang": 75,
+   "obrazlozenje": "Bazen (težina 96.7): 8(Pars Fortunae znak Škorpion) · 10(vrh 8. kuće (Placidus) znak Jarac) · 11(Rahu 326.2° mod 45) · 27(Venera stupanj 27°24.7' Vaga) · 29(Jupiter znak+stupanj 5+24) · 33(vrh 8. kuće (Placidus) znak+stupanj 10+23)"
+  },
+  {
+   "brojevi": [
+    5,
+    18,
+    24,
+    26,
+    30,
+    35
+   ],
+   "rang": 76,
+   "obrazlozenje": "Bazen (težina 124.4): 5(Jupiter znak Lav) · 18(Mars stupanj 17°30.0' Lav) · 24(Jupiter stupanj 24°02.9' Lav) · 26(Mjesec stupanj 25°41.2' Blizanci) · 30(Jupiter znak×stupanj 5×24 mod 45) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  },
+  {
+   "brojevi": [
+    1,
+    4,
+    6,
+    9,
+    12,
+    41
+   ],
+   "rang": 77,
+   "obrazlozenje": "Bazen (težina 153.0): 1(Pars Fortunae 225.7° mod 45) · 4(Merkur 228.8° mod 45) · 6(Sunce stupanj 6°22.4' Škorpion) · 9(Jupiter 144.0° mod 45) · 12(vrh 5. kuće (Placidus) stupanj 11°37.2' Vaga) · 41(Mjesec 85.7° mod 45)"
+  },
+  {
+   "brojevi": [
+    2,
+    3,
+    7,
+    13,
+    15,
+    19
+   ],
+   "rang": 78,
+   "obrazlozenje": "Bazen (težina 102.8): 2(Mjesec trigon Venera (orb 1.7°) — orb) · 3(Mars 137.5° mod 45) · 7(Venera znak Vaga) · 13(vrh 11. kuće (Placidus) znak+stupanj 1+12) · 15(Mjesec sekstil Jupiter (orb 1.6°) — kut 60 mod 45) · 19(Merkur stupanj 18°47.9' Škorpion)"
+  },
+  {
+   "brojevi": [
+    5,
+    11,
+    16,
+    23,
+    25,
+    36
+   ],
+   "rang": 79,
+   "obrazlozenje": "Bazen (težina 116.1): 5(Jupiter znak Lav) · 11(Rahu 326.2° mod 45) · 16(Pars Fortunae stupanj 15°42.0' Škorpion) · 23(vrh 2. kuće (Placidus) stupanj 23°09.7' Rak) · 25(Jupiter sabijanski 25. stupanj) · 36(Sunce 216.4° mod 45)"
+  },
+  {
+   "brojevi": [
+    8,
+    10,
+    18,
+    24,
+    33,
+    35
+   ],
+   "rang": 80,
+   "obrazlozenje": "Bazen (težina 86.8): 8(Pars Fortunae znak Škorpion) · 10(vrh 8. kuće (Placidus) znak Jarac) · 18(Mars stupanj 17°30.0' Lav) · 24(Jupiter stupanj 24°02.9' Lav) · 33(vrh 8. kuće (Placidus) znak+stupanj 10+23) · 35(vrh 5. kuće (jednake) 215.0° mod 45)"
+  }
+ ]
+}
