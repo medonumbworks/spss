@@ -1,0 +1,17 @@
+seed 15973270160073881434
+
+set prvog kola 01.11.2026.: 11 kombinacija
+  P(bar jedna >=3 pogotka) = 0.235560  (1 : 4.2)
+  P(bar jedna >=4 pogotka) = 0.01528423  (1 : 65.4)
+  P(bar jedna >=5 pogodaka) = 0.000317370  (1 : 3150.9)
+  P(bar jedna 6 pogodaka)   = 0.0000013505  (1 : 740460)
+  ocekivani pogoci po kombinaciji = 0.800000 (teorijski 6*6/45 = 0.8)
+  ulog po kolu = 11 x 1.00 = 11.00 EUR; godisnje (18 kola) = 198.00 EUR
+
+godisnji fiksni set: 6 kombinacija
+  P(bar jedna >=3 pogotka) = 0.129593  (1 : 7.7)
+  P(bar jedna >=4 pogotka) = 0.00833008  (1 : 120.0)
+  P(bar jedna >=5 pogodaka) = 0.000173111  (1 : 5776.6)
+  P(bar jedna 6 pogodaka)   = 0.0000007366  (1 : 1357510)
+  ocekivani pogoci po kombinaciji = 0.800000 (teorijski 6*6/45 = 0.8)
+  ulog po kolu = 6 x 1.00 = 6.00 EUR; godisnje (18 kola) = 108.00 EUR

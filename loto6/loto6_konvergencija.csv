@@ -1,0 +1,624 @@
+﻿datum;broj;broj_izvora;izvori
+01.11.2026.;10;3;Lenormand, Pitagorejska, Zapadna
+01.11.2026.;13;3;Kaldejska, Meihua Yishu, Pitagorejska
+01.11.2026.;20;3;Kaldejska, Tarot, Zapadna
+01.11.2026.;44;3;I Ching, Tarot, Jyotis
+01.11.2026.;1;2;Kaldejska, I Ching
+01.11.2026.;2;2;Gematrija, Meihua Yishu
+01.11.2026.;4;2;Jyotis, Zapadna
+01.11.2026.;5;2;I Ching, Zapadna
+01.11.2026.;8;2;Jyotis, Zapadna
+01.11.2026.;9;2;Tarot, Zapadna
+01.11.2026.;14;2;Gematrija, Hermetika
+01.11.2026.;15;2;Hermetika, Tarot
+01.11.2026.;17;2;Tarot, Jyotis
+01.11.2026.;19;2;Hermetika, Pitagorejska
+01.11.2026.;24;2;Hermetika, Meihua Yishu
+01.11.2026.;25;2;Kaldejska, Lenormand
+01.11.2026.;38;2;I Ching, Lenormand
+01.11.2026.;42;2;Kaldejska, Lenormand
+01.11.2026.;45;2;Gematrija, Tarot
+01.11.2026.;3;1;Lenormand
+01.11.2026.;6;1;I Ching
+01.11.2026.;11;1;Pitagorejska
+01.11.2026.;16;1;Hermetika
+01.11.2026.;18;1;Gematrija
+01.11.2026.;21;1;Kaldejska
+01.11.2026.;22;1;Gematrija
+01.11.2026.;23;1;Hermetika
+01.11.2026.;26;1;Jyotis
+01.11.2026.;27;1;Meihua Yishu
+01.11.2026.;29;1;Pitagorejska
+01.11.2026.;31;1;Pitagorejska
+01.11.2026.;32;1;Gematrija
+01.11.2026.;34;1;Lenormand
+01.11.2026.;35;1;Jyotis
+01.11.2026.;37;1;I Ching
+01.11.2026.;39;1;Meihua Yishu
+01.11.2026.;41;1;Meihua Yishu
+04.11.2026.;11;4;Tarot, Pitagorejska, Jyotis, Zapadna
+04.11.2026.;4;3;Kaldejska, I Ching, Zapadna
+04.11.2026.;8;3;I Ching, Tarot, Zapadna
+04.11.2026.;29;3;Hermetika, Lenormand, Pitagorejska
+04.11.2026.;32;3;Gematrija, Hermetika, Meihua Yishu
+04.11.2026.;38;3;Hermetika, Lenormand, Tarot
+04.11.2026.;42;3;Kaldejska, Meihua Yishu, Jyotis
+04.11.2026.;1;2;I Ching, Meihua Yishu
+04.11.2026.;2;2;Gematrija, I Ching
+04.11.2026.;12;2;Lenormand, Zapadna
+04.11.2026.;13;2;Kaldejska, Zapadna
+04.11.2026.;19;2;Lenormand, Pitagorejska
+04.11.2026.;20;2;Kaldejska, Zapadna
+04.11.2026.;21;2;Kaldejska, Meihua Yishu
+04.11.2026.;28;2;Hermetika, Meihua Yishu
+04.11.2026.;3;1;I Ching
+04.11.2026.;5;1;Meihua Yishu
+04.11.2026.;6;1;Jyotis
+04.11.2026.;10;1;Pitagorejska
+04.11.2026.;14;1;Gematrija
+04.11.2026.;15;1;Jyotis
+04.11.2026.;16;1;Pitagorejska
+04.11.2026.;17;1;Kaldejska
+04.11.2026.;18;1;Gematrija
+04.11.2026.;23;1;Tarot
+04.11.2026.;24;1;Jyotis
+04.11.2026.;25;1;Gematrija
+04.11.2026.;26;1;Tarot
+04.11.2026.;27;1;I Ching
+04.11.2026.;31;1;Pitagorejska
+04.11.2026.;33;1;Jyotis
+04.11.2026.;34;1;Hermetika
+04.11.2026.;35;1;Hermetika
+04.11.2026.;36;1;Lenormand
+04.11.2026.;37;1;Lenormand
+04.11.2026.;41;1;Tarot
+04.11.2026.;45;1;Gematrija
+08.11.2026.;4;4;I Ching, Meihua Yishu, Jyotis, Zapadna
+08.11.2026.;40;4;I Ching, Lenormand, Tarot, Jyotis
+08.11.2026.;8;3;Kaldejska, Lenormand, Zapadna
+08.11.2026.;13;3;Kaldejska, Tarot, Jyotis
+08.11.2026.;14;3;Gematrija, Hermetika, Zapadna
+08.11.2026.;15;3;Hermetika, Meihua Yishu, Jyotis
+08.11.2026.;20;3;Kaldejska, Pitagorejska, Zapadna
+08.11.2026.;1;2;I Ching, Meihua Yishu
+08.11.2026.;3;2;I Ching, Meihua Yishu
+08.11.2026.;11;2;Pitagorejska, Zapadna
+08.11.2026.;16;2;Hermetika, I Ching
+08.11.2026.;18;2;Gematrija, Lenormand
+08.11.2026.;19;2;Hermetika, Pitagorejska
+08.11.2026.;29;2;Gematrija, Pitagorejska
+08.11.2026.;31;2;Pitagorejska, Jyotis
+08.11.2026.;2;1;Gematrija
+08.11.2026.;5;1;Meihua Yishu
+08.11.2026.;6;1;Tarot
+08.11.2026.;9;1;Tarot
+08.11.2026.;10;1;Pitagorejska
+08.11.2026.;17;1;Zapadna
+08.11.2026.;21;1;Kaldejska
+08.11.2026.;22;1;Jyotis
+08.11.2026.;23;1;Hermetika
+08.11.2026.;24;1;Hermetika
+08.11.2026.;25;1;Kaldejska
+08.11.2026.;26;1;Lenormand
+08.11.2026.;27;1;Tarot
+08.11.2026.;28;1;Lenormand
+08.11.2026.;32;1;Gematrija
+08.11.2026.;33;1;Tarot
+08.11.2026.;36;1;I Ching
+08.11.2026.;38;1;Meihua Yishu
+08.11.2026.;41;1;Lenormand
+08.11.2026.;42;1;Kaldejska
+08.11.2026.;45;1;Gematrija
+11.11.2026.;14;4;Gematrija, Tarot, Pitagorejska, Jyotis
+11.11.2026.;3;3;Gematrija, I Ching, Lenormand
+11.11.2026.;6;3;Lenormand, Tarot, Zapadna
+11.11.2026.;18;3;Gematrija, Jyotis, Zapadna
+11.11.2026.;32;3;Gematrija, Hermetika, Jyotis
+11.11.2026.;1;2;I Ching, Meihua Yishu
+11.11.2026.;5;2;I Ching, Jyotis
+11.11.2026.;9;2;Tarot, Zapadna
+11.11.2026.;10;2;Meihua Yishu, Pitagorejska
+11.11.2026.;11;2;Kaldejska, Pitagorejska
+11.11.2026.;17;2;Kaldejska, Meihua Yishu
+11.11.2026.;19;2;Lenormand, Pitagorejska
+11.11.2026.;20;2;Kaldejska, Zapadna
+11.11.2026.;23;2;I Ching, Jyotis
+11.11.2026.;28;2;Hermetika, Meihua Yishu
+11.11.2026.;29;2;Hermetika, Pitagorejska
+11.11.2026.;38;2;Hermetika, Tarot
+11.11.2026.;44;2;Lenormand, Meihua Yishu
+11.11.2026.;2;1;Gematrija
+11.11.2026.;4;1;I Ching
+11.11.2026.;7;1;I Ching
+11.11.2026.;8;1;Zapadna
+11.11.2026.;13;1;Kaldejska
+11.11.2026.;16;1;Zapadna
+11.11.2026.;21;1;Kaldejska
+11.11.2026.;26;1;Tarot
+11.11.2026.;31;1;Pitagorejska
+11.11.2026.;33;1;Tarot
+11.11.2026.;34;1;Hermetika
+11.11.2026.;35;1;Hermetika
+11.11.2026.;36;1;Lenormand
+11.11.2026.;37;1;Lenormand
+11.11.2026.;39;1;Meihua Yishu
+11.11.2026.;41;1;Jyotis
+11.11.2026.;42;1;Kaldejska
+11.11.2026.;45;1;Gematrija
+15.11.2026.;2;4;Gematrija, I Ching, Lenormand, Jyotis
+15.11.2026.;11;3;Pitagorejska, Jyotis, Zapadna
+15.11.2026.;16;3;Hermetika, I Ching, Lenormand
+15.11.2026.;18;3;Gematrija, Meihua Yishu, Pitagorejska
+15.11.2026.;19;3;Hermetika, Pitagorejska, Zapadna
+15.11.2026.;20;3;Kaldejska, Jyotis, Zapadna
+15.11.2026.;29;3;Tarot, Pitagorejska, Jyotis
+15.11.2026.;5;2;Meihua Yishu, Zapadna
+15.11.2026.;10;2;Tarot, Pitagorejska
+15.11.2026.;14;2;Gematrija, Hermetika
+15.11.2026.;15;2;Kaldejska, Hermetika
+15.11.2026.;22;2;Meihua Yishu, Jyotis
+15.11.2026.;23;2;Hermetika, Tarot
+15.11.2026.;24;2;Hermetika, Zapadna
+15.11.2026.;32;2;Gematrija, Lenormand
+15.11.2026.;40;2;I Ching, Meihua Yishu
+15.11.2026.;42;2;Kaldejska, Tarot
+15.11.2026.;43;2;Lenormand, Tarot
+15.11.2026.;44;2;Meihua Yishu, Tarot
+15.11.2026.;1;1;Lenormand
+15.11.2026.;4;1;I Ching
+15.11.2026.;6;1;Gematrija
+15.11.2026.;7;1;I Ching
+15.11.2026.;8;1;Zapadna
+15.11.2026.;12;1;Lenormand
+15.11.2026.;13;1;Kaldejska
+15.11.2026.;21;1;Kaldejska
+15.11.2026.;25;1;Kaldejska
+15.11.2026.;31;1;Pitagorejska
+15.11.2026.;36;1;Meihua Yishu
+15.11.2026.;38;1;Jyotis
+15.11.2026.;39;1;I Ching
+15.11.2026.;45;1;Gematrija
+18.11.2026.;18;4;Kaldejska, Gematrija, I Ching, Meihua Yishu
+18.11.2026.;2;3;Gematrija, I Ching, Meihua Yishu
+18.11.2026.;4;3;I Ching, Lenormand, Jyotis
+18.11.2026.;13;3;Kaldejska, I Ching, Jyotis
+18.11.2026.;19;3;Lenormand, Meihua Yishu, Pitagorejska
+18.11.2026.;20;2;Kaldejska, Zapadna
+18.11.2026.;21;2;Kaldejska, Pitagorejska
+18.11.2026.;22;2;Jyotis, Zapadna
+18.11.2026.;24;2;Tarot, Jyotis
+18.11.2026.;27;2;Meihua Yishu, Zapadna
+18.11.2026.;29;2;Hermetika, Pitagorejska
+18.11.2026.;31;2;Pitagorejska, Jyotis
+18.11.2026.;32;2;Gematrija, Hermetika
+18.11.2026.;35;2;Hermetika, Meihua Yishu
+18.11.2026.;42;2;Kaldejska, Lenormand
+18.11.2026.;1;1;Tarot
+18.11.2026.;3;1;I Ching
+18.11.2026.;5;1;Tarot
+18.11.2026.;7;1;Zapadna
+18.11.2026.;8;1;Zapadna
+18.11.2026.;9;1;Gematrija
+18.11.2026.;10;1;Pitagorejska
+18.11.2026.;11;1;Pitagorejska
+18.11.2026.;12;1;Zapadna
+18.11.2026.;14;1;Gematrija
+18.11.2026.;15;1;Tarot
+18.11.2026.;16;1;Tarot
+18.11.2026.;17;1;Kaldejska
+18.11.2026.;23;1;Lenormand
+18.11.2026.;28;1;Hermetika
+18.11.2026.;30;1;Meihua Yishu
+18.11.2026.;33;1;Lenormand
+18.11.2026.;34;1;Hermetika
+18.11.2026.;36;1;Tarot
+18.11.2026.;37;1;I Ching
+18.11.2026.;38;1;Hermetika
+18.11.2026.;40;1;Jyotis
+18.11.2026.;44;1;Lenormand
+18.11.2026.;45;1;Gematrija
+22.11.2026.;2;4;Gematrija, I Ching, Meihua Yishu, Zapadna
+22.11.2026.;19;4;Hermetika, Lenormand, Meihua Yishu, Pitagorejska
+22.11.2026.;25;4;Kaldejska, Lenormand, Jyotis, Zapadna
+22.11.2026.;1;3;I Ching, Jyotis, Zapadna
+22.11.2026.;6;3;I Ching, Meihua Yishu, Zapadna
+22.11.2026.;13;3;Kaldejska, Gematrija, Meihua Yishu
+22.11.2026.;14;3;Gematrija, Hermetika, I Ching
+22.11.2026.;16;3;Hermetika, Pitagorejska, Jyotis
+22.11.2026.;43;3;I Ching, Tarot, Jyotis
+22.11.2026.;7;2;Lenormand, Jyotis
+22.11.2026.;20;2;Kaldejska, Zapadna
+22.11.2026.;21;2;Kaldejska, Lenormand
+22.11.2026.;24;2;Hermetika, Meihua Yishu
+22.11.2026.;29;2;Tarot, Pitagorejska
+22.11.2026.;32;2;Gematrija, I Ching
+22.11.2026.;3;1;Tarot
+22.11.2026.;9;1;Zapadna
+22.11.2026.;10;1;Pitagorejska
+22.11.2026.;11;1;Pitagorejska
+22.11.2026.;15;1;Hermetika
+22.11.2026.;18;1;Gematrija
+22.11.2026.;22;1;Kaldejska
+22.11.2026.;23;1;Hermetika
+22.11.2026.;26;1;Tarot
+22.11.2026.;31;1;Pitagorejska
+22.11.2026.;34;1;Jyotis
+22.11.2026.;36;1;Lenormand
+22.11.2026.;37;1;Tarot
+22.11.2026.;39;1;Lenormand
+22.11.2026.;41;1;Meihua Yishu
+22.11.2026.;42;1;Kaldejska
+22.11.2026.;44;1;Tarot
+22.11.2026.;45;1;Gematrija
+25.11.2026.;21;4;Kaldejska, Meihua Yishu, Pitagorejska, Zapadna
+25.11.2026.;45;4;Gematrija, I Ching, Lenormand, Jyotis
+25.11.2026.;2;3;Gematrija, I Ching, Meihua Yishu
+25.11.2026.;11;3;I Ching, Pitagorejska, Zapadna
+25.11.2026.;16;3;Gematrija, I Ching, Tarot
+25.11.2026.;27;3;Tarot, Jyotis, Zapadna
+25.11.2026.;1;2;Meihua Yishu, Tarot
+25.11.2026.;4;2;Tarot, Zapadna
+25.11.2026.;18;2;Gematrija, Jyotis
+25.11.2026.;20;2;Kaldejska, Zapadna
+25.11.2026.;25;2;Kaldejska, Lenormand
+25.11.2026.;28;2;Hermetika, Meihua Yishu
+25.11.2026.;29;2;Hermetika, Pitagorejska
+25.11.2026.;31;2;Lenormand, Pitagorejska
+25.11.2026.;32;2;Gematrija, Hermetika
+25.11.2026.;34;2;Hermetika, Meihua Yishu
+25.11.2026.;36;2;Lenormand, Jyotis
+25.11.2026.;38;2;Hermetika, Lenormand
+25.11.2026.;3;1;Meihua Yishu
+25.11.2026.;5;1;Jyotis
+25.11.2026.;8;1;I Ching
+25.11.2026.;9;1;Jyotis
+25.11.2026.;10;1;Pitagorejska
+25.11.2026.;12;1;I Ching
+25.11.2026.;13;1;Kaldejska
+25.11.2026.;14;1;Gematrija
+25.11.2026.;15;1;Zapadna
+25.11.2026.;17;1;Kaldejska
+25.11.2026.;19;1;Pitagorejska
+25.11.2026.;23;1;Lenormand
+25.11.2026.;33;1;Tarot
+25.11.2026.;35;1;Hermetika
+25.11.2026.;40;1;Tarot
+25.11.2026.;42;1;Kaldejska
+29.11.2026.;5;4;Meihua Yishu, Tarot, Jyotis, Zapadna
+29.11.2026.;25;4;Kaldejska, Hermetika, Lenormand, Tarot
+29.11.2026.;14;3;Gematrija, I Ching, Jyotis
+29.11.2026.;19;3;Hermetika, Pitagorejska, Zapadna
+29.11.2026.;20;3;Kaldejska, Gematrija, Zapadna
+29.11.2026.;23;3;Lenormand, Pitagorejska, Jyotis
+29.11.2026.;29;3;Kaldejska, Lenormand, Pitagorejska
+29.11.2026.;43;3;Hermetika, I Ching, Tarot
+29.11.2026.;1;2;I Ching, Meihua Yishu
+29.11.2026.;7;2;Hermetika, Lenormand
+29.11.2026.;9;2;Jyotis, Zapadna
+29.11.2026.;10;2;I Ching, Pitagorejska
+29.11.2026.;11;2;Tarot, Pitagorejska
+29.11.2026.;13;2;Kaldejska, Hermetika
+29.11.2026.;31;2;Hermetika, Pitagorejska
+29.11.2026.;32;2;Gematrija, Jyotis
+29.11.2026.;38;2;Meihua Yishu, Tarot
+29.11.2026.;2;1;Gematrija
+29.11.2026.;3;1;Meihua Yishu
+29.11.2026.;4;1;Meihua Yishu
+29.11.2026.;6;1;Lenormand
+29.11.2026.;8;1;Zapadna
+29.11.2026.;16;1;I Ching
+29.11.2026.;18;1;Gematrija
+29.11.2026.;21;1;Kaldejska
+29.11.2026.;24;1;Lenormand
+29.11.2026.;27;1;I Ching
+29.11.2026.;30;1;Zapadna
+29.11.2026.;33;1;Tarot
+29.11.2026.;35;1;Meihua Yishu
+29.11.2026.;41;1;Jyotis
+29.11.2026.;42;1;Kaldejska
+29.11.2026.;45;1;Gematrija
+02.12.2026.;2;5;Kaldejska, Gematrija, Lenormand, Tarot, Zapadna
+02.12.2026.;11;4;Lenormand, Tarot, Pitagorejska, Zapadna
+02.12.2026.;12;4;Hermetika, Meihua Yishu, Pitagorejska, Jyotis
+02.12.2026.;1;3;I Ching, Meihua Yishu, Jyotis
+02.12.2026.;19;3;Tarot, Pitagorejska, Jyotis
+02.12.2026.;20;3;Kaldejska, Tarot, Zapadna
+02.12.2026.;25;3;I Ching, Meihua Yishu, Zapadna
+02.12.2026.;28;3;Hermetika, Lenormand, Jyotis
+02.12.2026.;37;3;Lenormand, Tarot, Jyotis
+02.12.2026.;3;2;I Ching, Lenormand
+02.12.2026.;4;2;Hermetika, Meihua Yishu
+02.12.2026.;9;2;Hermetika, I Ching
+02.12.2026.;14;2;Gematrija, Zapadna
+02.12.2026.;17;2;Kaldejska, Hermetika
+02.12.2026.;30;2;Lenormand, Zapadna
+02.12.2026.;42;2;Kaldejska, Meihua Yishu
+02.12.2026.;7;1;I Ching
+02.12.2026.;8;1;Meihua Yishu
+02.12.2026.;10;1;Jyotis
+02.12.2026.;13;1;Kaldejska
+02.12.2026.;15;1;Pitagorejska
+02.12.2026.;18;1;Gematrija
+02.12.2026.;21;1;Kaldejska
+02.12.2026.;23;1;Gematrija
+02.12.2026.;24;1;I Ching
+02.12.2026.;29;1;Pitagorejska
+02.12.2026.;31;1;Pitagorejska
+02.12.2026.;32;1;Gematrija
+02.12.2026.;38;1;Tarot
+02.12.2026.;41;1;Hermetika
+02.12.2026.;45;1;Gematrija
+06.12.2026.;3;3;I Ching, Meihua Yishu, Jyotis
+06.12.2026.;12;3;Tarot, Pitagorejska, Jyotis
+06.12.2026.;14;3;Gematrija, Meihua Yishu, Tarot
+06.12.2026.;20;3;Kaldejska, Meihua Yishu, Zapadna
+06.12.2026.;25;3;Kaldejska, Hermetika, Lenormand
+06.12.2026.;30;3;Lenormand, Jyotis, Zapadna
+06.12.2026.;2;2;Gematrija, Meihua Yishu
+06.12.2026.;4;2;I Ching, Lenormand
+06.12.2026.;7;2;Hermetika, Tarot
+06.12.2026.;8;2;I Ching, Zapadna
+06.12.2026.;13;2;Kaldejska, Hermetika
+06.12.2026.;15;2;Lenormand, Zapadna
+06.12.2026.;19;2;Hermetika, Pitagorejska
+06.12.2026.;21;2;Kaldejska, Jyotis
+06.12.2026.;26;2;I Ching, Lenormand
+06.12.2026.;27;2;Gematrija, Tarot
+06.12.2026.;29;2;Tarot, Pitagorejska
+06.12.2026.;31;2;Hermetika, Pitagorejska
+06.12.2026.;45;2;Gematrija, I Ching
+06.12.2026.;5;1;Zapadna
+06.12.2026.;6;1;Kaldejska
+06.12.2026.;9;1;Zapadna
+06.12.2026.;10;1;Pitagorejska
+06.12.2026.;11;1;Pitagorejska
+06.12.2026.;16;1;Jyotis
+06.12.2026.;18;1;Gematrija
+06.12.2026.;23;1;Meihua Yishu
+06.12.2026.;24;1;I Ching
+06.12.2026.;28;1;Tarot
+06.12.2026.;32;1;Gematrija
+06.12.2026.;34;1;Lenormand
+06.12.2026.;39;1;Jyotis
+06.12.2026.;42;1;Kaldejska
+06.12.2026.;43;1;Hermetika
+06.12.2026.;44;1;Meihua Yishu
+09.12.2026.;2;4;Gematrija, I Ching, Lenormand, Meihua Yishu
+09.12.2026.;18;4;Gematrija, I Ching, Meihua Yishu, Zapadna
+09.12.2026.;19;4;Lenormand, Meihua Yishu, Pitagorejska, Jyotis
+09.12.2026.;29;4;Hermetika, Lenormand, Pitagorejska, Zapadna
+09.12.2026.;20;3;Kaldejska, I Ching, Zapadna
+09.12.2026.;32;3;Gematrija, Hermetika, Tarot
+09.12.2026.;34;3;Hermetika, Lenormand, Jyotis
+09.12.2026.;45;3;Gematrija, I Ching, Lenormand
+09.12.2026.;6;2;Meihua Yishu, Zapadna
+09.12.2026.;8;2;I Ching, Zapadna
+09.12.2026.;14;2;Gematrija, Tarot
+09.12.2026.;17;2;Kaldejska, I Ching
+09.12.2026.;30;2;Gematrija, Meihua Yishu
+09.12.2026.;31;2;Tarot, Pitagorejska
+09.12.2026.;38;2;Hermetika, Lenormand
+09.12.2026.;40;2;Meihua Yishu, Tarot
+09.12.2026.;43;2;Tarot, Jyotis
+09.12.2026.;7;1;Jyotis
+09.12.2026.;9;1;Kaldejska
+09.12.2026.;11;1;Pitagorejska
+09.12.2026.;12;1;Pitagorejska
+09.12.2026.;13;1;Kaldejska
+09.12.2026.;16;1;Jyotis
+09.12.2026.;21;1;Kaldejska
+09.12.2026.;22;1;Pitagorejska
+09.12.2026.;25;1;Jyotis
+09.12.2026.;26;1;Zapadna
+09.12.2026.;28;1;Hermetika
+09.12.2026.;35;1;Hermetika
+09.12.2026.;39;1;Tarot
+09.12.2026.;42;1;Kaldejska
+13.12.2026.;11;4;I Ching, Pitagorejska, Jyotis, Zapadna
+13.12.2026.;14;4;Gematrija, Hermetika, Tarot, Zapadna
+13.12.2026.;20;4;Kaldejska, I Ching, Jyotis, Zapadna
+13.12.2026.;2;3;Gematrija, Lenormand, Jyotis
+13.12.2026.;4;3;Gematrija, Lenormand, Meihua Yishu
+13.12.2026.;19;3;Hermetika, Pitagorejska, Zapadna
+13.12.2026.;9;2;I Ching, Zapadna
+13.12.2026.;13;2;Kaldejska, Meihua Yishu
+13.12.2026.;16;2;Hermetika, Tarot
+13.12.2026.;17;2;Kaldejska, Pitagorejska
+13.12.2026.;21;2;Kaldejska, Lenormand
+13.12.2026.;22;2;Jyotis, Zapadna
+13.12.2026.;24;2;Hermetika, Meihua Yishu
+13.12.2026.;26;2;I Ching, Tarot
+13.12.2026.;29;2;Pitagorejska, Jyotis
+13.12.2026.;30;2;Lenormand, Tarot
+13.12.2026.;33;2;Lenormand, Tarot
+13.12.2026.;38;2;Meihua Yishu, Jyotis
+13.12.2026.;42;2;Kaldejska, Lenormand
+13.12.2026.;43;2;I Ching, Meihua Yishu
+13.12.2026.;6;1;I Ching
+13.12.2026.;10;1;Tarot
+13.12.2026.;12;1;Pitagorejska
+13.12.2026.;15;1;Hermetika
+13.12.2026.;18;1;Gematrija
+13.12.2026.;23;1;Hermetika
+13.12.2026.;25;1;Kaldejska
+13.12.2026.;31;1;Pitagorejska
+13.12.2026.;32;1;Gematrija
+13.12.2026.;41;1;Meihua Yishu
+13.12.2026.;45;1;Gematrija
+16.12.2026.;20;4;Kaldejska, Lenormand, Pitagorejska, Zapadna
+16.12.2026.;2;3;Gematrija, I Ching, Tarot
+16.12.2026.;9;3;Lenormand, Tarot, Zapadna
+16.12.2026.;21;3;Kaldejska, Meihua Yishu, Jyotis
+16.12.2026.;3;2;Tarot, Jyotis
+16.12.2026.;12;2;Pitagorejska, Jyotis
+16.12.2026.;13;2;Kaldejska, Zapadna
+16.12.2026.;14;2;Gematrija, Tarot
+16.12.2026.;16;2;Kaldejska, Zapadna
+16.12.2026.;18;2;Gematrija, Zapadna
+16.12.2026.;19;2;Lenormand, Pitagorejska
+16.12.2026.;25;2;Jyotis, Zapadna
+16.12.2026.;26;2;Meihua Yishu, Tarot
+16.12.2026.;27;2;I Ching, Lenormand
+16.12.2026.;28;2;Hermetika, Meihua Yishu
+16.12.2026.;29;2;Hermetika, Pitagorejska
+16.12.2026.;32;2;Gematrija, Hermetika
+16.12.2026.;39;2;Tarot, Jyotis
+16.12.2026.;42;2;Kaldejska, Meihua Yishu
+16.12.2026.;43;2;Lenormand, Meihua Yishu
+16.12.2026.;1;1;Meihua Yishu
+16.12.2026.;6;1;Lenormand
+16.12.2026.;7;1;Gematrija
+16.12.2026.;8;1;I Ching
+16.12.2026.;11;1;Pitagorejska
+16.12.2026.;17;1;Kaldejska
+16.12.2026.;23;1;I Ching
+16.12.2026.;24;1;I Ching
+16.12.2026.;30;1;Jyotis
+16.12.2026.;31;1;Pitagorejska
+16.12.2026.;34;1;Hermetika
+16.12.2026.;35;1;Hermetika
+16.12.2026.;38;1;Hermetika
+16.12.2026.;44;1;I Ching
+16.12.2026.;45;1;Gematrija
+20.12.2026.;15;4;Kaldejska, Hermetika, Pitagorejska, Jyotis
+20.12.2026.;24;4;Hermetika, Lenormand, Tarot, Jyotis
+20.12.2026.;2;3;Gematrija, I Ching, Jyotis
+20.12.2026.;11;3;Gematrija, Meihua Yishu, Pitagorejska
+20.12.2026.;14;3;Gematrija, Hermetika, Zapadna
+20.12.2026.;16;3;Hermetika, Tarot, Zapadna
+20.12.2026.;1;2;Meihua Yishu, Zapadna
+20.12.2026.;4;2;I Ching, Meihua Yishu
+20.12.2026.;5;2;I Ching, Meihua Yishu
+20.12.2026.;19;2;Hermetika, Pitagorejska
+20.12.2026.;20;2;Kaldejska, Zapadna
+20.12.2026.;22;2;Lenormand, Tarot
+20.12.2026.;23;2;Hermetika, I Ching
+20.12.2026.;29;2;Pitagorejska, Zapadna
+20.12.2026.;30;2;Lenormand, Meihua Yishu
+20.12.2026.;40;2;Lenormand, Tarot
+20.12.2026.;42;2;Kaldejska, Jyotis
+20.12.2026.;3;1;I Ching
+20.12.2026.;6;1;Jyotis
+20.12.2026.;7;1;Lenormand
+20.12.2026.;9;1;Zapadna
+20.12.2026.;12;1;Pitagorejska
+20.12.2026.;13;1;Kaldejska
+20.12.2026.;17;1;Tarot
+20.12.2026.;18;1;Gematrija
+20.12.2026.;21;1;Kaldejska
+20.12.2026.;25;1;Kaldejska
+20.12.2026.;28;1;Tarot
+20.12.2026.;31;1;Pitagorejska
+20.12.2026.;32;1;Gematrija
+20.12.2026.;33;1;Jyotis
+20.12.2026.;38;1;Meihua Yishu
+20.12.2026.;43;1;I Ching
+20.12.2026.;44;1;Lenormand
+20.12.2026.;45;1;Gematrija
+23.12.2026.;18;4;Gematrija, Pitagorejska, Jyotis, Zapadna
+23.12.2026.;2;3;Gematrija, Meihua Yishu, Zapadna
+23.12.2026.;28;3;Hermetika, I Ching, Lenormand
+23.12.2026.;29;3;Hermetika, Pitagorejska, Zapadna
+23.12.2026.;1;2;I Ching, Tarot
+23.12.2026.;3;2;Gematrija, I Ching
+23.12.2026.;4;2;I Ching, Tarot
+23.12.2026.;8;2;I Ching, Meihua Yishu
+23.12.2026.;10;2;I Ching, Meihua Yishu
+23.12.2026.;12;2;Meihua Yishu, Pitagorejska
+23.12.2026.;14;2;Gematrija, Tarot
+23.12.2026.;17;2;Kaldejska, Lenormand
+23.12.2026.;20;2;Kaldejska, Zapadna
+23.12.2026.;21;2;Kaldejska, Lenormand
+23.12.2026.;27;2;Jyotis, Zapadna
+23.12.2026.;32;2;Gematrija, Hermetika
+23.12.2026.;42;2;Kaldejska, Meihua Yishu
+23.12.2026.;45;2;Gematrija, Jyotis
+23.12.2026.;5;1;Jyotis
+23.12.2026.;9;1;Jyotis
+23.12.2026.;11;1;Pitagorejska
+23.12.2026.;13;1;Kaldejska
+23.12.2026.;15;1;Tarot
+23.12.2026.;16;1;Tarot
+23.12.2026.;19;1;Pitagorejska
+23.12.2026.;22;1;Zapadna
+23.12.2026.;23;1;Kaldejska
+23.12.2026.;24;1;Lenormand
+23.12.2026.;25;1;Meihua Yishu
+23.12.2026.;31;1;Pitagorejska
+23.12.2026.;33;1;Lenormand
+23.12.2026.;34;1;Hermetika
+23.12.2026.;35;1;Hermetika
+23.12.2026.;36;1;Jyotis
+23.12.2026.;38;1;Hermetika
+23.12.2026.;39;1;Lenormand
+23.12.2026.;41;1;Tarot
+27.12.2026.;3;3;Gematrija, I Ching, Meihua Yishu
+27.12.2026.;10;3;Lenormand, Jyotis, Zapadna
+27.12.2026.;20;3;Kaldejska, Meihua Yishu, Zapadna
+27.12.2026.;25;3;Kaldejska, Tarot, Jyotis
+27.12.2026.;29;3;Lenormand, Pitagorejska, Zapadna
+27.12.2026.;34;3;I Ching, Tarot, Jyotis
+27.12.2026.;2;2;Gematrija, Tarot
+27.12.2026.;7;2;Jyotis, Zapadna
+27.12.2026.;11;2;Tarot, Pitagorejska
+27.12.2026.;12;2;Lenormand, Pitagorejska
+27.12.2026.;13;2;Kaldejska, Tarot
+27.12.2026.;14;2;Gematrija, Hermetika
+27.12.2026.;16;2;Hermetika, Jyotis
+27.12.2026.;18;2;Gematrija, Lenormand
+27.12.2026.;19;2;Hermetika, Pitagorejska
+27.12.2026.;21;2;Kaldejska, Zapadna
+27.12.2026.;22;2;Tarot, Pitagorejska
+27.12.2026.;23;2;Hermetika, Meihua Yishu
+27.12.2026.;43;2;I Ching, Jyotis
+27.12.2026.;1;1;I Ching
+27.12.2026.;4;1;I Ching
+27.12.2026.;5;1;Zapadna
+27.12.2026.;6;1;Meihua Yishu
+27.12.2026.;8;1;Meihua Yishu
+27.12.2026.;15;1;Hermetika
+27.12.2026.;24;1;Hermetika
+27.12.2026.;27;1;Kaldejska
+27.12.2026.;28;1;Lenormand
+27.12.2026.;31;1;Pitagorejska
+27.12.2026.;32;1;Gematrija
+27.12.2026.;37;1;Meihua Yishu
+27.12.2026.;39;1;Lenormand
+27.12.2026.;41;1;I Ching
+27.12.2026.;42;1;Kaldejska
+27.12.2026.;45;1;Gematrija
+30.12.2026.;18;4;Gematrija, I Ching, Lenormand, Tarot
+30.12.2026.;20;3;Kaldejska, Jyotis, Zapadna
+30.12.2026.;29;3;Hermetika, Pitagorejska, Jyotis
+30.12.2026.;2;2;Gematrija, Jyotis
+30.12.2026.;3;2;Lenormand, Meihua Yishu
+30.12.2026.;6;2;I Ching, Meihua Yishu
+30.12.2026.;8;2;I Ching, Zapadna
+30.12.2026.;11;2;Pitagorejska, Jyotis
+30.12.2026.;13;2;Kaldejska, Jyotis
+30.12.2026.;14;2;Gematrija, Tarot
+30.12.2026.;16;2;Lenormand, Pitagorejska
+30.12.2026.;21;2;Kaldejska, Gematrija
+30.12.2026.;24;2;Lenormand, Meihua Yishu
+30.12.2026.;27;2;Lenormand, Tarot
+30.12.2026.;32;2;Gematrija, Hermetika
+30.12.2026.;34;2;Hermetika, I Ching
+30.12.2026.;35;2;Hermetika, Tarot
+30.12.2026.;36;2;Lenormand, Meihua Yishu
+30.12.2026.;38;2;Hermetika, Jyotis
+30.12.2026.;40;2;Meihua Yishu, Tarot
+30.12.2026.;45;2;Gematrija, I Ching
+30.12.2026.;5;1;Zapadna
+30.12.2026.;7;1;Zapadna
+30.12.2026.;9;1;I Ching
+30.12.2026.;10;1;Zapadna
+30.12.2026.;12;1;Pitagorejska
+30.12.2026.;17;1;Kaldejska
+30.12.2026.;19;1;Pitagorejska
+30.12.2026.;22;1;Meihua Yishu
+30.12.2026.;23;1;Zapadna
+30.12.2026.;28;1;Hermetika
+30.12.2026.;30;1;Kaldejska
+30.12.2026.;31;1;Pitagorejska
+30.12.2026.;42;1;Kaldejska
+30.12.2026.;43;1;Tarot

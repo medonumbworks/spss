@@ -1,0 +1,48 @@
+Seed (secrets.randbits(64), jedan za cijeli posao): 15973270160073881434
+Razdoblje 01.11.2026.-31.12.2026.; dani kola ['SRIJEDA', 'NEDJELJA']; vrijeme 20:00 lokalno; cijena 1.00 EUR; dobitne vrste (6, 5, 4, 3) (PRETPOSTAVKE, vidi README)
+povijest.csv nije pronadjena (/home/user/spss/loto6/povijest.csv); sustavi 1-4 (Pareto 1/2, Vruci 1/2) i tie-break 'cesci u povijesti' nisu dostupni i NISU izracunati (nista se ne izmislja). Izvor 'Statistika' ne sudjeluje u Plecku.
+odigrano.csv: nema datoteke (nista za izbjegavanje)
+=== NATALNE EFEMERIDE (31.05.1991. 18:20 CEST, Zadar 44 07 N 15 14 E; Moshier, tropski / sideralno Lahiri) ===
+JD UT 2448408.18056; ayanamsa Lahiri 23.7371
+  Sunce    tropski  9.720 Blizanci (69.7201)   sideralno 15.979 Bik (45.9788)  naksatra 4 Rohini pada 2
+  Mjesec   tropski 14.579 Jarac (284.5788)   sideralno 20.837 Strijelac (260.8375)  naksatra 20 Purva Asadha pada 3
+  Merkur   tropski 21.789 Bik (51.7894)   sideralno 28.048 Ovan (28.0480)  naksatra 3 Krittika pada 1
+  Venera   tropski 24.505 Rak (114.5046)   sideralno  0.763 Rak (90.7632)  naksatra 7 Punarvasu pada 4
+  Mars     tropski  3.029 Lav (123.0292)   sideralno  9.288 Rak (99.2879)  naksatra 8 Pusya pada 2
+  Jupiter  tropski  8.946 Lav (128.9460)   sideralno 15.205 Rak (105.2046)  naksatra 8 Pusya pada 4
+  Saturn   tropski  6.672 Vodenjak (306.6722)   sideralno 12.931 Jarac (282.9308)  naksatra 22 Sravana pada 1
+  ASC      tropski 14.888 Skorpion (224.8877)   sideralno 21.146 Vaga (201.1464)
+  MC       tropski 26.675 Lav (146.6750)
+  rodjenje danju; Pars Fortunae 19.746 Blizanci (79.7464)
+  KONTROLA: Sunce 9.72 Blizanaca (trazeno 9-10) -> OK; Mjesec sideralno naksatra 20 Purva Asadha (trazeno Purva Asadha) -> OK
+Broj kola u razdoblju: 18
+Zapisano loto6_godina.csv: 198 redaka (18 kola x 11 kombinacija); zamjena po pravilu seta: 56; dopuna iz rezervnih kaskada: 10
+Zapisano loto6_konvergencija.csv: 623 redaka
+Zapisan izvod_prvo_kolo.txt
+Zapisano loto6_fiksni_set.csv: 6 kombinacija
+
+--- Godisnji fiksni set ---
+  Pitagorejska godisnja    [1, 10, 11, 19, 29, 31] Joker 991100  [dopuna]
+  Jyotis natalna           [6, 15, 20, 24, 33, 42] Joker 065432
+  Zapadna natalna          [3, 8, 10, 15, 20, 25] Joker 055503
+  Kaldejska godisnja       [1, 10, 13, 20, 21, 42] Joker 120360
+  Plecko godisnja          [2, 13, 14, 19, 20, 29] Joker 092491  zamjene: ['11->13 (preklapanje s Pitagorejska godisnja: [11, 19, 29]; kandidat signal u 11 kola=13->13)']
+  Plecko godisnja 2        [1, 4, 13, 16, 18, 32] Joker 321481  zamjene: ['21->16 (preklapanje s Kaldejska godisnja: [1, 13, 21]; kandidat signal u 9 kola=16->16)']
+  najvece preklapanje u fiksnom setu: 2 (dopusteno <= 2)
+
+--- Vjerojatnosti (egzaktna enumeracija svih C(45,6) = 8.145.060 izvlacenja) ---
+set prvog kola 01.11.2026.: 11 kombinacija
+  P(bar jedna >=3 pogotka) = 0.235560  (1 : 4.2)
+  P(bar jedna >=4 pogotka) = 0.01528423  (1 : 65.4)
+  P(bar jedna >=5 pogodaka) = 0.000317370  (1 : 3150.9)
+  P(bar jedna 6 pogodaka)   = 0.0000013505  (1 : 740460)
+  ocekivani pogoci po kombinaciji = 0.800000 (teorijski 6*6/45 = 0.8)
+  ulog po kolu = 11 x 1.00 = 11.00 EUR; godisnje (18 kola) = 198.00 EUR
+godisnji fiksni set: 6 kombinacija
+  P(bar jedna >=3 pogotka) = 0.129593  (1 : 7.7)
+  P(bar jedna >=4 pogotka) = 0.00833008  (1 : 120.0)
+  P(bar jedna >=5 pogodaka) = 0.000173111  (1 : 5776.6)
+  P(bar jedna 6 pogodaka)   = 0.0000007366  (1 : 1357510)
+  ocekivani pogoci po kombinaciji = 0.800000 (teorijski 6*6/45 = 0.8)
+  ulog po kolu = 6 x 1.00 = 6.00 EUR; godisnje (18 kola) = 108.00 EUR
+Zapisan vjerojatnosti.txt; ukupno trajanje 9 s

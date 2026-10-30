@@ -23,8 +23,8 @@ ZAGREB_LON = 15 + 59 / 60
 # --- PRETPOSTAVKE (korisnik nije upisao) ---
 DRAW_TIME_LOCAL = dt.time(20, 0)            # PRETPOSTAVKA: 20:00 lokalno
 DRAW_WEEKDAYS = (2, 6)                      # PRETPOSTAVKA: srijeda (2) i nedjelja (6); Python weekday Mon=0
-PERIOD_START = dt.date(2026, 11, 1)         # PRETPOSTAVKA: 01.11.2026.-31.10.2027.
-PERIOD_END = dt.date(2027, 10, 31)
+PERIOD_START = dt.date(2026, 11, 1)         # korisnik: kombinacije do kraja 2026.
+PERIOD_END = dt.date(2026, 12, 31)
 PRICE_EUR = 1.00                            # PRETPOSTAVKA: cijena kombinacije
 WIN_CLASSES = (6, 5, 4, 3)                  # PRETPOSTAVKA: dobitne vrste 6, 5, 4, 3 pogotka
 # -------------------------------------------

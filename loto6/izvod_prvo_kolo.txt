@@ -1,0 +1,191 @@
+=== NATALNE EFEMERIDE (31.05.1991. 18:20 CEST, Zadar 44 07 N 15 14 E; Moshier, tropski / sideralno Lahiri) ===
+JD UT 2448408.18056; ayanamsa Lahiri 23.7371
+  Sunce    tropski  9.720 Blizanci (69.7201)   sideralno 15.979 Bik (45.9788)  naksatra 4 Rohini pada 2
+  Mjesec   tropski 14.579 Jarac (284.5788)   sideralno 20.837 Strijelac (260.8375)  naksatra 20 Purva Asadha pada 3
+  Merkur   tropski 21.789 Bik (51.7894)   sideralno 28.048 Ovan (28.0480)  naksatra 3 Krittika pada 1
+  Venera   tropski 24.505 Rak (114.5046)   sideralno  0.763 Rak (90.7632)  naksatra 7 Punarvasu pada 4
+  Mars     tropski  3.029 Lav (123.0292)   sideralno  9.288 Rak (99.2879)  naksatra 8 Pusya pada 2
+  Jupiter  tropski  8.946 Lav (128.9460)   sideralno 15.205 Rak (105.2046)  naksatra 8 Pusya pada 4
+  Saturn   tropski  6.672 Vodenjak (306.6722)   sideralno 12.931 Jarac (282.9308)  naksatra 22 Sravana pada 1
+  ASC      tropski 14.888 Skorpion (224.8877)   sideralno 21.146 Vaga (201.1464)
+  MC       tropski 26.675 Lav (146.6750)
+  rodjenje danju; Pars Fortunae 19.746 Blizanci (79.7464)
+  KONTROLA: Sunce 9.72 Blizanaca (trazeno 9-10) -> OK; Mjesec sideralno naksatra 20 Purva Asadha (trazeno Purva Asadha) -> OK
+
+=== KOLO 01.11.2026. NEDJELJA 20:00 CET (UTC+0100) Zagreb; redni broj 1; seed 15973270160073881434 ===
+
+--- Efemeride u trenutku kola (tropski / sideralno Lahiri) ---
+JD UT 2461346.29167; ayanamsa 24.2320
+  Sunce    tropski  9.369 Skorpion (219.3687)   sideralno 15.134 Vaga (195.1345)  naksatra 15 Svati pada 3
+  Mjesec   tropski  8.575 Lav (128.5753)   sideralno 14.341 Rak (104.3410)  naksatra 8 Pusya pada 4
+  Merkur   tropski 15.752 Skorpion (225.7524)   sideralno 21.518 Vaga (201.5181)  naksatra 16 Visakha pada 1
+  Venera   tropski 25.863 Vaga (205.8634)   sideralno  1.629 Vaga (181.6291)  naksatra 14 Citra pada 3
+  Mars     tropski 19.019 Lav (139.0194)   sideralno 24.785 Rak (114.7851)  naksatra 9 Aslesa pada 3
+  Jupiter  tropski 24.419 Lav (144.4188)   sideralno  0.184 Lav (120.1845)  naksatra 10 Magha pada 1
+  Saturn   tropski  9.237 Ovan (9.2369)   sideralno 15.003 Ribe (345.0027)  naksatra 26 Uttara Bhadrapada pada 4
+  ASC      tropski  7.586 Rak (97.5858)   sideralno 13.352 Blizanci (73.3516)
+  MC       tropski 10.567 Ribe (340.5668)
+  izlazak 06:35:42 zalazak 16:42:58 (lokalno); Sunce ispod horizonta -> PoF nocna formula =  8.379 Vaga (188.3793)
+
+--- Kalendari ---
+  Hebrejski: 22 Cheshvan 5787 (mjesec br. 8); zalazak 16:42; poslije zalaska: True
+  Kineski lunarni: godina 2026 Bing Wu (ogranak 7), mjesec 9, dan 23; pravo suncevo vrijeme 20:20:21; dvosatni ogranak 11 Xu 戌
+
+--- Planetarni sat ---
+  planetarni dan 2026-11-01 vladar Sunce; izlazak 06:35:42, zalazak 16:42:58, sljedeci izlazak 02.11. 06:37:06
+  dnevni sat 50.61 min, nocni sat 69.51 min
+  sat br. 15 (nocni) 19:02:00-20:11:30 = Sunce
+  kamea:
+    Sunce 6x6, konstanta 111, zbroj 666
+     6 32  3 34 35  1
+     7 11 27 28  8 30
+    19 14 16 15 23 24 <- sredisnji
+    18 20 22 21 17 13 <- sredisnji
+    25 29 10  9 26 12
+    36  5 33  4  2 31
+
+--- Jyotis ---
+  Mjesec naksatra 8 Pusya pada 4 gospodar Saturn; rasi Mjeseca 4 Rak; rasi lagne 3 Blizanci
+  Vimsottari iz natalnog Mjeseca: ostatak prve dase 8.744 g; MD Rahu 2023-02-27 - 2041-02-26; AD Jupiter 2025-11-09 - 2028-04-03
+
+--- I Ching (stabljike, 6:7:8:9 = 1:5:7:3 od 16) ---
+  linije odozdo prema gore: [6, 7, 8, 7, 9, 7]
+    6: -------  (7, mladi yang)
+    5: ---o---  (9, stari yang, pomicna)
+    4: -------  (7, mladi yang)
+    3: --   --  (8, mladi yin)
+    2: -------  (7, mladi yang)
+    1: -- x --  (6, stari yin, pomicna)
+    gornji Qian (1), donji Kan (6)
+  primarni 6 Song / Sukob; nuklearni 37 Jia Ren / Obitelj; promijenjeni 38 Kui / Suprotnost; pomicne [1, 5]; zbroj linija 44; Fu Xi kod 14
+
+--- Meihua Yishu ---
+  (godina 7 + mjesec 9 + dan 23) = 39 mod 8 -> gornji 7; + sat 11 = 50 mod 8 -> donji 2; 50 mod 6 -> pomicna 2
+  linije: [7, 9, 8, 8, 8, 7]
+    6: -------  (7, mladi yang)
+    5: --   --  (8, mladi yin)
+    4: --   --  (8, mladi yin)
+    3: --   --  (8, mladi yin)
+    2: ---o---  (9, stari yang, pomicna)
+    1: -------  (7, mladi yang)
+    gornji Gen (7), donji Dui (2)
+  primarni 41 Sun / Smanjenje; nuklearni 24; promijenjeni 27
+
+--- Lenormand Grand Tableau (4 x 9, promijesano seedom) ---
+    red 1: 21 Planina  13 Dijete  12 Ptice  30 Ljiljani   8 Lijes   2 Djetelina   1 Jahac  25 Prsten  28 Muskarac
+    red 2: 26 Knjiga  17 Roda  15 Medvjed  19 Toranj  24 Srce   9 Buket  34 Ribe  29 Zena  23 Misevi
+    red 3: 22 Raskrizje  18 Pas  35 Sidro   6 Oblaci  32 Mjesec  31 Sunce  10 Kosa   7 Zmija  33 Kljuc
+    red 4: 20 Vrt   3 Brod  36 Kriz   5 Drvo   4 Kuca  27 Pismo  11 Bic  14 Lisica  16 Zvijezde
+
+--- Tarot (78 karata, promijesano seedom) ---
+    prvih 20 karata mijesanja (* = indeks <= 45, ulazi u kaskadu):
+       1. 46 10 pehara
+       2. 17 Zvijezda *
+       3.  9 Pustinjak *
+       4. 54 4 maceva
+       5. 15 Davao *
+       6. 68 4 diskova
+       7. 44 8 pehara *
+       8. 77 Kraljica diskova
+       9. 45 9 pehara *
+      10. 70 6 diskova
+      11. 20 Sud *
+      12.  2 Visoka svecenica *
+      13. 14 Umjerenost *
+      14. 71 7 diskova
+      15.  3 Carica *
+      16.  6 Ljubavnici *
+      17. 58 8 maceva
+      18. 10 Kolo srece *
+      19. 18 Mjesec *
+      20. 52 2 maceva
+
+--- Kaskade i kombinacije (sirova vrijednost -> m45) ---
+[ 5] Kaldejska
+    kaskada: LOTO=21->21 | HRVATSKA LUTRIJA=42->42 | NEDJELJA=25->25 | ZAGREB=20->20 | IVAN=13->13 | dan u mjesecu=1->1 | zbroj znamenki datuma=13->13 | planet dana Sunce=1->1
+    iskoristeno: LOTO=21->21 | HRVATSKA LUTRIJA=42->42 | NEDJELJA=25->25 | ZAGREB=20->20 | IVAN=13->13 | dan u mjesecu=1->1
+    KOMBINACIJA: [1, 13, 20, 21, 25, 42]   (redoslijed kaskade [21, 42, 25, 20, 13, 1])   Joker 125031
+[ 6] Gematrija
+    kaskada: hebrejski dan 22 Cheshvan 5787 (poslije zalaska)=22->22 | מזל=77->32 | ברכה=227->2 | שפע=450->45 | זהב=14->14 | חי=18->18 | הצלחה=138->3 | כסף=160->25 | עושר=576->36
+    iskoristeno: hebrejski dan 22 Cheshvan 5787 (poslije zalaska)=22->22 | מזל=77->32 | ברכה=227->2 | שפע=450->45 | זהב=14->14 | חי=18->18
+    KOMBINACIJA: [2, 14, 18, 22, 32, 45]   (redoslijed kaskade [22, 32, 2, 45, 14, 18])   Joker 277048
+[ 7] Hermetika
+    kaskada: red3[1]=19->19 | red3[2]=14->14 | red3[3]=16->16 | red3[4]=15->15 | red3[5]=23->23 | red3[6]=24->24 | red4[1]=18->18 | red4[2]=20->20 | red4[3]=22->22 | red4[4]=21->21 | red4[5]=17->17 | red4[6]=13->13 | konstanta=111->21 | ukupni zbroj=666->36
+    iskoristeno: red3[1]=19->19 | red3[2]=14->14 | red3[3]=16->16 | red3[4]=15->15 | red3[5]=23->23 | red3[6]=24->24
+    KOMBINACIJA: [14, 15, 16, 19, 23, 24]   (redoslijed kaskade [19, 14, 16, 15, 23, 24])   Joker 946534
+[ 8] I Ching
+    kaskada: KW primarni Song / Sukob=6->6 | KW nuklearni Jia Ren / Obitelj=37->37 | KW promijenjeni Kui / Suprotnost=38->38 | zbroj linija=44->44 | pomicna linija=1->1 | pomicna linija=5->5 | FuXi gornji*8+donji=14->14
+    iskoristeno: KW primarni Song / Sukob=6->6 | KW nuklearni Jia Ren / Obitelj=37->37 | KW promijenjeni Kui / Suprotnost=38->38 | zbroj linija=44->44 | pomicna linija=1->1 | pomicna linija=5->5
+    KOMBINACIJA: [1, 5, 6, 37, 38, 44]   (redoslijed kaskade [6, 37, 38, 44, 1, 5])   Joker 678415
+[ 9] Lenormand
+    kaskada: r1:Planina(21)+Dijete(13)=34->34 | r1:Dijete(13)+Ptice(12)=25->25 | r1:Ptice(12)+Ljiljani(30)=42->42 | r1:Ljiljani(30)+Lijes(8)=38->38 | r1:Lijes(8)+Djetelina(2)=10->10 | r1:Djetelina(2)+Jahac(1)=3->3 | r1:Jahac(1)+Prsten(25)=26->26 | r1:Prsten(25)+Muskarac(28)=53->8 | Knjiga=26->26 | Roda=17->17 | Medvjed=15->15 | Toranj=19->19 | Srce=24->24 | Buket=9->9 | Ribe=34->34 | Zena=29->29 | Misevi=23->23 | Raskrizje=22->22 | Pas=18->18 | Sidro=35->35 | Oblaci=6->6 | Mjesec=32->32 | Sunce=31->31 | Kosa=10->10 | Zmija=7->7 | Kljuc=33->33 | Vrt=20->20 | Brod=3->3 | Kriz=36->36 | Drvo=5->5 | Kuca=4->4 | Pismo=27->27 | Bic=11->11 | Lisica=14->14 | Zvijezde=16->16
+    iskoristeno: r1:Planina(21)+Dijete(13)=34->34 | r1:Dijete(13)+Ptice(12)=25->25 | r1:Ptice(12)+Ljiljani(30)=42->42 | r1:Ljiljani(30)+Lijes(8)=38->38 | r1:Lijes(8)+Djetelina(2)=10->10 | r1:Djetelina(2)+Jahac(1)=3->3
+    KOMBINACIJA: [3, 10, 25, 34, 38, 42]   (redoslijed kaskade [34, 25, 42, 38, 10, 3])   Joker 452803
+[10] Meihua Yishu
+    kaskada: KW primarni Sun / Smanjenje=41->41 | KW nuklearni Fu / Povratak=24->24 | KW promijenjeni Yi / Hranjenje=27->27 | zbroj linija=47->2 | pomicna linija=2->2 | FuXi gornji*8+donji=58->13 | zbroj godina+mjesec+dan=39->39 | zbroj godina+mjesec+dan+sat=50->5
+    iskoristeno: KW primarni Sun / Smanjenje=41->41 | KW nuklearni Fu / Povratak=24->24 | KW promijenjeni Yi / Hranjenje=27->27 | zbroj linija=47->2 | FuXi gornji*8+donji=58->13 | zbroj godina+mjesec+dan=39->39
+    KOMBINACIJA: [2, 13, 24, 27, 39, 41]   (redoslijed kaskade [41, 24, 27, 2, 13, 39])   Joker 147728
+[11] Tarot
+    kaskada: 17 Zvijezda=17->17 | 9 Pustinjak=9->9 | 15 Davao=15->15 | 44 8 pehara=44->44 | 45 9 pehara=45->45 | 20 Sud=20->20 | 2 Visoka svecenica=2->2 | 14 Umjerenost=14->14 | 3 Carica=3->3 | 6 Ljubavnici=6->6 | 10 Kolo srece=10->10 | 18 Mjesec=18->18 | 31 9 stapova=31->31 | 29 7 stapova=29->29 | 1 Mag=1->1 | 12 Objeseni=12->12 | 38 2 pehara=38->38 | 40 4 pehara=40->40 | 27 5 stapova=27->27 | 16 Kula=16->16 | 30 8 stapova=30->30 | 7 Kocija=7->7 | 24 2 stapova=24->24 | 22 Luda=22->22 | 19 Sunce=19->19 | 11 Pravda=11->11 | 32 10 stapova=32->32 | 35 Kraljica stapova=35->35 | 25 3 stapova=25->25 | 34 Vitez stapova=34->34 | 33 Paz stapova=33->33 | 21 Svijet=21->21 | 4 Car=4->4 | 42 6 pehara=42->42 | 13 Smrt=13->13 | 37 As pehara=37->37 | 36 Kralj stapova=36->36 | 41 5 pehara=41->41 | 26 4 stapova=26->26 | 43 7 pehara=43->43 | 39 3 pehara=39->39 | 23 As stapova=23->23 | 28 6 stapova=28->28 | 5 Hijerofant=5->5 | 8 Snaga=8->8
+    iskoristeno: 17 Zvijezda=17->17 | 9 Pustinjak=9->9 | 15 Davao=15->15 | 44 8 pehara=44->44 | 45 9 pehara=45->45 | 20 Sud=20->20
+    KOMBINACIJA: [9, 15, 17, 20, 44, 45]   (redoslijed kaskade [17, 9, 15, 44, 45, 20])   Joker 795450
+[12] Pitagorejska
+    kaskada: IVAN (pitagorejski)=19->19 | zivotni put 29=29->29 | zivotni put /11=11->11 | rodjendanski broj=31->31 | mjesec kola=11->11 | zbroj znamenki datuma kola=13->13 | osobna godina (5+31+10=46)=10->10 | osobni mjesec (10+11=21)=21->21 | osobni dan (21+1=22)=22->22 | univerzalni dan (10+11+1=22)=22->22
+    iskoristeno: IVAN (pitagorejski)=19->19 | zivotni put 29=29->29 | zivotni put /11=11->11 | rodjendanski broj=31->31 | zbroj znamenki datuma kola=13->13 | osobna godina (5+31+10=46)=10->10
+    KOMBINACIJA: [10, 11, 13, 19, 29, 31]   (redoslijed kaskade [19, 29, 11, 31, 13, 10])   Joker 991113
+[13] Jyotis
+    kaskada: naksatra Mjeseca Pusya pada 4=8->8 | gospodar Saturn=8->8 | Saturn+9=17->17 | Saturn+18=26->26 | Saturn+27=35->35 | Saturn+36=44->44 | rasi Mjeseca=4->4 | rasi lagne=3->3 | mahadasa Rahu=4->4 | antardasa Jupiter=3->3 | vladar dana Sunce=1->1
+    iskoristeno: naksatra Mjeseca Pusya pada 4=8->8 | Saturn+9=17->17 | Saturn+18=26->26 | Saturn+27=35->35 | Saturn+36=44->44 | rasi Mjeseca=4->4
+    KOMBINACIJA: [4, 8, 17, 26, 35, 44]   (redoslijed kaskade [8, 17, 26, 35, 44, 4])   Joker 887654
+[14] Zapadna
+    kaskada: stupanj Sunce=10->10 | stupanj Mjesec=9->9 | stupanj ASC=8->8 | stupanj vladar dana Sunce=10->10 | stupanj PoF (nocna formula)=9->9 | stupanj natalni PoF=20->20 | znak Sunce=8->8 | znak Mjesec=5->5 | znak ASC=4->4 | znak vladar dana Sunce=8->8 | znak PoF (nocna formula)=7->7 | znak natalni PoF=3->3 | stupanj+30 Sunce=40->40 | stupanj+30 vladar dana Sunce=40->40 | stupanj+30 PoF (nocna formula)=39->39
+    iskoristeno: stupanj Sunce=10->10 | stupanj Mjesec=9->9 | stupanj ASC=8->8 | stupanj natalni PoF=20->20 | znak Mjesec=5->5 | znak ASC=4->4
+    KOMBINACIJA: [4, 5, 8, 9, 10, 20]   (redoslijed kaskade [10, 9, 8, 20, 5, 4])   Joker 098090
+[15] Plecko
+    kaskada: signal 3 izvora=10->10 | signal 3 izvora=13->13 | signal 3 izvora=20->20 | signal 3 izvora=44->44 | signal 2 izvora=1->1 | signal 2 izvora=2->2 | signal 2 izvora=4->4 | signal 2 izvora=5->5 | signal 2 izvora=8->8 | signal 2 izvora=9->9 | signal 2 izvora=14->14 | signal 2 izvora=15->15 | signal 2 izvora=17->17 | signal 2 izvora=19->19 | signal 2 izvora=24->24 | signal 2 izvora=25->25 | signal 2 izvora=38->38 | signal 2 izvora=42->42 | signal 2 izvora=45->45
+    iskoristeno: signal 3 izvora=10->10 | signal 3 izvora=13->13 | signal 3 izvora=20->20 | signal 3 izvora=44->44 | signal 2 izvora=2->2 | signal 2 izvora=14->14
+    KOMBINACIJA: [2, 10, 13, 14, 20, 44]   (redoslijed kaskade [10, 13, 20, 44, 2, 14])   Joker 030412
+    ZAMJENA (pravilo seta): 1->14 (preklapanje s Kaldejska: [1, 13, 20]; kandidat signal 2 izvora=14->14)
+
+--- Plecko: konvergencija (broj: broj izvora [izvori]) ---
+    10: 3  SIGNAL  Lenormand, Pitagorejska, Zapadna
+    13: 3  SIGNAL  Kaldejska, Meihua Yishu, Pitagorejska
+    20: 3  SIGNAL  Kaldejska, Tarot, Zapadna
+    44: 3  SIGNAL  I Ching, Tarot, Jyotis
+     1: 2  SIGNAL  Kaldejska, I Ching
+     2: 2  SIGNAL  Gematrija, Meihua Yishu
+     4: 2  SIGNAL  Jyotis, Zapadna
+     5: 2  SIGNAL  I Ching, Zapadna
+     8: 2  SIGNAL  Jyotis, Zapadna
+     9: 2  SIGNAL  Tarot, Zapadna
+    14: 2  SIGNAL  Gematrija, Hermetika
+    15: 2  SIGNAL  Hermetika, Tarot
+    17: 2  SIGNAL  Tarot, Jyotis
+    19: 2  SIGNAL  Hermetika, Pitagorejska
+    24: 2  SIGNAL  Hermetika, Meihua Yishu
+    25: 2  SIGNAL  Kaldejska, Lenormand
+    38: 2  SIGNAL  I Ching, Lenormand
+    42: 2  SIGNAL  Kaldejska, Lenormand
+    45: 2  SIGNAL  Gematrija, Tarot
+     3: 1  sum     Lenormand
+     6: 1  sum     I Ching
+    11: 1  sum     Pitagorejska
+    16: 1  sum     Hermetika
+    18: 1  sum     Gematrija
+    21: 1  sum     Kaldejska
+    22: 1  sum     Gematrija
+    23: 1  sum     Hermetika
+    26: 1  sum     Jyotis
+    27: 1  sum     Meihua Yishu
+    29: 1  sum     Pitagorejska
+    31: 1  sum     Pitagorejska
+    32: 1  sum     Gematrija
+    34: 1  sum     Lenormand
+    35: 1  sum     Jyotis
+    37: 1  sum     I Ching
+    39: 1  sum     Meihua Yishu
+    41: 1  sum     Meihua Yishu
+    NAPOMENA: povijest.csv nije dostupna -> izvor Statistika (sustavi 1-4) ne sudjeluje; ukupno 10 izvora.
+
+--- Provjera pravila seta (max zajednickih brojeva po paru) ---
+    najvece preklapanje medju 11 kombinacija: 2 (dopusteno <= 2)

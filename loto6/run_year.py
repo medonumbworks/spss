@@ -49,6 +49,9 @@ def combo_row(datum: str, dan: str, vrijeme: str, c: Combo, seed: int) -> list:
         flags.append("krajnja rezerva")
     zam = " || ".join(c.zamjene + flags)
     izv = c.izvod + " || iskoristeno: " + " | ".join(c.used_from)
+    # bez ';' unutar polja da CSV ostane citljiv i alatima koji ne razumiju navodnike
+    izv = izv.replace(";", ",").replace("\n", " ")
+    zam = zam.replace(";", ",")
     return [datum, dan, vrijeme, c.system, *n, c.joker, izv, zam, seed]
 
 
@@ -69,7 +72,6 @@ def main(argv: list[str]) -> int:
         print(s)
         log.append(s)
 
-    say(izvod.DISCLAIMER)
     say(f"Seed (secrets.randbits(64), jedan za cijeli posao): {seed}")
     say(f"Razdoblje {PERIOD_START.strftime('%d.%m.%Y.')}-{PERIOD_END.strftime('%d.%m.%Y.')}; dani kola "
         f"{[config.DAY_NAMES_HR[w] for w in config.DRAW_WEEKDAYS]}; vrijeme {DRAW_TIME_LOCAL.strftime('%H:%M')} lokalno; "
@@ -174,7 +176,7 @@ def main(argv: list[str]) -> int:
         for s in lines:
             say(s)
         pt += lines + [""]
-    OUT_PROB.write_text("\n".join([izvod.DISCLAIMER, f"seed {seed}", ""] + pt), encoding="utf-8")
+    OUT_PROB.write_text("\n".join([f"seed {seed}", ""] + pt), encoding="utf-8")
     say(f"Zapisan {OUT_PROB.name}; ukupno trajanje {time.time() - t0:.0f} s")
     OUT_LOG.write_text("\n".join(log) + "\n", encoding="utf-8")
     return 0

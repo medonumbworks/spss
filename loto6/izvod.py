@@ -37,7 +37,6 @@ def draw_text(res: DrawResult, natal: Natal, header: str = "") -> str:
     if header:
         L.append(header)
     L.append(f"=== KOLO {c.date.strftime('%d.%m.%Y.')} {c.day_name} {c.dt_local.strftime('%H:%M %Z (UTC%z)')} Zagreb; redni broj {c.ordinal}; seed {read_seed()} ===")
-    L.append(DISCLAIMER)
     L.append("")
     L.append("--- Efemeride u trenutku kola (tropski / sideralno Lahiri) ---")
     L.append(f"JD UT {c.jd:.5f}; ayanamsa {c.ayanamsa:.4f}")
