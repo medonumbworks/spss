@@ -1,0 +1,10 @@
+convertdate==2.5.1
+lunardate==0.3.0
+numpy==2.5.4
+openpyxl==3.1.5
+pandas==3.1.0
+pyluach==2.3.0
+PyMeeus==0.5.12
+pyswisseph==2.10.3.2
+scipy==1.18.1
+tzdata==2026.6
