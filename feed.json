@@ -1,0 +1,2037 @@
+{
+ "schema": "cryptopulse.sentiment-feed/v1",
+ "generatedAt": "2026-10-31T17:45:35Z",
+ "windowHours": 24,
+ "models": [
+  "vader",
+  "finbert",
+  "cryptobert"
+ ],
+ "sources": [
+  {
+   "name": "telegram_public",
+   "status": "ok",
+   "items": 1886,
+   "detail": "160/186 channels (26 no_preview)"
+  },
+  {
+   "name": "telegram_account",
+   "status": "disabled",
+   "items": 0,
+   "detail": "no TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION secrets"
+  },
+  {
+   "name": "rss",
+   "status": "ok",
+   "items": 112,
+   "detail": "6/6 feeds"
+  },
+  {
+   "name": "reddit",
+   "status": "unauthorized",
+   "items": 0,
+   "detail": "0/4 subreddits (4 HTTP 403)"
+  }
+ ],
+ "market": {
+  "mentions": 889,
+  "composite": 0.0393,
+  "bullish": 0.5048,
+  "bearish": 0.297,
+  "neutral": 0.1981
+ },
+ "assets": [
+  {
+   "symbol": "BTC",
+   "mentions": 255,
+   "mentionsPrev": 194,
+   "baseline7d": 210.33,
+   "spike": 1.21,
+   "composite": -0.0905,
+   "scores": {
+    "vader": -0.127,
+    "finbert": -0.2264,
+    "cryptobert": 0.0094
+   },
+   "bullish": 0.3759,
+   "bearish": 0.4488,
+   "neutral": 0.1753,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 239,
+     "composite": -0.095
+    },
+    "rss": {
+     "mentions": 16,
+     "composite": 0.1078
+    }
+   },
+   "samples": [
+    {
+     "text": "🟢 #BTC Liquidated Short: $139K at $77690.20",
+     "score": -0.4528,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400615",
+     "ts": "2026-10-31T12:37:13Z"
+    },
+    {
+     "text": "🟢 #BTC Liquidated Short: $68.6K at $77597.20",
+     "score": -0.35,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400621",
+     "ts": "2026-10-31T17:27:06Z"
+    },
+    {
+     "text": "On 31 October 2008, Satoshi published nine pages that explained Bitcoin to the world. Today we’re explaining it to everyone else. Two pizzas, 10,000 BTC, 21 million coins, and one key you never share. Everything you need to know, in a comic. Happy 18th birthday, Bitcoin whitepap…",
+     "score": 0.4545,
+     "source": "telegram_public",
+     "community": "bitcoin",
+     "url": "https://t.me/bitcoin/20687",
+     "ts": "2026-10-31T13:35:27Z"
+    },
+    {
+     "text": "🪙 18 years ago, on October 31, 2008, the Bitcoin Whitepaper authored by Satoshi Nakamoto was published. The nine-page technical document titled “A Peer-to-Peer Electronic Cash System” described the operation principle of a peer-to-peer payment system, which subsequently sparked…",
+     "score": 0.4647,
+     "source": "telegram_public",
+     "community": "crypto_nft_web3_news",
+     "url": "https://t.me/crypto_nft_web3_news/10920",
+     "ts": "2026-10-31T09:09:40Z"
+    },
+    {
+     "text": "In 2008, nine pages proposed a new way to move value. Eighteen years later, the idea is still unfolding. The whitepaper ended on Page 9, but the idea never did. One paper. Infinite markets. The whitepaper ended on Page 9. The next line is yours. If you could add ONE line to the…",
+     "score": 0.566,
+     "source": "telegram_public",
+     "community": "MEXCofficialNews",
+     "url": "https://t.me/MEXCofficialNews/38771",
+     "ts": "2026-10-31T14:30:00Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDT",
+   "mentions": 85,
+   "mentionsPrev": 184,
+   "baseline7d": 81.37,
+   "spike": 1.04,
+   "composite": 0.2552,
+   "scores": {
+    "vader": 0.3922,
+    "finbert": 0.0791,
+    "cryptobert": 0.2617
+   },
+   "bullish": 0.7771,
+   "bearish": 0.1138,
+   "neutral": 0.1091,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 82,
+     "composite": 0.2579
+    },
+    "rss": {
+     "mentions": 3,
+     "composite": -0.2693
+    }
+   },
+   "samples": [
+    {
+     "text": "🔍 Ready to make the most of KuCoin 5.0? 🔍 New to KuCoin? Step into the next era of trading and unlock your share of exclusive rewards! 🎁 1️⃣ Task 1: Register & trade > $100 ➔ Get a guaranteed $40 USDT bonus! 2️⃣ Task 2: Complete Task 1 & trade > $500 ➔ Unlock a Lucky Draw Spi…",
+     "score": 0.6027,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/36962",
+     "ts": "2026-10-31T16:33:43Z"
+    },
+    {
+     "text": "🚀 DEPOSIT. SUBSCRIBE. LEVEL UP YOUR YIELD! Your USDT and USDC deserve a place to work! 💰 Put your stablecoins to work with KCUSD and enjoy up to 7% APR on KuCoin. Plus, you could win one of 40 extra 2.5% APR KCUSD vouchers , worth up to 200 USDT in total rewards ! 🎁 🎯 ENTER…",
+     "score": 0.6087,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/36957",
+     "ts": "2026-10-31T15:15:23Z"
+    },
+    {
+     "text": "On 31 October 2008, Satoshi published nine pages that explained Bitcoin to the world. Today we’re explaining it to everyone else. Two pizzas, 10,000 BTC, 21 million coins, and one key you never share. Everything you need to know, in a comic. Happy 18th birthday, Bitcoin whitepap…",
+     "score": 0.4545,
+     "source": "telegram_public",
+     "community": "bitcoin",
+     "url": "https://t.me/bitcoin/20687",
+     "ts": "2026-10-31T13:35:27Z"
+    },
+    {
+     "text": "In 2008, nine pages proposed a new way to move value. Eighteen years later, the idea is still unfolding. The whitepaper ended on Page 9, but the idea never did. One paper. Infinite markets. The whitepaper ended on Page 9. The next line is yours. If you could add ONE line to the…",
+     "score": 0.566,
+     "source": "telegram_public",
+     "community": "MEXCofficialNews",
+     "url": "https://t.me/MEXCofficialNews/38771",
+     "ts": "2026-10-31T14:30:00Z"
+    },
+    {
+     "text": "📸 SAY CHEESE, KUFAM! Some families take normal family photos. The KuFam? One’s watching BTC, another’s checking their portfolio, and someone’s still debating whether we’re bullish. Different personalities. One big KuFam. Wouldn’t have it any other way. 🦊 Join the reunion, cele…",
+     "score": 0.5334,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/36955",
+     "ts": "2026-10-31T14:38:46Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ETH",
+   "mentions": 78,
+   "mentionsPrev": 132,
+   "baseline7d": 116.33,
+   "spike": 0.67,
+   "composite": 0.0126,
+   "scores": {
+    "vader": 0.0033,
+    "finbert": -0.1368,
+    "cryptobert": 0.1017
+   },
+   "bullish": 0.5146,
+   "bearish": 0.3493,
+   "neutral": 0.1361,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 78,
+     "composite": 0.0126
+    }
+   },
+   "samples": [
+    {
+     "text": "🟢 #ETH Liquidated Short: $156K at $2251.99",
+     "score": -0.5651,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400619",
+     "ts": "2026-10-31T17:19:01Z"
+    },
+    {
+     "text": "🟢 #ETH Liquidated Short: $244K at $2251.52",
+     "score": -0.4289,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400618",
+     "ts": "2026-10-31T17:18:52Z"
+    },
+    {
+     "text": "🟢 #ETH Liquidated Short: $182K at $2253.78",
+     "score": -0.4779,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400613",
+     "ts": "2026-10-31T12:36:28Z"
+    },
+    {
+     "text": "🟢 #ETH Liquidated Short: $53.8K at $2253.16",
+     "score": -0.4116,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400614",
+     "ts": "2026-10-31T12:36:29Z"
+    },
+    {
+     "text": "🟢 #ETH Liquidated Short: $67.6K at $2250.85",
+     "score": -0.3218,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400620",
+     "ts": "2026-10-31T17:27:05Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDC",
+   "mentions": 52,
+   "mentionsPrev": 63,
+   "baseline7d": 38.0,
+   "spike": 1.37,
+   "composite": 0.2223,
+   "scores": {
+    "vader": 0.193,
+    "finbert": 0.0447,
+    "cryptobert": 0.3406
+   },
+   "bullish": 0.7339,
+   "bearish": 0.0866,
+   "neutral": 0.1796,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 51,
+     "composite": 0.2223
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": 0.2286
+    }
+   },
+   "samples": [
+    {
+     "text": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250,000,000 $USDC (249,999,500 USD) minted at USDC Treasury Details",
+     "score": 0.4141,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104415",
+     "ts": "2026-10-31T17:17:13Z"
+    },
+    {
+     "text": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250M USDC ($250M) minted at USDC Treasury Blockchain: Solana 54 seconds ago Mcap: $48.8B 24h change: 0.52% TX - link @WhaleBotAlerts",
+     "score": 0.5257,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569463",
+     "ts": "2026-10-31T17:18:07Z"
+    },
+    {
+     "text": "🚀 DEPOSIT. SUBSCRIBE. LEVEL UP YOUR YIELD! Your USDT and USDC deserve a place to work! 💰 Put your stablecoins to work with KCUSD and enjoy up to 7% APR on KuCoin. Plus, you could win one of 40 extra 2.5% APR KCUSD vouchers , worth up to 200 USDT in total rewards ! 🎁 🎯 ENTER…",
+     "score": 0.6087,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/36957",
+     "ts": "2026-10-31T15:15:23Z"
+    },
+    {
+     "text": "Binance: 90% of Stolen Assets Replenished; Withdrawals Set to Resume on Nov. 1 Binance announced that it has now replenished 90% of the stolen asset shortfall. The top ten major tokens—including BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, and ZEC—are now 100% fully backed…",
+     "score": 0.3563,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26634",
+     "ts": "2026-10-31T15:05:20Z"
+    },
+    {
+     "text": "BINANCE: ALL BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, AND ZEC ARE FULLY BACKED 100% ( @WalterBloomberg )",
+     "score": 0.2881,
+     "source": "telegram_public",
+     "community": "WalterBloomberg",
+     "url": "https://t.me/WalterBloomberg/37700",
+     "ts": "2026-10-31T14:39:08Z"
+    }
+   ]
+  },
+  {
+   "symbol": "HYPE",
+   "mentions": 48,
+   "mentionsPrev": 33,
+   "baseline7d": 27.73,
+   "spike": 1.73,
+   "composite": -0.0418,
+   "scores": {
+    "vader": -0.1688,
+    "finbert": -0.1891,
+    "cryptobert": 0.1248
+   },
+   "bullish": 0.5118,
+   "bearish": 0.4341,
+   "neutral": 0.0542,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 47,
+     "composite": -0.0386
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.3718
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #HYPE Liquidated Long: $498K at $86.30 - hyper lens",
+     "score": -0.5859,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/85007",
+     "ts": "2026-10-31T08:41:02Z"
+    },
+    {
+     "text": "🔴 #HYPE Liquidated Long: $189K at $86.55 - hyper lens",
+     "score": -0.587,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/85006",
+     "ts": "2026-10-31T08:36:59Z"
+    },
+    {
+     "text": "🔴 #HYPE Liquidated Long: $455K at $86.59 - hyper lens",
+     "score": -0.5797,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/85005",
+     "ts": "2026-10-31T08:36:42Z"
+    },
+    {
+     "text": "ICE Reposts Trade[XYZ] Partnership Announcement, Emphasizing \"Plans to Bring\" and \"Subject to Regulatory Approvals\" Following the deletion of its earlier post, Intercontinental Exchange (ICE) reposted its partnership announcement with Trade[XYZ]. In the updated post, ICE amended…",
+     "score": 0.4081,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26633",
+     "ts": "2026-10-31T12:32:07Z"
+    },
+    {
+     "text": "🔴 #HYPE Liquidated Long: $173K at $86.62 - hyper lens",
+     "score": -0.5605,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/85003",
+     "ts": "2026-10-31T08:36:36Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SOL",
+   "mentions": 44,
+   "mentionsPrev": 36,
+   "baseline7d": 151.0,
+   "spike": 0.29,
+   "composite": 0.1905,
+   "scores": {
+    "vader": 0.1313,
+    "finbert": 0.0326,
+    "cryptobert": 0.3177
+   },
+   "bullish": 0.6891,
+   "bearish": 0.0662,
+   "neutral": 0.2447,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 44,
+     "composite": 0.1905
+    }
+   },
+   "samples": [
+    {
+     "text": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250M USDC ($250M) minted at USDC Treasury Blockchain: Solana 54 seconds ago Mcap: $48.8B 24h change: 0.52% TX - link @WhaleBotAlerts",
+     "score": 0.5257,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569463",
+     "ts": "2026-10-31T17:18:07Z"
+    },
+    {
+     "text": "Binance: 90% of Stolen Assets Replenished; Withdrawals Set to Resume on Nov. 1 Binance announced that it has now replenished 90% of the stolen asset shortfall. The top ten major tokens—including BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, and ZEC—are now 100% fully backed…",
+     "score": 0.3563,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26634",
+     "ts": "2026-10-31T15:05:20Z"
+    },
+    {
+     "text": "BINANCE: ALL BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, AND ZEC ARE FULLY BACKED 100% ( @WalterBloomberg )",
+     "score": 0.2881,
+     "source": "telegram_public",
+     "community": "WalterBloomberg",
+     "url": "https://t.me/WalterBloomberg/37700",
+     "ts": "2026-10-31T14:39:08Z"
+    },
+    {
+     "text": "🔍 链上侦探 | Binance SAFU钱包于半小时前转出7500枚BTC，或用于受影响资产储备补足 BlockBeats 消息，10 月 31 日，据链上分析师 Ai 姨（ @ai_9684xtpa ）监测， Binance SAFU 钱包于半小时前转出 7500 枚 BTC，价值约 5.8 亿美元，该笔转账或与受影响资产的储备补足有关。转出后，该地址仍持有 7500 枚 BTC，约为转账前余额的一半。 随后， Binance 联席 CEO 何一表示，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均…",
+     "score": 0.2757,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203450",
+     "ts": "2026-10-31T15:35:02Z"
+    },
+    {
+     "text": "⚡️ Binance：已完成约90%受影响资产回填并公布储备金证明快照 BlockBeats 消息，10 月 31 日，据官方公告， Binance 表示被盗资产补足比例已由此前约 80% 提升至 90%。公司此前已预留超过 63.4 亿美元自有资金，用于承担此次安全事件造成的损失。目前，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均已实现 100% 足额储备支持。 补足资金来源包括部分 SAFU 用户资产安全基金、部分合约保险基金及公司自有资金，合约保险基金的剩余余额按监管要求保留。尚未补足的约 10…",
+     "score": 0.2759,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203443",
+     "ts": "2026-10-31T14:30:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "BNB",
+   "mentions": 24,
+   "mentionsPrev": 22,
+   "baseline7d": 17.17,
+   "spike": 1.4,
+   "composite": 0.1845,
+   "scores": {
+    "vader": 0.0601,
+    "finbert": 0.0211,
+    "cryptobert": 0.3583
+   },
+   "bullish": 0.7687,
+   "bearish": 0.1025,
+   "neutral": 0.1288,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 24,
+     "composite": 0.1845
+    }
+   },
+   "samples": [
+    {
+     "text": "Binance: 90% of Stolen Assets Replenished; Withdrawals Set to Resume on Nov. 1 Binance announced that it has now replenished 90% of the stolen asset shortfall. The top ten major tokens—including BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, and ZEC—are now 100% fully backed…",
+     "score": 0.3563,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26634",
+     "ts": "2026-10-31T15:05:20Z"
+    },
+    {
+     "text": "BINANCE: ALL BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, AND ZEC ARE FULLY BACKED 100% ( @WalterBloomberg )",
+     "score": 0.2881,
+     "source": "telegram_public",
+     "community": "WalterBloomberg",
+     "url": "https://t.me/WalterBloomberg/37700",
+     "ts": "2026-10-31T14:39:08Z"
+    },
+    {
+     "text": "🔍 链上侦探 | Binance SAFU钱包于半小时前转出7500枚BTC，或用于受影响资产储备补足 BlockBeats 消息，10 月 31 日，据链上分析师 Ai 姨（ @ai_9684xtpa ）监测， Binance SAFU 钱包于半小时前转出 7500 枚 BTC，价值约 5.8 亿美元，该笔转账或与受影响资产的储备补足有关。转出后，该地址仍持有 7500 枚 BTC，约为转账前余额的一半。 随后， Binance 联席 CEO 何一表示，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均…",
+     "score": 0.2757,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203450",
+     "ts": "2026-10-31T15:35:02Z"
+    },
+    {
+     "text": "⚡️ Binance：已完成约90%受影响资产回填并公布储备金证明快照 BlockBeats 消息，10 月 31 日，据官方公告， Binance 表示被盗资产补足比例已由此前约 80% 提升至 90%。公司此前已预留超过 63.4 亿美元自有资金，用于承担此次安全事件造成的损失。目前，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均已实现 100% 足额储备支持。 补足资金来源包括部分 SAFU 用户资产安全基金、部分合约保险基金及公司自有资金，合约保险基金的剩余余额按监管要求保留。尚未补足的约 10…",
+     "score": 0.2759,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203443",
+     "ts": "2026-10-31T14:30:02Z"
+    },
+    {
+     "text": "安全事件资产回填进展：已完成约 90% 受影响资产回填并公布储备金证明快照（2026-10-31） 亲爱的币安用户： 在上次更新中，我们提到币安已预留超过63.4亿美元的公司自有资金，用于承担此次安全事件中被盗损失。当时，相关资产的回填比例已达到约80%。 目前，该比例已进一步提升至90%。 目前，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD和ZEC均已实现100%足额储备支持。我们将继续通过市场和场外交易渠道购入剩余被盗代币资产，直至所有代币的补足比例均达到100%。 币安将承担本次资产被盗的财务损失，而非用户。…",
+     "score": 0.3004,
+     "source": "telegram_public",
+     "community": "binance_cn",
+     "url": "https://t.me/binance_cn/6609",
+     "ts": "2026-10-31T14:36:48Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XRP",
+   "mentions": 24,
+   "mentionsPrev": 35,
+   "baseline7d": 26.23,
+   "spike": 0.91,
+   "composite": 0.1996,
+   "scores": {
+    "vader": 0.1468,
+    "finbert": 0.0322,
+    "cryptobert": 0.3278
+   },
+   "bullish": 0.7244,
+   "bearish": 0.0314,
+   "neutral": 0.2442,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 22,
+     "composite": 0.1998
+    },
+    "rss": {
+     "mentions": 2,
+     "composite": 0.189
+    }
+   },
+   "samples": [
+    {
+     "text": "Binance: 90% of Stolen Assets Replenished; Withdrawals Set to Resume on Nov. 1 Binance announced that it has now replenished 90% of the stolen asset shortfall. The top ten major tokens—including BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, and ZEC—are now 100% fully backed…",
+     "score": 0.3563,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26634",
+     "ts": "2026-10-31T15:05:20Z"
+    },
+    {
+     "text": "BINANCE: ALL BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, AND ZEC ARE FULLY BACKED 100% ( @WalterBloomberg )",
+     "score": 0.2881,
+     "source": "telegram_public",
+     "community": "WalterBloomberg",
+     "url": "https://t.me/WalterBloomberg/37700",
+     "ts": "2026-10-31T14:39:08Z"
+    },
+    {
+     "text": "🔍 链上侦探 | Binance SAFU钱包于半小时前转出7500枚BTC，或用于受影响资产储备补足 BlockBeats 消息，10 月 31 日，据链上分析师 Ai 姨（ @ai_9684xtpa ）监测， Binance SAFU 钱包于半小时前转出 7500 枚 BTC，价值约 5.8 亿美元，该笔转账或与受影响资产的储备补足有关。转出后，该地址仍持有 7500 枚 BTC，约为转账前余额的一半。 随后， Binance 联席 CEO 何一表示，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均…",
+     "score": 0.2757,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203450",
+     "ts": "2026-10-31T15:35:02Z"
+    },
+    {
+     "text": "⚡️ Binance：已完成约90%受影响资产回填并公布储备金证明快照 BlockBeats 消息，10 月 31 日，据官方公告， Binance 表示被盗资产补足比例已由此前约 80% 提升至 90%。公司此前已预留超过 63.4 亿美元自有资金，用于承担此次安全事件造成的损失。目前，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均已实现 100% 足额储备支持。 补足资金来源包括部分 SAFU 用户资产安全基金、部分合约保险基金及公司自有资金，合约保险基金的剩余余额按监管要求保留。尚未补足的约 10…",
+     "score": 0.2759,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203443",
+     "ts": "2026-10-31T14:30:02Z"
+    },
+    {
+     "text": "安全事件资产回填进展：已完成约 90% 受影响资产回填并公布储备金证明快照（2026-10-31） 亲爱的币安用户： 在上次更新中，我们提到币安已预留超过63.4亿美元的公司自有资金，用于承担此次安全事件中被盗损失。当时，相关资产的回填比例已达到约80%。 目前，该比例已进一步提升至90%。 目前，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD和ZEC均已实现100%足额储备支持。我们将继续通过市场和场外交易渠道购入剩余被盗代币资产，直至所有代币的补足比例均达到100%。 币安将承担本次资产被盗的财务损失，而非用户。…",
+     "score": 0.3004,
+     "source": "telegram_public",
+     "community": "binance_cn",
+     "url": "https://t.me/binance_cn/6609",
+     "ts": "2026-10-31T14:36:48Z"
+    }
+   ]
+  },
+  {
+   "symbol": "TRX",
+   "mentions": 20,
+   "mentionsPrev": 20,
+   "baseline7d": 8.73,
+   "spike": 2.29,
+   "composite": -0.0696,
+   "scores": {
+    "vader": -0.3355,
+    "finbert": -0.2106,
+    "cryptobert": 0.1859
+   },
+   "bullish": 0.382,
+   "bearish": 0.552,
+   "neutral": 0.066,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 19,
+     "composite": -0.0609
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.533
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #TRX Liquidated Long: $73K at $0.3145 - hyper lens",
+     "score": -0.399,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/85010",
+     "ts": "2026-10-31T15:23:47Z"
+    },
+    {
+     "text": "🔴 #TRX Liquidated Long: $57.6K at $0.3104 - hyper lens",
+     "score": -0.2952,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/85011",
+     "ts": "2026-10-31T16:45:25Z"
+    },
+    {
+     "text": "🚓 🚓 🚓 🚓 120,000,000 $TRX (38,260,155 USD) of stolen funds transferred from Binance Hack 2026 to unknown wallet Details",
+     "score": -0.1895,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104412",
+     "ts": "2026-10-31T14:50:53Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 77,482 0.4 -3.3 -9.7 2 ETH 2,248 1.0 -2.9 -17.2 3 USDT 1.00 -0.0 -0.0 -0.1 4 BNB 704.84 0.8 -2.6 -8.9 5 XRP 1.25 0.7 -1.7 -17.5 6 USDC 1.00 -0.0 -0.0 0.0 7 SOL 95.89 1.2 -4.5 -20.7 8 TRX 0.31 -6.5 -5.0 -5.8 9 STETH2,247.65 1.0 -2.8 -17.2 10 ZE…",
+     "score": 0.1788,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569462",
+     "ts": "2026-10-31T16:00:06Z"
+    },
+    {
+     "text": "🔴 #TRX Liquidated Long: $92.5K at $0.3189 - hyper lens",
+     "score": -0.3059,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/85008",
+     "ts": "2026-10-31T08:55:13Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZEC",
+   "mentions": 16,
+   "mentionsPrev": 12,
+   "baseline7d": 19.33,
+   "spike": 0.83,
+   "composite": 0.1251,
+   "scores": {
+    "vader": 0.0844,
+    "finbert": -0.0342,
+    "cryptobert": 0.2408
+   },
+   "bullish": 0.6249,
+   "bearish": 0.1467,
+   "neutral": 0.2284,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 16,
+     "composite": 0.1251
+    }
+   },
+   "samples": [
+    {
+     "text": "Binance: 90% of Stolen Assets Replenished; Withdrawals Set to Resume on Nov. 1 Binance announced that it has now replenished 90% of the stolen asset shortfall. The top ten major tokens—including BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, and ZEC—are now 100% fully backed…",
+     "score": 0.3563,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26634",
+     "ts": "2026-10-31T15:05:20Z"
+    },
+    {
+     "text": "BINANCE: ALL BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, AND ZEC ARE FULLY BACKED 100% ( @WalterBloomberg )",
+     "score": 0.2881,
+     "source": "telegram_public",
+     "community": "WalterBloomberg",
+     "url": "https://t.me/WalterBloomberg/37700",
+     "ts": "2026-10-31T14:39:08Z"
+    },
+    {
+     "text": "🔍 链上侦探 | Binance SAFU钱包于半小时前转出7500枚BTC，或用于受影响资产储备补足 BlockBeats 消息，10 月 31 日，据链上分析师 Ai 姨（ @ai_9684xtpa ）监测， Binance SAFU 钱包于半小时前转出 7500 枚 BTC，价值约 5.8 亿美元，该笔转账或与受影响资产的储备补足有关。转出后，该地址仍持有 7500 枚 BTC，约为转账前余额的一半。 随后， Binance 联席 CEO 何一表示，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均…",
+     "score": 0.2757,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203450",
+     "ts": "2026-10-31T15:35:02Z"
+    },
+    {
+     "text": "⚡️ Binance：已完成约90%受影响资产回填并公布储备金证明快照 BlockBeats 消息，10 月 31 日，据官方公告， Binance 表示被盗资产补足比例已由此前约 80% 提升至 90%。公司此前已预留超过 63.4 亿美元自有资金，用于承担此次安全事件造成的损失。目前，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均已实现 100% 足额储备支持。 补足资金来源包括部分 SAFU 用户资产安全基金、部分合约保险基金及公司自有资金，合约保险基金的剩余余额按监管要求保留。尚未补足的约 10…",
+     "score": 0.2759,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203443",
+     "ts": "2026-10-31T14:30:02Z"
+    },
+    {
+     "text": "Binance компенсировала 90% потерь от взлома Binance сообщила, что компенсировала 90% потерь, связанных со взломом. Резервы биржи в BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD и ZEC полностью восстановлены. Оставшиеся 10% приходятся на менее ликвидные токены, которые сложнее…",
+     "score": 0.0853,
+     "source": "telegram_public",
+     "community": "RBCCrypto",
+     "url": "https://t.me/RBCCrypto/23726",
+     "ts": "2026-10-31T16:32:20Z"
+    }
+   ]
+  },
+  {
+   "symbol": "UNI",
+   "mentions": 10,
+   "mentionsPrev": 15,
+   "baseline7d": 10.57,
+   "spike": 0.95,
+   "composite": 0.2524,
+   "scores": {
+    "vader": 0.2866,
+    "finbert": 0.0504,
+    "cryptobert": 0.3417
+   },
+   "bullish": 0.9367,
+   "bearish": 0.0,
+   "neutral": 0.0633,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 9,
+     "composite": 0.2502
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": 0.3453
+    }
+   },
+   "samples": [
+    {
+     "text": "🦄 UNISWAP JUST OPENED ITS FEE-CONVERSION ENGINE TO EVERY APP ​ Uniswap has released a new piece of infrastructure called TJAR. ​ The idea is simple. ​ Apps often collect fees in dozens of different tokens. TJAR lets them automatically convert those assets into ONE TOKEN of thei…",
+     "score": 0.4901,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22342",
+     "ts": "2026-10-31T10:11:02Z"
+    },
+    {
+     "text": "聚合器Hooks将外部流动性纳入v4，Uniswap在打什么算盘？ Uniswap v4 上线聚合器 Hooks，将 Curve、Fluid、PancakeSwap 等外部流动性包装成标准 v4 池，并把手续费引向 UNI 销毁。这既是向\"链上流动性入口\"靠拢，短期对 UNI 价值捕获的增益仍取决于是否对高流量池收费。 🔗 https://www.panewslab.com/zh/articles/01a19169-48c5-70fa-8575-505c68e08c3a",
+     "score": 0.1705,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/184004",
+     "ts": "2026-10-31T14:30:03Z"
+    },
+    {
+     "text": "🤔 스마트머니 현재 토큰 보유 잔고, ≈$41.74M 조회 20개 기록의 현재 보유 가치 합계 ≈$41.74M. STONK ≈$6.89M · PUMP ≈$5.5M · ZEC ≈$3.82M · UNI ≈$3.01M 코인이지 인사이트 현재 보유 가치 합계 ≈$41.74M · 신규 매수액이 아닙니다 핵심 한 줄: 현재 보유 잔고 스냅샷 · 확인한 기록 20개 중 4개 표시 · 시장 전체 아님 Powered by Nansen 더 알아보기 📣 공지방 · 소통방 · X",
+     "score": 0.1927,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58160",
+     "ts": "2026-10-31T13:30:09Z"
+    },
+    {
+     "text": "OP逆市涨超23%，市值升至5.24亿美元 BlockBeats 消息，10 月 31 日，据 HTX 行情数据，OP 逆市涨超 23%，现报价 0.1211 美元，市值升至 5.24 亿美元，升至近一周高点。 消息面上，Optimism Foundation 于 10 月 29 日提交治理提案，拟向为 OP Mainnet 带来关键商业活动的合作伙伴，以 ETH 形式返还部分序列器及优先费用（返利上限不超过其贡献费用，不使用 OP 代币，避免新增抛压）。剩余收入仍可支持已有 Superchain 回购计划。 Uniswap 旗下 Unichain 主…",
+     "score": 0.3258,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203380",
+     "ts": "2026-10-31T01:45:02Z"
+    },
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. SP 2. HYPE 3. BTC 4. LIT 5. NEAR 6. BNB 7. PENGU 8. SOL 9. AERO 10. UNI 11. AAVE 12. PEPE 13. LINK 14. AVAX 15. ETH @atamertuysaler",
+     "score": 0.4395,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10060",
+     "ts": "2026-10-30T20:13:05Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AAVE",
+   "mentions": 9,
+   "mentionsPrev": 19,
+   "baseline7d": 12.13,
+   "spike": 0.74,
+   "composite": 0.1085,
+   "scores": {
+    "vader": 0.2281,
+    "finbert": -0.0709,
+    "cryptobert": 0.1284
+   },
+   "bullish": 0.4527,
+   "bearish": 0.3476,
+   "neutral": 0.1997,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 8,
+     "composite": 0.1168
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.1245
+    }
+   },
+   "samples": [
+    {
+     "text": "🚀 TOKENIZED SPACEX SHARES COULD BECOME COLLATERAL ON AAVE ​ Aave governance is considering something that would have sounded unusual even a year ago. ​ TOKENIZED SPACEX SHARES as DeFi collateral. ​ The proposal would add SPCXc to Aave V4’s Equities Hub on BASE. ​ SPCXc is a Bas…",
+     "score": 0.5851,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22345",
+     "ts": "2026-10-31T16:27:02Z"
+    },
+    {
+     "text": "LlamaRisk estimates Aave’s emergency cap cuts removed about $3.8 billion in unused borrowing capacity, leaving caps above pre-incident borrowing. Some assets have zero LTV for new loans, and GHO cap cuts remained queued as of Oct. 30. https://cryptoslate.com/aave-reopens-frozen-…",
+     "score": -0.3751,
+     "source": "telegram_public",
+     "community": "cryptoslatenews",
+     "url": "https://t.me/cryptoslatenews/31961",
+     "ts": "2026-10-31T03:46:25Z"
+    },
+    {
+     "text": "#cz #sbf #binance ЧАМПЭН ДЖАО НЕМНОГО СЭМ БАНКМЕН ФРИД По итогам взлома биржи Binance, из-за одного ноутбука сотрудника отдела разработки, украдено более $6 млрд. Около $3 млрд средств заморожено. В основном это централизованные стейблкоины USDT и USDC. Часть замороженных стейбл…",
+     "score": 0.3658,
+     "source": "telegram_public",
+     "community": "slezisatoshi",
+     "url": "https://t.me/slezisatoshi/3813",
+     "ts": "2026-10-30T19:35:37Z"
+    },
+    {
+     "text": "[아베, tBTC 신규 예치·담보 대출 제한…유지보수 완료 후 재개] 대출 프로토콜 아베(AAVE)는 tBTC 유지보수 업데이트에 따른 정기적·예방적 조치로 tBTC 신규 예치와 tBTC를 담보로 한 신규 대출을 제한했다고 밝혔다. 아베의 스마트계약은 영향을 받지 않았으며 기존 포지션도 변경되지 않았다. 이용자는 평소처럼 상환과 출금을 할 수 있다. 유지보수가 완료되면 tBTC 신규 예치와 담보 대출이 다시 가능해질 예정이다. https://coinness.com/news/1173855",
+     "score": 0.0616,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/236328",
+     "ts": "2026-10-31T10:46:23Z"
+    },
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. SP 2. HYPE 3. BTC 4. LIT 5. NEAR 6. BNB 7. PENGU 8. SOL 9. AERO 10. UNI 11. AAVE 12. PEPE 13. LINK 14. AVAX 15. ETH @atamertuysaler",
+     "score": 0.4395,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10060",
+     "ts": "2026-10-30T20:13:05Z"
+    }
+   ]
+  },
+  {
+   "symbol": "RLUSD",
+   "mentions": 8,
+   "mentionsPrev": 5,
+   "baseline7d": 7.67,
+   "spike": 1.04,
+   "composite": 0.1978,
+   "scores": {
+    "vader": 0.1161,
+    "finbert": 0.0865,
+    "cryptobert": 0.314
+   },
+   "bullish": 0.6459,
+   "bearish": 0.0,
+   "neutral": 0.3541,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 8,
+     "composite": 0.1978
+    }
+   },
+   "samples": [
+    {
+     "text": "Binance: 90% of Stolen Assets Replenished; Withdrawals Set to Resume on Nov. 1 Binance announced that it has now replenished 90% of the stolen asset shortfall. The top ten major tokens—including BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, and ZEC—are now 100% fully backed…",
+     "score": 0.3563,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26634",
+     "ts": "2026-10-31T15:05:20Z"
+    },
+    {
+     "text": "BINANCE: ALL BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, AND ZEC ARE FULLY BACKED 100% ( @WalterBloomberg )",
+     "score": 0.2881,
+     "source": "telegram_public",
+     "community": "WalterBloomberg",
+     "url": "https://t.me/WalterBloomberg/37700",
+     "ts": "2026-10-31T14:39:08Z"
+    },
+    {
+     "text": "🔍 链上侦探 | Binance SAFU钱包于半小时前转出7500枚BTC，或用于受影响资产储备补足 BlockBeats 消息，10 月 31 日，据链上分析师 Ai 姨（ @ai_9684xtpa ）监测， Binance SAFU 钱包于半小时前转出 7500 枚 BTC，价值约 5.8 亿美元，该笔转账或与受影响资产的储备补足有关。转出后，该地址仍持有 7500 枚 BTC，约为转账前余额的一半。 随后， Binance 联席 CEO 何一表示，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均…",
+     "score": 0.2757,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203450",
+     "ts": "2026-10-31T15:35:02Z"
+    },
+    {
+     "text": "⚡️ Binance：已完成约90%受影响资产回填并公布储备金证明快照 BlockBeats 消息，10 月 31 日，据官方公告， Binance 表示被盗资产补足比例已由此前约 80% 提升至 90%。公司此前已预留超过 63.4 亿美元自有资金，用于承担此次安全事件造成的损失。目前，BTC、ETH、USDT、BNB、SOL、USDC、XRP、USD1、RLUSD 和 ZEC 均已实现 100% 足额储备支持。 补足资金来源包括部分 SAFU 用户资产安全基金、部分合约保险基金及公司自有资金，合约保险基金的剩余余额按监管要求保留。尚未补足的约 10…",
+     "score": 0.2759,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203443",
+     "ts": "2026-10-31T14:30:02Z"
+    },
+    {
+     "text": "Binance компенсировала 90% потерь от взлома Binance сообщила, что компенсировала 90% потерь, связанных со взломом. Резервы биржи в BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD и ZEC полностью восстановлены. Оставшиеся 10% приходятся на менее ликвидные токены, которые сложнее…",
+     "score": 0.0853,
+     "source": "telegram_public",
+     "community": "RBCCrypto",
+     "url": "https://t.me/RBCCrypto/23726",
+     "ts": "2026-10-31T16:32:20Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ENA",
+   "mentions": 8,
+   "mentionsPrev": 13,
+   "baseline7d": 8.27,
+   "spike": 0.97,
+   "composite": 0.1174,
+   "scores": {
+    "vader": -0.0779,
+    "finbert": -0.0462,
+    "cryptobert": 0.3386
+   },
+   "bullish": 0.6462,
+   "bearish": 0.093,
+   "neutral": 0.2608,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 8,
+     "composite": 0.1174
+    }
+   },
+   "samples": [
+    {
+     "text": "🔍 链上侦探 | 某新地址从OKX提取约600万美元LIT、ENA和ARB BlockBeats 消息，10 月 31 日，据 Lookonchain 监测，一个新创建的钱包地址（0x1c75）从 OKX 提取 115 万枚 LIT，价值约 331 万美元；799.5 万枚 ENA，价值约 151 万美元；以及 731 万枚 ARB，价值约 118 万美元。 原文链接 https://m.theblockbeats.info/flash/374783",
+     "score": 0.2841,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203407",
+     "ts": "2026-10-31T04:54:02Z"
+    },
+    {
+     "text": "🔴 #ENA Liquidated Long: $51.7K at $0.184",
+     "score": -0.5063,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400524",
+     "ts": "2026-10-30T18:45:12Z"
+    },
+    {
+     "text": "一新钱包从OKX提取LIT、ENA和ARB，合计价值约600万美元 PANews 10月31日消息，据 Lookonchain 监测，一个新创建的钱包（0x1c75）从 OKX 提取了 115 万枚 LIT（价值 331 万美元）、799.5 万枚 ENA（价值 151 万美元）以及 731 万枚 ARB（价值 118 万美元）。 🔗 https://www.panewslab.com/zh/articles/01a19079-eefe-72dc-8077-769a6c162d45",
+     "score": 0.2691,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183968",
+     "ts": "2026-10-31T05:41:23Z"
+    },
+    {
+     "text": "A newly created wallet (0x1c75) withdrew 1.15M $LIT($3.31M), 7.995M $ENA($1.51M) and 7.31M $ARB($1.18M) from #OKX . https://arkm.com/explorer/address/0x1c75ce784b4a8509840CdAFA09BC382dbD89C3bA",
+     "score": 0.1176,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10859",
+     "ts": "2026-10-31T04:44:18Z"
+    },
+    {
+     "text": "🔍 链上侦探 | Ethena向Binance转入1.286亿枚ENA，或与Binance补充被盗资产有关 BlockBeats 消息，10 月 31 日，据 EmberCN 监测，过去 2 小时内，Ethena 向 Binance 存入 1.286 亿枚 ENA，价值约 2433 万美元。 EmberCN 推测， Binance 目前正通过场内及场外交易买回被盗资产，以补足储备证明（PoR）中的资产缺口，此次转入可能与 Binance 向 Ethena 场外购买 ENA 有关。此前， Binance 遭攻击事件中共有 2.175 亿枚 ENA 被盗…",
+     "score": 0.2567,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203368",
+     "ts": "2026-10-31T00:42:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "HTX",
+   "mentions": 5,
+   "mentionsPrev": 9,
+   "baseline7d": 12.5,
+   "spike": 0.4,
+   "composite": 0.3222,
+   "scores": {
+    "vader": 0.4757,
+    "finbert": 0.0826,
+    "cryptobert": 0.3531
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 5,
+     "composite": 0.3222
+    }
+   },
+   "samples": [
+    {
+     "text": "📣 Limited-Time Affiliate Recruitment Is Here! 🚀 Become an HTX Affiliate during the event and unlock exclusive rewards! 📱 Get your hands on the latest iPhone models! 🎁 Grand Prize: iPhone Duo 1TB! Don't miss your chance to win big! 🗓 Event Period: Oct 27 – Nov 25 (UTC+8) 🔥…",
+     "score": 0.4107,
+     "source": "telegram_public",
+     "community": "HTXGlobalAnnouncementChannel",
+     "url": "https://t.me/HTXGlobalAnnouncementChannel/15738",
+     "ts": "2026-10-31T16:46:28Z"
+    },
+    {
+     "text": "⚡ STARTING TODAY AT 15:00 (UTC+8): 10% APY 7-Day Fixed Earn! ~ Warm up your yields this season! Enjoy a massive 10% APY on BTC, ETH, TRX, USDT, USDC, USDS, and USDD. 🔥 Total Allocation: $100,000,000 ⏳ Term: 7 Days ⏰ Starts: Oct 31, 2026, 7:00 (UTC) 🚀 First come, first served!…",
+     "score": 0.3796,
+     "source": "telegram_public",
+     "community": "HTXGlobalAnnouncementChannel",
+     "url": "https://t.me/HTXGlobalAnnouncementChannel/15737",
+     "ts": "2026-10-31T07:31:03Z"
+    },
+    {
+     "text": "火币HTX推出「暖冬同行」赚币特别活动：申购享10%年化补贴 BlockBeats 消息，10 月 31 日，据火币 HTX 官方公告，火币赚币将于 10 月 31 日 15:00（UTC+8）启动「暖冬同行」特别活动。活动期间，用户申购 BTC、ETH、TRX、USDT、USDC、USDS、USDD 7 天定期产品，即可享受 10% 的高额年化补贴，总申购额度高达 1 亿美元，先到先得。 原文链接 https://m.theblockbeats.info/flash/374798",
+     "score": 0.2313,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203421",
+     "ts": "2026-10-31T08:43:02Z"
+    },
+    {
+     "text": "OP逆市涨超23%，市值升至5.24亿美元 BlockBeats 消息，10 月 31 日，据 HTX 行情数据，OP 逆市涨超 23%，现报价 0.1211 美元，市值升至 5.24 亿美元，升至近一周高点。 消息面上，Optimism Foundation 于 10 月 29 日提交治理提案，拟向为 OP Mainnet 带来关键商业活动的合作伙伴，以 ETH 形式返还部分序列器及优先费用（返利上限不超过其贡献费用，不使用 OP 代币，避免新增抛压）。剩余收入仍可支持已有 Superchain 回购计划。 Uniswap 旗下 Unichain 主…",
+     "score": 0.3258,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203380",
+     "ts": "2026-10-31T01:45:02Z"
+    },
+    {
+     "text": "历史今日：比特币白皮书问世已18周年 BlockBeats 消息，10 月 31 日，距中本聪（Satoshi Nakamoto）在 P2P foundation 网站发布比特币白皮书《比特币：一种点对点的电子现金系统》已满 18 周年。 比特币网络于 2009 年 1 月 3 日正式推出，比特币的初始交易价格为 0.0008 美元。 据 HTX 行情数据，当前比特币价格为 77,376 美元，总市值达 1.56 万亿美元。 原文链接 https://m.theblockbeats.info/flash/374768",
+     "score": 0.2463,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203392",
+     "ts": "2026-10-31T02:30:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ARB",
+   "mentions": 5,
+   "mentionsPrev": 15,
+   "baseline7d": 5.5,
+   "spike": 0.91,
+   "composite": 0.1773,
+   "scores": {
+    "vader": 0.1215,
+    "finbert": 0.026,
+    "cryptobert": 0.2985
+   },
+   "bullish": 0.7393,
+   "bearish": 0.0,
+   "neutral": 0.2607,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 5,
+     "composite": 0.1773
+    }
+   },
+   "samples": [
+    {
+     "text": "🔍 链上侦探 | 某新地址从OKX提取约600万美元LIT、ENA和ARB BlockBeats 消息，10 月 31 日，据 Lookonchain 监测，一个新创建的钱包地址（0x1c75）从 OKX 提取 115 万枚 LIT，价值约 331 万美元；799.5 万枚 ENA，价值约 151 万美元；以及 731 万枚 ARB，价值约 118 万美元。 原文链接 https://m.theblockbeats.info/flash/374783",
+     "score": 0.2841,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203407",
+     "ts": "2026-10-31T04:54:02Z"
+    },
+    {
+     "text": "一新钱包从OKX提取LIT、ENA和ARB，合计价值约600万美元 PANews 10月31日消息，据 Lookonchain 监测，一个新创建的钱包（0x1c75）从 OKX 提取了 115 万枚 LIT（价值 331 万美元）、799.5 万枚 ENA（价值 151 万美元）以及 731 万枚 ARB（价值 118 万美元）。 🔗 https://www.panewslab.com/zh/articles/01a19079-eefe-72dc-8077-769a6c162d45",
+     "score": 0.2691,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183968",
+     "ts": "2026-10-31T05:41:23Z"
+    },
+    {
+     "text": "A newly created wallet (0x1c75) withdrew 1.15M $LIT($3.31M), 7.995M $ENA($1.51M) and 7.31M $ARB($1.18M) from #OKX . https://arkm.com/explorer/address/0x1c75ce784b4a8509840CdAFA09BC382dbD89C3bA",
+     "score": 0.1176,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10859",
+     "ts": "2026-10-31T04:44:18Z"
+    },
+    {
+     "text": "https://x.com/arbitrum/status/2116575840548835753?a=RKI_TpHd3V4rOok8CEU&s=20",
+     "score": -0.0285,
+     "source": "telegram_public",
+     "community": "arbitrum",
+     "url": "https://t.me/arbitrum/1004",
+     "ts": "2026-10-31T17:00:27Z"
+    },
+    {
+     "text": "$2.7B of the Binance hack was saved by Tether and Circle freezes. What does that say about decentralization? Unpopular opinion: the Binance hack isn’t the real story. Everyone’s talking about the $6.36B. I’m looking at what saved the other $2.7B. It wasn’t decentralization or co…",
+     "score": 0.544,
+     "source": "telegram_public",
+     "community": "r_cryptocurrency",
+     "url": "https://t.me/r_cryptocurrency/60281",
+     "ts": "2026-10-31T00:28:09Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SOSO",
+   "mentions": 5,
+   "mentionsPrev": 0,
+   "baseline7d": 2.17,
+   "spike": 2.31,
+   "composite": 0.1799,
+   "scores": {
+    "vader": -0.14,
+    "finbert": 0.1149,
+    "cryptobert": 0.4291
+   },
+   "bullish": 0.7504,
+   "bearish": 0.2496,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 5,
+     "composite": 0.1799
+    }
+   },
+   "samples": [
+    {
+     "text": "美国 XRP、ZEC 现货 ETF 单日合计净流出 506.79 万美元 PANews 10月31日消息，据 SoSoValue 数据，昨日（美东时间 10 月 30 日），美国 XRP、ZEC 现货 ETF 单日总净流出分别为 49.65 万美元和 457.14 万美元，合计净流出 506.79 万美元。XRP 方面，其中 Canary XRP ETF（XRPC）单日净流入 92.20 万美元，历史累计净流入为 4.85 亿美元；Grayscale XRP Trust ETF（GXRP）单日净流出 72.50 万美元，历史累计净流入为 1.45 亿美…",
+     "score": 0.398,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183963",
+     "ts": "2026-10-31T04:30:59Z"
+    },
+    {
+     "text": "Spot Bitcoin ETFs See $643M in Net Outflows, Ethereum ETFs Lose $156M According to SoSoValue data, U.S. spot Bitcoin ETFs recorded total net outflows of $643 million on October 30 (ET). BlackRock's IBIT saw the largest daily net outflow among spot Bitcoin ETFs at $234 million. S…",
+     "score": -0.1494,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26629",
+     "ts": "2026-10-31T05:40:30Z"
+    },
+    {
+     "text": "以太坊现货 ETF 昨日净流出 1.56 亿美元，持续 5 日净流出 PANews 10月31日消息，据 SoSoValue 数据，昨日（美东时间 10 月 30 日）以太坊现货 ETF 总净流出 1.56 亿美元。昨日单日净流出最多的以太坊现货 ETF 为贝莱德（Blackrock） ETF ETHA，单日净流出为 7663.93 万美元，目前 ETHA 历史总净流入达 118.69 亿美元。 其次为灰度（Grayscale）以太坊迷你信托 ETF ETH，单日净流出为 3413.89 万美元，目前 ETH 历史总净流入达 19.96 亿美元。截至发…",
+     "score": 0.2823,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183962",
+     "ts": "2026-10-31T04:30:08Z"
+    },
+    {
+     "text": "比特币现货 ETF 昨日净流出 6.43 亿美元，贝莱德 IBIT 净流出 2.34 亿美元居首 PANews 10月31日消息，据 SoSoValue 数据，昨日（美东时间 10 月 30 日）比特币现货 ETF 总净流出 6.43 亿美元。昨日单日净流出最多的比特币现货 ETF 为贝莱德 (Blackrock） ETF IBIT，单日净流出为 2.34 亿美元，目前 IBIT 历史总净流入达 663.11 亿美元。 其次为富达 (Fidelity） ETF FBTC，单日净流出为 2.01 亿美元，目前 FBTC 历史总净流入达 101.72 亿美…",
+     "score": 0.2628,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183961",
+     "ts": "2026-10-31T04:29:19Z"
+    },
+    {
+     "text": "美国 SOL 现货 ETF 单日净流出 1074.2 万美元 PANews 10月31日消息，据 SoSoValue 数据，昨日（美东时间 10 月 30 日）SOL 现货 ETF 单日总净流出 1074.20 万美元。昨日净流出最多的 SOL 现货 ETF 为 Bitwise Solana Staking ETF(BSOL)，单日净流出 925.61 万美元，目前历史总净流入达 11.23 亿美元。 其次为 Morgan Stanley Solana Trust(MSOL)，单日净流出 76.84 万美元，目前历史总净流入达 4311.39 万美元。…",
+     "score": 0.2143,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183964",
+     "ts": "2026-10-31T04:31:26Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LDO",
+   "mentions": 4,
+   "mentionsPrev": 1,
+   "baseline7d": 1.17,
+   "spike": 3.43,
+   "composite": 0.1892,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0108,
+    "cryptobert": 0.4144
+   },
+   "bullish": 0.7534,
+   "bearish": 0.0,
+   "neutral": 0.2466,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 4,
+     "composite": 0.1892
+    }
+   },
+   "samples": [
+    {
+     "text": "以太坊质押量创历史新高，第三季度年化收益率降至2.63% BlockBeats 消息，10 月 31 日，Bitwise 第四季度质押报告显示，以太坊质押量已达 4380 万枚 ETH，占总供应量的 35.9%，创历史新高；第三季度净质押流入 199 万枚 ETH，连续六个季度保持净流入。Solana 活跃质押量增至 4.405 亿枚 SOL。 不过，两条网络的质押收益率均有所下降。以太坊第三季度平均年化质押收益率由第二季度的 2.81% 降至 2.63%，其中 96.3% 来自 ETH 增发。Solana 毛质押收益率由 6.38% 降至约 6%，近…",
+     "score": 0.2543,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203446",
+     "ts": "2026-10-31T15:08:03Z"
+    },
+    {
+     "text": "慢雾余弦：Binance被盗间接推高stETH收益，Lido 7日平均APR升至4.2% BlockBeats 消息，10 月 31 日，慢雾创始人余弦发文称，Lido 的 7 日平均 APR 近两日由 2.2% 升至 4.2%。他指出，昨日 Binance 被盗引发链上激烈角逐，以太坊执行层奖励因此增加，stETH 持有者也从中获益。 原文链接 https://m.theblockbeats.info/flash/374818",
+     "score": 0.2166,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203442",
+     "ts": "2026-10-31T14:16:02Z"
+    },
+    {
+     "text": "慢雾：币安被盗间接推高stETH收益，Lido 7日平均APR升至4.2% PANews 10月31日消息，慢雾创始人余弦发文称，Lido的7日平均APR近两日由2.2%升至4.2%。他指出，昨日币安被盗引发链上激烈角逐，以太坊执行层奖励因此增加，stETH持有者也从中获益。 🔗 https://www.panewslab.com/zh/articles/01a19253-955e-77a8-8c09-df1a04385515",
+     "score": 0.2582,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/184002",
+     "ts": "2026-10-31T14:18:44Z"
+    },
+    {
+     "text": "[슬로우미스트 \"바이낸스 해킹 여파로 리도 APR 2.2%→4.2% 상승\"] 블록체인 보안 기업 슬로우미스트(SlowMist) 창업자 위셴이 SNS를 통해 리도(Lido)의 7일 평균 연이율(APR)이 최근 이틀 동안 2.2%에서 4.2%로 상승했다고 밝혔다. 그는 전날 바이낸스 해킹 사태로 인해 온체인상에서 치열한 경쟁이 촉발되었으며, 이에 따라 이더리움 실행 레이어(Execution Layer) 보상이 급증해 stETH 보유자들 역시 이에 따른 수혜를 입었다고 설명했다. https://coi…",
+     "score": 0.0269,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/236339",
+     "ts": "2026-10-31T14:22:40Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDD",
+   "mentions": 3,
+   "mentionsPrev": 0,
+   "baseline7d": 0.2,
+   "spike": null,
+   "composite": 0.2718,
+   "scores": {
+    "vader": 0.2821,
+    "finbert": 0.0811,
+    "cryptobert": 0.3709
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.2718
+    }
+   },
+   "samples": [
+    {
+     "text": "⚡ STARTING TODAY AT 15:00 (UTC+8): 10% APY 7-Day Fixed Earn! ~ Warm up your yields this season! Enjoy a massive 10% APY on BTC, ETH, TRX, USDT, USDC, USDS, and USDD. 🔥 Total Allocation: $100,000,000 ⏳ Term: 7 Days ⏰ Starts: Oct 31, 2026, 7:00 (UTC) 🚀 First come, first served!…",
+     "score": 0.3796,
+     "source": "telegram_public",
+     "community": "HTXGlobalAnnouncementChannel",
+     "url": "https://t.me/HTXGlobalAnnouncementChannel/15737",
+     "ts": "2026-10-31T07:31:03Z"
+    },
+    {
+     "text": "火币HTX推出「暖冬同行」赚币特别活动：申购享10%年化补贴 BlockBeats 消息，10 月 31 日，据火币 HTX 官方公告，火币赚币将于 10 月 31 日 15:00（UTC+8）启动「暖冬同行」特别活动。活动期间，用户申购 BTC、ETH、TRX、USDT、USDC、USDS、USDD 7 天定期产品，即可享受 10% 的高额年化补贴，总申购额度高达 1 亿美元，先到先得。 原文链接 https://m.theblockbeats.info/flash/374798",
+     "score": 0.2313,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203421",
+     "ts": "2026-10-31T08:43:02Z"
+    },
+    {
+     "text": "火币HTX推出“暖冬同行”赚币特别活动：申购享10%年化补贴 PANews 10月31日消息，据火币HTX官方公告，火币赚币将于10月31日15:00（UTC+8）启动“暖冬同行”特别活动。活动期间，用户申购BTC、ETH、TRX、USDT、USDC、USDS、USDD 7天定期产品，即可享受10%的高额年化补贴，总申购额度高达1亿美元，先到先得。 🔗 https://www.panewslab.com/zh/articles/01a19084-5b1f-74f2-baa4-00a0288e582b",
+     "score": 0.213,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183969",
+     "ts": "2026-10-31T05:52:45Z"
+    }
+   ]
+  },
+  {
+   "symbol": "DOGE",
+   "mentions": 3,
+   "mentionsPrev": 4,
+   "baseline7d": 6.23,
+   "spike": 0.48,
+   "composite": -0.2293,
+   "scores": {
+    "vader": -0.4099,
+    "finbert": -0.5865,
+    "cryptobert": 0.0896
+   },
+   "bullish": 0.0,
+   "bearish": 0.7592,
+   "neutral": 0.2408,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": -0.2293
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #DOGE Liquidated Long: $86.7K at $0.0751",
+     "score": -0.3742,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400603",
+     "ts": "2026-10-31T04:48:35Z"
+    },
+    {
+     "text": "🟢 #DOGE Liquidated Short: $56.4K at $0.0752",
+     "score": -0.2519,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400566",
+     "ts": "2026-10-30T19:46:00Z"
+    },
+    {
+     "text": "[빗썸 시세알림] *전일 23:59 기준 대비 비트코인(BTC): 103,611,000원 ▼0.41% 이더리움(ETH): 3,011,000원 ▼0.07% 솔라나(SOL): 129,000원 ▲1.18% 리플(XRP): 1,687원 ▲0.66% 도지코인(DOGE): 102원 ▲0.00% 트론(TRX): 453원 ▼1.95% 이더리움클래식(ETC): 9,710원 ▲0.52% 비트코인에스브이(BSV): 23,190원 ▲0.87% 테더(USDT): 1,346원 ▼0.07% 유에스디코인(USDC): 1,3…",
+     "score": 0.0864,
+     "source": "telegram_public",
+     "community": "BithumbExchange",
+     "url": "https://t.me/BithumbExchange/13459",
+     "ts": "2026-10-30T23:00:48Z"
+    }
+   ]
+  },
+  {
+   "symbol": "PENGU",
+   "mentions": 3,
+   "mentionsPrev": 1,
+   "baseline7d": 1.47,
+   "spike": 2.05,
+   "composite": 0.2568,
+   "scores": {
+    "vader": 0.2035,
+    "finbert": 0.0152,
+    "cryptobert": 0.4265
+   },
+   "bullish": 0.594,
+   "bearish": 0.0,
+   "neutral": 0.406,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.2568
+    }
+   },
+   "samples": [
+    {
+     "text": "Top 20 Trending Coins on CoinGecko 🦎 This week, HYPE (Hyperliquid) leads the pack, followed by PENGU (Pudgy Penguins), and BTC (Bitcoin). ➡ ️ Are you keeping an eye on these ? @coingecko",
+     "score": 0.3602,
+     "source": "telegram_public",
+     "community": "coingeckonews",
+     "url": "https://t.me/coingeckonews/2899",
+     "ts": "2026-10-31T04:45:07Z"
+    },
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. SP 2. HYPE 3. BTC 4. LIT 5. NEAR 6. BNB 7. PENGU 8. SOL 9. AERO 10. UNI 11. AAVE 12. PEPE 13. LINK 14. AVAX 15. ETH @atamertuysaler",
+     "score": 0.4395,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10060",
+     "ts": "2026-10-30T20:13:05Z"
+    },
+    {
+     "text": "🤔 스마트머니 DEX 수취 거래 표본, 미관측 조회 거래 10행 중 USDC 표기 수취 건수 미확인. 해당 수취량 합계 414.740187 USDC. 0.690544 SOL · 0.712036 SOL · 265.4343 PENGU · 4.876162 SOL 이름 미확인 3개는 목록에서 제외했습니다. 합계·표본 수는 전체 조회 기록 기준입니다. 코인이지 인사이트 수취 토큰이 미확인인 거래가 있어 건수 비율을 보류했습니다. 핵심 한 줄: 최근 조회 표본 · 조회 기간 미지정 · 확인한 기록 10개…",
+     "score": 0.063,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58153",
+     "ts": "2026-10-31T11:00:10Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SYRUP",
+   "mentions": 3,
+   "mentionsPrev": 0,
+   "baseline7d": 0.1,
+   "spike": null,
+   "composite": 0.0608,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0201,
+    "cryptobert": 0.1238
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.0608
+    }
+   },
+   "samples": [
+    {
+     "text": "[메이플 내 XRP 담보 대출 $1.52억 규모…12월부터 만기 도래] 디파이 대출 프로토콜 메이플 파이낸스(SYRUP)에서 약 2억2500만 XRP가 스테이블코인 대출 담보로 예치돼 있다고 크립토슬레이트가 보도했다. 담보 가치는 약 2억8020만 달러로, XRP렛저(XRPL) 전체 디파이 예치 자산의 상당 부분을 차지한다. 해당 담보를 기반으로 실행된 대출 3건의 원금은 총 1억5180만 달러이며, 만기는 각각 올해 12월 4일과 12일, 내년 1월 15일이다. 매체는 대출 만기 이후 상환과…",
+     "score": 0.0762,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/236294",
+     "ts": "2026-10-31T00:32:53Z"
+    },
+    {
+     "text": "🤔 스마트머니 최근 선물 거래 표본 조회한 선물 거래의 방향과 행동입니다. SYRUP Short · Reduce 이름 미확인 9개는 목록에서 제외했습니다. 합계·표본 수는 전체 조회 기록 기준입니다. 코인이지 인사이트 개별 선물 거래 기록입니다 · 현재 보유 포지션을 뜻하지 않습니다 핵심 한 줄: 최근 거래 표본 · 기간 미지정 · 확인한 기록 10개 중 1개 표시 · 시장 전체 아님 · 이름 미확인 9개는 목록에서 제외 Powered by Nansen 더 알아보기 📣 공지방 · 소통방 · X",
+     "score": 0.0534,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58140",
+     "ts": "2026-10-31T06:00:09Z"
+    },
+    {
+     "text": "[메이플파이낸스, 준비금 증명 갱신…담보 $20.5억] 탈중앙화 대출 프로토콜 메이플파이낸스(SYRUP)는 더네트워크펌(The Network Firm)의 검증을 받은 최신 준비금 증명을 공개했다고 밝혔다. 담보 총액은 20억5000만 달러, 대출잔액은 12억3000만 달러다. 자산별 담보비율은 syrupUSDC 172.1%, syrupUSDT 144.1%, syrupUSDG 166.8%다. 바이낸스(Binance)에 보관된 담보는 없다고 설명했다. https://coinness.com/news/…",
+     "score": 0.0488,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/236277",
+     "ts": "2026-10-30T19:14:27Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ARKM",
+   "mentions": 2,
+   "mentionsPrev": 4,
+   "baseline7d": 2.03,
+   "spike": 0.98,
+   "composite": 0.3281,
+   "scores": {
+    "vader": 0.3025,
+    "finbert": 0.1876,
+    "cryptobert": 0.4232
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.3281
+    }
+   },
+   "samples": [
+    {
+     "text": "Binance: 90% of Stolen Assets Replenished; Withdrawals Set to Resume on Nov. 1 Binance announced that it has now replenished 90% of the stolen asset shortfall. The top ten major tokens—including BTC, ETH, USDT, BNB, SOL, USDC, XRP, USD1, RLUSD, and ZEC—are now 100% fully backed…",
+     "score": 0.3563,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26634",
+     "ts": "2026-10-31T15:05:20Z"
+    },
+    {
+     "text": "🔍 链上侦探 | 摩根士丹利比特币总持仓量升至10,850枚，价值约8.39亿美元 BlockBeats 消息，10 月 31 日，据 Arkham 监测，8 小时前，摩根士丹利通过旗下现货比特币 ETF MSBT 增持 1302 枚 BTC，截至目前其比特币总持仓量升至 10,850 枚，价值约 8.39 亿美元。 原文链接 https://m.theblockbeats.info/flash/374760",
+     "score": 0.2655,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203384",
+     "ts": "2026-10-31T02:00:01Z"
+    }
+   ]
+  },
+  {
+   "symbol": "PEPE",
+   "mentions": 2,
+   "mentionsPrev": 15,
+   "baseline7d": 5.3,
+   "spike": 0.38,
+   "composite": 0.4216,
+   "scores": {
+    "vader": 0.8458,
+    "finbert": 0.0584,
+    "cryptobert": 0.3406
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.4216
+    }
+   },
+   "samples": [
+    {
+     "text": "⚡️ 🍂 Все Важное за Неделю 🌍 Обзор рынка — Рекордный взлом Binance напугал инвесторов: новый обзор рынка криптовалют 🔸 Взлом Binance = крупнейший взлом в истории . 💰 Компания Strive покупает 6182 BTC. 🔹 Компания Bitmine продолжает покупать ETH. 💲 Число адресов держателей ст…",
+     "score": 0.4142,
+     "source": "telegram_public",
+     "community": "bitsmedia",
+     "url": "https://t.me/bitsmedia/28899",
+     "ts": "2026-10-31T10:37:36Z"
+    },
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. SP 2. HYPE 3. BTC 4. LIT 5. NEAR 6. BNB 7. PENGU 8. SOL 9. AERO 10. UNI 11. AAVE 12. PEPE 13. LINK 14. AVAX 15. ETH @atamertuysaler",
+     "score": 0.4395,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10060",
+     "ts": "2026-10-30T20:13:05Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XLM",
+   "mentions": 2,
+   "mentionsPrev": 1,
+   "baseline7d": 2.1,
+   "spike": 0.95,
+   "composite": 0.4175,
+   "scores": {
+    "vader": 0.2978,
+    "finbert": 0.1043,
+    "cryptobert": 0.6713
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.4175
+    }
+   },
+   "samples": [
+    {
+     "text": "MetaMask将Stellar设为默认网络 PANews 10月31日消息，区块链网络 Stellar 发文表示，Stellar 现已成为 MetaMask 移动端及浏览器扩展程序中的默认网络。即日起，每个现有 MetaMask 账户都会自动生成一个 Stellar 地址（由用户已有的助记词派生），无需额外设置。用户可直接持有、管理、发送和接收 XLM、Trustline 资产及 Soroban 代币，并在 Stellar 与其他支持网络之间进行兑换。现有 Stellar 用户也可通过助记词导入。 🔗 https://www.panewslab.c…",
+     "score": 0.3361,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183979",
+     "ts": "2026-10-31T08:31:12Z"
+    },
+    {
+     "text": "MetaMask added Stellar support on Oct. 29, giving existing users a Stellar address. MetaMask’s setup requires at least 1 XLM and 0.5 XLM per unsponsored trustline. Bridging without one risks loss, it warns. https://cryptoslate.com/metamask-adds-stellar-integration-but-cross-chai…",
+     "score": 0.5429,
+     "source": "telegram_public",
+     "community": "cryptoslatenews",
+     "url": "https://t.me/cryptoslatenews/31960",
+     "ts": "2026-10-31T02:16:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDG",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 1.63,
+   "spike": 1.22,
+   "composite": 0.3672,
+   "scores": {
+    "vader": 0.417,
+    "finbert": 0.0211,
+    "cryptobert": 0.5263
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.3672
+    }
+   },
+   "samples": [
+    {
+     "text": "🦄 UNISWAP JUST OPENED ITS FEE-CONVERSION ENGINE TO EVERY APP ​ Uniswap has released a new piece of infrastructure called TJAR. ​ The idea is simple. ​ Apps often collect fees in dozens of different tokens. TJAR lets them automatically convert those assets into ONE TOKEN of thei…",
+     "score": 0.4901,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22342",
+     "ts": "2026-10-31T10:11:02Z"
+    },
+    {
+     "text": "Uniswap says Robinhood uses its TJAR fee tool to receive Uniswap API fees in USDC and USDG. Outside searchers pay a fixed amount in a chosen token for selected fee assets; the app operator sets the token, price and destination. https://cryptoslate.com/uniswap-launches-tjar-fee-t…",
+     "score": 0.2025,
+     "source": "telegram_public",
+     "community": "cryptoslatenews",
+     "url": "https://t.me/cryptoslatenews/31959",
+     "ts": "2026-10-31T01:16:53Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XPL",
+   "mentions": 2,
+   "mentionsPrev": 0,
+   "baseline7d": 0.43,
+   "spike": null,
+   "composite": -0.2593,
+   "scores": {
+    "vader": -0.296,
+    "finbert": -0.379,
+    "cryptobert": -0.1683
+   },
+   "bullish": 0.0,
+   "bearish": 1.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": -0.2593
+    }
+   },
+   "samples": [
+    {
+     "text": "🟢 #XPL Liquidated Short: $429K at $0.08046700 - hyper lens",
+     "score": -0.2638,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/84980",
+     "ts": "2026-10-30T19:53:40Z"
+    },
+    {
+     "text": "🟢 #XPL Liquidated Short: $107K at $0.08025300 - hyper lens",
+     "score": -0.2548,
+     "source": "telegram_public",
+     "community": "HyperliquidLiquidations",
+     "url": "https://t.me/HyperliquidLiquidations/84979",
+     "ts": "2026-10-30T19:53:37Z"
+    }
+   ]
+  },
+  {
+   "symbol": "BAL",
+   "mentions": 2,
+   "mentionsPrev": 0,
+   "baseline7d": 0.1,
+   "spike": null,
+   "composite": 0.0002,
+   "scores": {
+    "vader": -0.2396,
+    "finbert": -0.0313,
+    "cryptobert": 0.1776
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.0002
+    }
+   },
+   "samples": [
+    {
+     "text": "[밸런서, 대부분 풀 출금 전용 전환…연장 파트너 풀은 11/30까지 운영] 디파이 프로토콜 밸런서(BAL)는 BIP-928에서 승인된 대로 대부분의 풀이 출금 전용으로 전환됐다고 밝혔다. 이용자는 자금 통제권을 유지하며 언제든 출금할 수 있다. 운영 기간이 연장된 파트너 풀은 11월 30일까지 운영을 유지한다. https://coinness.com/news/1173807",
+     "score": 0.0366,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/236279",
+     "ts": "2026-10-30T20:08:22Z"
+    },
+    {
+     "text": "⚠️ MOST BALANCER POOLS MOVE TO WITHDRAWALS-ONLY TODAY ​ One of Ethereum DeFi’s longest-running protocols is entering the next stage of its wind-down. ​ Starting OCTOBER 30, most applicable Balancer pools are moving into WITHDRAWALS-ONLY mode. ​ Users can still remove liquidity.…",
+     "score": -0.0571,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22340",
+     "ts": "2026-10-30T18:15:07Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ICP",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.63,
+   "spike": null,
+   "composite": 0.0598,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0378,
+    "cryptobert": 0.1118
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0598
+    }
+   },
+   "samples": [
+    {
+     "text": "[인터넷컴퓨터, NNS 앱서 렛저 하드웨어 지갑 지원 시작] 레이어1 블록체인 인터넷컴퓨터(ICP)는 NNS 앱에서 렛저(Ledger) 하드웨어 지갑 지원을 시작했다고 밝혔다. 이용자는 렛저 계정을 확인하고 ICP를 전송하거나 스테이킹할 수 있으며, 각 단계는 기기에서 승인한다. 설정 메뉴에서 ‘렛저 기기’를 선택한 뒤 기기를 추가하면 된다. https://coinness.com/news/1173862",
+     "score": 0.0598,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/236335",
+     "ts": "2026-10-31T13:03:30Z"
+    }
+   ]
+  },
+  {
+   "symbol": "CAKE",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.97,
+   "spike": null,
+   "composite": 0.1705,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0579,
+    "cryptobert": 0.3468
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.1705
+    }
+   },
+   "samples": [
+    {
+     "text": "聚合器Hooks将外部流动性纳入v4，Uniswap在打什么算盘？ Uniswap v4 上线聚合器 Hooks，将 Curve、Fluid、PancakeSwap 等外部流动性包装成标准 v4 池，并把手续费引向 UNI 销毁。这既是向\"链上流动性入口\"靠拢，短期对 UNI 价值捕获的增益仍取决于是否对高流量池收费。 🔗 https://www.panewslab.com/zh/articles/01a19169-48c5-70fa-8575-505c68e08c3a",
+     "score": 0.1705,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/184004",
+     "ts": "2026-10-31T14:30:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LIT",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 0.07,
+   "spike": null,
+   "composite": 0.1176,
+   "scores": {
+    "vader": 0.25,
+    "finbert": 0.0372,
+    "cryptobert": 0.074
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.1176
+    }
+   },
+   "samples": [
+    {
+     "text": "A newly created wallet (0x1c75) withdrew 1.15M $LIT($3.31M), 7.995M $ENA($1.51M) and 7.31M $ARB($1.18M) from #OKX . https://arkm.com/explorer/address/0x1c75ce784b4a8509840CdAFA09BC382dbD89C3bA",
+     "score": 0.1176,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10859",
+     "ts": "2026-10-31T04:44:18Z"
+    }
+   ]
+  },
+  {
+   "symbol": "WLFI",
+   "mentions": 1,
+   "mentionsPrev": 2,
+   "baseline7d": 3.17,
+   "spike": 0.32,
+   "composite": 0.068,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0442,
+    "cryptobert": 0.1265
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.068
+    }
+   },
+   "samples": [
+    {
+     "text": "[블록에이드 \"일부 암호화폐 사이트 월렛 연결 주의\" 경고] 월드리버티파이낸셜(WLFI)의 어드바이저인 오글(Ogle)이 X를 통해 \"암호화폐 보안 업체 블록에이드로부터 일부 웹사이트에 대한 보안 경고를 받았다. 플랩( flap.sh ), 킨츠(Kintsu), 클러치마켓(Clutch Markets) 이용자들은 당분간 해당 사이트에 월렛을 연결하지 말라\"고 당부했다. https://coinness.com/news/1173830",
+     "score": 0.068,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/236303",
+     "ts": "2026-10-31T02:27:26Z"
+    }
+   ]
+  },
+  {
+   "symbol": "OP",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.3258,
+   "scores": {
+    "vader": 0.34,
+    "finbert": 0.0447,
+    "cryptobert": 0.4725
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.3258
+    }
+   },
+   "samples": [
+    {
+     "text": "OP逆市涨超23%，市值升至5.24亿美元 BlockBeats 消息，10 月 31 日，据 HTX 行情数据，OP 逆市涨超 23%，现报价 0.1211 美元，市值升至 5.24 亿美元，升至近一周高点。 消息面上，Optimism Foundation 于 10 月 29 日提交治理提案，拟向为 OP Mainnet 带来关键商业活动的合作伙伴，以 ETH 形式返还部分序列器及优先费用（返利上限不超过其贡献费用，不使用 OP 代币，避免新增抛压）。剩余收入仍可支持已有 Superchain 回购计划。 Uniswap 旗下 Unichain 主…",
+     "score": 0.3258,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/203380",
+     "ts": "2026-10-31T01:45:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "APT",
+   "mentions": 1,
+   "mentionsPrev": 3,
+   "baseline7d": 2.6,
+   "spike": 0.38,
+   "composite": 0.5496,
+   "scores": {
+    "vader": 0.9325,
+    "finbert": 0.1032,
+    "cryptobert": 0.5423
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.5496
+    }
+   },
+   "samples": [
+    {
+     "text": "Sending money internationally still depends heavily on where you live. Payment platforms on Aptos are changing that. They're integrated with Aptos and already serve millions of people around the world: • Yellow Card, pan-African crypto infrastructure, moves USDC and USDT on Apto…",
+     "score": 0.5496,
+     "source": "telegram_public",
+     "community": "aptos_official",
+     "url": "https://t.me/aptos_official/1440",
+     "ts": "2026-10-31T02:03:30Z"
+    }
+   ]
+  },
+  {
+   "symbol": "INJ",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 1.37,
+   "spike": 0.73,
+   "composite": -0.3062,
+   "scores": {
+    "vader": -0.6808,
+    "finbert": -0.6973,
+    "cryptobert": 0.1607
+   },
+   "bullish": 0.0,
+   "bearish": 1.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": -0.3062
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #INJ Liquidated Long: $69.6K at $6.893",
+     "score": -0.3062,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/400523",
+     "ts": "2026-10-30T18:39:39Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ETC",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 1.6,
+   "spike": 0.62,
+   "composite": 0.0864,
+   "scores": {
+    "vader": 0.0,
+    "finbert": -0.0052,
+    "cryptobert": 0.195
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0864
+    }
+   },
+   "samples": [
+    {
+     "text": "[빗썸 시세알림] *전일 23:59 기준 대비 비트코인(BTC): 103,611,000원 ▼0.41% 이더리움(ETH): 3,011,000원 ▼0.07% 솔라나(SOL): 129,000원 ▲1.18% 리플(XRP): 1,687원 ▲0.66% 도지코인(DOGE): 102원 ▲0.00% 트론(TRX): 453원 ▼1.95% 이더리움클래식(ETC): 9,710원 ▲0.52% 비트코인에스브이(BSV): 23,190원 ▲0.87% 테더(USDT): 1,346원 ▼0.07% 유에스디코인(USDC): 1,3…",
+     "score": 0.0864,
+     "source": "telegram_public",
+     "community": "BithumbExchange",
+     "url": "https://t.me/BithumbExchange/13459",
+     "ts": "2026-10-30T23:00:48Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LINK",
+   "mentions": 1,
+   "mentionsPrev": 7,
+   "baseline7d": 3.3,
+   "spike": 0.3,
+   "composite": 0.2153,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0289,
+    "cryptobert": 0.4624
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2153
+    }
+   },
+   "samples": [
+    {
+     "text": "Chainlink储备10月增持42.76万枚LINK，总持仓达647.51万枚 PANews 10月31日消息，Chainlink在X平台发帖称，10月Chainlink储备（Chainlink Reserve）累计增持427577枚LINK，耗资超530万美元，目前总持仓达6475076枚LINK。Chainlink表示，该储备旨在支持Chainlink网络的长期增长与可持续发展。 🔗 https://www.panewslab.com/zh/articles/01a18ece-ead8-76b3-87bc-60008ad82ec7",
+     "score": 0.2153,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/183933",
+     "ts": "2026-10-30T21:54:53Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AERO",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 4.5,
+   "spike": 0.22,
+   "composite": 0.4395,
+   "scores": {
+    "vader": 0.5859,
+    "finbert": 0.0067,
+    "cryptobert": 0.5824
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.4395
+    }
+   },
+   "samples": [
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. SP 2. HYPE 3. BTC 4. LIT 5. NEAR 6. BNB 7. PENGU 8. SOL 9. AERO 10. UNI 11. AAVE 12. PEPE 13. LINK 14. AVAX 15. ETH @atamertuysaler",
+     "score": 0.4395,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10060",
+     "ts": "2026-10-30T20:13:05Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AVAX",
+   "mentions": 1,
+   "mentionsPrev": 8,
+   "baseline7d": 3.57,
+   "spike": 0.28,
+   "composite": 0.4395,
+   "scores": {
+    "vader": 0.5859,
+    "finbert": 0.0067,
+    "cryptobert": 0.5824
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.4395
+    }
+   },
+   "samples": [
+    {
+     "text": "🚀 Bugünün En Çok Trend Olan Kripto Paraları 1. SP 2. HYPE 3. BTC 4. LIT 5. NEAR 6. BNB 7. PENGU 8. SOL 9. AERO 10. UNI 11. AAVE 12. PEPE 13. LINK 14. AVAX 15. ETH @atamertuysaler",
+     "score": 0.4395,
+     "source": "telegram_public",
+     "community": "Atamertuysaler",
+     "url": "https://t.me/Atamertuysaler/10060",
+     "ts": "2026-10-30T20:13:05Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZAMA",
+   "mentions": 1,
+   "mentionsPrev": 3,
+   "baseline7d": 1.8,
+   "spike": 0.56,
+   "composite": 0.0691,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0678,
+    "cryptobert": 0.1159
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0691
+    }
+   },
+   "samples": [
+    {
+     "text": "🤔 스마트머니 거래활성 토큰 표본 매수 거래량 기준으로 조회한 토큰 후보입니다. CDXR Ethereum · GULD Ethereum · ZAMA Ethereum · WPRL Ethereum 코인이지 인사이트 매수 거래량으로 정렬한 후보입니다 · 시장 순위·지속적인 축적 아님 핵심 한 줄: 24h 거래활성 후보 · 확인한 기록 10개 중 4개 표시 · 시장 전체 아님 Powered by Nansen 더 알아보기 📣 공지방 · 소통방 · X",
+     "score": 0.0691,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58129",
+     "ts": "2026-10-31T00:30:08Z"
+    }
+   ]
+  }
+ ]
+}
