@@ -1,0 +1,2773 @@
+{
+ "schema": "cryptopulse.sentiment-feed/v1",
+ "generatedAt": "2026-11-07T10:13:07Z",
+ "windowHours": 24,
+ "models": [
+  "vader",
+  "finbert",
+  "cryptobert"
+ ],
+ "sources": [
+  {
+   "name": "telegram_public",
+   "status": "ok",
+   "items": 1859,
+   "detail": "160/186 channels (26 no_preview)"
+  },
+  {
+   "name": "telegram_account",
+   "status": "disabled",
+   "items": 0,
+   "detail": "no TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION secrets"
+  },
+  {
+   "name": "rss",
+   "status": "ok",
+   "items": 128,
+   "detail": "6/6 feeds"
+  },
+  {
+   "name": "reddit",
+   "status": "unauthorized",
+   "items": 0,
+   "detail": "0/4 subreddits (4 HTTP 403)"
+  }
+ ],
+ "market": {
+  "mentions": 1181,
+  "composite": 0.0435,
+  "bullish": 0.5383,
+  "bearish": 0.2767,
+  "neutral": 0.185
+ },
+ "assets": [
+  {
+   "symbol": "BTC",
+   "mentions": 239,
+   "mentionsPrev": 197,
+   "baseline7d": 250.0,
+   "spike": 0.96,
+   "composite": -0.0874,
+   "scores": {
+    "vader": -0.127,
+    "finbert": -0.2007,
+    "cryptobert": 0.0019
+   },
+   "bullish": 0.3934,
+   "bearish": 0.4097,
+   "neutral": 0.1969,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 211,
+     "composite": -0.0907
+    },
+    "rss": {
+     "mentions": 28,
+     "composite": 0.0198
+    }
+   },
+   "samples": [
+    {
+     "text": "🪙 Blockstream CEO Adam Back believes that the third wave of Bitcoin adoption will be driven by large financial institutions — more people will invest in BTC not directly, but through investment and pension funds, as well as insurance products . Some large banks are already reco…",
+     "score": 0.4185,
+     "source": "telegram_public",
+     "community": "crypto_nft_web3_news",
+     "url": "https://t.me/crypto_nft_web3_news/10982",
+     "ts": "2026-11-07T09:41:18Z"
+    },
+    {
+     "text": "🔴 #BTC Liquidated Long: $299K at $75816.70",
+     "score": -0.7447,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404437",
+     "ts": "2026-11-07T03:36:05Z"
+    },
+    {
+     "text": "🔴 #BTC Liquidated Long: $153K at $75748.20",
+     "score": -0.7286,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404440",
+     "ts": "2026-11-07T03:38:45Z"
+    },
+    {
+     "text": "🔴 #BTC Liquidated Long: $180K at $75749.90",
+     "score": -0.7136,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404439",
+     "ts": "2026-11-07T03:38:02Z"
+    },
+    {
+     "text": "🟢 #BTC Liquidated Short: $200K at $76087.10",
+     "score": -0.5056,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404448",
+     "ts": "2026-11-07T07:56:46Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SOL",
+   "mentions": 148,
+   "mentionsPrev": 48,
+   "baseline7d": 134.74,
+   "spike": 1.1,
+   "composite": 0.1936,
+   "scores": {
+    "vader": 0.2238,
+    "finbert": -0.0054,
+    "cryptobert": 0.284
+   },
+   "bullish": 0.7079,
+   "bearish": 0.0915,
+   "neutral": 0.2005,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 147,
+     "composite": 0.1961
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.8025
+    }
+   },
+   "samples": [
+    {
+     "text": "November Earn Stack: Put Your Assets to Work on KuCoin! 💰 Still keeping all your assets in one place or letting idle capital sit on the sidelines? Explore three ways to make your holdings work harder with KuCoin Earn. 1️⃣ Hold to Earn Deposit USDT, BTC, ETH, USDC, or SOL to sha…",
+     "score": 0.5544,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/37068",
+     "ts": "2026-11-07T05:00:52Z"
+    },
+    {
+     "text": "WINTERMUTE HITS $222M LIFETIME PROFIT ON HYPERLIQUID Wintermute holds $125.87M in open positions, including $115.76M in shorts. • 30-day PnL: +$18.83M • Unrealized PnL: +$3.46M Largest shorts: $ETH ($26.16M), $BTC ($19.79M), $HYPE ($15.23M), and $SOL ($12.72M). Address: 0xecb63c…",
+     "score": 0.2502,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8222",
+     "ts": "2026-11-07T09:48:44Z"
+    },
+    {
+     "text": "🔍 链上侦探 | Wintermute在Hyperliquid上做空主流加密货币，累计盈利2.22亿美元 BlockBeats 消息，11 月 7 日，据 TradingBeats 监测，Wintermute 在 Hyperliquid 上实现 2.22 亿美元的累计盈利。当前 Wintermute 持有 1.259 亿美元的未平仓头寸，其中包括 1.158 亿美元的做空仓位。其 30 天盈亏为 1883 万美元，未实现盈亏为 346 万美元。 其当前最大的做空仓位包括：ETH（2616 万美元）、BTC（1979 万美元）、HYPE（1523 万美…",
+     "score": 0.2098,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204729",
+     "ts": "2026-11-07T09:53:02Z"
+    },
+    {
+     "text": "💵 💵 💵 💵 💵 💵 💵 💵 💵 💵 250M USDC ($249.9M) minted at USDC Treasury Blockchain: Solana 54 seconds ago Mcap: $48.8B 24h change: 0.52% TX - link @WhaleBotAlerts",
+     "score": 0.525,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569728",
+     "ts": "2026-11-06T22:07:55Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 76,032 0.6 -1.5 -7.9 2 ETH 2,245 0.9 0.3 -10.1 3 USDT 1.00 0.0 0.1 -0.0 4 BNB 694.80 0.5 -0.7 -6.6 5 XRP 1.17 -1.1 -5.6 -16.6 6 USDC 1.00 0.0 0.0 0.0 7 SOL 90.16 0.6 -5.4 -18.5 8 TRX 0.32 0.1 -0.1 -4.1 9 STETH2,241.84 0.7 0.1 -10.2 10 ZEC1,322…",
+     "score": 0.1848,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569732",
+     "ts": "2026-11-07T08:00:07Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ETH",
+   "mentions": 113,
+   "mentionsPrev": 66,
+   "baseline7d": 118.3,
+   "spike": 0.96,
+   "composite": 0.0003,
+   "scores": {
+    "vader": 0.0217,
+    "finbert": -0.1211,
+    "cryptobert": 0.0534
+   },
+   "bullish": 0.5004,
+   "bearish": 0.3388,
+   "neutral": 0.1608,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 108,
+     "composite": -0.0014
+    },
+    "rss": {
+     "mentions": 5,
+     "composite": 0.1412
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #ETH Liquidated Long: $224K at $2240.18",
+     "score": -0.7742,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404445",
+     "ts": "2026-11-07T03:42:45Z"
+    },
+    {
+     "text": "🔴 #ETH Liquidated Long: $168K at $2240.22",
+     "score": -0.7416,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404438",
+     "ts": "2026-11-07T03:36:31Z"
+    },
+    {
+     "text": "🔴 #ETH Liquidated Long: $55.5K at $2240.23",
+     "score": -0.548,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404441",
+     "ts": "2026-11-07T03:41:19Z"
+    },
+    {
+     "text": "🟢 #ETH Liquidated Short: $185K at $2244.26",
+     "score": -0.5103,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404420",
+     "ts": "2026-11-07T01:32:38Z"
+    },
+    {
+     "text": "November Earn Stack: Put Your Assets to Work on KuCoin! 💰 Still keeping all your assets in one place or letting idle capital sit on the sidelines? Explore three ways to make your holdings work harder with KuCoin Earn. 1️⃣ Hold to Earn Deposit USDT, BTC, ETH, USDC, or SOL to sha…",
+     "score": 0.5544,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/37068",
+     "ts": "2026-11-07T05:00:52Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDT",
+   "mentions": 72,
+   "mentionsPrev": 70,
+   "baseline7d": 108.26,
+   "spike": 0.67,
+   "composite": 0.1588,
+   "scores": {
+    "vader": 0.3128,
+    "finbert": 0.0772,
+    "cryptobert": 0.1014
+   },
+   "bullish": 0.6194,
+   "bearish": 0.2116,
+   "neutral": 0.169,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 69,
+     "composite": 0.1605
+    },
+    "rss": {
+     "mentions": 3,
+     "composite": 0.038
+    }
+   },
+   "samples": [
+    {
+     "text": "🦊 🌊 REFER A FRIEND, EARN 100 USDT MORE! Hey, KuFam! Good news travels, and so do golden tickets! 🎟 ✨ Invite a friend to KuCoin, and once they sign up and complete KYC, another 100 USDT in Futures Airdrops flows your way! 💰 🤝 Pass it on: 1️⃣ Share your invite link with a fri…",
+     "score": 0.5721,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/37069",
+     "ts": "2026-11-07T10:03:17Z"
+    },
+    {
+     "text": "November Earn Stack: Put Your Assets to Work on KuCoin! 💰 Still keeping all your assets in one place or letting idle capital sit on the sidelines? Explore three ways to make your holdings work harder with KuCoin Earn. 1️⃣ Hold to Earn Deposit USDT, BTC, ETH, USDC, or SOL to sha…",
+     "score": 0.5544,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/37068",
+     "ts": "2026-11-07T05:00:52Z"
+    },
+    {
+     "text": "Whales are buying $ETH! Wallet 0x32c6 spent 19.7M $USDT to buy 8,773.5 $ETH at $2,245 just 2 hours ago. Fresh wallet 0x4AB7 withdrew 9,777 $ETH ($22.5M) from Binance over the past 5 days. https://arkm.com/explorer/address/0x4AB785F639D3437298d780d15FD43a228A4845b8 https://arkm.c…",
+     "score": 0.4941,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10945",
+     "ts": "2026-11-07T02:23:51Z"
+    },
+    {
+     "text": "Final Hours to Grab Your Treat! 👻 KuKu is packing up the treat bag, and this is your last chance to get in on the fun! Sign up, trade over 100 USDT in Futures, and get a chance to share 5,000 USDT in rewards — up to 100 USDT each. 🎃 Grab Your Treat Before It’s Gone",
+     "score": 0.4744,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/37066",
+     "ts": "2026-11-07T04:04:22Z"
+    },
+    {
+     "text": "Thank You for Trick-or-Treating With Us! 👻 🍬 Last chance to trade over 100 USDT in Futures and win up to 100 USDT, plus a share of the extra 100 USDT bonus pool! 🎁 🎁 HOW TO JOIN 1️⃣ Sign up as a new KuCoin user through the campaign page. 2️⃣ Complete the Gleam form to secure…",
+     "score": 0.4373,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/37067",
+     "ts": "2026-11-07T04:33:17Z"
+    }
+   ]
+  },
+  {
+   "symbol": "USDC",
+   "mentions": 39,
+   "mentionsPrev": 41,
+   "baseline7d": 49.13,
+   "spike": 0.79,
+   "composite": 0.0835,
+   "scores": {
+    "vader": 0.1624,
+    "finbert": 0.0205,
+    "cryptobert": 0.0659
+   },
+   "bullish": 0.537,
+   "bearish": 0.2643,
+   "neutral": 0.1987,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 38,
+     "composite": 0.0842
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": 0.0019
+    }
+   },
+   "samples": [
+    {
+     "text": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 309,864,597 $USDC (310,027,482 USD) transferred from unknown wallet to unknown wallet Details",
+     "score": -0.4303,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104677",
+     "ts": "2026-11-07T06:37:08Z"
+    },
+    {
+     "text": "November Earn Stack: Put Your Assets to Work on KuCoin! 💰 Still keeping all your assets in one place or letting idle capital sit on the sidelines? Explore three ways to make your holdings work harder with KuCoin Earn. 1️⃣ Hold to Earn Deposit USDT, BTC, ETH, USDC, or SOL to sha…",
+     "score": 0.5544,
+     "source": "telegram_public",
+     "community": "Kucoin_News",
+     "url": "https://t.me/Kucoin_News/37068",
+     "ts": "2026-11-07T05:00:52Z"
+    },
+    {
+     "text": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 100M USDC ($100M) transferred from Unknown to MEXC Blockchain: Ethereum 38 seconds ago TX - link @WhaleBotAlerts",
+     "score": -0.2812,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569733",
+     "ts": "2026-11-07T09:42:36Z"
+    },
+    {
+     "text": "⚡️ Binance法国将于年底关闭所有账户 BlockBeats 消息，11 月 7 日， Binance France 将于 2026 年 12 月 31 日关闭所有客户账户，并从 11 月 29 日起对仍持有资产的账户收取月度管理费，金额为账户余额的 0.025% 或 10 USDC，取较高者。费用先从 USDC 余额扣除，不足部分再从其他加密资产中扣除。 Binance France 已通知用户，未在关闭日期前提取资产的账户可能被视为不活跃，资产可能依使用条款转换、转移或以其他方式处理。11 月 29 日前提取全部资产的账户不会被收取上述费用。…",
+     "score": 0.2319,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204724",
+     "ts": "2026-11-07T08:51:02Z"
+    },
+    {
+     "text": "过去7天USDC流通量约减少8亿枚，总流通量为692亿枚 PANews 11月7日消息，据官方数据，截至 11 月 5 日的 7 天内，Circle 发行约 127 亿USDC，赎回约 135 亿 USDC，流通量约减少 8 亿枚。USDC 总流通量为 692 亿枚，储备量约为 705 亿美元，其中隔夜逆国债回购约 366 亿美元；期限小于 3 个月的国债约 233 亿美元；系统重要性机构存款约 99 亿美元；其他银行存款约 8 亿美元。 🔗 https://www.panewslab.com/zh/articles/01a1b51a-88c8-73…",
+     "score": 0.2919,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185101",
+     "ts": "2026-11-07T08:23:04Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XRP",
+   "mentions": 34,
+   "mentionsPrev": 17,
+   "baseline7d": 30.26,
+   "spike": 1.12,
+   "composite": -0.3701,
+   "scores": {
+    "vader": -0.4676,
+    "finbert": -0.3759,
+    "cryptobert": -0.3017
+   },
+   "bullish": 0.1393,
+   "bearish": 0.7705,
+   "neutral": 0.0902,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 33,
+     "composite": -0.3711
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.1076
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #XRP Liquidated Long: $146K at $1.154",
+     "score": -0.6704,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404433",
+     "ts": "2026-11-07T03:34:41Z"
+    },
+    {
+     "text": "🔴 #XRP Liquidated Long: $341K at $1.151",
+     "score": -0.6389,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404444",
+     "ts": "2026-11-07T03:42:45Z"
+    },
+    {
+     "text": "🔴 #XRP Liquidated Long: $128K at $1.169",
+     "score": -0.7102,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404422",
+     "ts": "2026-11-07T02:33:55Z"
+    },
+    {
+     "text": "🔴 #XRP Liquidated Long: $69K at $1.169",
+     "score": -0.7024,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404423",
+     "ts": "2026-11-07T02:33:56Z"
+    },
+    {
+     "text": "🔴 #XRP Liquidated Long: $395K at $1.162",
+     "score": -0.6646,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404428",
+     "ts": "2026-11-07T02:54:37Z"
+    }
+   ]
+  },
+  {
+   "symbol": "HYPE",
+   "mentions": 27,
+   "mentionsPrev": 23,
+   "baseline7d": 28.74,
+   "spike": 0.94,
+   "composite": 0.1654,
+   "scores": {
+    "vader": 0.0056,
+    "finbert": 0.043,
+    "cryptobert": 0.3399
+   },
+   "bullish": 0.6555,
+   "bearish": 0.0522,
+   "neutral": 0.2923,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 26,
+     "composite": 0.1641
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": 0.3229
+    }
+   },
+   "samples": [
+    {
+     "text": "WINTERMUTE HITS $222M LIFETIME PROFIT ON HYPERLIQUID Wintermute holds $125.87M in open positions, including $115.76M in shorts. • 30-day PnL: +$18.83M • Unrealized PnL: +$3.46M Largest shorts: $ETH ($26.16M), $BTC ($19.79M), $HYPE ($15.23M), and $SOL ($12.72M). Address: 0xecb63c…",
+     "score": 0.2502,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8222",
+     "ts": "2026-11-07T09:48:44Z"
+    },
+    {
+     "text": "Anthropic盘前合约空单榜一鲸鱼凌晨再度滚仓加码，现已浮盈656万美元 BlockBeats 消息，11 月 7 日，据 TradingBeats 监测，Hyperliquid 上 Anthropic 盘前合约空单榜一鲸鱼今日凌晨再度滚仓加码，目前其累计持有价值 3695 万美元 Anthropic 盘前合约空单，开仓均价 1838 美元，清算价格 2498.65 美元，该空单已浮盈 656 万美元。 值得注意的是，该聪明钱还持有 10 倍 SK 海力士空单，入场均价 1305 美元。 原文链接 https://m.theblockbeats.i…",
+     "score": 0.2047,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204727",
+     "ts": "2026-11-07T09:32:02Z"
+    },
+    {
+     "text": "🔍 链上侦探 | Wintermute在Hyperliquid上做空主流加密货币，累计盈利2.22亿美元 BlockBeats 消息，11 月 7 日，据 TradingBeats 监测，Wintermute 在 Hyperliquid 上实现 2.22 亿美元的累计盈利。当前 Wintermute 持有 1.259 亿美元的未平仓头寸，其中包括 1.158 亿美元的做空仓位。其 30 天盈亏为 1883 万美元，未实现盈亏为 346 万美元。 其当前最大的做空仓位包括：ETH（2616 万美元）、BTC（1979 万美元）、HYPE（1523 万美…",
+     "score": 0.2098,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204729",
+     "ts": "2026-11-07T09:53:02Z"
+    },
+    {
+     "text": "🚨 🚨 323,440 HYPE ($25.4M) transferred from HyperCore to Kinetiq 35 seconds ago TX - link @WhaleBotAlerts",
+     "score": 0.4854,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569729",
+     "ts": "2026-11-06T23:13:58Z"
+    },
+    {
+     "text": "Wintermute在Hyperliquid历史盈利达2.22亿美元，当前持仓约1.26亿美元 PANews 11月7日消息，据Onchain Lens监测，Wintermute在Hyperliquid上的历史盈利达2.22亿美元，当前持仓1.2587亿美元，其中空头1.1576亿美元。30天盈利1883万美元，浮盈346万美元。最大空头仓位为ETH（2616万美元）、BTC（1979万美元）、HYPE（1523万美元）和SOL（1272万美元）。 🔗 https://www.panewslab.com/zh/articles/01a1b569-cc…",
+     "score": 0.2436,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185108",
+     "ts": "2026-11-07T09:49:39Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZEC",
+   "mentions": 27,
+   "mentionsPrev": 18,
+   "baseline7d": 20.48,
+   "spike": 1.32,
+   "composite": -0.0548,
+   "scores": {
+    "vader": -0.1726,
+    "finbert": -0.3186,
+    "cryptobert": 0.1703
+   },
+   "bullish": 0.2364,
+   "bearish": 0.4967,
+   "neutral": 0.2669,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 26,
+     "composite": -0.0578
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": 0.4369
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #ZEC Liquidated Long: $78.6K at $1328.94",
+     "score": -0.3677,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404416",
+     "ts": "2026-11-06T22:34:52Z"
+    },
+    {
+     "text": "🟢 #ZEC Liquidated Short: $53.7K at $1354.44",
+     "score": -0.2617,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404421",
+     "ts": "2026-11-07T02:01:35Z"
+    },
+    {
+     "text": "Что обсуждали на Форуме РБК Крипто 🎙 🎙 🎙 Запись программы «Хэш и кэш» на Радио РБК от 5 ноября Авторская программа Николая Загвоздкина и Анатолия Радченко о крипторынке на Радио РБК. Слушайте записи, общайтесь с ведущими на Форуме 😽 🙀 😿 😾 🤚 Цена биткоина опустилась ниже…",
+     "score": 0.4658,
+     "source": "telegram_public",
+     "community": "RBCCrypto",
+     "url": "https://t.me/RBCCrypto/23776",
+     "ts": "2026-11-06T15:58:45Z"
+    },
+    {
+     "text": "LATEST: 🔒 Zcash has activated its NU7 upgrade, cutting target block times from 75 seconds to 25 seconds.",
+     "score": 0.369,
+     "source": "telegram_public",
+     "community": "CoinMarketCapAnnouncements",
+     "url": "https://t.me/CoinMarketCapAnnouncements/19593",
+     "ts": "2026-11-06T20:40:10Z"
+    },
+    {
+     "text": "🔴 #ZEC Liquidated Long: $107K at $1353.02",
+     "score": -0.363,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404386",
+     "ts": "2026-11-06T17:32:20Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AAVE",
+   "mentions": 17,
+   "mentionsPrev": 10,
+   "baseline7d": 10.0,
+   "spike": 1.7,
+   "composite": -0.0818,
+   "scores": {
+    "vader": 0.0309,
+    "finbert": -0.0364,
+    "cryptobert": -0.1823
+   },
+   "bullish": 0.3788,
+   "bearish": 0.5686,
+   "neutral": 0.0526,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 16,
+     "composite": -0.0873
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": 0.3114
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #AAVE Liquidated Long: $147K at $129.13",
+     "score": -0.3848,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404431",
+     "ts": "2026-11-07T03:33:19Z"
+    },
+    {
+     "text": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 300,000,000 $USDC (300,090,000 USD) transferred from unknown wallet to #Aave Details",
+     "score": -0.4429,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104661",
+     "ts": "2026-11-06T15:58:33Z"
+    },
+    {
+     "text": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 200,000,000 $USDC (200,056,600 USD) transferred from unknown wallet to #Aave Details",
+     "score": -0.439,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104659",
+     "ts": "2026-11-06T15:52:13Z"
+    },
+    {
+     "text": "Aave Labs Acquires Avon Team and Technology to Expand Fixed-Rate Lending Aave Labs, the core developer behind DeFi lending protocol Aave, has acquired Avon's team and technology to expand into fixed-rate lending. The deal includes Avon's fixed- and floating-rate lending protocol…",
+     "score": 0.501,
+     "source": "telegram_public",
+     "community": "wublockchainenglish",
+     "url": "https://t.me/wublockchainenglish/26717",
+     "ts": "2026-11-06T16:05:51Z"
+    },
+    {
+     "text": "🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 175,872,729 $USDC (175,922,677 USD) transferred from unknown wallet to #Aave Details",
+     "score": -0.4179,
+     "source": "telegram_public",
+     "community": "whale_alert_io",
+     "url": "https://t.me/whale_alert_io/104662",
+     "ts": "2026-11-06T16:00:08Z"
+    }
+   ]
+  },
+  {
+   "symbol": "GNO",
+   "mentions": 13,
+   "mentionsPrev": 0,
+   "baseline7d": 0.7,
+   "spike": null,
+   "composite": -0.013,
+   "scores": {
+    "vader": -0.322,
+    "finbert": -0.2901,
+    "cryptobert": 0.3469
+   },
+   "bullish": 0.3741,
+   "bearish": 0.3169,
+   "neutral": 0.3091,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 10,
+     "composite": 0.0011
+    },
+    "rss": {
+     "mentions": 3,
+     "composite": -0.1727
+    }
+   },
+   "samples": [
+    {
+     "text": "Gnosis Pay data breach exposes customer info; funds unaffected",
+     "score": -0.4009,
+     "source": "telegram_public",
+     "community": "the_block_crypto",
+     "url": "https://t.me/the_block_crypto/36457",
+     "ts": "2026-11-06T18:59:07Z"
+    },
+    {
+     "text": "​​ 🔀 ⛓️ Recent Сrypto Project Migrations to New Blockchains Running your own chain is getting harder to justify: most projects on this list are shutting down their own L1s and moving to networks that already have the users, liquidity and infrastructure they need. • Akash Networ…",
+     "score": 0.3025,
+     "source": "telegram_public",
+     "community": "CryptoRankNews",
+     "url": "https://t.me/CryptoRankNews/13384",
+     "ts": "2026-11-06T16:54:11Z"
+    },
+    {
+     "text": "⁠ Una brecha en Gnosis Pay expone datos de tarjetas, información personal y de billeteras de criptomonedas El proveedor de tarjetas de débito cripto afirmó que los fondos de los clientes permanecieron seguros pese a la exposición de información financiera y personal sensible. ht…",
+     "score": 0.1081,
+     "source": "telegram_public",
+     "community": "Cointelegraph_Es",
+     "url": "https://t.me/Cointelegraph_Es/80155",
+     "ts": "2026-11-06T20:53:41Z"
+    },
+    {
+     "text": "Gnosis Pay消费者卡系统遭数据泄露，用户资金未受影响 PANews 11月6日消息，据Gnosis Pay官方博客，其监控系统于11月3日检测到支持Gnosis Pay品牌卡（B2C业务线）的系统遭未授权访问，导致部分客户信息泄露，用户资金未受影响。团队在检测后两小时内开始处置，已更换受影响的安全凭证并修复漏洞；支持其所有白标卡项目的企业平台未受影响。Gnosis Pay已向所有受影响用户发送邮件告知具体泄露信息，并对所有在线卡支付强制启用3D Secure验证，相关措施将持续至该B2C系统按计划于12月20日停用。Gnosis Pay提醒用户…",
+     "score": 0.2911,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185037",
+     "ts": "2026-11-06T14:57:48Z"
+    },
+    {
+     "text": "Gnosis Pay披露品牌卡业务系统数据泄露，称用户资金未受影响 BlockBeats 消息，11 月 6 日，Gnosis Pay 发文表示，其支持 Gnosis Pay 品牌卡的 B2C 业务系统发生数据泄露，导致部分客户信息外泄。所有受影响客户均已收到包含详细信息的电子邮件。Gnosis Pay 称，用户资金未受影响，但个人信息安全同样重要，公司对此承担全部责任。 Gnosis Pay 已采取额外安全措施，相关 B2C 平台仍将按原计划于 2026 年 12 月 20 日全面停用。并提醒用户提高警惕，并强调，官方绝不会索取用户的 PIN 码或助…",
+     "score": 0.1854,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204658",
+     "ts": "2026-11-06T15:03:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "BNB",
+   "mentions": 9,
+   "mentionsPrev": 10,
+   "baseline7d": 21.61,
+   "spike": 0.42,
+   "composite": 0.1563,
+   "scores": {
+    "vader": 0.075,
+    "finbert": 0.0344,
+    "cryptobert": 0.2782
+   },
+   "bullish": 0.7149,
+   "bearish": 0.0668,
+   "neutral": 0.2184,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 9,
+     "composite": 0.1563
+    }
+   },
+   "samples": [
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 76,032 0.6 -1.5 -7.9 2 ETH 2,245 0.9 0.3 -10.1 3 USDT 1.00 0.0 0.1 -0.0 4 BNB 694.80 0.5 -0.7 -6.6 5 XRP 1.17 -1.1 -5.6 -16.6 6 USDC 1.00 0.0 0.0 0.0 7 SOL 90.16 0.6 -5.4 -18.5 8 TRX 0.32 0.1 -0.1 -4.1 9 STETH2,241.84 0.7 0.1 -10.2 10 ZEC1,322…",
+     "score": 0.1848,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569732",
+     "ts": "2026-11-07T08:00:07Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 75,884 -0.4 -1.9 -7.3 2 ETH 2,238 -0.2 -0.3 -9.6 3 USDT 1.00 0.0 0.1 -0.0 4 BNB 693.84 -0.1 -1.9 -5.9 5 XRP 1.18 -3.2 -6.2 -14.9 6 USDC 1.00 0.0 0.0 0.0 7 SOL 90.20 0.0 -6.7 -18.4 8 TRX 0.32 -0.1 -1.7 -4.4 9 STETH2,235.57 -0.3 -0.5 -9.6 10 ZEC…",
+     "score": 0.2443,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569730",
+     "ts": "2026-11-07T00:00:09Z"
+    },
+    {
+     "text": "Meme日报，一图了解过去24小时热门Meme（2026.11.7） BNB Chain Top10 成交额为 4761.8 万美元；Solana Top10 成交额达 3478.8 万美元。 🔗 https://www.panewslab.com/zh/articles/01a1b3da-8d0d-73b2-86bf-52580967ee20",
+     "score": 0.2373,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185073",
+     "ts": "2026-11-07T02:33:36Z"
+    },
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    },
+    {
+     "text": "​​ 🔀 ⛓️ Recent Сrypto Project Migrations to New Blockchains Running your own chain is getting harder to justify: most projects on this list are shutting down their own L1s and moving to networks that already have the users, liquidity and infrastructure they need. • Akash Networ…",
+     "score": 0.3025,
+     "source": "telegram_public",
+     "community": "CryptoRankNews",
+     "url": "https://t.me/CryptoRankNews/13384",
+     "ts": "2026-11-06T16:54:11Z"
+    }
+   ]
+  },
+  {
+   "symbol": "UNI",
+   "mentions": 8,
+   "mentionsPrev": 3,
+   "baseline7d": 8.3,
+   "spike": 0.96,
+   "composite": 0.1408,
+   "scores": {
+    "vader": -0.0668,
+    "finbert": 0.007,
+    "cryptobert": 0.3535
+   },
+   "bullish": 0.5616,
+   "bearish": 0.0982,
+   "neutral": 0.3403,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 8,
+     "composite": 0.1408
+    }
+   },
+   "samples": [
+    {
+     "text": "Whale 0xC374 bought another 308,517 $UNI ($2.13M) 10 hours ago. Over the past 45 days, the whale has bought a total of 1.32M $UNI ($11.05M). https://arkm.com/explorer/address/0xC3747f5e49F58fF22Be37Eeb02AB693785259813",
+     "score": 0.3129,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10947",
+     "ts": "2026-11-07T02:44:45Z"
+    },
+    {
+     "text": "🔍 链上侦探 | 某巨鲸近两月累计增持132万枚UNI，价值约1105万美元 BlockBeats 消息，11 月 7 日，据 Lookonchain 监测，巨鲸地址 0xC374 于约 10 小时前再次买入 308,517 枚 UNI，价值约 213 万美元。 过去两个月，该地址累计买入 132 万枚 UNI，总价值约 1105 万美元。 原文链接 https://m.theblockbeats.info/flash/376068",
+     "score": 0.2856,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204694",
+     "ts": "2026-11-07T02:50:02Z"
+    },
+    {
+     "text": "某巨鲸10小时前买入超30万枚UNI，过去45天累计买入132万枚 PANews 11月7日消息，据 Lookonchain 监测，巨鲸 0xC374 在 10 小时前又买入 308,517 枚 UNI，价值 213 万美元。在过去 45 天里，该巨鲸累计买入 132 万枚 UNI，价值 1105 万美元。 🔗 https://www.panewslab.com/zh/articles/01a1b3e6-8afd-74a1-b050-1b947d5c1361",
+     "score": 0.2349,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185075",
+     "ts": "2026-11-07T02:46:40Z"
+    },
+    {
+     "text": "Uniswap将在Elysium支持V4 Hooks PANews 11月7日消息，Uniswap 将在 Hyperliquid L2 项目 Elysium 上支持 V4 Hooks 功能，开发者可利用 V4 Hooks 构建支持动态费率和自定义交易逻辑的可定制化流动性池。Elysium 主网预计于 11 月 9 日上线。 🔗 https://www.panewslab.com/zh/articles/01a1b39f-fb16-7580-8c43-221f83c5e130",
+     "score": 0.2096,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185069",
+     "ts": "2026-11-07T01:29:38Z"
+    },
+    {
+     "text": "🔴 #UNI Liquidated Long: $55.7K at $6.957",
+     "score": -0.2942,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404369",
+     "ts": "2026-11-06T15:31:37Z"
+    }
+   ]
+  },
+  {
+   "symbol": "TRX",
+   "mentions": 7,
+   "mentionsPrev": 12,
+   "baseline7d": 19.0,
+   "spike": 0.37,
+   "composite": 0.154,
+   "scores": {
+    "vader": 0.1435,
+    "finbert": 0.0161,
+    "cryptobert": 0.2375
+   },
+   "bullish": 0.605,
+   "bearish": 0.0514,
+   "neutral": 0.3437,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 6,
+     "composite": 0.1707
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.1556
+    }
+   },
+   "samples": [
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 76,032 0.6 -1.5 -7.9 2 ETH 2,245 0.9 0.3 -10.1 3 USDT 1.00 0.0 0.1 -0.0 4 BNB 694.80 0.5 -0.7 -6.6 5 XRP 1.17 -1.1 -5.6 -16.6 6 USDC 1.00 0.0 0.0 0.0 7 SOL 90.16 0.6 -5.4 -18.5 8 TRX 0.32 0.1 -0.1 -4.1 9 STETH2,241.84 0.7 0.1 -10.2 10 ZEC1,322…",
+     "score": 0.1848,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569732",
+     "ts": "2026-11-07T08:00:07Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 75,884 -0.4 -1.9 -7.3 2 ETH 2,238 -0.2 -0.3 -9.6 3 USDT 1.00 0.0 0.1 -0.0 4 BNB 693.84 -0.1 -1.9 -5.9 5 XRP 1.18 -3.2 -6.2 -14.9 6 USDC 1.00 0.0 0.0 0.0 7 SOL 90.20 0.0 -6.7 -18.4 8 TRX 0.32 -0.1 -1.7 -4.4 9 STETH2,235.57 -0.3 -0.5 -9.6 10 ZEC…",
+     "score": 0.2443,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569730",
+     "ts": "2026-11-07T00:00:09Z"
+    },
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    },
+    {
+     "text": "Binance продовжує поетапне відновлення виведення коштів: нові активи стануть доступними з 6 листопада • 6 листопада о 04:00 UTC Binance розпочинає черговий етап відновлення виведення коштів. • Можливість виведення поступово відновлюватиметься для окремих активів у мережах BSC, B…",
+     "score": 0.3145,
+     "source": "telegram_public",
+     "community": "Binance_UA_official",
+     "url": "https://t.me/Binance_UA_official/7882",
+     "ts": "2026-11-06T10:42:03Z"
+    },
+    {
+     "text": "Top 10 # coin $ 24h% 7d% 30d% 1 BTC 75,699 -0.9 -2.0 -8.9 2 ETH 2,228 -1.6 0.0 -12.2 3 USDT 1.00 -0.1 -0.0 -0.1 4 BNB 695.44 0.4 -0.6 -8.3 5 XRP 1.19 -4.7 -4.7 -15.7 6 USDC 1.00 -0.0 -0.0 -0.0 7 SOL 90.60 0.3 -4.4 -19.4 8 TRX 0.32 0.5 -4.9 -4.8 9 ZEC1,348.71 7.3 10.2 12.1 10STET…",
+     "score": 0.2177,
+     "source": "telegram_public",
+     "community": "whalebotalerts",
+     "url": "https://t.me/whalebotalerts/569714",
+     "ts": "2026-11-06T16:00:09Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ARB",
+   "mentions": 7,
+   "mentionsPrev": 4,
+   "baseline7d": 9.35,
+   "spike": 0.75,
+   "composite": 0.0538,
+   "scores": {
+    "vader": 0.1249,
+    "finbert": 0.0497,
+    "cryptobert": 0.0087
+   },
+   "bullish": 0.2962,
+   "bearish": 0.0,
+   "neutral": 0.7038,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 7,
+     "composite": 0.0538
+    }
+   },
+   "samples": [
+    {
+     "text": "Binance продовжує поетапне відновлення виведення коштів: нові активи стануть доступними з 6 листопада • 6 листопада о 04:00 UTC Binance розпочинає черговий етап відновлення виведення коштів. • Можливість виведення поступово відновлюватиметься для окремих активів у мережах BSC, B…",
+     "score": 0.3145,
+     "source": "telegram_public",
+     "community": "Binance_UA_official",
+     "url": "https://t.me/Binance_UA_official/7882",
+     "ts": "2026-11-06T10:42:03Z"
+    },
+    {
+     "text": "Мы работаем над тем, чтобы к концу следующей недели возобновить вывод средств для токенов HYPE, INJ, APT, PLASMA, NEAR и LTC. Кроме того, мы планируем к этому времени возобновить вывод средств для всех токенов в сетях, работа которых уже восстановлена (включая BSC, ETH, MATIC, A…",
+     "score": 0.1016,
+     "source": "telegram_public",
+     "community": "binance_ru",
+     "url": "https://t.me/binance_ru/7799",
+     "ts": "2026-11-06T11:08:08Z"
+    },
+    {
+     "text": "https://x.com/arbitrum/status/2118802214516879487?a=XwpkAovnafGKXWx8Q6k&s=20",
+     "score": -0.0285,
+     "source": "telegram_public",
+     "community": "arbitrum",
+     "url": "https://t.me/arbitrum/1024",
+     "ts": "2026-11-06T20:28:06Z"
+    },
+    {
+     "text": "[아비트럼, 로빈후드 자체 체인 구축에 협력] 이더리움 레이어2 네트워크 아비트럼(ARB)은 로빈후드(Robinhood)의 자체 체인 구축을 위해 로빈후드와 협력했다고 밝혔다. https://coinness.com/news/1174676",
+     "score": 0.0537,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237170",
+     "ts": "2026-11-06T12:57:22Z"
+    },
+    {
+     "text": "https://x.com/arbitrum/status/2118754295445422268?a=2K7H3M1IvH_8fjzhauY&s=20",
+     "score": -0.0285,
+     "source": "telegram_public",
+     "community": "arbitrum",
+     "url": "https://t.me/arbitrum/1023",
+     "ts": "2026-11-06T17:24:26Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SOSO",
+   "mentions": 5,
+   "mentionsPrev": 1,
+   "baseline7d": 2.87,
+   "spike": 1.74,
+   "composite": 0.2227,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0705,
+    "cryptobert": 0.4557
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 5,
+     "composite": 0.2227
+    }
+   },
+   "samples": [
+    {
+     "text": "以太坊现货 ETF 昨日净流出 9318.87 万美元，贝莱德 ETHA 净流出 9076.13 万美元居首 PANews 11月7日消息，根据 SoSoValue 数据，昨日（美东时间 11 月 6 日）以太坊现货 ETF 总净流出 9318.87 万美元。昨日单日净流入最多的以太坊现货 ETF 为贝莱德（Blackrock）Staked ETH ETF ETHB，单日净流入为 114.84 万美元，目前 ETHB 历史总净流入达 7.85 亿美元。昨日单日净流出最多的以太坊现货 ETF 为贝莱德（Blackrock） ETF ETHA，单日净流出为…",
+     "score": 0.2621,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185087",
+     "ts": "2026-11-07T05:07:05Z"
+    },
+    {
+     "text": "比特币现货 ETF 昨日净流出 4.12 亿美元，贝莱德 IBIT 净流出 4.03 亿美元居首 PANews 11月7日消息，根据 SoSoValue 数据，昨日（美东时间 11 月 6 日）比特币现货 ETF 总净流出 4.12 亿美元。昨日单日净流入最多的比特币现货 ETF 为富达 (Fidelity） ETF FBTC，单日净流入为 4282.35 万美元，目前 FBTC 历史总净流入达 102.66 亿美元。 昨日单日净流出最多的比特币现货 ETF 为贝莱德 (Blackrock） ETF IBIT，单日净流出为 4.03 亿美元，目前 IB…",
+     "score": 0.2601,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185086",
+     "ts": "2026-11-07T05:06:33Z"
+    },
+    {
+     "text": "美国 SOL 现货 ETF 单日净流出 2507.6 万美元 PANews 11月7日消息，据 SoSoValue 数据，昨日（美东时间 11 月 6 日）SOL 现货 ETF 单日总净流出 2507.60 万美元。昨日净流出最多的 SOL 现货 ETF 为 Bitwise Solana Staking ETF(BSOL)，单日净流出 1444.24 万美元，目前历史总净流入达 11.09 亿美元。 其次为 Grayscale Solana Trust(GSOL)，单日净流出 542.90 万美元，目前历史总净流入达 1.22 亿美元。截至发稿前，SO…",
+     "score": 0.2184,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185077",
+     "ts": "2026-11-07T02:59:32Z"
+    },
+    {
+     "text": "美国 HYPE 现货 ETF 单日净流出 795.98 万美元 PANews 11月7日消息，据 SoSoValue 数据，昨日（美东时间 11 月 6 日）HYPE 现货 ETF 单日总净流出 795.98 万美元。昨日净流出最多的 HYPE 现货 ETF 为 Bitwise Hyperliquid ETF(BHYP)，单日净流出 705.29 万美元，目前历史总净流入达 1.14 亿美元。 其次为 21Shares Hyperliquid ETF(THYP)，单日净流出 90.70 万美元，目前历史总净流入达 2741.28 万美元。截至发稿前，H…",
+     "score": 0.2041,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185078",
+     "ts": "2026-11-07T03:08:36Z"
+    },
+    {
+     "text": "⬛️ Фондовый рынок США потерял $4,5 трлн за день из-за бегства из ИИ #Новости #Трейдинг #Акции #ИИ #Рынки 💬 Что произошло: Распродажа в секторе ИИ 5 ноября обрушила фондовый рынок США. Капитализация американских акций сократилась за сессию примерно на $4,5 трлн, все 11 секторов…",
+     "score": 0.1191,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24673",
+     "ts": "2026-11-06T17:25:53Z"
+    }
+   ]
+  },
+  {
+   "symbol": "INJ",
+   "mentions": 5,
+   "mentionsPrev": 5,
+   "baseline7d": 2.17,
+   "spike": 2.3,
+   "composite": -0.0622,
+   "scores": {
+    "vader": -0.282,
+    "finbert": -0.2519,
+    "cryptobert": 0.1898
+   },
+   "bullish": 0.1707,
+   "bearish": 0.5019,
+   "neutral": 0.3274,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 5,
+     "composite": -0.0622
+    }
+   },
+   "samples": [
+    {
+     "text": "🟢 #INJ Liquidated Short: $79.9K at $8.398",
+     "score": -0.2781,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404402",
+     "ts": "2026-11-06T19:44:18Z"
+    },
+    {
+     "text": "🦙 Llama News Round-Up | 30 Oct - 6 Nov News 📰 → Democrats take control of the House and Senate; here’s what a Democratic Congress can change for crypto → Binance Security Update #9 → FBI attributes Binance Hack to North Korea → Proton denies AI tracking rumors → US spot ETH ET…",
+     "score": -0.108,
+     "source": "telegram_public",
+     "community": "defillama_tg",
+     "url": "https://t.me/defillama_tg/2077",
+     "ts": "2026-11-06T15:46:56Z"
+    },
+    {
+     "text": "[인젝티브, INJ 스테이킹 ETF 출시 기념 나스닥 개장 타종] 인젝티브(Injective)는 자사 최고경영자(CEO)가 카나리(Canary)의 스티븐 맥클러그(Steven McClurg) CEO와 함께 나스닥 개장 벨을 울렸다고 밝혔다. 이번 타종은 INJ 스테이킹 상장지수펀드(ETF)인 INJC 출시를 기념해 진행됐다. https://coinness.com/news/1174689",
+     "score": 0.0811,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237184",
+     "ts": "2026-11-06T15:00:46Z"
+    },
+    {
+     "text": "Мы работаем над тем, чтобы к концу следующей недели возобновить вывод средств для токенов HYPE, INJ, APT, PLASMA, NEAR и LTC. Кроме того, мы планируем к этому времени возобновить вывод средств для всех токенов в сетях, работа которых уже восстановлена (включая BSC, ETH, MATIC, A…",
+     "score": 0.1016,
+     "source": "telegram_public",
+     "community": "binance_ru",
+     "url": "https://t.me/binance_ru/7799",
+     "ts": "2026-11-06T11:08:08Z"
+    },
+    {
+     "text": "[바이낸스 \"다음주 말까지 HYPE·INJ 등 출금 재개\"] 바이낸스가 다음주 말까지 HYPE, INJ, APT, PLASMA, NEAR, LTC 출금을 재개할 계획이라고 공식 X를 통해 전했다. 바이낸스는 지난 1일부로 암호화폐 출금을 순차적으로 재개하고 있다. https://coinness.com/news/1174661",
+     "score": 0.0865,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237156",
+     "ts": "2026-11-06T10:58:30Z"
+    }
+   ]
+  },
+  {
+   "symbol": "DOGE",
+   "mentions": 4,
+   "mentionsPrev": 6,
+   "baseline7d": 8.48,
+   "spike": 0.47,
+   "composite": -0.069,
+   "scores": {
+    "vader": -0.2614,
+    "finbert": -0.2808,
+    "cryptobert": 0.1768
+   },
+   "bullish": 0.0321,
+   "bearish": 0.4079,
+   "neutral": 0.56,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 4,
+     "composite": -0.069
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #DOGE Liquidated Long: $69.9K at $0.0718",
+     "score": -0.3047,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404436",
+     "ts": "2026-11-07T03:34:54Z"
+    },
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    },
+    {
+     "text": "[빗썸 시세알림] *전일 23:59 기준 대비 비트코인(BTC): 103,434,000원 ▲0.43% 이더리움(ETH): 3,050,000원 ▲0.43% 솔라나(SOL): 122,800원 ▼0.89% 리플(XRP): 1,604원 ▼0.74% 도지코인(DOGE): 98원 ▼0.65% 트론(TRX): 435원 ▲0.00% 이더리움클래식(ETC): 9,560원 ▼0.78% 비트코인에스브이(BSV): 23,150원 ▼0.64% 테더(USDT): 1,362원 ▲0.00% 유에스디코인(USDC): 1,36…",
+     "score": 0.0961,
+     "source": "telegram_public",
+     "community": "BithumbExchange",
+     "url": "https://t.me/BithumbExchange/13496",
+     "ts": "2026-11-06T23:00:49Z"
+    },
+    {
+     "text": "⭐ DogeCoin Entered cherrytrend ! DOGECOIN | 8.28% | 3.0K MC | SOLANA 📊 DexS ✈️ Cherry 🍒 Web 🔗 Twitter 📈 VolumeBot",
+     "score": 0.4596,
+     "source": "telegram_public",
+     "community": "cherrytrending",
+     "url": "https://t.me/cherrytrending/818558",
+     "ts": "2026-11-07T10:14:13Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ENA",
+   "mentions": 4,
+   "mentionsPrev": 1,
+   "baseline7d": 5.39,
+   "spike": 0.74,
+   "composite": 0.3382,
+   "scores": {
+    "vader": 0.5178,
+    "finbert": 0.0841,
+    "cryptobert": 0.3597
+   },
+   "bullish": 0.7811,
+   "bearish": 0.0,
+   "neutral": 0.2189,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 4,
+     "composite": 0.3382
+    }
+   },
+   "samples": [
+    {
+     "text": "🔋 Weekend Power Station is Live for a Limited Time! 🎉 Sign up for a chance to win 385 ENA 🗓️ Complete weekend futures check-ins to share 10,000 ENA 🏁 Trade to win up to 815 ENA 💫 Three weekend rewards are live. The more you participate, the more you can win! 👉 Join Now: ht…",
+     "score": 0.421,
+     "source": "telegram_public",
+     "community": "GateOfficialNews",
+     "url": "https://t.me/GateOfficialNews/24669",
+     "ts": "2026-11-07T00:01:40Z"
+    },
+    {
+     "text": "Что обсуждали на Форуме РБК Крипто 🎙 🎙 🎙 Запись программы «Хэш и кэш» на Радио РБК от 5 ноября Авторская программа Николая Загвоздкина и Анатолия Радченко о крипторынке на Радио РБК. Слушайте записи, общайтесь с ведущими на Форуме 😽 🙀 😿 😾 🤚 Цена биткоина опустилась ниже…",
+     "score": 0.4658,
+     "source": "telegram_public",
+     "community": "RBCCrypto",
+     "url": "https://t.me/RBCCrypto/23776",
+     "ts": "2026-11-06T15:58:45Z"
+    },
+    {
+     "text": "🔋 周末能量站限时开启！ 🎉 报名即有机会领 385 ENA 🗓️ 周末合约打卡，瓜分 10,000 ENA 🏁 交易冲刺，最高赢 815 ENA 💫 三重周末福利同步开启，参与越多，惊喜越多！ 👉 立即参与： https://gate.onelink.me/7pdk/73fa629c630b4c90 📋 活动详情： https://www.gate.com/announcements/article/102653 #合约 #周末活动 #交易",
+     "score": 0.3471,
+     "source": "telegram_public",
+     "community": "GateZhNews",
+     "url": "https://t.me/GateZhNews/7501",
+     "ts": "2026-11-07T00:03:29Z"
+    },
+    {
+     "text": "🤔 스마트머니 최근 선물 거래 표본 조회한 선물 거래의 방향과 행동입니다. NEAR Short · Add · WLFI Short · Add · HYPE Long · Reduce · ENA Short · Add 이름 미확인 1개는 목록에서 제외했습니다. 합계·표본 수는 전체 조회 기록 기준입니다. 코인이지 인사이트 개별 선물 거래 기록입니다 · 현재 보유 포지션을 뜻하지 않습니다 핵심 한 줄: 최근 거래 표본 · 기간 미지정 · 확인한 기록 10개 중 4개 표시 · 시장 전체 아님 · 이름 미확…",
+     "score": 0.0619,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58414",
+     "ts": "2026-11-07T03:30:10Z"
+    }
+   ]
+  },
+  {
+   "symbol": "WLFI",
+   "mentions": 4,
+   "mentionsPrev": 7,
+   "baseline7d": 4.09,
+   "spike": 0.98,
+   "composite": 0.2097,
+   "scores": {
+    "vader": -0.0334,
+    "finbert": 0.2702,
+    "cryptobert": 0.3381
+   },
+   "bullish": 0.3775,
+   "bearish": 0.3739,
+   "neutral": 0.2486,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 4,
+     "composite": 0.2097
+    }
+   },
+   "samples": [
+    {
+     "text": "ICYMI: ⚡️ World Liberty Financial is launching a WLFI token buyback program, potentially funded by USD1 reserve fees, with the goal of consolidating governance voting power among long-term holders.",
+     "score": 0.6409,
+     "source": "telegram_public",
+     "community": "CoinMarketCapAnnouncements",
+     "url": "https://t.me/CoinMarketCapAnnouncements/19597",
+     "ts": "2026-11-07T01:50:09Z"
+    },
+    {
+     "text": "🤔 스마트머니 최근 선물 거래 표본 조회한 선물 거래의 방향과 행동입니다. NEAR Short · Add · WLFI Short · Add · HYPE Long · Reduce · ENA Short · Add 이름 미확인 1개는 목록에서 제외했습니다. 합계·표본 수는 전체 조회 기록 기준입니다. 코인이지 인사이트 개별 선물 거래 기록입니다 · 현재 보유 포지션을 뜻하지 않습니다 핵심 한 줄: 최근 거래 표본 · 기간 미지정 · 확인한 기록 10개 중 4개 표시 · 시장 전체 아님 · 이름 미확…",
+     "score": 0.0619,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58414",
+     "ts": "2026-11-07T03:30:10Z"
+    },
+    {
+     "text": "🦙 Llama News Round-Up | 30 Oct - 6 Nov News 📰 → Democrats take control of the House and Senate; here’s what a Democratic Congress can change for crypto → Binance Security Update #9 → FBI attributes Binance Hack to North Korea → Proton denies AI tracking rumors → US spot ETH ET…",
+     "score": -0.108,
+     "source": "telegram_public",
+     "community": "defillama_tg",
+     "url": "https://t.me/defillama_tg/2077",
+     "ts": "2026-11-06T15:46:56Z"
+    },
+    {
+     "text": "⚡️ Курсы основных криптовалют на 06.11: 🔴 BTC - $75,895 (-4.6%) 🔴 ETH - $2,239 (-6.1%) 🔴 SOL - $90 (-5.4%) 🔴 BNB - $695 (-2.1%) 🔴 XRP - $1.1 (-9.3% ) 🔴 GRAM - $1 (-3.7%) Среди топ-20 криптоактивов по рыночной капитализации наибольший рост за сутки показал 🟠 ZEC: +1% , а с…",
+     "score": -0.1499,
+     "source": "telegram_public",
+     "community": "bitsmedia",
+     "url": "https://t.me/bitsmedia/28932",
+     "ts": "2026-11-06T13:26:15Z"
+    }
+   ]
+  },
+  {
+   "symbol": "CARD",
+   "mentions": 4,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.2451,
+   "scores": {
+    "vader": 0.0829,
+    "finbert": 0.0119,
+    "cryptobert": 0.4829
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 4,
+     "composite": 0.2451
+    }
+   },
+   "samples": [
+    {
+     "text": "[COINBASE] Collector Crypt ( $CARD ) listed on Coinbase spot",
+     "score": 0.2936,
+     "source": "telegram_public",
+     "community": "coin_listing",
+     "url": "https://t.me/coin_listing/12351",
+     "ts": "2026-11-06T16:57:42Z"
+    },
+    {
+     "text": "Coinbase, $CARD coini listeleyecek.",
+     "score": 0.2242,
+     "source": "telegram_public",
+     "community": "JrKripto",
+     "url": "https://t.me/JrKripto/23970",
+     "ts": "2026-11-06T16:58:23Z"
+    },
+    {
+     "text": "COINBASE $CARD coini listeleyecek.",
+     "score": 0.2724,
+     "source": "telegram_public",
+     "community": "coinotag",
+     "url": "https://t.me/coinotag/29677",
+     "ts": "2026-11-06T16:57:43Z"
+    },
+    {
+     "text": "Collector Crypt ( $CARD ) Found in Coinbase Networks: Solana CA:`CARDSccUMFKoPRZxt5vt3ksUbxEFEcnZ3H2pd3dKxYjp` Status: online Notifer: @CexAlerts",
+     "score": 0.1898,
+     "source": "telegram_public",
+     "community": "CexAlerts",
+     "url": "https://t.me/CexAlerts/41022",
+     "ts": "2026-11-06T16:59:52Z"
+    }
+   ]
+  },
+  {
+   "symbol": "APT",
+   "mentions": 4,
+   "mentionsPrev": 2,
+   "baseline7d": 1.83,
+   "spike": 2.19,
+   "composite": 0.3089,
+   "scores": {
+    "vader": 0.3668,
+    "finbert": 0.0268,
+    "cryptobert": 0.4269
+   },
+   "bullish": 0.8258,
+   "bearish": 0.0,
+   "neutral": 0.1742,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 4,
+     "composite": 0.3089
+    }
+   },
+   "samples": [
+    {
+     "text": "Most people's money lives on a card or in a bank account. Now it can go straight into Decibel via card, Apple Pay, Google Pay, or bank transfer, deposited as USDC and ready to trade, with every trade settled onchain on Aptos. Onchain markets, one deposit away. https://x.com/Apto…",
+     "score": 0.3971,
+     "source": "telegram_public",
+     "community": "aptos_official",
+     "url": "https://t.me/aptos_official/1448",
+     "ts": "2026-11-07T02:19:28Z"
+    },
+    {
+     "text": "Your money spends a surprising amount of its life waiting. Waiting for a bank transfer to clear. Waiting for an international payment to arrive. Waiting for markets to open. Waiting for a trade to settle. The internet made information move instantly. Finance never fully caught u…",
+     "score": 0.5015,
+     "source": "telegram_public",
+     "community": "aptos_official",
+     "url": "https://t.me/aptos_official/1447",
+     "ts": "2026-11-06T18:56:05Z"
+    },
+    {
+     "text": "Мы работаем над тем, чтобы к концу следующей недели возобновить вывод средств для токенов HYPE, INJ, APT, PLASMA, NEAR и LTC. Кроме того, мы планируем к этому времени возобновить вывод средств для всех токенов в сетях, работа которых уже восстановлена (включая BSC, ETH, MATIC, A…",
+     "score": 0.1016,
+     "source": "telegram_public",
+     "community": "binance_ru",
+     "url": "https://t.me/binance_ru/7799",
+     "ts": "2026-11-06T11:08:08Z"
+    },
+    {
+     "text": "[바이낸스 \"다음주 말까지 HYPE·INJ 등 출금 재개\"] 바이낸스가 다음주 말까지 HYPE, INJ, APT, PLASMA, NEAR, LTC 출금을 재개할 계획이라고 공식 X를 통해 전했다. 바이낸스는 지난 1일부로 암호화폐 출금을 순차적으로 재개하고 있다. https://coinness.com/news/1174661",
+     "score": 0.0865,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237156",
+     "ts": "2026-11-06T10:58:30Z"
+    }
+   ]
+  },
+  {
+   "symbol": "PENGU",
+   "mentions": 4,
+   "mentionsPrev": 1,
+   "baseline7d": 2.09,
+   "spike": 1.92,
+   "composite": -0.2594,
+   "scores": {
+    "vader": -0.4224,
+    "finbert": -0.529,
+    "cryptobert": -0.0009
+   },
+   "bullish": 0.2671,
+   "bearish": 0.7329,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 4,
+     "composite": -0.2594
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #PENGU Liquidated Long: $89K at $0.006558",
+     "score": -0.7187,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404401",
+     "ts": "2026-11-06T19:18:48Z"
+    },
+    {
+     "text": "🔴 #PENGU Liquidated Long: $99.4K at $0.006589",
+     "score": -0.2213,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404377",
+     "ts": "2026-11-06T16:12:22Z"
+    },
+    {
+     "text": "Top 20 Trending Coins on CoinGecko 🦎 This week, BTC (Bitcoin) leads the pack, followed by PENGU (Pudgy Penguins), and LIT (Lighter). ➡️ Are you keeping an eye on these? @coingecko",
+     "score": 0.4155,
+     "source": "telegram_public",
+     "community": "coingeckonews",
+     "url": "https://t.me/coingeckonews/2900",
+     "ts": "2026-11-06T11:32:11Z"
+    },
+    {
+     "text": "⭐ Pudgy Polly Entered cherrytrend ! POLLY | 4.25% | 380.7K MC | SOLANA 📊 DexS ✈️ Cherry 🍒 Web 🔗 Twitter 📈 VolumeBot",
+     "score": 0.2981,
+     "source": "telegram_public",
+     "community": "cherrytrending",
+     "url": "https://t.me/cherrytrending/818505",
+     "ts": "2026-11-07T08:33:46Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SUI",
+   "mentions": 3,
+   "mentionsPrev": 4,
+   "baseline7d": 4.22,
+   "spike": 0.71,
+   "composite": 0.1821,
+   "scores": {
+    "vader": 0.2942,
+    "finbert": 0.0277,
+    "cryptobert": 0.1931
+   },
+   "bullish": 0.4984,
+   "bearish": 0.0,
+   "neutral": 0.5016,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.1821
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    },
+    {
+     "text": "​​ 🔀 ⛓️ Recent Сrypto Project Migrations to New Blockchains Running your own chain is getting harder to justify: most projects on this list are shutting down their own L1s and moving to networks that already have the users, liquidity and infrastructure they need. • Akash Networ…",
+     "score": 0.3025,
+     "source": "telegram_public",
+     "community": "CryptoRankNews",
+     "url": "https://t.me/CryptoRankNews/13384",
+     "ts": "2026-11-06T16:54:11Z"
+    },
+    {
+     "text": "Binance продовжує поетапне відновлення виведення коштів: нові активи стануть доступними з 6 листопада • 6 листопада о 04:00 UTC Binance розпочинає черговий етап відновлення виведення коштів. • Можливість виведення поступово відновлюватиметься для окремих активів у мережах BSC, B…",
+     "score": 0.3145,
+     "source": "telegram_public",
+     "community": "Binance_UA_official",
+     "url": "https://t.me/Binance_UA_official/7882",
+     "ts": "2026-11-06T10:42:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AVAX",
+   "mentions": 3,
+   "mentionsPrev": 5,
+   "baseline7d": 5.3,
+   "spike": 0.57,
+   "composite": 0.0751,
+   "scores": {
+    "vader": -0.0566,
+    "finbert": 0.009,
+    "cryptobert": 0.1996
+   },
+   "bullish": 0.2296,
+   "bearish": 0.2491,
+   "neutral": 0.5213,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.0751
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    },
+    {
+     "text": "Binance продовжує поетапне відновлення виведення коштів: нові активи стануть доступними з 6 листопада • 6 листопада о 04:00 UTC Binance розпочинає черговий етап відновлення виведення коштів. • Можливість виведення поступово відновлюватиметься для окремих активів у мережах BSC, B…",
+     "score": 0.3145,
+     "source": "telegram_public",
+     "community": "Binance_UA_official",
+     "url": "https://t.me/Binance_UA_official/7882",
+     "ts": "2026-11-06T10:42:03Z"
+    },
+    {
+     "text": "🦙 Llama News Round-Up | 30 Oct - 6 Nov News 📰 → Democrats take control of the House and Senate; here’s what a Democratic Congress can change for crypto → Binance Security Update #9 → FBI attributes Binance Hack to North Korea → Proton denies AI tracking rumors → US spot ETH ET…",
+     "score": -0.108,
+     "source": "telegram_public",
+     "community": "defillama_tg",
+     "url": "https://t.me/defillama_tg/2077",
+     "ts": "2026-11-06T15:46:56Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LTC",
+   "mentions": 3,
+   "mentionsPrev": 3,
+   "baseline7d": 1.48,
+   "spike": 2.03,
+   "composite": 0.0736,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0773,
+    "cryptobert": 0.1207
+   },
+   "bullish": 0.2374,
+   "bearish": 0.0,
+   "neutral": 0.7626,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.0736
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    },
+    {
+     "text": "Мы работаем над тем, чтобы к концу следующей недели возобновить вывод средств для токенов HYPE, INJ, APT, PLASMA, NEAR и LTC. Кроме того, мы планируем к этому времени возобновить вывод средств для всех токенов в сетях, работа которых уже восстановлена (включая BSC, ETH, MATIC, A…",
+     "score": 0.1016,
+     "source": "telegram_public",
+     "community": "binance_ru",
+     "url": "https://t.me/binance_ru/7799",
+     "ts": "2026-11-06T11:08:08Z"
+    },
+    {
+     "text": "[바이낸스 \"다음주 말까지 HYPE·INJ 등 출금 재개\"] 바이낸스가 다음주 말까지 HYPE, INJ, APT, PLASMA, NEAR, LTC 출금을 재개할 계획이라고 공식 X를 통해 전했다. 바이낸스는 지난 1일부로 암호화폐 출금을 순차적으로 재개하고 있다. https://coinness.com/news/1174661",
+     "score": 0.0865,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237156",
+     "ts": "2026-11-06T10:58:30Z"
+    }
+   ]
+  },
+  {
+   "symbol": "HTX",
+   "mentions": 3,
+   "mentionsPrev": 7,
+   "baseline7d": 9.35,
+   "spike": 0.32,
+   "composite": 0.2684,
+   "scores": {
+    "vader": 0.1899,
+    "finbert": 0.0976,
+    "cryptobert": 0.4155
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 3,
+     "composite": 0.2684
+    }
+   },
+   "samples": [
+    {
+     "text": "比特币回升突破76,000美元 BlockBeats 消息，11 月 7 日，据 HTX 行情数据，比特币回升突破 76,000 美元，24 小时跌幅 0.71%。 原文链接 https://m.theblockbeats.info/flash/376045",
+     "score": 0.2188,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204671",
+     "ts": "2026-11-06T16:55:02Z"
+    },
+    {
+     "text": "⚡️ 比特币跌破75,000美元 BlockBeats 消息，11 月 6 日，据 HTX 行情数据，比特币跌破 75,000 美元，24 小时跌幅 3.37%。 原文链接 https://m.theblockbeats.info/flash/376034",
+     "score": 0.2431,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204660",
+     "ts": "2026-11-06T15:07:03Z"
+    },
+    {
+     "text": "🔔 NEW FUTURE LISTING 🔊 HTX has launched SOXX/USDT and WUXIBIO/USDT perpetual futures, supporting 1-20x leverage for long and short trades ☑ For more： LINK",
+     "score": 0.3828,
+     "source": "telegram_public",
+     "community": "HTXGlobalAnnouncementChannel",
+     "url": "https://t.me/HTXGlobalAnnouncementChannel/15786",
+     "ts": "2026-11-06T12:55:59Z"
+    }
+   ]
+  },
+  {
+   "symbol": "BCH",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 1.3,
+   "spike": 1.53,
+   "composite": -0.1661,
+   "scores": {
+    "vader": -0.3933,
+    "finbert": -0.3419,
+    "cryptobert": 0.0829
+   },
+   "bullish": 0.0,
+   "bearish": 0.5777,
+   "neutral": 0.4223,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": -0.1661
+    }
+   },
+   "samples": [
+    {
+     "text": "🔴 #BCH Liquidated Long: $94.5K at $257.49",
+     "score": -0.3294,
+     "source": "telegram_public",
+     "community": "BinanceLiquidations",
+     "url": "https://t.me/BinanceLiquidations/404450",
+     "ts": "2026-11-07T10:06:50Z"
+    },
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LINK",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 2.43,
+   "spike": 0.82,
+   "composite": 0.3877,
+   "scores": {
+    "vader": 0.516,
+    "finbert": 0.0061,
+    "cryptobert": 0.5141
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.3877
+    }
+   },
+   "samples": [
+    {
+     "text": "WHALE ACCUMULATES $612.55K IN LINK FROM BINANCE A whale withdrew another 16.9K $LINK (~$181.64K) from Binance to their multisig wallet. Total over 18 hours: 57K $LINK (~$612.55K) across four transactions. Address: https://etherscan.io/address/0x638434962Bd5D2cEF0b61708630C589ED6…",
+     "score": 0.4318,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8219",
+     "ts": "2026-11-07T03:53:41Z"
+    },
+    {
+     "text": "WHALE ACCUMULATES $15.65M IN ETH AND LINK A whale just withdrew another 1,000 $ETH (~$2.24M) from Binance. Total received over 3 days: • 3,047 $ETH (~$6.92M) • 787.5K $LINK (~$8.73M) Most of the funds came from Binance. Address: 0xBA29c9b8df2fB387605863EC7195d36e3eDaB9ff ~ https…",
+     "score": 0.3444,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8220",
+     "ts": "2026-11-07T03:57:32Z"
+    }
+   ]
+  },
+  {
+   "symbol": "WLD",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 2.74,
+   "spike": 0.73,
+   "composite": 0.0833,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0974,
+    "cryptobert": 0.1309
+   },
+   "bullish": 0.3971,
+   "bearish": 0.0,
+   "neutral": 0.6029,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.0833
+    }
+   },
+   "samples": [
+    {
+     "text": "[월드코인 팀 연관 추정 월렛, CEX로 510만 WLD 연속 입금] 7일 온체인 인텔리전스 플랫폼 아크함(Arkham)에 따르면, 특정 주소가 OKX로 150만 WLD를 추가 전송했다. 해당 주소는 최근 사흘간 코인베이스와 게이트아이오를 포함한 주요 CEX로 총 510만 WLD(약 180만 달러, 한화 약 25억 원)를 분할 입금했다. 이 지갑은 일주일 전 중간 지갑(0x6325)으로부터 1,025만 8,000 WLD를 넘겨받았다. 자금 흐름 추적 결과, 해당 물량은 3년 전 월드코인 팀 공식…",
+     "score": 0.0467,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237233",
+     "ts": "2026-11-07T04:29:54Z"
+    },
+    {
+     "text": "🤔 스마트머니 선물 시장 미결제약정 각 시장의 아직 종료되지 않은 선물 계약 총액(OI, USD)입니다. XMR ≈$158.63M · RUNE ≈$1.62M · WLD ≈$42.32M · BNB ≈$39.16M 이름 미확인 6개는 목록에서 제외했습니다. 합계·표본 수는 전체 조회 기록 기준입니다. 코인이지 인사이트 OI는 미결제 계약 총액입니다 · 스마트머니 순유입이 아닙니다 핵심 한 줄: 현재 시장 OI · 7일 조회창 · 확인한 기록 10개 중 4개 표시 · 시장 전체 아님 · 이름 미확인…",
+     "score": 0.1388,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58432",
+     "ts": "2026-11-07T05:00:12Z"
+    }
+   ]
+  },
+  {
+   "symbol": "POL",
+   "mentions": 2,
+   "mentionsPrev": 5,
+   "baseline7d": 4.96,
+   "spike": 0.4,
+   "composite": 0.2443,
+   "scores": {
+    "vader": 0.3712,
+    "finbert": 0.0713,
+    "cryptobert": 0.256
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.2443
+    }
+   },
+   "samples": [
+    {
+     "text": "Polygon proposal targets blocked POL recovery A proposed hard fork would move ~70.49M POL from five blocked addresses to Polymarket and Binance recovery wallets. Reference balances: 23.86M and 46.63M POL, respectively. Governance approval and activation remain pending. The propo…",
+     "score": 0.3931,
+     "source": "telegram_public",
+     "community": "icodrops",
+     "url": "https://t.me/icodrops/25276",
+     "ts": "2026-11-06T11:38:59Z"
+    },
+    {
+     "text": "Мы работаем над тем, чтобы к концу следующей недели возобновить вывод средств для токенов HYPE, INJ, APT, PLASMA, NEAR и LTC. Кроме того, мы планируем к этому времени возобновить вывод средств для всех токенов в сетях, работа которых уже восстановлена (включая BSC, ETH, MATIC, A…",
+     "score": 0.1016,
+     "source": "telegram_public",
+     "community": "binance_ru",
+     "url": "https://t.me/binance_ru/7799",
+     "ts": "2026-11-06T11:08:08Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XTZ",
+   "mentions": 2,
+   "mentionsPrev": 0,
+   "baseline7d": 0.13,
+   "spike": null,
+   "composite": 0.6132,
+   "scores": {
+    "vader": 0.5962,
+    "finbert": 0.7466,
+    "cryptobert": 0.5503
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.6132
+    }
+   },
+   "samples": [
+    {
+     "text": "🔥 Hot out of the Oven: The Baking Sheet – Issue #332 This Week in the Tezos Ecosystem: ➡️ Swiss Asset Manager Selects xU3O8 – Swiss-regulated asset manager Zuri-Invest has chosen xU3O8 as the underlying asset for its new Physical Uranium Tracker certificate. The investment prod…",
+     "score": 0.7614,
+     "source": "telegram_public",
+     "community": "TezosAnnouncements",
+     "url": "https://t.me/TezosAnnouncements/4906",
+     "ts": "2026-11-06T22:55:50Z"
+    },
+    {
+     "text": "Copper demand up by 50% by 2040? Tezos metal.io copper by in https://blockster.com/copper-demand-50-percent-2040-metalsio-xcu https://redd.it/1xppf97 @r_cryptocurrency",
+     "score": 0.3157,
+     "source": "telegram_public",
+     "community": "r_cryptocurrency",
+     "url": "https://t.me/r_cryptocurrency/60397",
+     "ts": "2026-11-06T22:28:10Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AERO",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 2.13,
+   "spike": 0.94,
+   "composite": 0.204,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0627,
+    "cryptobert": 0.4185
+   },
+   "bullish": 0.6709,
+   "bearish": 0.0,
+   "neutral": 0.3291,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.204
+    }
+   },
+   "samples": [
+    {
+     "text": "Coinbase完成Aerodrome与Velodrome代币转换，已恢复AERO与VELO收发 PANews 11月7日消息，据Coinbase Assets官方账号消息，Aerodrome Finance（AERO）与Velodrome Finance（VELO）向新Aero（AERO）代币的转换已完成，AERO与VELO的收发功能已重新启用。Coinbase同时称不再支持旧AERO充提，并提醒用户勿向其充值地址发送旧AERO，相关充值可能无法找回。 🔗 https://www.panewslab.com/zh/articles/01a1b262…",
+     "score": 0.2669,
+     "source": "telegram_public",
+     "community": "ChannelPANews",
+     "url": "https://t.me/ChannelPANews/185054",
+     "ts": "2026-11-06T19:42:21Z"
+    },
+    {
+     "text": "🤔 스마트머니 24시간 순유입 표본, ≈+$486.62K 최근 24시간, 조회 10개 기록의 순유입 합계 ≈+$486.62K. 순유입 = 들어온 금액 − 나간 금액. 아래 4개 기록만 표시합니다. UNI ≈+$274.83K · AERO ≈+$60.03K · XZEC ≈+$36.97K · QQQON ≈+$20K 코인이지 인사이트 조회 표본은 ≈$486.62K 순유입입니다 · 매수·매도 확정 아님 핵심 한 줄: 24h · 확인한 기록 10개 중 4개 표시 · 시장 전체 아님 Powered by N…",
+     "score": 0.0757,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58396",
+     "ts": "2026-11-06T11:30:10Z"
+    }
+   ]
+  },
+  {
+   "symbol": "RUNE",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 7.3,
+   "spike": 0.27,
+   "composite": 0.1007,
+   "scores": {
+    "vader": -0.1488,
+    "finbert": 0.21,
+    "cryptobert": 0.2064
+   },
+   "bullish": 0.8456,
+   "bearish": 0.1544,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.1388
+    },
+    "rss": {
+     "mentions": 1,
+     "composite": -0.1076
+    }
+   },
+   "samples": [
+    {
+     "text": "🤔 스마트머니 선물 시장 미결제약정 각 시장의 아직 종료되지 않은 선물 계약 총액(OI, USD)입니다. XMR ≈$158.63M · RUNE ≈$1.62M · WLD ≈$42.32M · BNB ≈$39.16M 이름 미확인 6개는 목록에서 제외했습니다. 합계·표본 수는 전체 조회 기록 기준입니다. 코인이지 인사이트 OI는 미결제 계약 총액입니다 · 스마트머니 순유입이 아닙니다 핵심 한 줄: 현재 시장 OI · 7일 조회창 · 확인한 기록 10개 중 4개 표시 · 시장 전체 아님 · 이름 미확인…",
+     "score": 0.1388,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58432",
+     "ts": "2026-11-07T05:00:12Z"
+    },
+    {
+     "text": "Binance Hackers Swap About $50 Million of Stolen XRP Mostly Into Bitcoin, Elliptic Says. Bitcoin Magazine Binance Hackers Swap About $50 Million of Stolen XRP Mostly Into Bitcoin, Elliptic Says About 42 million stolen XRP, worth roughly $50 million, has been swapped mostly into…",
+     "score": -0.1076,
+     "source": "rss",
+     "community": "Bitcoin Magazine",
+     "url": "https://bitcoinmagazine.com/news/binance-hackers-swap-50m-xrp-bitcoin",
+     "ts": "2026-11-06T14:50:00Z"
+    }
+   ]
+  },
+  {
+   "symbol": "PUMP",
+   "mentions": 2,
+   "mentionsPrev": 1,
+   "baseline7d": 0.26,
+   "spike": null,
+   "composite": 0.144,
+   "scores": {
+    "vader": 0.2125,
+    "finbert": 0.0309,
+    "cryptobert": 0.1613
+   },
+   "bullish": 0.5308,
+   "bearish": 0.0,
+   "neutral": 0.4692,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.144
+    }
+   },
+   "samples": [
+    {
+     "text": "Pump fun( @Pumpfun ) is dumping $SOL again! They just deposited 76,111 $SOL ($6.85M) into #Kraken . In total, pump.fun has sold 5,553,833 $SOL($882.4M) at an average price of $158.88. https://arkm.com/explorer/entity/pump-fun",
+     "score": 0.2192,
+     "source": "telegram_public",
+     "community": "lookonchainchannel",
+     "url": "https://t.me/lookonchainchannel/10942",
+     "ts": "2026-11-06T10:52:36Z"
+    },
+    {
+     "text": "[펌프펀, $615만 SOL 크라켄 입금] 솔라나(SOL)가 6.9% 하락한 가운데 펌프펀( Pump.fun )이 15일 만에 68,260 SOL(약 615만 달러)을 크라켄으로 입금했다고 온체인렌즈가 전했다. 통상 거래소 입금은 매도 목적으로 해석된다. https://coinness.com/news/1174656",
+     "score": 0.059,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237151",
+     "ts": "2026-11-06T10:30:53Z"
+    }
+   ]
+  },
+  {
+   "symbol": "GT",
+   "mentions": 2,
+   "mentionsPrev": 2,
+   "baseline7d": 1.57,
+   "spike": 1.28,
+   "composite": 0.5001,
+   "scores": {
+    "vader": 0.9414,
+    "finbert": 0.1657,
+    "cryptobert": 0.3916
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 2,
+     "composite": 0.5001
+    }
+   },
+   "samples": [
+    {
+     "text": "🚀 Gate ETF Boosted Rewards is Live! 🎁 Stack rewards up to 550 USDT ✅ Trade designated ETFs to earn up to 50 USDT ⚡ Unlock up to 3x points on other ETFs 🏆 Unlock a shared pool of up to 50,000 USDT—up to 500 USDT Boost Your Points. Stack Your Rewards. Join Now 👉 https://gate.o…",
+     "score": 0.4998,
+     "source": "telegram_public",
+     "community": "GateOfficialNews",
+     "url": "https://t.me/GateOfficialNews/24664",
+     "ts": "2026-11-06T11:04:53Z"
+    },
+    {
+     "text": "🚀 Gate ETF 多倍双享礼限时开启！ 🎁 双重奖励叠加，最高赢 550 USDT ✅ 指定 ETF 交易达标，叠加领取最高 50 USDT ⚡ 解锁非指定 ETF 最高 3 倍积分，助力瓜分奖池 🏆 全员达标解锁最高 50,000 USDT 奖池，单人最高 500 USDT 积分开加速，好礼叠加拿 立即参与 👉 https://gate.onelink.me/7pdk/e350ca6f4d7852c5 #ETF #KORU #SOXL #USDT #Rewards",
+     "score": 0.5006,
+     "source": "telegram_public",
+     "community": "GateZhNews",
+     "url": "https://t.me/GateZhNews/7488",
+     "ts": "2026-11-06T11:04:12Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ATOM",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.39,
+   "spike": null,
+   "composite": 0.0609,
+   "scores": {
+    "vader": 0.0,
+    "finbert": -0.0003,
+    "cryptobert": 0.1354
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0609
+    }
+   },
+   "samples": [
+    {
+     "text": "[코스모스 월렛 케플러, 구글·애플 로그인 계정 일부서 비정상 거래 발생] 코스모스(ATOM) 지갑 케플러(Keplr)가 \"구글 또는 애플 계정으로 생성한 일부 지갑에서 무단 거래가 발생했다는 신고를 접수하고, Web3Auth와 공동 조사에 착수했다\"고 X를 통해 밝혔다. 조사에 따르면, 시드 구문 또는 하드웨어 지갑으로 생성한 계정은 영향이 없으며, 구글·애플 로그인으로 생성한 계정은 피해 가능성이 있는 것으로 알려졌다. Keplr은 구글·애플 로그인 기능을 일시 중단했으며, 조사 기간 동안…",
+     "score": 0.0609,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237242",
+     "ts": "2026-11-07T07:29:38Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ADA",
+   "mentions": 1,
+   "mentionsPrev": 3,
+   "baseline7d": 1.65,
+   "spike": 0.61,
+   "composite": 0.0571,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.07,
+    "cryptobert": 0.0881
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0571
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XLM",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 1.61,
+   "spike": 0.62,
+   "composite": 0.0571,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.07,
+    "cryptobert": 0.0881
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0571
+    }
+   },
+   "samples": [
+    {
+     "text": "⬛️ Крипторынок пытается восстанавливаться #Новости #Трейдинг #Крипторынок #Альткоины #Bitcoin Котировки 21 крупнейшей криптовалюты из топ-27 по капитализации за сутки, без стейблкоинов: 💹 BTC — +0,61% , $76 019,43 💹 ETH — +0,83% , $2244,53 💹 BNB — +0,78% , $694,27 👇 XRP — -0…",
+     "score": 0.0571,
+     "source": "telegram_public",
+     "community": "beincrypto_trading",
+     "url": "https://t.me/beincrypto_trading/24676",
+     "ts": "2026-11-07T09:24:15Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ARKM",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 2.17,
+   "spike": 0.46,
+   "composite": 0.0467,
+   "scores": {
+    "vader": 0.0,
+    "finbert": -0.0008,
+    "cryptobert": 0.1042
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0467
+    }
+   },
+   "samples": [
+    {
+     "text": "[월드코인 팀 연관 추정 월렛, CEX로 510만 WLD 연속 입금] 7일 온체인 인텔리전스 플랫폼 아크함(Arkham)에 따르면, 특정 주소가 OKX로 150만 WLD를 추가 전송했다. 해당 주소는 최근 사흘간 코인베이스와 게이트아이오를 포함한 주요 CEX로 총 510만 WLD(약 180만 달러, 한화 약 25억 원)를 분할 입금했다. 이 지갑은 일주일 전 중간 지갑(0x6325)으로부터 1,025만 8,000 WLD를 넘겨받았다. 자금 흐름 추적 결과, 해당 물량은 3년 전 월드코인 팀 공식…",
+     "score": 0.0467,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237233",
+     "ts": "2026-11-07T04:29:54Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ASTER",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.3829,
+   "scores": {
+    "vader": 0.7378,
+    "finbert": 0.0193,
+    "cryptobert": 0.3482
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.3829
+    }
+   },
+   "samples": [
+    {
+     "text": "DORMANT WALLET RESUMES MOVING FUNDS FROM MEXC TO BINANCE AFTER A YEAR The wallet is active again after a year, routing tokens from MEXC to Binance. Recent transfers include: • 405K $ASTER (~$275.5K) • 227.27K $FF (~$19.7K) • 1.47M $OP (~$149.5K) Total: ~$444.7K across these toke…",
+     "score": 0.3829,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8221",
+     "ts": "2026-11-07T04:00:14Z"
+    }
+   ]
+  },
+  {
+   "symbol": "FF",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.3829,
+   "scores": {
+    "vader": 0.7378,
+    "finbert": 0.0193,
+    "cryptobert": 0.3482
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.3829
+    }
+   },
+   "samples": [
+    {
+     "text": "DORMANT WALLET RESUMES MOVING FUNDS FROM MEXC TO BINANCE AFTER A YEAR The wallet is active again after a year, routing tokens from MEXC to Binance. Recent transfers include: • 405K $ASTER (~$275.5K) • 227.27K $FF (~$19.7K) • 1.47M $OP (~$149.5K) Total: ~$444.7K across these toke…",
+     "score": 0.3829,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8221",
+     "ts": "2026-11-07T04:00:14Z"
+    }
+   ]
+  },
+  {
+   "symbol": "OP",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.22,
+   "spike": null,
+   "composite": 0.3829,
+   "scores": {
+    "vader": 0.7378,
+    "finbert": 0.0193,
+    "cryptobert": 0.3482
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.3829
+    }
+   },
+   "samples": [
+    {
+     "text": "DORMANT WALLET RESUMES MOVING FUNDS FROM MEXC TO BINANCE AFTER A YEAR The wallet is active again after a year, routing tokens from MEXC to Binance. Recent transfers include: • 405K $ASTER (~$275.5K) • 227.27K $FF (~$19.7K) • 1.47M $OP (~$149.5K) Total: ~$444.7K across these toke…",
+     "score": 0.3829,
+     "source": "telegram_public",
+     "community": "OnchainLens",
+     "url": "https://t.me/OnchainLens/8221",
+     "ts": "2026-11-07T04:00:14Z"
+    }
+   ]
+  },
+  {
+   "symbol": "RSR",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.17,
+   "spike": null,
+   "composite": 0.0596,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0317,
+    "cryptobert": 0.1147
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0596
+    }
+   },
+   "samples": [
+    {
+     "text": "[리저브, 멕스씨서 LCAP·CMC20 유동성 공급 중단…자금 회수 예정] 실물자산(RWA) 토큰화 플랫폼 리저브(RSR)는 마켓메이킹 파트너들과 함께 멕스씨 글로벌(MEXC Global)에서 LCAP와 CMC20의 유동성 공급을 중단하고, 곧 유동성 공급 자금을 회수할 예정이라고 밝혔다. 리저브에 따르면 미국 금융범죄단속네트워크(FinCEN)는 멕스씨가 이란 제재 회피 관련 활동을 포함해 최소 160억 달러 규모의 불법 거래를 지원했다는 이유로 미국 금융시스템 접근을 사실상 차단하는 명령을 발…",
+     "score": 0.0596,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237223",
+     "ts": "2026-11-07T00:11:27Z"
+    }
+   ]
+  },
+  {
+   "symbol": "IOTX",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.04,
+   "spike": null,
+   "composite": 0.0456,
+   "scores": {
+    "vader": 0.0,
+    "finbert": -0.0002,
+    "cryptobert": 0.1015
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0456
+    }
+   },
+   "samples": [
+    {
+     "text": "[아이오텍스, 스테이킹 보호 제안 IIP-65 4차 초안 마련] 탈중앙화 물리적 인프라(DePIN) 프로젝트 아이오텍스(IOTX)는 스테이킹 자산 보호 제안 IIP-65 ‘벙커 모드’가 4차 초안 단계에 있으며, 아이오텍스 코어(iotex-core)에 전체 참조 구현을 포함했다고 밝혔다. 이 제안은 스테이킹된 IOTX 버킷을 두 번째 해시 기반 키로 잠그는 방식으로, 독립적인 암호학적 검토를 거쳐 권한 인증 계층을 재설계했다. 약 1만3000줄 규모의 코드는 기능 활성화를 제한하는 플래그를 적용…",
+     "score": 0.0456,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237217",
+     "ts": "2026-11-06T22:43:32Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZRO",
+   "mentions": 1,
+   "mentionsPrev": 2,
+   "baseline7d": 2.09,
+   "spike": 0.48,
+   "composite": 0.0869,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0604,
+    "cryptobert": 0.1595
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0869
+    }
+   },
+   "samples": [
+    {
+     "text": "🤔 스마트머니 24시간 순유입 표본, ≈+$220.08K 최근 24시간, 조회 10개 기록의 순유입 합계 ≈+$220.08K. 순유입 = 들어온 금액 − 나간 금액. 아래 4개 기록만 표시합니다. ZEC ≈+$101.93K · ZRO ≈+$55.78K · CRCLX ≈+$13.48K · STONK ≈+$11.92K 이름 미확인 1개는 목록에서 제외했습니다. 합계·표본 수는 전체 조회 기록 기준입니다. 코인이지 인사이트 조회 표본은 ≈$220.08K 순유입입니다 · 매수·매도 확정 아님 핵심 한…",
+     "score": 0.0869,
+     "source": "telegram_public",
+     "community": "coiniseasy",
+     "url": "https://t.me/coiniseasy/58438",
+     "ts": "2026-11-07T06:30:09Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ETC",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 1.0,
+   "spike": 1.0,
+   "composite": 0.0961,
+   "scores": {
+    "vader": 0.0,
+    "finbert": -0.0042,
+    "cryptobert": 0.2159
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0961
+    }
+   },
+   "samples": [
+    {
+     "text": "[빗썸 시세알림] *전일 23:59 기준 대비 비트코인(BTC): 103,434,000원 ▲0.43% 이더리움(ETH): 3,050,000원 ▲0.43% 솔라나(SOL): 122,800원 ▼0.89% 리플(XRP): 1,604원 ▼0.74% 도지코인(DOGE): 98원 ▼0.65% 트론(TRX): 435원 ▲0.00% 이더리움클래식(ETC): 9,560원 ▼0.78% 비트코인에스브이(BSV): 23,150원 ▼0.64% 테더(USDT): 1,362원 ▲0.00% 유에스디코인(USDC): 1,36…",
+     "score": 0.0961,
+     "source": "telegram_public",
+     "community": "BithumbExchange",
+     "url": "https://t.me/BithumbExchange/13496",
+     "ts": "2026-11-06T23:00:49Z"
+    }
+   ]
+  },
+  {
+   "symbol": "HMM",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.1064,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0466,
+    "cryptobert": 0.2106
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.1064
+    }
+   },
+   "samples": [
+    {
+     "text": "$HMM Robinhood varlıklarına eklendi. #HMM",
+     "score": 0.1064,
+     "source": "telegram_public",
+     "community": "coinotag",
+     "url": "https://t.me/coinotag/29679",
+     "ts": "2026-11-06T19:01:03Z"
+    }
+   ]
+  },
+  {
+   "symbol": "AKT",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.78,
+   "spike": null,
+   "composite": 0.3025,
+   "scores": {
+    "vader": 0.4019,
+    "finbert": -0.092,
+    "cryptobert": 0.4554
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.3025
+    }
+   },
+   "samples": [
+    {
+     "text": "​​ 🔀 ⛓️ Recent Сrypto Project Migrations to New Blockchains Running your own chain is getting harder to justify: most projects on this list are shutting down their own L1s and moving to networks that already have the users, liquidity and infrastructure they need. • Akash Networ…",
+     "score": 0.3025,
+     "source": "telegram_public",
+     "community": "CryptoRankNews",
+     "url": "https://t.me/CryptoRankNews/13384",
+     "ts": "2026-11-06T16:54:11Z"
+    }
+   ]
+  },
+  {
+   "symbol": "MOVR",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.3025,
+   "scores": {
+    "vader": 0.4019,
+    "finbert": -0.092,
+    "cryptobert": 0.4554
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.3025
+    }
+   },
+   "samples": [
+    {
+     "text": "​​ 🔀 ⛓️ Recent Сrypto Project Migrations to New Blockchains Running your own chain is getting harder to justify: most projects on this list are shutting down their own L1s and moving to networks that already have the users, liquidity and infrastructure they need. • Akash Networ…",
+     "score": 0.3025,
+     "source": "telegram_public",
+     "community": "CryptoRankNews",
+     "url": "https://t.me/CryptoRankNews/13384",
+     "ts": "2026-11-06T16:54:11Z"
+    }
+   ]
+  },
+  {
+   "symbol": "LSK",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 2.22,
+   "spike": 0.45,
+   "composite": -0.108,
+   "scores": {
+    "vader": -0.9894,
+    "finbert": -0.1859,
+    "cryptobert": 0.523
+   },
+   "bullish": 0.0,
+   "bearish": 1.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": -0.108
+    }
+   },
+   "samples": [
+    {
+     "text": "🦙 Llama News Round-Up | 30 Oct - 6 Nov News 📰 → Democrats take control of the House and Senate; here’s what a Democratic Congress can change for crypto → Binance Security Update #9 → FBI attributes Binance Hack to North Korea → Proton denies AI tracking rumors → US spot ETH ET…",
+     "score": -0.108,
+     "source": "telegram_public",
+     "community": "defillama_tg",
+     "url": "https://t.me/defillama_tg/2077",
+     "ts": "2026-11-06T15:46:56Z"
+    }
+   ]
+  },
+  {
+   "symbol": "XPL",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 5.91,
+   "spike": 0.17,
+   "composite": -0.108,
+   "scores": {
+    "vader": -0.9894,
+    "finbert": -0.1859,
+    "cryptobert": 0.523
+   },
+   "bullish": 0.0,
+   "bearish": 1.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": -0.108
+    }
+   },
+   "samples": [
+    {
+     "text": "🦙 Llama News Round-Up | 30 Oct - 6 Nov News 📰 → Democrats take control of the House and Senate; here’s what a Democratic Congress can change for crypto → Binance Security Update #9 → FBI attributes Binance Hack to North Korea → Proton denies AI tracking rumors → US spot ETH ET…",
+     "score": -0.108,
+     "source": "telegram_public",
+     "community": "defillama_tg",
+     "url": "https://t.me/defillama_tg/2077",
+     "ts": "2026-11-06T15:46:56Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZIL",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 1.17,
+   "spike": 0.85,
+   "composite": -0.108,
+   "scores": {
+    "vader": -0.9894,
+    "finbert": -0.1859,
+    "cryptobert": 0.523
+   },
+   "bullish": 0.0,
+   "bearish": 1.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": -0.108
+    }
+   },
+   "samples": [
+    {
+     "text": "🦙 Llama News Round-Up | 30 Oct - 6 Nov News 📰 → Democrats take control of the House and Senate; here’s what a Democratic Congress can change for crypto → Binance Security Update #9 → FBI attributes Binance Hack to North Korea → Proton denies AI tracking rumors → US spot ETH ET…",
+     "score": -0.108,
+     "source": "telegram_public",
+     "community": "defillama_tg",
+     "url": "https://t.me/defillama_tg/2077",
+     "ts": "2026-11-06T15:46:56Z"
+    }
+   ]
+  },
+  {
+   "symbol": "STX",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 2.09,
+   "spike": 0.48,
+   "composite": 0.2554,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0511,
+    "cryptobert": 0.5393
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.2554
+    }
+   },
+   "samples": [
+    {
+     "text": "美股开盘AI概念股迎全面反弹，IREN涨近20% BlockBeats 消息，11 月 6 日，据 BIT 股票平台数据显示，美股开盘 Neocloud、半导体、光通信及存储股迎全面反弹。 Neocloud 股涨幅居前，IREN 涨 19.97%、Cipher Digital（CIFR）涨 11.71%、Hut 8（HUT）涨 10.10%、Nebius（NBIS）涨 9.00%、Applied Digital（APLD）涨 8.93%、Core Scientific（CORZ）涨 7.34%。 半导体股中，泛林集团（LRCX）涨 10.25%、AMD…",
+     "score": 0.2554,
+     "source": "telegram_public",
+     "community": "theblockbeats",
+     "url": "https://t.me/theblockbeats/204652",
+     "ts": "2026-11-06T14:35:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "ZEN",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.0504,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.015,
+    "cryptobert": 0.1036
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0504
+    }
+   },
+   "samples": [
+    {
+     "text": "[호라이젠 L3 운영 종료…잔여 ZEN·ETH 11월 중 베이스서 반환 예정] 프라이버시 중심 블록체인 호라이젠(ZEN)은 호라이젠 L3 운영을 종료했으며, 곧 베이스(Base)에서 새 출발을 할 예정이라고 밝혔다. 스냅샷은 이미 확보된 상태다. 마이그레이션 기한을 놓쳐 운영 종료 후에도 호라이젠 L3에 남아 있는 ZEN과 ETH는 호라이젠 DAO(Horizen DAO)가 11월 중 베이스에서 이용자에게 반환할 예정이다. https://coinness.com/news/1174695",
+     "score": 0.0504,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237190",
+     "ts": "2026-11-06T15:29:24Z"
+    }
+   ]
+  },
+  {
+   "symbol": "TAIKO",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.0328,
+   "scores": {
+    "vader": 0.0,
+    "finbert": -0.0154,
+    "cryptobert": 0.0816
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0328
+    }
+   },
+   "samples": [
+    {
+     "text": "[타이코, 후디·메인넷 실행 엔진 업데이트…노드 갱신 권고] 이더리움 기반 레이어2 확장 네트워크 타이코(TAIKO)는 후디(Hoodi)와 메인넷용 실행 엔진 알레티아-레스(alethia-reth)의 유지보수성 개선 업데이트를 출시했다고 밝혔다. 예기치 않은 문제를 방지하고 연결을 유지할 수 있도록 노드 운영자들에게 가능한 한 빨리 업데이트할 것을 권고했다. 업데이트 대상 버전은 알레티아-레스 v1.5.0과 심플타이코노드(simple-taiko-node) v2.6.6이다. https://coin…",
+     "score": 0.0328,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237161",
+     "ts": "2026-11-06T11:55:36Z"
+    }
+   ]
+  },
+  {
+   "symbol": "OMNI",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.22,
+   "spike": null,
+   "composite": 0.0731,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0829,
+    "cryptobert": 0.1165
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0731
+    }
+   },
+   "samples": [
+    {
+     "text": "Google представила Gemini Omni 1.2 Flash для генерации видео Google выпустила ИИ-модель Gemini Omni 1.2 Flash, которая умеет создавать и редактировать видеоролики продолжительностью до 15 секунд против 10 секунд у предыдущей версии. Разработчики улучшили согласованность персонаж…",
+     "score": 0.0731,
+     "source": "telegram_public",
+     "community": "forklogfeed",
+     "url": "https://t.me/forklogfeed/71758",
+     "ts": "2026-11-06T12:34:39Z"
+    }
+   ]
+  },
+  {
+   "symbol": "TAO",
+   "mentions": 1,
+   "mentionsPrev": 1,
+   "baseline7d": 0.35,
+   "spike": null,
+   "composite": 0.0617,
+   "scores": {
+    "vader": 0.0,
+    "finbert": 0.0323,
+    "cryptobert": 0.1192
+   },
+   "bullish": 0.0,
+   "bearish": 0.0,
+   "neutral": 1.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.0617
+    }
+   },
+   "samples": [
+    {
+     "text": "[비트텐서, 양자내성 지갑 공개…서명 키 자동 교체 선택 기능 제공] 탈중앙화 AI 모델 네트워크 비트텐서(TAO)가 양자내성 지갑을 공개했다고 밝혔다. 이번 업데이트는 사용자에게 양자내성 서명과 서명 키를 자동으로 교체하는 선택 기능을 제공한다. https://coinness.com/news/1174660",
+     "score": 0.0617,
+     "source": "telegram_public",
+     "community": "coinnesskr",
+     "url": "https://t.me/coinnesskr/237155",
+     "ts": "2026-11-06T10:44:16Z"
+    }
+   ]
+  },
+  {
+   "symbol": "JST",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": 0.57,
+   "spike": null,
+   "composite": 0.4793,
+   "scores": {
+    "vader": 0.9681,
+    "finbert": 0.0898,
+    "cryptobert": 0.3697
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.4793
+    }
+   },
+   "samples": [
+    {
+     "text": "🏦 EUROPE'S LARGEST ASSET MANAGER JUST TOKENIZED A MAJOR EQUITY FUND ON ETHEREUM Another major traditional financial institution is expanding its use of Ethereum. AMUNDI has launched a tokenized share class of its CORE STOXX EUROPE 600 equity index fund. And this time, it's not…",
+     "score": 0.4793,
+     "source": "telegram_public",
+     "community": "ethereumnews",
+     "url": "https://t.me/ethereumnews/22379",
+     "ts": "2026-11-06T12:22:02Z"
+    }
+   ]
+  },
+  {
+   "symbol": "SPX",
+   "mentions": 1,
+   "mentionsPrev": 0,
+   "baseline7d": null,
+   "spike": null,
+   "composite": 0.4015,
+   "scores": {
+    "vader": 0.5093,
+    "finbert": 0.0139,
+    "cryptobert": 0.5449
+   },
+   "bullish": 1.0,
+   "bearish": 0.0,
+   "neutral": 0.0,
+   "bySource": {
+    "telegram_public": {
+     "mentions": 1,
+     "composite": 0.4015
+    }
+   },
+   "samples": [
+    {
+     "text": "⭐ SPX6900 Entered cherrytrend ! SPX | 143.66% | 6.5K MC | SOLANA 📊 DexS ✈️ Cherry 🍒 Web 🔗 Twitter 📈 VolumeBot",
+     "score": 0.4015,
+     "source": "telegram_public",
+     "community": "cherrytrending",
+     "url": "https://t.me/cherrytrending/818462",
+     "ts": "2026-11-07T07:17:48Z"
+    }
+   ]
+  }
+ ]
+}
