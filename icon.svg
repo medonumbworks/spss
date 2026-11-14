@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- full-bleed background: the maskable purpose must have no transparent corners -->
+  <rect width="512" height="512" fill="#161c26"/>
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="#1f2835"/>
+  <!-- pulse line, kept inside the 80% maskable safe zone -->
+  <polyline points="72,288 168,288 208,180 256,352 296,236 320,288 440,288"
+            fill="none" stroke="#4cc38a" stroke-width="34"
+            stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
