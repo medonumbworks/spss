@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Light (day) palette. values-night/colors.xml redefines the same names for dark mode. -->
+<resources>
+    <!-- Brand -->
+    <color name="primary">#1E5EFF</color>
+    <color name="primary_dark">#1240B8</color>
+    <color name="accent">#FF6D00</color>
+
+    <!-- Surfaces and text -->
+    <color name="window_bg">#F2F4F8</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="card_stroke">#DDE2EA</color>
+    <color name="divider">#E6E9EF</color>
+    <color name="text_primary">#1B1F27</color>
+    <color name="text_secondary">#5B6372</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    <color name="text_error">#C62828</color>
+    <color name="text_good">#2E7D32</color>
+
+    <!-- NumberGridView -->
+    <color name="grid_selected">#1E5EFF</color>
+    <color name="grid_selected_text">#FFFFFF</color>
+    <color name="grid_hit">#2E7D32</color>
+    <color name="grid_hit_text">#FFFFFF</color>
+    <color name="grid_ring">#FF6D00</color>
+    <color name="grid_unselected">#E3E7EE</color>
+    <color name="grid_unselected_text">#1B1F27</color>
+    <color name="grid_heat">#1E5EFF</color>
+    <color name="grid_heat_text">#FFFFFF</color>
+    <color name="grid_ripple">#401E5EFF</color>
+
+    <!-- Buttons -->
+    <color name="button_primary_bg">#1E5EFF</color>
+    <color name="button_disabled_bg">#C9CFD9</color>
+    <color name="button_disabled_text">#7A8291</color>
+    <color name="button_secondary_bg">#FFFFFF</color>
+    <color name="button_secondary_stroke">#1E5EFF</color>
+    <color name="button_secondary_label">#1E5EFF</color>
+    <color name="ripple_on_primary">#40FFFFFF</color>
+    <color name="ripple_on_secondary">#331E5EFF</color>
+</resources>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/mainProgressRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/computing" />
+        </LinearLayout>
+
+        <!-- Empty state: shown instead of the prediction cards while there are no draws. -->
+        <LinearLayout
+            android:id="@+id/cardEmpty"
+            style="@style/Card"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/empty_title" />
+
+            <TextView
+                style="@style/BodyText"
+                android:text="@string/empty_body" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:layout_marginTop="12dp"
+                android:text="@string/empty_format_title" />
+
+            <TextView
+                style="@style/MonoText"
+                android:layout_marginTop="4dp"
+                android:text="@string/empty_format_example"
+                android:textIsSelectable="true" />
+        </LinearLayout>
+
+        <!-- Next prediction -->
+        <LinearLayout
+            android:id="@+id/cardNext"
+            style="@style/Card"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_next_title" />
+
+            <TextView
+                android:id="@+id/nextSubtitle"
+                style="@style/SecondaryText" />
+
+            <com.medonumbworks.csprngpredictor.ui.NumberGridView
+                android:id="@+id/gridNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp" />
+
+            <TextView
+                android:id="@+id/nextNumbers"
+                style="@style/BigNumbers"
+                android:layout_marginTop="12dp" />
+
+            <Button
+                android:id="@+id/btnCopy"
+                style="@style/SecondaryButton"
+                android:text="@string/copy" />
+
+            <TextView
+                android:id="@+id/nextPendingNote"
+                style="@style/SecondaryText"
+                android:layout_marginTop="8dp"
+                android:text="@string/next_pending_note" />
+        </LinearLayout>
+
+        <!-- Confidence by number -->
+        <LinearLayout
+            android:id="@+id/cardHeat"
+            style="@style/Card"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_heat_title" />
+
+            <com.medonumbworks.csprngpredictor.ui.NumberGridView
+                android:id="@+id/gridHeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:layout_marginTop="12dp"
+                android:text="@string/heat_top_title" />
+
+            <TextView
+                android:id="@+id/heatList"
+                style="@style/BodyText"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                style="@style/SecondaryText"
+                android:layout_marginTop="8dp"
+                android:text="@string/heat_help" />
+        </LinearLayout>
+
+        <!-- Last check -->
+        <LinearLayout
+            android:id="@+id/cardLast"
+            style="@style/Card"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_last_title" />
+
+            <TextView
+                android:id="@+id/lastText"
+                style="@style/BodyText" />
+
+            <com.medonumbworks.csprngpredictor.ui.NumberGridView
+                android:id="@+id/gridLast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp" />
+
+            <TextView
+                android:id="@+id/lastHits"
+                style="@style/BodyText"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/lastLegend"
+                style="@style/SecondaryText"
+                android:layout_marginTop="4dp"
+                android:text="@string/last_legend" />
+        </LinearLayout>
+
+        <!-- Model -->
+        <LinearLayout
+            android:id="@+id/cardModel"
+            style="@style/Card"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_model_title" />
+
+            <TextView
+                android:id="@+id/modelBacktest"
+                style="@style/BodyText" />
+
+            <TextView
+                android:id="@+id/modelExperts"
+                style="@style/BodyText"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/modelVerdict"
+                style="@style/SecondaryText"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnStats"
+                style="@style/SecondaryButton"
+                android:text="@string/menu_stats" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnAddDraw"
+            style="@style/PrimaryButton"
+            android:text="@string/add_todays_draw" />
+
+        <Button
+            android:id="@+id/btnImport"
+            style="@style/SecondaryButton"
+            android:layout_marginBottom="8dp"
+            android:text="@string/import_csv_xml" />
+    </LinearLayout>
+</ScrollView>

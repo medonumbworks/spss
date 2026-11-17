@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Night mode on Android 7.0 - 9 (rare, e.g. a developer option): a dark parent theme so
+      that buttons, text fields and dialogs stay readable on the dark colours of
+      values-night/colors.xml. Android 10+ uses values-night-v29/styles.xml instead.
+    -->
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/window_bg</item>
+    </style>
+</resources>

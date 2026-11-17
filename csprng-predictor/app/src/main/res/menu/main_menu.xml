@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_import"
+        android:showAsAction="never"
+        android:title="@string/menu_import" />
+    <item
+        android:id="@+id/menu_add_draw"
+        android:showAsAction="never"
+        android:title="@string/menu_add_draw" />
+    <item
+        android:id="@+id/menu_history"
+        android:showAsAction="never"
+        android:title="@string/menu_history" />
+    <item
+        android:id="@+id/menu_stats"
+        android:showAsAction="never"
+        android:title="@string/menu_stats" />
+    <item
+        android:id="@+id/menu_settings"
+        android:showAsAction="never"
+        android:title="@string/menu_settings" />
+    <item
+        android:id="@+id/menu_export_draws"
+        android:showAsAction="never"
+        android:title="@string/menu_export_draws" />
+    <item
+        android:id="@+id/menu_export_predictions"
+        android:showAsAction="never"
+        android:title="@string/menu_export_predictions" />
+    <item
+        android:id="@+id/menu_about"
+        android:showAsAction="never"
+        android:title="@string/menu_about" />
+</menu>
