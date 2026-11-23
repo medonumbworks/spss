@@ -1,10 +1,10 @@
-#;tip;sustav;B1;B2;B3;B4;B5;B6;B7;B8;B9;B10;B11
-E1;ezoterijska;Plečkov filtar (svi sustavi);1;3;4;5;7;9;10;11;12;14;16
-E2;ezoterijska;Istok: Meihua + I Ching + Jyotiš;1;2;3;4;7;9;10;12;16;19;20
-E3;ezoterijska;Zapad: zapadna astr. + kamea Marsa + kabala + tarot + numerologija;1;4;5;7;8;11;12;13;14;16;19
-S1;statistička;vrući/hladni (cijela povijest) (statistički tipična);1;3;5;6;7;8;15;16;18;19;22
-S2;statistička;vrući (zadnjih 50) (statistički tipična);3;4;5;7;8;12;14;15;17;18;20
-S3;statistička;vrući (zadnjih 100) (statistički tipična);1;2;4;7;8;9;14;17;18;20;21
-L1;logička;maks. pokrivenost (greedy + lokalna zamjena, više pokretanja);1;3;5;6;10;13;14;18;19;20;21
-L2;logička;maks. pokrivenost (greedy + lokalna zamjena, više pokretanja);2;3;4;6;7;8;10;11;14;17;19
-L3;logička;maks. pokrivenost (greedy + lokalna zamjena, više pokretanja);2;3;5;6;8;9;11;13;16;18;20
+#;tip;sustav;redoslijed;B1;B2;B3;B4;B5;B6;B7;B8;B9;B10;B11
+E1;ezoterijska;Plečkov filtar (svi sustavi);1;1;3;4;5;7;9;10;11;12;14;16
+E2;ezoterijska;Istok: Meihua + I Ching + Jyotiš;9;1;2;3;4;7;9;10;12;16;19;20
+E3;ezoterijska;Zapad: zapadna astr. + kamea Marsa + kabala + tarot + numerologija;8;1;4;5;7;8;11;12;13;14;16;19
+S1;statistička;vrući/hladni (cijela povijest) (statistički tipična);2;1;3;5;6;7;8;15;16;18;19;22
+S2;statistička;vrući (zadnjih 50) (statistički tipična);6;3;4;5;7;8;12;14;15;17;18;20
+S3;statistička;vrući (zadnjih 100) (statistički tipična);7;1;2;4;7;8;9;14;17;18;20;21
+L1;logička;maks. pokrivenost (greedy + lokalna zamjena, više pokretanja);3;1;3;5;6;10;13;14;18;19;20;21
+L2;logička;maks. pokrivenost (greedy + lokalna zamjena, više pokretanja);5;2;3;4;6;7;8;10;11;14;17;19
+L3;logička;maks. pokrivenost (greedy + lokalna zamjena, više pokretanja);4;2;3;5;6;8;9;11;13;16;18;20

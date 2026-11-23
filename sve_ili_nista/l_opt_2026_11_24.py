@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-  (pokretati PRIJE dopuna_2026_11_24.py: prepisuje CSV bez stupca redoslijed)
 """§5–§6 za 24.11.2026. (prošireni l_opt.py): L1–L3 (greedy + lokalna zamjena + ponovna pokretanja),
 točne vjerojatnosti, isplate iz potvrđenih iznosa (donja granica), redoslijed igranja, backtest.
 python3 -I l_opt_2026_11_24.py <sin csv> <kola csv> <rezultati json> <sekunde>"""

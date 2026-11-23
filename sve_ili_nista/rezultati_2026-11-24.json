@@ -1871,5 +1871,261 @@
   },
   "draws_any": 418,
   "N": 656
+ },
+ "redoslijed": {
+  "order": [
+   "E1",
+   "S1",
+   "L1",
+   "L3",
+   "L2",
+   "S2",
+   "S3",
+   "E3",
+   "E2"
+  ],
+  "rank": {
+   "E1": 1,
+   "S1": 2,
+   "L1": 3,
+   "L3": 4,
+   "L2": 5,
+   "S2": 6,
+   "S3": 7,
+   "E3": 8,
+   "E2": 9
+  },
+  "seq": [
+   {
+    "k": 1,
+    "kombinacije": [
+     "E1"
+    ],
+    "ulog": 1.3,
+    "need83": 1,
+    "p_any": 60744,
+    "p_ge_low": 54452,
+    "p_ge_up": 60744,
+    "best_subset": [
+     "E1"
+    ],
+    "best_p": 60744,
+    "greedy_optimal": true
+   },
+   {
+    "k": 2,
+    "kombinacije": [
+     "E1",
+     "S1"
+    ],
+    "ulog": 2.6,
+    "need83": 1,
+    "p_any": 117888,
+    "p_ge_low": 105704,
+    "p_ge_up": 117888,
+    "best_subset": [
+     "E1",
+     "S1"
+    ],
+    "best_p": 117888,
+    "greedy_optimal": true
+   },
+   {
+    "k": 3,
+    "kombinacije": [
+     "E1",
+     "S1",
+     "L1"
+    ],
+    "ulog": 3.9,
+    "need83": 2,
+    "p_any": 171588,
+    "p_ge_low": 9330,
+    "p_ge_up": 28188,
+    "best_subset": [
+     "E1",
+     "S1",
+     "L1"
+    ],
+    "best_p": 171588,
+    "greedy_optimal": true
+   },
+   {
+    "k": 4,
+    "kombinacije": [
+     "E1",
+     "S1",
+     "L1",
+     "L3"
+    ],
+    "ulog": 5.2,
+    "need83": 2,
+    "p_any": 221992,
+    "p_ge_low": 18128,
+    "p_ge_up": 43224,
+    "best_subset": [
+     "E1",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "best_p": 222000,
+    "greedy_optimal": false
+   },
+   {
+    "k": 5,
+    "kombinacije": [
+     "E1",
+     "S1",
+     "L1",
+     "L3",
+     "L2"
+    ],
+    "ulog": 6.5,
+    "need83": 3,
+    "p_any": 269238,
+    "p_ge_low": 1282,
+    "p_ge_up": 32736,
+    "best_subset": [
+     "E2",
+     "S1",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "best_p": 269256,
+    "greedy_optimal": false
+   },
+   {
+    "k": 6,
+    "kombinacije": [
+     "E1",
+     "S1",
+     "L1",
+     "L3",
+     "L2",
+     "S2"
+    ],
+    "ulog": 7.8,
+    "need83": 3,
+    "p_any": 313304,
+    "p_ge_low": 2438,
+    "p_ge_up": 40184,
+    "best_subset": [
+     "E2",
+     "E3",
+     "S1",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "best_p": 313316,
+    "greedy_optimal": false
+   },
+   {
+    "k": 7,
+    "kombinacije": [
+     "E1",
+     "S1",
+     "L1",
+     "L3",
+     "L2",
+     "S2",
+     "S3"
+    ],
+    "ulog": 9.1,
+    "need83": 4,
+    "p_any": 350220,
+    "p_ge_low": 218,
+    "p_ge_up": 44118,
+    "best_subset": [
+     "E2",
+     "E3",
+     "S1",
+     "S2",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "best_p": 354414,
+    "greedy_optimal": false
+   },
+   {
+    "k": 8,
+    "kombinacije": [
+     "E1",
+     "S1",
+     "L1",
+     "L3",
+     "L2",
+     "S2",
+     "S3",
+     "E3"
+    ],
+    "ulog": 10.4,
+    "need83": 4,
+    "p_any": 383166,
+    "p_ge_low": 542,
+    "p_ge_up": 50410,
+    "best_subset": [
+     "E2",
+     "E3",
+     "S1",
+     "S2",
+     "S3",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "best_p": 388870,
+    "greedy_optimal": false
+   },
+   {
+    "k": 9,
+    "kombinacije": [
+     "E1",
+     "S1",
+     "L1",
+     "L3",
+     "L2",
+     "S2",
+     "S3",
+     "E3",
+     "E2"
+    ],
+    "ulog": 11.7,
+    "need83": 5,
+    "p_any": 414370,
+    "p_ge_low": 58,
+    "p_ge_up": 55894,
+    "best_subset": [
+     "E1",
+     "E2",
+     "E3",
+     "S1",
+     "S2",
+     "S3",
+     "L1",
+     "L2",
+     "L3"
+    ],
+    "best_p": 414370,
+    "greedy_optimal": true
+   }
+  ]
+ },
+ "granice": {
+  "naksatra": {
+   "od_pocetka_min": 4.702631619860752,
+   "do_kraja_min": 1270.3574837907454
+  },
+  "tithi": {
+   "od_pocetka_min": 186.2912451430315,
+   "do_kraja_min": 1043.8189679190914
+  },
+  "yoga": {
+   "od_pocetka_min": 443.38949871627216,
+   "do_kraja_min": 751.4796341648737
+  }
  }
 }
