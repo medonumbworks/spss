@@ -66,10 +66,18 @@ def kw(lines):
 def nuklearni(lines):
     return kw(tuple(lines[1:4]) + tuple(lines[2:5]))
 
-def meihua(d):
+def sat_grana(d, h):
+    """Zemaljska grana dvosata iz lokalnog vremena Helsinkija (子 23–01 = 1 … 亥 21–23 = 12)."""
+    from zoneinfo import ZoneInfo
+    t = dt.datetime(d.year, d.month, d.day, tzinfo=dt.timezone.utc) + dt.timedelta(hours=h)
+    lok = t.astimezone(ZoneInfo('Europe/Helsinki'))
+    return ((lok.hour + 1) // 2) % 12 + 1
+
+def meihua(d, h=None):
     l = Solar.fromYmd(d.year, d.month, d.day).getLunar()
     Y = l.getYearZhiIndex() + 1
-    M, D, H = abs(l.getMonth()), l.getDay(), 12
+    M, D = abs(l.getMonth()), l.getDay()
+    H = 12 if h is None else sat_grana(d, h)
     up = (Y + M + D) % 8 or 8
     lo = (Y + M + D + H) % 8 or 8
     crta = (Y + M + D + H) % 6 or 6
@@ -104,8 +112,8 @@ def lon_sid(jd, body):
     swe.set_sid_mode(swe.SIDM_LAHIRI)
     return swe.calc_ut(jd, body, FL | swe.FLG_SIDEREAL)[0][0]
 
-def jyotish(d):
-    jd = jd_ut(d)
+def jyotish(d, h=19.0):
+    jd = jd_ut(d, h)
     m, s, r = lon_sid(jd, swe.MOON), lon_sid(jd, swe.SUN), lon_sid(jd, swe.MEAN_NODE)
     nak = int(m // NAK) + 1
     tithi = int(((m - s) % 360) // 12) + 1
@@ -118,8 +126,8 @@ def jyotish(d):
 
 ZNAK = ['Ovan', 'Bik', 'Blizanci', 'Rak', 'Lav', 'Djevica', 'Vaga', 'Škorpion', 'Strijelac', 'Jarac', 'Vodenjak', 'Ribe']
 
-def zapadna(d):
-    jd = jd_ut(d)
+def zapadna(d, h=19.0):
+    jd = jd_ut(d, h)
     tijela = [('Venera', swe.VENUS), ('Jupiter', swe.JUPITER), ('Merkur', swe.MERCURY), ('Sunce', swe.SUN),
               ('Mjesec', swe.MOON), ('Mars', swe.MARS)]
     raw, info = [], {}
@@ -224,8 +232,8 @@ BOJA_POC = {'Štapovi': 23, 'Pehari': 37, 'Mačevi': 51, 'Pentakli': 65}
 DEKAN = {0: ('Štapovi', 2), 1: ('Pentakli', 5), 2: ('Mačevi', 8), 3: ('Pehari', 2), 4: ('Štapovi', 5), 5: ('Pentakli', 8),
          6: ('Mačevi', 2), 7: ('Pehari', 5), 8: ('Štapovi', 8), 9: ('Pentakli', 2), 10: ('Mačevi', 5), 11: ('Pehari', 8)}
 
-def tarot_dekan(d):
-    L = lon_trop(jd_ut(d), swe.SUN)
+def tarot_dekan(d, h=19.0):
+    L = lon_trop(jd_ut(d, h), swe.SUN)
     z = int(L // 30); dek = int((L % 30) // 10)
     boja, prva = DEKAN[z]
     karta = prva + dek
