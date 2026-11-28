@@ -1,0 +1,252 @@
+/* CryptoPulse PWA shell. Phone-first (360 px), dark by default via prefers-color-scheme.
+   Every color lives in a custom property on :root so the light scheme only swaps tokens. */
+
+:root {
+  --bg: #10141b;
+  --surface: #1a2029;
+  --surface-2: #222a36;
+  --border: #2d3644;
+  --text: #e8ecf2;
+  --muted: #94a0b0;
+  --accent: #4cc38a;
+  --pos: #4cc38a;
+  --neg: #e5605e;
+  --warn: #e2b93b;
+  --warn-text: #10141b;
+  --chip-bg: #222a36;
+  --bar-bg: #2d3644;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --surface-2: #eef0f4;
+    --border: #d8dde4;
+    --text: #1b222c;
+    --muted: #5c6774;
+    --accent: #0f8a58;
+    --pos: #0f8a58;
+    --neg: #c4302e;
+    --warn: #9a6d00;
+    --warn-text: #ffffff;
+    --chip-bg: #e7eaef;
+    --bar-bg: #d8dde4;
+    color-scheme: light;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0 16px calc(24px + env(safe-area-inset-bottom));
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  max-width: 920px;
+  margin-inline: auto;
+}
+
+h1 { font-size: 20px; margin: 0; }
+h2 { font-size: 17px; margin: 24px 0 4px; }
+h3 { font-size: 15px; margin: 16px 0 4px; }
+a { color: var(--accent); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* header */
+.top {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+  padding: 14px 0 8px;
+}
+.brand { display: flex; align-items: center; gap: 8px; }
+.brand img { border-radius: 7px; }
+.status { display: flex; gap: 6px; margin-left: auto; }
+
+.chip {
+  background: var(--chip-bg);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.chip.warn { background: var(--warn); color: var(--warn-text); font-weight: 600; }
+
+/* tabs */
+.tabs {
+  display: flex; gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin: 2px -16px 12px; padding: 0 12px;
+  overflow-x: auto;
+}
+.tabs button {
+  appearance: none; background: none; border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--muted); font: inherit; font-weight: 600;
+  padding: 8px 10px; cursor: pointer; white-space: nowrap;
+}
+.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+
+/* notes + warnings */
+.note {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 8px 12px; font-size: 13px; color: var(--muted);
+}
+.note.warn { border-color: var(--warn); color: var(--text); }
+.warnings { margin: 0 0 12px; padding: 0; list-style: none; }
+.warnings li {
+  background: var(--warn); color: var(--warn-text);
+  border-radius: 10px; padding: 8px 12px; font-size: 13px; margin-bottom: 6px;
+}
+
+.quiet { color: var(--muted); font-size: 13px; margin: 4px 0 10px; }
+
+/* overview controls */
+.controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+#search {
+  width: 100%;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 9px 12px; font: inherit;
+}
+#search::placeholder { color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button {
+  background: var(--chip-bg); color: var(--muted);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer;
+}
+.chips button[aria-pressed="true"] {
+  background: var(--accent); border-color: var(--accent);
+  color: var(--bg); font-weight: 600;
+}
+
+/* coin table (wide layout) */
+#coins { width: 100%; border-collapse: collapse; font-size: 13px; }
+#coins th { text-align: left; }
+#coins th.num, #coins td.num { text-align: right; }
+#coins thead button {
+  appearance: none; background: none; border: 0; color: var(--muted);
+  font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; padding: 6px 2px;
+}
+#coins thead button[data-dir] { color: var(--text); }
+#coins thead button[data-dir="asc"]::after { content: " \2191"; }
+#coins thead button[data-dir="desc"]::after { content: " \2193"; }
+#coins td { padding: 8px 4px; border-top: 1px solid var(--border); vertical-align: top; }
+
+.coin-name { font-weight: 600; }
+.coin-sym { color: var(--muted); font-size: 12px; margin-left: 4px; }
+.tag {
+  display: inline-block; background: var(--chip-bg); color: var(--muted);
+  border-radius: 5px; font-size: 10px; padding: 1px 5px; margin-left: 5px;
+  text-transform: uppercase; letter-spacing: 0.03em; vertical-align: 1px;
+}
+.pos { color: var(--pos); }
+.neg { color: var(--neg); }
+.null-cell { color: var(--muted); }
+.null-why { display: block; font-size: 11px; color: var(--muted); }
+.sub { display: block; font-size: 11px; color: var(--muted); font-weight: 400; }
+
+.risk-High, .risk-Very { color: var(--neg); font-weight: 600; }
+.risk-Elevated { color: var(--warn); font-weight: 600; }
+
+/* pump warning */
+.pump { display: inline-block; margin-left: 6px; font-size: 12px; }
+.pump summary {
+  cursor: pointer; list-style: none; display: inline-block;
+  background: var(--warn); color: var(--warn-text);
+  border-radius: 6px; padding: 1px 7px; font-weight: 600;
+}
+.pump summary::-webkit-details-marker { display: none; }
+.pump ul {
+  margin: 6px 0 2px; padding-left: 18px; color: var(--text);
+  font-weight: 400; font-size: 12px;
+}
+
+/* cards (polymarket + buzz) */
+.cards { list-style: none; margin: 8px 0 0; padding: 0; }
+.cards > li {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px; margin-bottom: 10px;
+}
+.pm-q { font-weight: 600; display: block; margin-bottom: 6px; }
+.pm-bar { background: var(--bar-bg); border-radius: 999px; height: 8px; overflow: hidden; }
+.pm-fill { background: var(--accent); height: 100%; border-radius: 999px; }
+.pm-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); margin-top: 6px; }
+.pm-prob { font-weight: 600; color: var(--text); }
+
+/* buzz */
+.buzz-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.buzz-sym { font-weight: 700; font-size: 15px; }
+.buzz-mentions { color: var(--muted); font-size: 13px; }
+.buzz-spike { color: var(--warn); font-weight: 600; font-size: 13px; }
+.buzz-comp { margin-left: auto; font-weight: 600; font-size: 13px; }
+.samples { list-style: none; margin: 8px 0 0; padding: 0; }
+.samples li { margin-top: 6px; font-size: 13px; }
+.samples a { color: var(--text); text-decoration: none; display: block; }
+.samples a:hover .s-text { text-decoration: underline; }
+.s-comm { color: var(--muted); font-size: 11px; }
+.s-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+/* accuracy */
+.acc { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+.acc-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px;
+}
+.acc-card h3 { margin: 0 0 8px; }
+.acc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 12px; }
+.acc-grid .v { font-size: 18px; font-weight: 700; display: block; }
+.acc-grid .k { font-size: 11px; color: var(--muted); }
+.acc-note { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+
+/* about + footer */
+.plain { margin: 4px 0; padding-left: 18px; }
+.plain li { margin-bottom: 4px; }
+footer { margin-top: 28px; border-top: 1px solid var(--border); padding-top: 10px; }
+#retry {
+  background: var(--chip-bg); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 4px 12px; font: inherit; cursor: pointer; margin-left: 6px;
+}
+
+/* narrow screens: the coin table degrades to stacked cards and the header row
+   becomes a wrapping strip of sort chips (so tap-to-sort still works on a phone) */
+@media (max-width: 719px) {
+  #coins, #coins tbody { display: block; }
+  #coins thead { display: block; }
+  #coins thead tr { display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 10px; }
+  #coins th { display: block; }
+  #coins thead button {
+    background: var(--chip-bg); border: 1px solid var(--border);
+    border-radius: 999px; padding: 4px 10px;
+  }
+  #coins thead button[data-dir] { border-color: var(--accent); }
+  #coins tbody tr {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 10px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 10px 12px; margin-bottom: 10px;
+  }
+  #coins td { display: block; border: 0; padding: 0; }
+  #coins td.num { text-align: left; }
+  #coins td.coin { grid-column: 1 / -1; }
+  #coins td[data-l]::before {
+    content: attr(data-l);
+    display: block; font-size: 10px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+}
+
+@media (min-width: 720px) {
+  .controls { flex-direction: row; align-items: center; }
+  #search { max-width: 280px; }
+  .acc { grid-template-columns: 1fr 1fr; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cards > li { margin-bottom: 0; }
+}
